@@ -2402,9 +2402,9 @@ upd();
 /* ===== Commissions Owed ✝️ ===== */
 (function(){
   var PARTNERS=[
-    {k:'p1',n:'Partner 1 🇲🇽 Mexico',c:'MX'},
+    {k:'p1',n:'Daniel 🇲🇽 Mexico',c:'MX'},
     {k:'p2',n:'Partner 2 🇺🇸',c:'US'},
-    {k:'us',n:'Partner 🇺🇸 United States',c:'US'},
+    {k:'us',n:'Cristian 🇺🇸 United States',c:'US'},
     {k:'ca',n:'Partner 🇨🇦 Canada',c:'CA'},
     {k:'au',n:'Partner 🇦🇺 Australia',c:'AU'},
     {k:'ph',n:'Partner 🇵🇭 Philippines',c:'PH'},
@@ -2543,7 +2543,7 @@ upd();
 <script>
 /* ===== ✝️ Loyalty Program (Brian) ===== */
 (function(){
-  var PARTNERS=[{k:'p1',n:'Partner 1 🇲🇽'},{k:'p2',n:'Partner 2 🇺🇸'},{k:'us',n:'Partner 🇺🇸 US'},{k:'ca',n:'Partner 🇨🇦 Canada'},{k:'au',n:'Partner 🇦🇺 Australia'},{k:'ph',n:'Partner 🇵🇭 Philippines'}];
+  var PARTNERS=[{k:'p1',n:'Daniel 🇲🇽'},{k:'us',n:'Cristian 🇺🇸'}];
   var LS='bl-loyalty', data={}, col=null, box=null;
   function rate(y){return y<=3?3:(y<=7?7:13);}
   function money(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -2555,7 +2555,7 @@ upd();
   function write(k){var d=data[k]||{};if(col)col.doc(k).set(d).catch(function(){saveLocal();});else saveLocal();}
 
   function render(){
-    if(!box)return;var now=new Date(),dueTotal=0;
+    if(!box)return;var now=new Date(),dueTotal=0;window.__loyData=data;try{document.dispatchEvent(new Event('loy-change'));}catch(e){}
     var h='<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px"><div style="font-size:18px;font-weight:900">✝️ Loyalty Program</div><a href="https://dashboard.stripe.com/global-payouts/payouts" target="_blank" rel="noopener" style="margin-left:auto;background:#635BFF;color:#fff;border-radius:8px;padding:7px 11px;font-size:11px;font-weight:800;text-decoration:none">Open Stripe Payouts ↗</a></div>'
       +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px">Each Partner gets a yearly bonus on their commissions, paid on their start anniversary while they\'re active. Every 3 years they also get a 🌴 Vacation Bonus: 3% of everything they earned in those 3 years. Refunded sales don\'t count. Commissions come from your 💸 Commissions Owed list.</div>'
       +'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">'
@@ -3221,29 +3221,31 @@ upd();
 
   /* ---------- Brian: status of every Partner, from Commissions Owed sales ---------- */
   function brian(){
-    var host=document.getElementById('tab-team');if(!host)return;
+    var host=document.getElementById('tab-earnings');if(!host)return;
     var box=document.createElement('div');box.id='active-status';
-    box.style.cssText='background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:14px';
-    var dl=host.querySelector('.deal-links');
-    if(dl)host.insertBefore(box,dl.nextSibling);else host.insertBefore(box,host.firstChild);
+    box.style.cssText='background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:16px';
+    var la=document.getElementById('loyalty-admin');
+    if(la&&la.parentNode===host)host.insertBefore(box,la.nextSibling);else host.insertBefore(box,host.firstChild);
     var WHO=[{k:'p1',n:'Daniel 🇲🇽'},{k:'us',n:'Cristian 🇺🇸'}];
     function render(){
       var rows=window.__cmRows||[],t=T[lang()];
       var h='<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:8px"><div style="font-size:16px;font-weight:900">📜 Active Partners ✝️</div><div style="font-size:11px;color:var(--muted)">60 days no sale = inactive · residuals 6 more months</div></div>';
       WHO.forEach(function(w){
         var last='';rows.forEach(function(r){if(r.partner===w.k&&r.status!=='refunded'&&(r.saleDate||'')>last)last=r.saleDate;});
-        var st=status(last,''),line;
-        if(!st)line='<span style="color:var(--muted)">No sales logged yet. Clock runs from their start date.</span>';
-        else line='<b style="color:'+COL[st.s]+'">'+T.en[st.s]+'</b> · last sale '+fmt(day(last))+' ('+st.n+'d) · '+(st.s==='ina'?'residuals end '+fmt(st.resEnd):'needs a sale by '+fmt(st.due));
+        var ld=window.__loyData||{},start=(ld[w.k]&&ld[w.k].start)||'';
+        var st=status(last,start),line;
+        if(!st)line='<span style="color:var(--muted)">Set their start date in the Loyalty box above to start their 60-day clock.</span>';
+        else line='<b style="color:'+COL[st.s]+'">'+T.en[st.s]+'</b> · '+(last?'last sale '+fmt(day(last)):'started '+fmt(day(start)))+' ('+st.n+'d) · '+(st.s==='ina'?'residuals end '+fmt(st.resEnd):'needs a sale by '+fmt(st.due));
         h+='<div style="display:flex;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:9px;background:rgba(255,255,255,.04);margin-bottom:6px;font-size:12px;flex-wrap:wrap"><b style="font-size:13px">'+w.n+'</b><span>'+line+'</span></div>';
       });
-      h+='<details style="margin-top:6px"><summary style="cursor:pointer;font-size:12px;font-weight:800;color:var(--green)">Show the terms Partners see</summary>'
+      h+='<details open style="margin-top:6px"><summary style="cursor:pointer;font-size:12px;font-weight:800;color:var(--green)">The terms Partners see</summary>'
         +'<ol style="margin:8px 0 0;padding-left:18px;font-size:12px;line-height:1.65">'+t.rules.map(function(r){return '<li style="margin-bottom:5px">'+r+'</li>';}).join('')+'</ol></details>';
       box.innerHTML=h;
     }
     render();
     document.addEventListener('cm-rows',render);
     document.addEventListener('mxlang',render);
+    document.addEventListener('loy-change',render);
   }
   function init(){BRIAN?brian():partner();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
