@@ -2402,9 +2402,9 @@ upd();
 /* ===== Commissions Owed ✝️ ===== */
 (function(){
   var PARTNERS=[
-    {k:'p1',n:'Daniel 🇲🇽 Mexico',c:'MX'},
+    {k:'p1',n:'Partner 1 🇲🇽 Mexico',c:'MX'},
     {k:'p2',n:'Partner 2 🇺🇸',c:'US'},
-    {k:'us',n:'Cristian 🇺🇸 United States',c:'US'},
+    {k:'us',n:'Partner 🇺🇸 United States',c:'US'},
     {k:'ca',n:'Partner 🇨🇦 Canada',c:'CA'},
     {k:'au',n:'Partner 🇦🇺 Australia',c:'AU'},
     {k:'ph',n:'Partner 🇵🇭 Philippines',c:'PH'},
@@ -2543,7 +2543,7 @@ upd();
 <script>
 /* ===== ✝️ Loyalty Program (Brian) ===== */
 (function(){
-  var PARTNERS=[{k:'p1',n:'Daniel 🇲🇽'},{k:'us',n:'Cristian 🇺🇸'}];
+  var PARTNERS=[{k:'p1',n:'Partner 1 🇲🇽'},{k:'p2',n:'Partner 2 🇺🇸'},{k:'us',n:'Partner 🇺🇸 US'},{k:'ca',n:'Partner 🇨🇦 Canada'},{k:'au',n:'Partner 🇦🇺 Australia'},{k:'ph',n:'Partner 🇵🇭 Philippines'}];
   var LS='bl-loyalty', data={}, col=null, box=null;
   function rate(y){return y<=3?3:(y<=7?7:13);}
   function money(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -3226,10 +3226,11 @@ upd();
     box.style.cssText='background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:16px';
     var la=document.getElementById('loyalty-admin');
     if(la&&la.parentNode===host)host.insertBefore(box,la.nextSibling);else host.insertBefore(box,host.firstChild);
-    var WHO=[{k:'p1',n:'Daniel 🇲🇽'},{k:'us',n:'Cristian 🇺🇸'}];
+    function who(){return [{k:'p1',n:'Partner 1 🇲🇽'},{k:'p2',n:'Partner 2 🇺🇸'},{k:'us',n:'Partner 🇺🇸 US'},{k:'ca',n:'Partner 🇨🇦 Canada'},{k:'au',n:'Partner 🇦🇺 Australia'},{k:'ph',n:'Partner 🇵🇭 Philippines'}].filter(function(w){var ld=window.__loyData||{};return (ld[w.k]&&ld[w.k].start)||(window.__cmRows||[]).some(function(r){return r.partner===w.k;});});}
     function render(){
-      var rows=window.__cmRows||[],t=T[lang()];
+      var rows=window.__cmRows||[],t=T[lang()];var WHO=who();
       var h='<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:8px"><div style="font-size:16px;font-weight:900">📜 Active Partners ✝️</div><div style="font-size:11px;color:var(--muted)">60 days no sale = inactive · residuals 6 more months</div></div>';
+      if(!WHO.length)h+='<div style="font-size:12px;color:var(--muted);padding:6px 2px">No active Partners yet. When someone joins, set their start date in the Loyalty box above and they show up here.</div>';
       WHO.forEach(function(w){
         var last='';rows.forEach(function(r){if(r.partner===w.k&&r.status!=='refunded'&&(r.saleDate||'')>last)last=r.saleDate;});
         var ld=window.__loyData||{},start=(ld[w.k]&&ld[w.k].start)||'';
