@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0a0a0a"><meta name="apple-mobile-web-app-title" content="MX Studio ✝️">
+<script>window.MXSYNC={"api": "/api/sync", "key": "p_NOM4g9TLrFE9Eqp8Ye5IZBTz", "space": "partner-ph", "prefix": "ph:"};</script>
+<script id="mx-sync">
+/* ===== ✝️ MX Studio live sync: same data on every device, within seconds ===== */
+(function(){
+  var C=window.MXSYNC;if(!C||!window.XMLHttpRequest||window.top!==window)return;
+  var LS;try{LS=window.localStorage;LS.setItem('mxs:test','1');LS.removeItem('mxs:test');}catch(e){return;}
+  var P=C.prefix||'';
+  var proto=Storage.prototype,_get=proto.getItem,_set=proto.setItem,_rem=proto.removeItem;
+  function rawGet(k){return _get.call(LS,k);} function rawSet(k,v){_set.call(LS,k,v);} function rawRem(k){_rem.call(LS,k);}
+  var REVK='mxs:rev:'+C.space, DEVK='mxs:dev';
+  var dev=rawGet(DEVK);if(!dev){dev=Math.random().toString(36).slice(2,12);rawSet(DEVK,dev);}
+  var rev=+rawGet(REVK)||0, pend={}, timer=null, applying=false, dirty=false;
+  function internal(k){return k.indexOf('mxs:')===0;}
+  function apply(items){
+    var n=0;applying=true;
+    for(var k in items){if(!items.hasOwnProperty(k)||internal(k))continue;var it=items[k];
+      if(it.t>rev)rev=it.t;
+      if(it.d===dev)continue;
+      var cur=rawGet(P+k);
+      if(it.v===null){if(cur!==null){rawRem(P+k);n++;}}
+      else if(cur!==it.v){rawSet(P+k,it.v);n++;}}
+    applying=false;rawSet(REVK,String(rev));return n;
+  }
+  function url(q){return C.api+'?space='+encodeURIComponent(C.space)+(q||'');}
+  /* 1) before the page reads anything: pull the latest from the cloud (fast, blocks ~0.3s) */
+  try{var x=new XMLHttpRequest();x.open('GET',url('&since='+rev),false);x.setRequestHeader('x-mx-key',C.key);x.send();
+    if(x.status===200){apply(JSON.parse(x.responseText).items||{});}}catch(e){}
+  /* 2) every save on this device goes to the cloud */
+  function push(){timer=null;var body=pend;pend={};if(!Object.keys(body).length)return;
+    fetch(url(),{method:'POST',headers:{'content-type':'application/json','x-mx-key':C.key},body:JSON.stringify({set:body,dev:dev}),keepalive:true})
+      .then(function(r){return r.json();}).then(function(j){if(j&&j.rev>rev){/* keep rev: our own writes are skipped on read */}})
+      .catch(function(){for(var k in body)if(!(k in pend))pend[k]=body[k];rawSet('mxs:pend:'+C.space,JSON.stringify(pend));setTimeout(push,5000);});
+  }
+  try{var old=JSON.parse(rawGet('mxs:pend:'+C.space)||'{}');for(var k0 in old)pend[k0]=old[k0];rawRem('mxs:pend:'+C.space);if(Object.keys(pend).length)setTimeout(push,1500);}catch(e){}
+  function queue(k,v){if(applying||internal(k))return;pend[k]=v;if(timer)clearTimeout(timer);timer=setTimeout(push,400);}
+  proto.getItem=function(k){if(this===LS&&!internal(String(k)))return _get.call(this,P+k);return _get.apply(this,arguments);};
+  proto.setItem=function(k,v){if(this===LS&&!internal(String(k))){_set.call(this,P+k,String(v));queue(String(k),String(v));return;}return _set.apply(this,arguments);};
+  proto.removeItem=function(k){if(this===LS&&!internal(String(k))){_rem.call(this,P+k);queue(String(k),null);return;}return _rem.apply(this,arguments);};
+  window.addEventListener('pagehide',function(){if(timer){clearTimeout(timer);push();}});
+  /* 3) changes from your other devices show up here within a few seconds */
+  function busy(){var a=document.activeElement;return a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable);}
+  function saveUI(){try{var tbs=[].slice.call(document.querySelectorAll('.tb'));var ai=tbs.findIndex(function(t){return t.classList.contains('active');});
+    sessionStorage.setItem('mxs:ui',JSON.stringify({tab:ai,sel:(typeof S!=='undefined'&&S&&S.sel!=null)?S.sel:null,y:window.scrollY,t:Date.now()}));}catch(e){}}
+  function refresh(){if(busy()||document.querySelector('dialog[open]')){dirty=true;return;}dirty=false;saveUI();location.reload();}
+  function poll(){
+    if(document.hidden)return;
+    fetch(url('&since='+rev),{headers:{'x-mx-key':C.key},cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+      if(j&&apply(j.items||{})>0)refresh();
+    }).catch(function(){});
+  }
+  setInterval(poll,4000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)poll();});
+  window.addEventListener('focus',poll);
+  document.addEventListener('focusout',function(){setTimeout(function(){if(dirty&&!busy())refresh();},300);});
+  /* after a sync refresh, put you back on the same tab, prospect and scroll spot */
+  function restore(){try{var u=JSON.parse(sessionStorage.getItem('mxs:ui')||'null');sessionStorage.removeItem('mxs:ui');if(!u||Date.now()-u.t>15000)return;
+    var tbs=document.querySelectorAll('.tb');if(u.tab>=0&&tbs[u.tab])tbs[u.tab].click();
+    if(u.sel!=null&&typeof window.selP==='function'){try{window.selP(u.sel);}catch(e){}}
+    setTimeout(function(){window.scrollTo(0,u.y||0);},60);}catch(e){}}
+  window.addEventListener('load',function(){setTimeout(restore,50);});
+  window.MXSYNC.status=function(){return {rev:rev,pending:Object.keys(pend).length,dev:dev};};
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Partner — Philippines ✝️</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090b10;--card:#12151e;--border:rgba(255,255,255,.07);
+  --orange:#FF6B2B;--green:#00E676;--wa:#25D366;
+  --white:#F8F8F6;--muted:#8896A8;
+  --gdim:rgba(0,230,118,.06);--gmid:rgba(0,230,118,.16)
+}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,sans-serif;min-height:100vh;padding-bottom:48px}
+
+/* HEADER */
+.hdr{padding:13px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,230,118,.12);position:sticky;top:0;background:rgba(9,11,16,.97);backdrop-filter:blur(14px);z-index:99}
+.logo{width:34px;height:34px;border-radius:9px;background:var(--green);color:#000;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0,230,118,.25);flex-shrink:0}
+.hdr-text{flex:1;min-width:0}
+.hdr-name{font-size:14px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-sub{font-size:10px;color:var(--green);font-weight:600}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.toggle-label{font-size:11px;font-weight:800;min-width:24px}
+.toggle-track{width:42px;height:22px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--border);cursor:pointer;position:relative;transition:.25s;flex-shrink:0}
+.toggle-knob{width:16px;height:16px;border-radius:8px;position:absolute;top:2px;left:2px;transition:.25s}
+.toggle-track.en .toggle-knob{left:22px}
+
+/* TABS */
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--border);background:#0b0d14;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex-shrink:0;padding:11px 14px;font-size:11px;font-weight:800;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;letter-spacing:.2px;transition:.2s;white-space:nowrap}
+.tb.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,230,118,.04)}
+
+/* TAB PANES */
+.pane{display:none;padding:16px}
+.pane.active{display:block}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.clabel{font-size:9px;font-weight:800;color:var(--green);letter-spacing:.9px;text-transform:uppercase;margin-bottom:12px}
+
+/* GOALS */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.gc{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;text-align:center}
+.gc-lbl{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.gc-n{font-size:48px;font-weight:900;line-height:1}
+.gc-s{font-size:10px;color:var(--muted);margin-top:3px}
+.btn{display:block;width:100%;padding:11px;border-radius:9px;border:1px solid var(--border);background:var(--gdim);color:var(--green);font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:8px;text-align:center}
+.btn-o{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn-wa{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.25);color:var(--wa)}
+.btn-stripe{background:var(--orange);border:none;color:#fff}
+
+/* PROGRESS */
+.prog{margin-bottom:12px}
+.prog-top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.prog-bar{height:7px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;transition:.4s}
+
+/* PROSPECTS */
+.srch{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:9px;padding:9px 13px;color:var(--white);font-size:13px;font-family:inherit;margin-bottom:10px;outline:none}
+.srch:focus{border-color:rgba(0,230,118,.3)}
+.pct{font-size:10px;color:var(--muted);text-align:center;margin-bottom:8px}
+.plist{display:flex;flex-direction:column;gap:7px;max-height:58vh;overflow-y:auto}
+.prow{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:9px}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pmeta{font-size:10px;color:var(--muted);margin-top:2px}
+.pbtns{display:flex;gap:5px;flex-shrink:0}
+.pbtns a{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;border:1px solid var(--border)}
+.pbcall{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.18)}
+.pbwa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.18)}
+.pbvb{background:rgba(115,96,242,.12);border-color:rgba(115,96,242,.35)}
+
+/* SCRIPT */
+.step{border-radius:13px;padding:16px;margin-bottom:10px}
+.step-opener{background:var(--card);border:1px solid var(--border)}
+.step-pitch{background:var(--card);border:1px solid var(--border)}
+.step-close{background:rgba(255,107,43,.06);border:1px solid rgba(255,107,43,.18)}
+.step-fu{background:var(--card);border:1px solid var(--border)}
+.step-lbl{font-size:9px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;margin-bottom:10px;color:var(--orange)}
+.step-txt{font-size:13px;line-height:1.75;color:var(--white)}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.demo-a{display:block;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:10px;text-decoration:none;text-align:center}
+.demo-icon{font-size:22px}
+.demo-lbl{font-size:11px;font-weight:800;color:var(--green);margin-top:4px}
+.copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.cbtn{background:var(--gdim);border:1px solid var(--gmid);color:var(--green);font-size:11px;font-weight:800;padding:8px;border-radius:8px;cursor:pointer;font-family:inherit}
+.close-btns{display:flex;gap:8px;margin-top:10px}
+.close-btns button{flex:1;padding:12px;border-radius:9px;border:none;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+
+/* EARNINGS */
+.earn-big{font-size:38px;font-weight:900;margin:6px 0 2px}
+.earn-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}
+.earn-row:last-child{border:none}
+.el{color:var(--muted)}
+.ev{font-weight:700}
+.slider-wrap{margin-top:10px}
+.slider-wrap input[type=range]{width:100%;accent-color:var(--green)}
+.calc-result{font-size:26px;font-weight:900;color:var(--green);text-align:center;margin-top:8px}
+.calc-sub{font-size:11px;color:var(--muted);text-align:center}
+
+/* JEFE */
+.jefe-card{background:linear-gradient(135deg,rgba(255,107,43,.07),rgba(0,230,118,.05));border:1px solid rgba(255,107,43,.18);border-radius:15px;padding:22px;text-align:center;margin-bottom:12px}
+.jefe-av{width:58px;height:58px;border-radius:14px;background:var(--orange);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.jefe-name{font-size:17px;font-weight:900;margin-bottom:3px}
+.jefe-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.wa-main{display:block;background:var(--wa);color:#fff;font-size:14px;font-weight:800;padding:13px;border-radius:11px;text-decoration:none;margin-bottom:8px}
+.wa-sec{display:block;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);color:var(--wa);font-size:12px;font-weight:700;padding:11px;border-radius:10px;text-decoration:none}
+
+/* RULES */
+.rule{font-size:12px;line-height:1.9;color:var(--white)}
+
+/* STATUS BADGES */
+.status-wrap{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.sbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;cursor:pointer;border:1px solid transparent;transition:.15s}
+.sbadge.new{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:var(--muted)}
+.sbadge.called{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.2);color:var(--green)}
+.sbadge.interested{background:rgba(255,200,0,.08);border-color:rgba(255,200,0,.2);color:#FFD600}
+.sbadge.closed{background:rgba(255,107,43,.12);border-color:rgba(255,107,43,.25);color:var(--orange)}
+.sbadge.skip{background:rgba(255,50,50,.08);border-color:rgba(255,50,50,.18);color:#FF5555}
+.sbadge.active{opacity:1;font-weight:900}
+.sbadge:not(.active){opacity:.4}
+
+/* NOTES */
+.p-note{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:7px;padding:6px 9px;color:var(--white);font-size:11px;font-family:inherit;margin-top:6px;resize:none;outline:none}
+.p-note:focus{border-color:rgba(0,230,118,.3)}
+
+/* PROW expanded */
+.prow{flex-direction:column;align-items:stretch;gap:0}
+.prow-top{display:flex;align-items:center;gap:9px}
+
+/* MOTIVATION */
+.motiv{background:linear-gradient(135deg,rgba(255,107,43,.08),rgba(0,230,118,.05));border:1px solid rgba(0,230,118,.12);border-radius:13px;padding:14px 16px;margin-bottom:12px;text-align:center}
+.motiv-quote{font-size:14px;font-weight:700;color:var(--white);line-height:1.5}
+.motiv-sub{font-size:10px;color:var(--orange);font-weight:800;margin-top:6px;letter-spacing:.5px}
+
+/* COUNTER */
+.p-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.p-counter-left{font-size:10px;color:var(--muted)}
+.p-counter-right{font-size:10px;font-weight:800;color:var(--green)}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:12px;font-weight:800;padding:9px 20px;border-radius:18px;z-index:999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">PH</div>
+  <div class="hdr-text">
+    <div class="hdr-name" id="h-title">Partner — Philippines 🇵🇭 ✝️</div>
+    <div class="hdr-sub" id="h-sub">MX Studio · God Wins · myjefetech.app</div>
+  </div>
+  <div class="toggle-wrap">
+    <span class="toggle-label" id="tl-left" style="color:var(--green)">FIL</span>
+    <div class="toggle-track" id="toggle-track" onclick="toggleLang()">
+      <div class="toggle-knob" id="toggle-knob" style="background:var(--green)"></div>
+    </div>
+    <span class="toggle-label" id="tl-right" style="color:var(--muted)">EN</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tb active" onclick="showTab('jefe',this)" id="tab-btn-jefe">👑 Jefe</button>
+  <button class="tb" onclick="showTab('goals',this)" id="tab-btn-goals">🎯 Goals</button>
+  <button class="tb" onclick="showTab('prospects',this)" id="tab-btn-prospects">👥 Prospects</button>
+  <button class="tb" onclick="showTab('script',this)" id="tab-btn-script">🤝 Help You, Help Me</button>
+  <button class="tb" onclick="showTab('earnings',this)" id="tab-btn-earnings">✝️ Loyalty Program</button>
+</div>
+
+<!-- JEFE TAB -->
+<div id="pane-jefe" class="pane active">
+  <div class="jefe-card">
+    <div class="jefe-av">BL</div>
+    <div class="jefe-name">Brian Lalo ✝️</div>
+    <div class="jefe-sub" id="j-sub">Owner · MX Studio · Acapulco, México 🇲🇽🤝🇺🇸</div>
+    <a href="https://wa.me/14084223505?text=Hola%20Brian%20Lalo%2C%20soy%20tu%20socio.%20Necesito%20ayuda." class="wa-main"  id="j-wa-es">💬 WhatsApp Brian — Español</a>
+    <a href="https://wa.me/14084223505?text=Hey%20Brian%20Lalo%2C%20it%27s%20your%20partner.%20Need%20some%20help." class="wa-sec"  id="j-wa-en">💬 WhatsApp Brian — English</a>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="j-links-lbl">📋 Links Rápidos</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <a href="https://myjefetech.app" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+        <span style="font-size:22px">📱</span>
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-app-lbl">Demo App</div>
+          <div style="font-size:10px;color:var(--muted)">myjefetech.app</div>
+        </div>
+      </a>
+      <a href="https://myjefetech.app/demo-dashboard.html" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+        <span style="font-size:22px">📊</span>
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-dash-lbl">Demo Dashboard — La Forja</div>
+          <div style="font-size:10px;color:var(--muted)">myjefetech.app/demo-dashboard.html</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" style="background:rgba(255,107,43,.05);border-color:rgba(255,107,43,.14)">
+    <div class="clabel" style="color:var(--orange)" id="j-rules-lbl">⚡ Reglas del Jefe</div>
+    <div class="rule" id="j-rules">
+      1. Siempre sé honesto — nunca prometas lo que no tenemos.<br>
+      2. Garantía de devolución de por vida — respáldala siempre.<br>
+      3. Manda el demo antes de pedir el cierre.<br>
+      4. Si estás atorado, WhatsApp al Jefe directo.<br>
+      5. Registra cada llamada. Cada cierre. Sin excepciones.<br>
+      6. <strong style="color:var(--orange)">Dios gana. ✝️</strong>
+    </div>
+  </div>
+</div>
+
+<!-- GOALS TAB -->
+<div id="pane-goals" class="pane">
+  <div class="motiv" id="motiv-card">
+    <div class="motiv-quote" id="motiv-quote">Dios ya puso el trabajo en ti. Solo tienes que marcar.</div>
+    <div class="motiv-sub" id="motiv-sub">✝️ DIOS GANA — MX STUDIO</div>
+  </div>
+  <div class="gg">
+    <div class="gc">
+      <div class="gc-lbl" id="g-calls-lbl">📞 Llamadas Hoy</div>
+      <div class="gc-n" style="color:var(--green)" id="g-calls-n">0</div>
+      <div class="gc-s" id="g-calls-goal">meta: 15</div>
+      <button class="btn" onclick="addCall()" id="g-log-call">+ Llamada</button>
+      <button class="btn" onclick="undoCall()" style="font-size:10px;color:var(--muted);margin-top:4px" id="g-undo">↩ Deshacer</button>
+    </div>
+    <div class="gc">
+      <div class="gc-lbl" id="g-closes-lbl">🔥 Cierres Hoy</div>
+      <div class="gc-n" style="color:var(--orange)" id="g-closes-n">0</div>
+      <div class="gc-s" id="g-earn-today">= $0 ganado</div>
+      <button class="btn btn-o" onclick="addClose()" id="g-log-close">+ Cierre 🔥</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="g-monthly-lbl">📊 Progreso Mensual</div>
+    <div class="prog">
+      <div class="prog-top"><span id="g-calls-prog-lbl">Llamadas</span><span id="g-calls-prog-ct">0 / 300</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="g-calls-bar" style="background:var(--green);width:0%"></div></div>
+    </div>
+    <div class="prog">
+      <div class="prog-top"><span id="g-closes-prog-lbl">Cierres</span><span id="g-closes-prog-ct">0 / 28</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="g-closes-bar" style="background:var(--orange);width:0%"></div></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px" id="g-pace"></div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="g-set-lbl">⚙️ Ajustar Metas</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px" id="g-daily-lbl">Meta diaria de llamadas</div>
+        <input id="g-call-goal" type="number" value="15" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:7px;color:var(--white);font-size:14px;font-weight:700;font-family:inherit;text-align:center" onchange="saveGoals()">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px" id="g-monthly-close-lbl">Meta mensual de cierres</div>
+        <input id="g-close-goal" type="number" value="28" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:7px;color:var(--white);font-size:14px;font-weight:700;font-family:inherit;text-align:center" onchange="saveGoals()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROSPECTS TAB -->
+<div id="pane-prospects" class="pane">
+  <input class="srch" id="p-search" placeholder="🔍  Buscar empresa, ciudad, giro..." oninput="filterP(this.value)">
+  <div class="pct" id="p-count">604 prospects</div>
+  <div class="plist" id="p-list"></div>
+</div>
+
+<!-- SCRIPT TAB -->
+<div id="pane-script" class="pane">
+  <div style="font-size:9px;font-weight:800;color:var(--muted);text-align:center;margin-bottom:14px;letter-spacing:.5px" id="sc-header">SCROLL · 15-20 MIN MAX</div>
+
+  <!-- OPENER -->
+  <div class="step step-opener">
+    <div class="step-lbl" id="sc-opener-lbl">🎯 PASO 1 — APERTURA</div>
+    <div class="step-txt" id="sc-opener-txt"></div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="step step-pitch">
+    <div class="step-lbl" id="sc-pitch-lbl">🌮 PASO 2 — PITCH</div>
+    <div class="step-txt" id="sc-pitch-txt"></div>
+    <div class="demo-grid">
+      <a href="https://myjefetech.app" class="demo-a">
+        <div class="demo-icon">📱</div>
+        <div class="demo-lbl" id="sc-app-lbl">Demo App</div>
+      </a>
+      <a href="https://myjefetech.app/demo-dashboard.html" class="demo-a">
+        <div class="demo-icon">📊</div>
+        <div class="demo-lbl" id="sc-dash-lbl">Dashboard</div>
+      </a>
+    </div>
+    <div class="copy-grid">
+      <button class="cbtn" onclick="copyLink('https://myjefetech.app',this)" id="sc-copy-app">📋 Copiar App</button>
+      <button class="cbtn" onclick="copyLink('https://myjefetech.app/demo-dashboard.html',this)" id="sc-copy-dash">📋 Copiar Dashboard</button>
+    </div>
+  </div>
+
+  <!-- CLOSE -->
+  <div class="step step-close">
+    <div class="step-lbl" id="sc-close-lbl">🤝 PASO 3 — CIERRE</div>
+    <div class="step-txt" id="sc-close-txt"></div>
+    <div class="close-btns">
+      <button onclick="copyStripe(this)" style="background:var(--orange);color:#fff" id="sc-stripe-btn">💳 Copiar Link de Pago</button>
+      <button onclick="sendStripeWA()" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:var(--wa)" id="sc-wa-btn">💬 WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- FOLLOW UP -->
+  <div class="step step-fu">
+    <div class="step-lbl" id="sc-fu-lbl">📲 PASO 4 — SEGUIMIENTO</div>
+    <div class="step-txt" id="sc-fu-txt"></div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px">
+      <button onclick="copyFU(1,this)" class="cbtn" id="fu-btn-1" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #1</button>
+      <button onclick="copyFU(2,this)" class="cbtn" id="fu-btn-2" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #2</button>
+    </div>
+  </div>
+</div>
+
+<!-- EARNINGS TAB -->
+<div id="pane-earnings" class="pane">
+  <div class="card" style="text-align:center">
+    <div class="clabel" id="e-total-lbl">💰 Total Ganado Este Mes</div>
+    <div class="earn-big" style="color:var(--green)" id="e-total-usd">$0 USD</div>
+    <div style="font-size:14px;color:var(--muted);margin-bottom:4px" id="e-total-mxn">≈ $0 MXN</div>
+    <div style="font-size:10px;color:var(--muted)" id="e-rate-note">$1 USD ≈ $17.50 MXN</div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="e-breakdown-lbl">📊 Desglose</div>
+    <div class="earn-row"><span class="el" id="e-closes-lbl">Cierres este mes</span><span class="ev" id="e-closes-val">0</span></div>
+    <div class="earn-row"><span class="el" id="e-price-lbl">Precio por cierre</span><span class="ev">$137/mo</span></div>
+    <div class="earn-row"><span class="el" id="e-cut-lbl">Tu comisión (60%)</span><span class="ev" id="e-cut-val">$82.20 por cierre</span></div>
+    <div class="earn-row"><span class="el" id="e-upfront-lbl">Ganado en USD</span><span class="ev" id="e-upfront-val">$0</span></div>
+    <div class="earn-row"><span class="el" id="e-mxn-lbl">Equivalente en pesos</span><span class="ev" id="e-mxn-val">$0 MXN</span></div>
+    <div class="earn-row" style="border-top:1px solid rgba(0,230,118,.15);padding-top:10px;margin-top:4px">
+      <span style="color:var(--green);font-weight:800" id="e-6mo-lbl">Proyección 6 meses</span>
+      <span style="color:var(--green);font-weight:900" id="e-6mo-val">$0</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="e-calc-lbl">🧮 Calculadora</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px" id="e-calc-sub">¿Cuántos cierres este mes?</div>
+    <input type="range" id="e-slider" min="1" max="50" value="10" style="width:100%;accent-color:var(--green)" oninput="calcEarnings(this.value)">
+    <div style="text-align:center;margin-top:8px">
+      <span style="font-size:12px;color:var(--muted)" id="e-at">En </span>
+      <span style="font-size:16px;font-weight:900" id="e-slider-val">10</span>
+      <span style="font-size:12px;color:var(--muted)" id="e-closes-label"> cierres:</span>
+      <div class="calc-result" id="e-calc-result">$822 USD</div>
+      <div class="calc-sub" id="e-calc-mxn">≈ $14,385 MXN</div>
+      <div class="calc-sub" id="e-calc-residual">+ $822 USD/mes residual</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── PROSPECTS ──
+var PROSPECTS = [["MSpectrum, Inc.","+63 2 8887 6527","Pasig","PH"],["Taneko Trading Corporation","+63 2 8518 8868","Makati","PH"],["Superserve Corporation","+63 2 8332 1220","Quezon City","PH"],["Upgrade Energy Philippines, Inc.","+63 2 7001 6583","Makati","PH"],["Total Renewable Energy Efficiency Solutions Corp.","+63 2 8856 2010","Makati","PH"],["SmartPower Solutions Corporation","+63 2 8519 9638","Quezon City","PH"],["Vega Energy Services Corp.","+63 2 7001 5080","Taguig","PH"],["Pi Energy Inc.","+63 2 3449 6498","Pasig","PH"],["CREI Phils Inc.","+63 2 8732 2093","Taguig","PH"],["Advancing Sustainability and Clean Energy Technologies (ASCENT), Inc.","+63 2 8838 2010","Parañaque","PH"],["Weld Powertools and Construction Corporation","+63 32 420 6233","Mandaue City, Cebu","PH"],["SolarAll New Energy Corporation","+63 951 314 0053","Mandaue City, Cebu","PH"],["Greenergy Development Corp.","+63 88 881 5250","Cagayan de Oro","PH"],["Energy Integrated Systems and Support Services Inc. (EISSS)","+63 49 530 2791","Santa Rosa, Laguna","PH"],["Caresystem Technology Solution Co., Inc.","+63 82 308 0894","Davao City","PH"],["Electricity Solutions, Inc.","+63 82 244 1806","Davao City","PH"],["Domerald Construction and Supply","+63 82 241 2431","Davao City","PH"],["AlphaSolar, Inc.","+63 969 036 5668","San Fernando, Pampanga","PH"],["Philippine Nihon JEPS Corporation","+63 926 750 3103","Imus, Cavite","PH"],["Ecoplus Solar Inc.","+63 976 223 4048","Trece Martires, Cavite","PH"],["Solamax Marketing","+63 49 501 8117","Biñan, Laguna","PH"],["SkyBright Solar PH","+63 33 323 5761","Iloilo City","PH"],["GenWATT Energy Solutions Corp.","+63 2 8735 5403","Quezon City","PH"],["Solar Energy Systems, Inc. (PHILERGY)","+63 2 8638 8277","Quezon City","PH"],["Advantec Philippines, Inc.","+63 2 8805 2836","Makati","PH"],["Surge Electrical Supply and Contracting Corp.","+63 2 7004 1747","Parañaque","PH"],["Power 4 All, Inc.","+63 2 8252 0547","Pasig","PH"],["Equator Energy Corporation","+63 2 8856 4311","Taguig","PH"],["Netsolar Incorporated","+63 917 716 2304","Pasig","PH"],["Solaric Corp.","+63 917 860 3141","Makati","PH"],["Sunstruck Solar Solutions, Inc.","+63 82 291 4950","Davao City","PH"],["Prime Power Energie System, Inc.","+63 2 5314 3219","Pasig","PH"],["Solarius Energy (Solarius Philippines)","+63 917 560 0860","Makati","PH"],["Electro-Jake Solar Power System","+63 917 405 2000","Davao City","PH"],["Premier Air Conditioning and Refrigeration Services","+63 32 326 9084","Cebu City","PH"],["Hammercon Inc.","+63 32 232 8284","Cebu City","PH"],["JBR Electro-Mechanical Services, Inc.","+63 32 272 1145","Cebu City","PH"],["Primary Structures Corporation","+63 32 253 8026","Cebu City","PH"],["Hi-Speed Construction Corporation","+63 32 346 0113","Mandaue City, Cebu","PH"],["Techmaster Cebu Builders Inc.","+63 32 252 7184","Cebu City","PH"],["Plus8 Construction Corporation","+63 32 494 9559","Cebu City","PH"],["Klan Construction & Industrial Services Inc.","+63 32 255 9821","Cebu City","PH"],["DCD Construction, Inc.","+63 32 253 0168","Cebu City","PH"],["Duracon Construction & Development Corporation","+63 32 231 2809","Cebu City","PH"],["F. Gurrea Construction, Inc. - Iloilo Office","+63 33 321 2504","Iloilo City","PH"],["Allencon Development Corporation","+63 33 338 3487","Iloilo City","PH"],["ARSD Construction Corporation","+63 33 337 7347","Iloilo City","PH"],["Twintrust Builder General Contractor and Services","+63 45 887 1987","Angeles City, Pampanga","PH"],["Peregrine Construction and Management L.L.C. Inc.","+63 45 499 1103","Clark / Angeles City, Pampanga","PH"],["ILO Construction, Inc.","+63 2 8716 7781","Quezon City","PH"],["Active Construction, Inc.","+63 34 495 0876","Talisay City (Bacolod area), Negros Occidental","PH"],["Dynamic Builders and Construction Co. (Phil.), Inc.","+63 34 446 1559","Bacolod City","PH"],["Red August Engineering Services","+63 34 707 0820","Bacolod City","PH"],["Azvercons Philippines Inc.","+63 2 7744 6358","Makati","PH"],["El Construction Group Inc.","+63 2 8639 5832","Makati","PH"],["Perfect Solution Builders and Manufacturing Corp","+63 995 450 8946","Makati","PH"],["Marufuji Construction","+63 915 933 8664","Makati","PH"],["Aedo Engineering","+63 906 618 7675","Makati","PH"],["CB&I Philippines","+63 2 7238 6911","Makati","PH"],["GEDI Construction Development Corporation","+63 2 7909 5349","Makati","PH"],["KPA One Construction Corporation","+63 917 136 2240","Taguig","PH"],["Abgarcia Construction","+63 922 863 5922","Taguig","PH"],["Crystal Steel Fabricators Phils, Inc.","+63 2 8654 9132","Pasig","PH"],["Huayou Construction Development","+63 2 8638 1108","Pasig","PH"],["Vertex Projects Manila Inc","+63 917 813 0029","Pasig","PH"],["Solidforms Corporation","+63 2 8293 7000","Pasig","PH"],["Casparsteel Roofing Inc","+63 2 8660 1587","Quezon City","PH"],["DN Steel Group of Companies","+63 2 8931 9546","Quezon City","PH"],["Goldstrong Corporation","+63 2 8364 5412","Quezon City","PH"],["Specified Contractors & Development","+63 2 8426 3002","Quezon City","PH"],["IVM Phils Services & Contractor, Inc","+63 905 491 5827","Quezon City","PH"],["ASEC Development and Construction Corporation","+63 2 8709 3642","Quezon City","PH"],["SPECSERV Inc.","+63 2 8421 6834","Quezon City","PH"],["Topnotch Construction","+63 923 921 4557","Quezon City","PH"],["Mackintosh Corporation","+63 2 8785 1463","Quezon City","PH"],["2M Interior Construction","+63 906 410 6911","Quezon City","PH"],["AirconEx Philippines, Inc.","+63 2 7933 0830","Pasig","PH"],["Atlas Precision Environment Corporation","+63 2 8813 7653","Makati","PH"],["Aircon Ayos","+63 937 376 2186","Manila","PH"],["Abp Eztraktura Dev't. Corp.","+63 917 776 0214","Parañaque","PH"],["ATI Steel Fab Corp","+63 942 356 1940","Valenzuela","PH"],["E Coronacion Enterprises","+63 933 763 6718","Mandaluyong","PH"],["Karpinteros of Manila","+63 928 759 7879","Quezon City","PH"],["SOLGEN, Inc.","+63 2 8936 3547","Quezon City","PH"],["Power Plus Electrical Services","+63 906 327 5036","Marikina","PH"],["Roadscape Construction","+63 2 8569 2099","Manila","PH"],["Top-works Builders Construction Corporation","+63 956 801 8544","Manila","PH"],["Ellenaire Electro Mechanical Corp","+63 2 8660 6464","Manila","PH"],["Next-Gen Solar Panel Installation Services","+63 905 213 2210","Parañaque","PH"],["GoPrime Technology Corp.","+63 2 8711 2379","Las Piñas","PH"],["SPE Energy & Builders, Inc.","+63 917 180 5048","Marikina","PH"],["Advanced Energy Technologies Renewables Plus Co., Inc.","+63 945 247 1325","Pasig","PH"],["Nativ Techniks Inc.","+63 2 8284 8789","Mandaluyong","PH"],["Namkoo Power Solar Panel Trading","+63 917 628 2676","Pasig","PH"],["Solar Surveying Corporation","+63 998 596 5761","Manila","PH"],["CENAG Solar Inc.","+63 917 796 0329","Manila","PH"],["Maxtec Solutions Philippines Inc.","+63 2 7001 5013","Mandaluyong","PH"],["Sunwatt Corporation","+63 2 7000 8685","Quezon City","PH"],["Sen Tek Energy Solutions Inc.","+63 2 8257 0406","Manila","PH"],["Meralco Energy, Inc. (MSERV)","+63 2 8672 8100","Pasig","PH"],["Magis Innovations Inc.","+63 2 8713 1599","Makati","PH"],["Alibaton Construction Inc.","+63 917 542 0415","Quezon City","PH"],["Megawide Construction Corporation","+63 2 8655 1111","Quezon City","PH"],["M.E. Sicat Construction","+63 2 8732 6071","Quezon City","PH"],["Philia Design & Construct Company","+63 2 7987 9058","Quezon City","PH"],["FW Nicol Philippines Incorporated","+63 2 8632 9988","Pasig","PH"],["Sunwest Construction Development Corporation (SCDC)","+63 2 8637 4959","Pasig","PH"],["SMVL Builders","+63 995 597 1093","Valenzuela","PH"],["1891 Builders Inc.","+63 2 8292 8700","Valenzuela","PH"],["Square Dimension Construction Company Ltd.","+63 977 463 4645","Muntinlupa","PH"],["YT Green Aire Corp","+63 2 8281 5824","Las Piñas","PH"],["Demolition Manila","+63 917 514 5320","Las Piñas","PH"],["MGS Construction","+63 905 673 7857","Las Piñas","PH"],["Cabsj Steel Enterprise","+63 2 8560 2430","Caloocan","PH"],["DB2 Construction Services","+63 968 703 1343","Caloocan","PH"],["Aaaa Rainlad Builders and Supply","+63 927 081 4568","Marikina","PH"],["Gaa Mechanical, Electrical, Civil, Sales","+63 922 541 9182","Pasay","PH"],["Mighty Knight Steel Corporation","+63 917 713 4476","Pasay","PH"],["GMACP PowerAire Construction Services, Inc.","+63 927 156 8567","Manila","PH"],["Hyrum Air Conditioning Services","+63 2 7745 8781","Quezon City","PH"],["ASGC Refrigeration and Air Conditioning Services","+63 2 8232 6971","Marikina","PH"],["Temp Express Incorporated","+63 2 8865 1706","Parañaque","PH"],["APEX Engineering Services","+63 920 981 5861","Las Piñas","PH"],["Bendo Excavation And Plumbing Services","+63 2 8330 3825","Quezon City","PH"],["Nhecy's Plumbing Services","+63 2 8982 1452","Quezon City","PH"],["JEM Engineering Supply & Services","+63 927 604 9447","Quezon City","PH"],["ArkCott Plumbing Services","+63 2 3427 5203","Quezon City","PH"],["Industrial PH by GRUPP, Inc.","+63 2 8772 1744","Muntinlupa","PH"],["FR Sevilla","+63 2 8930 8888","Quezon City","PH"],["WinterCrib Air Conditioning Sales & Services Inc.","+63 2 8711 0882","Manila","PH"],["Infinite Systems Technology Corporation (HVAC Philippines)","+63 2 8892 9073","Makati","PH"],["First Flow","+63 2 8655 1175","Pasig","PH"],["Tempwell Company","+63 2 8862 5529","Muntinlupa","PH"],["DDC Coolmakers","+63 2 8726 5627","Quezon City","PH"],["JRSA Mechanical Works Contractor","+63 919 437 7131","Makati","PH"],["Weathertech Refrigeration & Aircon Company","+63 2 8861 3053","Muntinlupa","PH"],["PhilSolar","+63 945 331 0589","Parañaque","PH"],["SolarNRG","+63 2 8994 5628","Pasig","PH"],["Solar Rooftops","+63 2 8851 4678","Muntinlupa","PH"],["Solar Philippines","+63 998 562 1251","Makati","PH"],["Top Solar","+63 977 645 6740","Parañaque","PH"],["Kawara","+63 2 8288 8384","Quezon City","PH"],["Multi-line","+63 917 533 7520","Quezon City","PH"],["Ultra Insulated Panels Systems","+63 977 846 2400","Quezon City","PH"],["Parklane Commercial Corporation","+63 995 156 1408","Manila","PH"],["Paint Philippines","+63 2 8545 3115","Las Piñas","PH"],["Power Circle International, Inc.","+63 2 8687 6305","Quezon City","PH"],["3K Builders","+63 917 753 5144","Pasig","PH"],["DATEM, Inc.","+63 2 8923 2836","Quezon City","PH"],["Meralco Industrial Engineering Services Corporation (MIESCOR)","+63 2 8635 5901","Pasig","PH"],["Makati Development Corporation","+63 2 7759 0800","Taguig","PH"],["Locsin Pools","+63 2 8897 7300","Quezon City","PH"],["Alpiz Construction And Development Corporation","+63 2 7750 5736","Quezon City","PH"],["EC Excavation and Plumbing Services","+63 920 567 4408","Pasig","PH"],["Jorge Malabanan Siphoning and Plumbing Service","+63 928 684 5511","Makati","PH"],["Rtj Malabanan Siphoning Plumbing Services","+63 947 587 1012","Pasig","PH"],["DDT Konstract Inc.","+63 2 8287 7888","Mandaluyong","PH"],["Sta. Clara International Corporation","+63 947 893 2201","Mandaluyong","PH"],["Frey-Fil Corporation","+63 2 7005 5040","Quezon City","PH"],["Acre Airconditioning Specialist Incorporated","+63 2 7215 3024","Taguig","PH"],["Aeroproducts Philippines, Incorporated","+63 2 3484 8291","Makati","PH"],["Aga's Refrigeration And Airconditioning","+63 2 8823 0804","Parañaque","PH"],["3DC Solar Equipment Supply and Installation Services","+63 997 609 8986","Caloocan","PH"],["Aircondoc Philippines Airconditioning Services Incorporated","+63 2 8815 0983","Pasay","PH"],["Aire-Pro Air-Conditioning Systems Services","+63 923 334 6942","Parañaque","PH"],["A & D Plumbing And Electrical Services","+63 2 8283 5857","Quezon City","PH"],["A&W General Contractor And Services","+63 917 447 8695","Marikina","PH"],["A-A-A Plumbing Service","+63 2 8715 7493","Manila","PH"],["Beepoly Airconditioning Service","+63 2 7933 5418","Marikina","PH"],["Caglago Refrigeration And Air-Conditioning Services","+63 2 8532 9128","Mandaluyong","PH"],["Cib Air Conditioning Incorporated","+63 2 8994 0408","Caloocan","PH"],["Cim Electronics Airconditioning Refrigeration Service Center","+63 2 8895 8440","Makati","PH"],["Cold Magic Aircon Sales & Services","+63 2 8927 9924","Quezon City","PH"],["Centrota Philippines Incorporated","+63 2 8895 1226","Manila","PH"],["Alpa Plumbing Works","+63 915 152 5942","Quezon City","PH"],["Amante Plumbing Services Tubero Declogging","+63 906 539 4508","Quezon City","PH"],["Anasal Mechanical Sprinklers And LPG Gas Lines Contractor Philippines","+63 2 8544 6087","Quezon City","PH"],["Andrea Declogging And Plumbing Services","+63 2 7624 3591","Makati","PH"],["Aquamaster Builders, Inc.","+63 2 8570 8210","Quezon City","PH"],["Arcc Plumbing And Siphoning Services","+63 920 615 6644","Quezon City","PH"],["All Vision Solar Energy Systems","+63 2 8897 0497","Makati","PH"],["Armara Solar Products Trading","+63 995 429 2978","Las Piñas","PH"],["ATN Philippines Solar Energy Group Incorporated","+63 2 8404 2596","Mandaluyong","PH"],["Buskowitz Energy","+63 2 8801 0074","Makati","PH"],["Centrix Philippines Technologies Inc","+63 927 237 4141","Taguig","PH"],["Clenergy Philippines","+63 917 309 4910","Makati","PH"],["Cnj Solar Central","+63 927 716 6730","Quezon City","PH"],["Conceptrade Airconditioning Company","+63 2 8634 3675","Pasig","PH"],["Cool Trust Airconditioning Center","+63 2 8421 1784","Quezon City","PH"],["Coolcreator Aircon Trading And Services Inc.","+63 2 8880 9038","Taguig","PH"],["Cooling Tower & HVAC Systems, Incorporated","+63 2 7943 3016","Marikina","PH"],["Czedrich Air Conditioning Services","+63 2 8846 1485","Las Piñas","PH"],["D.m.d Airconditioning Services","+63 928 246 1325","Caloocan","PH"],["Arciaga Excavation And Plumbing","+63 2 8862 2909","Muntinlupa","PH"],["Arh Plumbing And Technical Services Corporation","+63 2 8292 7361","Manila","PH"],["Armstrong Plumbing Contractor","+63 2 8732 5391","Manila","PH"],["Arv Power Electrical Contractor & Supplies","+63 2 8664 3799","Manila","PH"],["Azv Malabanan Plumbing And Siphoning Services","+63 2 8996 7762","Caloocan","PH"],["Evangeline Construction","+63 910 540 5246","Cabuyao","PH"],["Alchedy Construction Inc","+63 921 229 5492","Calamba","PH"],["Cerb Trading & Engineering Services","+63 49 543 1198","Calamba","PH"],["D'Ricas General Contractor - Laguna Office","+63 49 827 2441","Calamba","PH"],["Pampanga Top-notch Construction","+63 921 214 7944","Angeles City","PH"],["Philippine-Sundt","+63 45 599 2157","Clark, Angeles City","PH"],["G A Flores Construction Incorporated","+63 74 442 2880","Baguio","PH"],["Baguio General Construction","+63 74 300 4064","Baguio","PH"],["FDL Construction","+63 74 304 5509","Baguio","PH"],["JC Marrero Construction","+63 74 304 1293","Baguio","PH"],["JMZ Iron Works & Construction","+63 74 300 4729","Baguio","PH"],["Njq Ugay Builders","+63 74 305 6659","Baguio","PH"],["Ellcad Premiere Construction Corporation","+63 46 685 1287","Dasmarinas","PH"],["AMS Builder And Construction Supply","+63 46 513 3399","Dasmarinas","PH"],["Rcm Construction","+63 46 423 7951","Dasmarinas","PH"],["Colorsteel System Corporation - Cavite Branch","+63 46 416 5788","Dasmarinas","PH"],["First Solid Builders, Inc.","+63 46 852 0720","Dasmarinas","PH"],["Citykwik Construction Enterprises","+63 46 850 2966","Dasmarinas","PH"],["CJ2F Roofing Contractor","+63 46 529 6160","Dasmarinas","PH"],["Cyomjam Realty And Construction Co","+63 46 852 2167","Dasmarinas","PH"],["D Rooster Construction Services","+63 46 973 0396","Dasmarinas","PH"],["EE ME Engineering Works and Design Services","+63 46 850 1555","Dasmarinas","PH"],["AZTECS Construction and Development Corporation","+63 905 868 6560","San Fernando, Pampanga","PH"],["Home Lockers Construction and Development","+63 927 498 6638","San Fernando, Pampanga","PH"],["Apilado North Shutters and Construction","+63 72 888 5108","San Fernando, La Union","PH"],["Brethren Construction Services","+63 927 504 7898","Antipolo","PH"],["Ann and Bryan Construction Services","+63 912 803 5602","Antipolo","PH"],["Condor Construction","+63 72 888 2176","San Fernando, La Union","PH"],["FJ & W Steel Building System and Construction","+63 72 888 5886","San Fernando, La Union","PH"],["KKC Construction","+63 72 242 3957","San Fernando, La Union","PH"],["Molte Aries Construction & Industries","+63 72 242 3368","San Fernando, La Union","PH"],["G Cube Design + Build Inc.","+63 43 741 3808","Lipa City","PH"],["Fil-Konstruckt Incorporated","+63 46 506 0697","Dasmarinas","PH"],["Jaca Construction And Management Corp","+63 46 853 3849","Dasmarinas","PH"],["LKS Construction And Development NT Corporation","+63 46 529 8105","Dasmarinas","PH"],["M Parreno Builders","+63 46 852 2567","Dasmarinas","PH"],["Aficial Construction","+63 75 515 5670","Dagupan","PH"],["SPV Sigma Construction Corp","+63 75 515 8495","Dagupan","PH"],["PM Francisco Roofing Center","+63 44 805 0753","Malolos","PH"],["Tri-Geometrics Corp","+63 46 541 5370","Dasmarinas","PH"],["JJC Metal Fabrications and Constructions","+63 905 376 3978","Silang, Cavite","PH"],["Energy Network Electrical and Industrial Services","+63 923 177 3910","Dasmarinas","PH"],["Airman Trading and Engineering Services","+63 45 624 7489","Angeles City","PH"],["NCO General Merchandise","+63 77 677 1334","San Nicolas, Ilocos Norte","PH"],["Ecosense Technologies","+63 917 450 4843","Tuguegarao","PH"],["LLA Electrical and Communication Engineering Services","+63 926 048 2196","Santa Ana, Cagayan","PH"],["Prismatech Solar Enterprise Incorporated","+63 977 380 6090","Pilar","PH"],["El'Sol Wealth Phils Engineering Services","+63 977 777 4065","Pulilan, Bulacan","PH"],["Sonnelink Green Builders and Trading Corporation","+63 44 307 5967","Marilao, Bulacan","PH"],["Metrogreen Technologies Corporation","+63 919 007 6122","Meycauayan, Bulacan","PH"],["Solaren Renewable Energy Solutions Corporation","+63 917 879 6037","La Paz, Tarlac","PH"],["Piao Solar Energy Shop","+63 45 925 5522","Tarlac City","PH"],["Bandacorp Solar Inc.","+63 908 877 2832","Subic","PH"],["Beavers Engineering and Architectural Services","+63 939 767 6133","Guiguinto, Bulacan","PH"],["Grey Electrical Engineering Services","+63 917 596 9048","Orani, Bataan","PH"],["De Leon Solar Power Installation Services","+63 917 567 3251","Orani, Bataan","PH"],["Macspower Construction Supply and Services Corporation","+63 44 617 8931","Bustos, Bulacan","PH"],["DAJ Builders","+63 992 598 8966","Balanga City","PH"],["SJ Renewable Energy","+63 917 147 5268","San Jose City, Nueva Ecija","PH"],["HHO Trading","+63 915 327 1810","Noveleta, Cavite","PH"],["Bohol Solar Supply & Services","+63 919 004 7860","Antipolo","PH"],["Solarlife Engineering Builders OPC","+63 956 081 1604","Dasmarinas","PH"],["Smart Save Ventures Corp","+63 927 883 4666","Lipa City","PH"],["MissionPH Renewables Corporation","+63 2 8727 9001","Taytay, Rizal","PH"],["SRR Renewables","+63 938 150 4822","Lipa City","PH"],["GLDC Solar Power Installation Services","+63 43 341 5110","Rosario, Batangas","PH"],["MacGuyver Enterprises","+63 915 198 0929","Santa Cruz, Laguna","PH"],["BRAVE ENERGY INC","+63 956 703 8857","Taytay, Rizal","PH"],["Solargy Solutions","+63 917 838 4742","Naga City","PH"],["Plaswealth Philippines Corporation","+63 917 810 0586","Ligao City, Albay","PH"],["Wyn Power Corporation","+63 917 590 7641","Lipa City","PH"],["SuntriSolar Solar Products Trading","+63 917 615 9356","Sto. Tomas, Batangas","PH"],["Lad Enterprises","+63 933 852 2703","Batangas City","PH"],["Carlos M. Ilagan (Contractor) Inc.","+63 43 727 1541","Batangas City","PH"],["969 Construction & Supplies","+63 45 982 2562","Tarlac City","PH"],["A.C. Soliven Construction & General Merchandise","+63 45 982 1622","La Paz, Tarlac","PH"],["A.T. Mallari Builders","+63 939 757 4756","Concepcion, Tarlac","PH"],["Alju Construction","+63 45 931 1501","Paniqui, Tarlac","PH"],["Allied Quad Construction & Trading","+63 917 514 6398","Moncada, Tarlac","PH"],["Amvil Construction & Supplies","+63 922 801 3750","San Rafael, Tarlac","PH"],["B.G. Giron Construction & Supply","+63 45 982 4857","Tarlac City","PH"],["B.K. Sy Tu Construction","+63 45 982 9499","Tarlac","PH"],["Baque Corporation","+63 45 331 3126","Tarlac","PH"],["Beaver Construction","+63 45 982 0898","Tarlac","PH"],["Big Bertha Construction and Development","+63 45 491 4412","Tarlac","PH"],["Kirk-J Construction","+63 45 491 4483","Tarlac","PH"],["3MV Construction Corporation","+63 46 416 5558","Dasmarinas","PH"],["480 Builders","+63 46 431 4959","Cavite City","PH"],["A.C. De Lara Construction","+63 46 483 3715","Indang, Cavite","PH"],["A.V. Bernal Construction & Trading Corp.","+63 46 471 9042","Imus","PH"],["AER Construction and Development Co., Inc.","+63 46 419 2820","Trece Martires City","PH"],["Ahnex Builders & Ready Mix Corp.","+63 46 484 1288","Imus","PH"],["Algumwood Construction","+63 46 571 3919","Bacoor","PH"],["11-16 Construction","+63 45 302 5701","Apalit, Pampanga","PH"],["201 Electrical Contractor & Trading","+63 45 963 9245","San Fernando, Pampanga","PH"],["3R-2F Construction & Trading","+63 908 862 2987","Mexico, Pampanga","PH"],["511 Builders","+63 45 882 0484","Candaba, Pampanga","PH"],["806 Builders","+63 45 900 1287","Guagua, Pampanga","PH"],["A. Rivera Construction","+63 45 893 2065","Mabalacat","PH"],["A.A. Construction","+63 45 961 3325","San Fernando, Pampanga","PH"],["727 Construction","+63 49 411 1298","Calamba","PH"],["A C Power Engineering Services and Trading","+63 49 549 1881","Calamba","PH"],["A. Leon Technologies & Industrial Corp.","+63 49 534 1497","Santa Rosa, Laguna","PH"],["A. Quilloy Construction","+63 906 013 0300","Santa Rosa, Laguna","PH"],["A.N.G. Engineering Services","+63 49 801 5399","Calamba","PH"],["2K8 Builders & Construction Supplies Corporation","+63 43 455 3014","Lipa City","PH"],["6 Jewels Construction","+63 43 487 0274","Mabini, Batangas","PH"],["715 Builders","+63 915 319 2454","Batangas City","PH"],["830 Builders & Developers Corp.","+63 43 783 1343","Lemery, Batangas","PH"],["A. Sandoval Construction & Supply","+63 43 773 0102","Batangas City","PH"],["A. Montalbo Trading and Construction","+63 43 311 2025","Ibaan, Batangas","PH"],["121 Construction Corporation","+63 44 644 4220","Santa Maria, Bulacan","PH"],["525 Construction","+63 44 309 0985","Bocaue, Bulacan","PH"],["747 Builders & Trader","+63 44 248 8475","Marilao, Bulacan","PH"],["A.G. Herrera Construction Corp.","+63 922 227 3523","San Jose Del Monte","PH"],["A.M. Robles Construction","+63 917 621 1883","Santa Maria, Bulacan","PH"],["A.R.L. Construction","+63 44 711 6339","Marilao, Bulacan","PH"],["Adimre Construction","+63 44 816 0495","Pulilan, Bulacan","PH"],["2-R Construction & Supply","+63 75 532 1298","San Carlos City, Pangasinan","PH"],["3rd Rock Builders and Supplies","+63 917 733 9222","Calasiao, Pangasinan","PH"],["628 Construction Enterprises","+63 922 832 4170","San Jacinto, Pangasinan","PH"],["A.P. Mercado Trading & Construction","+63 75 568 4016","Alcala, Pangasinan","PH"],["A.P. Quinones Construction","+63 920 526 7104","Calasiao, Pangasinan","PH"],["A.S.S. Construction","+63 922 843 6194","Dagupan City","PH"],["AAVJ Construction","+63 75 578 5008","Lingayen, Pangasinan","PH"],["A.M.C. Construction","+63 920 440 1227","Cabanatuan City","PH"],["A.M.P. Construction","+63 999 680 5379","Cabanatuan City","PH"],["Allen Construction","+63 44 806 1009","Aliaga, Nueva Ecija","PH"],["B.F.T. Construction","+63 917 697 5547","Gapan, Nueva Ecija","PH"],["Baqprince Construction","+63 920 953 7122","Munoz, Nueva Ecija","PH"],["Physics Research - Sales & Services Corp.","+63 917 710 7469","Talisay","PH"],["R.K.I. Building Technologies Inc.","+63 53 530 7337","Tacloban","PH"],["Sedibus Industrial and Facilities Management Corporation","+63 917 328 5830","Dauis, Bohol","PH"],["N.D.M Construction Services","+63 917 827 4066","San Jose de Buenavista","PH"],["Priume Philippines Manufacturing Corporation","+63 967 220 2022","Talisay","PH"],["Trimar Construction and Trading","+63 927 313 3979","Cebu City","PH"],["Cebu Green & White Construction Corp.","+63 32 425 4969","Cebu City","PH"],["Civie Heavy Equipment Resource Inc","+63 919 082 9588","Cebu City","PH"],["Jea Steel Industries Inc.","+63 997 603 7999","Compostela","PH"],["JLJ Construction","+63 32 260 5844","Talisay","PH"],["Oneconstruct Design + Build","+63 917 832 2276","Minglanilla","PH"],["Socor Construction Corporation","+63 32 412 9856","Cebu City","PH"],["HERO Construction and Development Corporation","+63 32 417 2664","Cebu City","PH"],["Vineyard Construction","+63 32 234 2622","Cebu City","PH"],["J.E. Abraham C. Lee Construction & Development, Inc.","+63 32 414 6380","Cebu City","PH"],["Solid Construction Cebu Inc","+63 32 253 3129","Cebu City","PH"],["Kimwa Construction and Development Corporation","+63 32 346 0421","Mandaue","PH"],["Phil Macro Development Corporation","+63 32 255 7195","Cebu City","PH"],["Ven Ray Construction","+63 32 261 0934","Cebu City","PH"],["Edgecon Builders Construction & Modular Cabinets","+63 945 331 2467","Cebu City","PH"],["Charlz Construction","+63 32 253 2892","Cebu City","PH"],["Golden Horse Construction Services","+63 32 347 0871","Cebu City","PH"],["E G & I Construction Corporation","+63 32 261 8227","Cebu City","PH"],["VP Mancao Construction & Company Inc","+63 32 233 0037","Cebu City","PH"],["Geo-Transport and Construction Incorporated","+63 32 254 1958","Cebu City","PH"],["Undaloc Construction","+63 917 501 7901","Cebu City","PH"],["Gram Construction and Supply","+63 32 412 1301","Cebu City","PH"],["Cebu Royal Construction & Development Corporation","+63 32 231 7722","Cebu City","PH"],["Jmon Construction","+63 32 255 7228","Cebu City","PH"],["RDY Builders Construction and General Merchandise","+63 32 262 1979","Cebu City","PH"],["GW Fortune Builders Inc.","+63 32 231 9821","Cebu City","PH"],["Loren Builders","+63 32 262 9029","Cebu City","PH"],["WT Construction Inc.","+63 32 234 2560","Cebu City","PH"],["A.T. Tan Construction Corporation","+63 32 319 1193","Cebu City","PH"],["L C Sierra Builders and Construction Services Corp","+63 965 374 4471","Cebu City","PH"],["ACGS Inc. Ardnosil Construction and General Services","+63 32 231 1301","Cebu City","PH"],["Muana Construction and Development Corp","+63 32 384 6920","Cebu City","PH"],["Duros Development Corporation","+63 32 564 2115","Cebu City","PH"],["Abdel Construction","+63 32 233 5515","Cebu City","PH"],["Charles Yu Chiu Construction","+63 32 412 4814","Cebu City","PH"],["ES Solis Construction, Inc.","+63 917 952 9005","Cebu City","PH"],["El Felo Construction and Supply","+63 917 776 0335","Cebu City","PH"],["ICDM Construction","+63 32 263 2006","Cebu City","PH"],["JSV Construction","+63 32 253 9691","Cebu City","PH"],["Primeritz Construction And Development Corporation","+63 32 239 4010","Talisay","PH"],["SB and T Construction","+63 32 261 8140","Cebu City","PH"],["Dakay Construction and Development Corporation","+63 32 254 0655","Cebu City","PH"],["La Prueba Construction","+63 32 254 8164","Cebu City","PH"],["Mega Plus Construction","+63 32 255 3753","Cebu City","PH"],["J O Construction Inc.","+63 32 253 6704","Cebu City","PH"],["VNCO Construction","+63 935 125 9025","Cebu City","PH"],["Gadapan Construction and Design","+63 32 253 5203","Cebu City","PH"],["Philkonstrak Development Corporation","+63 32 268 9051","Cebu City","PH"],["Jo Builders","+63 32 505 0634","Cebu City","PH"],["JY Construction (JYCI)","+63 32 231 2522","Cebu City","PH"],["RNK Builders","+63 32 412 7864","Cebu City","PH"],["Rikda Construction and Development Corporation","+63 32 261 5443","Cebu City","PH"],["314 Constructions","+63 929 444 4441","Cebu City","PH"],["Gela Construction","+63 32 414 6468","Cebu City","PH"],["Rovilla Construction","+63 32 261 2058","Cebu City","PH"],["Grand Taishan Construction and Development Inc.","+63 993 502 4008","Mandaue","PH"],["Filnit Construction & Development Corporation","+63 32 261 1649","Cebu City","PH"],["MC.Allen Builders","+63 922 368 4422","Cebu City","PH"],["Win Construction","+63 32 261 0873","Cebu City","PH"],["Vercon Development Corporation","+63 32 412 1138","Cebu City","PH"],["Elijah Builders","+63 32 382 5391","Cebu City","PH"],["Rily Builders Corporation","+63 32 262 0336","Cebu City","PH"],["R R Mauricio Construction","+63 32 262 8168","Cebu City","PH"],["D & T Construction","+63 32 261 5599","Cebu City","PH"],["N. B. Gomez Construction","+63 32 273 5039","Cebu City","PH"],["SolidCore Construction","+63 32 255 0173","Cebu City","PH"],["Quirante Construction","+63 32 273 9910","Cebu City","PH"],["MCDC - Marilao Construction and Development Corp.","+63 917 655 0007","Cebu City","PH"],["Verma's Construction","+63 32 316 1894","Mandaue","PH"],["Alkap Construction","+63 977 820 7800","Cebu City","PH"],["Soontit Construction","+63 32 342 0973","Cebu City","PH"],["Megapillar Trade & Construction Corp.","+63 905 560 1615","Cebu City","PH"],["Ausland Cebu Construction Inc.","+63 32 417 4392","Cebu City","PH"],["CebCon Construction Services","+63 917 710 4234","Cebu City","PH"],["San Narciso Builders Corporation","+63 32 346 6658","Cebu City","PH"],["Jomara Konstruckt Corporation","+63 32 348 0525","Cebu City","PH"],["KGN Construction Services","+63 995 851 6971","Cebu City","PH"],["GJUMOLA Construction","+63 961 884 7490","Cebu City","PH"],["MEQ Builders Industrial Corp.","+63 32 384 1388","Cebu City","PH"],["Philippine Rigid Construction Corporation","+63 32 344 4949","Mandaue","PH"],["824 Construction & Supply","+63 33 511 8123","Tigbauan, Iloilo","PH"],["A.D.P. Construction & Supply","+63 33 333 1065","Iloilo City","PH"],["Albart Builders & Construction Supply","+63 33 508 1989","Iloilo City","PH"],["Alfredo E. Palmares Construction","+63 33 508 9808","Passi, Iloilo","PH"],["Bansoy Construction and Supply","+63 918 523 3849","Barotac Nuevo, Iloilo","PH"],["Lectrix Solutions Incorporated","+63 32 343 4664","Cebu City","PH"],["RBH Engineering and Contractor Services","+63 32 384 8971","Cebu City","PH"],["Solar Systems Philippines","+63 32 254 1358","Cebu City","PH"],["A.B.J.M. Construction and Supply","+63 34 441 0926","Bacolod","PH"],["A.C. Rivero Development Corporation","+63 34 431 8802","Bacolod","PH"],["A.F.G. Construction and Construction Supply","+63 34 434 3537","Bacolod","PH"],["AJC Builders","+63 34 434 9811","Bacolod","PH"],["Amphil Construction & Consulting Services","+63 34 435 5267","Bacolod","PH"],["Archian Designs Builders and Construction","+63 34 700 6233","Bacolod","PH"],["Bacolod Red Dragon Construction, Inc.","+63 34 432 3219","Bacolod","PH"],["Chanels Enterprises & Contracting Services","+63 999 415 7102","Bacolod","PH"],["GPM Trading & Engineering Services","+63 34 433 1464","Bacolod","PH"],["Trihelix Construction and Supply","+63 919 562 7314","Bacolod","PH"],["168 Construction and Development Corporation","+63 32 253 7794","Cebu City","PH"],["3S Builders","+63 32 272 0605","Cebu City","PH"],["A.A. Masong Construction","+63 32 340 9493","Lapu-Lapu","PH"],["A.S.T Builders","+63 32 505 2635","Mandaue","PH"],["Aboitiz Construction Group, Inc.","+63 32 346 2791","Mandaue","PH"],["ACJM Concentrated Builders, Co.","+63 32 505 0714","Lapu-Lapu","PH"],["AE Builders","+63 32 254 2926","Mandaue","PH"],["Al Sher Construction","+63 32 262 4207","Cebu City","PH"],["Albatech Engineering","+63 32 273 3936","Talisay","PH"],["Alcobe Construction","+63 921 460 2325","Toledo","PH"],["Amara Chivalry Contractors, Inc.","+63 32 266 2622","San Fernando, Cebu","PH"],["Ana Construction","+63 32 414 7948","Cebu","PH"],["Armed Builders & Supply","+63 32 268 9094","Cebu City","PH"],["Ascentia Construction, Inc.","+63 32 520 2311","Mandaue","PH"],["B.P. Deliarte Electrical Works","+63 32 268 6817","Cebu City","PH"],["Balamban Construction and Marine Services Limited Company","+63 917 354 0199","Balamban","PH"],["Bantay Construction","+63 32 346 6288","Mandaue","PH"],["Biao Builders","+63 32 255 3458","Cebu City","PH"],["BL Pangan Construction","+63 32 412 7363","Pinamungahan","PH"],["Bosenn Engineering Services & Supply Corp.","+63 32 345 2054","Mandaue","PH"],["D + G Construction","+63 32 273 2682","Talisay","PH"],["Edanna Construction","+63 32 505 9558","Talisay","PH"],["Goodfound Engineering & Construction Corporation","+63 32 851 7952","San Fernando, Cebu","PH"],["Jalkcaa Pools Swimming Pool, Spa and Fountain Builders","+63 32 236 5086","Mandaue","PH"],["Kriskaye Construction and Enterprises","+63 32 236 2658","Mandaue","PH"],["One Mega Builders Construction Corporation","+63 32 511 6762","Cebu City","PH"],["Pervill Construction and Enterprises","+63 32 582 5581","Mandaue","PH"],["Powerlines Controls Electrical Services","+63 32 262 7599","Lapu-Lapu","PH"],["RDSM Builders","+63 32 425 8783","Compostela","PH"],["A.L. Gantuangco Construction","+63 53 561 1381","Ormoc","PH"],["Acme Builders Corporation","+63 53 523 7375","Tanauan, Leyte","PH"],["B Y A Builders and Construction Supply","+63 53 321 3822","Tacloban","PH"],["BB Pocpoc Construction and Development Corp.","+63 917 324 1407","Burauen, Leyte","PH"],["Belges Construction and Supply","+63 936 418 7866","Tacloban","PH"],["A.A. De Vera Construction","+63 38 504 9226","Maribojoc, Bohol","PH"],["A.S. Obquia Construction","+63 939 245 3422","Candijay, Bohol","PH"],["AEPT Builders","+63 38 540 9510","Baclayon, Bohol","PH"],["Al Chris Construction","+63 38 235 4798","Tagbilaran","PH"],["8G Construction and General Services","+63 35 225 1720","Dumaguete","PH"],["Accu-Fit Builder and Construction Supplies","+63 35 415 5686","Tanjay","PH"],["Bigfoot Construction and Supply","+63 35 422 2139","Dauin","PH"],["G. Uymatiao Jr. Construction","+63 35 225 3333","Dumaguete","PH"],["Green Pillars Construction","+63 999 301 8267","Bayawan","PH"],["Han Jin D&B Co.","+63 88 852 1990","Cagayan de Oro","PH"],["Hanna Via Design & Construction","+63 917 726 9148","General Santos","PH"],["Handdel Construction","+63 85 343 8669","San Francisco, Agusan del Sur","PH"],["128 Builders","+63 82 282 1776","Davao City","PH"],["A.C. Margallo Engineering and Allied Services","+63 82 301 6292","Davao City","PH"],["A.E. Botuyan Construction & Structural Consultancy, Inc.","+63 82 241 2886","Davao City","PH"],["A.Y.U. Engineering and Construction","+63 82 234 9820","Davao City","PH"],["Airwind Construction and Supply","+63 923 748 5020","Davao City","PH"],["Al-Wakra Construction & Enterprises","+63 906 389 2949","Zamboanga City","PH"],["Alagon Electrical & General Services, Inc.","+63 82 221 4577","Davao City","PH"],["Alfrego Builders & Supply","+63 82 300 2411","Davao City","PH"],["Allado Construction Co., Inc.","+63 82 221 9568","Davao City","PH"],["Alonzo Construction","+63 82 298 6211","Davao City","PH"],["AN Escalante Construction, Inc.","+63 82 244 1870","Davao City","PH"],["Aries 16 Network Construction Corp.","+63 82 295 0515","Davao City","PH"],["Arkcons and Electrical Services, Inc.","+63 82 300 0080","Davao City","PH"],["Arrowsteel Construction","+63 82 297 4103","Davao City","PH"],["ASB Electrical, Inc.","+63 82 221 1847","Davao City","PH"],["Astrobuilt Construction & Development","+63 82 226 2069","Davao City","PH"],["ATR Construction","+63 82 299 1260","Davao City","PH"],["BDF Construction","+63 82 226 3326","Davao City","PH"],["BDV Construction & Supplies","+63 62 310 0135","Pagadian City","PH"],["Bebcon Builders & Supply","+63 82 276 1116","Davao City","PH"],["Benchel Traders and Construction","+63 82 305 1476","Davao City","PH"],["Bitangga Engineering Services","+63 82 235 1426","Davao City","PH"],["C.D.C.Y. Design and Construction","+63 922 891 0429","Davao City","PH"],["CCO Engineering Construction & Supply","+63 82 224 5407","Davao City","PH"],["Charifer Builders, Inc.","+63 82 244 1399","Davao City","PH"],["ESBE Industrial Builders & Contractor's Corporation","+63 82 238 0889","Davao City","PH"],["H2 Landmark Builders, Inc.","+63 82 222 4506","Davao City","PH"],["Southern Philippines JRH Industrial Corp.","+63 82 241 2147","Davao City","PH"],["8 Pillars Construction & General Merchandise","+63 88 856 4205","Cagayan de Oro","PH"],["A.R. & Mark Builders","+63 88 855 1417","Cagayan de Oro","PH"],["A.V. Pamatong Trading and Construction, Inc.","+63 88 855 2686","Cagayan de Oro","PH"],["Angel & Sam Construction & General Merchandise","+63 88 857 5119","Cagayan de Oro","PH"],["Electrolyte Engineering","+63 88 850 2588","Cagayan de Oro","PH"],["558 Builders & Construction Supply","+63 83 302 3975","General Santos","PH"],["A.B. Salloman Construction & Services","+63 83 552 3867","General Santos","PH"],["A.D. Villanueva Builders","+63 83 228 6856","Koronadal","PH"],["A.L. Acharon Construction & Supply","+63 83 554 9749","General Santos","PH"],["AB Vision Engineering Construction","+63 83 552 8794","General Santos","PH"],["ABU Construction","+63 83 228 2366","Koronadal","PH"],["Lawrence Eric Construction & Engineering Services","+63 83 302 1414","General Santos","PH"],["Seth General Construction and Industries Corp.","+63 83 500 3085","Polomolok","PH"],["United Southern Quest Development Corp.","+63 83 302 7896","General Santos","PH"],["ABJ Contractor Services","+63 917 711 3748","Zamboanga City","PH"],["ACO Construction","+63 62 993 1729","Zamboanga City","PH"],["AHE Construction","+63 62 992 3693","Zamboanga City","PH"],["AJ & A Construction","+63 917 719 3181","Zamboanga City","PH"],["Al-Sadik Construction & Enterprises, Inc.","+63 935 816 3953","Zamboanga City","PH"],["Alraf Construction & Enterprises","+63 62 991 0966","Zamboanga City","PH"],["Arjai Corp.","+63 62 993 1630","Zamboanga City","PH"],["Benchmark Engineering & Construction","+63 62 955 1967","Zamboanga City","PH"],["Bendimil Construction & Development Corp.","+63 62 991 7946","Zamboanga City","PH"],["Benram Construction","+63 62 991 0570","Zamboanga City","PH"],["GHR Construction","+63 62 955 1863","Zamboanga City","PH"],["Alajeno Construction and Supplies","+63 62 215 8116","Pagadian City","PH"],["Alinab Construction & Supplies","+63 62 214 3138","Pagadian City","PH"],["3C'SL Construction and Supply","+63 85 815 9799","Butuan","PH"],["ADFIL Corporation","+63 85 341 2460","Butuan","PH"],["ARQ Builders","+63 85 341 4870","Butuan","PH"],["Baicamar Construction and Supplies, Inc.","+63 85 341 8625","Butuan","PH"],["BBC Construction","+63 85 225 9258","Butuan","PH"],["Al Hussein Construction","+63 63 223 9145","Iligan","PH"],["Dicon Builders Corp.","+63 63 302 0251","Iligan","PH"],["AT Builders & General Merchandise","+63 917 712 0339","Surigao City","PH"],["Bermicon Development Corp.","+63 907 278 9671","Panabo","PH"],["Angkat Construction and Supplies","+63 64 421 6052","Cotabato City","PH"],["Bamec Developers","+63 917 501 8334","Cotabato City","PH"],["Better Work Construction","+63 64 421 7145","Cotabato City","PH"],["Bandar Kutawato Construction and Supply","+63 915 495 4674","Cotabato City","PH"],["A.I. Yu Builders & Enterprises","+63 65 212 2013","Dipolog City","PH"],["Bacho Construction & Design Engineering","+63 65 906 0364","Dipolog City","PH"],["RCC Aircon Services","+63 921 780 6977","Davao City","PH"],["Janivbel Aircon Services","+63 82 324 4272","Davao City","PH"],["Polar Paris Airconditioning Company","+63 82 224 4058","Davao City","PH"],["Pamonric Builders Inc.","+63 82 305 6914","Davao City","PH"],["GDY Airtech Enterprises","+63 82 228 6828","Davao City","PH"],["GC Tech","+63 917 716 8186","Tagum","PH"],["Villanueva-Ong Electrical Lights Trading","+63 968 861 5090","Koronadal","PH"],["AI Technology and Services","+63 907 686 9229","Isulan, Sultan Kudarat","PH"],["Energisto Philippines Renewable Energy Development Corporation","+63 83 520 6489","General Santos","PH"],["BME Partners Inc.","+63 88 856 1237","Cagayan de Oro","PH"],["SPM10 Corporation","+63 917 706 3446","Cagayan de Oro","PH"],["Cdo Home Builders & Development Corp","+63 88 880 7412","Cagayan de Oro","PH"],["Solazone Philippines (Davao Office)","+63 82 315 4858","Davao City","PH"],["GN Engineering Solutions (Sun Solar Power)","+63 906 497 0817","Zamboanga City","PH"],["DDA Electrical Parts & Services (Digos Solar)","+63 939 364 0609","Digos City","PH"],["ISolarMo Sells and Installation Services","+63 926 522 8299","Pigcawayan, Cotabato","PH"],["D&M Green Designs and Systems","+63 62 985 1826","Zamboanga City","PH"],["Berachah Constructions and Supply","+63 997 147 8727","Zamboanga City","PH"],["Alzen Engineering & Construction Supplies","+63 64 288 5361","Kidapawan","PH"],["ABI Construction","+63 86 211 3091","Tandag","PH"],["Bislig Venture Construction & Development Inc.","+63 86 853 5139","Bislig","PH"],["Resilient Firetech","+63 930 631 9300","Surigao City","PH"],["Goodlife Construction","+63 917 717 5105","Jimenez, Misamis Occidental","PH"],["3R's Builders and Resources","+63 927 464 3989","Tudela, Misamis Occidental","PH"],["Constant Integrated Project Development Corp.","+63 82 227 5001","Davao City","PH"],["WAVE Construction Industries, Inc.","+63 917 516 5846","Davao City","PH"],["TSCA Electrical Group of Company Incorporated","+63 82 287 8205","Davao City","PH"],["LJ Industrial Fabrication, Incorporated","+63 82 285 9279","Davao City","PH"],["ZC RMC Constructions","+63 917 156 9677","Zamboanga City","PH"],["BDLS Core Energy and Construction Solutions, Inc.","+63 917 134 1482","Mamburao","PH"],["JRB Mechanical and Electrical Engineering Services","+63 949 323 1308","Socorro, Oriental Mindoro","PH"],["Solarix Enterprise","+63 2 8693 7291","Marikina","PH"],["Greenheat Corporation","+63 2 8251 0857","Manila","PH"],["MOBI Solar Philippines Inc.","+63 949 709 1860","Makati","PH"],["Trademaster Resources Corporation","+63 919 073 5634","Las Piñas","PH"],["Aceser Corporation","+63 905 370 1571","Taguig","PH"],["OEM Industrial Parts and Construction Services","+63 906 506 5271","Quezon City","PH"],["RITSCO Electrical and Solar Inc.","+63 2 7955 9405","Manila","PH"],["EEI Power Corporation","+63 995 188 6997","Quezon City","PH"],["WWC Yellow Bumblebee Corporation","+63 2 7933 5943","Pasig","PH"],["First Gen Energy Solutions (FGES)","+63 2 3449 6400","Pasig","PH"],["Solar Macht Renewable Energy Corporation","+63 922 829 0484","Valenzuela","PH"],["SolarHomePhils Corporation","+63 906 948 4229","Taguig","PH"],["Solare Renewable Energy Corp.","+63 926 707 0014","Malabon","PH"],["Solarized Incorporated","+63 917 819 8773","Muntinlupa","PH"],["Elitech Trading Corporation","+63 915 314 9513","Parañaque","PH"],["Photonergy Inc.","+63 909 508 9445","Antipolo","PH"],["Velosolar Trading","+63 2 8952 7968","Parañaque","PH"],["D. Reyes Solar Equipment and Installation Services","+63 916 614 5869","Imus","PH"],["Salfer Engineering and Solar Technology Enterprise","+63 917 193 3938","Pandi, Bulacan","PH"],["Technix Solar Power","+63 947 820 8419","Sorsogon City","PH"],["Sun Rays Solutions Solar and Electrical Supply","+63 917 773 2533","Legazpi","PH"],["Felcontech Solar","+63 919 565 6126","Kalibo","PH"],["AYS Solar and Electrical Services and Supply","+63 917 155 5027","Pagbilao","PH"],["Lite Energy Engineering Services","+63 927 823 3959","Lipa","PH"],["Infinity Engineering","+63 917 521 9155","Cabuyao","PH"],["Uno Engineering Solar","+63 909 022 3469","Iloilo City","PH"]];
+
+// ── STATE ──
+var S = {
+  calls: 0, closes: 0,
+  mCalls: 0, mCloses: 0,
+  callGoal: 15, closeGoal: 28,
+  reset: ''
+};
+
+try {
+  S.calls     = +localStorage.getItem('p-calls')  || 0;
+  S.closes    = +localStorage.getItem('p-closes') || 0;
+  S.mCalls    = +localStorage.getItem('p-mc')     || 0;
+  S.mCloses   = +localStorage.getItem('p-ml')     || 0;
+  S.callGoal  = +localStorage.getItem('p-cg')     || 15;
+  S.closeGoal = +localStorage.getItem('p-lg')     || 28;
+  S.reset     =  localStorage.getItem('p-reset')  || '';
+} catch(e){}
+
+function save(){
+  try {
+    localStorage.setItem('p-calls',  S.calls);
+    localStorage.setItem('p-closes', S.closes);
+    localStorage.setItem('p-mc',     S.mCalls);
+    localStorage.setItem('p-ml',     S.mCloses);
+    localStorage.setItem('p-cg',     S.callGoal);
+    localStorage.setItem('p-lg',     S.closeGoal);
+    localStorage.setItem('p-reset',  S.reset);
+  } catch(e){}
+}
+
+function checkReset(){
+  var d = new Date().toDateString();
+  if(S.reset !== d){
+    S.mCalls  += S.calls;
+    S.mCloses += S.closes;
+    S.calls = 0; S.closes = 0;
+    S.reset = d;
+    save();
+  }
+}
+
+var MXN_RATE = 17.5;
+var PER_CLOSE = 137 * 0.6; // $82.20
+
+function render(){
+  var tc = S.mCalls + S.calls;
+  var cl = S.mCloses + S.closes;
+  var todayEarn = (S.closes * PER_CLOSE).toFixed(0);
+  var totalEarn = (cl * PER_CLOSE).toFixed(0);
+  var totalMXN  = Math.round(cl * PER_CLOSE * MXN_RATE).toLocaleString();
+
+  setText('g-calls-n',    S.calls);
+  setText('g-closes-n',   S.closes);
+  setText('g-earn-today', (LANG==='es'?'= $':'= $') + todayEarn + ' ' + (LANG==='es'?'kita':'earned'));
+
+  var cp = Math.min(100,(tc/300)*100);
+  var lp = Math.min(100,(cl/S.closeGoal)*100);
+  document.getElementById('g-calls-bar').style.width  = cp+'%';
+  document.getElementById('g-closes-bar').style.width = lp+'%';
+  setText('g-calls-prog-ct',  tc+' / 300');
+  setText('g-closes-prog-ct', cl+' / '+S.closeGoal);
+
+  var day = new Date().getDate();
+  var left = 30 - day;
+  var pace = left > 0 ? Math.ceil((S.closeGoal-cl)/left) : 0;
+  setText('g-pace', pace>0 ? (LANG==='es'?'📈 Kailangan mo ng '+pace+' close/araw':'📈 Need '+pace+' close(s)/day') : (LANG==='es'?'🎉 On pace ka!':'🎉 On pace!'));
+
+  setText('g-calls-goal', (LANG==='es'?'goal: ':'goal: ') + S.callGoal);
+
+  // Earnings
+  setText('e-closes-val',  cl);
+  setText('e-upfront-val', '$'+totalEarn+' USD');
+  setText('e-mxn-val',     '$'+totalMXN+' MXN');
+  setText('e-total-usd',   '$'+totalEarn+' USD');
+  setText('e-total-mxn',   '≈ $'+totalMXN+' MXN');
+  var proj = (cl * PER_CLOSE + cl * PER_CLOSE * 5).toFixed(0);
+  setText('e-6mo-val', '$'+proj+' USD');
+}
+
+function setText(id, val){ var e=document.getElementById(id); if(e) e.textContent=val; }
+
+function addCall(){ S.calls++; save(); render(); toast('📞 '+(LANG==='es'?'Na-log ang tawag!':'Call logged!')); }
+function undoCall(){ if(S.calls>0){S.calls--;} save(); render(); }
+function addClose(){
+  S.calls++; S.closes++; save(); render();
+  toast('🔥 '+(LANG==='es'?'Close! $'+PER_CLOSE.toFixed(0)+' USD kita mo!':'Close! $'+PER_CLOSE.toFixed(0)+' USD earned!'));
+}
+function saveGoals(){
+  S.callGoal  = +document.getElementById('g-call-goal').value  || 15;
+  S.closeGoal = +document.getElementById('g-close-goal').value || 28;
+  save(); render();
+}
+
+function calcEarnings(v){
+  var usd = (v * PER_CLOSE).toFixed(0);
+  var mxn = Math.round(v * PER_CLOSE * MXN_RATE).toLocaleString();
+  setText('e-slider-val',   v);
+  setText('e-calc-result',  '$'+usd+' USD');
+  setText('e-calc-mxn',     '≈ $'+mxn+' MXN');
+  setText('e-calc-residual','+ $'+usd+' USD/'+(LANG==='es'?'buwan residual':'mo residual'));
+}
+
+// ── TABS ──
+function showTab(id, el){
+  document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tb').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('pane-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── PROSPECTS ──
+// Prospect data store
+var PDATA = {};
+try { PDATA = JSON.parse(localStorage.getItem('p-data')||'{}'); } catch(e){}
+function savePData(){ try{ localStorage.setItem('p-data', JSON.stringify(PDATA)); }catch(e){} }
+
+var STATUSES = ['new','called','interested','closed','skip'];
+var STATUS_LABELS = {
+  es:{new:'Bago',called:'Natawagan',interested:'Interesado',closed:'Closed',skip:'Laktawan'},
+  en:{new:'New',called:'Called',interested:'Interested',closed:'Closed',skip:'Skip'}
+};
+
+function setStatus(el){
+  var status = el.dataset.s;
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'new',note:''};
+  PDATA[key].status = status;
+  savePData();
+  el.closest('.status-wrap').querySelectorAll('.sbadge').forEach(function(b){
+    b.classList.toggle('active', b.dataset.s===status);
+  });
+}
+
+function saveNote(el){
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'new',note:''};
+  PDATA[key].note = el.value;
+  savePData();
+}
+
+function callProspect(el){
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'called',note:''};
+  PDATA[key].status = 'called';
+  savePData();
+  el.closest('.status-wrap').querySelectorAll('.sbadge').forEach(function(b){
+    b.classList.toggle('active', b.dataset.s==='called');
+  });
+}
+
+function renderProspects(list){
+  var sl = STATUS_LABELS[LANG];
+  var called = Object.values(PDATA).filter(function(d){ return d.status==='called'||d.status==='closed'||d.status==='skip'; }).length;
+  var left = PROSPECTS.length - called;
+  var h = '<div class="p-counter"><span class="p-counter-left">'+(LANG==='es'?'Natitira':'Remaining')+'</span><span class="p-counter-right">'+left+' / '+PROSPECTS.length+'</span></div>';
+
+  list.forEach(function(p){
+    var key = p[0]+'|'+p[1];
+    var pd = PDATA[key]||{status:'new',note:''};
+    var raw = p[1].replace(/\D/g,'');
+    var tel = 'tel:'+p[1];
+    var wa  = 'https://wa.me/'+(raw.length===10?'1'+raw:raw);
+    var badges = STATUSES.map(function(s){
+      var active = pd.status===s ? ' active' : '';
+      return '<span class="sbadge '+s+active+'" data-s="'+s+'" onclick="setStatus(this)">'+sl[s]+'</span>';
+    }).join('');
+    var noteVal = (pd.note||'').replace(/"/g,'&quot;');
+    h += '<div class="prow" data-pkey="'+key.replace(/"/g,'&quot;')+'">'
+      +'<div class="prow-top">'
+      +'<div class="pinfo"><div class="pname">'+p[0]+'</div>'
+      +'<div class="pmeta">'+p[1]+' · '+p[2]+', '+p[3]+'</div></div>'
+      +'<div class="pbtns">'
+      +'<a href="'+tel+'" class="pbcall" onclick="callProspect(this)">📞</a>'
+      +'<a href="'+wa+'" class="pbwa">💬</a>'
+      +'<a href="viber://chat?number=%2B'+raw+'" class="pbvb" title="Viber" aria-label="Viber">💜</a>'
+      +'</div></div>'
+      +'<div class="status-wrap">'+badges+'</div>'
+      +'<textarea class="p-note" rows="1" placeholder="'+(LANG==='es'?'Notes...':'Notes...')+'" oninput="saveNote(this)">'+noteVal+'</textarea>'
+      +'</div>';
+  });
+  document.getElementById('p-list').innerHTML = h;
+  setText('p-count', list.length+' '+(LANG==='es'?'prospects':'prospects'));
+}
+
+
+function filterP(q){
+  q=(q||'').toLowerCase().trim();
+  var list=!q?PROSPECTS:PROSPECTS.filter(function(p){return (p[0]+' '+p[2]+' '+p[3]).toLowerCase().indexOf(q)>-1;});
+  renderProspects(list);
+}
+
+// ── STRIPE ──
+var STRIPE = 'https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h';
+function copyStripe(btn){
+  navigator.clipboard.writeText(STRIPE).then(function(){
+    var o=btn.textContent; btn.textContent='✅ Copiado!';
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+function sendStripeWA(){
+  window.open('https://wa.me/?text='+encodeURIComponent('JefeTech — $137/mes · '+STRIPE),'_blank');
+}
+function copyLink(url,btn){
+  navigator.clipboard.writeText(url).then(function(){
+    var o=btn.textContent; btn.textContent='✅';
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+
+// ── TOAST ──
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); },2500);
+}
+
+// ── LANGUAGE ──
+var LANG = 'en';
+
+var TX = {
+  es:{
+    "h-title": "Partner — Philippines 🇵🇭 ✝️",
+    "h-sub": "MX Studio · God Wins · myjefetech.app",
+    "tl-left": "FIL",
+    "tl-right": "EN",
+    "tab-btn-jefe": "👑 Jefe",
+    "tab-btn-goals": "🎯 Goals",
+    "tab-btn-prospects": "👥 Prospects",
+    "tab-btn-script": "🤝 Tulungan Tayo",
+    "tab-btn-earnings": "✝️ Loyalty Program",
+    "j-sub": "May-ari · MX Studio · Acapulco, Mexico 🇲🇽🤝🇵🇭",
+    "j-links-lbl": "📋 Mabilis na Links",
+    "j-app-lbl": "Demo App",
+    "j-dash-lbl": "Demo Dashboard — La Forja",
+    "j-rules-lbl": "⚡ Mga Patakaran ng Jefe",
+    "j-rules": "1. Laging maging tapat — huwag mangako ng wala tayo.<br>2. Lifetime money-back guarantee — panindigan palagi.<br>3. Ipadala muna ang demo bago humingi ng close.<br>4. Kung naipit ka, i-WhatsApp agad si Jefe.<br>5. I-log ang bawat tawag. Bawat close. Walang exception.<br>6. <strong style=\"color:var(--orange)\">God Wins. ✝️</strong>",
+    "g-calls-lbl": "📞 Tawag Ngayon",
+    "g-closes-lbl": "🔥 Close Ngayon",
+    "g-log-call": "+ Tawag",
+    "g-undo": "↩ I-undo",
+    "g-log-close": "+ Close 🔥",
+    "g-monthly-lbl": "📊 Progress ngayong Buwan",
+    "g-calls-prog-lbl": "Mga Tawag",
+    "g-closes-prog-lbl": "Mga Close",
+    "g-set-lbl": "⚙️ I-set ang Goals",
+    "g-daily-lbl": "Daily na goal sa tawag",
+    "g-monthly-close-lbl": "Monthly na goal sa close",
+    "sc-header": "I-SCROLL · 15-20 MIN LANG BAWAT KLIYENTE",
+    "sc-opener-lbl": "🎯 STEP 1 — PAMBUNGAD",
+    "sc-pitch-lbl": "☀️ STEP 2 — SOLAR PITCH",
+    "sc-close-lbl": "🤝 STEP 3 — CLOSE",
+    "sc-fu-lbl": "📲 STEP 4 — FOLLOW UP",
+    "sc-app-lbl": "Demo App",
+    "sc-dash-lbl": "Dashboard",
+    "sc-copy-app": "📋 Kopyahin ang App",
+    "sc-copy-dash": "📋 Kopyahin ang Dashboard",
+    "sc-stripe-btn": "💳 Kopyahin ang Payment Link",
+    "sc-wa-btn": "💬 WhatsApp",
+    "e-total-lbl": "💰 Kabuuang Kita ngayong Buwan",
+    "e-rate-note": "",
+    "e-breakdown-lbl": "📊 Breakdown",
+    "e-closes-lbl": "Close ngayong buwan",
+    "e-price-lbl": "Presyo bawat close",
+    "e-cut-lbl": "Parte mo (60%)",
+    "e-cut-val": "$82.20 bawat close",
+    "e-upfront-lbl": "Kita sa USD",
+    "e-mxn-lbl": "",
+    "e-6mo-lbl": "Projection sa 6 na buwan",
+    "e-calc-lbl": "🧮 Calculator",
+    "e-calc-sub": "Ilang close ngayong buwan?",
+    "e-at": "Sa ",
+    "e-closes-label": " close:",
+    "p-search-ph": "🔍  Hanapin ang kumpanya, lungsod, trabaho...",
+    "sc-opener-txt": "\"Magandang araw po! Ako po si [Pangalan Mo], partner ng MX Studio. Nakikipagtulungan po kami sa mga solar at construction companies. May isang minuto po ba kayo?\"<br><br><strong>Kapag oo →</strong> Pumunta sa Solar Pitch.",
+    "sc-pitch-txt": "<strong style=\"color:var(--green);font-size:14px\">☀️ Ang Solar Pitch — Isa-isa Lang</strong><br><br><strong>\"Tanong ko lang po — ngayong tumaas ng halos 20% ang kuryente, siguradong ang daming nagpapakabit ng solar. Paano n'yo po nahahabol lahat ng jobs?\"</strong><br><br><em>Hayaan silang sumagot. Makinig. Karamihan, sasabihing sobrang busy.</em><br><br><strong style=\"color:var(--orange)\">↓ Isa-isahin ang features:</strong><br><br>🛰️ <strong>Bubong in seconds</strong> — \"I-type lang ang address, lalabas ang satellite view ng bubong. Masusukat n'yo agad para sa panel layout, bago pa magpadala ng crew.\"<br><br><em>Hayaan silang sumagot...</em><br><br>💼 <strong>Lahat ng install, isang screen</strong> — \"Sa Jobs tab, kita lahat ng site live: anong crew, anong materials, gaano na katagal. Hindi na kailangang tumawag nang sampung beses.\"<br><br><em>Hayaan silang sumagot...</em><br><br>🛡️ <strong>DOLE safety, tapos na</strong> — \"Bago umakyat ng bubong, tapos muna ang DOLE OSH safety checklist. Hindi pwedeng i-skip. Protektado ang tao n'yo at ang permit n'yo.\"<br><br><em>Hayaan silang sumagot...</em><br><br>👥 <strong>Buong crew, isang presyo</strong> — \"Installers, electrician, office, subcon. 1 o 100 tao, pareho ang presyo. Walang bayad bawat user.\"<br><br><em>Hayaan silang sumagot...</em><br><br>📶 <strong>Gumagana kahit walang signal</strong> — \"Nasa bubong sa probinsya, walang signal? Tuloy pa rin. Magsi-sync pag may internet na.\"<br><br><em>Hayaan silang sumagot...</em><br><br>🤖 <strong>AI ang bahala sa paperwork</strong> — \"Ang AI assistant ang bahala sa schedule at payroll, at sumasagot sa tanong ng crew. Kayo, benta lang nang benta.\"<br><br><em style=\"color:var(--green)\">Kapag nagtanong ng presyo → Step 3 ✅</em>",
+    "sc-close-txt": "\"$137 po kada buwan. Higit $300 na value, at hindi na tataas ang presyo ninyo habambuhay. Unlimited users. Pwedeng mag-cancel anytime. May lifetime money-back guarantee — kapag hindi kayo satisfied kahit kailan, mag-cancel lang at ibabalik namin ang huling buwan n'yo. Simulan na po natin ngayon?\"<br><br><strong>Kapag oo →</strong> Ipadala ang payment link.",
+    "sc-fu-txt": "\"Magandang araw po [Pangalan] — follow up lang po mula sa MX Studio. Nabuksan n'yo na po ba ang link? Kung may tanong, sagot ko po. 🤝\"<br><br><strong>Pangalawang tawag:</strong><br>\"Hello po — tumatawag ulit mula sa MX Studio. May tanong po ba kayo sa app? 2 minuto lang — tingnan natin nang sabay ngayon?\""
+  },
+  en:{
+    'h-title':'Partner — Philippines 🇵🇭 ✝️',
+    'h-sub':'MX Studio · God Wins · myjefetech.app',
+    'tl-left':'ES','tl-right':'EN',
+    'tab-btn-jefe':'👑 Jefe',
+    'tab-btn-goals':'🎯 Goals',
+    'tab-btn-prospects':'👥 Prospects',
+    'tab-btn-script':'🤝 Help You, Help Me',
+    'tab-btn-earnings':'✝️ Loyalty Program',
+    'j-sub':'Owner · MX Studio · Acapulco, Mexico 🇲🇽🤝🇺🇸',
+    'j-links-lbl':'📋 Quick Links',
+    'j-app-lbl':'Demo App',
+    'j-dash-lbl':'Demo Dashboard — La Forja',
+    'j-rules-lbl':'⚡ Rules from the Jefe',
+    'j-rules':'1. Always be honest — never promise what we do not have.<br>2. Lifetime money-back guarantee — stand behind it always.<br>3. Send the demo before asking for the close.<br>4. If you are stuck, WhatsApp the Jefe directly.<br>5. Log every call. Every close. No exceptions.<br>6. <strong style="color:var(--orange)">God Wins. ✝️</strong>',
+    'g-calls-lbl':'📞 Calls Today',
+    'g-closes-lbl':'🔥 Closes Today',
+    'g-log-call':'+ Log a Call',
+    'g-undo':'↩ Undo',
+    'g-log-close':'+ Log a Close 🔥',
+    'g-monthly-lbl':'📊 Monthly Progress',
+    'g-calls-prog-lbl':'Calls',
+    'g-closes-prog-lbl':'Closes',
+    'g-set-lbl':'⚙️ Set Goals',
+    'g-daily-lbl':'Daily call goal',
+    'g-monthly-close-lbl':'Monthly close goal',
+    'sc-header':'SCROLL THROUGH · 15-20 MIN MAX',
+    'sc-opener-lbl':'🎯 STEP 1 — OPENER',
+    'sc-pitch-lbl':'☀️ STEP 2 — SOLAR PITCH',
+    'sc-close-lbl':'🤝 STEP 3 — CLOSE',
+    'sc-fu-lbl':'📲 STEP 4 — FOLLOW UP',
+    'sc-app-lbl':'Demo App',
+    'sc-dash-lbl':'Dashboard',
+    'sc-copy-app':'📋 Copy App Link',
+    'sc-copy-dash':'📋 Copy Dashboard',
+    'sc-stripe-btn':'💳 Copy Payment Link',
+    'sc-wa-btn':'💬 WhatsApp',
+    'e-total-lbl':'💰 Total Earned This Month',
+    'e-rate-note':'$1 USD ≈ $17.50 MXN',
+    'e-breakdown-lbl':'📊 Breakdown',
+    'e-closes-lbl':'Closes this month',
+    'e-price-lbl':'Price per close',
+    'e-cut-lbl':'Your cut (60%)',
+    'e-cut-val':'$82.20 per close',
+    'e-upfront-lbl':'Earned in USD',
+    'e-mxn-lbl':'Equivalent in pesos',
+    'e-6mo-lbl':'6-Month projection',
+    'e-calc-lbl':'🧮 What-If Calculator',
+    'e-calc-sub':'How many closes this month?',
+    'e-at':'At ',
+    'e-closes-label':' closes:',
+    'p-search-ph':'🔍  Search company, city, trade...',
+    'sc-opener-txt':'"Good day! This is [Your Name], a partner with MX Studio. We work with solar and construction companies. Do you have one minute?"<br><br><strong>They say yes →</strong> Go to the Solar Pitch.',
+    'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">☀️ The Solar Pitch — One Thing at a Time</strong><br><br><strong>"Quick question — with electricity prices up almost 20% this year, your phone must be ringing off the hook for solar. How are you keeping up with all the jobs?"</strong><br><br><em>Let them answer. Listen. Most will say they\'re swamped.</em><br><br><strong style="color:var(--orange)">↓ Then drop features one at a time:</strong><br><br>🛰️ <strong>Roof in seconds</strong> — "Type any address and the satellite view pulls up the roof. Measure it on the spot for your panel layout, before you even send a crew."<br><br><em>Let them respond...</em><br><br>💼 <strong>Every install, one screen</strong> — "Jobs tab shows every site live: which crew, what materials, how far along. No more ten calls to find out where a job is."<br><br><em>Let them respond...</em><br><br>🛡️ <strong>DOLE safety, done</strong> — "Before anyone climbs a roof, the DOLE OSH safety checklist gets done. They can\'t skip it. That protects your workers and your permit."<br><br><em>Let them respond...</em><br><br>👥 <strong>Your whole crew, one price</strong> — "Installers, electricians, office, subs. 1 or 100 people, same price. No per-user fees."<br><br><em>Let them respond...</em><br><br>📶 <strong>Works with no signal</strong> — "Rooftop in the province with no signal? Still works. Everything syncs when you\'re back online."<br><br><em>Let them respond...</em><br><br>🤖 <strong>AI does the paperwork</strong> — "The AI assistant handles scheduling and payroll and answers your crew\'s questions, so you can sell more systems."<br><br><em style="color:var(--green)">When they ask how much → Step 3 ✅</em>',
+    'sc-close-txt':'"$137 a month. Over $300 worth of tools, and your price is locked for life. Unlimited users. Cancel anytime. Lifetime money-back guarantee — not happy, ever? Cancel and get your most recent month back. Ready to get set up right now?"<br><br><strong>They say yes →</strong> Send payment link.',
+    'sc-fu-txt':'"Hey [Name] — following up from MX Studio. Did you get a chance to check out the link? Happy to answer any questions. 🤝"<br><br><strong>Second call:</strong><br>"Hey — calling back from MX Studio. Any questions about the app? Takes 2 minutes — want to look at it together right now?"'
+  }
+};
+
+function applyLang(){
+  var t = TX[LANG];
+  // Update all text elements
+  Object.keys(t).forEach(function(id){
+    if(id==='sc-opener-txt'||id==='sc-pitch-txt'||id==='sc-close-txt'||id==='sc-fu-txt'||id==='j-rules'){
+      var el=document.getElementById(id); if(el) el.innerHTML=t[id];
+    } else if(id==='p-search-ph'){
+      var el=document.getElementById('p-search'); if(el) el.placeholder=t[id];
+    } else {
+      var el=document.getElementById(id); if(el) el.textContent=t[id];
+    }
+  });
+  // Toggle visual
+  var track = document.getElementById('toggle-track');
+  var knob  = document.getElementById('toggle-knob');
+  var left  = document.getElementById('tl-left');
+  var right = document.getElementById('tl-right');
+  if(LANG==='en'){
+    track.classList.add('en');
+    knob.style.background = 'var(--orange)';
+    left.style.color  = 'var(--muted)';
+    right.style.color = 'var(--orange)';
+  } else {
+    track.classList.remove('en');
+    knob.style.background = 'var(--green)';
+    left.style.color  = 'var(--green)';
+    right.style.color = 'var(--muted)';
+  }
+  render();
+  filterP(document.getElementById('p-search').value);
+  updateMotiv();
+}
+
+function toggleLang(){
+  LANG = LANG==='es' ? 'en' : 'es';
+  applyLang();
+}
+
+// ── FOLLOW UP COPY ──
+var FU_MSGS = {
+  es:[
+    'Magandang araw po! Follow up lang mula sa MX Studio. Nabuksan n\'yo na po ba ang link na pinadala ko: https://myjefetech.app - Kung may tanong po kayo, sagot ko. Salamat po!',
+    'Hello po, tumatawag ulit mula sa MX Studio. Gusto ko lang malaman kung may tanong kayo sa app. 2 minuto lang po at malaking tulong ito sa crew n\'yo. Sabihan n\'yo lang po ako kung kailan kayo free.'
+  ],
+  en:[
+    'Hey, following up from MX Studio. Wanted to see if you had a chance to check out the link I sent: https://myjefetech.app - Happy to answer any questions. Thanks!',
+    'Hey, calling back from MX Studio. Wanted to see if you had any questions about the app. Takes 2 minutes and I think it could really help your crew. Let me know when is a good time.'
+  ]
+};
+function copyFU(n, btn){
+  var msg = FU_MSGS[LANG][n-1];
+  navigator.clipboard.writeText(msg).then(function(){
+    var o=btn.textContent; btn.textContent='✅ '+(LANG==='es'?'Nakopya!':'Copied!');
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+
+// ── MOTIVATION ──
+var MOTIVS = {
+  es:['Nilagay na ng Diyos ang sipag sa \'yo. Tawag lang.','Bawat tawag, pagkakataon. Gawin mo.','13 seasons sa Alaska ang Jefe mo. Kayod para sa kanya.','Hindi mo kailangan ng swerte. Kailangan mong tumawag.','Isa pang close. \'Yun lang. Isa pa.','Masarap matulog kapag nagsipag. Tawag na.','God Wins. Palagi. ✝️'],
+  en:['God already put the work in you. Just dial.','Every call is an opportunity. Make it.','Your Jefe fished 13 seasons in Alaska. Work hard for him.','You do not need luck. You need to dial.','One more close. That is all. One more.','Hard work sleeps well. Make the call.','God Wins. Always. ✝️']
+};
+function updateMotiv(){
+  var day = new Date().getDay();
+  var q = MOTIVS[LANG][day];
+  var el = document.getElementById('motiv-quote');
+  var sub = document.getElementById('motiv-sub');
+  if(el) el.textContent = q;
+  if(sub) sub.textContent = LANG==='es'?'✝️ GOD WINS — MX STUDIO':'✝️ GOD WINS — MX STUDIO';
+}
+
+// ── LOCAL: USD only ──
+function hideMXN(){['e-total-mxn','e-rate-note','e-calc-mxn'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='none';});var r=document.getElementById('e-mxn-lbl');if(r&&r.parentNode)r.parentNode.style.display='none';}
+// ── INIT ──
+checkReset();
+renderProspects(PROSPECTS);
+applyLang();
+calcEarnings(10);
+updateMotiv();
+hideMXN();
+</script>
+<script>
+/* ===== ✝️ Loyalty Program (partner) ===== */
+(function(){
+  var PER=82.20, KEY='loy-start', KEYN='loy-closes';
+  var T={
+    en:{vt:'🌴 Vacation Bonus',vs:'Every 3 years with MX Studio, take up to 2 weeks off and get a bonus of <b>3% of everything you earned in those 3 years</b>. You keep everything you earned, plus the bonus. You pick when you go.',vn:'Next vacation bonus: {d} · in {n} days',vc:'At that pace: {c} in 3 years → <b>{b}</b> vacation bonus',title:'✝️ Loyalty Program',sub:'Every year on your start anniversary, you get a bonus on top of all the commissions you earned that year. The longer you stay, the bigger it gets.',t1:'Years 1–3',t2:'Years 4–7',t3:'Year 8 and beyond',start:'My start date',year:'You\'re in year {y} · {r}% bonus',next:'Next bonus: {d} · in {n} days',nostart:'Enter your start date to see your countdown.',calc:'If I close',pm:'a month',res:'{c} a year in commissions → <b>{b}</b> loyalty bonus',tier:'At {r}% ({t}): {b}',fine:'Paid through Stripe on your anniversary while you\'re an active Partner. Refunded sales don\'t count.',earn:'💰 Earnings',now:'you are here'},
+    es:{vt:'🌴 Bono de Vacaciones',vs:'Cada 3 años con MX Studio, toma hasta 2 semanas libres y recibe un bono del <b>3% de todo lo que ganaste en esos 3 años</b>. Te quedas con todo lo que ganaste, más el bono. Tú eliges cuándo.',vn:'Próximo bono de vacaciones: {d} · en {n} días',vc:'A ese ritmo: {c} en 3 años → <b>{b}</b> de bono de vacaciones',title:'✝️ Programa de Lealtad',sub:'Cada año, en tu aniversario, recibes un bono extra sobre todas las comisiones que ganaste ese año. Mientras más tiempo te quedes, más grande es.',t1:'Años 1–3',t2:'Años 4–7',t3:'Año 8 en adelante',start:'Mi fecha de inicio',year:'Vas en el año {y} · bono de {r}%',next:'Próximo bono: {d} · en {n} días',nostart:'Pon tu fecha de inicio para ver tu cuenta regresiva.',calc:'Si cierro',pm:'al mes',res:'{c} al año en comisiones → <b>{b}</b> de bono de lealtad',tier:'Con {r}% ({t}): {b}',fine:'Se paga por Stripe en tu aniversario mientras sigas activo como Socio. Las ventas reembolsadas no cuentan.',earn:'💰 Ganancias',now:'aquí estás'},
+    fil:{vt:'🌴 Vacation Bonus',vs:'Kada 3 taon sa MX Studio, mag-day off ka hanggang 2 linggo at may bonus kang <b>3% ng lahat ng kinita mo sa 3 taong iyon</b>. Sa iyo pa rin lahat ng kinita mo, plus ang bonus. Ikaw ang pipili kung kailan.',vn:'Susunod na vacation bonus: {d} · {n} araw pa',vc:'Sa ganyang bilis: {c} sa 3 taon → <b>{b}</b> vacation bonus',title:'✝️ Loyalty Program',sub:'Taon-taon, sa anniversary mo, may bonus ka pa sa ibabaw ng lahat ng commission mo sa taong iyon. Mas matagal ka, mas malaki.',t1:'Taon 1–3',t2:'Taon 4–7',t3:'Taon 8 pataas',start:'Petsa ng simula ko',year:'Nasa taon {y} ka · {r}% bonus',next:'Susunod na bonus: {d} · {n} araw pa',nostart:'Ilagay ang petsa ng simula mo para makita ang countdown.',calc:'Kung makaka-close ako ng',pm:'kada buwan',res:'{c} kada taon na commission → <b>{b}</b> loyalty bonus',tier:'Sa {r}% ({t}): {b}',fine:'Binabayaran sa Stripe tuwing anniversary mo habang aktibo kang Partner. Hindi kasama ang na-refund na benta.',earn:'💰 Kita',now:'nandito ka'}
+  };
+  function lang(){var ph=/Philippines/.test(document.title);if(typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  function rate(y){return y<=3?3:(y<=7?7:13);}
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function f(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k];});}
+  function get(k,d){try{return localStorage.getItem(k)||d;}catch(e){return d;}}
+  function put(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  function addY(d,n){var x=new Date(d);x.setFullYear(x.getFullYear()+n);return x;}
+  var box=null;
+  function vac(t,n){var c=n*36*PER;return f(t.vc,{c:money(c),b:money(c*.03)});}
+  function calc(t,n,cur){var yr=n*12*PER;return '<div style="font-size:13px;margin-top:8px;line-height:1.6">'+f(t.res,{c:money(yr),b:money(yr*(cur||3)/100)})+'</div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.7">'+f(t.tier,{r:7,t:t.t2,b:money(yr*.07)})+'<br>'+f(t.tier,{r:13,t:t.t3,b:money(yr*.13)})+'</div>';}
+
+  function render(){
+    if(!box)return;var t=T[lang()],st=get(KEY,''),n=+get(KEYN,'10')||0,y=0,nx=null;
+    if(st){var s=new Date(st+'T12:00:00'),now=new Date();y=1;while(addY(s,y)<=now)y++;nx=addY(s,y);}
+    var cur=y?rate(y):0;
+    function row(lbl,r,on){return '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;margin-bottom:6px;'+(on?'background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.4)':'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)')+'"><span style="font-size:13px;font-weight:700">'+lbl+(on?' <span style="font-size:10px;color:var(--green)">← '+t.now+'</span>':'')+'</span><span style="font-size:18px;font-weight:900;color:'+(r===13?'#FFC53D':'var(--green)')+'">'+r+'%'+(r===13?' 👑':'')+'</span></div>';}
+    var h='<div style="font-size:18px;font-weight:900;margin-bottom:4px">'+t.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">'+t.sub+'</div>'
+      +row(t.t1,3,cur===3)+row(t.t2,7,cur===7)+row(t.t3,13,cur===13)
+      +'<label style="display:block;font-size:11px;color:var(--muted);margin:14px 0 4px">'+t.start+'</label>'
+      +'<input type="date" id="loy-start" value="'+st+'" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:14px;color-scheme:dark">'
+      +'<div style="margin-top:10px;font-size:13px;line-height:1.7">'+(y?('<b style="color:var(--green)">'+f(t.year,{y:y,r:cur})+'</b><br>'+f(t.next,{d:nx.toLocaleDateString(),n:Math.ceil((nx-new Date())/864e5)})):'<span style="color:var(--muted)">'+t.nostart+'</span>')+'</div>'
+      +'<div style="margin-top:14px;background:rgba(255,255,255,.04);border-radius:10px;padding:12px">'
+      +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px">'+t.calc+' <input type="number" id="loy-n" min="0" value="'+n+'" inputmode="numeric" style="width:64px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:6px;color:var(--white);font-size:15px;font-weight:800;text-align:center;font-family:inherit"> '+t.pm+'</div>'
+      +'<div id="loy-calc">'+calc(t,n,cur)+'</div></div>'
+      +'<div style="margin-top:14px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.35);border-radius:11px;padding:12px">'
+      +'<div style="font-size:15px;font-weight:900;margin-bottom:4px">'+t.vt+'</div><div style="font-size:12px;line-height:1.6;color:var(--muted)">'+t.vs+'</div>'
+      +(st?'<div style="font-size:12px;margin-top:8px;color:#22D3EE;font-weight:700">'+(function(){var s0=new Date(st+'T12:00:00'),k=3;while(addY(s0,k)<=new Date())k+=3;var d=addY(s0,k);return f(t.vn,{d:d.toLocaleDateString(),n:Math.ceil((d-new Date())/864e5)});})()+'</div>':'')
+      +'<div id="loy-vac" style="font-size:12px;margin-top:6px">'+vac(t,n)+'</div></div>'
+      +'<div style="font-size:10px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.fine+'</div>';
+    box.innerHTML=h;
+    var lab=document.getElementById('loy-earn-lbl');if(lab)lab.textContent=t.earn;
+    document.getElementById('loy-start').onchange=function(){put(KEY,this.value);render();};
+    document.getElementById('loy-n').oninput=function(){put(KEYN,this.value);document.getElementById('loy-calc').innerHTML=calc(t,+this.value||0,cur);document.getElementById('loy-vac').innerHTML=vac(t,+this.value||0);};
+  }
+
+  function init(){
+    var pane=document.getElementById('pane-earnings')||document.getElementById('tab-earnings');if(!pane)return;
+    box=document.createElement('div');box.id='loyalty';
+    box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.07),rgba(255,197,61,.06));border:1px solid rgba(0,230,118,.25);border-radius:14px;padding:18px;margin-bottom:16px';
+    var lab=document.createElement('div');lab.id='loy-earn-lbl';
+    lab.style.cssText='font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:6px 0 10px';
+    pane.insertBefore(lab,pane.firstChild);pane.insertBefore(box,lab);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 💼 JefeTech Packages ✝️ ===== */
+(function(){
+  var ph=/Philippines/.test(document.title), mx=/Partner 1|Daniel/.test(document.title)&&!ph;
+  var half=ph||mx, BRIAN=!!document.getElementById('tab-script')&&/Brian Lalo/.test(document.title);
+  var P=half?{s:1497,p:2497}:{s:2997,p:4997};
+  function m(n){return '$'+n.toLocaleString('en-US');}
+  var T={
+    en:{title:'💼 JefeTech Packages ✝️',sub:'Subscription is still the main offer. Some owners want their own app with their company name on it. Now we can do that too.',
+      mo:'Monthly',moD:'Over $300/mo of value for $137. Your price is locked for life. Cancel anytime, lifetime money-back guarantee (terms apply).',
+      st:'🔨 Your Own App: Starter',stD:'Their company name, logo and colors, their own web address, all features, 1 year of updates.',
+      pr:'👑 Your Own App',prD:'Their company name, logo and colors, their own web address, all features, 1 year of updates, plus Spanish/country setup, a live training session for their crew, and priority WhatsApp support for 1 year.',
+      up:'Updates after year 1 (optional)',upD:'New features, fixes and support.',once:'once',yr:'/year',you:'You earn',
+      note:'<b>Plus a flat yearly Hosting & AI fee</b>, set per customer by Brian. No usage bills, one simple price. They get a <b>license</b> to use their app. They don\'t own the code and can\'t resell it.',
+      say:'Say it like this',line:'"Some owners want their own app, with their company name on it for their crew and their customers. We can do that. One payment, your name on it, all the same features."',
+      how:'No payment link yet for Your Own App. When someone wants it, WhatsApp Brian and he\'ll set it up.',wa:'💬 WhatsApp Brian: I have a Your Own App lead'},
+    es:{title:'💼 Paquetes JefeTech ✝️',sub:'La suscripción sigue siendo la oferta principal. Algunos dueños quieren su propia app con el nombre de su empresa. Ahora también podemos hacer eso.',
+      mo:'Mensual',moD:'Más de $300/mes de valor por $137. Tu precio queda congelado de por vida. Cancela cuando quieras, garantía de devolución de por vida (aplican términos).',
+      st:'🔨 Tu Propia App: Básica',stD:'El nombre, logo y colores de su empresa, su propia dirección web, todas las funciones, 1 año de actualizaciones.',
+      pr:'👑 Tu Propia App',prD:'El nombre, logo y colores de su empresa, su propia dirección web, todas las funciones, 1 año de actualizaciones, más configuración en español/por país, una capacitación en vivo para su cuadrilla y soporte prioritario por WhatsApp por 1 año.',
+      up:'Actualizaciones después del año 1 (opcional)',upD:'Nuevas funciones, correcciones y soporte.',once:'un pago',yr:'/año',you:'Tú ganas',
+      note:'<b>Más una cuota anual fija de Hosting e IA</b>, que Brian define por cliente. Sin cobros por uso, un solo precio. Reciben una <b>licencia</b> para usar su app. No son dueños del código y no pueden revenderla.',
+      say:'Dilo así',line:'"Algunos dueños quieren su propia app, con el nombre de su empresa para su cuadrilla y sus clientes. Eso lo podemos hacer. Un solo pago, con tu nombre, las mismas funciones."',
+      how:'Todavía no hay link de pago para Tu Propia App. Cuando alguien la quiera, manda WhatsApp a Brian y él la configura.',wa:'💬 WhatsApp a Brian: tengo un cliente para Tu Propia App'},
+    fil:{title:'💼 JefeTech Packages ✝️',sub:'Subscription pa rin ang main offer. May mga owner na gusto ng sariling app na may pangalan ng kumpanya nila. Kaya na rin natin iyon.',
+      mo:'Monthly',moD:'Higit $300/mo na value sa $137. Hindi na tataas ang presyo habambuhay. Cancel anytime, lifetime money-back guarantee (may terms).',
+      st:'🔨 Your Own App: Starter',stD:'Pangalan, logo at kulay ng kumpanya nila, sariling web address, lahat ng features, 1 taon ng updates.',
+      pr:'👑 Your Own App',prD:'Pangalan, logo at kulay ng kumpanya nila, sariling web address, lahat ng features, 1 taon ng updates, plus country setup, live training para sa crew nila, at priority WhatsApp support sa loob ng 1 taon.',
+      up:'Updates pagkatapos ng taon 1 (optional)',upD:'Bagong features, fixes at support.',once:'isang bayad',yr:'/taon',you:'Kita mo',
+      note:'<b>Plus flat na yearly Hosting & AI fee</b>, na itatakda ni Brian kada customer. Walang usage bill, isang presyo lang. <b>License</b> ang makukuha nila para gamitin ang app. Hindi nila pag-aari ang code at hindi nila puwedeng ibenta ulit.',
+      say:'Sabihin ito',line:'"May mga owner na gusto ng sariling app, may pangalan ng kumpanya nila para sa crew at customers nila. Kaya namin iyon. Isang bayad, pangalan mo, parehong features."',
+      how:'Wala pang payment link para sa Your Own App. Kapag may gusto, i-WhatsApp si Brian at siya ang mag-se-set up.',wa:'💬 WhatsApp kay Brian: may lead ako para sa Your Own App'}
+  };
+  function lang(){if(BRIAN||typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  var box=null;
+  function row(name,price,desc,earn,hl,t){
+    return '<div style="border-radius:11px;padding:12px 13px;margin-bottom:8px;'+(hl?'background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.35)':'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)')+'">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b style="font-size:14px">'+name+'</b><b style="font-size:17px;color:'+(hl?'#FFC53D':'var(--green)')+';white-space:nowrap">'+price+'</b></div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:3px">'+desc+'</div>'
+      +(earn?'<div style="font-size:11px;font-weight:800;color:var(--green);margin-top:5px">'+(BRIAN?'Partner earns':t.you)+': '+earn+'</div>':'')+'</div>';
+  }
+  function render(){
+    if(!box)return;var t=T[lang()];
+    var h='<div style="font-size:17px;font-weight:900;margin-bottom:4px">'+t.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px">'+t.sub+(BRIAN&&!half?'<br><span style="color:#FFC53D">Mexico & Philippines: $2,497.</span>':'')+'</div>'
+      +row(t.mo,'$137/mo',t.moD,'$82.20',false,t)
+      +row(t.pr,m(P.p)+' <span style="font-size:11px;font-weight:600">'+t.once+'</span>',t.prD,m(Math.round(P.p*.2))+' (20%)',true,t)
+      +row(t.up,'$497'+t.yr,t.upD,'',false,t)
+      +'<div style="font-size:12px;line-height:1.6;background:rgba(255,197,61,.07);border-radius:9px;padding:10px 12px;margin:10px 0">'+t.note+'</div>'
+      +'<div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px">'+t.say+'</div>'
+      +'<div style="font-size:13px;line-height:1.7;background:rgba(0,230,118,.07);border-left:3px solid var(--green);border-radius:8px;padding:10px 12px">'+t.line+'</div>';
+    if(!BRIAN)h+='<div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.how+'</div>'
+      +'<a href="https://wa.me/14084223505?text='+encodeURIComponent(t.wa.replace(/^💬 [^:]+: /,''))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:800;font-size:13px;text-decoration:none;margin-top:8px">'+t.wa+'</a>';
+    box.innerHTML=h;
+  }
+  function init(){
+    var host=document.getElementById('pane-script')||document.getElementById('tab-goals');
+    if(BRIAN)host=document.getElementById('tab-script');
+    if(!host)return;
+    box=document.createElement('div');box.id='packages';
+    box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.3);border-radius:14px;padding:16px;margin:0 0 14px';
+    if(BRIAN)host.insertBefore(box,host.firstChild);else host.appendChild(box);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 🤝 Partner benefits banner ✝️ ===== */
+(function(){
+  var ph=/Philippines/.test(document.title), mx=/Partner 1|Daniel/.test(document.title)&&!ph, half=ph||mx;
+  var own=half?'$499':'$999';
+  var T={
+    en:{h:'🤝 What you get as an MX Studio Partner ✝️',items:[
+      ['💵','60% commission','$82.20 on every $137 sale'],
+      ['👑','Your Own App sales',own+' on every one (20%)'],
+      ['✝️','Loyalty Bonus every year','3% → 7% → 13% of your commissions'],
+      ['🌴','Vacation Bonus every 3 years','3% of everything you earned'],
+      ['🤝','Refer a Partner','3% of their sales, every month'],
+      ['📋','Verified prospect lists','600+ real, verified numbers to call'],
+      ['🎓','Training & coaching','Learn to sell with your own story'],
+      ['🌎','Your hours, anywhere','Your own dashboard and scripts'],
+      ['💳','Paid by Stripe','Straight to your bank, in your currency']],f:'God wins. ✝️'},
+    es:{h:'🤝 Lo que recibes como Socio de MX Studio ✝️',items:[
+      ['💵','60% de comisión','$82.20 por cada venta de $137'],
+      ['👑','Ventas de Tu Propia App',own+' por cada una (20%)'],
+      ['✝️','Bono de Lealtad cada año','3% → 7% → 13% de tus comisiones'],
+      ['🌴','Bono de Vacaciones cada 3 años','3% de todo lo que ganaste'],
+      ['🤝','Recomienda a un Socio','3% de sus ventas, cada mes'],
+      ['📋','Listas de prospectos verificadas','600+ números reales y verificados'],
+      ['🎓','Capacitación y coaching','Aprende a vender con tu propia historia'],
+      ['🌎','Tus horarios, desde donde sea','Tu propio dashboard y guiones'],
+      ['💳','Pago por Stripe','Directo a tu banco, en tu moneda']],f:'Dios gana. ✝️'},
+    fil:{h:'🤝 Ang makukuha mo bilang MX Studio Partner ✝️',items:[
+      ['💵','60% commission','$82.20 sa bawat $137 na benta'],
+      ['👑','Your Own App sales',own+' sa bawat isa (20%)'],
+      ['✝️','Loyalty Bonus taon-taon','3% → 7% → 13% ng commission mo'],
+      ['🌴','Vacation Bonus kada 3 taon','3% ng lahat ng kinita mo'],
+      ['🤝','Mag-refer ng Partner','3% ng benta nila, buwan-buwan'],
+      ['📋','Verified na prospect lists','600+ totoo at verified na numero'],
+      ['🎓','Training at coaching','Matutong magbenta gamit ang sariling kuwento'],
+      ['🌎','Sariling oras, kahit saan','Sariling dashboard at scripts'],
+      ['💳','Bayad sa Stripe','Diretso sa bangko mo, sa currency mo']],f:'God wins. ✝️'}
+  };
+  function lang(){if(typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  var box=null;
+  function render(){
+    if(!box)return;var t=T[lang()];
+    box.innerHTML='<div style="font-size:16px;font-weight:900;margin-bottom:10px;text-align:center">'+t.h+'</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px">'
+      +t.items.map(function(x){return '<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:9px 10px;display:flex;gap:8px;align-items:flex-start"><span style="font-size:18px;line-height:1.2">'+x[0]+'</span><span><b style="font-size:12px;display:block;line-height:1.3">'+x[1]+'</b><span style="font-size:11px;color:var(--muted);line-height:1.35;display:block">'+x[2]+'</span></span></div>';}).join('')
+      +'</div><div style="text-align:center;font-size:11px;color:var(--green);font-weight:800;margin-top:10px">'+t.f+'</div>'
+      +'<a href="https://wa.me/?text='+encodeURIComponent(waText(t))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:10px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:10px">'+W[lang()]+'</a>';
+  }
+  var W={en:'💬 Share on WhatsApp',es:'💬 Compartir por WhatsApp',fil:'💬 I-share sa WhatsApp'};
+  var J={en:'Want in? WhatsApp Brian Lalo:',es:'¿Te interesa? Escríbele a Brian Lalo:',fil:'Interesado? I-WhatsApp si Brian Lalo:'};
+  function waText(t){var l=lang();return '*'+t.h+'*\n\n'+t.items.map(function(x){return x[0]+' *'+x[1]+'*: '+x[2];}).join('\n')+'\n\n'+J[l]+' https://wa.me/14084223505\n'+t.f;}
+  function init(){
+    var host=document.getElementById('pane-jefe')||(/Brian Lalo/.test(document.title)?document.getElementById('tab-team'):null)||document.getElementById('tab-goals');if(!host)return;
+    box=document.createElement('div');box.id='partner-perks';
+    box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.10),rgba(255,197,61,.08));border:1px solid rgba(0,230,118,.35);border-radius:15px;padding:14px;margin-bottom:14px';
+    host.insertBefore(box,host.firstChild);render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script id="wa-app">
+/* ===== 💬📞💜 Call buttons open the apps on any device ✝️ ===== */
+(function(){
+  var _open=window.open;
+  var UA=navigator.userAgent||'';
+  var MOBILE=/Android|iPhone|iPad|iPod|Mobile/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var FRAMED=window.top!==window;
+  function parseWa(u){
+    var m=String(u||'').match(/^(?:https?:\/\/(?:wa\.me|api\.whatsapp\.com\/send)\/?(\d*)\/?|whatsapp:\/\/send\/?)(?:\?(.*))?$/i);
+    if(!m)return null;var ph=m[1]||'',txt='';
+    if(m[2]){try{var q=new URLSearchParams(m[2]);ph=ph||(q.get('phone')||'').replace(/\D/g,'');txt=q.get('text')||'';}catch(e){}}
+    if(/^\d{10}$/.test(ph))ph='1'+ph;
+    return {ph:ph,txt:txt};
+  }
+  function waUrls(w){
+    var q=[];if(w.ph)q.push('phone='+w.ph);if(w.txt)q.push('text='+encodeURIComponent(w.txt));var qs=q.length?'?'+q.join('&'):'';
+    return {app:'whatsapp://send'+qs,
+            uni:'https://wa.me/'+(w.ph||'')+(w.txt?'?text='+encodeURIComponent(w.txt):''),
+            web:'https://web.whatsapp.com/send'+qs};
+  }
+  function norm(u){return String(u).replace(/^(tel:\+?)(\d{10})$/i,'tel:+1$2').replace(/(number=%2B)(\d{10})$/i,'$11$2');}
+  function isProto(u){return /^(tel|sms|mailto|viber|facetime|facetime-audio):/i.test(String(u||''));}
+  function go(url){var l=document.createElement('a');l.href=url;l.setAttribute('data-mx','1');l.style.display='none';document.body.appendChild(l);l.click();setTimeout(function(){l.remove();},500);}
+  var helper=null,ht=null;
+  function viaHelper(url){ /* inside claude.ai only: frame can't open apps itself */
+    try{helper=_open.call(window,url,'mxcall','width=360,height=200,left=40,top=40');}catch(e){helper=null;}
+    if(ht)clearTimeout(ht);ht=setTimeout(function(){try{if(helper&&!helper.closed)helper.close();}catch(e){}},12000);
+  }
+  function openWa(w){
+    var u=waUrls(w);
+    if(MOBILE){ if(FRAMED)_open.call(window,u.uni,'_blank'); else location.href=u.uni; return; }
+    if(FRAMED){viaHelper(u.app);return;}
+    /* computer: try the desktop app; if nothing takes over in 1.8s, use WhatsApp Web in one reused tab */
+    var left=false;function lv(){left=true;}
+    window.addEventListener('blur',lv,{once:true});document.addEventListener('visibilitychange',lv,{once:true});
+    go(u.app);
+    setTimeout(function(){window.removeEventListener('blur',lv);document.removeEventListener('visibilitychange',lv);if(!left)_open.call(window,u.web,'mxwhatsapp');},1800);
+  }
+  function openProto(u){u=norm(u);if(FRAMED&&!MOBILE)viaHelper(u);else go(u);}
+  function handle(u){var w=parseWa(u);if(w){openWa(w);return true;}if(isProto(u)){openProto(u);return true;}return false;}
+  window.mxLaunch=handle;
+  window.open=function(u){if(handle(u))return null;return _open.apply(window,arguments);};
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.hasAttribute('data-mx'))return;
+    var h=a.getAttribute('href');if(!parseWa(h)&&!isProto(h))return;
+    e.preventDefault();e.stopPropagation();handle(h);
+  },true);
+  function fixViber(){
+    if(typeof window.viberP!=='function'||window.viberP._mx)return;
+    var f=function(i){var p=(typeof P!=='undefined')&&P[i];if(!p)return;handle('viber://chat?number=%2B'+String(p[1]).replace(/\D/g,''));};
+    f._mx=1;window.viberP=f;
+  }
+  fixViber();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fixViber);
+})();
+</script>
+</body>
+</html>

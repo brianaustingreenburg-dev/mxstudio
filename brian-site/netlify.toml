@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+  command = ""
+
+# Brian's dashboard talks to the shared sync store on the Partners site
+[[redirects]]
+  from = "/api/*"
+  to = "https://mxstudio-partners.netlify.app/api/:splat"
+  status = 200
+  force = true
