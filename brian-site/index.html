@@ -3302,5 +3302,42 @@ upd();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
 })();
 </script>
+<script>
+/* ===== ⭐ Free-to-call stars + "Free only" filter (Brian) ✝️ =====
+   US/Canada ( (xxx) numbers ) and Mexico (+52): free.
+   Australia landlines (+61 2/3/7/8): free with T-Mobile Stateside International Talk. AU mobiles (+61 4): 7¢/min.
+   Philippines (+63): not free on T-Mobile (30¢/min mobile). Use Viber (free if they have it) or Viber Out (~8¢/min). */
+(function(){
+  var KEY='bl-freeonly',on=false;try{on=localStorage.getItem(KEY)==='1';}catch(e){}
+  function cost(p){
+    var n=String(p&&p[1]||''),d=n.replace(/\D/g,'');
+    if(/^\+63/.test(n))return {free:false,b:'<span title="Philippines: T-Mobile charges. Try Viber first (free), else Viber Out (~8¢/min)." style="font-size:10px;font-weight:800;color:#A78BFA;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);border-radius:5px;padding:2px 6px;white-space:nowrap">💜 Viber first</span>'};
+    if(/^\+61/.test(n)){ if(d.charAt(2)==='4')return {free:false,b:'<span title="Australia mobile: 7¢/min with Stateside International Talk" style="font-size:10px;font-weight:800;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:2px 6px;white-space:nowrap">7¢/min</span>'}; }
+    return {free:true,b:'<span title="Free to call" style="font-size:10px;font-weight:900;color:#1a1300;background:#FFC53D;border-radius:5px;padding:2px 6px;white-space:nowrap">⭐ Free</span>'};
+  }
+  window.callCost=cost;
+  var _rp=window.renderP;
+  window.renderP=function(){
+    if(on&&typeof CL!=='undefined')CL=CL.filter(function(i){return cost(P[i]).free;});
+    _rp.apply(this,arguments);
+    document.querySelectorAll('#ptbody tr').forEach(function(tr){
+      var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(!m||tr.dataset.cost)return;tr.dataset.cost=1;
+      var c=cost(P[+m[1]]),cell=tr.children[1];if(!cell)return;var row=cell.querySelector('div')||cell;row.insertAdjacentHTML('beforeend',c.b);
+    });
+    var pi=document.getElementById('pag-info');if(on&&pi&&!/⭐/.test(pi.textContent))pi.textContent='⭐ Free only · '+pi.textContent;
+  };
+  function btn(){
+    var cl=document.getElementById('f-closed');if(!cl||document.getElementById('f-free'))return;
+    var b=document.createElement('button');b.className='fb';b.id='f-free';b.type='button';
+    b.title='Show only numbers that are free to call';
+    function paint(){b.textContent=on?'⭐ Free only: ON':'⭐ Free only';b.style.cssText=on?'background:#FFC53D;color:#1a1300;border-color:#FFC53D;font-weight:900':'color:#FFC53D;border-color:rgba(255,197,61,.45)';}
+    b.onclick=function(){on=!on;try{localStorage.setItem(KEY,on?'1':'0');}catch(e){}paint();if(window.filterP)window.filterP();};
+    paint();cl.parentNode.insertBefore(b,cl.nextSibling);
+    var box=cl.parentNode;if(box&&!document.getElementById('free-legend')){box.insertAdjacentHTML('afterend','<div id="free-legend" style="font-size:11px;color:var(--muted);line-height:1.6;padding:6px 2px 8px"><b style="color:#FFC53D">⭐ Free</b> = US, Canada, Mexico, Australia office lines · <b>7¢/min</b> = Australia mobiles · <b style="color:#A78BFA">💜 Viber first</b> = Philippines (free on Viber, else Viber Out ~8¢/min)</div>');}
+  }
+  function init(){btn();if(window.filterP)try{window.filterP();}catch(e){}}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
+})();
+</script>
 </body>
 </html>
