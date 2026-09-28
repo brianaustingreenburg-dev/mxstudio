@@ -3387,5 +3387,23 @@ upd();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
 })();
 </script>
+<script>
+/* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
+(function(){
+  var VERSION='Sept 28 · 1:25 PM';
+  function init(){
+    var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
+    var wrap=h.parentNode;
+    wrap.insertAdjacentHTML('beforeend','<div id="app-ver" style="display:flex;align-items:center;gap:6px;margin-top:3px">'
+      +'<span style="font-size:10px;color:#8c95a3">Version: '+VERSION+'</span>'
+      +'<button id="app-refresh" type="button" style="background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.4);color:#00e676;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:800;cursor:pointer">🔄 Refresh</button></div>');
+    document.getElementById('app-refresh').onclick=function(){
+      var u=location.href.split('#')[0].replace(/([?&])v=\d+/,'').replace(/[?&]$/,'');
+      location.replace(u+(u.indexOf('?')>-1?'&':'?')+'v='+Date.now());
+    };
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
 </body>
 </html>
