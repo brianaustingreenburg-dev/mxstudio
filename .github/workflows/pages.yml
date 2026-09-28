@@ -1,0 +1,32 @@
+# Every push to main republishes all pages to GitHub Pages:
+#   /brian/  /mexico/  /us/  /partners/  /demo-dashboard.html
+name: Publish pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site
+        run: |
+          rm -rf out && mkdir out
+          cp shared/demo-dashboard.html out/demo-dashboard.html
+          cp -R brian-site out/brian
+          cp -R daniel out/mexico
+          cp -R cristian out/us
+          cp -R partners-site/public out/partners
+          find out -name netlify.toml -delete
+          rm -f out/brian/_redirects
+          touch out/.nojekyll
+          printf '<!doctype html><meta charset=utf-8><title>MX Studio</title><meta name=robots content=noindex><p>MX Studio ✝️</p>\n' > out/index.html
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          force_orphan: true
