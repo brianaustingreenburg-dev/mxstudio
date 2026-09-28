@@ -3263,10 +3263,15 @@ upd();
     ['📱','iPad Bonus','Close <b>20 sales in one month</b>: an iPad for work, set up with their dashboard, or a gift card for the same value.','Once per Partner, the first month they hit 20.'],
     ['🤝','Referral 3%','Bring in a new Partner and get <b>3% of every sale</b> that Partner makes, every month.','Stops if the Partner they referred goes inactive.']
   ];
-  function init(){
-    var tab=document.getElementById('tab-earnings');if(!tab||document.getElementById('partner-gets'))return;
-    var box=document.createElement('div');box.id='partner-gets';
-    box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px;margin-bottom:16px';
+  var RULES=[
+    '<b>Active</b> = at least one new paid sale in the last <b>60 days</b>. New Partners get their first 60 days from their start date.',
+    'At <b>45 days</b> without a sale, you reach out to help them get back on track.',
+    'At <b>60 days</b> without a sale they become <b>inactive</b>: their dashboard and prospect list are paused, and their prospects can go to another Partner.',
+    'Inactive Partners keep their <b>60% on customers they already signed for 6 more months</b>, as long as those customers keep paying. After that, it stops.',
+    'Loyalty Bonus, Vacation Bonus, iPad Bonus and referral payouts are only for <b>active</b> Partners. A referrer\'s 3% stops when the Partner they referred goes inactive.',
+    '<b>Coming back:</b> one new sale within those 6 months makes them active again, with residuals continuing as normal.',
+    'Refunded sales don\'t count. MX Studio can update these terms with notice.'];
+  function html(){
     var h='<div style="font-size:18px;font-weight:900;margin-bottom:4px">🎁 What every Partner gets ✝️</div>'
       +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">Everything you pay out to anyone who sells with you. Same for every Partner, in every country.</div>'
       +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">';
@@ -3279,10 +3284,20 @@ upd();
     h+='</div>'
       +'<div style="margin-top:12px;background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.25);border-radius:10px;padding:12px 13px;font-size:12.5px;line-height:1.65">'
       +'<b style="color:var(--green)">Example:</b> a Partner with <b>20 paying customers</b> earns <b>$1,644 a month</b>. Keep those 20 for a year and that\'s <b>$19,728</b>, plus a <b>$591.84</b> Year 1 Loyalty Bonus. You keep <b>$1,096 a month</b> from those customers.</div>'
-      +'<div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6"><b style="color:var(--white)">📜 Only while active:</b> a Partner needs one paid sale every 60 days. After 60 days with no sale they\'re inactive: no bonuses, but they keep their 60% on customers they already signed for 6 more months. One new sale makes them active again. Full terms and each Partner\'s status are below.</div>';
-    box.innerHTML=h;
-    var la=document.getElementById('loyalty-admin');
-    if(la&&la.parentNode===tab){var lab=la.nextSibling;tab.insertBefore(box,la);}else tab.insertBefore(box,tab.firstChild);
+      +'<div style="margin-top:14px;font-size:16px;font-weight:900">📜 Active Partner Terms</div>'
+      +'<div style="font-size:12px;color:var(--muted);margin:2px 0 8px">60 days with no sale = inactive · residuals continue 6 more months</div>'
+      +'<ol style="margin:0;padding-left:20px;font-size:12.5px;line-height:1.65">'+RULES.map(function(r){return '<li style="margin-bottom:5px">'+r+'</li>';}).join('')+'</ol>';
+    return h;
+  }
+  function make(id){var b=document.createElement('div');b.id=id;b.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px;margin-bottom:16px';b.innerHTML=html();return b;}
+  function init(){
+    if(document.getElementById('partner-gets'))return;
+    var tab=document.getElementById('tab-earnings');
+    if(tab){var box=make('partner-gets');var la=document.getElementById('loyalty-admin');
+      if(la&&la.parentNode===tab)tab.insertBefore(box,la);else tab.insertBefore(box,tab.firstChild);}
+    var team=document.getElementById('tab-team');
+    if(team){var b2=make('partner-gets-team');var dl=team.querySelector('.deal-links');
+      if(dl&&dl.parentNode===team)team.insertBefore(b2,dl.nextSibling);else team.insertBefore(b2,team.firstChild);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
 })();
