@@ -255,7 +255,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
 /* ===== 🌎 Language switch: 🇺🇸 EN · 🇲🇽 ES · 🇵🇭 FIL, on every section that gets shared. One tap flips everything, including what you send. ✝️ ===== */
 (function(){
   var K='mx-lang',T=document.title;
-  var PH=/Philippines/.test(T),MX=/Partner 1|Daniel/.test(T)&&!PH;
+  var PH=/Philippines/.test(T),MX=/Partner 1/.test(T)&&!PH;
   var DEF=PH?'fil':(MX?'es':'en');
   var L=[['en','🇺🇸 EN','English'],['es','🇲🇽 ES','Español'],['fil','🇵🇭 FIL','Filipino']];
   var LBL={en:'Shows & sends in',es:'Se muestra y se envía en',fil:'Ipapakita at ipapadala sa'};
@@ -523,7 +523,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
       <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo App</div>
       <div style="font-size:11px;color:var(--muted)">myjefetech.app</div>
     </a>
-    <a href="https://myjefetech.app/demo-dashboard.html" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
+    <a href="https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
       <div style="font-size:32px;margin-bottom:8px">📊</div>
       <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo Dashboard</div>
       <div style="font-size:11px;color:var(--muted)">La Forja</div>
@@ -922,12 +922,12 @@ function buildMsg(name){
 function sendLink(type){
   var links={
     demo:'https://myjefetech.app',
-    dash:'https://myjefetech.app/demo-dashboard.html',
+    dash:'https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ',
     pay:'https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h'
   };
   var msgs={
     demo:"Hey! Check out the JefeTech demo app — free to try, no card needed 👉 https://myjefetech.app\n\n— Brian Lalo",
-    dash:"Hey! Here's the JefeTech dashboard demo — see exactly what your crew command center looks like 👉 https://myjefetech.app/demo-dashboard.html\n\n— Brian Lalo",
+    dash:"Hey! Here's the JefeTech dashboard demo — see exactly what your crew command center looks like 👉 https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ\n\n— Brian Lalo",
     pay:"Hey! Here's your JefeTech payment link — $137/mo, unlimited crew, cancel anytime, lifetime money-back guarantee 👉 https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h\n\n— Brian Lalo"
   };
   if(S.sel!==null){
@@ -1388,7 +1388,7 @@ upd();
       <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo App</div>
       <div style="font-size:11px;color:var(--muted)">myjefetech.app</div>
     </a>
-    <a href="https://myjefetech.app/demo-dashboard.html" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
+    <a href="https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
       <div style="font-size:32px;margin-bottom:8px">📊</div>
       <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo Dashboard</div>
       <div style="font-size:11px;color:var(--muted)">La Forja</div>
@@ -1856,12 +1856,12 @@ function buildMsg(name){
 function sendLink(type){
   var links={
     demo:'https://myjefetech.app',
-    dash:'https://myjefetech.app/demo-dashboard.html',
+    dash:'https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ',
     pay:'https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h'
   };
   var msgs={
     demo:"Hey! Check out the JefeTech demo app — free to try, no card needed 👉 https://myjefetech.app\n\n— Brian Lalo",
-    dash:"Hey! Here's the JefeTech dashboard demo — see exactly what your crew command center looks like 👉 https://myjefetech.app/demo-dashboard.html\n\n— Brian Lalo",
+    dash:"Hey! Here's the JefeTech dashboard demo — see exactly what your crew command center looks like 👉 https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ\n\n— Brian Lalo",
     pay:"Hey! Here's your JefeTech payment link — $137/mo, unlimited crew, cancel anytime, lifetime money-back guarantee 👉 https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h\n\n— Brian Lalo"
   };
   if(S.sel!==null){
@@ -2359,7 +2359,7 @@ upd();
 <script>
 /* ===== SEND LINKS BY EMAIL (Gmail) ✝️ ===== */
 (function(){
-  var STRIPE='https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h',APP='https://myjefetech.app',DASH='https://myjefetech.app/demo-dashboard.html';
+  var STRIPE='https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h',APP='https://myjefetech.app',DASH='https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ';
   var EM={},SENT={};
   try{EM=JSON.parse(localStorage.getItem('bl-em')||'{}');SENT=JSON.parse(localStorage.getItem('bl-sent')||'{}');}catch(e){}
   function saveL(){try{localStorage.setItem('bl-em',JSON.stringify(EM));localStorage.setItem('bl-sent',JSON.stringify(SENT));}catch(e){}}
@@ -2677,7 +2677,7 @@ upd();
 <script>
 /* ===== 💼 JefeTech Packages ✝️ ===== */
 (function(){
-  var ph=/Philippines/.test(document.title), mx=/Partner 1|Daniel/.test(document.title)&&!ph;
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph;
   var half=ph||mx, BRIAN=!!document.getElementById('tab-script')&&/Brian Lalo/.test(document.title);
   var P=half?{s:1497,p:2497}:{s:2997,p:4997};
   function m(n){return '$'+n.toLocaleString('en-US');}
@@ -2746,7 +2746,7 @@ upd();
 <script>
 /* ===== 🤝 Partner benefits banner ✝️ ===== */
 (function(){
-  var ph=/Philippines/.test(document.title), mx=/Partner 1|Daniel/.test(document.title)&&!ph, half=ph||mx;
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph, half=ph||mx;
   var own=half?'$499':'$999';
   var T={
     en:{h:'🤝 What you get as an MX Studio Partner ✝️',items:[
@@ -3203,7 +3203,7 @@ upd();
 /* ===== 📡 Partners live (website version) ✝️ ===== */
 (function(){
   var C=window.MXSYNC;if(!C||window.top!==window)return;
-  var NAMES={mx:'🇲🇽 Daniel (Mexico)',p2:'Partner 2',us:'🇺🇸 Cristian (US)',ca:'🇨🇦 Canada',au:'🇦🇺 Australia',ph:'🇵🇭 Philippines'};
+  var NAMES={mx:'🇲🇽 Partner Mexico',p2:'Partner 2',us:'🇺🇸 Partner US',ca:'🇨🇦 Canada',au:'🇦🇺 Australia',ph:'🇵🇭 Philippines'};
   var box=null;
   function ago(t){if(!t)return 'not yet';var s=(Date.now()-t)/1000;if(s<90)return 'just now';if(s<3600)return Math.round(s/60)+' min ago';if(s<86400)return Math.round(s/3600)+' h ago';return Math.round(s/86400)+' d ago';}
   function pick(it,name){for(var k in it){if(new RegExp('(^|-)'+name+'$').test(k))return it[k];}return null;}

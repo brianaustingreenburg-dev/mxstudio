@@ -158,7 +158,7 @@ body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,san
 /* ===== 🌎 Language switch: 🇺🇸 EN · 🇲🇽 ES · 🇵🇭 FIL, on every section that gets shared. One tap flips everything, including what you send. ✝️ ===== */
 (function(){
   var K='mx-lang',T=document.title;
-  var PH=/Philippines/.test(T),MX=/Partner 1|Daniel/.test(T)&&!PH;
+  var PH=/Philippines/.test(T),MX=/Partner 1/.test(T)&&!PH;
   var DEF=PH?'fil':(MX?'es':'en');
   var L=[['en','🇺🇸 EN','English'],['es','🇲🇽 ES','Español'],['fil','🇵🇭 FIL','Filipino']];
   var LBL={en:'Shows & sends in',es:'Se muestra y se envía en',fil:'Ipapakita at ipapadala sa'};
@@ -257,7 +257,7 @@ body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,san
           <div style="font-size:10px;color:var(--muted)">myjefetech.app</div>
         </div>
       </a>
-      <a href="https://myjefetech.app/demo-dashboard.html" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+      <a href="https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
         <span style="font-size:22px">📊</span>
         <div>
           <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-dash-lbl">Demo Dashboard — La Forja</div>
@@ -356,14 +356,14 @@ body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,san
         <div class="demo-icon">📱</div>
         <div class="demo-lbl" id="sc-app-lbl">Demo App</div>
       </a>
-      <a href="https://myjefetech.app/demo-dashboard.html" class="demo-a">
+      <a href="https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ" class="demo-a">
         <div class="demo-icon">📊</div>
         <div class="demo-lbl" id="sc-dash-lbl">Dashboard</div>
       </a>
     </div>
     <div class="copy-grid">
       <button class="cbtn" onclick="copyLink('https://myjefetech.app',this)" id="sc-copy-app">📋 Copiar App</button>
-      <button class="cbtn" onclick="copyLink('https://myjefetech.app/demo-dashboard.html',this)" id="sc-copy-dash">📋 Copiar Dashboard</button>
+      <button class="cbtn" onclick="copyLink('https://claude.ai/artifact/4WFUZ4wdN1iGpUv9JtGHdZ',this)" id="sc-copy-dash">📋 Copiar Dashboard</button>
     </div>
   </div>
 
@@ -1170,7 +1170,7 @@ hideMXN();
 <script>
 /* ===== 💼 JefeTech Packages ✝️ ===== */
 (function(){
-  var ph=/Philippines/.test(document.title), mx=/Partner 1|Daniel/.test(document.title)&&!ph;
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph;
   var half=ph||mx, BRIAN=!!document.getElementById('tab-script')&&/Brian Lalo/.test(document.title);
   var P=half?{s:1497,p:2497}:{s:2997,p:4997};
   function m(n){return '$'+n.toLocaleString('en-US');}
@@ -1239,7 +1239,7 @@ hideMXN();
 <script>
 /* ===== 🤝 Partner benefits banner ✝️ ===== */
 (function(){
-  var ph=/Philippines/.test(document.title), mx=/Partner 1|Daniel/.test(document.title)&&!ph, half=ph||mx;
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph, half=ph||mx;
   var own=half?'$499':'$999';
   var T={
     en:{h:'🤝 What you get as an MX Studio Partner ✝️',items:[
@@ -1478,7 +1478,7 @@ hideMXN();
     box.style.cssText='background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:14px';
     var dl=host.querySelector('.deal-links');
     if(dl)host.insertBefore(box,dl.nextSibling);else host.insertBefore(box,host.firstChild);
-    var WHO=[{k:'p1',n:'Daniel 🇲🇽'},{k:'us',n:'Partner 🇺🇸 US'}];
+    var WHO=[{k:'p1',n:'Partner 1 🇲🇽'},{k:'us',n:'Partner 🇺🇸 US'}];
     function render(){
       var rows=window.__cmRows||[],t=T[lang()];
       var h='<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:8px"><div style="font-size:16px;font-weight:900">📜 Active Partners ✝️</div><div style="font-size:11px;color:var(--muted)">60 days no sale = inactive · residuals 6 more months</div></div>';
