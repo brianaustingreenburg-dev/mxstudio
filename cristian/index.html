@@ -1515,5 +1515,24 @@ hideMXN();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,50);});else setTimeout(init,50);
 })();
 </script>
+<script>
+/* ===== 🔄 Refresh right next to the tagline at the top ("MX Studio · … ✝️") ✝️ ===== */
+(function(){
+  function go(){var u=location.href.split('#')[0].replace(/([?&])v=\d+/,'').replace(/[?&]$/,'');location.replace(u+(u.indexOf('?')>-1?'&':'?')+'v='+Date.now());}
+  function init(){
+    if(document.getElementById('tag-refresh'))return;
+    var sub=document.querySelector('.hdr-sub');
+    if(!sub){var n=document.querySelector('.hdr-name');sub=n&&n.nextElementSibling;}
+    if(!sub)return;
+    var b=document.createElement('button');b.id='tag-refresh';b.type='button';b.textContent='🔄 Refresh';b.setAttribute('aria-label','Refresh the page');
+    b.style.cssText='margin-left:8px;background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.45);color:#00e676;border-radius:6px;padding:2px 7px;font-size:11px;font-weight:800;line-height:1.4;font-family:inherit;cursor:pointer;vertical-align:middle;white-space:nowrap';
+    b.onclick=function(e){e.preventDefault();e.stopPropagation();go();};
+    sub.appendChild(b);
+  }
+  document.addEventListener('mxlang',function(){setTimeout(init,0);});
+  if(typeof window.applyLang==='function'){var _al=window.applyLang;window.applyLang=function(){var r=_al.apply(this,arguments);setTimeout(init,0);return r;};}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
 </body>
 </html>
