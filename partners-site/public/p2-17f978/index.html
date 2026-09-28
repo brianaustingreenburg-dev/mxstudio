@@ -251,7 +251,7 @@ function showTab(n,b){
 function addCall(){S.calls++;sv();upd();showToast({i:'📞',t:'Call logged!',s:'Keep dialing. God wins.'});}
 function addClose(){S.closes++;sv();upd();showToast({i:'🔥',t:'Close logged! God wins!',s:'$82.20 earned. '+S.closes+' total closes.'});}
 function resetDay(){S.calls=0;S.closes=0;sv();upd();showToast({i:'🔄',t:'Day reset!',s:'Fresh start. God wins.'});}
-function copyStripe(){navigator.clipboard.writeText('https://brianaustingreenburg-dev.github.io/mxstudio/checkout.html?ref=p2');showToast({i:'📋',t:'Stripe link copied!',s:'Send it to close the deal.'});}
+function copyStripe(){navigator.clipboard.writeText('https://go.myjefetech.app/checkout.html?ref=p2');showToast({i:'📋',t:'Stripe link copied!',s:'Send it to close the deal.'});}
 
 function saveNote(w){localStorage.setItem(REP_ID+'-note-'+w,document.getElementById('note-'+w).value);}
 function loadNotes(){['today','week','ideas','prayer'].forEach(function(w){var el=document.getElementById('note-'+w);if(el)el.value=localStorage.getItem(REP_ID+'-note-'+w)||'';});}
