@@ -3252,5 +3252,40 @@ upd();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
+<script>
+/* ===== 🎁 What every Partner gets (Brian's overview, Loyalty Program tab) ✝️ ===== */
+(function(){
+  var G=[
+    ['💵','60% commission','<b>$82.20 a month</b> for every $137/mo customer they sign, every month that customer keeps paying. You keep $54.80.','Paid monthly through Stripe, only for sales older than 30 days. Refunds don\'t count.'],
+    ['👑','Your Own App sale','<b>20%</b> of the one-time price: <b>$999</b> (US/CA/AU, $4,997) or <b>$499</b> (MX/PH, $2,497).','You set it up. Partners WhatsApp you the lead.'],
+    ['✝️','Loyalty Bonus (yearly)','A bonus on everything they earned that year: <b>3%</b> in years 1–3, <b>7%</b> in years 4–7, <b>13%</b> from year 8.','Paid on their start anniversary.'],
+    ['🌴','Vacation Bonus','Every 3 years: <b>3%</b> of everything they earned in those 3 years.','On top of the Loyalty Bonus.'],
+    ['📱','iPad Bonus','Close <b>20 sales in one month</b>: an iPad for work, set up with their dashboard, or a gift card for the same value.','Once per Partner, the first month they hit 20.'],
+    ['🤝','Referral 3%','Bring in a new Partner and get <b>3% of every sale</b> that Partner makes, every month.','Stops if the Partner they referred goes inactive.']
+  ];
+  function init(){
+    var tab=document.getElementById('tab-earnings');if(!tab||document.getElementById('partner-gets'))return;
+    var box=document.createElement('div');box.id='partner-gets';
+    box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px;margin-bottom:16px';
+    var h='<div style="font-size:18px;font-weight:900;margin-bottom:4px">🎁 What every Partner gets ✝️</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">Everything you pay out to anyone who sells with you. Same for every Partner, in every country.</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">';
+    G.forEach(function(g){
+      h+='<div style="background:var(--card2);border-radius:10px;padding:12px 13px">'
+        +'<div style="font-size:14px;font-weight:900;margin-bottom:5px">'+g[0]+' '+g[1]+'</div>'
+        +'<div style="font-size:13px;line-height:1.55">'+g[2]+'</div>'
+        +'<div style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:5px">'+g[3]+'</div></div>';
+    });
+    h+='</div>'
+      +'<div style="margin-top:12px;background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.25);border-radius:10px;padding:12px 13px;font-size:12.5px;line-height:1.65">'
+      +'<b style="color:var(--green)">Example:</b> a Partner with <b>20 paying customers</b> earns <b>$1,644 a month</b>. Keep those 20 for a year and that\'s <b>$19,728</b>, plus a <b>$591.84</b> Year 1 Loyalty Bonus. You keep <b>$1,096 a month</b> from those customers.</div>'
+      +'<div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6"><b style="color:var(--white)">📜 Only while active:</b> a Partner needs one paid sale every 60 days. After 60 days with no sale they\'re inactive: no bonuses, but they keep their 60% on customers they already signed for 6 more months. One new sale makes them active again. Full terms and each Partner\'s status are below.</div>';
+    box.innerHTML=h;
+    var la=document.getElementById('loyalty-admin');
+    if(la&&la.parentNode===tab){var lab=la.nextSibling;tab.insertBefore(box,la);}else tab.insertBefore(box,tab.firstChild);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
+})();
+</script>
 </body>
 </html>
