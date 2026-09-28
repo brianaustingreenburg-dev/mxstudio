@@ -16,6 +16,7 @@ jobs:
         run: |
           rm -rf out && mkdir out
           cp shared/demo-dashboard.html out/demo-dashboard.html
+          cp shared/la-forja.html out/la-forja.html
           cp -R brian-site out/brian
           cp -R daniel out/mexico
           cp -R cristian out/us
