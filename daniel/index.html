@@ -1497,5 +1497,19 @@ updateMotiv();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
+<script>
+/* ===== Keep EN/ES/FIL + 🔄 always on screen: if the top switch scrolls away, show a pinned copy at top-right ✝️ ===== */
+(function(){
+  function init(){
+    var sw=document.querySelector('.mxl-sw');if(!sw||!window.mxLang||!('IntersectionObserver' in window))return;
+    var pin=document.createElement('div');pin.id='mxl-pin';pin.hidden=true;
+    pin.style.cssText='position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);right:10px;z-index:10000;box-shadow:0 6px 18px rgba(0,0,0,.5);border-radius:999px;background:rgba(10,12,16,.96)';
+    pin.innerHTML=mxLang.html();document.body.appendChild(pin);
+    document.addEventListener('mxlang',function(){if(window.mxLang&&mxLang.paint)mxLang.paint();});
+    new IntersectionObserver(function(es){es.forEach(function(e){pin.hidden=e.isIntersecting;if(!pin.hidden&&mxLang.paint)mxLang.paint();});},{threshold:0}).observe(sw);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,50);});else setTimeout(init,50);
+})();
+</script>
 </body>
 </html>
