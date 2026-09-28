@@ -13,4 +13,6 @@ cp -R "$src"/. _site/
 rm -f _site/netlify.toml
 cp shared/demo-dashboard.html _site/demo-dashboard.html
 cp shared/la-forja.html _site/la-forja.html
+cp shared/checkout.html _site/checkout.html
+cp shared/welcome.html _site/welcome.html
 echo "Published $src for $SITE_NAME"
