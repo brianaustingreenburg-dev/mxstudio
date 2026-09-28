@@ -187,7 +187,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
 .mxl-sw button{border:none;background:transparent;color:var(--muted,#9CA3AF);font:800 12px/1 inherit;font-family:inherit;padding:7px 9px;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:30px}
 .mxl-sw button[aria-pressed="true"]{background:var(--green,#00E676);color:#000}
 .mxl-bar{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:0 0 10px;font-size:11px;color:var(--muted,#9CA3AF);flex-wrap:wrap}
-.mxl-sw .mxl-ref{color:var(--green,#00E676);border-left:1px solid rgba(255,255,255,.14);border-radius:0 999px 999px 0;margin-left:2px;font-size:14px;padding:7px 10px}
+.mxl-sw .mxl-ref{color:var(--green,#00E676);border-left:1px solid rgba(255,255,255,.14);border-radius:0 999px 999px 0;margin-left:2px;font-size:12px;font-weight:800;padding:7px 10px}
 </style>
 <script id="mxlang">
 /* ===== 🌎 Language switch: 🇺🇸 EN · 🇲🇽 ES · 🇵🇭 FIL, on every section that gets shared. One tap flips everything, including what you send. ✝️ ===== */
@@ -215,7 +215,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
     paint();
     try{document.dispatchEvent(new CustomEvent('mxlang',{detail:l}));}catch(e){}
   }
-  function html(){var c=get();return '<span class="mxl-sw" role="group" aria-label="Language">'+L.map(function(x){return '<button type="button" data-l="'+x[0]+'" title="'+x[2]+'" aria-pressed="'+(x[0]===c)+'">'+x[1]+'</button>';}).join('')+'<button type="button" class="mxl-ref" title="Refresh" aria-label="Refresh the page">🔄</button></span>';}
+  function html(){var c=get();return '<span class="mxl-sw" role="group" aria-label="Language">'+L.map(function(x){return '<button type="button" data-l="'+x[0]+'" title="'+x[2]+'" aria-pressed="'+(x[0]===c)+'">'+x[1]+'</button>';}).join('')+'<button type="button" class="mxl-ref" title="Refresh" aria-label="Refresh the page">🔄 Refresh</button></span>';}
   function bar(){return '<div class="mxl-bar"><span class="mxl-lbl">'+LBL[get()]+'</span>'+html()+'</div>';}
   document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.mxl-sw button');if(!b)return;e.preventDefault();e.stopPropagation();
     if(b.classList.contains('mxl-ref')){var u=location.href.split('#')[0].replace(/([?&])v=\d+/,'').replace(/[?&]$/,'');location.replace(u+(u.indexOf('?')>-1?'&':'?')+'v='+Date.now());return;}
@@ -3393,7 +3393,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 28 · 1:35 PM';
+  var VERSION='Sept 28 · 1:40 PM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
