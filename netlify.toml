@@ -1,0 +1,8 @@
+# Used when a Netlify site has no base directory set.
+# Each site publishes its own folder, picked by the Netlify site name.
+[build]
+  command = "bash netlify-build.sh"
+  publish = "_site"
+
+[functions]
+  directory = "partners-site/netlify/functions"
