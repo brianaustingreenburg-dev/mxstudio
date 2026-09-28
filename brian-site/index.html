@@ -3303,39 +3303,62 @@ upd();
 })();
 </script>
 <script>
-/* ===== ⭐ Free-to-call stars + "Free only" filter (Brian) ✝️ =====
-   US/Canada ( (xxx) numbers ) and Mexico (+52): free.
-   Australia landlines (+61 2/3/7/8): free with T-Mobile Stateside International Talk. AU mobiles (+61 4): 7¢/min.
-   Philippines (+63): not free on T-Mobile (30¢/min mobile). Use Viber (free if they have it) or Viber Out (~8¢/min). */
+/* ===== ⭐ Free / 💬 WhatsApp tags + "WhatsApp first" (Brian, Sept 28) ✝️ =====
+   US, Canada, Mexico: ⭐ Free on Brian's plan (regular call or WhatsApp).
+   Australia, Philippines: WhatsApp only (📞 hidden).
+   Brian marks each prospect ✅ On WhatsApp / ❌ No WhatsApp (after importing the contact files, WhatsApp shows who's on it).
+   Saved in localStorage bl-wa {row:'y'|'n'}. "💬 WhatsApp first" puts ✅ first, unknown next, ❌ last; AU/PH marked ❌ are hidden. */
 (function(){
-  var KEY='bl-freeonly',on=false;try{on=localStorage.getItem(KEY)==='1';}catch(e){}
-  function cost(p){
-    var n=String(p&&p[1]||''),d=n.replace(/\D/g,'');
-    if(/^\+63/.test(n))return {free:false,b:'<span title="Philippines: T-Mobile charges. Try Viber first (free), else Viber Out (~8¢/min)." style="font-size:10px;font-weight:800;color:#A78BFA;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);border-radius:5px;padding:2px 6px;white-space:nowrap">💜 Viber first</span>'};
-    if(/^\+61/.test(n)){ if(d.charAt(2)==='4')return {free:false,b:'<span title="Australia mobile: 7¢/min with Stateside International Talk" style="font-size:10px;font-weight:800;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:2px 6px;white-space:nowrap">7¢/min</span>'}; }
-    return {free:true,b:'<span title="Free to call" style="font-size:10px;font-weight:900;color:#1a1300;background:#FFC53D;border-radius:5px;padding:2px 6px;white-space:nowrap">⭐ Free</span>'};
+  var KEY='bl-wa',KF='bl-wafirst',W={},first=false;
+  try{W=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){W={};}
+  try{first=localStorage.getItem(KF)==='1';}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(W));}catch(e){}}
+  function waOnly(p){return /^\+6[13]/.test(String(p&&p[1]||''));}
+  window.waStatus=function(i){return W[i]||'';};
+  var pill='font-size:10px;font-weight:900;border-radius:5px;padding:2px 6px;white-space:nowrap';
+  function badge(i){
+    var p=P[i],st=W[i],h='';
+    if(st==='y')h+='<span style="'+pill+';color:#fff;background:#25D366">✅ On WhatsApp</span>';
+    else if(st==='n')h+='<span style="'+pill+';color:var(--muted);border:1px solid var(--border)">❌ No WhatsApp</span>';
+    if(waOnly(p))h+=st==='y'?'':'<span title="Australia/Philippines: WhatsApp only" style="'+pill+';color:#25D366;border:1px solid rgba(37,211,102,.45)">💬 WhatsApp only</span>';
+    else h+='<span title="Free to call on your plan" style="'+pill+';color:#1a1300;background:#FFC53D">⭐ Free</span>';
+    return h;
   }
-  window.callCost=cost;
+  function rank(i){return W[i]==='y'?0:(W[i]==='n'?2:1);}
   var _rp=window.renderP;
   window.renderP=function(){
-    if(on&&typeof CL!=='undefined')CL=CL.filter(function(i){return cost(P[i]).free;});
+    if(typeof CL!=='undefined'){
+      CL=CL.filter(function(i){return !(waOnly(P[i])&&W[i]==='n');});
+      if(first)CL=CL.slice().sort(function(a,b){return rank(a)-rank(b)||a-b;});
+    }
     _rp.apply(this,arguments);
     document.querySelectorAll('#ptbody tr').forEach(function(tr){
       var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(!m||tr.dataset.cost)return;tr.dataset.cost=1;
-      var c=cost(P[+m[1]]),cell=tr.children[1];if(!cell)return;var row=cell.querySelector('div')||cell;row.insertAdjacentHTML('beforeend',c.b);
+      var i=+m[1],cell=tr.children[1];if(!cell)return;var row=cell.querySelector('div')||cell;
+      row.insertAdjacentHTML('beforeend','<span class="wa-b" style="display:inline-flex;gap:4px">'+badge(i)+'</span>');
+      if(waOnly(P[i])){var call=row.querySelector('a[href^="tel:"]');if(call)call.style.display='none';}
+      var act=tr.querySelector('.abtns');
+      if(act){act.insertAdjacentHTML('beforeend','<button class="ab" data-wa="y" data-i="'+i+'" title="Mark: On WhatsApp" style="color:#25D366">✅</button><button class="ab" data-wa="n" data-i="'+i+'" title="Mark: No WhatsApp">❌</button>');}
     });
-    var pi=document.getElementById('pag-info');if(on&&pi&&!/⭐/.test(pi.textContent))pi.textContent='⭐ Free only · '+pi.textContent;
   };
-  function btn(){
-    var cl=document.getElementById('f-closed');if(!cl||document.getElementById('f-free'))return;
-    var b=document.createElement('button');b.className='fb';b.id='f-free';b.type='button';
-    b.title='Show only numbers that are free to call';
-    function paint(){b.textContent=on?'⭐ Free only: ON':'⭐ Free only';b.style.cssText=on?'background:#FFC53D;color:#1a1300;border-color:#FFC53D;font-weight:900':'color:#FFC53D;border-color:rgba(255,197,61,.45)';}
-    b.onclick=function(){on=!on;try{localStorage.setItem(KEY,on?'1':'0');}catch(e){}paint();if(window.filterP)window.filterP();};
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('button[data-wa]');if(!b)return;
+    e.stopPropagation();e.preventDefault();
+    var i=b.dataset.i,v=b.dataset.wa;W[i]=(W[i]===v?'':v);if(!W[i])delete W[i];save();
+    if(window.filterP)window.filterP();
+  },true);
+  function ui(){
+    var cl=document.getElementById('f-closed');if(!cl||document.getElementById('f-wa'))return;
+    var old=document.getElementById('f-free');if(old)old.remove();
+    var b=document.createElement('button');b.className='fb';b.id='f-wa';b.type='button';
+    function paint(){b.textContent=first?'💬 WhatsApp first: ON':'💬 WhatsApp first';b.style.cssText=first?'background:#25D366;color:#fff;border-color:#25D366;font-weight:900':'color:#25D366;border-color:rgba(37,211,102,.45)';}
+    b.onclick=function(){first=!first;try{localStorage.setItem(KF,first?'1':'0');}catch(e){}paint();if(window.filterP)window.filterP();};
     paint();cl.parentNode.insertBefore(b,cl.nextSibling);
-    var box=cl.parentNode;if(box&&!document.getElementById('free-legend')){box.insertAdjacentHTML('afterend','<div id="free-legend" style="font-size:11px;color:var(--muted);line-height:1.6;padding:6px 2px 8px"><b style="color:#FFC53D">⭐ Free</b> = US, Canada, Mexico, Australia office lines · <b>7¢/min</b> = Australia mobiles · <b style="color:#A78BFA">💜 Viber first</b> = Philippines (free on Viber, else Viber Out ~8¢/min)</div>');}
+    var lg=document.getElementById('free-legend');if(lg)lg.remove();
+    var n=Object.keys(W).filter(function(k){return W[k]==='y';}).length;
+    cl.parentNode.insertAdjacentHTML('afterend','<div id="free-legend" style="font-size:11px;color:var(--muted);line-height:1.6;padding:6px 2px 8px"><b style="color:#FFC53D">⭐ Free</b> = US, Canada, Mexico (call or WhatsApp) · <b style="color:#25D366">💬 WhatsApp only</b> = Australia, Philippines · Tap <b>✅</b> / <b>❌</b> on a row to mark WhatsApp. Australia/Philippines marked ❌ disappear.</div>');
   }
-  function init(){btn();if(window.filterP)try{window.filterP();}catch(e){}}
+  function init(){ui();if(window.filterP)try{window.filterP();}catch(e){}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,0);});else setTimeout(init,0);
 })();
 </script>
