@@ -483,13 +483,13 @@ window.bizMail=function(to,subj,body){
 </div>
 <div class="s-layout">
     <div class="s-nav">
-      <button class="sp" onclick="showScript('opener',this)">👋 Opener</button>
-      <button class="sp active" onclick="showScript('close',this)">🤝 Close</button>
+      <button class="sp active" onclick="showScript('opener',this)">👋 Opener</button>
+      <button class="sp" onclick="showScript('close',this)">🤝 Close</button>
       <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
       <button class="sp" onclick="showScript('phsolar',this)">🇵🇭 Solar Pitch</button>
     </div>
     <div>
-      <div id="script-opener" class="sb">
+      <div id="script-opener" class="sb active">
         <div class="sb-lbl">Opener — First 10 Seconds</div>
         <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
@@ -554,7 +554,7 @@ Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
         </div>
         <button class="copy-btn" onclick="copyScript('obj')">Copy Script</button>
       </div>
-      <div id="script-close" class="sb active">
+      <div id="script-close" class="sb">
         <div class="sb-lbl">The Close</div>
         <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month, for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout $137/mo in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
         <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
@@ -1343,12 +1343,12 @@ upd();
 </div>
 <div class="s-layout">
     <div class="s-nav">
-      <button class="sp" onclick="showScript('opener',this)">👋 Opener</button>
-      <button class="sp active" onclick="showScript('close',this)">🤝 Close</button>
+      <button class="sp active" onclick="showScript('opener',this)">👋 Opener</button>
+      <button class="sp" onclick="showScript('close',this)">🤝 Close</button>
       <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
     </div>
     <div>
-      <div id="script-opener" class="sb">
+      <div id="script-opener" class="sb active">
         <div class="sb-lbl">Opener — First 10 Seconds</div>
         <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
@@ -1413,7 +1413,7 @@ Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
         </div>
         <button class="copy-btn" onclick="copyScript('obj')">Copy Script</button>
       </div>
-      <div id="script-close" class="sb active">
+      <div id="script-close" class="sb">
         <div class="sb-lbl">The Close</div>
         <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month, for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout $137/mo in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
         <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
@@ -3404,7 +3404,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 29 · 10:35 AM';
+  var VERSION='Sept 29 · 10:40 AM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
