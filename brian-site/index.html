@@ -245,7 +245,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
 <script>
 /* Send emails from the business account: open Gmail compose as brian@myjefetech.app instead of the phone's default mail app */
 window.bizMail=function(to,subj,body){
-  var u='https://mail.google.com/mail/?authuser='+encodeURIComponent('brian@myjefetech.app')+'&view=cm&fs=1&to='+encodeURIComponent(to||'')+'&su='+encodeURIComponent(subj||'')+'&body='+encodeURIComponent(body||'');
+  var u='https://mail.google.com/mail/u/brian@myjefetech.app/?authuser=brian%40myjefetech.app&view=cm&fs=1&to='+encodeURIComponent(to||'')+'&su='+encodeURIComponent(subj||'')+'&body='+encodeURIComponent(body||'');
   var w=window.open(u,'_blank');if(!w)location.href=u;
 };
 </script>
@@ -3401,7 +3401,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 28 · 7:45 PM';
+  var VERSION='Sept 28 · 8:00 PM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
