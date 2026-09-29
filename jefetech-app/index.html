@@ -23,12 +23,13 @@ body{background:#0f1117;color:#fff;font-family:'DM Sans',system-ui,sans-serif;mi
 .sp-btn:active{transform:scale(.97)}
 #main{display:none}
 .hdr{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(15,17,23,.97);backdrop-filter:blur(12px);z-index:60;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(255,255,255,.04);}
-.hdr-title{font-size:15px;font-weight:800;color:#fff}
+.hdr-title{font-size:15px;font-weight:800;color:#fff;white-space:nowrap}
+@media (max-width:389px){.hdr{padding:10px 10px}.hdr>div:last-child{gap:5px!important}.lang-btn{padding:4px 8px}#jt-refresh,#market-btn{padding:5px 7px!important}.hdr-title{font-size:14px}}
 .hdr-sub{font-size:9px;color:#94A3B8;margin-top:1px}
 .lang-wrap{display:flex;background:rgba(255,255,255,.08);border-radius:20px;padding:2px;gap:2px}
 .lang-btn{background:none;color:#94A3B8;border:none;border-radius:16px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
 .lang-btn.on{background:#FF6B2B;color:#fff}
-.content{padding-top:50px;padding-bottom:80px}
+.content{padding-top:0;padding-bottom:80px}
 .screen{display:none}.screen.active{display:block}
 
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0f1117;z-index:60;padding-bottom:env(safe-area-inset-bottom)}
@@ -106,11 +107,11 @@ body{background:#0f1117;color:#fff;font-family:'DM Sans',system-ui,sans-serif;mi
   </div>
 
 <!-- AI BAR -->
-<div style="background:rgba(255,107,43,.06);border-bottom:1px solid rgba(255,107,43,.15);padding:10px 16px">
+<div id="ai-bar" style="background:rgba(255,107,43,.06);border-bottom:1px solid rgba(255,107,43,.15);padding:10px 16px;margin-top:calc(56px + env(safe-area-inset-top,0px))">
   <div id="ai-messages" style="display:none;margin-bottom:8px;max-height:160px;overflow-y:auto;flex-direction:column;gap:6px"></div>
   <div style="display:flex;gap:8px;align-items:center">
     <span style="font-size:18px;flex-shrink:0">🤖</span>
-    <input id="ai-input" placeholder="Hey, I'm Claude, your personal assistant. Ask me anything." onkeydown="if(event.key==='Enter')sendToAI()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;color:#F0EDE8;font-size:13px;font-family:inherit;outline:none">
+    <input id="ai-input" placeholder="Questions? Ask us on WhatsApp" onkeydown="if(event.key==='Enter')sendToAI()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;color:#F0EDE8;font-size:13px;font-family:inherit;outline:none">
     <button onclick="sendToAI()" style="background:#FF6B2B;border:none;border-radius:10px;padding:10px 16px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap">Send</button>
   </div>
 </div>
@@ -166,7 +167,7 @@ body{background:#0f1117;color:#fff;font-family:'DM Sans',system-ui,sans-serif;mi
 
     <!-- JOBS HUB -->
     <div id="screen-projects" class="screen">
-      <div id="projects-body" style="padding:60px 0 80px"></div>
+      <div id="projects-body" style="padding:8px 0 80px"></div>
     </div>
 
     <div id="screen-jobs" class="screen">
@@ -286,7 +287,7 @@ var TX={
   en:{
     nav:['🛡️','📁','💼','🎣'],navLbl:['Safety','Project Mgr','Jobs','Fishing'],navIds:['safety','projects','jobs','fishing'],
     jobTabs:['❓','☀️','📐','💰','✍️','👷','🏪'],jobTabLbl:['Q&A','Solar','Measure','Quote & Report','Supervisor & Change Order','Crew & Taxes','Suppliers'],jobTabIds:['qa','solar','measure','quote','changeorder','crew','suppliers'],
-    hdrScreens:{safety:'Safety',jobs:'Project Manager',projects:'Jobs',fishing:'🎣 Fishing',help:'Help'},
+    hdrScreens:{safety:'Safety',jobs:'Jobs',projects:'Project Mgr',fishing:'🎣 Fishing',help:'Help'},
     trades:[
     {id:'roofing',icon:'🏠',label:'Roofing',items:['Fall protection / harness on-site and inspected','No worker alone at height — buddy system','Roof deck structurally sound before loading','Hot tar / torch equipment inspected','Materials distributed evenly — no overloading','Dumpster positioned — no overhead hazards','Drip edge and underlayment materials secured','OSHA 10 card on site','First aid kit stocked','Safety meeting held with crew']},
     {id:'painting',icon:'🎨',label:'Painting',items:['Respirators available — VOC / lead paint risk assessed','Ladder inspected and footing stable','Drop cloths and containment in place','Ventilation adequate — windows open or fans running','No smoking near solvent-based paints','Lead paint test done if pre-1978 building','Eye wash station available','Skin protection — gloves and long sleeves','Fire extinguisher within 10 ft','Safety meeting held with crew']},
@@ -305,7 +306,7 @@ var TX={
   es:{
     nav:['🛡️','📁','💼','🎣'],navLbl:['Seguridad','Proyectos','Trabajos','Pesca'],navIds:['safety','projects','jobs','fishing'],
     jobTabs:['❓','☀️','📐','💰','✍️','👷','🏪'],jobTabLbl:['Q&A','Solar','Medidas','Cotizar y Reporte','Supervisor & Orden de Cambio','Cuadrilla & Impuestos','Proveedores'],jobTabIds:['qa','solar','measure','quote','changeorder','crew','suppliers'],
-    hdrScreens:{safety:'Seguridad',jobs:'Gestor de Proyectos',projects:'Trabajos',fishing:'🎣 Pesca',help:'Ayuda'},
+    hdrScreens:{safety:'Seguridad',jobs:'Trabajos',projects:'Gest. Proy.',fishing:'🎣 Pesca',help:'Ayuda'},
     trades:[
     {id:'roofing',icon:'🏠',label:'Techado',items:['Protección contra caídas / arnés en sitio e inspeccionado','Ningún trabajador solo en altura — sistema de compañero','Cubierta del techo estructuralmente sólida antes de cargar','Equipo de brea caliente / soplete inspeccionado','Materiales distribuidos uniformemente — sin sobrecarga','Contenedor posicionado — sin riesgos aéreos','Materiales de goteo y fieltro asegurados','Tarjeta OSHA 10 en sitio','Botiquín de primeros auxilios provisto','Reunión de seguridad realizada con la cuadrilla']},
     {id:'painting',icon:'🎨',label:'Pintura',items:['Respiradores disponibles — riesgo de COV / pintura con plomo evaluado','Escalera inspeccionada y base estable','Lonas y contenedores en su lugar','Ventilación adecuada — ventanas abiertas o ventiladores funcionando','No fumar cerca de pinturas con base de solvente','Prueba de pintura con plomo realizada si el edificio es anterior a 1978','Lavaojos disponible','Protección de piel — guantes y mangas largas','Extintor a menos de 3 metros','Reunión de seguridad realizada con la cuadrilla']},
@@ -1116,7 +1117,7 @@ function shareReferralLink(){
   var msg='Hi! '+name+' thought you might be interested in going solar. '
     +'Get free quotes from certified local installers — no obligation.\n\n'
     +'☀️ Stop paying the power company. Start billing them.\n\n'
-    +'Fill out your info here → lastudios-rooftech.app\n\n'
+    +'Get your free quote here → https://wa.me/14084223505\n\n'
     +'Powered by JefeTech · MX Studio';
   window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
@@ -2275,7 +2276,7 @@ function renderCrew(){
       +'</div>'
       +'<div style="display:flex;gap:6px">'
       +'<a href="tel:'+w.phone+'" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:7px 0;font-size:11px;color:#E8E0D5;text-align:center;text-decoration:none">📞 Call</a>'
-      +'<a href="https://wa.me/1'+w.phone.replace(/\D/g,'')+'" target="_blank" style="background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:8px;padding:7px 11px;color:#25D366;text-decoration:none">💬</a>'
+      +'<a href="https://wa.me/'+jtWa(w.phone)+'" target="_blank" style="background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:8px;padding:7px 11px;color:#25D366;text-decoration:none">💬</a>'
       +'<button class="clock-btn" data-id="'+w.id+'" style="background:'+(clocked?'rgba(239,68,68,.15)':'rgba(34,197,94,.15)')+';border:1px solid '+(clocked?'rgba(239,68,68,.3)':'rgba(34,197,94,.3)')+';border-radius:8px;padding:7px 10px;cursor:pointer;color:'+(clocked?'#EF4444':'#22C55E')+';font-size:11px;font-weight:700;font-family:inherit">'+(clocked?(es?'Salida':'Out'):(es?'Entrada':'In'))+'</button>'
       +'<button class="crew-del" data-id="'+w.id+'" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:7px 9px;cursor:pointer;color:#EF4444;font-family:inherit">🗑</button>'
       +'</div></div>';
@@ -2750,7 +2751,7 @@ function renderQA(){
     {q:es?'¿Cuántos usuarios puedo agregar?':'How many users can I add?',a:es?'Usuarios ilimitados. Agrega toda tu cuadrilla, oficina y subcontratistas. Sin cargos por usuario. Siempre.':'Unlimited users. Add your whole crew, office, and subs. No per-seat fees. Ever.'},
     {q:es?'¿Cómo cancelo?':'How do I cancel?',a:es?'Sin contratos. Cancela cuando quieras. WhatsApp al +1 408-422-3505 o escribe a brian@myjefetech.app':'No contracts. Cancel anytime. WhatsApp +1 408-422-3505 or email brian@myjefetech.app'},
     {q:es?'¿Hay soporte en español?':'Is there Spanish support?',a:es?'Sí. La app es completamente bilingüe. Soporte en WhatsApp en inglés y español.':'Yes. The app is fully bilingual. Support via WhatsApp in English and Spanish.'},
-    {q:es?'¿Cómo funciona el programa de socios?':'How does the partner program work?',a:es?'Compra apps al mayoreo, véndelas a contratistas, gana 7% residual mensual. Ve a la pestaña Pesca para más info.':'Buy apps at wholesale, sell to contractors, earn 7% monthly residual. See the Fishing tab for more info.'}
+    {q:es?'¿Cómo funciona el programa de socios?':'How does the partner program work?',a:es?'Los Partners ganan 60% de cada pago mensual de sus clientes ($82.20 de cada $137), mientras el cliente siga pagando. Escríbenos por WhatsApp al +1 408-422-3505 para aplicar.':'Partners earn 60% of every customer payment ($82.20 of each $137/mo) for as long as the customer keeps paying. WhatsApp +1 408-422-3505 to apply.'}
   ];
   var html='<div style="padding:14px 18px 100px">';
   html+='<p class="sec-lbl">'+String.fromCharCode(10067)+' '+(es?'PREGUNTAS FRECUENTES':'FREQUENTLY ASKED QUESTIONS')+'</p>';
@@ -3054,7 +3055,7 @@ function renderProjectManager(){
   var totalCrew=JOBS.reduce(function(s,j){return s+(j.crew||0);},0);
   var today=new Date().toLocaleDateString(es?'es-MX':'en-US',{weekday:'long',month:'long',day:'numeric'});
 
-  var html='<div style="padding:60px 18px 80px">';
+  var html='<div style="padding:14px 18px 80px">';
 
   // Morning brief header
   html+='<div style="background:linear-gradient(135deg,rgba(255,107,43,.15),rgba(255,107,43,.04));border:1px solid rgba(255,107,43,.2);border-radius:16px;padding:16px;margin-bottom:16px">'
@@ -3265,8 +3266,8 @@ function renderJobWorkspace(jobId){
   else if(innerTab==='docs') content=renderJobDocs(job);
   else if(innerTab==='payments') content=renderJobPayments(job);
 
-  var html='<div style="padding-top:60px">'
-    +'<div style="position:fixed;top:50px;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0f1117;z-index:55;padding:8px 18px;border-bottom:1px solid rgba(255,255,255,.06)">'
+  var html='<div style="margin-top:-8px">'
+    +'<div style="position:sticky;top:calc(56px + env(safe-area-inset-top,0px));background:#0f1117;z-index:55;padding:8px 18px;border-bottom:1px solid rgba(255,255,255,.06)">'
     +'<div style="display:flex;align-items:center;gap:10px">'
     +'<button onclick="CURRENT_JOB_ID=null;renderProjectManager()" style="background:rgba(255,255,255,.08);border:none;border-radius:8px;padding:6px 10px;color:#fff;font-size:13px;cursor:pointer;font-family:inherit">←</button>'
     +'<div style="flex:1;overflow:hidden">'
@@ -3275,7 +3276,7 @@ function renderJobWorkspace(jobId){
     +'</div>'
     +'<button onclick="shareJobClient(\''+jobId+'\')" style="background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:5px 10px;color:#22C55E;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">🔗 '+(es?'Cliente':'Client')+'</button>'
     +'</div></div>'
-    +'<div style="margin-top:62px">'+tabHtml+'</div>'
+    +'<div>'+tabHtml+'</div>'
     +wasteHtml
     +content
     +'</div>';
@@ -3427,7 +3428,7 @@ function renderJobPayments(job){
     +'</select>'
     +'<button onclick="(function(){var jb=JOBS.find(function(j){return j.id===CURRENT_JOB_ID;});if(!jb.payments)jb.payments=[];var lbl=document.getElementById(\'pay-label\').value;var amt=parseFloat(document.getElementById(\'pay-amount\').value)||0;var mth=document.getElementById(\'pay-method\').value;if(!lbl||!amt)return;jb.payments.push({label:lbl,amount:amt,method:mth,date:new Date().toLocaleDateString()});renderJobWorkspace(CURRENT_JOB_ID);})()" style="width:100%;background:#22C55E;border:none;border-radius:12px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px">+ '+(es?'Registrar Pago':'Log Payment')+'</button>'
     // Stripe button
-    +'<a href="https://buy.stripe.com/5kQeVf7PN8HW1lM45b0Jq0d" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(99,91,255,.15);border:1px solid rgba(99,91,255,.3);border-radius:12px;padding:12px;text-decoration:none;margin-bottom:16px">'
+    +'<a href="#" onclick="jtStripe();return false;" style="display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(99,91,255,.15);border:1px solid rgba(99,91,255,.3);border-radius:12px;padding:12px;text-decoration:none;margin-bottom:16px">'
     +'<span style="font-size:18px">💜</span>'
     +'<span style="font-size:13px;font-weight:700;color:#a78bfa">'+(es?'Cobrar con Stripe →':'Collect with Stripe →')+'</span></a>'
     // Payment history
@@ -3719,6 +3720,34 @@ function init(){
   },1800);
 }
 init();
+</script>
+<script>
+/* Fixes Sept 29 ✝️ */
+function jtWa(ph){var d=String(ph||'').replace(/\D/g,'');if(d.length===10)d='1'+d;return d;}
+function jtStripe(){
+  var es=(typeof L!=='undefined'&&L==='es'),k='jt-stripe-link',u='';
+  try{u=localStorage.getItem(k)||'';}catch(e){}
+  if(!u){
+    u=prompt(es?'Pega TU link de pago de Stripe (de tu cuenta de Stripe → Payment Links). Se guarda en este teléfono.':'Paste YOUR Stripe payment link (from your Stripe account → Payment Links). It is saved on this phone.','https://buy.stripe.com/');
+    if(!u||!/^https:\/\/\S+\.\S+/.test(u)||u==='https://buy.stripe.com/')return;
+    try{localStorage.setItem(k,u.trim());}catch(e){}
+  }
+  window.open(u.trim(),'_blank');
+}
+function sendToAI(){
+  var i=document.getElementById('ai-input');if(!i)return;var q=(i.value||'').trim();
+  if(!q){i.focus();return;}
+  window.open('https://wa.me/14084223505?text='+encodeURIComponent('JefeTech question: '+q),'_blank');
+  i.value='';
+}
+(function(){
+  if(typeof renderAll!=='function')return;var _ra=renderAll;
+  renderAll=function(){_ra.apply(this,arguments);try{
+    document.getElementById('btn-en').className='lang-btn'+(L==='en'?' on':'');
+    document.getElementById('btn-es').className='lang-btn'+(L==='es'?' on':'');
+    var ai=document.getElementById('ai-input');if(ai)ai.placeholder=L==='es'?'¿Preguntas? Escríbenos por WhatsApp':'Questions? Ask us on WhatsApp';
+  }catch(e){}};
+})();
 </script>
 <script>
 /* 🔄 Refresh: loads the newest version and comes back to the same screen ✝️ */
