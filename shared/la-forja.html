@@ -126,6 +126,10 @@ html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'
   .span-2{grid-column:span 1}
 }
 @media(max-width:500px){
+  .job-row{flex-wrap:wrap;gap:6px 10px}
+  .job-row>div:nth-child(2){flex:1 1 calc(100% - 20px)!important}
+  .job-row .job-bar-wrap{flex:1;width:auto;margin-left:18px}
+  .job-addr{white-space:normal}
   .hdr{height:auto;flex-wrap:wrap;padding:8px 14px;gap:8px}.hdr-right{margin-left:0;width:100%;flex-wrap:wrap;gap:6px}.clock,.live-label,.pulse{display:none}
   .kpi-row{grid-template-columns:1fr 1fr}
   .kpi-value{font-size:24px}
@@ -141,16 +145,16 @@ html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'
   <span class="hdr-cross">✝️</span>
   <div class="hdr-brand">
     <div class="hdr-name">La Forja</div>
-    <div class="hdr-sub">JefeTech · LA Studios · War Room</div>
+    <div class="hdr-sub" data-en="JefeTech · MX Studio · War Room" data-es="JefeTech · MX Studio · Sala de Guerra">JefeTech · MX Studio · War Room</div>
   </div>
   <div class="hdr-right">
     <div class="pulse"></div>
     <span class="live-label">LIVE</span>
     <span class="clock" id="clock">--:--</span>
-    <button onclick="sendToOffice()" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#22C55E;cursor:pointer;font-family:inherit">📤 Share</button>
+    <button onclick="sendToOffice()" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#22C55E;cursor:pointer;font-family:inherit" data-en="📤 Share" data-es="📤 Compartir">📤 Share</button>
     <a href="https://myjefetech.app" target="_blank" rel="noopener" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.25);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#FF6B2B;text-decoration:none">📱 App</a>
     <button class="lang-btn" onclick="toggleLang()">ES</button>
-    <button class="lang-btn" onclick="location.replace(location.href.split('?')[0]+'?v='+Date.now())" title="Refresh">🔄 Refresh</button>
+    <button class="lang-btn" onclick="location.replace(location.href.split('?')[0]+'?v='+Date.now())" title="Refresh" data-en="🔄 Refresh" data-es="🔄 Actualizar">🔄 Refresh</button>
   </div>
 </header>
 
@@ -425,7 +429,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'
   <div class="footer">
     <span class="footer-cross">✝️</span>
     <div class="footer-text">
-      LA FORJA · JEFETECH · LA STUDIOS<br>
+      LA FORJA · JEFETECH · MX STUDIO<br>
       Acapulco, Guerrero, México 🇲🇽🤝🇺🇸<br>
       <span style="color:var(--orange)">brian@myjefetech.app</span><br>
       <span style="color:var(--dim)">"The app that does the heavy lifting." · © 2026 JefeTech</span>
@@ -443,16 +447,16 @@ var JOBS=[
    payments:[{amount:4000,method:'Check'},{amount:2000,method:'Zelle'}],photos:['x'],date:'2026-09-20',
    invoiceSent:false,materialsNeeded:['Shingles x20 bundles','Felt paper x2 rolls'],
    report:'Tear off complete on east side. Starting on west tomorrow. Weather holding.',
-   changeOrders:[],nextJob:'2026-09-22'},
+   changeOrders:[],nextJob:new Date(Date.now()+1*864e5).toISOString()},
   {id:'j2',name:'Downtown Office Complex — HVAC',addr:'2200 Congress Ave, Austin TX 78704',status:'active',progress:30,value:28000,crew:3,trade:'hvac',
    payments:[{amount:8000,method:'Card'}],photos:[],date:'2026-09-19',
    invoiceSent:true,materialsNeeded:['Duct tape x5','Copper fittings 1/2 in x12'],
-   report:'',changeOrders:[{desc:'Added 2 extra vents in conference room',amount:850}],nextJob:'2026-09-23'},
+   report:'',changeOrders:[{desc:'Added 2 extra vents in conference room',amount:850}],nextJob:new Date(Date.now()+2*864e5).toISOString()},
   {id:'j3',name:'Riverside Apartments — Painting',addr:'800 Riverside Dr, Austin TX 78704',status:'active',progress:85,value:9200,crew:2,trade:'painting',
    payments:[{amount:4600,method:'Check'},{amount:2000,method:'Venmo'}],photos:['x','x','x'],date:'2026-09-18',
    invoiceSent:true,materialsNeeded:[],
    report:'Two units left. On track to finish tomorrow.',
-   changeOrders:[],nextJob:'2026-09-21'},
+   changeOrders:[],nextJob:new Date(Date.now()+1*864e5).toISOString()},
   {id:'j4',name:'Highland Hills — Solar Install',addr:'3300 Bee Cave Rd, Austin TX 78746',status:'complete',progress:100,value:22000,crew:0,trade:'solar',
    payments:[{amount:22000,method:'Stripe'}],photos:['x','x'],date:'2026-09-15',
    invoiceSent:true,materialsNeeded:[],report:'Job complete. System online.',
@@ -460,10 +464,10 @@ var JOBS=[
 ];
 
 var CREW=[
-  {id:'c1',name:'Carlos Mendoza',role:'Lead Roofer',clockIn:(function(){var d=new Date();d.setHours(7,15,0,0);return d.toISOString();})(),clockOut:null,pay:950},
-  {id:'c2',name:'Miguel Ruiz',role:'Roofer',clockIn:(function(){var d=new Date();d.setHours(7,30,0,0);return d.toISOString();})(),clockOut:null,pay:850},
-  {id:'c3',name:'Roberto Sanchez',role:'Laborer',clockIn:(function(){var d=new Date();d.setHours(7,45,0,0);return d.toISOString();})(),clockOut:null,pay:750},
-  {id:'c4',name:'Jose Garcia',role:'HVAC Tech',clockIn:(function(){var d=new Date();d.setHours(8,0,0,0);return d.toISOString();})(),clockOut:null,pay:1100},
+  {id:'c1',name:'Carlos Mendoza',role:'Lead Roofer',clockIn:(function(){var d=new Date();d.setHours(7,15,0,0);return new Date(Math.min(d.getTime(),Date.now()-60*60000)).toISOString();})(),clockOut:null,pay:950},
+  {id:'c2',name:'Miguel Ruiz',role:'Roofer',clockIn:(function(){var d=new Date();d.setHours(7,30,0,0);return new Date(Math.min(d.getTime(),Date.now()-50*60000)).toISOString();})(),clockOut:null,pay:850},
+  {id:'c3',name:'Roberto Sanchez',role:'Laborer',clockIn:(function(){var d=new Date();d.setHours(7,45,0,0);return new Date(Math.min(d.getTime(),Date.now()-40*60000)).toISOString();})(),clockOut:null,pay:750},
+  {id:'c4',name:'Jose Garcia',role:'HVAC Tech',clockIn:(function(){var d=new Date();d.setHours(8,0,0,0);return new Date(Math.min(d.getTime(),Date.now()-30*60000)).toISOString();})(),clockOut:null,pay:1100},
   {id:'c5',name:'Luis Torres',role:'Painter',clockIn:null,clockOut:null,pay:800},
 ];
 
@@ -629,7 +633,7 @@ function renderClockLog(){
   } else {
     CREW.forEach(function(w){
       var inTime=w.clockIn?new Date(w.clockIn).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'--:--';
-      var outTime=w.clockOut?new Date(w.clockOut).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):(es?'En sitio':'On site');
+      var outTime=w.clockOut?new Date(w.clockOut).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):(w.clockIn?(es?'En sitio':'On site'):(es?'Sin entrada':'Not clocked in'));
       var hrs=w.clockIn?Math.round((new Date()-new Date(w.clockIn))/360000)/10:0;
       html+='<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
         +'<div style="width:28px;height:28px;border-radius:50%;background:'+(w.clockIn&&!w.clockOut?'#FF6B2B':'#333')+';display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0">'+w.name.charAt(0)+'</div>'
@@ -696,6 +700,7 @@ function renderAll(){
   renderAlerts();
   renderMoney();
   renderCrew();
+  [renderSupervisorReports,renderChangeOrders,renderMaterialsNeeded,renderInvoiceTracker,renderClockLog,renderJobProgress,renderNextJobs,renderCrewContact].forEach(function(f){try{f();}catch(e){}});
 }
 
 function renderKPIs(){
@@ -747,7 +752,7 @@ function renderJobBoard(){
         +'</div>'
         +'<div class="job-bar-wrap"><div class="job-bar" style="width:'+(job.progress||0)+'%"></div></div>'
         +'<div class="job-pct">'+(job.progress||0)+'%</div>'
-        +'<div class="job-val">$'+Math.round(paid/1000)+'k</div>'
+        +'<div class="job-val">$'+Math.round(paid/1000)+'k<span style="display:block;font-size:9px;font-weight:600;color:var(--dim)">'+(LANG==='es'?'de':'of')+' $'+(Math.round((job.value||0)/100)/10)+'k</span></div>'
         +'<span class="status-pill" style="background:'+statusColor[job.status]+'22;color:'+statusColor[job.status]+'">'+statusLabel[job.status]+'</span>'
         +'</div>';
     });
@@ -885,8 +890,8 @@ function fetchWeather(){
       +'<p style="font-size:9px;color:var(--dim);margin-top:8px;font-family:DM Mono,monospace">'+(es?'Última actualización: ':'Last updated: ')+new Date().toLocaleTimeString()+'</p>';
   }
 
-  // Try GPS first, fall back to Acapulco HQ
-  if(navigator.geolocation){
+  // Demo: weather for the sample job sites (no location prompt)
+  if(false&&navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(pos){
       var lat=pos.coords.latitude;
       var lng=pos.coords.longitude;
@@ -903,25 +908,15 @@ function fetchWeather(){
   }
 
   function tryAcapulco(){
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=16.853&longitude=-99.823&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Mexico_City')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=30.267&longitude=-97.743&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Mexico_City')
       .then(function(r){return r.json();})
       .then(function(w){
         var cur=w.current;
-        renderWeather(Math.round(cur.temperature_2m),Math.round(cur.wind_speed_10m),cur.relative_humidity_2m,cur.weather_code,'Acapulco HQ');
+        renderWeather(Math.round(cur.temperature_2m),Math.round(cur.wind_speed_10m),cur.relative_humidity_2m,cur.weather_code,es?'Austin, TX · obras':'Austin, TX · job sites');
       })
       .catch(function(){
         document.getElementById('weather-board').innerHTML=
-          '<div style="text-align:center;padding:12px;color:var(--dim);font-size:12px">📶 '+(es?'Sin conexión — datos de clima no disponibles':'No connection — weather unavailable')+'</div>'
-          +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">'
-          +['☀️ Clear','⛅ Cloudy','🌧️ Rain','💨 Wind','⛈️ Storm','❄️ Cold'].map(function(w){
-            var btn=document.createElement('button');
-            btn.textContent=w;
-            btn.style.cssText='background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:8px;font-size:12px;cursor:pointer;color:var(--white);font-family:inherit';
-            btn.onclick=function(){window.MANUAL_WEATHER=w;};
-            return btn.outerHTML;
-          }).join('')
-          +'</div>'
-          +'<p style="font-size:10px;color:var(--dim);margin-top:8px;text-align:center">'+(es?'Entrada manual disponible':'Manual entry available')+'</p>';
+          '<div style="text-align:center;padding:12px;color:var(--dim);font-size:12px">📶 '+(es?'Sin conexión — datos de clima no disponibles':'No connection — weather unavailable')+'</div>';
       });
   }
 }
