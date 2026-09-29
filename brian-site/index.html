@@ -242,6 +242,13 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
+<script>
+/* Send emails from the business account: open Gmail compose as brian@myjefetech.app instead of the phone's default mail app */
+window.bizMail=function(to,subj,body){
+  var u='https://mail.google.com/mail/?authuser='+encodeURIComponent('brian@myjefetech.app')+'&view=cm&fs=1&to='+encodeURIComponent(to||'')+'&su='+encodeURIComponent(subj||'')+'&body='+encodeURIComponent(body||'');
+  var w=window.open(u,'_blank');if(!w)location.href=u;
+};
+</script>
 </head>
 <body>
 
@@ -2839,7 +2846,7 @@ upd();
     var m=build(L),btn=b.querySelector('.sx-send');busy=true;btn.disabled=true;btn.textContent='Sending…';status(b,'Sending…');
     mcp().then(function(x){
       if(!x){ /* not inside claude.ai: open the Mail app with everything filled in */
-        location.href='mailto:'+to+'?subject='+encodeURIComponent(m.subject)+'&body='+encodeURIComponent(m.text);
+        bizMail(to,m.subject,m.text);
         record('Email',to);status(b,'Your Mail app opened with everything filled in. Just press Send.','var(--green)');return;}
       return x.callTool('Gmail','send_message',{to:[to],subject:m.subject,body:m.text,htmlBody:m.html}).then(function(){
         record('Email',to);status(b,'✅ Sent to '+to+'. Saved to their prospect notes.','var(--green)');toast('📧','Email sent! ✝️',to);});
@@ -3003,7 +3010,7 @@ upd();
     el('sms').onclick=function(){var n=digits(el('ph').value);if(!n){toast('📞','Add their phone number','Then tap Text.');el('ph').focus();return;}record('Text','+'+n);go('sms:+'+n+'?&body='+encodeURIComponent(el('msg').value));};
     el('wa').onclick=function(){var n=digits(el('ph').value);if(!n){toast('📞','Add their phone number','Then tap WhatsApp.');el('ph').focus();return;}record('WhatsApp','+'+n);go('https://wa.me/'+n+'?text='+encodeURIComponent(el('msg').value));};
     el('mail').onclick=function(){var em=el('em').value.trim();if(!em){toast('✉️','Add their email','Then tap Email.');el('em').focus();return;}var p=cur(),subj='JefeTech'+(p?' for '+p[0]:'')+' ✝️',body=el('msg').value,btn=el('mail');
-      function mailto(){record('Email',em);go('mailto:'+encodeURIComponent(em).replace('%40','@')+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body));}
+      function mailto(){record('Email',em);bizMail(em,subj,body);}
       if(!window.mxGmail)return mailto();
       btn.disabled=true;btn.textContent='Sending…';
       window.mxGmail(em,subj,body).then(function(ok){if(ok){record('Email',em);toast('📧','Email sent! ✝️',em);close();}else mailto();},function(){toast('⚠️','Email didn\'t send','Opening your Mail app instead.');mailto();}).then(function(){btn.disabled=false;btn.textContent='✉️ Email';});};
@@ -3393,7 +3400,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 28 · 5:55 PM';
+  var VERSION='Sept 28 · 7:00 PM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
