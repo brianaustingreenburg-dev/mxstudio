@@ -2218,7 +2218,9 @@ upd();
       var sa=getStatus(a)==='new'?0:1,sb=getStatus(b)==='new'?0:1;if(sa!==sb)return sa-sb;
       return a-b;
     });
-    window._lineupTotal=CL.length;CL=CL.slice(0,50);
+    var key=S.filter+'|'+q;if(window._lineupKey!==key){window._lineupKey=key;window._lineupOff=0;}
+    var off=window._lineupOff||0;if(off>=CL.length)off=Math.max(0,Math.floor((CL.length-1)/50)*50);window._lineupOff=off;
+    window._lineupTotal=CL.length;CL=CL.slice(off,off+50);
     renderP();
     renderLineup();
   };
@@ -2243,11 +2245,17 @@ upd();
     if(S.filter==='now'||String(S.filter).indexOf('z-')===0){
       var want=S.filter==='now'?null:S.filter.slice(2);
       var pi=document.getElementById('pag-info');
-      if(pi)pi.textContent=CL.length?'Next '+CL.length+' of '+(window._lineupTotal||CL.length)+' · mark them called and more load':(want?'Nobody left in this zone':'No zones open right now — check the lineup above');
+      var off=window._lineupOff||0,tot=window._lineupTotal||CL.length;
+      if(pi)pi.textContent=CL.length?((off+1)+'–'+(off+CL.length)+' of '+tot+(tot>50?' · tap Next → for 50 more':'')):(want?'Nobody left in this zone':'No zones open right now — check the lineup above');
       var bl=document.getElementById('batch-lbl');if(bl)bl.textContent=want?ZONES[ZI[want]].n:'⏰ Call Now';
-      ['btn-prev','btn-next'].forEach(function(id){var b=document.getElementById(id);if(b)b.disabled=true;});
+      var bp=document.getElementById('btn-prev'),bn=document.getElementById('btn-next');
+      if(bp)bp.disabled=off<=0;if(bn)bn.disabled=off+50>=tot;
     }
   };
+  function zoneMode(){return S.filter==='now'||String(S.filter).indexOf('z-')===0;}
+  var _nextB=window.nextBatch,_prevB=window.prevBatch;
+  window.nextBatch=function(){if(!zoneMode())return _nextB();window._lineupOff=(window._lineupOff||0)+50;S.sel=null;filterP();try{clearDet();}catch(e){}try{jumpToList();}catch(e){}};
+  window.prevBatch=function(){if(!zoneMode())return _prevB();window._lineupOff=Math.max(0,(window._lineupOff||0)-50);S.sel=null;filterP();try{clearDet();}catch(e){}try{jumpToList();}catch(e){}};
 
   window.badNumber=function(i){
     if(!confirm('Remove '+P[i][0]+' ('+P[i][1]+') as a bad number?'))return;
@@ -3401,7 +3409,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 28 · 8:00 PM';
+  var VERSION='Sept 28 · 8:30 PM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
