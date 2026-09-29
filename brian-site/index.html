@@ -483,12 +483,13 @@ window.bizMail=function(to,subj,body){
 </div>
 <div class="s-layout">
     <div class="s-nav">
+      <button class="sp" onclick="showScript('opener',this)">👋 Opener</button>
       <button class="sp active" onclick="showScript('close',this)">🤝 Close</button>
       <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
       <button class="sp" onclick="showScript('phsolar',this)">🇵🇭 Solar Pitch</button>
     </div>
     <div>
-      <div id="script-opener" class="sb" style="display:none">
+      <div id="script-opener" class="sb">
         <div class="sb-lbl">Opener — First 10 Seconds</div>
         <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
@@ -1342,11 +1343,12 @@ upd();
 </div>
 <div class="s-layout">
     <div class="s-nav">
+      <button class="sp" onclick="showScript('opener',this)">👋 Opener</button>
       <button class="sp active" onclick="showScript('close',this)">🤝 Close</button>
       <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
     </div>
     <div>
-      <div id="script-opener" class="sb" style="display:none">
+      <div id="script-opener" class="sb">
         <div class="sb-lbl">Opener — First 10 Seconds</div>
         <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
@@ -2679,7 +2681,7 @@ upd();
     if(!host)return;
     box=document.createElement('div');box.id='packages';
     box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.3);border-radius:14px;padding:16px;margin:0 0 14px';
-    if(BRIAN)host.insertBefore(box,host.firstChild);else host.appendChild(box);
+    host.appendChild(box); // Brian: packages at the bottom of the JefeTech tab, script first
     render();
     document.addEventListener('mxlang',render);
     if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
@@ -3081,11 +3083,15 @@ upd();
     }
   }
   function init(){
-    ['tab-team','tab-script'].forEach(function(id){
-      var host=document.getElementById(id);if(!host)return;
+    // Deal Links live only in the 🔨 JefeTech tab, under the script (Partners tab stays clean)
+    document.querySelectorAll('[id="tab-script"]').forEach(function(host){
+      [].slice.call(host.children).forEach(function(c){if(/JefeTech — Open & Share/.test(c.textContent||'')&&c.querySelector('a[href*="myjefetech.app"]'))c.style.display='none';});
       var b=document.createElement('div');b.className='deal-links';
-      b.style.cssText='background:var(--card);border:1px solid rgba(0,230,118,.4);border-radius:14px;padding:14px;margin-bottom:14px';
-      host.insertBefore(b,host.firstChild);boxes.push(b);
+      b.style.cssText='background:var(--card);border:1px solid rgba(0,230,118,.4);border-radius:14px;padding:14px;margin:14px 0';
+      var sb=host.querySelector('.sb.active');var anchor=sb&&sb.parentNode;
+      while(anchor&&anchor.parentNode!==host)anchor=anchor.parentNode;
+      if(anchor)host.insertBefore(b,anchor.nextSibling);else host.appendChild(b);
+      boxes.push(b);
     });
     render();
   }
@@ -3398,7 +3404,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 29 · 10:20 AM';
+  var VERSION='Sept 29 · 10:35 AM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
