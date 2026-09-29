@@ -1860,8 +1860,8 @@ function measureCard(icon, title, fields, calcId, btnLabel, calcFn){
   html+='<p style="font-size:10px;color:#555;margin-bottom:12px">📏 '+(mx?(es?'Modo México — metros y m²':'Mexico Mode — meters & m²'):(es?'Modo EE.UU. — pies y sq ft':'US Mode — feet & sq ft'))+'</p>';
   fields.forEach(function(f){
     html+='<div style="margin-bottom:10px">'
-      +'<p style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px">'+f.label+'</p>'
-      +'<input id="'+f.id+'" class="inp" style="margin:0;width:100%" placeholder="'+f.ph+'" type="number">'
+      +'<p style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px">'+(mx&&f.id!=='elec-sqft'?String(f.label).replace(/\((pies|ft)\)/g,'(m)'):f.label)+'</p>'
+      +'<input id="'+f.id+'" class="inp" style="margin:0;width:100%" placeholder="'+f.ph+'" '+(f.id==='roof-pitch'?'type="text" inputmode="decimal"':'type="number" inputmode="decimal"')+'>'
       +'</div>';
   });
   // Store calc function globally
@@ -3747,6 +3747,180 @@ function sendToAI(){
     document.getElementById('btn-es').className='lang-btn'+(L==='es'?' on':'');
     var ai=document.getElementById('ai-input');if(ai)ai.placeholder=L==='es'?'¿Preguntas? Escríbenos por WhatsApp':'Questions? Ask us on WhatsApp';
   }catch(e){}};
+})();
+</script>
+<script>
+/* 📡 AUTO-MEASURE: type an address → every trade's measurements fill in automatically ✝️ */
+(function(){
+  var CACHE_KEY='jt-meas-v1',MEAS={},BUSY={};
+  try{MEAS=JSON.parse(localStorage.getItem(CACHE_KEY)||'{}')||{};}catch(e){}
+  function save(){try{localStorage.setItem(CACHE_KEY,JSON.stringify(MEAS));}catch(e){}}
+  function key(a){return String(a||'').trim().toLowerCase().replace(/\s+/g,' ');}
+  function es(){return typeof L!=='undefined'&&L==='es';}
+  function metric(){return typeof UNIT!=='undefined'&&UNIT==='metric';}
+  var FT=3.28084,R=6378137;
+  function merc(lat,lng){return {x:R*lng*Math.PI/180,y:R*Math.log(Math.tan(Math.PI/4+lat*Math.PI/360))};}
+  function local(pts){ // lat/lng -> meters around centroid
+    var la=0,ln=0;pts.forEach(function(p){la+=p.lat;ln+=p.lng;});la/=pts.length;ln/=pts.length;
+    var k=Math.cos(la*Math.PI/180);
+    return pts.map(function(p){return {x:(p.lng-ln)*111320*k,y:(p.lat-la)*110540};});
+  }
+  function area(xy){var s=0;for(var i=0,n=xy.length;i<n;i++){var a=xy[i],b=xy[(i+1)%n];s+=a.x*b.y-b.x*a.y;}return Math.abs(s)/2;}
+  function perim(xy){var s=0;for(var i=0,n=xy.length;i<n;i++){var a=xy[i],b=xy[(i+1)%n];s+=Math.hypot(b.x-a.x,b.y-a.y);}return s;}
+  function minRect(xy){ // oriented bounding rectangle
+    var best=null;
+    for(var i=0,n=xy.length;i<n;i++){
+      var a=xy[i],b=xy[(i+1)%n],t=Math.atan2(b.y-a.y,b.x-a.x),c=Math.cos(-t),s=Math.sin(-t);
+      var x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+      xy.forEach(function(p){var x=p.x*c-p.y*s,y=p.x*s+p.y*c;x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);});
+      var w=x1-x0,h=y1-y0;if(!best||w*h<best.a)best={a:w*h,l:Math.max(w,h),w:Math.min(w,h)};
+    }
+    return best;
+  }
+  function inside(pt,poly){var c=false;for(var i=0,j=poly.length-1;i<poly.length;j=i++){var a=poly[i],b=poly[j];
+    if(((a.lat>pt.lat)!==(b.lat>pt.lat))&&(pt.lng<(b.lng-a.lng)*(pt.lat-a.lat)/(b.lat-a.lat)+a.lng))c=!c;}return c;}
+  function centroid(poly){var la=0,ln=0;poly.forEach(function(p){la+=p.lat;ln+=p.lng;});return {lat:la/poly.length,lng:ln/poly.length};}
+  function dist(a,b){var k=Math.cos(a.lat*Math.PI/180);return Math.hypot((a.lng-b.lng)*111320*k,(a.lat-b.lat)*110540);}
+
+  function measure(addr,cb){
+    var k=key(addr);if(!k)return;
+    if(MEAS[k]&&MEAS[k].v===1){cb&&cb(MEAS[k]);return;}
+    if(BUSY[k])return;BUSY[k]=1;paint();
+    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=0&q='+encodeURIComponent(addr),{headers:{'Accept-Language':es()?'es':'en'}})
+    .then(function(r){return r.json();})
+    .then(function(g){
+      if(!g||!g.length){MEAS[k]={v:1,status:'noaddr',addr:addr};return null;}
+      var lat=+g[0].lat,lng=+g[0].lon;
+      var q='[out:json][timeout:20];way["building"](around:45,'+lat+','+lng+');out geom tags;';
+      return fetch('https://overpass-api.de/api/interpreter',{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+      .then(function(r){return r.json();})
+      .then(function(o){
+        var pt={lat:lat,lng:lng},cands=[];
+        (o&&o.elements||[]).forEach(function(el){if(el.geometry&&el.geometry.length>3){var poly=el.geometry.map(function(p){return {lat:p.lat,lng:p.lon};});
+          if(poly[0].lat===poly[poly.length-1].lat&&poly[0].lng===poly[poly.length-1].lng)poly.pop();
+          cands.push({poly:poly,tags:el.tags||{},inside:inside(pt,poly),d:dist(pt,centroid(poly))});}});
+        cands.sort(function(a,b){return (b.inside-a.inside)||(a.d-b.d);});
+        var best=cands[0];
+        if(!best){MEAS[k]={v:1,status:'nofoot',addr:addr,lat:lat,lng:lng};return;}
+        var xy=local(best.poly),a=area(xy),rc=minRect(xy),lv=parseInt(best.tags['building:levels'],10);
+        MEAS[k]={v:1,status:'ok',addr:addr,lat:lat,lng:lng,poly:best.poly,areaM2:a,perimM:perim(xy),lenM:rc.l,widM:a/rc.l,rectW:rc.w,levels:(lv>0&&lv<60)?lv:null,exact:best.inside,neighbors:cands.length};
+      });
+    })
+    .catch(function(){MEAS[k]={v:1,status:'neterr',addr:addr,t:Date.now()};})
+    .then(function(){delete BUSY[k];if(MEAS[k]&&MEAS[k].status!=='neterr')save();paint();cb&&MEAS[k]&&cb(MEAS[k]);});
+  }
+  window.jtMeasure=measure;
+
+  function num(v,d){return (Math.round(v*Math.pow(10,d||0))/Math.pow(10,d||0)).toLocaleString('en-US');}
+  function L1(m){return metric()?m:m*FT;} // meters -> display length
+  function A1(m2){return metric()?m2:m2*FT*FT;}
+  function uL(){return metric()?'m':'ft';} function uA(){return metric()?'m²':'sq ft';}
+
+  // What each trade gets (all clearly marked as estimates from map data)
+  function fills(m,trade){
+    var lv=m.levels||1,len=L1(m.lenM),wid=L1(m.widM),aFoot=A1(m.areaM2),wallH=metric()?2.7*lv:9*lv;
+    var f={
+      roofing:{'roof-length':len,'roof-width':wid,'roof-pitch':null,'roof-layers':1},
+      solar:{'sol-length':len,'sol-width':wid,'sol-pitch':20},
+      general:{'gen-length':len,'gen-width':wid,'gen-height':metric()?3*lv:10*lv,'gen-qty':1},
+      electrical:{'elec-sqft':m.areaM2*lv*FT*FT,'elec-outlets':Math.max(8,Math.round(m.areaM2*lv*FT*FT/60)),'elec-switches':Math.max(4,Math.round(m.areaM2*lv*FT*FT/150)),'elec-panels':1},
+      hvac:{'hvac-length':len,'hvac-width':wid*lv,'hvac-height':metric()?2.4:8,'hvac-rooms':1},
+      painting:{'paint-length':L1(m.lenM),'paint-width':L1(m.rectW),'paint-height':wallH,'paint-doors':2,'paint-windows':Math.max(4,Math.round(m.perimM*FT/12)),'paint-coats':2},
+      plumbing:{'plumb-fixtures':Math.max(3,Math.round(m.areaM2*lv*FT*FT/350)),'plumb-hotwater':1}
+    };
+    return f[trade]||f.general;
+  }
+  var CALC={roofing:'calcRoofing',solar:'calcSolar',general:'calcGeneral',electrical:'calcElectrical',hvac:'calcHVAC',painting:'calcPainting',plumbing:'calcPlumbing'};
+
+  function applyFields(m){
+    var trade=(typeof ACTIVE_JOB!=='undefined'&&ACTIVE_JOB.trade)||'roofing',F=fills(m,trade),any=false;
+    Object.keys(F).forEach(function(id){var el=document.getElementById(id);if(!el||F[id]===null)return;
+      if(el.value&&!el.dataset.auto)return; // never overwrite what the user typed
+      var v=F[id];el.value=(Math.abs(v)>=100?Math.round(v):Math.round(v*10)/10);el.dataset.auto='1';
+      el.style.borderColor='rgba(255,107,43,.55)';any=true;
+      el.oninput=function(){this.dataset.auto='';this.style.borderColor='';};
+    });
+    var cid=CALC[trade],fn=window['_calc_'+cid],out=document.getElementById(cid+'-result');
+    if(any&&fn&&out){try{out.innerHTML=fn(es());out.style.display='block';}catch(e){}}
+    if(trade==='roofing'&&typeof ACTIVE_JOB!=='undefined')ACTIVE_JOB.sqft=Math.round(m.areaM2*FT*FT*1.054);
+  }
+
+  function sat(m){ // satellite photo with the roof outline drawn on it
+    var pts=m.poly.map(function(p){return merc(p.lat,p.lng);}),x0=1e18,x1=-1e18,y0=1e18,y1=-1e18;
+    pts.forEach(function(p){x0=Math.min(x0,p.x);x1=Math.max(x1,p.x);y0=Math.min(y0,p.y);y1=Math.max(y1,p.y);});
+    var cx=(x0+x1)/2,cy=(y0+y1)/2,W=640,H=400,half=Math.max((x1-x0)*0.9,(y1-y0)*0.9*W/H,25),hy=half*H/W;
+    var bb=[cx-half,cy-hy,cx+half,cy+hy];
+    var img='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox='+bb.join(',')+'&bboxSR=3857&imageSR=3857&size='+W+','+H+'&format=jpg&f=image';
+    var poly=pts.map(function(p){return ((p.x-bb[0])/(bb[2]-bb[0])*W).toFixed(1)+','+((bb[3]-p.y)/(bb[3]-bb[1])*H).toFixed(1);}).join(' ');
+    return '<div style="position:relative;width:100%;aspect-ratio:640/400;background:#111"><img src="'+img+'" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">'
+      +'<svg viewBox="0 0 640 400" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><polygon points="'+poly+'" fill="rgba(255,107,43,.22)" stroke="#FF6B2B" stroke-width="3" stroke-linejoin="round"/></svg></div>';
+  }
+
+  function panel(){
+    var a=(typeof BP_ADDR!=='undefined'&&BP_ADDR)||'',k=key(a),m=MEAS[k],e=es();
+    var box='border-radius:14px;overflow:hidden;border:1px solid rgba(255,107,43,.25);margin-bottom:16px;background:#12151d';
+    var hdr='<div style="background:rgba(255,107,43,.08);padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,107,43,.15)"><span style="font-size:14px">📡</span><p style="font-size:11px;font-weight:700;color:#FF6B2B;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+a.replace(/</g,'&lt;')+'</p></div>';
+    if(!a)return '';
+    if(BUSY[k])return '<div style="'+box+'">'+hdr+'<p style="padding:18px;text-align:center;color:#94A3B8;font-size:13px;margin:0">🛰️ '+(e?'Midiendo desde el mapa satelital…':'Measuring from satellite map data…')+'</p></div>';
+    if(!m)return '<div style="'+box+'">'+hdr+'<button onclick="jtMeasure(BP_ADDR)" style="display:block;width:100%;background:#FF6B2B;border:0;color:#fff;font-weight:800;padding:14px;font-size:14px;font-family:inherit;cursor:pointer">📡 '+(e?'Medir esta dirección':'Measure this address')+'</button></div>';
+    if(m.status==='noaddr')return '<div style="'+box+'">'+hdr+'<p style="padding:14px;color:#F59E0B;font-size:13px;margin:0">⚠️ '+(e?'No encontramos esa dirección. Agrega ciudad y estado, luego toca 🛰️.':'Address not found. Add city and state, then tap 🛰️.')+'</p></div>';
+    if(m.status==='neterr')return '<div style="'+box+'">'+hdr+'<p style="padding:14px;color:#F59E0B;font-size:13px;margin:0">📶 '+(e?'Sin conexión al mapa. Revisa tu internet y toca 🛰️ otra vez.':'Could not reach the map service. Check your connection and tap 🛰️ again.')+'</p></div>';
+    var gm='https://www.google.com/maps/@'+m.lat+','+m.lng+',40m/data=!3m1!1e3';
+    if(m.status==='nofoot')return '<div style="'+box+'">'+hdr+'<p style="padding:14px;color:#F59E0B;font-size:13px;margin:0;line-height:1.5">⚠️ '+(e?'Encontramos la dirección, pero el mapa no tiene el contorno de este edificio. Escribe las medidas abajo.':'Found the address, but the map has no outline for this building. Type the measurements below.')+' <a href="'+gm+'" target="_blank" rel="noopener" style="color:#FF6B2B">'+(e?'Ver satélite':'View satellite')+' →</a></p></div>';
+    var lv=m.levels||1,foot=A1(m.areaM2),pitchF=1.054,roof=foot*pitchF,sq=metric()?roof/9.29:roof/100;
+    var st='display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px';
+    return '<div style="'+box+'">'+hdr+sat(m)
+      +'<div style="padding:12px 14px">'
+      +'<p style="font-size:10px;font-weight:800;color:#22C55E;letter-spacing:1px;text-transform:uppercase;margin:0 0 6px">✅ '+(e?'MEDIDAS AUTOMÁTICAS':'AUTO MEASUREMENTS')+'</p>'
+      +'<div style="'+st+'"><span style="color:#94A3B8">'+(e?'Huella del edificio':'Building footprint')+'</span><b>'+num(foot)+' '+uA()+'</b></div>'
+      +'<div style="'+st+'"><span style="color:#94A3B8">'+(e?'Largo × ancho (aprox.)':'Length × width (approx.)')+'</span><b>'+num(L1(m.lenM))+' × '+num(L1(m.widM))+' '+uL()+'</b></div>'
+      +'<div style="'+st+'"><span style="color:#94A3B8">'+(e?'Perímetro':'Perimeter')+'</span><b>'+num(L1(m.perimM))+' '+uL()+'</b></div>'
+      +'<div style="'+st+'"><span style="color:#94A3B8">'+(e?'Pisos':'Stories')+'</span><b>'+lv+(m.levels?'':' '+(e?'(supuesto)':'(assumed)'))+'</b></div>'
+      +'<div style="'+st+'"><span style="color:#94A3B8">'+(e?'Techo a 4/12 (+10% desperdicio)':'Roof at 4/12 (+10% waste)')+'</span><b style="color:#FF6B2B">'+num(sq,1)+' → '+num(sq*1.1,1)+' squares</b></div>'
+      +'<p style="font-size:11px;color:#94A3B8;margin:10px 0 0;line-height:1.5">📡 '+(e?'Medido del contorno del edificio en el mapa. Ya llenamos las medidas de tu oficio abajo (bordes naranjas) — cambia de oficio y se llenan solas. Estimado: confirma en sitio, el alero no está incluido.':'Measured from the building outline on the map. Your trade\'s fields below are already filled in (orange borders) — switch trades and they fill in too. Estimate: confirm on site; roof overhang is not included.')
+      +(m.exact?'':' <b style="color:#F59E0B">'+(e?'Revisa que el contorno naranja sea el edificio correcto.':'Check that the orange outline is the right building.')+'</b>')
+      +' <a href="'+gm+'" target="_blank" rel="noopener" style="color:#FF6B2B">Google Maps →</a></p>'
+      +'</div></div>';
+  }
+
+  function paint(){
+    var v=document.getElementById('bp-satellite-view');if(!v)return;
+    v.innerHTML=panel();v.style.display='block';
+    var a=(typeof BP_ADDR!=='undefined'&&BP_ADDR)||'',m=MEAS[key(a)];
+    if(m&&m.status==='ok')applyFields(m);
+  }
+  window.jtMeasPaint=paint;
+
+  // 🛰️ button / Enter: measure the typed address
+  window.lookupAddress=function(){
+    var inp=document.getElementById('bp-addr-inp');if(!inp||!inp.value.trim())return;
+    BP_ADDR=inp.value.trim();if(typeof ACTIVE_JOB!=='undefined')ACTIVE_JOB.addr=BP_ADDR;
+    try{solJobSpec.address=BP_ADDR;}catch(e){}
+    try{if(typeof CURRENT_JOB_ID!=='undefined'&&CURRENT_JOB_ID){var cj=JOBS.find(function(x){return x.id===CURRENT_JOB_ID;});if(cj)cj._jtAddr=BP_ADDR;}}catch(e){}
+    var k=key(BP_ADDR);if(MEAS[k]&&MEAS[k].status!=='ok')delete MEAS[k]; // retry failures
+    measure(BP_ADDR);paint();
+  };
+
+  // keep the panel + filled fields after every screen redraw, and auto-measure when an address is set
+  function hook(name){var f=window[name];if(typeof f!=='function')return;window[name]=function(){var r=f.apply(this,arguments);try{after();}catch(e){}return r;};}
+  var typing=null;
+  function after(){
+    var inp=document.getElementById('bp-addr-inp');
+    if(inp&&!inp.dataset.jtm){inp.dataset.jtm=1;
+      inp.addEventListener('input',function(){clearTimeout(typing);var v=this.value.trim();
+        if(v.length>=8&&/\d/.test(v)&&/[a-zA-Z]{3,}/.test(v))typing=setTimeout(function(){BP_ADDR=v;if(typeof ACTIVE_JOB!=='undefined')ACTIVE_JOB.addr=v;measure(v);paint();},1600);});}
+    if(!document.getElementById('bp-satellite-view'))return;
+    var a=(typeof BP_ADDR!=='undefined'&&BP_ADDR)||'';
+    if(a&&!MEAS[key(a)]&&!BUSY[key(a)])measure(a);
+    paint();
+  }
+  // job workspace: use that job's address automatically
+  var _ws=window.renderJobWorkspace;
+  if(typeof _ws==='function')window.renderJobWorkspace=function(id){
+    try{var j=JOBS.find(function(x){return x.id===id;});if(j&&(j._jtAddr||j.addr))BP_ADDR=j._jtAddr||j.addr;}catch(e){}
+    var r=_ws.apply(this,arguments);try{after();}catch(e){}return r;};
+  hook('renderJobsHub');
+  var _ra=window.renderAll;if(typeof _ra==='function')window.renderAll=function(){var r=_ra.apply(this,arguments);try{after();}catch(e){}return r;};
 })();
 </script>
 <script>
