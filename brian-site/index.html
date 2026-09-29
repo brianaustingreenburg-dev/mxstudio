@@ -490,7 +490,7 @@ window.bizMail=function(to,subj,body){
     <div>
       <div id="script-opener" class="sb" style="display:none">
         <div class="sb-lbl">Opener — First 10 Seconds</div>
-        <div class="sb-txt">"Hey — my name’s Lalo, Brian Lalo. I’m the owner of MX Studio. Hey, you got a second?"<br><br><strong>They say sure →</strong><br><br>"Let me ask you something. When you open up your app every day — are you happy with what you see?"<br><br><strong>Let them answer. Have a conversation. Then →</strong> Go to Pitch.</div>
+        <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
       </div>
       <div id="script-pitch" class="sb" style="display:none">
@@ -500,9 +500,6 @@ window.bizMail=function(to,subj,body){
 <strong>🛡️ Safety</strong><br>
 OSHA checklist — required before every job starts. Covers all 7 trades. Can't skip it.<br><br>
 
-<strong>🤖 AI Assistant</strong><br>
-Built into app + dashboard. Handles payroll, scheduling, answers crew questions. Works offline.<br><br>
-
 <strong>💼 Jobs Tab</strong><br>
 Create jobs, assign crew, track materials, manage change orders. See everything in the field in real time.<br><br>
 
@@ -510,16 +507,13 @@ Create jobs, assign crew, track materials, manage change orders. See everything 
 Command center for owners. Weather, alerts, crew status, invoices, financial snapshot. Live.<br><br>
 
 <strong>🛰️ Satellite Viewer</strong><br>
-Type any address — pulls up the roof. Measure on the spot. No other app does this.<br><br>
+Type any address — the roof outline and measurements fill in by themselves, for every trade.<br><br>
 
 <strong>👥 Unlimited Users</strong><br>
 Add your whole crew, office, subs. 1 or 100 — same $137/mo. No per-seat fees. Ever.<br><br>
 
 <strong>💰 Payroll Export</strong><br>
-Gusto, QuickBooks, Deel — all included. No extra cost.<br><br>
-
-<strong>📶 100% Offline</strong><br>
-Everything works with zero signal. Blueprint caches after first load.<br><br>
+Crew hours ready to export for Gusto, QuickBooks or Deel. No extra cost.<br><br>
 
 <strong>🇲🇽🤝🇺🇸 US + Mexico</strong><br>
 Full English + Spanish. US shingles + Mexico materials. Both markets. One app.<br><br>
@@ -561,7 +555,7 @@ Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
       </div>
       <div id="script-close" class="sb active">
         <div class="sb-lbl">The Close</div>
-        <div class="sb-txt">"Here's what I'd like to do — get you set up today. $137/mo. That is over $300 worth of tools, and your price is locked for life. Cancel anytime, lifetime money-back guarantee (terms apply).<br><br>I'll send the payment link right now — 2 minutes and your crew is running their first job tomorrow.<br><br><strong>You ready to go?</strong>"<br><br><strong>If yes →</strong> Hit "Send Payment Link" in Prospects tab.<br><strong>If hesitating →</strong> "What's the one thing holding you back? Let's solve it."</div>
+        <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month, for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout $137/mo in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
         <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
         <div style="display:flex;gap:8px;margin-top:12px">
           <button onclick="copyStripe(this)" style="flex:1;background:var(--orange);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💳 Copy Stripe Link — $137/mo</button>
@@ -863,7 +857,7 @@ function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'
 function buildMsg(name){
   var link='https://go.myjefetech.app/checkout.html?ref=brian';
   var appLink='https://myjefetech.app';
-  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ AI assistant built in\n✅ Works 100% offline — no signal needed\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo. No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸";
+  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ Type the address — roof measurements fill in automatically\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo. No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸";
 }
 
 function sendLink(type){
@@ -1354,7 +1348,7 @@ upd();
     <div>
       <div id="script-opener" class="sb" style="display:none">
         <div class="sb-lbl">Opener — First 10 Seconds</div>
-        <div class="sb-txt">"Hey — my name’s Lalo, Brian Lalo. I’m the owner of MX Studio. Hey, you got a second?"<br><br><strong>They say sure →</strong><br><br>"Let me ask you something. When you open up your app every day — are you happy with what you see?"<br><br><strong>Let them answer. Have a conversation. Then →</strong> Go to Pitch.</div>
+        <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
       </div>
       <div id="script-pitch" class="sb" style="display:none">
@@ -1364,9 +1358,6 @@ upd();
 <strong>🛡️ Safety</strong><br>
 OSHA checklist — required before every job starts. Covers all 7 trades. Can't skip it.<br><br>
 
-<strong>🤖 AI Assistant</strong><br>
-Built into app + dashboard. Handles payroll, scheduling, answers crew questions. Works offline.<br><br>
-
 <strong>💼 Jobs Tab</strong><br>
 Create jobs, assign crew, track materials, manage change orders. See everything in the field in real time.<br><br>
 
@@ -1374,16 +1365,13 @@ Create jobs, assign crew, track materials, manage change orders. See everything 
 Command center for owners. Weather, alerts, crew status, invoices, financial snapshot. Live.<br><br>
 
 <strong>🛰️ Satellite Viewer</strong><br>
-Type any address — pulls up the roof. Measure on the spot. No other app does this.<br><br>
+Type any address — the roof outline and measurements fill in by themselves, for every trade.<br><br>
 
 <strong>👥 Unlimited Users</strong><br>
 Add your whole crew, office, subs. 1 or 100 — same $137/mo. No per-seat fees. Ever.<br><br>
 
 <strong>💰 Payroll Export</strong><br>
-Gusto, QuickBooks, Deel — all included. No extra cost.<br><br>
-
-<strong>📶 100% Offline</strong><br>
-Everything works with zero signal. Blueprint caches after first load.<br><br>
+Crew hours ready to export for Gusto, QuickBooks or Deel. No extra cost.<br><br>
 
 <strong>🇲🇽🤝🇺🇸 US + Mexico</strong><br>
 Full English + Spanish. US shingles + Mexico materials. Both markets. One app.<br><br>
@@ -1425,7 +1413,7 @@ Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
       </div>
       <div id="script-close" class="sb active">
         <div class="sb-lbl">The Close</div>
-        <div class="sb-txt">"Here's what I'd like to do — get you set up today. $137/mo. That is over $300 worth of tools, and your price is locked for life. Cancel anytime, lifetime money-back guarantee (terms apply).<br><br>I'll send the payment link right now — 2 minutes and your crew is running their first job tomorrow.<br><br><strong>You ready to go?</strong>"<br><br><strong>If yes →</strong> Hit "Send Payment Link" in Prospects tab.<br><strong>If hesitating →</strong> "What's the one thing holding you back? Let's solve it."</div>
+        <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month, for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout $137/mo in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
         <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
         <div style="display:flex;gap:8px;margin-top:12px">
           <button onclick="copyStripe(this)" style="flex:1;background:var(--orange);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💳 Copy Stripe Link — $137/mo</button>
@@ -1797,7 +1785,7 @@ function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'
 function buildMsg(name){
   var link='https://go.myjefetech.app/checkout.html?ref=brian';
   var appLink='https://myjefetech.app';
-  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ AI assistant built in\n✅ Works 100% offline — no signal needed\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo. No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸";
+  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ Type the address — roof measurements fill in automatically\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo. No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸";
 }
 
 function sendLink(type){
@@ -3410,7 +3398,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 29 · 10:15 AM';
+  var VERSION='Sept 29 · 10:20 AM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
