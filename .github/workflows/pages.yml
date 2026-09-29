@@ -23,6 +23,8 @@ jobs:
           cp -R daniel out/mexico
           cp -R cristian out/us
           cp -R partners-site/public out/partners
+          cp -R jefetech-app out/app
+          cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects
           touch out/.nojekyll
