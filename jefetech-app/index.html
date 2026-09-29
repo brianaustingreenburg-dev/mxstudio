@@ -3107,13 +3107,13 @@ function renderProjectManager(){
   // Job board
   html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">'
     +'<p style="font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:1px;text-transform:uppercase;margin:0">📋 '+(es?'TABLERO DE TRABAJOS':'JOB BOARD')+'</p>'
-    +'<button onclick="TAB=\'projects\';renderAll()" style="background:#FF6B2B;border:none;border-radius:10px;padding:7px 12px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">+ '+(es?'Nuevo':'New')+'</button>'
+    +'<button onclick="jtNewJob()" style="background:#FF6B2B;border:none;border-radius:10px;padding:7px 12px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">+ '+(es?'Nuevo':'New')+'</button>'
     +'</div>';
 
   if(JOBS.length===0){
     html+='<div style="text-align:center;padding:32px">'
       +'<p style="font-size:36px">📋</p>'
-      +'<p style="font-size:13px;color:#555">'+(es?'Sin trabajos. Ve a la pestaña Trabajos para crear uno.':'No jobs. Go to the Jobs tab to create one.')+'</p>'
+      +'<p style="font-size:13px;color:#555">'+(es?'Aún no hay trabajos. Toca + Nuevo para agregar el primero.':'No jobs yet. Tap + New to add your first one.')+'</p>'
       +'</div>';
   }
 
@@ -3150,7 +3150,7 @@ function renderProjectManager(){
     +'<button onclick="TAB=\'fishing\';renderAll()" style="background:#1a1d27;border:1px solid rgba(255,107,43,.25);border-radius:12px;padding:14px;color:#FF6B2B;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px">🚪 '+(es?'La puerta trasera':'Behind the back door')+'</button>'
     +'<button onclick="TAB=\'safety\';renderAll()" style="background:#1a1d27;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;color:#E8E0D5;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px">🛡️ '+(es?'Seguridad':'Safety')+'</button>'
     +'<button onclick="exportAllPayroll()" style="background:#1a1d27;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;color:#E8E0D5;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px">📊 '+(es?'Exportar nómina':'Export Payroll')+'</button>'
-    +'<button onclick="sendAllReports()" style="background:#1a1d27;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;color:#E8E0D5;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px">📤 '+(es?'Enviar reportes':'Send Reports')+'</button>'    +'</div>'    +'<a href="https://go.myjefetech.app/la-forja.html" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,rgba(255,107,43,.15),rgba(255,107,43,.05));border:1px solid rgba(255,107,43,.3);border-radius:14px;padding:16px;text-decoration:none;margin-top:8px">'    +'<span style="font-size:22px">✝️</span>'    +'<div style="text-align:left">'    +'<p style="font-size:14px;font-weight:800;color:#FF6B2B;margin:0">La Forja</p>'    +'<p style="font-size:11px;color:#555;margin:0">'+(es?'Sala de Guerra — Para el Jefe':'War Room — For the Boss')+'</p>'    +'</div>'    +'<span style="font-size:16px;color:#FF6B2B;margin-left:auto">→</span>'    +'</a>'
+    +'<button onclick="sendAllReports()" style="background:#1a1d27;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;color:#E8E0D5;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px">📤 '+(es?'Enviar reportes':'Send Reports')+'</button>'    +'</div>'    +'<a href="'+(window.JT_CUSTOMER?'https://go.myjefetech.app/owner.html':'https://go.myjefetech.app/la-forja.html')+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,rgba(255,107,43,.15),rgba(255,107,43,.05));border:1px solid rgba(255,107,43,.3);border-radius:14px;padding:16px;text-decoration:none;margin-top:8px">'    +'<span style="font-size:22px">✝️</span>'    +'<div style="text-align:left">'    +'<p style="font-size:14px;font-weight:800;color:#FF6B2B;margin:0">La Forja</p>'    +'<p style="font-size:11px;color:#555;margin:0">'+(es?'Sala de Guerra — Para el Jefe':'War Room — For the Boss')+'</p>'    +'</div>'    +'<span style="font-size:16px;color:#FF6B2B;margin-left:auto">→</span>'    +'</a>'
     +'</div>'
     +'</div>';
 
@@ -3720,6 +3720,67 @@ function init(){
   },1800);
 }
 init();
+</script>
+<script>
+/* 👷 CUSTOMER MODE + SAVING + NEW JOB ✝️
+   Demo (myjefetech.app): sample jobs to show prospects.
+   Customer app (go.myjefetech.app/app/): starts empty and saves everything on the phone. */
+(function(){
+  var q=location.search,KEY='jt-data-v1';
+  var CUSTOMER=(/^\/app(\/|$)/.test(location.pathname)||/[?&]customer=1\b/.test(q))&&!/[?&]demo=1\b/.test(q);
+  window.JT_CUSTOMER=CUSTOMER;
+  function snapshot(){return JSON.stringify({v:1,JOBS:JOBS,CREW:CREW,CHANGE_ORDERS:CHANGE_ORDERS,BP_SAVED:BP_SAVED,SUPPLIERS:SUPPLIERS,ACTIVE_JOB:ACTIVE_JOB,COMPANY:window.JT_COMPANY||'',saved:new Date().toISOString()});}
+  if(CUSTOMER){
+    var d=null;try{d=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
+    if(d&&d.v===1){
+      JOBS=d.JOBS||[];CREW=d.CREW||[];CHANGE_ORDERS=d.CHANGE_ORDERS||[];BP_SAVED=d.BP_SAVED||[];
+      if(d.SUPPLIERS&&d.SUPPLIERS.length)SUPPLIERS=d.SUPPLIERS;if(d.ACTIVE_JOB)ACTIVE_JOB=d.ACTIVE_JOB;window.JT_COMPANY=d.COMPANY||'';
+    }else{
+      JOBS=[];CREW=[];CHANGE_ORDERS=[];BP_SAVED=[];
+      // keep the national supplier list, drop the sample city branches
+      SUPPLIERS=SUPPLIERS.filter(Boolean).map(function(s){var c=JSON.parse(JSON.stringify(s));c.branches=[];c.notes='';return c;});
+      ACTIVE_JOB={id:null,name:'',addr:'',sqft:0,sqm:0,lat:null,lng:null,items:[],deposit:40,total:0,crew:[],notes:'',date:''};
+    }
+    var last='';
+    function save(){try{var s=snapshot();if(s!==last){localStorage.setItem(KEY,s);last=s;}}catch(e){}}
+    setInterval(save,3000);
+    window.addEventListener('pagehide',save);
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')save();});
+    window.jtSave=save;
+  }else{window.jtSave=function(){};}
+
+  // ➕ New job (works in demo and customer app)
+  window.jtNewJob=function(){
+    var es=typeof L!=='undefined'&&L==='es';
+    var o=document.createElement('div');o.id='jt-newjob';
+    o.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+    var IN='width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px;color:#fff;font-size:16px;font-family:inherit;margin:4px 0 12px;box-sizing:border-box';
+    var trades=[['roofing','🏠',es?'Techado':'Roofing'],['hvac','❄️','HVAC'],['painting','🎨',es?'Pintura':'Painting'],['electrical','⚡',es?'Electricidad':'Electrical'],['plumbing','🔧',es?'Plomería':'Plumbing'],['solar','☀️','Solar'],['general','🔨',es?'General':'General']];
+    o.innerHTML='<div style="background:#12151d;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px;width:100%;max-width:400px;max-height:90vh;overflow:auto">'
+      +'<p style="font-size:17px;font-weight:800;color:#fff;margin:0 0 12px">➕ '+(es?'Nuevo trabajo':'New job')+'</p>'
+      +'<label style="font-size:11px;font-weight:700;color:#94A3B8">'+(es?'CLIENTE / NOMBRE DEL TRABAJO':'CLIENT / JOB NAME')+'</label><input id="nj-name" style="'+IN+'" placeholder="'+(es?'Ej: Casa García — techo nuevo':'e.g. Garcia home — new roof')+'">'
+      +'<label style="font-size:11px;font-weight:700;color:#94A3B8">'+(es?'DIRECCIÓN':'ADDRESS')+'</label><input id="nj-addr" style="'+IN+'" placeholder="'+(es?'Calle, número, ciudad':'Street, number, city, state')+'">'
+      +'<label style="font-size:11px;font-weight:700;color:#94A3B8">'+(es?'OFICIO':'TRADE')+'</label><select id="nj-trade" style="'+IN+'">'+trades.map(function(t){return '<option value="'+t[0]+'">'+t[1]+' '+t[2]+'</option>';}).join('')+'</select>'
+      +'<label style="font-size:11px;font-weight:700;color:#94A3B8">'+(es?'VALOR DEL TRABAJO':'JOB VALUE')+' ('+(typeof CS!=='undefined'?CS:'$')+')</label><input id="nj-val" type="number" inputmode="decimal" style="'+IN+'" placeholder="0">'
+      +'<p style="font-size:11px;color:#94A3B8;margin:-4px 0 12px">📡 '+(es?'Las medidas de la dirección se llenan solas.':'The address measurements fill in automatically.')+'</p>'
+      +'<div style="display:grid;grid-template-columns:1fr 2fr;gap:8px"><button id="nj-x" style="background:rgba(255,255,255,.08);border:0;border-radius:12px;padding:13px;color:#fff;font-weight:700;font-family:inherit">'+(es?'Cancelar':'Cancel')+'</button>'
+      +'<button id="nj-ok" style="background:#FF6B2B;border:0;border-radius:12px;padding:13px;color:#fff;font-weight:800;font-family:inherit">'+(es?'Crear trabajo':'Create job')+'</button></div></div>';
+    document.body.appendChild(o);
+    o.onclick=function(e){if(e.target===o)o.remove();};
+    document.getElementById('nj-x').onclick=function(){o.remove();};
+    setTimeout(function(){document.getElementById('nj-name').focus();},50);
+    document.getElementById('nj-ok').onclick=function(){
+      var name=document.getElementById('nj-name').value.trim(),addr=document.getElementById('nj-addr').value.trim();
+      if(!name&&!addr){document.getElementById('nj-name').focus();return;}
+      var job={id:'j'+Date.now(),name:name||addr,addr:addr,status:'active',trade:document.getElementById('nj-trade').value,progress:0,
+        value:parseFloat(document.getElementById('nj-val').value)||0,crew:0,payments:[],photos:[],invoiceSent:false,materialsNeeded:[],report:'',changeOrders:[],nextJob:null,created:new Date().toISOString()};
+      JOBS.unshift(job);o.remove();
+      try{ACTIVE_JOB.trade=job.trade;ACTIVE_JOB.addr=addr;}catch(e){}
+      window.jtSave();
+      TAB='projects';CURRENT_JOB_ID=job.id;renderAll();
+    };
+  };
+})();
 </script>
 <script>
 /* Fixes Sept 29 ✝️ */

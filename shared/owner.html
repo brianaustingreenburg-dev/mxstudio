@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>La Forja — JefeTech War Room</title>
+<title>La Forja — Owner Dashboard · JefeTech</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -145,14 +145,14 @@ html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'
   <span class="hdr-cross">✝️</span>
   <div class="hdr-brand">
     <div class="hdr-name">La Forja</div>
-    <div class="hdr-sub" data-en="JefeTech · MX Studio · War Room" data-es="JefeTech · MX Studio · Sala de Guerra">JefeTech · MX Studio · War Room</div>
+    <div class="hdr-sub" data-en="JefeTech · Owner Dashboard" data-es="JefeTech · Panel del Dueño">JefeTech · Owner Dashboard</div>
   </div>
   <div class="hdr-right">
     <div class="pulse"></div>
     <span class="live-label">LIVE</span>
     <span class="clock" id="clock">--:--</span>
     <button onclick="sendToOffice()" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#22C55E;cursor:pointer;font-family:inherit" data-en="📤 Share" data-es="📤 Compartir">📤 Share</button>
-    <a href="https://myjefetech.app" target="_blank" rel="noopener" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.25);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#FF6B2B;text-decoration:none">📱 App</a>
+    <a href="https://go.myjefetech.app/app/" target="_blank" rel="noopener" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.25);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#FF6B2B;text-decoration:none">📱 App</a>
     <button class="lang-btn" onclick="toggleLang()">ES</button>
     <button class="lang-btn" onclick="location.replace(location.href.split('?')[0]+'?v='+Date.now())" title="Refresh" data-en="🔄 Refresh" data-es="🔄 Actualizar">🔄 Refresh</button>
   </div>
@@ -169,6 +169,11 @@ html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'
 </div>
 
 <main class="main">
+  <div id="jt-connect" style="display:none;background:linear-gradient(135deg,rgba(255,107,43,.14),rgba(255,107,43,.04));border:1px solid rgba(255,107,43,.35);border-radius:16px;padding:18px;margin:6px 0 18px">
+    <p style="font-size:16px;font-weight:800;color:#fff;margin:0 0 6px" data-en="👋 Welcome to your owner dashboard" data-es="👋 Bienvenido a tu panel de dueño">👋 Welcome to your owner dashboard</p>
+    <p style="font-size:13px;color:#cbd5e1;line-height:1.55;margin:0 0 12px" data-en="It's empty because you haven't added anything yet. Open your JefeTech app, tap Project Mgr → + New to add a job, and add your crew. Everything shows up here automatically on this phone or computer." data-es="Está vacío porque aún no agregas nada. Abre tu app JefeTech, toca Gest. Proy. → + Nuevo para agregar un trabajo y agrega tu cuadrilla. Todo aparece aquí solo en este teléfono o computadora.">It's empty because you haven't added anything yet. Open your JefeTech app, tap Project Mgr → + New to add a job, and add your crew. Everything shows up here automatically on this phone or computer.</p>
+    <a href="https://go.myjefetech.app/app/" style="display:inline-block;background:#FF6B2B;color:#fff;font-weight:800;font-size:14px;padding:11px 16px;border-radius:10px;text-decoration:none" data-en="📱 Open my JefeTech app" data-es="📱 Abrir mi app JefeTech">📱 Open my JefeTech app</a>
+  </div>
 
   <!-- FORJA TITLE -->
   <div class="forja-title">
@@ -441,35 +446,18 @@ html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'
 <script>
 var LANG='en';
 
-// ── Sample data (mirrors app state) ──────────────────────────
-var JOBS=[
-  {id:'j1',name:'Martinez Residence — Full Tear Off',addr:'1425 Oak St, Austin TX 78701',status:'active',progress:65,value:12500,crew:4,trade:'roofing',
-   payments:[{amount:4000,method:'Check'},{amount:2000,method:'Zelle'}],photos:['x'],date:'2026-09-20',
-   invoiceSent:false,materialsNeeded:['Shingles x20 bundles','Felt paper x2 rolls'],
-   report:'Tear off complete on east side. Starting on west tomorrow. Weather holding.',
-   changeOrders:[],nextJob:new Date(Date.now()+1*864e5).toISOString()},
-  {id:'j2',name:'Downtown Office Complex — HVAC',addr:'2200 Congress Ave, Austin TX 78704',status:'active',progress:30,value:28000,crew:3,trade:'hvac',
-   payments:[{amount:8000,method:'Card'}],photos:[],date:'2026-09-19',
-   invoiceSent:true,materialsNeeded:['Duct tape x5','Copper fittings 1/2 in x12'],
-   report:'',changeOrders:[{desc:'Added 2 extra vents in conference room',amount:850}],nextJob:new Date(Date.now()+2*864e5).toISOString()},
-  {id:'j3',name:'Riverside Apartments — Painting',addr:'800 Riverside Dr, Austin TX 78704',status:'active',progress:85,value:9200,crew:2,trade:'painting',
-   payments:[{amount:4600,method:'Check'},{amount:2000,method:'Venmo'}],photos:['x','x','x'],date:'2026-09-18',
-   invoiceSent:true,materialsNeeded:[],
-   report:'Two units left. On track to finish tomorrow.',
-   changeOrders:[],nextJob:new Date(Date.now()+1*864e5).toISOString()},
-  {id:'j4',name:'Highland Hills — Solar Install',addr:'3300 Bee Cave Rd, Austin TX 78746',status:'complete',progress:100,value:22000,crew:0,trade:'solar',
-   payments:[{amount:22000,method:'Stripe'}],photos:['x','x'],date:'2026-09-15',
-   invoiceSent:true,materialsNeeded:[],report:'Job complete. System online.',
-   changeOrders:[],nextJob:null},
-];
-
-var CREW=[
-  {id:'c1',name:'Carlos Mendoza',role:'Lead Roofer',clockIn:(function(){var d=new Date();d.setHours(7,15,0,0);return new Date(Math.min(d.getTime(),Date.now()-60*60000)).toISOString();})(),clockOut:null,pay:950},
-  {id:'c2',name:'Miguel Ruiz',role:'Roofer',clockIn:(function(){var d=new Date();d.setHours(7,30,0,0);return new Date(Math.min(d.getTime(),Date.now()-50*60000)).toISOString();})(),clockOut:null,pay:850},
-  {id:'c3',name:'Roberto Sanchez',role:'Laborer',clockIn:(function(){var d=new Date();d.setHours(7,45,0,0);return new Date(Math.min(d.getTime(),Date.now()-40*60000)).toISOString();})(),clockOut:null,pay:750},
-  {id:'c4',name:'Jose Garcia',role:'HVAC Tech',clockIn:(function(){var d=new Date();d.setHours(8,0,0,0);return new Date(Math.min(d.getTime(),Date.now()-30*60000)).toISOString();})(),clockOut:null,pay:1100},
-  {id:'c5',name:'Luis Torres',role:'Painter',clockIn:null,clockOut:null,pay:800},
-];
+// ── Your data: read from the JefeTech app saved on this device ──
+var JT_KEY='jt-data-v1';
+function jtLoad(){var d=null;try{d=JSON.parse(localStorage.getItem(JT_KEY)||'null');}catch(e){}return (d&&d.v===1)?d:null;}
+var JT_D=jtLoad();
+var JOBS=(JT_D&&JT_D.JOBS)||[];
+var CREW=(JT_D&&JT_D.CREW)||[];
+function jtWx(){ // weather at your first active job that has been measured
+  var m={};try{m=JSON.parse(localStorage.getItem('jt-meas-v1')||'{}')||{};}catch(e){}
+  var js=JOBS.filter(function(j){return j.status==='active'&&j.addr;}).concat(JOBS.filter(function(j){return j.addr;}));
+  for(var i=0;i<js.length;i++){var r=m[String(js[i].addr).trim().toLowerCase().replace(/\s+/g,' ')];if(r&&r.lat)return {lat:r.lat,lng:r.lng,name:js[i].name.split('—')[0].trim()};}
+  return null;
+}
 
 // ── Send to Office ────────────────────────────────────────────
 function copyForjaLink(){
@@ -695,6 +683,9 @@ function renderNextJobs(){
 
 // ── Render ────────────────────────────────────────────────────
 function renderAll(){
+  JT_D=jtLoad();JOBS=(JT_D&&JT_D.JOBS)||[];CREW=(JT_D&&JT_D.CREW)||[];
+  var cn=document.getElementById('jt-connect');if(cn)cn.style.display=JOBS.length||CREW.length?'none':'block';
+  var wb=document.getElementById('weather-board');if(wb&&/🌤️ (Add a job|Agrega un trabajo)/.test(wb.innerText)&&jtWx()&&typeof fetchWeather==='function')setTimeout(fetchWeather,0);
   renderKPIs();
   renderJobBoard();
   renderAlerts();
@@ -908,11 +899,13 @@ function fetchWeather(){
   }
 
   function tryAcapulco(){
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=30.267&longitude=-97.743&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Mexico_City')
+    var W=jtWx();
+    if(!W){document.getElementById('weather-board').innerHTML='<div style="text-align:center;padding:14px;color:var(--dim);font-size:12px;line-height:1.5">🌤️ '+(es?'Agrega un trabajo con dirección en la app y aquí verás el clima de la obra.':'Add a job with an address in the app to see the job-site weather here.')+'</div>';return;}
+    fetch('https://api.open-meteo.com/v1/forecast?latitude='+W.lat+'&longitude='+W.lng+'&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Mexico_City')
       .then(function(r){return r.json();})
       .then(function(w){
         var cur=w.current;
-        renderWeather(Math.round(cur.temperature_2m),Math.round(cur.wind_speed_10m),cur.relative_humidity_2m,cur.weather_code,es?'Austin, TX · obras':'Austin, TX · job sites');
+        renderWeather(Math.round(cur.temperature_2m),Math.round(cur.wind_speed_10m),cur.relative_humidity_2m,cur.weather_code,W.name);
       })
       .catch(function(){
         document.getElementById('weather-board').innerHTML=
@@ -1056,7 +1049,9 @@ function callCrewMeeting(){
 renderAll();
 fetchWeather();
 // Refresh data every 60 seconds
-setInterval(renderAll,60000);
+setInterval(renderAll,15000);
+window.addEventListener('storage',function(e){if(e.key===JT_KEY)renderAll();});
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')renderAll();});
 initAI();
 
 // ── Claude AI Assistant ───────────────────────────────────────
