@@ -2346,9 +2346,10 @@ upd();
     var lang=document.getElementById('sb-lang').value,m=msg(p,lang),btn=document.getElementById('sb-send');
     sending=true;btn.disabled=true;btn.textContent='Sending…';status('Sending from your Gmail…');
     getMcp().then(function(mcp){
-      if(!mcp){throw {code:'not_granted'};}
+      if(!mcp){bizMail(to,m.subject,m.text);return 'opened';}
       return mcp.callTool('Gmail','send_message',{to:[to],subject:m.subject,body:m.text,htmlBody:m.html});
-    }).then(function(){
+    }).then(function(r){
+      if(r==='opened'){sending=false;btn.disabled=false;btn.textContent='📧 Send links by email';status('Gmail opened as brian@myjefetech.app with everything filled in. Just press Send.','var(--green)');return;}
       SENT[i]={to:to,at:Date.now()};EM[i]=to;saveL();
       S.notes[i]=((S.notes[i]||'')+'\n📧 Links emailed to '+to+' · '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})).trim();
       if(getStatus(i)==='new')S.statuses[i]='called';
@@ -3400,7 +3401,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 28 · 7:00 PM';
+  var VERSION='Sept 28 · 7:45 PM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
