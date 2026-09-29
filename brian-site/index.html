@@ -2937,6 +2937,7 @@ upd();
     pay:{l:'💳 Checkout $137/mo',d:'Checkout: they pay, then get their app + dashboard',txt:'💳 Get started, $137/mo for your whole crew. Over $300 of value, price locked for life. Cancel anytime, lifetime money-back guarantee (terms apply):\n',url:'https://go.myjefetech.app/checkout.html?ref=brian'}
   };
   var ORDER=['app','dash','bapp','bdash','pay'];
+  try{[['bapp',/^https?:\/\/(www\.)?myjefetech\.app\/?$/],['bdash',/la-forja\.html/]].forEach(function(m){var v=localStorage.getItem('mx-link-'+m[0])||'';if(m[1].test(v))localStorage.removeItem('mx-link-'+m[0]);});}catch(e){}
   function U(k){var v='';try{v=localStorage.getItem('mx-link-'+k)||'';}catch(e){}return v||DEF[k].url;}
   var LINKS=ORDER.map(function(k){return {k:k,get l(){return DEF[k].l;},get txt(){return DEF[k].txt;},get url(){return U(k);}};});
   window.mxDealLinks={DEF:DEF,ORDER:ORDER,U:U};
@@ -3409,7 +3410,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 29 · 7:45 AM';
+  var VERSION='Sept 29 · 10:15 AM';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
