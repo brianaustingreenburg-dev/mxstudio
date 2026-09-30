@@ -250,6 +250,33 @@ window.bizMail=function(to,subj,body){
   var w=window.open(u,'_blank');if(!w)location.href=u;
 };
 </script>
+<style id="deals-6040">
+/* Prospects & Deals: list 40%, prospect panel 60% on computers; packages two across ✝️ */
+@media (min-width:761px){
+  #tab-deals .p-layout{grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important}
+  #tab-deals #det-packages{display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
+  #tab-deals #det-packages>div:not([style*="border-radius"]){grid-column:1/-1}
+  #tab-deals .ptable th:nth-child(3),#tab-deals .ptable td:nth-child(3),#tab-deals .ptable th:nth-child(6),#tab-deals .ptable td:nth-child(6){display:none}
+  /* fit the list in 40%: tighter cells, number shows in the right panel, one WhatsApp button per row */
+  #tab-deals .ptable td,#tab-deals .ptable th{padding:9px 7px}
+  #tab-deals #ptbody td:nth-child(2) span[style*="font-size:12px"]{display:none}
+  #tab-deals #ptbody .abtns .ab-wa{display:none}
+  #tab-deals .abtns{gap:4px}
+  #tab-deals #ptbody td:nth-child(2)>div{flex-wrap:wrap;width:78px;row-gap:4px}
+  #tab-deals .p-search{flex-wrap:wrap}
+  #tab-deals .p-search .si{flex-basis:100%}
+  /* right panel scrolls on its own, so the packages are always reachable */
+  #tab-deals .det{max-height:calc(100vh - 120px);overflow-y:auto;overscroll-behavior:contain}
+}
+@media (min-width:761px) and (max-width:1399px){
+  #tab-deals .ptable th:nth-child(4),#tab-deals .ptable td:nth-child(4),#tab-deals .ptable th:nth-child(5),#tab-deals .ptable td:nth-child(5){display:none}
+}
+/* tablets: list on top, panel below */
+@media (min-width:761px) and (max-width:1023px){
+  #tab-deals .p-layout{grid-template-columns:1fr!important}
+  #tab-deals .det{max-height:none;overflow:visible;position:static}
+}
+</style>
 </head>
 <body>
 
@@ -2665,7 +2692,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 30 · 1:05 PM · Prospects & Deals';
+  var VERSION='Sept 30 · 1:15 PM · Prospects & Deals';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
