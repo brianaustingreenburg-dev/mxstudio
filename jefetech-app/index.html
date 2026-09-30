@@ -286,7 +286,7 @@ var QUICK_ES=[
 var TX={
   en:{
     nav:['🛡️','📁','💼','🎣'],navLbl:['Safety','Project Mgr','Jobs','Fishing'],navIds:['safety','projects','jobs','fishing'],
-    jobTabs:['❓','☀️','📐','💰','✍️','👷','🏪'],jobTabLbl:['Q&A','Solar','Measure','Quote & Report','Supervisor & Change Order','Crew & Taxes','Suppliers'],jobTabIds:['qa','solar','measure','quote','changeorder','crew','suppliers'],
+    jobTabs:['❓','☀️','📐','✍️','👷','🏪'],jobTabLbl:['Q&A','Solar','Measure & Quote','Supervisor & Change Order','Crew & Taxes','Suppliers'],jobTabIds:['qa','solar','measure','changeorder','crew','suppliers'],
     hdrScreens:{safety:'Safety',jobs:'Jobs',projects:'Project Mgr',fishing:'🎣 Fishing',help:'Help'},
     trades:[
     {id:'roofing',icon:'🏠',label:'Roofing',items:['Fall protection / harness on-site and inspected','No worker alone at height — buddy system','Roof deck structurally sound before loading','Hot tar / torch equipment inspected','Materials distributed evenly — no overloading','Dumpster positioned — no overhead hazards','Drip edge and underlayment materials secured','OSHA 10 card on site','First aid kit stocked','Safety meeting held with crew']},
@@ -305,7 +305,7 @@ var TX={
   },
   es:{
     nav:['🛡️','📁','💼','🎣'],navLbl:['Seguridad','Proyectos','Trabajos','Pesca'],navIds:['safety','projects','jobs','fishing'],
-    jobTabs:['❓','☀️','📐','💰','✍️','👷','🏪'],jobTabLbl:['Q&A','Solar','Medidas','Cotizar y Reporte','Supervisor & Orden de Cambio','Cuadrilla & Impuestos','Proveedores'],jobTabIds:['qa','solar','measure','quote','changeorder','crew','suppliers'],
+    jobTabs:['❓','☀️','📐','✍️','👷','🏪'],jobTabLbl:['Q&A','Solar','Medidas & Cotizar','Supervisor & Orden de Cambio','Cuadrilla & Impuestos','Proveedores'],jobTabIds:['qa','solar','measure','changeorder','crew','suppliers'],
     hdrScreens:{safety:'Seguridad',jobs:'Trabajos',projects:'Gest. Proy.',fishing:'🎣 Pesca',help:'Ayuda'},
     trades:[
     {id:'roofing',icon:'🏠',label:'Techado',items:['Protección contra caídas / arnés en sitio e inspeccionado','Ningún trabajador solo en altura — sistema de compañero','Cubierta del techo estructuralmente sólida antes de cargar','Equipo de brea caliente / soplete inspeccionado','Materiales distribuidos uniformemente — sin sobrecarga','Contenedor posicionado — sin riesgos aéreos','Materiales de goteo y fieltro asegurados','Tarjeta OSHA 10 en sitio','Botiquín de primeros auxilios provisto','Reunión de seguridad realizada con la cuadrilla']},
@@ -1551,7 +1551,7 @@ function renderJobsHub(){
       +(ACTIVE_JOB.addr?'<p style="color:#94A3B8;font-size:11px;margin:0">'+ACTIVE_JOB.addr+'</p>':'')
       +'</div></div>';
   }
-  var hideStart=(JOB_TAB==='solar'||JOB_TAB==='quote'||JOB_TAB==='report'||JOB_TAB==='changeorder'||JOB_TAB==='crew'||JOB_TAB==='supervisor');
+  var hideStart=(JOB_TAB==='solar'||JOB_TAB==='report'||JOB_TAB==='changeorder'||JOB_TAB==='crew'||JOB_TAB==='supervisor');
   document.getElementById('jobs-body').innerHTML=(hideStart?'':startJob)+addrHtml+body;
   wireJobsEvents();
   if(JOB_TAB==='measure' && BP_VIEW==='canvas') setTimeout(initBpCanvas,120);
