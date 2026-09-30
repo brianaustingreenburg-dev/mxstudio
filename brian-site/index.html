@@ -714,6 +714,15 @@ window.bizMail=function(to,subj,body){
             style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:13px;color:var(--white);font-family:inherit;outline:none"
             oninput="saveContact()" onfocus="this.style.borderColor='var(--gmid)'" onblur="this.style.borderColor='var(--border)'">
         </div>
+        <div class="det-row" style="flex-direction:column;align-items:flex-start;gap:6px">
+          <span class="det-l">🌐 Website</span>
+          <div style="display:flex;gap:6px;width:100%">
+            <input id="d-web" type="url" inputmode="url" autocomplete="off" placeholder="Their website, if they have one..."
+              style="flex:1;min-width:0;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:13px;color:var(--white);font-family:inherit;outline:none"
+              oninput="saveWeb()" onfocus="this.style.borderColor='var(--gmid)'" onblur="this.style.borderColor='var(--border)'">
+            <a id="d-web-open" href="#" target="_blank" rel="noopener" style="display:none;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:8px 12px;font-size:12px;font-weight:800;color:var(--green);text-decoration:none;white-space:nowrap">Open ↗</a>
+          </div>
+        </div>
 <div id="sendbox" style="margin-top:12px;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.25);border-radius:12px;padding:12px">
           <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">📧 They said "send me the link" ✝️</div>
           <input id="sb-email" type="email" inputmode="email" autocomplete="off" placeholder="their@email.com" style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:11px 12px;font-size:15px;color:var(--white);font-family:inherit;outline:none">
@@ -1064,6 +1073,8 @@ function showDet(i){
   document.getElementById('d-notes').value=S.notes[i]||'';
   var dc=document.getElementById('d-contact');
   if(dc) dc.value=S.contacts[i]||'';
+  var dw=document.getElementById('d-web');
+  if(dw){dw.value=webGet(i);webLink();}
   var sp=document.getElementById('share-phone-det');
   if(sp) sp.value=p[1]||'';
 }
@@ -1154,6 +1165,16 @@ function manualRecycle(){
   showToast({i:"♻️",t:"Recycled "+recycled+" prospects!",s:"Called prospects reset to New. Closed & Skip stay."});
 }
 
+function webAll(){try{return JSON.parse(localStorage.getItem('bl-web')||'{}');}catch(e){return {};}}
+function webGet(i){return webAll()[i]||'';}
+function webLink(){var v=(document.getElementById('d-web')||{}).value||'',a=document.getElementById('d-web-open');if(!a)return;v=v.trim();if(v){a.href=/^https?:\/\//i.test(v)?v:'https://'+v;a.style.display='';}else a.style.display='none';}
+function saveWeb(){
+  if(S.sel===null) return;
+  var w=webAll(),val=document.getElementById('d-web').value.trim();
+  if(val) w[S.sel]=val; else delete w[S.sel];
+  try{localStorage.setItem('bl-web',JSON.stringify(w));}catch(e){}
+  webLink();
+}
 function saveContact(){
   if(S.sel===null) return;
   var val=document.getElementById('d-contact').value.trim();
