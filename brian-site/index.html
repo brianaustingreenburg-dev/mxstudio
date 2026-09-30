@@ -1408,50 +1408,34 @@ var DS = {sel:null};
 
 // Mirror the original prospect panel into the deals tab
 function dealsMirrorPanel(){
-  // Mirror p-head (title, batch label, count)
-  var srcHead=document.getElementById('p-head-orig')||document.querySelector('#tab-prospects .p-head');
-  var dstHead=document.getElementById('deals-phead-mirror');
-  if(srcHead&&dstHead) dstHead.innerHTML=srcHead.innerHTML;
-
-  // Mirror p-search (search input + filter buttons)
-  var srcSearch=document.querySelector('#tab-prospects .p-search');
-  var dstSearch=document.getElementById('deals-psearch-mirror');
-  if(srcSearch&&dstSearch) dstSearch.innerHTML=srcSearch.innerHTML;
-
-  // Mirror tbody rows — clone so row clicks work independently
-  var srcTbody=document.getElementById('ptbody');
-  var dstTbody=document.getElementById('deals-ptbody-mirror');
-  if(srcTbody&&dstTbody){
-    dstTbody.innerHTML=srcTbody.innerHTML;
-    // Intercept row clicks to also update deals right column
-    dstTbody.querySelectorAll('tr[onclick]').forEach(function(tr){
-      var orig=tr.getAttribute('onclick');
-      var m=orig.match(/selP\((\d+)\)/);
-      if(m) tr.setAttribute('onclick','dealsSelP('+m[1]+');'+orig);
-    });
-  }
-
-  // Mirror pagination
-  var srcPag=document.querySelector('#tab-prospects .pag');
-  var dstPag=document.getElementById('deals-ppag-mirror');
-  if(srcPag&&dstPag) dstPag.innerHTML=srcPag.innerHTML;
+  var src=document.getElementById('ptbody');
+  var dst=document.getElementById('deals-ptbody-mirror');
+  if(!src||!dst) return;
+  dst.innerHTML=src.innerHTML;
+  // Add dealsSelP call to each row click so right column updates
+  dst.querySelectorAll('tr').forEach(function(tr){
+    var oc=tr.getAttribute('onclick');
+    if(!oc) return;
+    var m=oc.match(/selP\((\d+)\)/);
+    if(m) tr.setAttribute('onclick','dealsSelP('+m[1]+');'+oc);
+  });
 }
 
-// Watch ptbody for changes and re-mirror automatically
+// Hook into renderP so mirror updates every time the list renders
 (function(){
-  function setupMirror(){
-    var tb=document.getElementById('ptbody');
-    if(!tb) return;
-    new MutationObserver(function(){dealsMirrorPanel();}).observe(tb,{childList:true,subtree:true,characterData:true});
+  function patch(){
+    if(typeof window.renderP!=='function'){setTimeout(patch,50);return;}
+    var _rp=window.renderP;
+    window.renderP=function(){_rp();dealsMirrorPanel();};
+    // Also mirror right now in case renderP already ran
     dealsMirrorPanel();
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',setupMirror);
-  else setupMirror();
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',patch);
+  else patch();
 })();
 
-// Keep compat — these are called by old HTML refs, now no-ops or delegates
 function dealsRenderBatch(){dealsMirrorPanel();}
-function dealsFilterP(){var si=document.getElementById('si');var dsi=document.getElementById('deals-si-mirror');if(dsi&&si){si.value=dsi.value;}filterP();}
+function dealsFilterP(){var si=document.getElementById('si');if(si){si.value=(document.getElementById('deals-si-mirror')||{value:''}).value;}filterP();}
 function dealsSetFilter(f){setFilter(f);}
 function dealsNextBatch(){S.batch++;filterP();}
 function dealsPrevBatch(){S.batch=Math.max(0,S.batch-1);filterP();}
