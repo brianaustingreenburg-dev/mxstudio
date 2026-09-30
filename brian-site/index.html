@@ -476,6 +476,16 @@ window.bizMail=function(to,subj,body){
     </div>
   </div>
 
+  <!-- PAYG CUSTOMER TRACKER -->
+  <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px" id="payg-tracker">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:14px;font-weight:800">💳 PAYG Customers</div>
+      <button onclick="paygAddCustomer()" style="background:var(--green);color:#000;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">+ Add Customer</button>
+    </div>
+    <div id="payg-list" style="display:grid;gap:10px"></div>
+    <div id="payg-empty" style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0;display:none">No PAYG customers yet. Add your first one above.</div>
+  </div>
+
   <!-- MONTHLY GOALS -->
   <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
@@ -2577,6 +2587,112 @@ upd();
   document.addEventListener('mxlang',function(){setTimeout(init,0);});
   if(typeof window.applyLang==='function'){var _al=window.applyLang;window.applyLang=function(){var r=_al.apply(this,arguments);setTimeout(init,0);return r;};}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+<script>
+// ── PAYG Customer Tracker ✝️ ──────────────────────────────────────────────
+(function(){
+  var LS='bl-payg-customers';
+  var MONTHLY=97;
+
+  function load(){try{return JSON.parse(localStorage.getItem(LS)||'[]');}catch(e){return [];}}
+  function save(d){try{localStorage.setItem(LS,JSON.stringify(d));}catch(e){}}
+
+  function creditColor(pct){
+    if(pct>50)return'#00E676';
+    if(pct>20)return'#FF6B2B';
+    return'#EF4444';
+  }
+
+  function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+  function nextResetDate(){
+    var d=new Date();d.setMonth(d.getMonth()+1);return d.toISOString();
+  }
+
+  function render(){
+    var data=load();
+    var list=document.getElementById('payg-list');
+    var empty=document.getElementById('payg-empty');
+    if(!list)return;
+    if(!data.length){list.innerHTML='';if(empty)empty.style.display='block';return;}
+    if(empty)empty.style.display='none';
+    list.innerHTML=data.map(function(c,i){
+      var pct=Math.round((c.credits/Math.max(c.total,1))*100);
+      var col=creditColor(pct);
+      var aiTag=c.ai?'<span style="background:rgba(0,230,118,.15);color:#00E676;font-size:10px;font-weight:800;padding:2px 6px;border-radius:999px;margin-left:6px">+AI $20</span>':'';
+      var monthly=c.ai?(MONTHLY+20):MONTHLY;
+      var resetLabel=c.resetDate?'Resets '+new Date(c.resetDate).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'Monthly';
+      return '<div style="background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px">'
+        +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px">'
+        +'<div><div style="font-size:14px;font-weight:800">'+escHtml(c.name)+aiTag+'</div>'
+        +'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+escHtml(c.email||'')+'</div></div>'
+        +'<div style="text-align:right;flex-shrink:0">'
+        +'<div style="font-size:18px;font-weight:900;color:'+col+'">$'+monthly+'/mo</div>'
+        +'<div style="font-size:10px;color:var(--muted)">'+resetLabel+'</div>'
+        +'</div></div>'
+        +'<div style="background:rgba(255,255,255,.06);border-radius:6px;height:10px;overflow:hidden;margin-bottom:6px">'
+        +'<div style="height:100%;background:'+col+';border-radius:6px;width:'+Math.min(pct,100)+'%;transition:width .4s"></div>'
+        +'</div>'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'
+        +'<div style="font-size:12px;color:'+col+';font-weight:700">$'+c.credits+' left of $'+c.total+'</div>'
+        +'<div style="font-size:11px;color:var(--muted)">'+pct+'% remaining</div>'
+        +'</div>'
+        +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
+        +'<button onclick="paygTopUp('+i+')" style="background:var(--green);color:#000;border:none;border-radius:7px;padding:6px 10px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit">➕ Top Up $97</button>'
+        +'<button onclick="paygReset('+i+')" style="background:rgba(255,255,255,.07);color:var(--muted);border:none;border-radius:7px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">🔄 Monthly Reset</button>'
+        +'<button onclick="paygEdit('+i+')" style="background:rgba(255,255,255,.07);color:var(--muted);border:none;border-radius:7px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">✏️ Edit</button>'
+        +'<button onclick="paygRemove('+i+')" style="background:rgba(239,68,68,.1);color:#EF4444;border:none;border-radius:7px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">✕</button>'
+        +'</div></div>';
+    }).join('');
+  }
+
+  window.paygAddCustomer=function(){
+    var name=prompt('Customer / company name:');
+    if(!name||!name.trim())return;
+    var email=prompt('Email (optional):')||'';
+    var ai=confirm('Does this customer have the AI add-on? (+$20/mo)');
+    var data=load();
+    data.push({name:name.trim(),email:email.trim(),ai:ai,credits:MONTHLY,total:MONTHLY,resetDate:nextResetDate()});
+    save(data);render();
+  };
+
+  window.paygTopUp=function(i){
+    var data=load();if(!data[i])return;
+    data[i].credits+=MONTHLY;
+    data[i].total=Math.max(data[i].total,data[i].credits);
+    save(data);render();
+  };
+
+  window.paygReset=function(i){
+    var data=load();if(!data[i])return;
+    if(!confirm('Reset '+data[i].name+' to full $'+MONTHLY+' credits?'))return;
+    data[i].credits=MONTHLY;data[i].total=MONTHLY;
+    data[i].resetDate=nextResetDate();
+    save(data);render();
+  };
+
+  window.paygEdit=function(i){
+    var data=load();if(!data[i])return;
+    var c=data[i];
+    var name=prompt('Name:',c.name);if(name===null)return;
+    var email=prompt('Email:',c.email||'');if(email===null)return;
+    var credits=prompt('Credits remaining ($):',c.credits);if(credits===null)return;
+    var ai=confirm('AI add-on active?');
+    data[i]={name:name.trim()||c.name,email:(email||'').trim(),ai:ai,
+      credits:Math.max(0,parseInt(credits)||0),total:Math.max(0,parseInt(credits)||0),
+      resetDate:c.resetDate||nextResetDate()};
+    save(data);render();
+  };
+
+  window.paygRemove=function(i){
+    var data=load();if(!data[i])return;
+    if(!confirm('Remove '+data[i].name+' from PAYG tracker?'))return;
+    data.splice(i,1);save(data);render();
+  };
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
 })();
 </script>
 </body>
