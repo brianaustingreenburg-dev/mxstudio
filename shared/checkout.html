@@ -95,6 +95,21 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 .wa-note b{color:var(--ink)}
 .err{color:var(--red);font-size:13px;min-height:18px;margin-top:6px}
 .fine{color:var(--muted);font-size:12.5px;line-height:1.55;margin-top:12px;text-align:center}
+.crew-pick{color:var(--muted);font-size:13px;margin:4px 0 0;line-height:1.5}
+.best-for{background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:11px 13px;margin:14px 0 4px;font-size:13px;color:var(--ink);line-height:1.5}
+.best-for b{color:var(--green);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.ai-addon{background:var(--card2);border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-top:14px}
+.ai-addon-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ai-addon-label{font-size:14px;font-weight:700}
+.ai-addon-price{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:20px;color:var(--green)}
+.ai-addon-price small{font-size:12px;font-weight:600;color:var(--muted);font-family:'Inter Tight',sans-serif}
+.ai-addon-desc{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.45}
+.ai-toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.ai-toggle input{opacity:0;width:0;height:0;position:absolute}
+.ai-toggle-track{position:absolute;inset:0;background:var(--line);border-radius:999px;cursor:pointer;transition:background .2s}
+.ai-toggle input:checked+.ai-toggle-track{background:var(--green)}
+.ai-toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;pointer-events:none}
+.ai-toggle input:checked~.ai-toggle-thumb{transform:translateX(20px)}
 .steps{display:grid;gap:8px;margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.45}
 .steps div{display:flex;gap:10px}
 .steps b{color:var(--ink);min-width:18px}
@@ -113,6 +128,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   <h1 data-t="h1">Choose your plan.</h1>
   <p class="sub" data-t="sub">JefeTech for your whole crew — field app and owner dashboard together.</p>
+  <p class="crew-pick" data-t="crewPick">Not sure which fits? Each plan below tells you exactly who it's built for.</p>
 
   <div class="tab-row" role="tablist">
     <button class="tab-btn" role="tab" data-tab="sub" aria-selected="true" data-t="tabSub">📱 Subscription</button>
@@ -122,6 +138,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   <!-- SUBSCRIPTION TAB -->
   <div id="panel-sub" class="tab-panel active">
+    <div class="best-for" data-t="subBestFor"><b>✅ Best for your crew if…</b>You're already running jobs every week and want everything — calls, estimates, AI messages and your owner dashboard — without thinking about usage. One flat price, your whole crew, no surprises. Monthly or yearly, cancel anytime. Most owners who are actively closing 3+ jobs a month pick this.</div>
     <div class="plans" role="group" aria-label="Plan">
       <button type="button" class="plan" data-plan="month" aria-pressed="true">
         <span class="pn" data-t="moN">Monthly</span>
@@ -159,6 +176,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   <!-- PAY AS YOU GO TAB -->
   <div id="panel-payg" class="tab-panel">
+    <div class="best-for" data-t="paygBestFor"><b>✅ Best for your crew if…</b>You're just getting started, testing a new market, or your call volume goes up and down. Pay $97 when you need it — credits reset every month. Slow month? You only spent $97. Busy month? Add another block in one click. No long contracts. Great for crews in Canada, Australia or the Philippines where you're still building your pipeline.</div>
     <div class="payg-hero">
       <div class="payg-amt"><small>$</small>97</div>
       <div class="payg-label" data-t="paygLabel">PER MONTH · CREDITS RESET EVERY CYCLE</div>
@@ -177,6 +195,23 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       <div class="item"><span class="ic">⚡</span><div><b data-t="paygF1T">Pay only when you need it</b><small data-t="paygF1D">No long-term contract. Month-to-month. Cancel before your next cycle and you're done.</small></div></div>
       <div class="item"><span class="ic">📊</span><div><b data-t="paygF2T">See your usage live</b><small data-t="paygF2D">Your dashboard shows credits used vs. remaining in real time so you're never surprised.</small></div></div>
       <div class="item"><span class="ic">➕</span><div><b data-t="paygF3T">Top up anytime</b><small data-t="paygF3D">Running low mid-month? One click adds another $97 credit block — no waiting, no support ticket.</small></div></div>
+    </div>
+
+    <!-- AI Add-on toggle -->
+    <div class="ai-addon">
+      <div class="ai-addon-top">
+        <div>
+          <div class="ai-addon-label">🤖 <span data-t="aiLabel">Add AI features</span></div>
+          <div class="ai-addon-price">+$20<small data-t="aiPriceSub">/mo</small></div>
+        </div>
+        <label class="ai-toggle" aria-label="Add AI features">
+          <input type="checkbox" id="ai-toggle-check">
+          <div class="ai-toggle-track"></div>
+          <div class="ai-toggle-thumb"></div>
+        </label>
+      </div>
+      <div class="best-for" style="margin:10px 0 0" data-t="aiBestFor"><b>✅ Best for your crew if…</b>You want AI writing the follow-up texts, summarizing calls and scoring which prospects are most likely to close — so you focus on selling, not typing. Add it now for $20/mo. Toggle it off anytime.</div>
+      <div class="ai-addon-desc" data-t="aiDesc">AI follow-up drafts · call summaries · prospect scoring · auto-notes after every call. Credits renew monthly with your plan.</div>
     </div>
 
     <form id="f-payg" novalidate>
@@ -199,6 +234,8 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   <!-- CUSTOM APP TAB -->
   <div id="panel-custom" class="tab-panel">
+
+    <div class="best-for" data-t="customBestFor"><b>✅ Best for your crew if…</b>You want your company name, logo and colors on your own web address — not "JefeTech" but "Garcia Roofing." Your crew opens your app, your clients see your brand. One-time price, full setup, live crew training, and a year of updates and priority WhatsApp support direct with the developer. The 30 Founder slots are half price — when they're gone, they're gone.</div>
 
     <!-- Founder30 banner -->
     <div class="f30-banner" id="f30-banner">
@@ -258,8 +295,10 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 (function(){
   var STRIPE_MO='https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h';
   var STRIPE_YR='https://buy.stripe.com/00w8wRda70bqc0qcBH0Jq0i';
-  var STRIPE_PAYG='https://buy.stripe.com/PAYG_LINK_HERE'; // TODO: replace with real $97 Stripe link
-  var STRIPE_PAYG_TOPUP='https://buy.stripe.com/PAYG_TOPUP_HERE'; // TODO: replace with top-up link (can be same)
+  var STRIPE_PAYG='https://buy.stripe.com/PAYG_LINK_HERE';        // TODO: $97/mo recurring link
+  var STRIPE_PAYG_TOPUP='https://buy.stripe.com/PAYG_TOPUP_HERE'; // TODO: $97 one-time top-up link
+  var STRIPE_AI='https://buy.stripe.com/AI_ADDON_LINK_HERE';       // TODO: $20/mo AI add-on link
+  var STRIPE_PAYG_BUNDLE='https://buy.stripe.com/PAYG_BUNDLE_HERE';// TODO: $117/mo bundle link (PAYG+AI)
   var WA='https://wa.me/14084223505?text=';
   var FOUNDER_JSON='/shared/founder30.json';
 
@@ -314,7 +353,15 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       paygGo:'Start for $97/month →',paygAdd:'➕ Add More Credits — $97',
       paygS1:'Pay $97 with Stripe — credits load instantly.',
       paygS2:'Use your credits across calls, estimates and AI messages.',
-      paygS3:'Credits reset on your monthly date. Add more anytime if you need them sooner.'
+      paygS3:'Credits reset on your monthly date. Add more anytime if you need them sooner.',
+      subBestFor:'✅ Best for your crew if… You\'re already running jobs every week and want everything — calls, estimates, AI messages and your owner dashboard — without thinking about usage. One flat price, your whole crew, no surprises. Monthly or yearly, cancel anytime. Most owners who are actively closing 3+ jobs a month pick this.',
+      paygBestFor:'✅ Best for your crew if… You\'re just getting started, testing a new market, or your call volume goes up and down. Pay $97 when you need it — credits reset every month. Slow month? You only spent $97. Busy month? Add another block in one click. No long contracts. Great for crews in Canada, Australia or the Philippines where you\'re still building your pipeline.',
+      customBestFor:'✅ Best for your crew if… You want your company name, logo and colors on your own web address — not "JefeTech" but "Garcia Roofing." Your crew opens your app, your clients see your brand. One-time price, full setup, live crew training, and a year of updates and priority WhatsApp support direct with the developer. The 30 Founder slots are half price — when they\'re gone, they\'re gone.',
+      aiLabel:'Add AI features',aiPriceSub:'/mo',
+      aiBestFor:'✅ Best for your crew if… You want AI writing the follow-up texts, summarizing calls and scoring which prospects are most likely to close — so you focus on selling, not typing. Add it now for $20/mo. Toggle it off anytime.',
+      aiDesc:'AI follow-up drafts · call summaries · prospect scoring · auto-notes after every call. Credits renew monthly with your plan.',
+      paygGoBoth:'Start for $117/month (PAYG + AI) →',
+      crewPick:'Not sure which fits? Each plan below tells you exactly who it\'s built for.'
     },
     es:{
       h1:'Elige tu plan.',sub:'JefeTech para toda tu cuadrilla — app de campo y dashboard del dueño juntos.',
@@ -360,7 +407,15 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       paygGo:'Comenzar por $97/mes →',paygAdd:'➕ Agregar Más Créditos — $97',
       paygS1:'Paga $97 con Stripe — los créditos se cargan al instante.',
       paygS2:'Usa tus créditos en llamadas, cotizaciones y mensajes IA.',
-      paygS3:'Los créditos se reinician en tu fecha mensual. Agrega más cuando los necesites antes.'
+      paygS3:'Los créditos se reinician en tu fecha mensual. Agrega más cuando los necesites antes.',
+      subBestFor:'✅ Mejor para tu cuadrilla si… Ya estás cerrando trabajos cada semana y quieres todo — llamadas, cotizaciones, mensajes IA y tu dashboard — sin pensar en el uso. Un precio fijo, toda tu cuadrilla, sin sorpresas. Mensual o anual, cancela cuando quieras. La mayoría de los dueños que cierran 3+ trabajos al mes eligen este.',
+      paygBestFor:'✅ Mejor para tu cuadrilla si… Estás empezando, probando un mercado nuevo, o tu volumen de llamadas sube y baja. Paga $97 cuando lo necesitas — créditos se reinician cada mes. ¿Mes lento? Solo gastaste $97. ¿Mes ocupado? Agrega otro bloque con un clic. Sin contratos largos. Ideal para cuadrillas en México, Filipinas o cualquier mercado donde aún estás construyendo tu cartera.',
+      customBestFor:'✅ Mejor para tu cuadrilla si… Quieres tu nombre, logo y colores en tu propia dirección web — no "JefeTech" sino "García Techos". Tu cuadrilla abre tu app, tus clientes ven tu marca. Precio único, configuración completa, capacitación en vivo y un año de actualizaciones y soporte prioritario directo con el desarrollador. Los 30 lugares Founder son a mitad de precio — cuando se acaben, se acaban.',
+      aiLabel:'Agregar funciones IA',aiPriceSub:'/mes',
+      aiBestFor:'✅ Mejor para tu cuadrilla si… Quieres que la IA escriba los mensajes de seguimiento, resuma las llamadas y califique qué prospectos tienen más probabilidad de cerrar — para que tú te enfoques en vender, no en escribir. Agrégalo ahora por $20/mes. Desactívalo cuando quieras.',
+      aiDesc:'Borradores de seguimiento IA · resúmenes de llamadas · calificación de prospectos · notas automáticas después de cada llamada. Los créditos se renuevan mensualmente con tu plan.',
+      paygGoBoth:'Comenzar por $117/mes (PAYG + IA) →',
+      crewPick:'¿No sabes cuál te conviene? Cada plan te dice exactamente para quién está hecho.'
     }
   };
 
@@ -446,6 +501,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
     document.querySelectorAll('.plan').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.plan===plan?'true':'false');});
     document.querySelectorAll('.cplan').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cplan===cplan?'true':'false');});
     document.getElementById('go-sub').textContent=plan==='year'?T[lang].goYr:T[lang].go;
+    updatePaygBtn();
     document.querySelectorAll('.tab-btn').forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===tab?'true':'false');});
     document.getElementById('panel-sub').classList.toggle('active',tab==='sub');
     document.getElementById('panel-payg').classList.toggle('active',tab==='payg');
@@ -467,6 +523,15 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
   // Events
   document.querySelectorAll('.tab-btn').forEach(function(b){b.onclick=function(){tab=b.dataset.tab;paint();};});
 
+  // AI toggle → update button text
+  var aiCheck=document.getElementById('ai-toggle-check');
+  function updatePaygBtn(){
+    var withAI=aiCheck&&aiCheck.checked;
+    var goBtn=document.getElementById('go-payg');
+    if(goBtn)goBtn.textContent=withAI?(T[lang].paygGoBoth||'Start for $117/month (PAYG + AI) →'):(T[lang].paygGo||'Start for $97/month →');
+  }
+  if(aiCheck)aiCheck.addEventListener('change',updatePaygBtn);
+
   // Pay As You Go submit → Stripe
   document.getElementById('f-payg').addEventListener('submit',function(e){
     e.preventDefault();
@@ -474,15 +539,17 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
     var co=document.getElementById('company-payg').value.trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){document.getElementById('err-payg').textContent=T[lang].bad;document.getElementById('email-payg').focus();return;}
     document.getElementById('err-payg').textContent='';
+    var withAI=aiCheck&&aiCheck.checked;
+    var planKey=withAI?'payg+ai':'payg';
+    var stripeLink=withAI?STRIPE_PAYG_BUNDLE:STRIPE_PAYG;
     var ref=(q.get('ref')||'direct').replace(/[^A-Za-z0-9_-]/g,'').slice(0,40)||'direct';
-    try{localStorage.setItem('jt-checkout',JSON.stringify({email:em,company:co,ref:ref,lang:lang,plan:'payg',at:Date.now()}));}catch(e){}
-    location.href=STRIPE_PAYG+'?prefilled_email='+encodeURIComponent(em)+'&client_reference_id='+encodeURIComponent(ref)+(lang==='es'?'&locale=es':'');
+    try{localStorage.setItem('jt-checkout',JSON.stringify({email:em,company:co,ref:ref,lang:lang,plan:planKey,at:Date.now()}));}catch(e){}
+    location.href=stripeLink+'?prefilled_email='+encodeURIComponent(em)+'&client_reference_id='+encodeURIComponent(ref)+(lang==='es'?'&locale=es':'');
   });
 
   // Add More Credits button
   document.getElementById('add-more-btn').addEventListener('click',function(){
     var em=document.getElementById('email-payg').value.trim();
-    var ref=(q.get('ref')||'direct').replace(/[^A-Za-z0-9_-]/g,'').slice(0,40)||'direct';
     var url=STRIPE_PAYG_TOPUP+(em?'?prefilled_email='+encodeURIComponent(em):'');
     location.href=url;
   });
