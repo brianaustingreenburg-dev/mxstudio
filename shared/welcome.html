@@ -1,87 +1,358 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex">
-<title>Welcome to JefeTech ✝️</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>JefeTech Welcome</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap">
 <style>
-:root{color-scheme:dark;--bg:#0b0d10;--card:#14171c;--line:#262b33;--ink:#f2f0ea;--muted:#9aa3b0;--green:#00e676;--gold:#ffc53d}
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter Tight',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 18px) 16px calc(env(safe-area-inset-bottom,0px) + 40px)}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:22px}
-.brand span{color:var(--green)}
-.lang{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{border:0;background:none;color:var(--muted);font:700 12px/1 inherit;font-family:inherit;padding:8px 11px;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--green);color:#04130a}
-.ok{font-size:44px;margin-top:22px}
-h1{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:30px;line-height:1.1;margin:6px 0 6px;text-wrap:balance}
-.sub{color:var(--muted);font-size:15px;line-height:1.5;margin:0}
-.btn{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:12px;text-decoration:none;color:var(--ink)}
-.btn.primary{background:var(--green);border-color:var(--green);color:#04130a}
-.btn .ic{font-size:26px}
-.btn b{display:block;font-size:17px}
-.btn small{display:block;font-size:13px;opacity:.8;margin-top:2px}
-.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.tip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:18px;font-size:14px;line-height:1.55;color:var(--muted)}
-.tip b{color:var(--ink)}
-.copy{margin-top:10px;background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:10px 12px;font:600 13px/1 inherit;font-family:inherit;cursor:pointer;width:100%}
-.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;line-height:1.7}
+/* Layout: single-column, mobile-first, dark hero + light card body */
+:root {
+  --bg: #f4f5f8;
+  --card: #ffffff;
+  --fg: #111318;
+  --muted: #6b7280;
+  --border: #e3e5ec;
+  --green: #00c96b;
+  --green-bg: #e8faf2;
+  --dark: #0d0f14;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f14;
+    --card: #161922;
+    --fg: #f0f1f5;
+    --muted: #8a91a3;
+    --border: #232733;
+    --green-bg: rgba(0,201,107,.12);
+    --dark: #1b1f2c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0f14;
+  --card: #161922;
+  --fg: #f0f1f5;
+  --muted: #8a91a3;
+  --border: #232733;
+  --green-bg: rgba(0,201,107,.12);
+  --dark: #1b1f2c;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* HERO */
+.hero {
+  background: var(--dark);
+  color: #fff;
+  text-align: center;
+  padding: 48px 24px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% -10%, rgba(0,201,107,.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-cross { font-size: 30px; position: relative; z-index: 1; }
+.hero h1 {
+  margin: 10px 0 8px;
+  font-size: clamp(24px, 6vw, 34px);
+  font-weight: 900;
+  letter-spacing: -.5px;
+  line-height: 1.15;
+  text-wrap: balance;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 em { color: var(--green); font-style: normal; }
+.hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  max-width: 320px;
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 1;
+}
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,201,107,.18);
+  border: 1px solid rgba(0,201,107,.35);
+  color: #4dffa0;
+  border-radius: 100px;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+/* BODY */
+.body {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 28px 16px 64px;
+  display: grid;
+  gap: 14px;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 20px;
+}
+
+/* STEP */
+.step-hdr {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+.step-n {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--green);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.step-label { font-size: 16px; font-weight: 800; line-height: 1.2; }
+.step-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ROW */
+.rows { display: grid; gap: 9px; }
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.row-icon { font-size: 19px; flex-shrink: 0; }
+.row-title { font-size: 14px; font-weight: 700; }
+.row-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+
+/* BIG BUTTON */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--green);
+  color: #000;
+  font-weight: 900;
+  font-size: 15px;
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-decoration: none;
+  margin-top: 14px;
+  transition: opacity .15s;
+  text-align: center;
+}
+.btn:hover { opacity: .88; }
+
+/* TIP */
+.tip {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--green-bg);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--fg);
+  line-height: 1.5;
+}
+.tip-i { flex-shrink: 0; font-size: 16px; }
+
+/* GUARANTEE */
+.guarantee {
+  background: var(--dark);
+  border-radius: 18px;
+  padding: 26px 22px;
+  text-align: center;
+  color: #fff;
+}
+.g-icon { font-size: 36px; margin-bottom: 10px; }
+.g-title { font-size: 17px; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+.g-text { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.7; max-width: 340px; margin: 0 auto; }
+
+/* CONTACT */
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+@media (max-width: 340px) { .contact-row { grid-template-columns: 1fr; } }
+.contact-item {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.c-label { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: .6px; text-transform: uppercase; margin-bottom: 5px; }
+.c-val { font-size: 13px; font-weight: 800; }
+
+.wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 13px 18px;
+  text-decoration: none;
+  margin-top: 12px;
+  transition: opacity .15s;
+}
+.wa-btn:hover { opacity: .88; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0 16px 32px;
+  line-height: 1.8;
+}
+.footer strong { color: var(--fg); }
 </style>
-</head>
-<body>
-<div class="wrap">
-  <div class="top">
-    <div class="brand">Jefe<span>Tech</span> ✝️</div>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-l="en" aria-pressed="true">🇺🇸 EN</button>
-      <button type="button" data-l="es" aria-pressed="false">🇲🇽 ES</button>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-cross">✝️</div>
+  <h1>Welcome to<br><em>JefeTech.</em></h1>
+  <p class="hero-sub">You're all set. Here's everything you need to get started right now.</p>
+  <div class="hero-chip">🎉 Payment confirmed</div>
+</div>
+
+<div class="body">
+
+  <!-- STEP 1 -->
+  <div class="card">
+    <div class="step-hdr">
+      <div class="step-n">1</div>
+      <div>
+        <div class="step-label">Open the App</div>
+        <div class="step-sub">No download needed — runs right in your browser.</div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-icon">📱</div>
+        <div>
+          <div class="row-title">Phone (recommended)</div>
+          <div class="row-desc">Open in Safari or Chrome. Tap Share → "Add to Home Screen" so it opens like a real app.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-icon">💻</div>
+        <div>
+          <div class="row-title">Computer</div>
+          <div class="row-desc">Same link works on any laptop or desktop — great for building estimates on a big screen.</div>
+        </div>
+      </div>
+    </div>
+    <a class="btn" href="https://myjefetech.app" target="_blank">
+      🚀 Open JefeTech Now
+    </a>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card">
+    <div class="step-hdr">
+      <div class="step-n">2</div>
+      <div>
+        <div class="step-label">Your First Estimate</div>
+        <div class="step-sub">Takes about 60 seconds. Try it on your own house first.</div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-icon">🏠</div>
+        <div>
+          <div class="row-title">Tap Measure</div>
+          <div class="row-desc">Type any address. The satellite image loads instantly — trace the roof to get square footage.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-icon">📋</div>
+        <div>
+          <div class="row-title">Tap Estimate</div>
+          <div class="row-desc">Enter your materials and labor. JefeTech builds the quote — you can text or email it directly from the app.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-icon">💼</div>
+        <div>
+          <div class="row-title">Tap Jobs</div>
+          <div class="row-desc">Track every job: crew, hours, photos, payments. Everything in one place, even offline.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-i">💡</div>
+      <div><strong>Pro move:</strong> Measure a customer's roof on the phone while you're talking to them. Hand them a number before the call ends. That's the close.</div>
     </div>
   </div>
 
-  <div class="ok">✅</div>
-  <h1 data-t="h1">You're in. Welcome to JefeTech.</h1>
-  <p class="sub" id="sub" data-t="sub">Your payment went through. Here are your links. Your receipt and invoice are on their way to your email.</p>
-
-  <a class="btn primary" id="appBtn" href="https://go.myjefetech.app/app/" target="_blank" rel="noopener"><span class="ic">📱</span><span><b data-t="app">Open your JefeTech app</b><small data-t="appS">For you and your crew. Add your jobs and people.</small></span></a>
-  <a class="btn" id="dashBtn" href="https://go.myjefetech.app/owner.html" target="_blank" rel="noopener"><span class="ic">🖥️</span><span><b data-t="dash">Open your owner dashboard</b><small data-t="dashS">Jobs, crew, invoices and money in one place.</small></span></a>
-
-  <div class="tip">
-    <b data-t="tipH">Put it on your home screen</b><br>
-    <span data-t="tip">iPhone: open the app in Safari, tap Share, then Add to Home Screen. Android: open it in Chrome, tap ⋮, then Add to Home screen.</span>
-    <button class="copy" id="copy" type="button" data-t="copy">📋 Copy both links</button>
+  <!-- GUARANTEE -->
+  <div class="guarantee">
+    <div class="g-icon">🛡️</div>
+    <div class="g-title">Lifetime Money-Back Guarantee ✝️</div>
+    <div class="g-text">Not happy — ever? Cancel and we refund your most recent month. No questions asked. That's the promise.</div>
   </div>
 
-  <div class="foot"><span data-t="help">Questions? We're here.</span><br>brian@myjefetech.app · WhatsApp +1 (408) 422-3505<br>MX Studio · JefeTech ✝️</div>
+  <!-- SUPPORT -->
+  <div class="card">
+    <div class="step-hdr" style="margin-bottom:6px">
+      <div class="step-n" style="background:var(--dark);color:#fff">?</div>
+      <div>
+        <div class="step-label">Need Help?</div>
+        <div class="step-sub">Text or WhatsApp Brian directly — real person, fast reply.</div>
+      </div>
+    </div>
+    <div class="contact-row" style="grid-template-columns:1fr">
+      <div class="contact-item">
+        <div class="c-label">📞 US Phone / Text</div>
+        <div class="c-val">+1 (408) 422-3505</div>
+      </div>
+    </div>
+    <a class="wa-btn" href="sms:+14084223505&body=Hi%20Brian%2C%20I%20just%20signed%20up%20for%20JefeTech%20and%20need%20a%20little%20help%20getting%20started." target="_blank">
+      💬 Text Brian
+    </a>
+  </div>
+
 </div>
-<script>
-(function(){
-  var APP='https://go.myjefetech.app/app/',DASH='https://go.myjefetech.app/owner.html';
-  var T={
-    en:{h1:"You're in. Welcome to JefeTech.",sub:'Your payment went through. Here are your links. Your receipt and invoice are on their way to your email.',subE:'Your payment went through. Here are your links. Your receipt and invoice are on their way to {e}.',app:'Open your JefeTech app',appS:'For you and your crew. Add your jobs and people.',dash:'Open your owner dashboard',dashS:'Jobs, crew, invoices and money in one place.',tipH:'Put it on your home screen',tip:'iPhone: open the app in Safari, tap Share, then Add to Home Screen. Android: open it in Chrome, tap ⋮, then Add to Home screen.',copy:'📋 Copy both links',copied:'✅ Copied',help:"Questions? We're here."},
-    es:{h1:'Ya estás dentro. Bienvenido a JefeTech.',sub:'Tu pago se realizó. Aquí están tus links. Tu recibo y factura van en camino a tu correo.',subE:'Tu pago se realizó. Aquí están tus links. Tu recibo y factura van en camino a {e}.',app:'Abrir tu app JefeTech',appS:'Para ti y tu cuadrilla. Agrega tus trabajos y tu gente.',dash:'Abrir tu dashboard de dueño',dashS:'Trabajos, cuadrilla, facturas y dinero en un solo lugar.',tipH:'Ponlo en tu pantalla de inicio',tip:'iPhone: abre la app en Safari, toca Compartir y luego Agregar a inicio. Android: ábrela en Chrome, toca ⋮ y luego Agregar a pantalla principal.',copy:'📋 Copiar los dos links',copied:'✅ Copiado',help:'¿Preguntas? Aquí estamos.'}
-  };
-  var saved={};try{saved=JSON.parse(localStorage.getItem('jt-checkout')||'{}')||{};}catch(e){}
-  var q=new URLSearchParams(location.search);
-  var lang=(q.get('lang')||saved.lang||'en')==='es'?'es':'en';
-  var email=q.get('email')||saved.email||'';
-  function paint(){
-    document.documentElement.lang=lang;
-    document.querySelectorAll('[data-t]').forEach(function(el){var k=el.dataset.t;if(T[lang][k])el.textContent=T[lang][k];});
-    if(email)document.getElementById('sub').textContent=T[lang].subE.replace('{e}',email);
-    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
-  }
-  document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;paint();};});
-  document.getElementById('copy').onclick=function(){
-    var t=(lang==='es'?'App: ':'App: ')+APP+'\n'+(lang==='es'?'Dashboard: ':'Dashboard: ')+DASH,b=this;
-    function done(){b.textContent=T[lang].copied;}
-    if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,function(){prompt('',t);});else prompt('',t);
-  };
-  paint();
-})();
-</script>
-</body>
-</html>
+
+<div class="footer">
+  <strong>Brian Lalo ✝️ · MX Studio · JefeTech</strong><br>
+  Jesus is the light guiding my ship ✝️<br><br>
+  <a href="https://myjefetech.app/terms.html" target="_blank" style="color:var(--muted)">Terms</a> &nbsp;·&nbsp;
+  <a href="https://myjefetech.app/privacy.html" target="_blank" style="color:var(--muted)">Privacy</a> &nbsp;·&nbsp;
+  <a href="https://myjefetech.app/refund.html" target="_blank" style="color:var(--muted)">Refund Policy</a>
+</div>
