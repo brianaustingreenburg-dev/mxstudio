@@ -732,6 +732,7 @@ window.bizMail=function(to,subj,body){
 
 <!-- PROSPECTS & DEALS TAB -->
 <div id="tab-deals" class="tab">
+  <div id="deals-lineup"></div>
   <!-- Compact Opener -->
   <div style="background:var(--card2);border:1px solid rgba(0,230,118,.2);border-radius:12px;margin:12px 12px 0 12px;padding:12px 16px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
@@ -782,8 +783,8 @@ window.bizMail=function(to,subj,body){
     <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">
 
       <!-- Selected prospect quick info -->
-      <div id="deals-det-header" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px;display:none">
-        <div style="font-size:13px;font-weight:800;color:var(--white)" id="deals-d-name">—</div>
+      <div id="deals-det-header" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
+        <div style="font-size:13px;font-weight:800;color:var(--white)" id="deals-d-name">👆 Click a prospect</div>
         <div style="font-size:11px;color:var(--muted)" id="deals-d-loc"></div>
         <div style="display:flex;gap:6px;margin-top:8px">
           <button class="da da-call" onclick="dealsCallSelected()" style="flex:1;padding:8px;font-size:12px">📞 Call</button>
@@ -792,7 +793,6 @@ window.bizMail=function(to,subj,body){
           <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:8px;font-size:12px">🔥 Closed</button>
         </div>
       </div>
-      <div id="deals-det-empty" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px;text-align:center;color:var(--muted);font-size:12px">👆 Click a prospect</div>
 
       <!-- Deal Links -->
       <div id="deals-links-box" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
