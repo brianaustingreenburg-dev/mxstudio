@@ -1864,7 +1864,8 @@ function measureCard(icon, title, fields, calcId, btnLabel, calcFn){
   window['_calc_'+calcId] = calcFn;
   html+='<button onclick="var r=window[\'_calc_'+calcId+'\']( L===\'es\' );'
     +'document.getElementById(\''+calcId+'-result\').innerHTML=r;'
-    +'document.getElementById(\''+calcId+'-result\').style.display=\'block\'" '
+    +'document.getElementById(\''+calcId+'-result\').style.display=\'block\';'
+    +'if(ACTIVE_JOB&&ACTIVE_JOB.sqft>0){ACTIVE_JOB.items=[];autoFillQuote();JOB_TAB=\'quote\';renderJobsHub();}" '
     +'style="width:100%;background:#FF6B2B;border:none;border-radius:10px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px">📐 '+btnLabel+'</button>';
   html+='<div id="'+calcId+'-result" style="display:none;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:12px;margin-top:10px;font-size:13px;color:#22C55E;font-weight:700;line-height:1.8"></div>';
   html+='</div>';
