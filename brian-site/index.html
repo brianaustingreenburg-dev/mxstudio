@@ -1101,7 +1101,14 @@ function renderP(){
   var mclN=document.getElementById('m-closes-needed');if(mclN)mclN.textContent=closesLeft+' to go';
   var tp=document.getElementById('today-pace');if(tp)tp.textContent=callsPerDay+' calls + '+closesPerDay+' closes per day to hit monthly goal';
   var me=document.getElementById('m-earned');if(me)me.textContent='$'+(mcl*82.2).toFixed(2);
-  // Mirror to Deals tab
+  // If panel is inside Deals tab, wire row clicks to dealsSelP
+  var panel=document.getElementById('prospects-real-panel');
+  if(panel&&document.getElementById('tab-deals').contains(panel)){
+    panel.querySelectorAll('tbody tr[onclick]').forEach(function(tr){
+      var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);
+      if(m) tr.setAttribute('onclick','dealsSelP('+m[1]+')');
+    });
+  }
 }
 
 function updPag(){
