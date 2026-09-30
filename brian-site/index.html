@@ -794,6 +794,15 @@ window.bizMail=function(to,subj,body){
           </div>
           <button onclick="dealsSendPayment()" style="width:100%;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">💳 Send Payment Link via WhatsApp</button>
           <button onclick="dealsSendDemo()" style="width:100%;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:11px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">📱 Send Demo App via WhatsApp</button>
+          <!-- Share Screen inline -->
+          <div style="background:rgba(0,230,118,.06);border:1px solid var(--gmid);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:7px">
+            <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:.5px">📺 SHARE SCREEN</div>
+            <input id="deals-share-phone" type="tel" placeholder="Their phone number" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--white);font-size:13px;font-family:inherit;outline:none"/>
+            <div style="display:flex;gap:6px">
+              <button onclick="dealsShareScreen('wa')" style="flex:1;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:#25D366;cursor:pointer;font-family:inherit">💬 WhatsApp</button>
+              <button onclick="dealsShareScreen('sms')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">✉️ SMS</button>
+            </div>
+          </div>
           <div style="display:flex;gap:6px">
             <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()" style="flex:1;padding:9px;font-size:12px">✓ Mark Called</button>
             <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:9px;font-size:12px">🔥 Mark Closed</button>
@@ -1453,6 +1462,9 @@ function dealsSelP(i){
   var dl=document.getElementById('deals-d-loc');
   if(dn) dn.textContent=p[0]||'Unknown';
   if(dl) dl.textContent=(p[2]?p[2]+', ':'')+p[3]+' · '+(p[4]||tzCode(p))+' · '+s;
+  // Auto-fill share screen phone from prospect
+  var sp=document.getElementById('deals-share-phone');
+  if(sp) sp.value=p[1]||'';
   // Also sync main selP so call/WA/mark/stripe functions all work
   selP(i);
 }
@@ -1488,6 +1500,19 @@ function dealsSendPayment(){
 function dealsSendDemo(){
   if(DS.sel===null){showToast({i:'👆',t:'Select a prospect first',s:'Tap a row in the list.'});return;}
   selP(DS.sel);sendLink('demo');
+}
+function dealsShareScreen(method){
+  // Auto-fill from selected prospect if phone field is empty
+  var inp=document.getElementById('deals-share-phone');
+  if(inp&&!inp.value&&DS.sel!==null){
+    inp.value=P[DS.sel][1]||'';
+  }
+  var raw=(inp?inp.value:'').replace(/\D/g,'');
+  if(!raw||raw.length<7){showToast({i:'⚠️',t:'Enter a phone number',s:'Type their number or select a prospect.'});return;}
+  if(raw.length===10)raw='1'+raw;
+  var msg='Hey! Here\'s the JefeTech live demo — dashboard on the left, app on the right, both fully live 👉 https://go.myjefetech.app/demo.html\n\n— Brian Lalo';
+  if(method==='wa') window.open('https://wa.me/'+raw+'?text='+encodeURIComponent(msg),'_blank');
+  else window.open('sms:+'+raw+'?body='+encodeURIComponent(msg),'_self');
 }
 function shareToPhone(type,method){
   var raw=document.getElementById('share-phone').value.replace(/\D/g,'');
