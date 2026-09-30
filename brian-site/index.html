@@ -1101,15 +1101,6 @@ function renderP(){
   var mclN=document.getElementById('m-closes-needed');if(mclN)mclN.textContent=closesLeft+' to go';
   var tp=document.getElementById('today-pace');if(tp)tp.textContent=callsPerDay+' calls + '+closesPerDay+' closes per day to hit monthly goal';
   var me=document.getElementById('m-earned');if(me)me.textContent='$'+(mcl*82.2).toFixed(2);
-  // If panel is inside Deals tab, wire row clicks to dealsSelP
-  var panel=document.getElementById('prospects-real-panel');
-  if(panel&&document.getElementById('tab-deals')&&document.getElementById('tab-deals').contains(panel)){
-    panel.querySelectorAll('#ptbody tr').forEach(function(tr){
-      var oc=tr.getAttribute('onclick')||'';
-      var m=oc.match(/^selP\((\d+)\)$/);
-      if(m) tr.setAttribute('onclick','dealsSelP('+m[1]+')');
-    });
-  }
 }
 
 function updPag(){
@@ -1369,6 +1360,23 @@ upd();
 
 // ── PROSPECTS & DEALS TAB ──────────────────────────────────────────────────
 var DS = {sel:null};
+
+// Event delegation: intercept ALL ptbody row clicks at the document level.
+// If the panel is currently inside tab-deals, route to dealsSelP instead of selP.
+document.addEventListener('click', function(e){
+  var tr = e.target.closest('#ptbody tr');
+  if(!tr) return;
+  var tabDeals = document.getElementById('tab-deals');
+  var panel = document.getElementById('prospects-real-panel');
+  if(!tabDeals || !panel || !tabDeals.contains(panel)) return;
+  // We're in Deals tab — extract index from onclick and call dealsSelP
+  var oc = tr.getAttribute('onclick') || '';
+  var m = oc.match(/selP\((\d+)\)/);
+  if(!m) return;
+  e.stopImmediatePropagation();
+  e.preventDefault();
+  dealsSelP(+m[1]);
+}, true); // capture phase — fires before onclick attribute
 
 function dealsSelP(i){
   DS.sel=i;
