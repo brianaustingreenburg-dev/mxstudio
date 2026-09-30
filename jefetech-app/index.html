@@ -460,12 +460,8 @@ var COUNTRIES={
       payroll:['🇵🇭 Philippines Payroll — SSS · PhilHealth · Pag-IBIG · BIR withholding · 13th-month pay by Dec 24 · pay at least twice a month','🇵🇭 Nómina Filipinas — SSS · PhilHealth · Pag-IBIG · BIR · 13.º mes antes del 24 dic']}
 };
 var COUNTRY='us';
-try{var _c=localStorage.getItem('jt_country');if(_c&&COUNTRIES[_c])COUNTRY=_c;else{
-  var _tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'');
-  if(/^Asia\/Manila/.test(_tz))COUNTRY='ph';else if(/^Australia\//.test(_tz))COUNTRY='au';
-  else if(/^America\/(Mexico_City|Cancun|Merida|Monterrey|Matamoros|Chihuahua|Ciudad_Juarez|Ojinaga|Mazatlan|Bahia_Banderas|Hermosillo|Tijuana)/.test(_tz))COUNTRY='mx';
-  else if(/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|Regina|St_Johns|Moncton|Glace_Bay|Goose_Bay|Whitehorse|Yellowknife|Iqaluit|Swift_Current|Dawson_Creek|Fort_Nelson|Creston)/.test(_tz))COUNTRY='ca';
-}}catch(e){}
+/* Opens in the US by default. A saved pick wins; a link can set it with ?country=mx|ca|au|ph|us ✝️ */
+try{var _q=(new URLSearchParams(location.search).get('country')||'').toLowerCase();if(_q&&COUNTRIES[_q]){COUNTRY=_q;localStorage.setItem('jt_country',_q);}else{var _c=localStorage.getItem('jt_country');if(_c&&COUNTRIES[_c])COUNTRY=_c;}}catch(e){}
 function CC(){return COUNTRIES[COUNTRY];}
 var CS=CC().sym; // currency symbol shown in the app
 var PPP={us:1,ca:1,au:1,mx:.5,ph:.4}; // local cost level vs US (rough starting point)
