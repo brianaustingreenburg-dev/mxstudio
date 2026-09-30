@@ -450,18 +450,16 @@ window.bizMail=function(to,subj,body){
       </div>
     </div>
   </div>
-</div>
 
-<!-- PAYG CUSTOMER TRACKER -->
-<div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px" id="payg-tracker">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-    <div style="font-size:14px;font-weight:800">💳 PAYG Customers</div>
-    <button onclick="paygAddCustomer()" style="background:var(--green);color:#000;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">+ Add Customer</button>
+  <!-- PAYG CUSTOMER TRACKER -->
+  <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px" id="payg-tracker">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="font-size:14px;font-weight:800">💳 PAYG Customers</div>
+      <button onclick="paygAddCustomer()" style="background:var(--green);color:#000;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">+ Add Customer</button>
+    </div>
+    <div id="payg-list" style="display:grid;gap:10px"></div>
+    <div id="payg-empty" style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0">No PAYG customers yet. Add your first one above.</div>
   </div>
-  <div id="payg-list" style="display:grid;gap:10px"></div>
-  <div id="payg-empty" style="text-align:center;color:var(--muted);font-size:13px;padding:20px 0">No PAYG customers yet. Add your first one above.</div>
-</div>
-
 </div>
 
 <div id="tab-goals" class="tab">
