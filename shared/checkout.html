@@ -64,6 +64,19 @@ h1{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:28px;lin
 .cplan .ctag{position:absolute;top:-10px;right:10px;background:var(--gold);color:#1a1200;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
 .cplan:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
+/* Pay As You Go */
+.payg-hero{text-align:center;padding:24px 0 8px}
+.payg-amt{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:56px;line-height:1;color:var(--green)}
+.payg-amt small{font-size:22px;font-weight:700;vertical-align:super;line-height:1}
+.payg-label{font-size:14px;color:var(--muted);margin-top:6px;font-weight:600;letter-spacing:.03em}
+.payg-meter{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px;margin:14px 0}
+.payg-meter-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:5px 0;border-bottom:1px solid var(--line)}
+.payg-meter-row:last-child{border-bottom:0}
+.payg-meter-row b{color:var(--green);font-size:14px}
+.payg-badge{display:inline-block;background:rgba(0,230,118,.12);color:var(--green);font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;margin-left:6px}
+.add-more{display:block;width:100%;margin-top:10px;background:var(--card2);color:var(--green);border:1.5px solid var(--green);border-radius:12px;padding:14px;font:800 16px/1 inherit;font-family:inherit;cursor:pointer;text-align:center}
+.add-more:hover{background:rgba(0,230,118,.08)}
+
 /* Feature card */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:14px}
 .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
@@ -103,6 +116,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   <div class="tab-row" role="tablist">
     <button class="tab-btn" role="tab" data-tab="sub" aria-selected="true" data-t="tabSub">📱 Subscription</button>
+    <button class="tab-btn" role="tab" data-tab="payg" aria-selected="false" data-t="tabPayg">💳 Pay As You Go</button>
     <button class="tab-btn" role="tab" data-tab="custom" aria-selected="false" data-t="tabCustom">👑 Custom App</button>
   </div>
 
@@ -139,6 +153,46 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       <div><b>1</b><span data-t="s1">Pay securely with Stripe (card, Apple Pay, Google Pay).</span></div>
       <div><b>2</b><span data-t="s2">You land on your welcome page with your app and dashboard links.</span></div>
       <div><b>3</b><span data-t="s3">Your receipt and invoice arrive by email.</span></div>
+    </div>
+    <p class="fine" data-t="fine">Payments are processed by Stripe. We never see your card number.</p>
+  </div>
+
+  <!-- PAY AS YOU GO TAB -->
+  <div id="panel-payg" class="tab-panel">
+    <div class="payg-hero">
+      <div class="payg-amt"><small>$</small>97</div>
+      <div class="payg-label" data-t="paygLabel">PER MONTH · CREDITS RESET EVERY CYCLE</div>
+    </div>
+
+    <div class="payg-meter">
+      <div class="payg-meter-row"><span data-t="paygR1">📞 Outreach calls</span><b data-t="paygR1V">~200/mo</b></div>
+      <div class="payg-meter-row"><span data-t="paygR2">📋 Job estimates sent</span><b data-t="paygR2V">~50/mo</b></div>
+      <div class="payg-meter-row"><span data-t="paygR3">💬 AI follow-up messages</span><b data-t="paygR3V">~500/mo</b></div>
+      <div class="payg-meter-row"><span data-t="paygR4">♻️ Credits roll over?</span><b data-t="paygR4V">No — resets monthly</b></div>
+    </div>
+
+    <div class="lock" data-t="paygLock">Need more mid-month? Add $97 anytime — credits drop in instantly.</div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="item"><span class="ic">⚡</span><div><b data-t="paygF1T">Pay only when you need it</b><small data-t="paygF1D">No long-term contract. Month-to-month. Cancel before your next cycle and you're done.</small></div></div>
+      <div class="item"><span class="ic">📊</span><div><b data-t="paygF2T">See your usage live</b><small data-t="paygF2D">Your dashboard shows credits used vs. remaining in real time so you're never surprised.</small></div></div>
+      <div class="item"><span class="ic">➕</span><div><b data-t="paygF3T">Top up anytime</b><small data-t="paygF3D">Running low mid-month? One click adds another $97 credit block — no waiting, no support ticket.</small></div></div>
+    </div>
+
+    <form id="f-payg" novalidate>
+      <label for="email-payg" data-t="emailL">Your email (we send your receipt and links here)</label>
+      <input id="email-payg" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required>
+      <label for="company-payg" data-t="compL">Company name</label>
+      <input id="company-payg" name="company" type="text" autocomplete="organization" placeholder="Garcia Roofing">
+      <div class="err" id="err-payg" role="alert"></div>
+      <button class="go" type="submit" id="go-payg" data-t="paygGo">Start for $97/month →</button>
+      <button type="button" class="add-more" id="add-more-btn" data-t="paygAdd">➕ Add More Credits — $97</button>
+    </form>
+
+    <div class="steps" style="margin-top:14px">
+      <div><b>1</b><span data-t="paygS1">Pay $97 with Stripe — credits load instantly.</span></div>
+      <div><b>2</b><span data-t="paygS2">Use your credits across calls, estimates and AI messages.</span></div>
+      <div><b>3</b><span data-t="paygS3">Credits reset on your monthly date. Add more anytime if you need them sooner.</span></div>
     </div>
     <p class="fine" data-t="fine">Payments are processed by Stripe. We never see your card number.</p>
   </div>
@@ -204,6 +258,8 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 (function(){
   var STRIPE_MO='https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h';
   var STRIPE_YR='https://buy.stripe.com/00w8wRda70bqc0qcBH0Jq0i';
+  var STRIPE_PAYG='https://buy.stripe.com/PAYG_LINK_HERE'; // TODO: replace with real $97 Stripe link
+  var STRIPE_PAYG_TOPUP='https://buy.stripe.com/PAYG_TOPUP_HERE'; // TODO: replace with top-up link (can be same)
   var WA='https://wa.me/14084223505?text=';
   var FOUNDER_JSON='/shared/founder30.json';
 
@@ -216,7 +272,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
   var T={
     en:{
       h1:'Choose your plan.',sub:'JefeTech for your whole crew — field app and owner dashboard together.',
-      tabSub:'📱 Subscription',tabCustom:'👑 Custom App',
+      tabSub:'📱 Subscription',tabPayg:'💳 Pay As You Go',tabCustom:'👑 Custom App',
       moN:'Monthly',moP:'/mo',moD:'Whole crew · cancel anytime',
       yrTag:'Save $300',yrN:'Yearly',yrP:'/yr',yrD:'Just $112/mo · 2+ months free',
       lock:'Price locked for life · Cancel anytime · Money-back guarantee (terms apply)',
@@ -245,11 +301,24 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       cusGoFull:'Get Custom App — WhatsApp Brian →',
       cusNoteT:'How it works:',cusNoteD:' Brian reviews your info and sends you a Stripe invoice. Setup starts within 48 hours.',
       waMsgFounder:'Hi Brian! I want the JefeTech Custom App — Founder30 price. Region: {region}. Company: {co}. Email: {em}. Let\'s talk!',
-      waMsgFull:'Hi Brian! I want the JefeTech Custom App. Region: {region}. Company: {co}. Email: {em}. Let\'s talk!'
+      waMsgFull:'Hi Brian! I want the JefeTech Custom App. Region: {region}. Company: {co}. Email: {em}. Let\'s talk!',
+      paygLabel:'PER MONTH · CREDITS RESET EVERY CYCLE',
+      paygR1:'📞 Outreach calls',paygR1V:'~200/mo',
+      paygR2:'📋 Job estimates sent',paygR2V:'~50/mo',
+      paygR3:'💬 AI follow-up messages',paygR3V:'~500/mo',
+      paygR4:'♻️ Credits roll over?',paygR4V:'No — resets monthly',
+      paygLock:'Need more mid-month? Add $97 anytime — credits drop in instantly.',
+      paygF1T:'Pay only when you need it',paygF1D:'No long-term contract. Month-to-month. Cancel before your next cycle and you\'re done.',
+      paygF2T:'See your usage live',paygF2D:'Your dashboard shows credits used vs. remaining in real time so you\'re never surprised.',
+      paygF3T:'Top up anytime',paygF3D:'Running low mid-month? One click adds another $97 credit block — no waiting, no support ticket.',
+      paygGo:'Start for $97/month →',paygAdd:'➕ Add More Credits — $97',
+      paygS1:'Pay $97 with Stripe — credits load instantly.',
+      paygS2:'Use your credits across calls, estimates and AI messages.',
+      paygS3:'Credits reset on your monthly date. Add more anytime if you need them sooner.'
     },
     es:{
       h1:'Elige tu plan.',sub:'JefeTech para toda tu cuadrilla — app de campo y dashboard del dueño juntos.',
-      tabSub:'📱 Suscripción',tabCustom:'👑 App Personalizada',
+      tabSub:'📱 Suscripción',tabPayg:'💳 Pago por Uso',tabCustom:'👑 App Personalizada',
       moN:'Mensual',moP:'/mes',moD:'Toda la cuadrilla · cancela cuando quieras',
       yrTag:'Ahorra $300',yrN:'Anual',yrP:'/año',yrD:'Solo $112/mes · más de 2 meses gratis',
       lock:'Precio congelado de por vida · Cancela cuando quieras · Garantía de devolución (aplican términos)',
@@ -278,13 +347,26 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       cusGoFull:'Obtener App Personalizada — WhatsApp Brian →',
       cusNoteT:'Cómo funciona:',cusNoteD:' Brian revisa tu info y te manda una factura de Stripe. El setup empieza en 48 horas.',
       waMsgFounder:'¡Hola Brian! Quiero la App Personalizada JefeTech — precio Founder30. Región: {region}. Empresa: {co}. Correo: {em}. ¡Hablemos!',
-      waMsgFull:'¡Hola Brian! Quiero la App Personalizada JefeTech. Región: {region}. Empresa: {co}. Correo: {em}. ¡Hablemos!'
+      waMsgFull:'¡Hola Brian! Quiero la App Personalizada JefeTech. Región: {region}. Empresa: {co}. Correo: {em}. ¡Hablemos!',
+      paygLabel:'POR MES · CRÉDITOS SE REINICIAN CADA CICLO',
+      paygR1:'📞 Llamadas de prospección',paygR1V:'~200/mes',
+      paygR2:'📋 Cotizaciones enviadas',paygR2V:'~50/mes',
+      paygR3:'💬 Mensajes de seguimiento IA',paygR3V:'~500/mes',
+      paygR4:'♻️ ¿Créditos acumulables?',paygR4V:'No — se reinician mensual',
+      paygLock:'¿Necesitas más a mitad de mes? Agrega $97 cuando quieras — los créditos entran al instante.',
+      paygF1T:'Paga solo cuando lo necesitas',paygF1D:'Sin contrato largo. Mes a mes. Cancela antes de tu próximo ciclo y listo.',
+      paygF2T:'Ve tu uso en tiempo real',paygF2D:'Tu dashboard muestra créditos usados vs. disponibles para que nunca te sorprendas.',
+      paygF3T:'Recarga cuando quieras',paygF3D:'¿Te estás quedando sin créditos? Un clic agrega otro bloque de $97 — sin esperas ni tickets.',
+      paygGo:'Comenzar por $97/mes →',paygAdd:'➕ Agregar Más Créditos — $97',
+      paygS1:'Paga $97 con Stripe — los créditos se cargan al instante.',
+      paygS2:'Usa tus créditos en llamadas, cotizaciones y mensajes IA.',
+      paygS3:'Los créditos se reinician en tu fecha mensual. Agrega más cuando los necesites antes.'
     }
   };
 
   var q=new URLSearchParams(location.search);
   var plan=/^(year|yearly|annual|anual)$/i.test(q.get('plan')||'')?'year':'month';
-  var tab=q.get('tab')==='custom'?'custom':'sub';
+  var tab=['custom','payg'].indexOf(q.get('tab'))!==-1?q.get('tab'):'sub';
   var cplan='us';
   var lang=(q.get('lang')||'').toLowerCase()==='es'?'es':'en';
   try{var s=localStorage.getItem('jt-lang');if(!q.get('lang')&&(s==='es'||s==='en'))lang=s;}catch(e){}
@@ -366,6 +448,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
     document.getElementById('go-sub').textContent=plan==='year'?T[lang].goYr:T[lang].go;
     document.querySelectorAll('.tab-btn').forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===tab?'true':'false');});
     document.getElementById('panel-sub').classList.toggle('active',tab==='sub');
+    document.getElementById('panel-payg').classList.toggle('active',tab==='payg');
     document.getElementById('panel-custom').classList.toggle('active',tab==='custom');
     paintF30();
   }
@@ -383,6 +466,26 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   // Events
   document.querySelectorAll('.tab-btn').forEach(function(b){b.onclick=function(){tab=b.dataset.tab;paint();};});
+
+  // Pay As You Go submit → Stripe
+  document.getElementById('f-payg').addEventListener('submit',function(e){
+    e.preventDefault();
+    var em=document.getElementById('email-payg').value.trim();
+    var co=document.getElementById('company-payg').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){document.getElementById('err-payg').textContent=T[lang].bad;document.getElementById('email-payg').focus();return;}
+    document.getElementById('err-payg').textContent='';
+    var ref=(q.get('ref')||'direct').replace(/[^A-Za-z0-9_-]/g,'').slice(0,40)||'direct';
+    try{localStorage.setItem('jt-checkout',JSON.stringify({email:em,company:co,ref:ref,lang:lang,plan:'payg',at:Date.now()}));}catch(e){}
+    location.href=STRIPE_PAYG+'?prefilled_email='+encodeURIComponent(em)+'&client_reference_id='+encodeURIComponent(ref)+(lang==='es'?'&locale=es':'');
+  });
+
+  // Add More Credits button
+  document.getElementById('add-more-btn').addEventListener('click',function(){
+    var em=document.getElementById('email-payg').value.trim();
+    var ref=(q.get('ref')||'direct').replace(/[^A-Za-z0-9_-]/g,'').slice(0,40)||'direct';
+    var url=STRIPE_PAYG_TOPUP+(em?'?prefilled_email='+encodeURIComponent(em):'');
+    location.href=url;
+  });
   document.querySelectorAll('.plan').forEach(function(b){b.onclick=function(){plan=b.dataset.plan;paint();};});
   document.querySelectorAll('.cplan').forEach(function(b){b.onclick=function(){cplan=b.dataset.cplan;paint();};});
   document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;try{localStorage.setItem('jt-lang',lang);}catch(e){}paint();};});
