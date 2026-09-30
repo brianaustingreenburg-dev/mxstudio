@@ -253,7 +253,7 @@ window.bizMail=function(to,subj,body){
 <style id="deals-6040">
 /* Prospects & Deals: list 40%, prospect panel 60% on computers; packages two across ✝️ */
 @media (min-width:761px){
-  #tab-deals .p-layout{grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important}
+  #tab-deals .p-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
   #tab-deals #det-packages{display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
   #tab-deals #det-packages>div:not([style*="border-radius"]){grid-column:1/-1}
   #tab-deals .ptable th:nth-child(3),#tab-deals .ptable td:nth-child(3),#tab-deals .ptable th:nth-child(6),#tab-deals .ptable td:nth-child(6){display:none}
@@ -2692,7 +2692,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 30 · 1:15 PM · Prospects & Deals';
+  var VERSION='Sept 30 · 1:20 PM · Prospects & Deals';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
