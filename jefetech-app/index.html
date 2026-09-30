@@ -2199,7 +2199,11 @@ function renderQuote(){
   quick.forEach(function(q){
     html+='<button class="qi-quick" data-d="'+q.d+'" data-p="'+q.p+'" style="flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:5px 12px;font-size:11px;color:#E8E0D5;cursor:pointer;white-space:nowrap;font-family:inherit">'+q.d+'</button>';
   });
-  html+='</div>'+(COUNTRY!=='us'?'<p style="font-size:10px;color:#94A3B8;margin:-6px 0 10px">'+CC().flag+' '+(es?'Precios iniciales en '+CC().cur+' — ajústalos a tus tarifas locales.':'Starting prices in '+CC().cur+' — edit to your local rates.')+'</p>':'')+'<p class="sec-lbl">'+(es?'CONCEPTOS':'LINE ITEMS')+'</p>';
+  html+='</div>'+(COUNTRY!=='us'?'<p style="font-size:10px;color:#94A3B8;margin:-6px 0 10px">'+CC().flag+' '+(es?'Precios iniciales en '+CC().cur+' — ajústalos a tus tarifas locales.':'Starting prices in '+CC().cur+' — edit to your local rates.')+'</p>':'')
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
+    +'<p class="sec-lbl" style="margin:0">'+(es?'CONCEPTOS':'LINE ITEMS')+'</p>'
+    +'<button onclick="ACTIVE_JOB.items=[];Q_UID=0;renderJobsHub()" style="background:rgba(255,60,60,.1);border:1px solid rgba(255,60,60,.25);border-radius:8px;padding:3px 10px;font-size:11px;font-weight:700;color:#FF6B6B;cursor:pointer;font-family:inherit">🗑 '+(es?'Limpiar':'Reset')+'</button>'
+    +'</div>';
   ACTIVE_JOB.items.forEach(function(item){
     html+='<div class="card" style="padding:10px 12px;margin-bottom:7px">'
       +'<input class="qi-inp" data-id="'+item.id+'" data-f="desc" value="'+item.desc+'" placeholder="'+(es?'Descripción':'Description')+'" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:7px 10px;font-size:13px;color:#fff;outline:none;font-family:inherit;box-sizing:border-box;margin-bottom:7px">'
