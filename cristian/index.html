@@ -631,7 +631,7 @@ function copyStripe(btn){
 }
 function sendStripeWA(){
   var l=window.mxLang?mxLang.get():(LANG==='es'?'es':'en');
-  var M={en:'JefeTech: $137/mo for your whole crew. Over $300/mo of value, price locked for life. Lifetime money-back guarantee (terms apply) ✝️\n',es:'JefeTech: $137 USD/mes para todo su equipo. Más de $300/mes de valor, precio fijo de por vida. Garantía de devolución de por vida (aplican términos) ✝️\n',fil:'JefeTech: $137/buwan para sa buong crew mo. Higit $300/buwan na value, hindi na tataas ang presyo habambuhay. Lifetime money-back guarantee (may terms) ✝️\n'};
+  var M={en:'JefeTech: $137/mo or $1,344/yr (save $300) for your whole crew. Price locked for life. Lifetime money-back guarantee (terms apply) ✝️\n',es:'JefeTech: $137/mes o $1,344/año (ahorras $300) para todo su equipo. Precio fijo de por vida. Garantía de devolución de por vida (aplican términos) ✝️\n',fil:'JefeTech: $137/buwan o $1,344/taon (makatipid ng $300) para sa buong crew mo. Hindi na tataas ang presyo habambuhay. Lifetime money-back guarantee (may terms) ✝️\n'};
   window.open('https://wa.me/?text='+encodeURIComponent(M[l]+STRIPE),'_blank');
 }
 function copyLink(url,btn){
