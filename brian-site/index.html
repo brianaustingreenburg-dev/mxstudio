@@ -1103,9 +1103,10 @@ function renderP(){
   var me=document.getElementById('m-earned');if(me)me.textContent='$'+(mcl*82.2).toFixed(2);
   // If panel is inside Deals tab, wire row clicks to dealsSelP
   var panel=document.getElementById('prospects-real-panel');
-  if(panel&&document.getElementById('tab-deals').contains(panel)){
-    panel.querySelectorAll('tbody tr[onclick]').forEach(function(tr){
-      var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);
+  if(panel&&document.getElementById('tab-deals')&&document.getElementById('tab-deals').contains(panel)){
+    panel.querySelectorAll('#ptbody tr').forEach(function(tr){
+      var oc=tr.getAttribute('onclick')||'';
+      var m=oc.match(/^selP\((\d+)\)$/);
       if(m) tr.setAttribute('onclick','dealsSelP('+m[1]+')');
     });
   }
@@ -1370,14 +1371,21 @@ upd();
 var DS = {sel:null};
 
 function dealsSelP(i){
-  DS.sel=i; var p=P[i], s=getStatus(i);
+  DS.sel=i;
+  // Set global selection so action buttons (callSelected, waSelected, sendLink) work
+  S.sel=i; sv();
+  var p=P[i], s=getStatus(i);
+  // Update right column
   var dn=document.getElementById('deals-d-name');
   var dl=document.getElementById('deals-d-loc');
   if(dn) dn.textContent=p[0]||'Unknown';
   if(dl) dl.textContent=(p[2]?p[2]+', ':'')+p[3]+' · '+(p[4]||tzCode(p))+' · '+s;
   var sp=document.getElementById('deals-share-phone');
   if(sp) sp.value=p[1]||'';
-  selP(i);
+  // Highlight selected row WITHOUT calling renderP (which would reset onclicks)
+  document.querySelectorAll('#ptbody tr').forEach(function(tr,idx){
+    tr.classList.toggle('sel', idx===CL.indexOf(i));
+  });
 }
 
 function dealsMarkStatus(st){if(DS.sel===null)return;markStatus(st);}
