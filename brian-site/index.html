@@ -551,6 +551,82 @@ window.bizMail=function(to,subj,body){
 
 <div id="tab-prospects" class="tab">
   <div id="lineup"></div>
+
+<!-- JEFETECH SCRIPTS (inside Prospects) -->
+<div id="prospect-scripts" style="margin-bottom:16px;border-bottom:1px solid rgba(0,230,118,.15);padding-bottom:16px">
+<div class="s-layout">
+    <div class="s-nav">
+      <button class="sp active" onclick="showScript('opener',this)">👋 Opener</button>
+      <button class="sp" onclick="showScript('close',this)">🤝 Close</button>
+      <button class="sp" onclick="showScript('setup',this)">📲 Setup</button>
+      <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
+      <button class="sp ph-solar-btn" onclick="showScript('phsolar',this)" style="display:none">🇵🇭 Solar Pitch</button>
+    </div>
+    <div>
+      <div id="script-opener" class="sb active">
+        <div class="sb-lbl" style="display:flex;align-items:center;justify-content:space-between">
+          <span>Opener — First 10 Seconds</span>
+          <button id="opener-edit-btn" onclick="(function(){var v=document.getElementById('opener-view'),e=document.getElementById('opener-edit'),btn=document.getElementById('opener-edit-btn');if(e.style.display==='none'){e.value=v.innerText;e.style.display='block';v.style.display='none';btn.textContent='✓ Save';}else{v.innerHTML=e.value.replace(/\n/g,'<br>');try{localStorage.setItem('bl-opener',e.value);}catch(x){}e.style.display='none';v.style.display='block';btn.textContent='✏️ Edit';}})()" style="font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--muted);cursor:pointer;font-family:inherit">✏️ Edit</button>
+        </div>
+        <div class="sb-txt" id="opener-view">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
+        <textarea id="opener-edit" style="display:none;width:100%;background:var(--card2);border:1px solid var(--green);border-radius:10px;padding:12px;color:var(--white);font-family:inherit;font-size:13px;line-height:1.7;resize:none;min-height:140px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+        <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
+      </div>
+      <div id="script-close" class="sb" style="display:none">
+        <div class="sb-lbl">The Close</div>
+        <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month (or $1,344 a year, save $300), for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
+        <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button onclick="copyStripe(this)" style="flex:1;background:var(--orange);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💳 Copy Checkout Link</button>
+          <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);color:var(--orange);font-size:13px;font-weight:800;padding:14px;border-radius:10px;cursor:pointer;font-family:inherit">💬 Send via WhatsApp</button>
+        </div>
+      </div>
+      <div id="script-setup" class="sb" style="display:none">
+        <div class="sb-lbl">Setup — While They Pay (2 min)</div>
+        <div class="sb-txt"><strong>Walk them through this right after they checkout:</strong><br><br>
+1️⃣ <b>Open the app link</b> on their phone<br>
+   → Safari (iPhone) or Chrome (Android)<br>
+   → Tap the <b>Share icon</b> (box with ↑ arrow)<br>
+   → <b>"Add to Home Screen"</b> → Add<br>
+   ✅ App icon appears on their home screen<br><br>
+2️⃣ <b>Open the dashboard link</b> — same steps<br>
+   ✅ Dashboard icon on home screen too<br><br>
+3️⃣ <b>They're set up.</b> Show them the Jobs tab. Done.<br><br>
+<em style="color:var(--green)">"No App Store. No download. 2 minutes."</em></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+          <button onclick="copyLink('https://myjefetech.app',this)" class="copy-btn" style="text-align:left">📱 Copy App Link</button>
+          <button onclick="copyLink('https://go.myjefetech.app/app/',this)" class="copy-btn" style="text-align:left">🖥️ Copy Dashboard Link</button>
+        </div>
+        <button class="copy-btn" onclick="copyScript('setup')" style="margin-top:8px">Copy Script</button>
+      </div>
+      <div id="script-fu" class="sb" style="display:none">
+        <div class="sb-lbl">Follow Up — 24 Hours Later</div>
+        <div class="sb-txt">"Hey [Name], Brian Lalo here — sent you the JefeTech link yesterday. Did you get a chance to look?<br><br>I can walk you through it in 5 minutes right now."<br><br><strong>If they looked →</strong> "What did you think? Any questions?"<br><strong>If they forgot →</strong> "No worries — sending it again right now. Two minutes tonight."<br><br><strong>Guarantee close →</strong> "Remember — use it next to your current app. If you ever don't love it, cancel and get your most recent month back. Zero risk."</div>
+        <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px">
+          <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📝 Follow Up Notes — <span id="fu-prospect-name" style="color:var(--muted);text-transform:none;font-weight:400">Select a prospect first</span></div>
+          <textarea id="fu-notes" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;color:var(--white);font-family:inherit;resize:none;outline:none;min-height:100px;line-height:1.7" placeholder="What happened on the last call? What did they say? When to follow up?..." oninput="saveFuNote()"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button onclick="sendLink('demo')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:9px;font-size:12px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit">📱 Resend Demo</button>
+            <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:8px;padding:9px;font-size:12px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">💳 Send Payment Link</button>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyScript('fu')">Copy Script</button>
+      </div>
+      <div id="script-phsolar" class="sb" style="display:none">
+        <div class="sb-lbl">🇵🇭 Philippines — Solar Pitch ✝️</div>
+        <div class="sb-txt"><strong>Open:</strong> "Good day! This is Brian Lalo, owner of MX Studio. We work with solar and construction companies. Do you have one minute?"<br><br>
+<strong>The hook:</strong> "Quick question — with electricity prices up almost 20% this year, your phone must be ringing off the hook for solar. How are you keeping up with all the jobs?"<br><br><em>Let them answer. Most will say they're swamped.</em><br><br>
+🛰️ <strong>Roof in seconds</strong> — "Type any address, the satellite view pulls up the roof. Measure it on the spot for your panel layout, before you send a crew."<br><br>
+💼 <strong>Every install, one screen</strong> — "Every site live: which crew, what materials, how far along."<br><br>
+🛡️ <strong>DOLE safety, done</strong> — "Before anyone climbs a roof, the DOLE OSH checklist gets done. Protects your workers and your permit."<br><br>
+👥 <strong>Whole crew, one price</strong> — "Installers, electricians, office, subs. 1 or 100, same price."<br><br>
+<strong>Close:</strong> "$137 a month — or $1,344 for the year and save $300 — unlimited users, cancel anytime, lifetime money-back guarantee. Want me to email you the link right now?"</div>
+        <button class="copy-btn" onclick="copyScript('phsolar')">Copy Script</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div class="p-layout">
     <div>
       <div class="p-panel">
@@ -628,81 +704,6 @@ window.bizMail=function(to,subj,body){
       </div>
     </div>
   </div>
-
-<!-- JEFETECH SCRIPTS (inside Prospects) -->
-<div id="prospect-scripts" style="margin-top:20px;border-top:1px solid rgba(0,230,118,.15);padding-top:16px">
-<div class="s-layout">
-    <div class="s-nav">
-      <button class="sp active" onclick="showScript('opener',this)">👋 Opener</button>
-      <button class="sp" onclick="showScript('close',this)">🤝 Close</button>
-      <button class="sp" onclick="showScript('setup',this)">📲 Setup</button>
-      <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
-      <button class="sp ph-solar-btn" onclick="showScript('phsolar',this)" style="display:none">🇵🇭 Solar Pitch</button>
-    </div>
-    <div>
-      <div id="script-opener" class="sb active">
-        <div class="sb-lbl" style="display:flex;align-items:center;justify-content:space-between">
-          <span>Opener — First 10 Seconds</span>
-          <button id="opener-edit-btn" onclick="(function(){var v=document.getElementById('opener-view'),e=document.getElementById('opener-edit'),btn=document.getElementById('opener-edit-btn');if(e.style.display==='none'){e.value=v.innerText;e.style.display='block';v.style.display='none';btn.textContent='\u2713 Save';}else{v.innerHTML=e.value.replace(/\n/g,'<br>');try{localStorage.setItem('bl-opener',e.value);}catch(x){}e.style.display='none';v.style.display='block';btn.textContent='\u270f\ufe0f Edit';}})()" style="font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--muted);cursor:pointer;font-family:inherit">✏️ Edit</button>
-        </div>
-        <div class="sb-txt" id="opener-view">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
-        <textarea id="opener-edit" style="display:none;width:100%;background:var(--card2);border:1px solid var(--green);border-radius:10px;padding:12px;color:var(--white);font-family:inherit;font-size:13px;line-height:1.7;resize:none;min-height:140px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
-        <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
-      </div>
-      <div id="script-close" class="sb" style="display:none">
-        <div class="sb-lbl">The Close</div>
-        <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month (or $1,344 a year, save $300), for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
-        <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <button onclick="copyStripe(this)" style="flex:1;background:var(--orange);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💳 Copy Checkout Link</button>
-          <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);color:var(--orange);font-size:13px;font-weight:800;padding:14px;border-radius:10px;cursor:pointer;font-family:inherit">💬 Send via WhatsApp</button>
-        </div>
-      </div>
-      <div id="script-setup" class="sb" style="display:none">
-        <div class="sb-lbl">Setup — While They Pay (2 min)</div>
-        <div class="sb-txt"><strong>Walk them through this right after they checkout:</strong><br><br>
-1️⃣ <b>Open the app link</b> on their phone<br>
-   → Safari (iPhone) or Chrome (Android)<br>
-   → Tap the <b>Share icon</b> (box with ↑ arrow)<br>
-   → <b>"Add to Home Screen"</b> → Add<br>
-   ✅ App icon appears on their home screen<br><br>
-2️⃣ <b>Open the dashboard link</b> — same steps<br>
-   ✅ Dashboard icon on home screen too<br><br>
-3️⃣ <b>They're set up.</b> Show them the Jobs tab. Done.<br><br>
-<em style="color:var(--green)">"No App Store. No download. 2 minutes."</em></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
-          <button onclick="copyLink('https://myjefetech.app',this)" class="copy-btn" style="text-align:left">📱 Copy App Link</button>
-          <button onclick="copyLink('https://go.myjefetech.app/app/',this)" class="copy-btn" style="text-align:left">🖥️ Copy Dashboard Link</button>
-        </div>
-        <button class="copy-btn" onclick="copyScript('setup')" style="margin-top:8px">Copy Script</button>
-      </div>
-      <div id="script-fu" class="sb" style="display:none">
-        <div class="sb-lbl">Follow Up — 24 Hours Later</div>
-        <div class="sb-txt">"Hey [Name], Brian Lalo here — sent you the JefeTech link yesterday. Did you get a chance to look?<br><br>I can walk you through it in 5 minutes right now."<br><br><strong>If they looked →</strong> "What did you think? Any questions?"<br><strong>If they forgot →</strong> "No worries — sending it again right now. Two minutes tonight."<br><br><strong>Guarantee close →</strong> "Remember — use it next to your current app. If you ever don't love it, cancel and get your most recent month back. Zero risk."</div>
-        <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📝 Follow Up Notes — <span id="fu-prospect-name" style="color:var(--muted);text-transform:none;font-weight:400">Select a prospect first</span></div>
-          <textarea id="fu-notes" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;color:var(--white);font-family:inherit;resize:none;outline:none;min-height:100px;line-height:1.7" placeholder="What happened on the last call? What did they say? When to follow up?..." oninput="saveFuNote()"></textarea>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button onclick="sendLink('demo')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:9px;font-size:12px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit">📱 Resend Demo</button>
-            <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:8px;padding:9px;font-size:12px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">💳 Send Payment Link</button>
-          </div>
-        </div>
-        <button class="copy-btn" onclick="copyScript('fu')">Copy Script</button>
-      </div>
-      <div id="script-phsolar" class="sb" style="display:none">
-        <div class="sb-lbl">🇵🇭 Philippines — Solar Pitch ✝️</div>
-        <div class="sb-txt"><strong>Open:</strong> "Good day! This is Brian Lalo, owner of MX Studio. We work with solar and construction companies. Do you have one minute?"<br><br>
-<strong>The hook:</strong> "Quick question — with electricity prices up almost 20% this year, your phone must be ringing off the hook for solar. How are you keeping up with all the jobs?"<br><br><em>Let them answer. Most will say they're swamped.</em><br><br>
-🛰️ <strong>Roof in seconds</strong> — "Type any address, the satellite view pulls up the roof. Measure it on the spot for your panel layout, before you send a crew."<br><br>
-💼 <strong>Every install, one screen</strong> — "Every site live: which crew, what materials, how far along."<br><br>
-🛡️ <strong>DOLE safety, done</strong> — "Before anyone climbs a roof, the DOLE OSH checklist gets done. Protects your workers and your permit."<br><br>
-👥 <strong>Whole crew, one price</strong> — "Installers, electricians, office, subs. 1 or 100, same price."<br><br>
-<strong>Close:</strong> "$137 a month — or $1,344 for the year and save $300 — unlimited users, cancel anytime, lifetime money-back guarantee. Want me to email you the link right now?"</div>
-        <button class="copy-btn" onclick="copyScript('phsolar')">Copy Script</button>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 
 <!-- TOAST -->
