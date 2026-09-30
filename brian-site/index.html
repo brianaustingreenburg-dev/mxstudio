@@ -939,7 +939,7 @@ function renderP(){
     return '<tr class="'+(S.sel===i?'sel':'')+'" onclick="selP('+i+')">'
       +'<td><div class="pn">'+p[0]+'</div>'+(S.contacts&&S.contacts[i]?'<div style="font-size:11px;color:var(--green);margin-top:2px;font-weight:700">👤 '+S.contacts[i]+'</div>':'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+whoToAsk(p[0])+'</div>')+'</td>'
       +'<td><div style="display:flex;gap:5px;align-items:center">'
-      +'<a href="tel:+'+p[1].replace(/\D/g,'')+'" onclick="if(!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){event.preventDefault();var n=\''+p[1].replace(/\D/g,'')+'\';navigator.clipboard.writeText(\'+\'+n).then(function(){showToast(\'📋 Copied: +\'+n);}).catch(function(){showToast(\'📞 \'+n);});}" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none;white-space:nowrap">📞</a>'
+      +'<a href="tel:+'+p[1].replace(/\D/g,'')+'" data-ph="'+p[1].replace(/\D/g,'')+'" onclick="callBtn(event,this)" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none;white-space:nowrap">📞</a>'
       +'<a href="https://wa.me/'+( p[1].replace(/\D/g,'').length===10 ? '1' : '' )+p[1].replace(/\D/g,'')+'" target="_blank" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:#25D366;text-decoration:none;white-space:nowrap">💬</a>'
       +'<span style="font-size:12px;color:var(--muted)">'+p[1]+'</span>'
       +'</div></td>'
@@ -1028,6 +1028,7 @@ function clearDet(){
 
 function waP(i){var p=P[i],n=p[1].replace(/\D/g,'');if(n.length===10)n='1'+n;window.open('https://wa.me/'+n,'_blank');}
 function waSelected(){if(S.sel!==null)waP(S.sel);}
+function callBtn(e,el){var n=el.getAttribute('data-ph');if(!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){e.preventDefault();navigator.clipboard.writeText('+'+n).then(function(){showToast('📋 Copied: +'+n);}).catch(function(){showToast('📞 '+n);});}}
 function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'');var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);if(isMobile){window.open('tel:+'+n,'_self');}else{navigator.clipboard.writeText('+'+n).then(function(){showToast('📋 Number copied: +'+n);}).catch(function(){showToast('📞 Call: +'+n);});}}
 function buildMsg(name){
   var link='https://go.myjefetech.app/checkout.html?ref=brian';
