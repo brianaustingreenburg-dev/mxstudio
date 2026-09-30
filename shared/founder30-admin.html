@@ -28,12 +28,6 @@ h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;margin:0 0 6p
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .status{font-size:13px;color:var(--green);min-height:20px;margin-top:4px;text-align:center}
 .status.err{color:var(--red)}
-.pin-wrap{margin-bottom:20px}
-.pin-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
-.pin-input{width:100%;background:#1b1f26;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--ink);font:700 20px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-align:center}
-.pin-input:focus{outline:2px solid var(--gold)}
-.locked{text-align:center;padding:40px 0;color:var(--muted)}
-.locked .ic{font-size:40px;margin-bottom:12px}
 .toggle-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 .toggle-label{font-size:14px;font-weight:600}
 .toggle{position:relative;width:48px;height:26px}
@@ -50,17 +44,7 @@ input:checked+.slider::before{transform:translateX(22px)}
   <h1>Founder30 Admin</h1>
   <p style="color:var(--muted);font-size:14px;margin:0 0 24px">Mark Custom App sales here. The checkout page updates live.</p>
 
-  <div class="pin-wrap" id="pin-wrap">
-    <div class="pin-label">Enter PIN to unlock</div>
-    <input class="pin-input" id="pin-input" type="password" maxlength="6" placeholder="••••••" autocomplete="off">
-  </div>
-
-  <div id="locked-msg" class="locked" style="display:none">
-    <div class="ic">🔒</div>
-    <div>Wrong PIN. Try again.</div>
-  </div>
-
-  <div id="admin-panel" style="display:none">
+  <div id="admin-panel">
     <div class="card">
       <div class="big" id="sold-num">0</div>
       <div class="big-sub">of 30 slots sold</div>
@@ -84,34 +68,7 @@ input:checked+.slider::before{transform:translateX(22px)}
 </div>
 
 <script>
-// PIN stored as SHA-256 hash. Default PIN: 3030
-// To change: replace this hash with sha256 of your new PIN.
-// sha256('3030') = 'fcb4de80f6cdc0d7d5e14ef2faada78e22ddc15c7e1a9c3f9cafd27fc1d9d81b'
-var PIN_HASH='fcb4de80f6cdc0d7d5e14ef2faada78e22ddc15c7e1a9c3f9cafd27fc1d9d81b';
-
 var f30={sold:0,total:30,open:true};
-var unlocked=false;
-
-async function sha256(str){
-  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-}
-
-document.getElementById('pin-input').addEventListener('keydown',async function(e){
-  if(e.key==='Enter'){
-    var h=await sha256(this.value);
-    if(h===PIN_HASH){
-      unlocked=true;
-      document.getElementById('pin-wrap').style.display='none';
-      document.getElementById('locked-msg').style.display='none';
-      document.getElementById('admin-panel').style.display='block';
-      loadData();
-    } else {
-      this.value='';
-      document.getElementById('locked-msg').style.display='block';
-    }
-  }
-});
 
 function loadData(){
   fetch('/shared/founder30.json?_='+Date.now())
@@ -121,6 +78,7 @@ function loadData(){
       render();
     }).catch(function(){render();});
 }
+loadData();
 
 function render(){
   var left=f30.total-f30.sold;
