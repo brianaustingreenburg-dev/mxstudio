@@ -18,6 +18,7 @@ jobs:
           cp shared/demo-dashboard.html out/demo-dashboard.html
           cp shared/demo.html out/demo.html
           cp shared/referral.html out/referral.html
+          cp shared/packages.html out/packages.html
           cp shared/la-forja.html out/la-forja.html
           cp shared/checkout.html out/checkout.html
           cp shared/welcome.html out/welcome.html
