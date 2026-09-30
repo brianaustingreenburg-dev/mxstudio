@@ -270,8 +270,7 @@ window.bizMail=function(to,subj,body){
 <div class="tabs" style="background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.1);padding:0 24px">
   <button class="tb active" onclick="showTab('team',this)" style="color:var(--orange)">🤝 Partners</button>
   <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
-  <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
-  <button class="tb" onclick="showTab('deals',this)">📋 Prospects & Deals</button>
+  <button class="tb" onclick="showTab('prospects',this)">📋 Prospects & Deals</button>
 </div>
 
 <!-- TEAM TAB -->
@@ -695,6 +694,16 @@ window.bizMail=function(to,subj,body){
           <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" class="da" style="display:block;background:rgba(255,197,61,.10);border:1px solid rgba(255,197,61,.3);color:#FFC53D;text-decoration:none">🤝 Not buying? Pitch the 7% referral</a>
         </div>
         <textarea class="det-notes" id="d-notes" placeholder="Notes..." oninput="saveNote()"></textarea>
+
+        <!-- SHARE SCREEN -->
+        <div style="margin-top:10px;background:rgba(0,230,118,.06);border:1px solid var(--gmid);border-radius:12px;padding:12px">
+          <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:.5px;margin-bottom:8px">📺 SHARE SCREEN</div>
+          <input id="share-phone-det" type="tel" placeholder="Their phone number" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--white);font-size:13px;font-family:inherit;outline:none"/>
+          <div style="display:flex;gap:6px;margin-top:7px">
+            <button onclick="shareScreenDet('wa')" style="flex:1;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:#25D366;cursor:pointer;font-family:inherit">💬 WhatsApp</button>
+            <button onclick="shareScreenDet('sms')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">✉️ SMS</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1161,6 +1170,8 @@ function showDet(i){
   document.getElementById('d-notes').value=S.notes[i]||'';
   var dc=document.getElementById('d-contact');
   if(dc) dc.value=S.contacts[i]||'';
+  // Also fill Deals right column if it exists
+  var dn=document.getElementById('deals-d-name');if(dn){document.getElementById('deals-det-empty').style.display='none';document.getElementById('deals-det-body').style.display='block';dn.textContent=p[0];document.getElementById('deals-d-loc').textContent=contact+p[2]+', '+p[3];document.getElementById('deals-d-phone').textContent=p[1];document.getElementById('deals-d-tz').textContent=p[4]||'—';document.getElementById('deals-d-status').textContent=s.charAt(0).toUpperCase()+s.slice(1);var ddc=document.getElementById('deals-d-contact');if(ddc)ddc.value=S.contacts[i]||'';var ddn=document.getElementById('deals-d-notes');if(ddn)ddn.value=S.notes[i]||'';var dsp=document.getElementById('deals-share-phone');if(dsp)dsp.value=p[1]||'';}
 }
 
 function clearDet(){
