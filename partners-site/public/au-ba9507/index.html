@@ -378,9 +378,19 @@ body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,san
     </div>
   </div>
 
+
+  <!-- SETUP GUIDE -->
+  <div class="step step-fu">
+    <div class="step-lbl" id="sc-setup-lbl">📲 PASO 4 — CÓMO INSTALAR</div>
+    <div class="step-txt" id="sc-setup-txt"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+      <button onclick="copyLink('https://myjefetech.app',this)" class="cbtn" id="su-app-btn" style="text-align:left;padding:10px 12px">📋 <span id="su-app-lbl">Copiar Link App</span></button>
+      <button onclick="copyLink('https://go.myjefetech.app',this)" class="cbtn" id="su-dash-btn" style="text-align:left;padding:10px 12px">📋 <span id="su-dash-lbl">Copiar Link Dashboard</span></button>
+    </div>
+  </div>
   <!-- FOLLOW UP -->
   <div class="step step-fu">
-    <div class="step-lbl" id="sc-fu-lbl">📲 PASO 4 — SEGUIMIENTO</div>
+    <div class="step-lbl" id="sc-fu-lbl">📲 PASO 5 — SEGUIMIENTO</div>
     <div class="step-txt" id="sc-fu-txt"></div>
     <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px">
       <button onclick="copyFU(1,this)" class="cbtn" id="fu-btn-1" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #1</button>
@@ -681,7 +691,7 @@ var TX = {
     'sc-opener-lbl':'🎯 PASO 1 — APERTURA',
     'sc-pitch-lbl':'🌮 PASO 2 — PITCH',
     'sc-close-lbl':'🤝 PASO 3 — CIERRE',
-    'sc-fu-lbl':'📲 PASO 4 — SEGUIMIENTO',
+    'sc-fu-lbl':'📲 PASO 5 — SEGUIMIENTO',
     'sc-app-lbl':'Demo App',
     'sc-dash-lbl':'Dashboard',
     'sc-copy-app':'📋 Copiar App',
@@ -706,6 +716,7 @@ var TX = {
     'sc-opener-txt':'"Hola, mi nombre es [Tu Nombre]. Soy socio de MX Studio, basados en Acapulco, México. ¿Me regala un segundo?"<br><br><strong>Dicen que sí →</strong> Ir al Pitch.',
     'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">🌮 El Pitch — Uno a la Vez</strong><br><br><strong>"Le pregunto algo — cuando le da hambre de tacos, ¿va al Taco Bell... o al taquero de la esquina con ingredientes frescos y carne asada recién salida del comal?"</strong><br><br><em>Deja que contesten. Escucha.</em><br><br><strong style="color:var(--orange)">↓ Suelta features uno por uno:</strong><br><br>🛡️ <strong>Feature 1</strong> — "Lo primero que hace su cuadrilla antes de cualquier trabajo — checklist de seguridad WHS (Safe Work Australia). No pueden empezar sin completarlo. Lo aprendí en 13 temporadas pescando en Alaska."<br><br><em>Deja que respondan...</em><br><br>📡 <strong>Feature 2</strong> — "Escribe cualquier dirección y las medidas del techo se llenan solas, para cada oficio."<br><br><em>Deja que respondan...</em><br><br>💼 <strong>Feature 3</strong> — "Tiene un tab de trabajos. Ve en tiempo real qué pasa en el campo — cuadrilla, materiales, progreso. Sin hacer cinco llamadas."<br><br><em>Deja que respondan...</em><br><br>📊 <strong>Feature 4</strong> — "Y un dashboard — La Forja. Clima, alertas, estado de cuadrilla, facturas. Todo en vivo."<br><br><em>Deja que respondan...</em><br><br>👥 <strong>Feature 5</strong> — "¿Cuánta gente tiene? No importa — 1 o 100, mismo precio. Sin cobros por usuario."<br><br><em>Deja que respondan...</em><br><br>🗣️ <strong>Feature 6</strong> — "Inglés y español para toda la cuadrilla. Cada quien la lee en su idioma."<br><br><em>Deja que respondan...</em><br><br>🎣 <strong>Feature 7</strong> — "Y tiene un tab de pesca. Porque trabajamos duro para pescar más tranquilos. 🎣"<br><br><em style="color:var(--green)">Cuando pregunten ¿cuánto cuesta? → Paso 3 ✅</em>',
     'sc-close-txt':'"Te digo algo — son $137 dólares al mes. O paga el año completo — $1,344 dólares, y ahorras $300. Más de $300 de valor, y tu precio queda congelado de por vida. Usuarios ilimitados. Cancela cuando quieras. Garantía de devolución de por vida — si algún día no estás contento, cancelas y te devolvemos tu último mes. ¿Le entramos ahorita?"<br><br><strong>Dicen que sí →</strong> Manda el link de pago.',
+    'sc-setup-lbl':'📲 PASO 4 — CÓMO INSTALAR','sc-setup-txt':'<strong>Mientras pagan, explícales:</strong><br><br>1️⃣ <b>Abre el link de la app</b> → Safari → toca el ícono de compartir (cuadro con flecha ↑) → "Agregar a pantalla de inicio" → ya queda como app.<br><br>2️⃣ <b>Abre el link del dashboard</b> → mismo proceso → lo guardan como app también.<br><br>✅ En 2 minutos tienen las dos apps instaladas. Sin App Store, sin descarga.','su-app-lbl':'Copiar Link App','su-dash-lbl':'Copiar Link Dashboard',
     'sc-fu-txt':'"Buen día [Nombre] — le escribo de MX Studio. ¿Tuvo oportunidad de ver el link? Cualquier duda con gusto le ayudo. 🤝"<br><br><strong>Segunda llamada:</strong><br>"Buenas — le llamo de MX Studio. ¿Tuvo alguna pregunta? Son 2 minutos — ¿lo vemos juntos ahorita?"'
   },
   en:{
@@ -738,7 +749,7 @@ var TX = {
     'sc-opener-lbl':'🎯 STEP 1 — OPENER',
     'sc-pitch-lbl':'🌮 STEP 2 — PITCH',
     'sc-close-lbl':'🤝 STEP 3 — CLOSE',
-    'sc-fu-lbl':'📲 STEP 4 — FOLLOW UP',
+    'sc-fu-lbl':'📲 STEP 5 — FOLLOW UP',
     'sc-app-lbl':'Demo App',
     'sc-dash-lbl':'Dashboard',
     'sc-copy-app':'📋 Copy App Link',
@@ -763,6 +774,7 @@ var TX = {
     'sc-opener-txt':'"Hi, my name is [Your Name]. I am a partner with MX Studio out of Acapulco, Mexico. You got a second?"<br><br><strong>They say sure →</strong> Go to Pitch.',
     'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">🌮 The Pitch — One Feature at a Time</strong><br><br><strong>"Let me ask you something — when you are craving tacos, do you go to Taco Bell... or the taco stand on the corner with fresh ingredients and carne asada right off the grill?"</strong><br><br><em>Let them answer. Listen.</em><br><br><strong style="color:var(--orange)">↓ Drop features one at a time:</strong><br><br>🛡️ <strong>Feature 1</strong> — "First thing your crew does before any job — WHS safety checklist (Safe Work Australia). Cannot skip it. I learned that in 13 seasons fishing in Alaska."<br><br><em>Let them respond...</em><br><br>📡 <strong>Feature 2</strong> — "Type any address and the roof measurements fill in by themselves, for every trade."<br><br><em>Let them respond...</em><br><br>💼 <strong>Feature 3</strong> — "Jobs tab. See everything in the field in real time — crew, materials, progress. Without making five calls."<br><br><em>Let them respond...</em><br><br>📊 <strong>Feature 4</strong> — "Command dashboard — La Forja. Weather, alerts, crew status, invoices. All live."<br><br><em>Let them respond...</em><br><br>👥 <strong>Feature 5</strong> — "How many people on your crew? 1 or 100 — same price. No per-seat fees."<br><br><em>Let them respond...</em><br><br>🗣️ <strong>Feature 6</strong> — "English and Spanish for the whole crew. Everybody reads it in their own language."<br><br><em>Let them respond...</em><br><br>🎣 <strong>Feature 7</strong> — "And I threw in a fishing tab. Because we work hard so we can fish harder. 🎣"<br><br><em style="color:var(--green)">When they ask how much? → Step 3 ✅</em>',
     'sc-close-txt':'"$137 a month. Or pay for the year — $1,344, and save $300. Over $300 worth of tools, and your price is locked for life. Unlimited users. Cancel anytime. Lifetime money-back guarantee — not happy, ever? Cancel and get your most recent month back. Ready to get set up right now?"<br><br><strong>They say yes →</strong> Send payment link.',
+    'sc-setup-lbl':'📲 STEP 4 — HOW TO SET UP','sc-setup-txt':'<strong>While they pay, walk them through this:</strong><br><br>1️⃣ <b>Open the app link</b> → Safari → tap the Share icon (box with arrow ↑) → "Add to Home Screen" → done, it's on their phone like an app.<br><br>2️⃣ <b>Open the dashboard link</b> → same steps → saved as an app too.<br><br>✅ 2 minutes. No App Store, no download.','su-app-lbl':'Copy App Link','su-dash-lbl':'Copy Dashboard Link',
     'sc-fu-txt':'"Hey [Name] — following up from MX Studio. Did you get a chance to check out the link? Happy to answer any questions. 🤝"<br><br><strong>Second call:</strong><br>"Hey — calling back from MX Studio. Any questions about the app? Takes 2 minutes — want to look at it together right now?"'
   }
 };
@@ -771,7 +783,7 @@ function applyLang(){
   var t = TX[LANG];
   // Update all text elements
   Object.keys(t).forEach(function(id){
-    if(id==='sc-opener-txt'||id==='sc-pitch-txt'||id==='sc-close-txt'||id==='sc-fu-txt'||id==='j-rules'){
+    if(id==='sc-opener-txt'||id==='sc-pitch-txt'||id==='sc-close-txt'||id==='sc-setup-txt'||id==='sc-fu-txt'||id==='j-rules'){
       var el=document.getElementById(id); if(el) el.innerHTML=t[id];
     } else if(id==='p-search-ph'){
       var el=document.getElementById('p-search'); if(el) el.placeholder=t[id];
