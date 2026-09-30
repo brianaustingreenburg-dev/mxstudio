@@ -754,31 +754,49 @@ window.bizMail=function(to,subj,body){
     <!-- Right column: compact info boxes -->
     <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">
 
-      <!-- Selected prospect quick info -->
-      <div id="deals-det-header" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
-        <div style="font-size:14px;font-weight:800;color:var(--white)" id="deals-d-name">👆 Click a prospect</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px" id="deals-d-loc"></div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
-          <div style="display:flex;gap:6px">
-            <button class="da da-call" onclick="dealsCallSelected()" style="flex:1;padding:10px;font-size:13px;font-weight:800">📞 Call Now</button>
-            <button class="da da-wa" onclick="dealsWaSelected()" style="flex:1;padding:10px;font-size:13px;font-weight:800">💬 WhatsApp</button>
+      <!-- Selected prospect — mirrors det-body from Prospects tab exactly -->
+      <div class="det" id="deals-det" style="position:static">
+        <div class="det-empty" id="deals-det-empty">👆 Click a prospect</div>
+        <div id="deals-det-body" style="display:none">
+          <div class="det-name" id="deals-d-name"></div>
+          <div class="det-trade" id="deals-d-loc"></div>
+          <div class="det-row"><span class="det-l">📞 Phone</span><span class="det-v" id="deals-d-phone"></span></div>
+          <div class="det-row"><span class="det-l">🕐 Time Zone</span><span class="det-v" id="deals-d-tz"></span></div>
+          <div class="det-row"><span class="det-l">📊 Status</span><span class="det-v" id="deals-d-status"></span></div>
+          <div class="det-row" style="flex-direction:column;align-items:flex-start;gap:6px">
+            <span class="det-l">👤 Contact Name</span>
+            <input id="deals-d-contact" type="text" placeholder="Enter contact name when you find out..."
+              style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:13px;color:var(--white);font-family:inherit;outline:none"
+              oninput="dealsSaveContact()" onfocus="this.style.borderColor='var(--gmid)'" onblur="this.style.borderColor='var(--border)'">
           </div>
-          <button onclick="dealsSendPayment()" style="width:100%;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">💳 Send Payment Link via WhatsApp</button>
-          <button onclick="dealsSendDemo()" style="width:100%;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:11px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">📱 Send Demo App via WhatsApp</button>
-          <!-- Share Screen inline -->
-          <div style="background:rgba(0,230,118,.06);border:1px solid var(--gmid);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:7px">
-            <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:.5px">📺 SHARE SCREEN</div>
-            <input id="deals-share-phone" type="tel" placeholder="Their phone number" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--white);font-size:13px;font-family:inherit;outline:none"/>
-            <div style="display:flex;gap:6px">
-              <button onclick="dealsShareScreen('wa')" style="flex:1;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:#25D366;cursor:pointer;font-family:inherit">💬 WhatsApp</button>
-              <button onclick="dealsShareScreen('sms')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">✉️ SMS</button>
+          <div style="margin-top:12px;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.25);border-radius:12px;padding:12px">
+            <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">📧 They said "send me the link" ✝️</div>
+            <input id="deals-sb-email" type="email" inputmode="email" autocomplete="off" placeholder="their@email.com" style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:11px 12px;font-size:15px;color:var(--white);font-family:inherit;outline:none">
+            <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+              <select id="deals-sb-lang" aria-label="Email language" style="background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:9px;color:var(--white);font-family:inherit;font-size:12px"><option value="en">English</option><option value="es">Español</option></select>
+              <button type="button" onclick="dealsSendLinkEmail()" style="flex:1;min-width:150px;background:var(--green);color:#000;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit">📧 Send links by email</button>
             </div>
+            <div id="deals-sb-status" style="font-size:12px;color:var(--muted);margin-top:8px;min-height:16px"></div>
           </div>
-          <div style="display:flex;gap:6px">
-            <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()" style="flex:1;padding:9px;font-size:12px">✓ Mark Called</button>
-            <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:9px;font-size:12px">🔥 Mark Closed</button>
-            <button class="da da-skip" onclick="dealsMarkStatus('skip')" style="flex:1;padding:9px;font-size:12px">✕ Skip</button>
+          <div class="dacts">
+            <button class="da da-wa" onclick="dealsWaSelected()">💬 WhatsApp</button>
+            <button class="da da-call" onclick="dealsCallSelected()">📞 Call Now</button>
+            <button onclick="dealsSendPayment()" style="width:100%;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;margin-bottom:4px">💳 Send Payment Link via WhatsApp</button>
+            <button onclick="dealsSendDemo()" style="width:100%;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:11px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit;margin-bottom:4px">📱 Send Demo App via WhatsApp</button>
+            <!-- Share Screen inline -->
+            <div style="background:rgba(0,230,118,.06);border:1px solid var(--gmid);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:7px;margin-bottom:4px">
+              <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:.5px">📺 SHARE SCREEN</div>
+              <input id="deals-share-phone" type="tel" placeholder="Their phone number" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--white);font-size:13px;font-family:inherit;outline:none"/>
+              <div style="display:flex;gap:6px">
+                <button onclick="dealsShareScreen('wa')" style="flex:1;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:#25D366;cursor:pointer;font-family:inherit">💬 WhatsApp</button>
+                <button onclick="dealsShareScreen('sms')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">✉️ SMS</button>
+              </div>
+            </div>
+            <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()">✓ Mark Called</button>
+            <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()">🔥 Mark Closed!</button>
+            <button class="da da-skip" onclick="dealsMarkStatus('skip')">✕ Skip</button>
           </div>
+          <textarea class="det-notes" id="deals-d-notes" placeholder="Notes..." oninput="dealsSaveNote()"></textarea>
         </div>
       </div>
 
@@ -1380,20 +1398,45 @@ document.addEventListener('click', function(e){
 
 function dealsSelP(i){
   DS.sel=i;
-  // Set global selection so action buttons (callSelected, waSelected, sendLink) work
   S.sel=i; sv();
   var p=P[i], s=getStatus(i);
-  // Update right column
-  var dn=document.getElementById('deals-d-name');
-  var dl=document.getElementById('deals-d-loc');
-  if(dn) dn.textContent=p[0]||'Unknown';
-  if(dl) dl.textContent=(p[2]?p[2]+', ':'')+p[3]+' · '+(p[4]||tzCode(p))+' · '+s;
+  // Show detail body, hide empty state
+  document.getElementById('deals-det-empty').style.display='none';
+  document.getElementById('deals-det-body').style.display='block';
+  // Populate fields — exact same as showDet()
+  document.getElementById('deals-d-name').textContent=p[0]||'';
+  var contact=S.contacts&&S.contacts[i]?'👤 '+S.contacts[i]+' · ':'';
+  document.getElementById('deals-d-loc').textContent=contact+(p[2]?p[2]+', ':'')+p[3];
+  document.getElementById('deals-d-phone').textContent=p[1]||'';
+  document.getElementById('deals-d-tz').textContent=p[4]||'—';
+  document.getElementById('deals-d-status').textContent=s.charAt(0).toUpperCase()+s.slice(1);
+  var dc=document.getElementById('deals-d-contact');
+  if(dc) dc.value=(S.contacts&&S.contacts[i])||'';
+  var dn=document.getElementById('deals-d-notes');
+  if(dn) dn.value=(S.notes&&S.notes[i])||'';
   var sp=document.getElementById('deals-share-phone');
   if(sp) sp.value=p[1]||'';
-  // Highlight selected row WITHOUT calling renderP (which would reset onclicks)
+  // Highlight selected row WITHOUT calling renderP
   document.querySelectorAll('#ptbody tr').forEach(function(tr,idx){
     tr.classList.toggle('sel', idx===CL.indexOf(i));
   });
+}
+function dealsSaveContact(){if(DS.sel===null)return;if(!S.contacts)S.contacts={};S.contacts[DS.sel]=(document.getElementById('deals-d-contact')||{}).value||'';sv();}
+function dealsSaveNote(){if(DS.sel===null)return;if(!S.notes)S.notes={};S.notes[DS.sel]=(document.getElementById('deals-d-notes')||{}).value||'';sv();}
+function dealsSendLinkEmail(){
+  if(DS.sel===null)return;
+  // Mirror sendLinkEmail but use deals fields
+  var email=(document.getElementById('deals-sb-email')||{}).value||'';
+  var lang=(document.getElementById('deals-sb-lang')||{}).value||'en';
+  var st=document.getElementById('deals-sb-status');
+  if(!email){if(st)st.textContent='⚠️ Enter their email first.';return;}
+  // Re-use existing sendLinkEmail by temporarily syncing email field
+  var orig=document.getElementById('sb-email');
+  var origLang=document.getElementById('sb-lang');
+  if(orig) orig.value=email;
+  if(origLang) origLang.value=lang;
+  if(typeof sendLinkEmail==='function') sendLinkEmail();
+  if(st) st.textContent='✅ Sent!';
 }
 
 function dealsMarkStatus(st){if(DS.sel===null)return;markStatus(st);}
