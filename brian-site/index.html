@@ -271,6 +271,7 @@ window.bizMail=function(to,subj,body){
   <button class="tb active" onclick="showTab('team',this)" style="color:var(--orange)">🤝 Partners</button>
   <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
+  <button class="tb" onclick="showTab('deals',this)">📋 Prospects & Deals</button>
 </div>
 
 <!-- TEAM TAB -->
@@ -728,6 +729,120 @@ window.bizMail=function(to,subj,body){
     </div>
   </div>
 </div>
+
+<!-- PROSPECTS & DEALS TAB -->
+<div id="tab-deals" class="tab">
+  <!-- Compact Opener -->
+  <div style="background:var(--card2);border:1px solid rgba(0,230,118,.2);border-radius:12px;margin:12px 12px 0 12px;padding:12px 16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase">👋 Opener — First 10 Seconds</div>
+      <div style="display:flex;gap:6px">
+        <button id="deals-opener-edit-btn" onclick="(function(){var v=document.getElementById('deals-opener-view'),e=document.getElementById('deals-opener-edit'),btn=document.getElementById('deals-opener-edit-btn');if(e.style.display==='none'){e.value=v.innerText;e.style.display='block';v.style.display='none';btn.textContent='✓ Save';}else{v.innerHTML=e.value.replace(/\n/g,'<br>');try{localStorage.setItem('bl-opener',e.value);}catch(x){}e.style.display='none';v.style.display='block';btn.textContent='✏️ Edit';}})()" style="font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--muted);cursor:pointer;font-family:inherit">✏️ Edit</button>
+        <button onclick="copyDealsScript('opener')" style="font-size:11px;font-weight:700;background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:5px 10px;color:var(--green);cursor:pointer;font-family:inherit">📋 Copy</button>
+      </div>
+    </div>
+    <div id="deals-opener-view" style="font-size:12px;color:var(--white);line-height:1.6">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
+    <textarea id="deals-opener-edit" style="display:none;width:100%;background:var(--card2);border:1px solid var(--green);border-radius:10px;padding:12px;color:var(--white);font-family:inherit;font-size:13px;line-height:1.7;resize:none;min-height:140px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+  </div>
+
+  <!-- Main layout: Prospect list left, Info boxes right -->
+  <div class="p-layout" style="margin-top:10px">
+    <div>
+      <div class="p-panel">
+        <div class="p-head">
+          <div class="p-title">👥 Prospects</div>
+          <div class="batch-lbl" id="deals-batch-lbl">Batch 1 of 34</div>
+          <span style="font-size:11px;color:var(--muted);margin-left:8px" id="deals-p-count">100</span>
+        </div>
+        <div class="p-search">
+          <input class="si" type="text" placeholder="Search name, city, state..." id="deals-si" oninput="dealsFilterP()">
+          <button class="fb" id="df-now" onclick="dealsSetFilter('now')">⏰ Now</button>
+          <button class="fb" id="df-all" onclick="dealsSetFilter('all')">All</button>
+          <button class="fb" id="df-new" onclick="dealsSetFilter('new')">New</button>
+          <button class="fb" id="df-called" onclick="dealsSetFilter('called')">Called</button>
+          <button class="fb" id="df-closed" onclick="dealsSetFilter('closed')">Closed</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="ptable">
+            <thead><tr><th>Company</th><th>Phone</th><th>Location</th><th>TZ</th><th>Status</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="deals-ptbody"></tbody>
+          </table>
+        </div>
+        <div class="pag">
+          <div class="pag-info" id="deals-pag-info">1–100 of 3,400</div>
+          <div class="pag-btns">
+            <button class="pb" id="deals-btn-prev" onclick="dealsPrevBatch()" disabled>← Prev</button>
+            <button class="pb" id="deals-btn-next" onclick="dealsNextBatch()">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: compact info boxes -->
+    <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">
+
+      <!-- Selected prospect quick info -->
+      <div id="deals-det-header" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px;display:none">
+        <div style="font-size:13px;font-weight:800;color:var(--white)" id="deals-d-name">—</div>
+        <div style="font-size:11px;color:var(--muted)" id="deals-d-loc"></div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <button class="da da-call" onclick="dealsCallSelected()" style="flex:1;padding:8px;font-size:12px">📞 Call</button>
+          <button class="da da-wa" onclick="dealsWaSelected()" style="flex:1;padding:8px;font-size:12px">💬 WhatsApp</button>
+          <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()" style="flex:1;padding:8px;font-size:12px">✓ Called</button>
+          <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:8px;font-size:12px">🔥 Closed</button>
+        </div>
+      </div>
+      <div id="deals-det-empty" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px;text-align:center;color:var(--muted);font-size:12px">👆 Click a prospect</div>
+
+      <!-- Deal Links -->
+      <div id="deals-links-box" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
+        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🔗 Deal Links</div>
+        <div style="display:flex;flex-direction:column;gap:6px" id="deals-links-list">
+          <!-- injected by JS or static fallback -->
+          <a href="https://myjefetech.app" target="_blank" style="font-size:12px;font-weight:700;color:var(--green);text-decoration:none;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:7px 10px;display:block">📱 App → myjefetech.app</a>
+          <a href="https://go.myjefetech.app/app/" target="_blank" style="font-size:12px;font-weight:700;color:var(--green);text-decoration:none;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:7px 10px;display:block">🖥️ Dashboard → go.myjefetech.app/app/</a>
+        </div>
+      </div>
+
+      <!-- Packages -->
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
+        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">💼 Packages</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:9px 11px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">💳 Pay As You Go</b><b style="font-size:13px;color:var(--green)">$97/mo</b></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">200 AI calls · 50 estimates · Partner: $58.20/mo</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:9px 11px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">📅 Monthly</b><b style="font-size:13px;color:var(--green)">$137/mo</b></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Unlimited users. Partner: $82.20/mo</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:9px 11px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">📆 Yearly</b><b style="font-size:13px;color:var(--green)">$1,344/yr</b></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">$112/mo — saves $300. Partner: $806.40</div>
+          </div>
+          <div style="background:rgba(255,197,61,.07);border:1px solid rgba(255,197,61,.35);border-radius:9px;padding:9px 11px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">👑 Custom App</b><b style="font-size:13px;color:#FFC53D">$4,997</b></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Their brand. Partner: $999 (20%)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scripts: Close / Setup / Follow Up -->
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
+        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">📝 Scripts</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button onclick="copyDealsScript('close')" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">🤝 Copy Close Script</button>
+          <button onclick="copyDealsScript('setup')" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">📲 Copy Setup Script</button>
+          <button onclick="copyDealsScript('fu')" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">📲 Copy Follow Up Script</button>
+          <button onclick="copyStripe(this)" style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;text-align:left">💳 Copy Checkout Link</button>
+          <button onclick="sendLink('pay')" style="background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit;text-align:left">💬 Send Payment via WhatsApp</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END PROSPECTS & DEALS TAB -->
 
 <!-- TOAST -->
 <div class="toast" id="toast">
@@ -1252,6 +1367,100 @@ function upd(){
 filterP();
 loadNotes();
 upd();
+
+// ── PROSPECTS & DEALS TAB ──────────────────────────────────────────────────
+var DS = {batch:0, sel:null, filter:'all', q:''};
+
+function dealsRenderBatch(){
+  var q=DS.q.toLowerCase(), f=DS.filter;
+  var now=new Date(), nowH=now.getHours()+(now.getMinutes()/60);
+  var rows=P.filter(function(p){
+    if(f==='new'&&p.status!=='new') return false;
+    if(f==='called'&&p.status!=='called') return false;
+    if(f==='closed'&&p.status!=='closed') return false;
+    if(f==='skip'&&p.status!=='skip') return false;
+    if(f==='now'){
+      var tz=p.tz||'';
+      var off=tz.includes('ET')?-4:tz.includes('CT')?-5:tz.includes('MT')?-6:tz.includes('PT')?-7:0;
+      var lh=(nowH+off+24)%24;
+      if(lh<8||lh>=20) return false;
+    }
+    if(q){var s=(p.co||'')+(p.city||'')+(p.state||'');if(!s.toLowerCase().includes(q))return false;}
+    return true;
+  });
+  var tot=rows.length, start=DS.batch*100, slice=rows.slice(start,start+100);
+  document.getElementById('deals-p-count').textContent=tot;
+  document.getElementById('deals-pag-info').textContent=(tot===0)?'0 results':(start+1)+'–'+(start+slice.length)+' of '+tot;
+  document.getElementById('deals-btn-prev').disabled=DS.batch===0;
+  document.getElementById('deals-btn-next').disabled=start+100>=tot;
+  document.getElementById('deals-batch-lbl').textContent='Batch '+(DS.batch+1)+' of '+Math.max(1,Math.ceil(tot/100));
+  var tb=document.getElementById('deals-ptbody'); tb.innerHTML='';
+  slice.forEach(function(p,i){
+    var ri=start+i, st=p.status||'new';
+    var tr=document.createElement('tr');
+    tr.style.cursor='pointer';
+    if(DS.sel===ri) tr.style.background='rgba(0,230,118,.08)';
+    tr.onclick=function(){DS.sel=ri;dealsSelP(ri);dealsRenderBatch();};
+    tr.innerHTML='<td style="font-weight:700;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(p.co||'—')+'</td>'
+      +'<td>'+(p.phone||'—')+'</td>'
+      +'<td style="white-space:nowrap">'+(p.city?p.city+', ':''+(p.state||''))+'</td>'
+      +'<td>'+(p.tz||'')+'</td>'
+      +'<td><span class="tag '+'tag-'+st+'">'+st+'</span></td>'
+      +'<td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--muted)">'+(p.notes||'')+'</td>'
+      +'<td><button onclick="event.stopPropagation();dealsMarkStatusAt('+ri+',\'skip\')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px">✕</button></td>';
+    tb.appendChild(tr);
+  });
+}
+
+function dealsSelP(i){
+  DS.sel=i; var p=P[i];
+  document.getElementById('deals-det-empty').style.display='none';
+  document.getElementById('deals-det-header').style.display='block';
+  document.getElementById('deals-d-name').textContent=p.co||'Unknown';
+  document.getElementById('deals-d-loc').textContent=(p.city?p.city+', ':'')+p.state+' '+p.tz;
+  // sync with main det so all functions work
+  selP(i);
+}
+
+function dealsFilterP(){DS.q=document.getElementById('deals-si').value;DS.batch=0;dealsRenderBatch();}
+function dealsSetFilter(f){
+  DS.filter=f;DS.batch=0;
+  ['now','all','new','called','closed'].forEach(function(x){
+    var el=document.getElementById('df-'+x);
+    if(el) el.classList.toggle('active',x===f);
+  });
+  dealsRenderBatch();
+}
+function dealsNextBatch(){DS.batch++;DS.sel=null;document.getElementById('deals-si').value='';dealsFilterP();}
+function dealsPrevBatch(){DS.batch=Math.max(0,DS.batch-1);DS.sel=null;document.getElementById('deals-si').value='';dealsFilterP();}
+
+function dealsMarkStatusAt(i,st){P[i].status=st;sv();dealsRenderBatch();}
+function dealsMarkStatus(st){if(DS.sel===null)return;dealsMarkStatusAt(DS.sel,st);markStatus(st);}
+function dealsAddCall(){if(typeof addCall==='function')addCall();}
+function dealsAddClose(){if(typeof addClose==='function')addClose();}
+function dealsCallSelected(){if(DS.sel===null)return;selP(DS.sel);callSelected();}
+function dealsWaSelected(){if(DS.sel===null)return;selP(DS.sel);waSelected();}
+
+var DEALS_SCRIPTS={
+  opener:'"Hey, this is Brian Lalo. I own MX Studio. You got a second?"\n\nThey say sure →\n\n"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."\n\nThen listen. Let them talk. Ask one more question about what bugs them most. You\'re the owner, so talk like one: no script, just a conversation.',
+  close:'Know three things cold:\n\n1. Your opener: your name, that you own MX Studio, one real question about how they run their crew.\n\n2. Three proof points:\n• Type their address and the roof measures itself.\n• English and Spanish for the whole crew.\n• One price, $137 a month (or $1,344 a year, save $300), unlimited users.\n\n3. Your close: "Let\'s get you set up today. If it\'s ever not worth it, cancel and I refund your most recent month."\n\nThen send the checkout link.',
+  setup:'Walk them through this right after they checkout:\n\n1. Open the app link on their phone\n→ Safari (iPhone) or Chrome (Android)\n→ Tap Share icon → "Add to Home Screen" → Add\n\n2. Open the dashboard link — same steps\n\n3. Show them the Jobs tab. Done.\n\n"No App Store. No download. 2 minutes."',
+  fu:'"Hey [Name], Brian Lalo here — sent you the JefeTech link yesterday. Did you get a chance to look?\n\nI can walk you through it in 5 minutes right now."\n\nIf they looked → "What did you think? Any questions?"\nIf they forgot → "No worries — sending it again right now."\n\nGuarantee close → "Cancel anytime, get your most recent month back. Zero risk."'
+};
+
+function copyDealsScript(k){
+  var txt=DEALS_SCRIPTS[k]||'';
+  navigator.clipboard.writeText(txt).catch(function(){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);});
+  var btn=event.target; var orig=btn.textContent; btn.textContent='✓ Copied!'; btn.style.color='var(--green)';
+  setTimeout(function(){btn.textContent=orig;btn.style.color='';},1500);
+}
+
+// Initialize deals tab when tab is shown
+var _origShowTab=window.showTab;
+window.showTab=function(n,b){
+  _origShowTab(n,b);
+  if(n==='deals'){dealsSetFilter('all');dealsRenderBatch();}
+};
 </script>
 
 
