@@ -1412,10 +1412,13 @@ function dealsRenderBatch(){
 }
 
 function dealsSelP(i){
-  DS.sel=i; var p=P[i];
-  document.getElementById('deals-d-name').textContent=p[0]||'Unknown';
-  document.getElementById('deals-d-loc').textContent=(p[2]?p[2]+', ':'')+p[3]+' '+(p[4]||tzCode(p));
-  // sync with main selP so call/WA/mark functions all work
+  DS.sel=i; var p=P[i], s=getStatus(i);
+  // Update deals header box
+  var dn=document.getElementById('deals-d-name');
+  var dl=document.getElementById('deals-d-loc');
+  if(dn) dn.textContent=p[0]||'Unknown';
+  if(dl) dl.textContent=(p[2]?p[2]+', ':'')+p[3]+' · '+(p[4]||tzCode(p))+' · '+s;
+  // Also sync main selP so call/WA/mark/stripe functions all work
   selP(i);
 }
 
