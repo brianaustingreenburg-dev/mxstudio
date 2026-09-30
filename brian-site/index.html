@@ -551,7 +551,6 @@ window.bizMail=function(to,subj,body){
 </div>
 
 <div id="tab-prospects" class="tab">
-  <div id="lineup"></div>
 
 <!-- JEFETECH SCRIPTS (inside Prospects) -->
 <div id="prospect-scripts" style="margin-bottom:16px;border-bottom:1px solid rgba(0,230,118,.15);padding-bottom:16px">
@@ -628,6 +627,24 @@ window.bizMail=function(to,subj,body){
   </div>
 </div>
 
+</div>
+
+<div id="tab-deals" class="tab">
+  <div id="lineup"></div>
+  <!-- Compact Opener -->
+  <div style="background:var(--card2);border:1px solid rgba(0,230,118,.2);border-radius:12px;margin:12px 12px 0 12px;padding:12px 16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase">👋 Opener — First 10 Seconds</div>
+      <div style="display:flex;gap:6px">
+        <button id="deals-opener-edit-btn" onclick="(function(){var v=document.getElementById('deals-opener-view'),e=document.getElementById('deals-opener-edit'),btn=document.getElementById('deals-opener-edit-btn');if(e.style.display==='none'){e.value=v.innerText;e.style.display='block';v.style.display='none';btn.textContent='✓ Save';}else{v.innerHTML=e.value.replace(/\n/g,'<br>');try{localStorage.setItem('bl-opener',e.value);}catch(x){}e.style.display='none';v.style.display='block';btn.textContent='✏️ Edit';}})()" style="font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--muted);cursor:pointer;font-family:inherit">✏️ Edit</button>
+        <button onclick="copyDealsScript('opener')" style="font-size:11px;font-weight:700;background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:5px 10px;color:var(--green);cursor:pointer;font-family:inherit">📋 Copy</button>
+      </div>
+    </div>
+    <div id="deals-opener-view" style="font-size:16px;color:var(--white);line-height:1.7">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
+    <textarea id="deals-opener-edit" style="display:none;width:100%;background:var(--card2);border:1px solid var(--green);border-radius:10px;padding:12px;color:var(--white);font-family:inherit;font-size:16px;line-height:1.7;resize:none;min-height:140px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+  </div>
+
+  <!-- Main layout: Prospect list left, Info boxes right -->
   <div class="p-layout">
     <div>
       <div class="p-panel">
@@ -738,121 +755,6 @@ window.bizMail=function(to,subj,body){
   </div>
 </div>
 
-<div id="tab-deals" class="tab">
-  <div id="deals-lineup"></div>
-  <!-- Compact Opener -->
-  <div style="background:var(--card2);border:1px solid rgba(0,230,118,.2);border-radius:12px;margin:12px 12px 0 12px;padding:12px 16px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-      <div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase">👋 Opener — First 10 Seconds</div>
-      <div style="display:flex;gap:6px">
-        <button id="deals-opener-edit-btn" onclick="(function(){var v=document.getElementById('deals-opener-view'),e=document.getElementById('deals-opener-edit'),btn=document.getElementById('deals-opener-edit-btn');if(e.style.display==='none'){e.value=v.innerText;e.style.display='block';v.style.display='none';btn.textContent='✓ Save';}else{v.innerHTML=e.value.replace(/\n/g,'<br>');try{localStorage.setItem('bl-opener',e.value);}catch(x){}e.style.display='none';v.style.display='block';btn.textContent='✏️ Edit';}})()" style="font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--muted);cursor:pointer;font-family:inherit">✏️ Edit</button>
-        <button onclick="copyDealsScript('opener')" style="font-size:11px;font-weight:700;background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:5px 10px;color:var(--green);cursor:pointer;font-family:inherit">📋 Copy</button>
-      </div>
-    </div>
-    <div id="deals-opener-view" style="font-size:16px;color:var(--white);line-height:1.7">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
-    <textarea id="deals-opener-edit" style="display:none;width:100%;background:var(--card2);border:1px solid var(--green);border-radius:10px;padding:12px;color:var(--white);font-family:inherit;font-size:16px;line-height:1.7;resize:none;min-height:140px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
-  </div>
-
-  <!-- Main layout: Prospect list left, Info boxes right -->
-  <div class="p-layout" style="margin-top:10px;grid-template-columns:2fr 3fr">
-    <div>
-      <div class="p-panel">
-        <div class="p-head">
-          <div class="p-title">👥 Prospects</div>
-          <div class="batch-lbl" id="deals-batch-lbl">Batch 1 of 34</div>
-          <span style="font-size:11px;color:var(--muted);margin-left:8px" id="deals-p-count">100</span>
-        </div>
-        <div class="p-search">
-          <input class="si" type="text" placeholder="Search name, city, state..." id="deals-si" oninput="dealsFilterP()">
-          <button class="fb" id="df-now" onclick="dealsSetFilter('now')">⏰ Now</button>
-          <button class="fb" id="df-all" onclick="dealsSetFilter('all')">All</button>
-          <button class="fb" id="df-new" onclick="dealsSetFilter('new')">New</button>
-          <button class="fb" id="df-called" onclick="dealsSetFilter('called')">Called</button>
-          <button class="fb" id="df-closed" onclick="dealsSetFilter('closed')">Closed</button>
-        </div>
-        <div style="overflow-x:auto">
-          <table class="ptable">
-            <thead><tr><th>Company</th><th>Phone</th><th>Location</th><th>TZ</th><th>Status</th><th>Notes</th><th></th></tr></thead>
-            <tbody id="deals-ptbody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">Loading...</td></tr></tbody>
-          </table>
-        </div>
-        <div class="pag">
-          <div class="pag-info" id="deals-pag-info">1–100 of 3,400</div>
-          <div class="pag-btns">
-            <button class="pb" id="deals-btn-prev" onclick="dealsPrevBatch()" disabled>← Prev</button>
-            <button class="pb" id="deals-btn-next" onclick="dealsNextBatch()">Next →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right column: compact info boxes -->
-    <div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">
-
-      <!-- Selected prospect quick info -->
-      <div id="deals-det-header" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
-        <div style="font-size:14px;font-weight:800;color:var(--white)" id="deals-d-name">👆 Click a prospect</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px" id="deals-d-loc"></div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
-          <div style="display:flex;gap:6px">
-            <button class="da da-call" onclick="dealsCallSelected()" style="flex:1;padding:10px;font-size:13px;font-weight:800">📞 Call Now</button>
-            <button class="da da-wa" onclick="dealsWaSelected()" style="flex:1;padding:10px;font-size:13px;font-weight:800">💬 WhatsApp</button>
-          </div>
-          <button onclick="dealsSendPayment()" style="width:100%;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">💳 Send Payment Link via WhatsApp</button>
-          <button onclick="dealsSendDemo()" style="width:100%;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:11px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">📱 Send Demo App via WhatsApp</button>
-          <!-- Share Screen inline -->
-          <div style="background:rgba(0,230,118,.06);border:1px solid var(--gmid);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:7px">
-            <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:.5px">📺 SHARE SCREEN</div>
-            <input id="deals-share-phone" type="tel" placeholder="Their phone number" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--white);font-size:13px;font-family:inherit;outline:none"/>
-            <div style="display:flex;gap:6px">
-              <button onclick="dealsShareScreen('wa')" style="flex:1;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:#25D366;cursor:pointer;font-family:inherit">💬 WhatsApp</button>
-              <button onclick="dealsShareScreen('sms')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:8px;font-size:12px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">✉️ SMS</button>
-            </div>
-          </div>
-          <div style="display:flex;gap:6px">
-            <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()" style="flex:1;padding:9px;font-size:12px">✓ Mark Called</button>
-            <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:9px;font-size:12px">🔥 Mark Closed</button>
-            <button class="da da-skip" onclick="dealsMarkStatus('skip')" style="flex:1;padding:9px;font-size:12px">✕ Skip</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Deal Links -->
-      <div id="deals-links-box" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🔗 Deal Links</div>
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <a href="https://myjefetech.app" target="_blank" style="font-size:12px;font-weight:700;color:var(--green);text-decoration:none;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:7px 10px;display:block">📱 App → myjefetech.app</a>
-          <a href="https://go.myjefetech.app/app/" target="_blank" style="font-size:12px;font-weight:700;color:var(--green);text-decoration:none;background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:7px 10px;display:block">🖥️ Dashboard → go.myjefetech.app/app/</a>
-        </div>
-      </div>
-
-      <!-- Packages -->
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">💼 Packages</div>
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:9px 11px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">💳 Pay As You Go</b><b style="font-size:13px;color:var(--green)">$97/mo</b></div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">200 AI calls · 50 estimates · Partner: $58.20/mo</div>
-          </div>
-          <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:9px 11px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">📅 Monthly</b><b style="font-size:13px;color:var(--green)">$137/mo</b></div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">Unlimited users. Partner: $82.20/mo</div>
-          </div>
-          <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:9px 11px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">📆 Yearly</b><b style="font-size:13px;color:var(--green)">$1,344/yr</b></div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">$112/mo — saves $300. Partner: $806.40</div>
-          </div>
-          <div style="background:rgba(255,197,61,.07);border:1px solid rgba(255,197,61,.35);border-radius:9px;padding:9px 11px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12px">👑 Custom App</b><b style="font-size:13px;color:#FFC53D">$4,997</b></div>
-            <div style="font-size:11px;color:var(--muted);margin-top:2px">Their brand. Partner: $999 (20%)</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast">
   <div class="t-icon" id="t-icon">🔥</div>
@@ -955,8 +857,8 @@ setInterval(tick,1000);tick();
 // QUOTES
 var Q={0:{q:"Rest. God wins. Monday is coming.",s:"Plan. Prepare. Be ready."},1:{q:"Monday. God wins. Let's go. 🚀",s:"5 calls before 10am. That's all."},2:{q:"Tuesday momentum. God wins.",s:"Yesterday's calls are today's closes."},3:{q:"Wednesday — God wins. Halfway.",s:"Your best close is one call away."},4:{q:"Thursday closer's day. God wins.",s:"People decide before Friday. Push hard."},5:{q:"Friday. God wins. Make it count. 🔥",s:"Close something. Win the week."},6:{q:"Saturday. God wins. Champions show up.",s:"One call puts you ahead."}};
 var dq=Q[new Date().getDay()];
-document.getElementById('gt-q').textContent=dq.q;
-document.getElementById('gt-s').textContent=dq.s;
+(function(e){if(e)e.textContent=dq.q;})(document.getElementById('gt-q'));
+(function(e){if(e)e.textContent=dq.s;})(document.getElementById('gt-s'));
 
 // TABS
 function showTab(n,b){
@@ -1130,7 +1032,7 @@ function updPag(){
   document.getElementById('p-count').textContent=CL.length+' shown';
   document.getElementById('btn-prev').disabled=S.batch===0;
   document.getElementById('btn-next').disabled=end>=tot;
-  document.getElementById('g-batch').textContent=bn+'/'+tb;
+  var _gb=document.getElementById('g-batch');if(_gb)_gb.textContent=bn+'/'+tb;
 }
 
 function nextBatch(){S.batch++;S.sel=null;sv();document.getElementById('si').value='';filterP();clearDet();}
@@ -1332,9 +1234,9 @@ function upd(){
   document.getElementById('h-calls').textContent=c;
   document.getElementById('h-closes').textContent=cl;
   document.getElementById('h-earned').textContent='$'+up;
-  document.getElementById('g-calls').textContent=c;
-  document.getElementById('g-closes').textContent=cl;
-  document.getElementById('g-earned').textContent='$'+up;
+  var _g_calls=document.getElementById('g-calls');if(_g_calls)_g_calls.textContent=c;
+  var _g_closes=document.getElementById('g-closes');if(_g_closes)_g_closes.textContent=cl;
+  var _g_earned=document.getElementById('g-earned');if(_g_earned)_g_earned.textContent='$'+up;
   var cn=document.getElementById('calls-n');if(cn)cn.textContent=c;
   var cs=document.getElementById('calls-s');if(cs)cs.textContent='of '+g+' goal';
   var cb=document.getElementById('call-bar');if(cb)cb.style.width=pct+'%';
@@ -1575,7 +1477,7 @@ upd();
   }
   setInterval(recycleLabel,60000);
 
-  window.jumpToList=function(){var el=document.querySelector('#tab-prospects .p-panel');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
+  window.jumpToList=function(){var t=document.getElementById('tab-deals');if(t&&!t.classList.contains('active')){var b=document.querySelector("button.tb[onclick*=\"'deals'\"]");if(b)showTab('deals',b);}var el=document.querySelector('#tab-deals .p-panel');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});};
   var _setFilter=setFilter;
   window.setFilter=function(f){_setFilter(f);renderLineup();if(f==='now'&&window._lineupReady)jumpToList();};
   var _quickCall=quickCall;
@@ -2978,7 +2880,7 @@ function copyDealsScript(k){
 var _origShowTabDeals=window.showTab;
 window.showTab=function(n,b){
   _origShowTabDeals(n,b);
-  if(n==='deals'){dealsSetFilter('all');dealsRenderBatch();}
+  if(n==='deals'&&typeof renderP==='function')renderP();
 };
 </script>
 
