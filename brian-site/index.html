@@ -272,7 +272,6 @@ window.bizMail=function(to,subj,body){
   <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
   <button class="tb" onclick="showTab('deals',this)">📋 Prospects & Deals</button>
-  <button class="tb" onclick="showTab('share',this)">📺 Share Screen</button>
 </div>
 
 <!-- TEAM TAB -->
@@ -823,39 +822,6 @@ window.bizMail=function(to,subj,body){
 <!-- END PROSPECTS & DEALS TAB -->
 
 <!-- SHARE SCREEN TAB -->
-<div id="tab-share" class="tab">
-  <div style="max-width:600px;margin:24px auto;padding:0 16px">
-
-    <div style="font-size:18px;font-weight:900;color:var(--white);margin-bottom:4px">📺 Share Screen</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">You're on the phone with them — text this link and they see the live app + dashboard side by side.</div>
-
-    <!-- Preview the demo page -->
-    <a href="https://go.myjefetech.app/demo.html" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-align:center;text-decoration:none;margin-bottom:20px">
-      <div style="font-size:32px;margin-bottom:8px">⚡</div>
-      <div style="font-size:16px;font-weight:900;color:var(--green)">Open Live Demo Page</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:4px">go.myjefetech.app/demo.html</div>
-      <div style="font-size:11px;color:rgba(0,230,118,.5);margin-top:6px">Dashboard on left · App on right · Both fully live</div>
-    </a>
-
-    <!-- Send to their phone -->
-    <div style="background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:18px">
-      <div style="font-size:12px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">📲 Text Them the Link</div>
-
-      <div style="margin-bottom:12px">
-        <label style="font-size:12px;color:var(--muted);font-weight:700;display:block;margin-bottom:6px">Their Phone Number</label>
-        <input id="share-phone" type="tel" inputmode="numeric" placeholder="e.g. 5551234567" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:13px 14px;font-size:16px;color:var(--white);font-family:inherit;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gmid)'" onblur="this.style.borderColor='var(--border)'">
-      </div>
-
-      <div style="display:flex;gap:8px">
-        <button onclick="shareToPhone('demo','wa')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:14px 8px;font-size:14px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">💬 Send via WhatsApp</button>
-        <button onclick="shareToPhone('demo','sms')" style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:14px 8px;font-size:14px;font-weight:800;color:var(--white);cursor:pointer;font-family:inherit">📱 Send via SMS</button>
-      </div>
-
-      <div id="share-status" style="font-size:12px;color:var(--muted);margin-top:10px;min-height:16px;text-align:center"></div>
-    </div>
-  </div>
-</div>
-<!-- END SHARE SCREEN TAB -->
 
 <!-- TOAST -->
 <div class="toast" id="toast">
