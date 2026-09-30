@@ -270,7 +270,37 @@ window.bizMail=function(to,subj,body){
   <button class="tb active" onclick="showTab('team',this)" style="color:var(--orange)">🤝 Partners</button>
   <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
-  <button class="tb" onclick="showTab('earnings',this)">✝️ Loyalty Program</button>
+
+<!-- LOYALTY / EARNINGS (embedded in Partners tab) -->
+<div id="loyalty-embed" style="margin-top:24px;border-top:1px solid rgba(0,230,118,.15);padding-top:20px">
+  <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">✝️ Loyalty Program — My Numbers</div>
+  <div class="e2">
+    <div class="gc">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Earned</div>
+      <div class="earn-big" id="earn-total">$0</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px" id="earn-sub">0 closes</div>
+      <div class="eg">
+        <div class="ec"><div class="ec-n g" id="e-up">$0</div><div class="ec-l">Upfront (60%)</div></div>
+        <div class="ec"><div class="ec-n" id="e-res">$0/mo</div><div class="ec-l">Residual</div></div>
+        <div class="ec"><div class="ec-n" id="e-cl">0</div><div class="ec-l">Closes</div></div>
+        <div class="ec"><div class="ec-n" id="e-ca">0</div><div class="ec-l">Calls</div></div>
+      </div>
+    </div>
+    <div class="gc">
+      <div class="proj">
+        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">If you close 30 total</div>
+        <div class="pr"><span class="pr-l">Month 1 upfront</span><span class="pr-v">$2,466</span></div>
+        <div class="pr"><span class="pr-l">Monthly residual</span><span class="pr-v">$2,466/mo</span></div>
+        <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
+      </div>
+      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
+        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
+        Just me, a bowl of ceviche, a Yoli 🍤🥤
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <!-- GOALS -->
@@ -534,35 +564,6 @@ window.bizMail=function(to,subj,body){
 </div>
 
 <!-- NOTES -->
-<!-- EARNINGS -->
-<div id="tab-earnings" class="tab">
-  <div class="e2">
-    <div class="gc">
-      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Earned</div>
-      <div class="earn-big" id="earn-total">$0</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:16px" id="earn-sub">0 closes</div>
-      <div class="eg">
-        <div class="ec"><div class="ec-n g" id="e-up">$0</div><div class="ec-l">Upfront (60%)</div></div>
-        <div class="ec"><div class="ec-n" id="e-res">$0/mo</div><div class="ec-l">Residual</div></div>
-        <div class="ec"><div class="ec-n" id="e-cl">0</div><div class="ec-l">Closes</div></div>
-        <div class="ec"><div class="ec-n" id="e-ca">0</div><div class="ec-l">Calls</div></div>
-      </div>
-    </div>
-    <div class="gc">
-      <div class="proj">
-        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">If you close 30 total</div>
-        <div class="pr"><span class="pr-l">Month 1 upfront</span><span class="pr-v">$2,466</span></div>
-        <div class="pr"><span class="pr-l">Monthly residual</span><span class="pr-v">$2,466/mo</span></div>
-        <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
-      </div>
-      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
-        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
-        Just me, a bowl of ceviche, a Yoli 🍤🥤
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast">
   <div class="t-icon" id="t-icon">🔥</div>
@@ -1140,35 +1141,6 @@ upd();
   </div>
 
 
-
-<!-- EARNINGS -->
-<div id="tab-earnings" class="tab">
-  <div class="e2">
-    <div class="gc">
-      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Earned</div>
-      <div class="earn-big" id="earn-total">$0</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:16px" id="earn-sub">0 closes</div>
-      <div class="eg">
-        <div class="ec"><div class="ec-n g" id="e-up">$0</div><div class="ec-l">Upfront (60%)</div></div>
-        <div class="ec"><div class="ec-n" id="e-res">$0/mo</div><div class="ec-l">Residual</div></div>
-        <div class="ec"><div class="ec-n" id="e-cl">0</div><div class="ec-l">Closes</div></div>
-        <div class="ec"><div class="ec-n" id="e-ca">0</div><div class="ec-l">Calls</div></div>
-      </div>
-    </div>
-    <div class="gc">
-      <div class="proj">
-        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">If you close 30 total</div>
-        <div class="pr"><span class="pr-l">Month 1 upfront</span><span class="pr-v">$2,466</span></div>
-        <div class="pr"><span class="pr-l">Monthly residual</span><span class="pr-v">$2,466/mo</span></div>
-        <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
-      </div>
-      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
-        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
-        Just me, a bowl of ceviche, a Yoli 🍤🥤
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast">
@@ -1782,6 +1754,37 @@ upd();
     </div>
     <div id="boss-leaderboard"><div style="text-align:center;color:var(--muted);padding:20px;font-size:13px">Activate reps to see leaderboard</div></div>
   </div>
+
+<!-- LOYALTY / EARNINGS (embedded in Partners tab) -->
+<div id="loyalty-embed2" style="margin-top:24px;border-top:1px solid rgba(0,230,118,.15);padding-top:20px">
+  <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">✝️ Loyalty Program — My Numbers</div>
+  <div class="e2">
+    <div class="gc">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Earned</div>
+      <div class="earn-big" id="earn-total2">$0</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px" id="earn-sub2">0 closes</div>
+      <div class="eg">
+        <div class="ec"><div class="ec-n g" id="e-up2">$0</div><div class="ec-l">Upfront (60%)</div></div>
+        <div class="ec"><div class="ec-n" id="e-res2">$0/mo</div><div class="ec-l">Residual</div></div>
+        <div class="ec"><div class="ec-n" id="e-cl2">0</div><div class="ec-l">Closes</div></div>
+        <div class="ec"><div class="ec-n" id="e-ca2">0</div><div class="ec-l">Calls</div></div>
+      </div>
+    </div>
+    <div class="gc">
+      <div class="proj">
+        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">If you close 30 total</div>
+        <div class="pr"><span class="pr-l">Month 1 upfront</span><span class="pr-v">$2,466</span></div>
+        <div class="pr"><span class="pr-l">Monthly residual</span><span class="pr-v">$2,466/mo</span></div>
+        <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
+      </div>
+      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
+        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
+        Just me, a bowl of ceviche, a Yoli 🍤🥤
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script>
@@ -2301,7 +2304,7 @@ upd();
   }
 
   function init(){
-    var tab=document.getElementById('tab-earnings');if(!tab)return;
+    var tab=document.getElementById('loyalty-embed');if(!tab)return;
     box=document.createElement('div');box.id='loyalty-admin';
     box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.07),rgba(255,197,61,.06));border:1px solid rgba(0,230,118,.25);border-radius:14px;padding:18px;margin-bottom:16px';
     var lab=document.createElement('div');lab.textContent='💰 Your Earnings';
@@ -2936,7 +2939,7 @@ upd();
 
   /* ---------- Brian: status of every Partner, from Commissions Owed sales ---------- */
   function brian(){
-    var host=document.getElementById('tab-earnings');if(!host)return;
+    var host=document.getElementById('loyalty-embed');if(!host)return;
     var box=document.createElement('div');box.id='active-status';
     box.style.cssText='background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:16px';
     var la=document.getElementById('loyalty-admin');
@@ -3007,7 +3010,7 @@ upd();
   function make(id){var b=document.createElement('div');b.id=id;b.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px;margin-bottom:16px';b.innerHTML=html();return b;}
   function init(){
     if(document.getElementById('partner-gets'))return;
-    var tab=document.getElementById('tab-earnings');
+    var tab=document.getElementById('loyalty-embed');
     if(tab){var box=make('partner-gets');var la=document.getElementById('loyalty-admin');
       if(la&&la.parentNode===tab)tab.insertBefore(box,la);else tab.insertBefore(box,tab.firstChild);}
     var team=document.getElementById('tab-team');
