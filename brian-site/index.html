@@ -445,7 +445,7 @@ window.bizMail=function(to,subj,body){
         <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
       </div>
       <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
-        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
+        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio </strong><br>
         Just me, a bowl of ceviche, a Yoli 🍤🥤
       </div>
     </div>
@@ -608,7 +608,12 @@ window.bizMail=function(to,subj,body){
           </div>
           <div id="sb-status" style="font-size:12px;color:var(--muted);margin-top:8px;min-height:16px"></div>
         </div>
-                <div class="dacts">
+                <div style="margin-top:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <div style="width:100%;font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">📞 Brian Lalo ✝️</div>
+          <a href="tel:+14084223505" style="flex:1;min-width:120px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:10px;font-size:12px;font-weight:800;color:var(--white);text-decoration:none">📞 +1 (408) 422-3505</a>
+          <a href="https://wa.me/527441930502" target="_blank" rel="noopener" style="flex:1;min-width:120px;display:flex;align-items:center;justify-content:center;gap:6px;background:#1a3329;border:1px solid rgba(37,211,102,.3);border-radius:9px;padding:10px;font-size:12px;font-weight:800;color:#25d366;text-decoration:none">💬 WA +52 744 193 0502</a>
+        </div>
+        <div class="dacts">
           <button class="da da-wa" onclick="waSelected()">💬 WhatsApp</button>
           <button class="da da-call" onclick="callSelected()">📞 Call Now</button>
           <button class="da da-stripe" onclick="stripeSelected()">💳 Send via WhatsApp</button>
@@ -1031,7 +1036,7 @@ function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'
 function buildMsg(name){
   var link='https://go.myjefetech.app/checkout.html?ref=brian';
   var appLink='https://myjefetech.app';
-  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ Type the address — roof measurements fill in automatically\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo — or $1,344/yr (save $300). No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸";
+  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ Type the address — roof measurements fill in automatically\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo — or $1,344/yr (save $300). No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio ";
 }
 
 function sendLink(type){
