@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0b0f">
+<title>Refer a Seller · 7% · MX Studio</title>
+<meta name="description" content="Send MX Studio someone who sells JefeTech and earn 7% of every sale they make, every month.">
+<meta property="og:title" content="Know someone who can sell? Earn 7%, every month.">
+<meta property="og:description" content="Refer a seller to MX Studio. You earn 7% of every sale they make, every month, for as long as they keep selling.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0b0f;--card:#12151d;--card2:#181c26;--line:rgba(255,255,255,.08);--green:#00E676;--gdim:rgba(0,230,118,.10);--gmid:rgba(0,230,118,.26);--orange:#FF6B2B;--gold:#FFC53D;--wa:#25D366;--blue:#0A84FF;--text:#F4F2EE;--muted:#98A1B2;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px 56px}
+.top{position:sticky;top:0;z-index:20;background:rgba(10,11,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{max-width:880px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;border-radius:9px;background:var(--green);color:#000;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand{font-weight:900;font-size:14px;line-height:1.2}
+.brand small{display:block;color:var(--green);font-size:10px;font-weight:700}
+.lang{margin-left:auto;display:flex;gap:2px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:var(--muted);font:800 12px 'DM Sans',sans-serif;padding:7px 10px;border-radius:999px;cursor:pointer;min-height:32px}
+.lang button[aria-pressed="true"]{background:var(--green);color:#000}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:center;padding:28px 0 6px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange)}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.06;margin:8px 0 12px;font-weight:900;text-wrap:balance}
+h1 em{font-style:normal;color:var(--green)}
+.lead{color:var(--muted);font-size:16px;margin:0 0 16px}
+.pct{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--gmid);border-radius:20px;padding:22px;text-align:center}
+.pct b{display:block;font-size:84px;line-height:1;color:var(--green);font-weight:900;letter-spacing:-2px}
+.pct span{font-size:13px;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:11px;padding:13px 16px;font:800 14px 'DM Sans',sans-serif;cursor:pointer;text-decoration:none;min-height:46px}
+.btn.wa{background:var(--wa);color:#fff}.btn.sms{background:var(--blue);color:#fff}.btn.mail{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+.btn.share{background:var(--green);color:#000}.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.btn:focus-visible,.lang button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+h2{font-size:20px;margin:36px 0 12px;font-weight:900;display:flex;align-items:center;gap:10px}
+h2 .n{font-size:12px;color:#000;background:var(--green);border-radius:7px;padding:2px 8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.card b{display:block;font-size:15px;margin-bottom:4px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.rung .when{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold)}
+.rung .what{font-size:14px}
+.rung .what small{display:block;color:var(--muted);font-size:12px}
+.rung .amt{text-align:right;font-weight:900;color:var(--green);font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rung .amt small{display:block;color:var(--muted);font-size:11px;font-weight:600}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc label{font-size:13px;color:var(--muted);font-weight:700;display:flex;justify-content:space-between}
+.calc input[type=range]{width:100%;accent-color:var(--green);margin:10px 0 2px}
+.big{font-size:40px;font-weight:900;color:var(--green);line-height:1.1;font-variant-numeric:tabular-nums}
+.sub{font-size:13px;color:var(--muted)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .full{grid-column:1/-1}
+input,select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:12px;font:500 15px 'DM Sans',sans-serif}
+.fl{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:4px;display:block}
+ul.rules{margin:0;padding:6px 18px 6px 34px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+ul.rules li{margin:10px 0;font-size:14px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:8px}
+summary{cursor:pointer;font-weight:800;font-size:15px}
+details p{margin:8px 0 0;color:var(--muted);font-size:14px}
+.foot{margin-top:40px;text-align:center;color:var(--muted);font-size:12px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--green);color:#000;font-weight:800;font-size:13px;padding:10px 18px;border-radius:20px;z-index:50}
+@media (max-width:720px){
+  .hero,.calc,.form{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr}
+  .rung{grid-template-columns:1fr auto}
+  .rung .when{grid-column:1/-1}
+  .pct b{font-size:64px}
+  .row .btn{flex:1 1 140px}
+}
+</style>
+</head>
+<body>
+<div class="top"><div class="in">
+  <div class="logo">MX</div>
+  <div class="brand">MX Studio ✝️<small data-t="brandSub">Referral Program · JefeTech</small></div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-l="en" aria-pressed="true">EN</button>
+    <button type="button" data-l="es" aria-pressed="false">ES</button>
+    <button type="button" data-l="fil" aria-pressed="false">FIL</button>
+  </div>
+</div></div>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow" data-t="eyebrow">Know someone who can sell?</div>
+      <h1 data-t="h1" data-html="1">Send us a seller. <em>Earn 7%, every month.</em></h1>
+      <p class="lead" data-t="lead">Refer someone who sells JefeTech for MX Studio. You earn 7% of every sale they make, every month, for as long as they keep selling. You don't sell anything yourself.</p>
+      <div class="row">
+        <a class="btn share" href="#refer" data-t="ctaRefer">🤝 Refer someone</a>
+        <button class="btn ghost" type="button" id="shareTop" data-t="shareBtn">📤 Share this page</button>
+      </div>
+    </div>
+    <div class="pct"><b>7%</b><span data-t="pctCap">of every sale they make · paid monthly · as long as they're selling</span></div>
+  </section>
+
+  <h2><span class="n">1</span><span data-t="howT">How it works</span></h2>
+  <div class="grid3">
+    <div class="card"><b data-t="s1b">1. You send us a name</b><p data-t="s1p">Someone good on the phone, in sales, or who knows contractors. US, Canada, Mexico, Australia or the Philippines.</p></div>
+    <div class="card"><b data-t="s2b">2. They join as a Partner</b><p data-t="s2p">They get their own dashboard, scripts and prospect list, and earn their own commission selling JefeTech.</p></div>
+    <div class="card"><b data-t="s3b">3. You get 7%, every month</b><p data-t="s3p">7% of what every customer they sign pays, every month, for as long as that Partner keeps selling.</p></div>
+  </div>
+
+  <h2><span class="n">2</span><span data-t="ladderT">What it can add up to</span></h2>
+  <div class="ladder">
+    <div class="rung"><div class="when" data-t="r1w">First month</div><div class="what" data-t="r1" data-html="1">Your seller signs 5 customers<small>5 × $137 × 7%</small></div><div class="amt">$47.95<small data-t="perMo">a month</small></div></div>
+    <div class="rung"><div class="when" data-t="r2w">3 months</div><div class="what" data-t="r2" data-html="1">They're up to 20 customers<small>20 × $137 × 7%</small></div><div class="amt">$191.80<small data-t="perMo">a month</small></div></div>
+    <div class="rung"><div class="when" data-t="r3w">1 year</div><div class="what" data-t="r3" data-html="1">They reach 50 customers<small>50 × $137 × 7% = $5,754 a year</small></div><div class="amt">$479.50<small data-t="perMo">a month</small></div></div>
+    <div class="rung"><div class="when" data-t="r4w">Long term</div><div class="what" data-t="r4" data-html="1">You've sent 3 sellers with 50 customers each<small>150 × $137 × 7% = $17,262 a year</small></div><div class="amt">$1,438.50<small data-t="perMo">a month</small></div></div>
+  </div>
+  <div class="note" data-t="ladderNote">Examples, not promises. Based on the $137/month plan. It keeps paying only while your seller is active and their customers keep paying.</div>
+
+  <h2><span class="n">3</span><span data-t="calcT">Your own numbers</span></h2>
+  <div class="calc">
+    <div class="card">
+      <label for="c-sellers"><span data-t="cSellers">Sellers you refer</span><b id="c-s-v">1</b></label>
+      <input type="range" id="c-sellers" min="1" max="10" value="1">
+      <label for="c-cust"><span data-t="cCust">Customers each seller signs</span><b id="c-c-v">20</b></label>
+      <input type="range" id="c-cust" min="1" max="100" value="20">
+    </div>
+    <div class="card">
+      <div class="sub" data-t="youEarn">You'd earn every month</div>
+      <div class="big" id="c-mo">$191.80</div>
+      <div class="sub" id="c-yr">$2,302 a year</div>
+    </div>
+  </div>
+
+  <h2 id="refer"><span class="n">4</span><span data-t="referT">Refer someone now</span></h2>
+  <div class="card">
+    <div class="form">
+      <div><label class="fl" for="f-you" data-t="fYou">Your name</label><input id="f-you" autocomplete="name"></div>
+      <div><label class="fl" for="f-youph" data-t="fYouPh">Your phone</label><input id="f-youph" type="tel" inputmode="tel" autocomplete="tel"></div>
+      <div><label class="fl" for="f-them" data-t="fThem">Who you're referring</label><input id="f-them" autocomplete="off"></div>
+      <div><label class="fl" for="f-themph" data-t="fThemPh">Their phone</label><input id="f-themph" type="tel" inputmode="tel" autocomplete="off"></div>
+      <div class="full"><label class="fl" for="f-country" data-t="fCountry">Their country</label>
+        <select id="f-country"><option>United States</option><option>Canada</option><option>México</option><option>Australia</option><option>Philippines</option></select></div>
+      <div class="full row">
+        <button class="btn wa" type="button" data-send="wa">💬 WhatsApp Brian</button>
+        <button class="btn sms" type="button" data-send="sms" data-t="sendSms">✉️ Text Brian</button>
+        <button class="btn mail" type="button" data-send="mail" data-t="sendMail">📧 Email Brian</button>
+      </div>
+    </div>
+    <div class="note" data-t="formNote">This opens a message to Brian with your details filled in. Nothing is saved on this page.</div>
+  </div>
+
+  <h2><span class="n">5</span><span data-t="whoT">Who makes a great seller?</span></h2>
+  <div class="grid3">
+    <div class="card"><b data-t="w1b">📞 Good on the phone</b><p data-t="w1p">Likes talking to people and isn't afraid of a "no".</p></div>
+    <div class="card"><b data-t="w2b">🔨 Knows contractors</b><p data-t="w2p">Roofers, painters, electricians, HVAC, plumbers, solar. Worked with them or around them.</p></div>
+    <div class="card"><b data-t="w3b">💵 Wants extra income</b><p data-t="w3p">Part time or full time, from home, in any of our 5 countries.</p></div>
+  </div>
+
+  <h2><span class="n">6</span><span data-t="rulesT">The rules</span></h2>
+  <ul class="rules">
+    <li data-t="ru1">7% of the subscription money paid by every customer the Partner you referred signs.</li>
+    <li data-t="ru2">Paid monthly, straight to your bank account, after the customer's payment clears. Refunds don't count.</li>
+    <li data-t="ru3">It lasts as long as that Partner is actively selling. If they stop, the 7% stops.</li>
+    <li data-t="ru4">The person you refer must be new to MX Studio and join as a Partner. You can't refer yourself.</li>
+    <li data-t="ru5">MX Studio can update the program with notice. Referrals already active keep their terms.</li>
+  </ul>
+
+  <h2><span class="n">7</span><span data-t="faqT">Questions</span></h2>
+  <details><summary data-t="q1">Do I have to sell anything?</summary><p data-t="a1">No. You just connect us. If you want to sell too, you can join as a Partner yourself.</p></details>
+  <details><summary data-t="q2">How do I get paid?</summary><p data-t="a2">Monthly, straight to your bank account in your own currency. We just need your name and email.</p></details>
+  <details><summary data-t="q3">How long does it last?</summary><p data-t="a3">As long as the person you referred keeps selling for MX Studio.</p></details>
+  <details><summary data-t="q4">What is JefeTech?</summary><p data-t="a4">An app that runs a contractor's whole crew: jobs, crew, roof measurements from an address, photos and payments, plus an owner dashboard. English and Spanish.</p></details>
+
+  <h2><span class="n">8</span><span data-t="talkT">Talk to Brian</span></h2>
+  <div class="card">
+    <p style="margin:0 0 12px;color:var(--muted)" data-t="talkP">Brian Lalo, owner of MX Studio. Real person, fast reply.</p>
+    <div class="row">
+      <a class="btn wa" id="c-wa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="btn sms" id="c-sms" href="#" data-t="cText">✉️ Text</a>
+      <a class="btn mail" id="c-mail" href="#" data-t="cEmail">📧 Email</a>
+      <button class="btn share" type="button" id="shareBottom" data-t="shareBtn">📤 Share this page</button>
+    </div>
+  </div>
+
+  <div class="foot">Brian Lalo ✝️ · MX Studio · JefeTech · <a href="https://myjefetech.app/terms.html">Terms</a> · <a href="https://myjefetech.app/privacy.html">Privacy</a></div>
+</main>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+  var PHONE='14084223505', EMAIL='brian@myjefetech.app', URL_='https://go.myjefetech.app/referral.html', RATE=0.07, PRICE=137;
+  var T={
+    es:{brandSub:'Programa de referidos · JefeTech',eyebrow:'¿Conoce a alguien que sepa vender?',h1:'Mándenos un vendedor. <em>Gane 7%, cada mes.</em>',
+      lead:'Recomiende a alguien que venda JefeTech para MX Studio. Usted gana el 7% de cada venta que haga, cada mes, mientras siga vendiendo. Usted no tiene que vender nada.',
+      ctaRefer:'🤝 Recomendar a alguien',shareBtn:'📤 Compartir esta página',pctCap:'de cada venta que haga · pago mensual · mientras siga vendiendo',
+      howT:'Cómo funciona',s1b:'1. Nos manda un nombre',s1p:'Alguien bueno al teléfono, en ventas, o que conozca contratistas. EE. UU., Canadá, México, Australia o Filipinas.',
+      s2b:'2. Entra como Socio',s2p:'Recibe su propio dashboard, guiones y lista de prospectos, y gana su propia comisión vendiendo JefeTech.',
+      s3b:'3. Usted gana 7%, cada mes',s3p:'El 7% de lo que paga cada cliente que firme, cada mes, mientras ese Socio siga vendiendo.',
+      ladderT:'Lo que puede sumar',r1w:'Primer mes',r1:'Su vendedor firma 5 clientes<small>5 × $137 × 7%</small>',r2w:'3 meses',r2:'Ya lleva 20 clientes<small>20 × $137 × 7%</small>',
+      r3w:'1 año',r3:'Llega a 50 clientes<small>50 × $137 × 7% = $5,754 al año</small>',r4w:'A largo plazo',r4:'Mandó 3 vendedores con 50 clientes cada uno<small>150 × $137 × 7% = $17,262 al año</small>',
+      perMo:'al mes',ladderNote:'Ejemplos, no promesas. Basado en el plan de $137 al mes. Solo paga mientras su vendedor esté activo y sus clientes sigan pagando.',
+      calcT:'Sus propios números',cSellers:'Vendedores que recomienda',cCust:'Clientes que firma cada uno',youEarn:'Ganaría cada mes',
+      referT:'Recomiende a alguien ahora',fYou:'Su nombre',fYouPh:'Su teléfono',fThem:'A quién recomienda',fThemPh:'Su teléfono',fCountry:'Su país',
+      sendSms:'✉️ Mensaje a Brian',sendMail:'📧 Correo a Brian',formNote:'Esto abre un mensaje a Brian con sus datos. Esta página no guarda nada.',
+      whoT:'¿Quién es un buen vendedor?',w1b:'📞 Bueno al teléfono',w1p:'Le gusta hablar con la gente y no le teme a un "no".',w2b:'🔨 Conoce contratistas',w2p:'Techadores, pintores, electricistas, climas, plomeros, solar. Ha trabajado con ellos o cerca de ellos.',
+      w3b:'💵 Quiere ingresos extra',w3p:'Medio tiempo o tiempo completo, desde casa, en cualquiera de nuestros 5 países.',
+      rulesT:'Las reglas',ru1:'7% del dinero de suscripción que paga cada cliente que firme el Socio que recomendó.',ru2:'Se paga cada mes, directo a su cuenta bancaria, cuando se confirma el pago del cliente. Los reembolsos no cuentan.',
+      ru3:'Dura mientras ese Socio siga vendiendo. Si deja de vender, el 7% se detiene.',ru4:'La persona recomendada debe ser nueva en MX Studio y entrar como Socio. No puede recomendarse a sí mismo.',ru5:'MX Studio puede actualizar el programa con aviso previo. Las recomendaciones activas conservan sus condiciones.',
+      faqT:'Preguntas',q1:'¿Tengo que vender algo?',a1:'No. Solo nos conecta. Si también quiere vender, puede entrar como Socio.',q2:'¿Cómo me pagan?',a2:'Cada mes, directo a su cuenta bancaria en su propia moneda. Solo necesitamos su nombre y correo.',
+      q3:'¿Cuánto tiempo dura?',a3:'Mientras la persona que recomendó siga vendiendo para MX Studio.',q4:'¿Qué es JefeTech?',a4:'Una app para manejar toda la cuadrilla de un contratista: trabajos, equipo, medidas del techo con solo la dirección, fotos y pagos, más un dashboard para el dueño. En inglés y español.',
+      talkT:'Hable con Brian',talkP:'Brian Lalo, dueño de MX Studio. Persona real, respuesta rápida.',cText:'✉️ Mensaje',cEmail:'📧 Correo'},
+    fil:{brandSub:'Referral Program · JefeTech',eyebrow:'May kilala ka bang marunong magbenta?',h1:'Magpadala ng seller. <em>Kumita ng 7%, buwan-buwan.</em>',
+      lead:'Mag-refer ng taong magbebenta ng JefeTech para sa MX Studio. Kikita ka ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila. Hindi mo kailangang magbenta.',
+      ctaRefer:'🤝 Mag-refer',shareBtn:'📤 I-share ang page',pctCap:'ng bawat benta nila · buwanang bayad · hangga\'t nagbebenta sila',
+      howT:'Paano ito gumagana',s1b:'1. Magpadala ka ng pangalan',s1p:'Taong magaling sa telepono, sa sales, o may kilalang contractors. US, Canada, Mexico, Australia o Pilipinas.',
+      s2b:'2. Sasali sila bilang Partner',s2p:'May sarili silang dashboard, scripts at listahan ng prospects, at sariling komisyon sa pagbebenta ng JefeTech.',
+      s3b:'3. Kikita ka ng 7%, buwan-buwan',s3p:'7% ng binabayad ng bawat customer na makuha nila, buwan-buwan, hangga\'t nagbebenta ang Partner na iyon.',
+      ladderT:'Kung magkano ang puwedeng kitain',r1w:'Unang buwan',r1:'5 customers ang nakuha ng seller mo<small>5 × $137 × 7%</small>',r2w:'3 buwan',r2:'20 customers na sila<small>20 × $137 × 7%</small>',
+      r3w:'1 taon',r3:'Umabot sa 50 customers<small>50 × $137 × 7% = $5,754 kada taon</small>',r4w:'Pangmatagalan',r4:'3 sellers na ang na-refer mo, tig-50 customers<small>150 × $137 × 7% = $17,262 kada taon</small>',
+      perMo:'kada buwan',ladderNote:'Halimbawa lang, hindi pangako. Batay sa $137 kada buwan na plan. Tuloy lang ang bayad habang aktibo ang seller mo at nagbabayad ang customers nila.',
+      calcT:'Sariling computation',cSellers:'Sellers na ire-refer mo',cCust:'Customers ng bawat seller',youEarn:'Kikitain mo kada buwan',
+      referT:'Mag-refer ngayon',fYou:'Pangalan mo',fYouPh:'Numero mo',fThem:'Sino ang ire-refer mo',fThemPh:'Numero nila',fCountry:'Bansa nila',
+      sendSms:'✉️ I-text si Brian',sendMail:'📧 I-email si Brian',formNote:'Magbubukas ito ng mensahe kay Brian na may detalye mo na. Walang sine-save ang page na ito.',
+      whoT:'Sino ang magaling na seller?',w1b:'📞 Magaling sa telepono',w1p:'Mahilig makipag-usap at hindi takot sa "hindi".',w2b:'🔨 May kilalang contractors',w2p:'Roofers, painters, electricians, aircon, plumbers, solar. Nakatrabaho o kilala nila.',
+      w3b:'💵 Gusto ng dagdag na kita',w3p:'Part time o full time, sa bahay, sa alinman sa 5 bansa namin.',
+      rulesT:'Ang mga patakaran',ru1:'7% ng subscription na binabayad ng bawat customer na makuha ng Partner na ni-refer mo.',ru2:'Buwanang bayad, diretso sa bank account mo, pagkatapos makumpirma ang bayad ng customer. Hindi kasama ang refunds.',
+      ru3:'Tuloy hangga\'t aktibong nagbebenta ang Partner. Kapag tumigil sila, titigil din ang 7%.',ru4:'Dapat bago sa MX Studio ang ire-refer mo at sasali bilang Partner. Hindi mo puwedeng i-refer ang sarili mo.',ru5:'Puwedeng baguhin ng MX Studio ang programa nang may abiso. Ang mga aktibong referral ay mananatili sa dating kondisyon.',
+      faqT:'Mga tanong',q1:'Kailangan ko bang magbenta?',a1:'Hindi. Ikokonekta mo lang kami. Kung gusto mo ring magbenta, puwede kang sumali bilang Partner.',q2:'Paano ako mababayaran?',a2:'Buwan-buwan, diretso sa bank account mo sa sarili mong currency. Pangalan at email mo lang ang kailangan.',
+      q3:'Gaano katagal ito?',a3:'Hangga\'t nagbebenta para sa MX Studio ang ni-refer mo.',q4:'Ano ang JefeTech?',a4:'App para patakbuhin ang buong crew ng isang contractor: jobs, crew, sukat ng bubong mula sa address, photos at bayad, kasama ang dashboard ng may-ari.',
+      talkT:'Kausapin si Brian',talkP:'Brian Lalo, may-ari ng MX Studio. Totoong tao, mabilis sumagot.',cText:'✉️ Text',cEmail:'📧 Email'}
+  };
+  var EN={};document.querySelectorAll('[data-t]').forEach(function(el){EN[el.dataset.t]=el.dataset.html?el.innerHTML:el.textContent;});
+  T.en=EN;
+  var q=new URLSearchParams(location.search), LANG=q.get('lang')||'';
+  try{LANG=LANG||localStorage.getItem('ref-lang')||'';}catch(e){}
+  if(!/^(en|es|fil)$/.test(LANG))LANG=/^es/i.test(navigator.language||'')?'es':(/^(fil|tl)/i.test(navigator.language||'')?'fil':'en');
+  function t(k){return (T[LANG]&&T[LANG][k]!=null)?T[LANG][k]:EN[k];}
+  function apply(){
+    document.documentElement.lang=LANG==='fil'?'fil':LANG;
+    document.querySelectorAll('[data-t]').forEach(function(el){var v=t(el.dataset.t);if(v==null)return;if(el.dataset.html)el.innerHTML=v;else el.textContent=v;});
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===LANG?'true':'false');});
+    calc();links();
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){LANG=b.dataset.l;try{localStorage.setItem('ref-lang',LANG);}catch(e){}apply();});});
+  function money(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  var S=document.getElementById('c-sellers'),C=document.getElementById('c-cust');
+  function calc(){var s=+S.value,c=+C.value,m=s*c*PRICE*RATE;document.getElementById('c-s-v').textContent=s;document.getElementById('c-c-v').textContent=c;
+    document.getElementById('c-mo').textContent=money(m);document.getElementById('c-yr').textContent='$'+Math.round(m*12).toLocaleString('en-US')+({en:' a year',es:' al año',fil:' kada taon'})[LANG];}
+  S.addEventListener('input',calc);C.addEventListener('input',calc);
+  var HELLO={en:'Hi Brian, I saw the MX Studio referral program and have a question.',es:'Hola Brian, vi el programa de referidos de MX Studio y tengo una pregunta.',fil:'Hi Brian, nakita ko ang referral program ng MX Studio at may tanong ako.'};
+  function links(){
+    document.getElementById('c-wa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(HELLO[LANG]);
+    document.getElementById('c-sms').href='sms:+'+PHONE+'?&body='+encodeURIComponent(HELLO[LANG]);
+    document.getElementById('c-mail').href='mailto:'+EMAIL+'?subject='+encodeURIComponent('MX Studio referral')+'&body='+encodeURIComponent(HELLO[LANG]);
+  }
+  function v(id){return document.getElementById(id).value.trim();}
+  document.querySelectorAll('[data-send]').forEach(function(b){b.addEventListener('click',function(){
+    if(!v('f-them')||!v('f-themph')){toast({en:'Add who you\'re referring and their phone',es:'Agregue a quién recomienda y su teléfono',fil:'Ilagay kung sino at ang numero nila'}[LANG]);document.getElementById(v('f-them')?'f-themph':'f-them').focus();return;}
+    var L={en:['I want to refer a seller for MX Studio (7% referral).','Me','My phone','Seller','Their phone','Country'],
+           es:['Quiero recomendar a un vendedor para MX Studio (referido 7%).','Yo','Mi teléfono','Vendedor','Su teléfono','País'],
+           fil:['Gusto kong mag-refer ng seller para sa MX Studio (7% referral).','Ako','Numero ko','Seller','Numero nila','Bansa']}[LANG];
+    var msg='Hi Brian! '+L[0]+'\n\n'+L[1]+': '+(v('f-you')||'-')+'\n'+L[2]+': '+(v('f-youph')||'-')+'\n'+L[3]+': '+v('f-them')+'\n'+L[4]+': '+v('f-themph')+'\n'+L[5]+': '+v('f-country');
+    var k=b.dataset.send;
+    if(k==='wa')window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),'_blank');
+    else if(k==='sms')location.href='sms:+'+PHONE+'?&body='+encodeURIComponent(msg);
+    else location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Referral: '+v('f-them'))+'&body='+encodeURIComponent(msg);
+  });});
+  var SHARE={en:'Know someone who can sell? MX Studio pays 7% of every sale they make, every month, for as long as they keep selling. Take a look:',
+             es:'¿Conoce a alguien que sepa vender? MX Studio paga el 7% de cada venta que haga, cada mes, mientras siga vendiendo. Mire:',
+             fil:'May kilala ka bang marunong magbenta? Nagbabayad ang MX Studio ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila. Tingnan mo:'};
+  function share(){
+    var u=URL_+'?lang='+LANG,txt=SHARE[LANG];
+    if(navigator.share){navigator.share({title:'MX Studio · 7% referral',text:txt,url:u}).catch(function(){});return;}
+    window.open('https://wa.me/?text='+encodeURIComponent(txt+' '+u),'_blank');
+  }
+  document.getElementById('shareTop').addEventListener('click',share);
+  document.getElementById('shareBottom').addEventListener('click',share);
+  function toast(m){var el=document.getElementById('toast');el.textContent=m;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){el.hidden=true;},2600);}
+  apply();
+})();
+</script>
+</body>
+</html>
