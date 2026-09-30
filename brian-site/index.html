@@ -273,36 +273,61 @@ window.bizMail=function(to,subj,body){
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
 </div>
 
-<!-- GOALS -->
-<div id="tab-goals" class="tab">
-<!-- GAME BANNER -->
-  <div class="game-banner">
-    <div>
-      <div class="game-h" id="gt-q">Loading...</div>
-      <div class="game-s" id="gt-s"></div>
+<!-- TEAM TAB -->
+<div id="tab-team" class="tab active">
+  <!-- COMMISSIONS OWED -->
+  <div id="comm" style="background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px 20px;margin-bottom:14px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px">
+      <div style="font-size:15px;font-weight:900">💸 Commissions Owed ✝️</div>
+      <a href="https://dashboard.stripe.com/global-payouts/payouts" target="_blank" rel="noopener" style="margin-left:auto;background:#635BFF;color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:800;text-decoration:none">Open Stripe Payouts ↗</a>
     </div>
-    <div style="text-align:right">
-      <div class="game-date" id="gt-date"></div>
-      <div class="game-time" id="gt-time"></div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5">Log each Partner sale here. A sale becomes <b style="color:#FFC53D">Ready to pay</b> 30 days after the sale date, once the customer's first month can no longer be refunded. Pay once a month in Stripe, then tap <b>Mark paid</b>.</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+      <div style="background:rgba(255,197,61,.10);border-radius:10px;padding:12px;text-align:center"><div id="cm-ready" style="font-size:22px;font-weight:900;color:#FFC53D;font-variant-numeric:tabular-nums">$0</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Ready to pay</div></div>
+      <div style="background:var(--card2);border-radius:10px;padding:12px;text-align:center"><div id="cm-wait" style="font-size:22px;font-weight:900;color:var(--white);font-variant-numeric:tabular-nums">$0</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Waiting 30 days</div></div>
+      <div style="background:var(--gdim);border-radius:10px;padding:12px;text-align:center"><div id="cm-paid" style="font-size:22px;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums">$0</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Paid this month</div></div>
     </div>
-  </div>
-  <div class="glance">
-    <div class="gl"><div class="gl-n" id="g-calls">0</div><div class="gl-l">Calls Today</div></div>
-    <div class="gl"><div class="gl-n" id="g-closes">0</div><div class="gl-l">Closes Today</div></div>
-    <div class="gl"><div class="gl-n" id="g-batch">-</div><div class="gl-l">Batch Progress</div></div>
-    <div class="gl"><div class="gl-n" id="g-earned" style="font-size:24px">$0</div><div class="gl-l">Earned Today</div></div>
-  </div>
-  <div class="blank">
-    <div class="blank-icon">✝️</div>
-    <div>
-      <h3>God Wins. Mind blank? He's got you.</h3>
-      <p>Go to Script tab. Read the opener once out loud. Pick up the phone.<br>
-      You fished 13 seasons in the Bering Sea. You can make one more call. 🎣<br>
-      <em style="color:var(--green)">"I can do all things through Christ who strengthens me." — Phil 4:13</em></p>
+
+    <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:14px">
+      <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">+ Log a Partner sale</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
+        <select id="cm-partner" aria-label="Partner" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px"></select>
+        <input id="cm-cust" type="text" placeholder="Customer / company" aria-label="Customer" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px;outline:none">
+        <input id="cm-date" type="date" aria-label="Sale date" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px;color-scheme:dark">
+        <input id="cm-amt" type="number" step="0.01" min="0" inputmode="decimal" aria-label="Commission in USD" placeholder="USD" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px;outline:none">
+      </div>
+      <button type="button" onclick="cmAdd()" style="margin-top:8px;width:100%;background:#FFC53D;color:#000;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit">+ Log sale</button>
+      <div id="cm-msg" style="font-size:11px;color:var(--muted);margin-top:6px;min-height:14px"></div>
     </div>
+
+    <div style="font-size:10px;font-weight:800;color:#FFC53D;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Pay these now</div>
+    <div id="cm-pay" style="display:grid;gap:8px;margin-bottom:14px"></div>
+
+    <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">All sales</div>
+    <div id="cm-list" style="display:grid;gap:6px"></div>
+    <div id="cm-store" style="font-size:10px;color:var(--muted);margin-top:10px"></div>
   </div>
 
-  <div class="g2" style="margin-top:20px">
+  <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" style="display:block;background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.25);border-radius:14px;padding:16px 20px;margin-bottom:14px;text-decoration:none;color:#FFC53D;font-weight:900;font-size:15px">🤝 Referral Program — 7% of every sale a referred seller makes <span style="display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:3px">Script, rules and referral tracker</span></a>
+
+  <!-- PARTNER 2 -->
+  <div style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:14px;padding:20px;margin-bottom:14px">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div style="width:44px;height:44px;border-radius:11px;background:#8B5CF6;color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">P2</div>
+      <div style="flex:1">
+        <div style="font-size:16px;font-weight:900">Partner 2 🇺🇸</div>
+        <div style="font-size:11px;color:var(--muted)">MX Studio · US Territory</div>
+      </div>
+    </div>
+    <a href="https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414" style="display:block;background:#8B5CF6;color:#fff;font-size:15px;font-weight:800;padding:14px;border-radius:10px;text-decoration:none;text-align:center">▶ Open Partner 2 Dashboard</a>
+    <button onclick="navigator.clipboard.writeText('https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414').then(function(){alert('Copied!')})" style="display:block;width:100%;margin-top:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:#8B5CF6;font-size:12px;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;font-family:inherit">📋 Copy Partner 2 Link</button>
+  </div>
+
+</div>
+
+<div id="tab-goals" class="tab">
+  <div class="g2">
     <div class="gc">
       <div class="gc-title">📞 Calls Today <button class="gc-reset" onclick="resetDay()">Reset day</button></div>
       <div class="big-n" id="calls-n">0</div>
@@ -372,9 +397,23 @@ window.bizMail=function(to,subj,body){
     </div>
   </div>
 </div>
+  <!-- NOTES (moved here from separate tab) -->
+  <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+    <button onclick="var d=document.getElementById('notes-collapse');d.style.display=d.style.display==='none'?'':'none'" style="width:100%;background:none;border:none;padding:16px 20px;color:var(--white);font-size:14px;font-weight:800;text-align:left;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between">
+      📝 Notes &amp; Prayer <span style="color:var(--muted);font-weight:400;font-size:12px">tap to expand ▾</span>
+    </button>
+    <div id="notes-collapse" style="display:none;padding:0 20px 20px">
+<div class="n4">
+    <div class="nc"><h3>📝 Today's Notes</h3><textarea class="nta" id="note-today" placeholder="Key conversations, follow-ups..."></textarea><button class="ns" onclick="saveNote2('today')">Save</button></div>
+    <div class="nc"><h3>🎯 This Week's Plan</h3><textarea class="nta" id="note-week" placeholder="Weekly targets, strategy..."></textarea><button class="ns" onclick="saveNote2('week')">Save</button></div>
+    <div class="nc"><h3>💡 Ideas & Reminders</h3><textarea class="nta" id="note-ideas" placeholder="Ideas, things to remember..."></textarea><button class="ns" onclick="saveNote2('ideas')">Save</button></div>
+    <div class="nc"><h3>🙏 Prayer & Purpose</h3><textarea class="nta" id="note-prayer" placeholder="Gratitude, God's guidance..."></textarea><button class="ns" onclick="saveNote2('prayer')">Save</button></div>
+  </div>
+</div>
+</div>
+</div>
 
 
-<!-- PROSPECTS -->
 <div id="tab-prospects" class="tab">
   <div id="lineup"></div>
   <div class="p-layout">
@@ -529,585 +568,6 @@ window.bizMail=function(to,subj,body){
     </div>
   </div>
 </div>
-
-</div>
-
-<!-- NOTES -->
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <div class="t-icon" id="t-icon">🔥</div>
-  <div class="t-title" id="t-title"></div>
-  <div class="t-sub" id="t-sub"></div>
-</div>
-
-<script>
-var P=[];
-document.getElementById('gt-q').textContent=dq.q;
-document.getElementById('gt-s').textContent=dq.s;
-
-// TABS
-function showTab(n,b){
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
-  document.querySelectorAll('.tb').forEach(function(t){t.classList.remove('active')});
-  document.getElementById('tab-'+n).classList.add('active');
-  b.classList.add('active');
-  if(n==='prospects') renderP();
-  if(n==='script') loadFuNote();
-  upd();
-}
-
-// MILESTONES
-var CM={5:{i:"🎯",t:"5 Calls — Warming Up!",s:"Keep dialing. The close is coming."},10:{i:"🔥",t:"10 Calls — On Fire!",s:"Halfway to goal. God wins."},15:{i:"💪",t:"15 Calls — Almost There!",s:"5 more and you hit your goal."},20:{i:"🏆",t:"Daily Goal CRUSHED! God wins!",s:"Legend. Keep going."},25:{i:"⚡",t:"25 Calls — Extra Mile!",s:"Nobody outworks you today. 🎣"},30:{i:"🌊",t:"30 Calls — Bering Sea Energy!",s:"13 seasons of hard work right here."}};
-var CLM={1:{i:"✝️",t:"First Close! God Wins!",s:"$82.20 earned. The first is the hardest."},3:{i:"🔥",t:"3 Closes — You’re Selling!",s:"$246.60 upfront + $246.60/mo residual."},5:{i:"💰",t:"5 Closes — Weekly Goal! God wins!",s:"Ceviche is on you tonight. 🍤"},10:{i:"🚀",t:"10 Closes — Double Digits!",s:"$822 upfront. $822/mo every month."},20:{i:"👑",t:"20 Closes — KING! God wins!",s:"$1,644/mo coming every month."},30:{i:"🌮",t:"30 Closes — TACO STAND WON!",s:"$2,466/mo. You beat ServiceTitan."}};
-
-var toastT=null;
-function showToast(m){
-  document.getElementById('t-icon').textContent=m.i;
-  document.getElementById('t-title').textContent=m.t;
-  document.getElementById('t-sub').textContent=m.s;
-  var t=document.getElementById('toast');
-  t.classList.add('show');
-  if(toastT)clearTimeout(toastT);
-  toastT=setTimeout(function(){t.classList.remove('show');},4500);
-  if('Notification' in window&&Notification.permission==='granted')
-    new Notification(m.i+' '+m.t,{body:m.s});
-}
-
-function chkMil(){
-  var c=S.calls,cl=S.closes;
-  Object.keys(CM).forEach(function(n){var k=+n;if(c>=k&&S.cmil.indexOf(k)===-1){S.cmil.push(k);sv();showToast(CM[k]);}});
-  Object.keys(CLM).forEach(function(n){var k=+n;if(cl>=k&&S.clmil.indexOf(k)===-1){S.clmil.push(k);sv();showToast(CLM[k]);}});
-}
-
-if('Notification' in window&&Notification.permission==='default') Notification.requestPermission();
-
-// MONTHLY MILESTONES
-var MM_CALLS = {75:{i:"📞",t:"25% of Monthly Calls!",s:"75 of 300. Keep the momentum."},150:{i:"🔥",t:"Halfway on Calls! God wins!",s:"150 of 300. You're ahead of pace."},225:{i:"⚡",t:"75% Monthly Calls Done!",s:"225 of 300. Final stretch!"},300:{i:"🏆",t:"300 Calls — Monthly Goal CRUSHED!",s:"God wins. Ceviche on you. 🍤"}};
-var MM_CLOSES = {7:{i:"✝️",t:"7 Closes — 25% of Monthly Goal!",s:"$553 earned. God wins."},14:{i:"🔥",t:"14 Closes — Halfway There!",s:"$1,106 earned. You're on fire."},21:{i:"🚀",t:"21 Closes — 75% of Goal!",s:"$1,659 earned. One more week!"},28:{i:"👑",t:"28 Closes — MONTHLY GOAL HIT!",s:"$2,212 earned. God wins. TACO STAND. 🌮"}};
-var shownMM_C = JSON.parse(localStorage.getItem('bl-mmcil')||'[]');
-var shownMM_CL = JSON.parse(localStorage.getItem('bl-mmclil')||'[]');
-
-function chkMonthlyMil(){
-  Object.keys(MM_CALLS).forEach(function(n){
-    var k=+n;
-    if(S.mCalls>=k&&shownMM_C.indexOf(k)===-1){
-      shownMM_C.push(k);
-      localStorage.setItem('bl-mmcil',JSON.stringify(shownMM_C));
-      showToast(MM_CALLS[k]);
-    }
-  });
-  Object.keys(MM_CLOSES).forEach(function(n){
-    var k=+n;
-    if(S.mCloses>=k&&shownMM_CL.indexOf(k)===-1){
-      shownMM_CL.push(k);
-      localStorage.setItem('bl-mmclil',JSON.stringify(shownMM_CL));
-      showToast(MM_CLOSES[k]);
-    }
-  });
-}
-
-// GOALS
-function addCall(){S.calls++;S.mCalls++;sv();upd();chkMil();chkMonthlyMil();}
-function addClose(){S.closes++;S.mCloses++;sv();upd();chkMil();chkMonthlyMil();}
-function resetDay(){S.calls=0;S.closes=0;S.cmil=[];S.clmil=[];sv();upd();showToast({i:"🔄",t:"Day Reset!",s:"Fresh start. God wins. Let's go."});}
-function setGoal(){var g=prompt('Daily call goal:',S.goal);if(g&&+g>0){S.goal=+g;sv();upd();}}
-function copyStripe(){
-  navigator.clipboard.writeText('https://go.myjefetech.app/checkout.html?ref=brian');
-  var b=event.target;b.textContent='✓ Copied!';setTimeout(function(){b.textContent='💳 Copy Stripe Link';},1500);
-}
-
-// PROSPECTS
-var CL=[];
-function getStatus(i){return S.statuses[i]||'new';}
-
-function filterP(){
-  var q=document.getElementById('si').value.toLowerCase();
-  var f=S.filter;
-  var start=S.batch*100,end=Math.min(start+100,P.length);
-  if(q){
-    CL=[];
-    for(var i=0;i<P.length;i++){
-      var p=P[i];
-      if((p[0].toLowerCase().includes(q)||p[2].toLowerCase().includes(q)||p[3].toLowerCase().includes(q))){
-        if(f==='all'||(S.statuses[i]||'new')===f) CL.push(i);
-      }
-    }
-  } else {
-    CL=[];
-    for(var i=start;i<end;i++){
-      if(f==='all'||(S.statuses[i]||'new')===f) CL.push(i);
-    }
-  }
-  renderP();
-}
-
-function whoToAsk(name){
-  var n = name.toLowerCase();
-  // Spanish indicators
-  var spanish = ['techado','impermeabiliz','construccion','constructora','servicios','soluciones','recubrimiento','obra','pintura','techo','instalacion'];
-  var isSpanish = spanish.some(function(w){return n.includes(w);});
-  // Size indicators
-  var large = ['corp','corporation','inc','llc','group','industries','solutions','systems','services','national','america','enterprise'];
-  var isLarge = large.some(function(w){return n.includes(w);});
-  // Type
-  if(n.includes('roofing')||n.includes('roof')) return isSpanish ? 'Preguntar por el dueño' : 'Ask for the owner / estimator';
-  if(n.includes('hvac')||n.includes('air')||n.includes('cool')||n.includes('heat')) return 'Ask for the owner / office manager';
-  if(n.includes('paint')||n.includes('pintur')) return isSpanish ? 'Preguntar por el dueño' : 'Ask for the owner';
-  if(n.includes('solar')) return 'Ask for the owner / sales manager';
-  if(n.includes('electric')) return 'Ask for the owner / foreman';
-  if(n.includes('plumb')) return 'Ask for the owner / dispatcher';
-  if(isLarge) return 'Ask for the office manager / operations';
-  if(isSpanish) return 'Preguntar por el dueño o encargado';
-  return 'Ask for the owner / manager';
-}
-
-function renderP(){
-  var tbody=document.getElementById('ptbody');
-  if(!CL.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--muted)">No prospects found.</td></tr>';updPag();return;}
-  tbody.innerHTML=CL.map(function(i){
-    var p=P[i],s=getStatus(i);
-    var note=S.notes[i]?'<span style="font-size:11px;color:var(--green)">✏️ '+S.notes[i].substring(0,30)+(S.notes[i].length>30?'...':'')+'</span>':'<span style="color:var(--muted);font-size:11px">—</span>';
-    return '<tr class="'+(S.sel===i?'sel':'')+'" onclick="selP('+i+')">'
-      +'<td><div class="pn">'+p[0]+'</div>'+(S.contacts&&S.contacts[i]?'<div style="font-size:11px;color:var(--green);margin-top:2px;font-weight:700">👤 '+S.contacts[i]+'</div>':'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+whoToAsk(p[0])+'</div>')+'</td>'
-      +'<td><div style="display:flex;gap:5px;align-items:center">'
-      +'<a href="tel:+'+p[1].replace(/\D/g,'')+'" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none;white-space:nowrap">📞</a>'
-      +'<a href="https://wa.me/'+( p[1].replace(/\D/g,'').length===10 ? '1' : '' )+p[1].replace(/\D/g,'')+'" target="_blank" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:#25D366;text-decoration:none;white-space:nowrap">💬</a>'
-      +'<span style="font-size:12px;color:var(--muted)">'+p[1]+'</span>'
-      +'</div></td>'
-      +'<td>'+p[2]+', '+p[3]+'</td>'
-      +'<td style="font-size:11px;color:var(--muted)">'+p[4]+'</td>'
-      +'<td><span class="sbadge '+s+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</span></td>'
-      +'<td>'+note+'</td>'
-      +'<td><div class="abtns"><button class="ab ab-wa" onclick="event.stopPropagation();waP('+i+')" title="WhatsApp">💬</button><button class="ab ab-done" onclick="event.stopPropagation();quickCall('+i+')" title="Called">✓</button></div></td>'
-    +'</tr>';
-  }).join('');
-  updPag();
-  // Monthly
-  var mc=S.mCalls,mcl=S.mCloses;
-  var mpctC=Math.min(100,Math.round(mc/300*100));
-  var mpctCL=Math.min(100,Math.round(mcl/28*100));
-  var d=new Date();
-  var daysInMonth=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
-  var dayOfMonth=d.getDate();
-  var daysLeft=daysInMonth-dayOfMonth+1;
-  var MONTHS2=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var ml=document.getElementById('month-label');if(ml)ml.textContent=MONTHS2[d.getMonth()]+' '+d.getFullYear();
-  var dl=document.getElementById('days-left');if(dl)dl.textContent=daysLeft+' days left this month';
-  var mce=document.getElementById('m-calls');if(mce)mce.textContent=mc;
-  var mclE=document.getElementById('m-closes');if(mclE)mclE.textContent=mcl;
-  var mcb=document.getElementById('m-call-bar');if(mcb)mcb.style.width=mpctC+'%';
-  var mclb=document.getElementById('m-close-bar');if(mclb)mclb.style.width=mpctCL+'%';
-  var mcp=document.getElementById('m-call-pct');if(mcp)mcp.textContent=mpctC+'% of 300';
-  var mclp=document.getElementById('m-close-pct');if(mclp)mclp.textContent=mpctCL+'% of 28';
-  var callsLeft=Math.max(0,300-mc);
-  var closesLeft=Math.max(0,28-mcl);
-  var callsPerDay=daysLeft>0?Math.ceil(callsLeft/daysLeft):0;
-  var closesPerDay=daysLeft>0?(closesLeft/daysLeft).toFixed(1):0;
-  var mcn=document.getElementById('m-calls-needed');if(mcn)mcn.textContent=callsLeft+' to go';
-  var mclN=document.getElementById('m-closes-needed');if(mclN)mclN.textContent=closesLeft+' to go';
-  var tp=document.getElementById('today-pace');if(tp)tp.textContent=callsPerDay+' calls + '+closesPerDay+' closes per day to hit monthly goal';
-  var me=document.getElementById('m-earned');if(me)me.textContent='$'+(mcl*82.2).toFixed(2);
-}
-
-function updPag(){
-  var start=S.batch*100,end=Math.min(start+100,P.length),tot=P.length;
-  var bn=S.batch+1,tb=Math.ceil(tot/100);
-  document.getElementById('batch-lbl').textContent='Batch '+bn+' of '+tb;
-  document.getElementById('pag-info').textContent=(start+1)+'–'+end+' of '+tot.toLocaleString();
-  document.getElementById('p-count').textContent=CL.length+' shown';
-  document.getElementById('btn-prev').disabled=S.batch===0;
-  document.getElementById('btn-next').disabled=end>=tot;
-  document.getElementById('g-batch').textContent=bn+'/'+tb;
-}
-
-function nextBatch(){S.batch++;S.sel=null;sv();document.getElementById('si').value='';filterP();clearDet();}
-function prevBatch(){S.batch=Math.max(0,S.batch-1);S.sel=null;sv();document.getElementById('si').value='';filterP();clearDet();}
-
-function setFilter(f){
-  S.filter=f;
-  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active')});
-  document.getElementById('f-'+f).classList.add('active');
-  filterP();
-}
-
-function selP(i){S.sel=i;renderP();showDet(i);}
-
-function showDet(i){
-  loadFuNote();
-  var p=P[i],s=getStatus(i);
-  document.getElementById('det-empty').style.display='none';
-  document.getElementById('det-body').style.display='block';
-  document.getElementById('d-name').textContent=p[0];
-  var contact=S.contacts[i]?'👤 '+S.contacts[i]+' · ':'';
-  document.getElementById('d-loc').textContent=contact+p[2]+', '+p[3];
-  // Show PH Solar Pitch tab only for Philippines prospects
-  var isPH=(p[3]==='PH'||p[3]==='Philippines'||(p[2]&&p[2].indexOf('Philippines')>=0));
-  document.querySelectorAll('.ph-solar-btn').forEach(function(b){b.style.display=isPH?'':'none';});
-  document.getElementById('d-phone').textContent=p[1];
-  document.getElementById('d-tz').textContent=p[4]||'—';
-  document.getElementById('d-status').textContent=s.charAt(0).toUpperCase()+s.slice(1);
-  document.getElementById('d-notes').value=S.notes[i]||'';
-  var dc=document.getElementById('d-contact');
-  if(dc) dc.value=S.contacts[i]||'';
-}
-
-function clearDet(){
-  S.sel=null;
-  document.getElementById('det-empty').style.display='block';
-  document.getElementById('det-body').style.display='none';
-}
-
-function waP(i){var p=P[i],n=p[1].replace(/\D/g,'');if(n.length===10)n='1'+n;window.open('https://wa.me/'+n,'_blank');}
-function waSelected(){if(S.sel!==null)waP(S.sel);}
-function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'');window.open('tel:+'+n,'_self');}
-function buildMsg(name){
-  var link='https://go.myjefetech.app/checkout.html?ref=brian';
-  var appLink='https://myjefetech.app';
-  return "Hey "+name+"! 👋\n\nThis is Brian Lalo, developer of JefeTech.\n\nHere's what you get:\n\n✅ Field app for your whole crew\n✅ Type the address — roof measurements fill in automatically\n✅ Job management, crew tracking, payroll export\n✅ Safety checklists (OSHA)\n✅ English + Spanish\n✅ Unlimited users — 1 or 100, same price\n✅ Lifetime money-back guarantee (terms apply)\n\n💰 Just $137/mo — or $1,344/yr (save $300). No contracts. Cancel anytime.\n\n👉 Try the app free first:\n"+appLink+"\n\n💳 Ready to start? Your payment link:\n"+link+"\n\nTakes 2 minutes. Your crew runs their first job tomorrow. 🔥\n\n— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸";
-}
-
-function sendLink(type){
-  var links={
-    demo:'https://myjefetech.app',
-    dash:'https://go.myjefetech.app/la-forja.html',
-    pay:'https://go.myjefetech.app/checkout.html?ref=brian'
-  };
-  var msgs={
-    demo:"Hey! Check out the JefeTech demo app — free to try, no card needed 👉 https://myjefetech.app\n\n— Brian Lalo",
-    dash:"Hey! Here's the JefeTech dashboard demo — see exactly what your crew command center looks like 👉 https://go.myjefetech.app/la-forja.html\n\n— Brian Lalo",
-    pay:"Hey! Here's your JefeTech payment link — $137/mo, unlimited crew, cancel anytime, lifetime money-back guarantee 👉 https://go.myjefetech.app/checkout.html?ref=brian\n\n— Brian Lalo"
-  };
-  if(S.sel!==null){
-    var p=P[S.sel],n=p[1].replace(/\D/g,'');
-    if(n.length===10)n='1'+n;
-    var msg='Hey '+p[0]+'! '+msgs[type].split('Hey! ')[1];
-    window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
-  } else {
-    navigator.clipboard.writeText(links[type]);
-    showToast({i:"📋",t:"Link Copied!",s:"Paste it into any message."});
-  }
-}
-
-function copyMsg(){
-  if(S.sel===null){showToast({i:"👆",t:"Select a prospect first",s:"Click a row in the table."});return;}
-  var msg=buildMsg(P[S.sel][0]);
-  navigator.clipboard.writeText(msg).then(function(){
-    showToast({i:"📋",t:"Message Copied!",s:"Paste into SMS, email, or anywhere."});
-  });
-}
-
-function stripeSelected(){
-  if(S.sel===null){showToast({i:"👆",t:"Select a prospect first",s:"Click a row in the table."});return;}
-  var p=P[S.sel];
-  var n=p[1].replace(/\D/g,'');
-  if(n.length===10)n='1'+n;
-  var msg=buildMsg(p[0]);
-  window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
-}
-function sendDeviceLink(){
-  var tabletLink='https://www.amazon.com/s?k=android+tablet+under+100+dollars';
-  var iphoneLink='https://www.amazon.com/s?k=refurbished+iphone';
-  if(S.sel!==null){
-    var p=P[S.sel],n=p[1].replace(/\D/g,'');
-    if(n.length===10)n='1'+n;
-    var msg='Hey '+p[0]+'! No worries about the device — here are a couple options on Amazon:\n\n📦 Budget Android Tablet (under $100):\n'+tabletLink+'\n\n📱 Refurbished iPhone:\n'+iphoneLink+'\n\nPick one, get it delivered, and we get you set up on JefeTech. If you ever don\'t want to keep the app, cancel and I refund your most recent month.\n\n— Brian Lalo · +1 (408) 422-3505';
-    window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
-  } else {
-    showToast({i:"👆",t:"Select a prospect first",s:"Click a row in the Prospects tab."});
-  }
-}
-
-function copyRepLink(url){
-  navigator.clipboard.writeText(url);
-  showToast({i:'📋',t:'Link copied!',s:'Send it to your rep via WhatsApp.'});
-}
-
-function manualRecycle(){
-  var recycled=0;
-  Object.keys(S.statuses).forEach(function(i){
-    if(S.statuses[i]==='called'){
-      delete S.statuses[i];
-      recycled++;
-    }
-  });
-  sv();
-  renderP();
-  showToast({i:"♻️",t:"Recycled "+recycled+" prospects!",s:"Called prospects reset to New. Closed & Skip stay."});
-}
-
-function saveContact(){
-  if(S.sel===null) return;
-  var val=document.getElementById('d-contact').value.trim();
-  if(val) S.contacts[S.sel]=val;
-  else delete S.contacts[S.sel];
-  sv();
-  renderP();
-}
-
-function saveFuNote(){
-  if(S.sel===null) return;
-  if(!S.notes[S.sel]) S.notes[S.sel]='';
-  S.notes[S.sel]=document.getElementById('fu-notes').value;
-  sv();
-  // also update detail notes if visible
-  var dn=document.getElementById('d-notes');
-  if(dn) dn.value=S.notes[S.sel];
-}
-
-function loadFuNote(){
-  var el=document.getElementById('fu-notes');
-  var lbl=document.getElementById('fu-prospect-name');
-  if(!el) return;
-  if(S.sel!==null){
-    var p=P[S.sel];
-    if(lbl) lbl.textContent=p[0];
-    el.value=S.notes[S.sel]||'';
-  } else {
-    if(lbl) lbl.textContent='Select a prospect first';
-    el.value='';
-  }
-}
-
-function showClosedLinks(){
-  var el=document.getElementById('closed-links');
-  if(el) el.style.display='block';
-}
-
-function sendCleanDash(){
-  var link='https://myjefetech.app/la-forja.html';
-  if(S.sel!==null){
-    var p=P[S.sel],n=p[1].replace(/\D/g,'');
-    if(n.length===10)n='1'+n;
-    var msg='Hey '+p[0]+'! Welcome to JefeTech! 🎉\n\nHere is your dashboard (La Forja) — your command center for every job and crew member:\n👉 '+link+'\n\nAnd your field app:\n👉 https://myjefetech.app\n\nAny questions, WhatsApp me anytime.\n— Brian Lalo · +1 (408) 422-3505';
-    window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
-  } else {
-    navigator.clipboard.writeText(link);
-    showToast({i:"📋",t:"Dashboard Link Copied!",s:"Send to your new customer."});
-  }
-}
-
-function markStatus(s){if(S.sel===null)return;S.statuses[S.sel]=s;sv();document.getElementById('d-status').textContent=s.charAt(0).toUpperCase()+s.slice(1);renderP();}
-function quickCall(i){S.statuses[i]='called';sv();renderP();}
-function saveNote(){if(S.sel===null)return;S.notes[S.sel]=document.getElementById('d-notes').value;sv();}
-
-// SCRIPT
-function showScript(n,b){
-  document.querySelectorAll('.sb').forEach(function(s){s.classList.remove('active')});
-  document.querySelectorAll('.sp').forEach(function(s){s.classList.remove('active')});
-  document.getElementById('script-'+n).classList.add('active');b.classList.add('active');
-}
-function copyScript(n){
-  var txt=document.getElementById('script-'+n).querySelector('.sb-txt').innerText;
-  navigator.clipboard.writeText(txt).then(function(){
-    var b=document.querySelector('#script-'+n+' .copy-btn');
-    b.textContent='✓ Copied!';setTimeout(function(){b.textContent='Copy Script';},1500);
-  });
-}
-
-// NOTES
-function saveNote2(w){localStorage.setItem('bl-note-'+w,document.getElementById('note-'+w).value);}
-function loadNotes(){
-  try{var saved=localStorage.getItem('bl-opener');if(saved){var ov=document.getElementById('opener-view');if(ov)ov.innerHTML=saved.replace(/\n/g,'<br>');}}catch(x){}
-  ['today','week','ideas','prayer'].forEach(function(w){var el=document.getElementById('note-'+w);if(el)el.value=localStorage.getItem('bl-note-'+w)||'';});}
-
-// UPDATE
-function upd(){
-  var c=S.calls,cl=S.closes,g=S.goal,up=+(cl*82.2).toFixed(2),res=+(cl*82.2).toFixed(2);
-  var pct=Math.min(100,Math.round(c/g*100));
-  document.getElementById('h-calls').textContent=c;
-  document.getElementById('h-closes').textContent=cl;
-  document.getElementById('h-earned').textContent='$'+up;
-  document.getElementById('g-calls').textContent=c;
-  document.getElementById('g-closes').textContent=cl;
-  document.getElementById('g-earned').textContent='$'+up;
-  var cn=document.getElementById('calls-n');if(cn)cn.textContent=c;
-  var cs=document.getElementById('calls-s');if(cs)cs.textContent='of '+g+' goal';
-  var cb=document.getElementById('call-bar');if(cb)cb.style.width=pct+'%';
-  var cp=document.getElementById('call-pct');if(cp)cp.textContent=pct+'% of daily goal';
-  var cln=document.getElementById('closes-n');if(cln)cln.textContent=cl;
-  var ce=document.getElementById('close-earn');if(ce)ce.textContent=up;
-  var et=document.getElementById('earn-total');if(et)et.textContent='$'+up;
-  var es=document.getElementById('earn-sub');if(es)es.textContent=cl+' closes · $'+res+'/mo residual';
-  var eu=document.getElementById('e-up');if(eu)eu.textContent='$'+up;
-  var er=document.getElementById('e-res');if(er)er.textContent='$'+res+'/mo';
-  var ec=document.getElementById('e-cl');if(ec)ec.textContent=cl;
-  var eca=document.getElementById('e-ca');if(eca)eca.textContent=c;
-  updPag();
-  // Monthly
-  var mc=S.mCalls,mcl=S.mCloses;
-  var mpctC=Math.min(100,Math.round(mc/300*100));
-  var mpctCL=Math.min(100,Math.round(mcl/28*100));
-  var d=new Date();
-  var daysInMonth=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
-  var dayOfMonth=d.getDate();
-  var daysLeft=daysInMonth-dayOfMonth+1;
-  var MONTHS2=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var ml=document.getElementById('month-label');if(ml)ml.textContent=MONTHS2[d.getMonth()]+' '+d.getFullYear();
-  var dl=document.getElementById('days-left');if(dl)dl.textContent=daysLeft+' days left this month';
-  var mce=document.getElementById('m-calls');if(mce)mce.textContent=mc;
-  var mclE=document.getElementById('m-closes');if(mclE)mclE.textContent=mcl;
-  var mcb=document.getElementById('m-call-bar');if(mcb)mcb.style.width=mpctC+'%';
-  var mclb=document.getElementById('m-close-bar');if(mclb)mclb.style.width=mpctCL+'%';
-  var mcp=document.getElementById('m-call-pct');if(mcp)mcp.textContent=mpctC+'% of 300';
-  var mclp=document.getElementById('m-close-pct');if(mclp)mclp.textContent=mpctCL+'% of 28';
-  var callsLeft=Math.max(0,300-mc);
-  var closesLeft=Math.max(0,28-mcl);
-  var callsPerDay=daysLeft>0?Math.ceil(callsLeft/daysLeft):0;
-  var closesPerDay=daysLeft>0?(closesLeft/daysLeft).toFixed(1):0;
-  var mcn=document.getElementById('m-calls-needed');if(mcn)mcn.textContent=callsLeft+' to go';
-  var mclN=document.getElementById('m-closes-needed');if(mclN)mclN.textContent=closesLeft+' to go';
-  var tp=document.getElementById('today-pace');if(tp)tp.textContent=callsPerDay+' calls + '+closesPerDay+' closes per day to hit monthly goal';
-  var me=document.getElementById('m-earned');if(me)me.textContent='$'+(mcl*82.2).toFixed(2);
-}
-
-// INIT
-filterP();
-loadNotes();
-upd();
-</script>
-
-<!-- TEAM TAB -->
-<div id="tab-team" class="tab active">
-  <button onclick="showTab('goals', document.querySelector('.tb'))" style="background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px">← Back to Goals</button>
-
-
-  <!-- COMMISSIONS OWED -->
-  <div id="comm" style="background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px 20px;margin-bottom:14px">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px">
-      <div style="font-size:15px;font-weight:900">💸 Commissions Owed ✝️</div>
-      <a href="https://dashboard.stripe.com/global-payouts/payouts" target="_blank" rel="noopener" style="margin-left:auto;background:#635BFF;color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:800;text-decoration:none">Open Stripe Payouts ↗</a>
-    </div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5">Log each Partner sale here. A sale becomes <b style="color:#FFC53D">Ready to pay</b> 30 days after the sale date, once the customer's first month can no longer be refunded. Pay once a month in Stripe, then tap <b>Mark paid</b>.</div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
-      <div style="background:rgba(255,197,61,.10);border-radius:10px;padding:12px;text-align:center"><div id="cm-ready" style="font-size:22px;font-weight:900;color:#FFC53D;font-variant-numeric:tabular-nums">$0</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Ready to pay</div></div>
-      <div style="background:var(--card2);border-radius:10px;padding:12px;text-align:center"><div id="cm-wait" style="font-size:22px;font-weight:900;color:var(--white);font-variant-numeric:tabular-nums">$0</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Waiting 30 days</div></div>
-      <div style="background:var(--gdim);border-radius:10px;padding:12px;text-align:center"><div id="cm-paid" style="font-size:22px;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums">$0</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Paid this month</div></div>
-    </div>
-
-    <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:14px">
-      <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">+ Log a Partner sale</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
-        <select id="cm-partner" aria-label="Partner" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px"></select>
-        <input id="cm-cust" type="text" placeholder="Customer / company" aria-label="Customer" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px;outline:none">
-        <input id="cm-date" type="date" aria-label="Sale date" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px;color-scheme:dark">
-        <input id="cm-amt" type="number" step="0.01" min="0" inputmode="decimal" aria-label="Commission in USD" placeholder="USD" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:13px;outline:none">
-      </div>
-      <button type="button" onclick="cmAdd()" style="margin-top:8px;width:100%;background:#FFC53D;color:#000;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit">+ Log sale</button>
-      <div id="cm-msg" style="font-size:11px;color:var(--muted);margin-top:6px;min-height:14px"></div>
-    </div>
-
-    <div style="font-size:10px;font-weight:800;color:#FFC53D;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Pay these now</div>
-    <div id="cm-pay" style="display:grid;gap:8px;margin-bottom:14px"></div>
-
-    <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">All sales</div>
-    <div id="cm-list" style="display:grid;gap:6px"></div>
-    <div id="cm-store" style="font-size:10px;color:var(--muted);margin-top:10px"></div>
-  </div>
-
-  <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" style="display:block;background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.25);border-radius:14px;padding:16px 20px;margin-bottom:14px;text-decoration:none;color:#FFC53D;font-weight:900;font-size:15px">🤝 Referral Program — 7% of every sale a referred seller makes <span style="display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:3px">Script, rules and referral tracker</span></a>
-
-  <!-- PARTNER 2 -->
-  <div style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:14px;padding:20px;margin-bottom:14px">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
-      <div style="width:44px;height:44px;border-radius:11px;background:#8B5CF6;color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">P2</div>
-      <div style="flex:1">
-        <div style="font-size:16px;font-weight:900">Partner 2 🇺🇸</div>
-        <div style="font-size:11px;color:var(--muted)">MX Studio · US Territory</div>
-      </div>
-    </div>
-    <a href="https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414" style="display:block;background:#8B5CF6;color:#fff;font-size:15px;font-weight:800;padding:14px;border-radius:10px;text-decoration:none;text-align:center">▶ Open Partner 2 Dashboard</a>
-    <button onclick="navigator.clipboard.writeText('https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414').then(function(){alert('Copied!')})" style="display:block;width:100%;margin-top:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:#8B5CF6;font-size:12px;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;font-family:inherit">📋 Copy Partner 2 Link</button>
-  </div>
-
-
-<div id="tab-goals" class="tab">
-  <div class="g2">
-    <div class="gc">
-      <div class="gc-title">📞 Calls Today <button class="gc-reset" onclick="resetDay()">Reset day</button></div>
-      <div class="big-n" id="calls-n">0</div>
-      <div class="big-s" id="calls-s">of 20 goal</div>
-      <div class="prog"><div class="prog-bar" id="call-bar" style="width:0%"></div></div>
-      <div class="prog-l" id="call-pct">0%</div>
-      <button class="bb btn-g" onclick="addCall()">+ Log a Call</button>
-      <button class="bb btn-m" onclick="setGoal()">Set Daily Goal</button>
-      <button class="bb btn-m" onclick="manualRecycle()" style="margin-top:4px;border:1px solid rgba(0,230,118,.2);color:var(--green)">♻️ Recycle Unclosed Prospects</button>
-    </div>
-    <div class="gc">
-      <div class="gc-title">🔥 Closes Today</div>
-      <div class="big-n" style="color:var(--orange)" id="closes-n">0</div>
-      <div class="big-s">closes = $<span id="close-earn">0</span> upfront</div>
-      <div style="height:36px"></div>
-      <button class="bb btn-o" onclick="addClose()">+ Log a Close! 🔥</button>
-      <button class="bb btn-m" onclick="copyStripe(this)">💳 Copy Stripe Link</button>
-    </div>
-  </div>
-</div>
-
-  <!-- MONTHLY GOALS -->
-  <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-      <div style="font-size:14px;font-weight:800">📅 Monthly Goals — <span id="month-label" style="color:var(--green)"></span></div>
-      <div style="font-size:11px;color:var(--muted)" id="days-left"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-      <!-- Monthly Calls -->
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-          <div style="font-size:12px;font-weight:700;color:var(--white)">📞 Calls</div>
-          <div style="font-size:12px;font-weight:800;color:var(--green)"><span id="m-calls">0</span> / 300</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:6px;height:12px;overflow:hidden;margin-bottom:6px">
-          <div id="m-call-bar" style="height:100%;background:var(--green);border-radius:6px;width:0%;max-width:100%"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between">
-          <div style="font-size:11px;color:var(--muted)" id="m-call-pct">0%</div>
-          <div style="font-size:11px;color:var(--muted)" id="m-calls-needed"></div>
-        </div>
-      </div>
-      <!-- Monthly Closes -->
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-          <div style="font-size:12px;font-weight:700;color:var(--white)">🔥 Closes</div>
-          <div style="font-size:12px;font-weight:800;color:var(--orange)"><span id="m-closes">0</span> / 28</div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:6px;height:12px;overflow:hidden;margin-bottom:6px">
-          <div id="m-close-bar" style="height:100%;background:var(--orange);border-radius:6px;width:0%;max-width:100%"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between">
-          <div style="font-size:11px;color:var(--muted)" id="m-close-pct">0%</div>
-          <div style="font-size:11px;color:var(--muted)" id="m-closes-needed"></div>
-        </div>
-      </div>
-    </div>
-    <!-- Pace indicator -->
-    <div style="margin-top:16px;background:var(--card2);border-radius:10px;padding:14px;display:flex;align-items:center;justify-content:space-between">
-      <div>
-        <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px">Today you need:</div>
-        <div style="font-size:11px;color:var(--muted)" id="today-pace">Calculating...</div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:3px">Monthly earnings:</div>
-        <div style="font-size:16px;font-weight:900;color:var(--green)" id="m-earned">$0</div>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- NOTES (moved here from separate tab) -->
-  <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden">
-    <button onclick="var d=document.getElementById('notes-collapse');d.style.display=d.style.display==='none'?'':'none'" style="width:100%;background:none;border:none;padding:16px 20px;color:var(--white);font-size:14px;font-weight:800;text-align:left;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between">
-      📝 Notes &amp; Prayer <span style="color:var(--muted);font-weight:400;font-size:12px">tap to expand ▾</span>
-    </button>
-    <div id="notes-collapse" style="display:none;padding:0 20px 20px">
-<div class="n4">
-    <div class="nc"><h3>📝 Today's Notes</h3><textarea class="nta" id="note-today" placeholder="Key conversations, follow-ups..."></textarea><button class="ns" onclick="saveNote2('today')">Save</button></div>
-    <div class="nc"><h3>🎯 This Week's Plan</h3><textarea class="nta" id="note-week" placeholder="Weekly targets, strategy..."></textarea><button class="ns" onclick="saveNote2('week')">Save</button></div>
-    <div class="nc"><h3>💡 Ideas & Reminders</h3><textarea class="nta" id="note-ideas" placeholder="Ideas, things to remember..."></textarea><button class="ns" onclick="saveNote2('ideas')">Save</button></div>
-    <div class="nc"><h3>🙏 Prayer & Purpose</h3><textarea class="nta" id="note-prayer" placeholder="Gratitude, God's guidance..."></textarea><button class="ns" onclick="saveNote2('prayer')">Save</button></div>
-  </div>
-</div>
-    </div>
-  </div>
 
 
 
@@ -1624,8 +1084,6 @@ loadNotes();
 upd();
 </script>
 
-<!-- TEAM TAB -->
-<div id="tab-team" class="tab active">
 
   <!-- TOTALS ROW -->
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
@@ -1754,7 +1212,6 @@ upd();
   </div>
 </div>
 
-</div>
 
 <script>
 /* One-time migration: prospect list cleaned to verified numbers only (v3) */
