@@ -748,7 +748,7 @@ window.bizMail=function(to,subj,body){
   </div>
 
   <!-- Main layout: Prospect list left, Info boxes right -->
-  <div class="p-layout" style="margin-top:10px">
+  <div class="p-layout" style="margin-top:10px;grid-template-columns:2fr 3fr">
     <div>
       <div class="p-panel">
         <div class="p-head">
@@ -767,7 +767,7 @@ window.bizMail=function(to,subj,body){
         <div style="overflow-x:auto">
           <table class="ptable">
             <thead><tr><th>Company</th><th>Phone</th><th>Location</th><th>TZ</th><th>Status</th><th>Notes</th><th></th></tr></thead>
-            <tbody id="deals-ptbody"></tbody>
+            <tbody id="deals-ptbody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">Loading...</td></tr></tbody>
           </table>
         </div>
         <div class="pag">
@@ -1423,24 +1423,27 @@ function dealsRenderBatch(){
   document.getElementById('deals-btn-prev').disabled=DS.batch===0;
   document.getElementById('deals-btn-next').disabled=start+100>=tot;
   document.getElementById('deals-batch-lbl').textContent='Batch '+(DS.batch+1)+' of '+Math.max(1,Math.ceil(tot/100));
-  var tb=document.getElementById('deals-ptbody'); tb.innerHTML='';
-  slice.forEach(function(ri){
-    var p=P[ri], st=getStatus(ri);
-    var tr=document.createElement('tr');
-    tr.style.cursor='pointer';
-    if(DS.sel===ri) tr.style.background='rgba(0,230,118,.08)';
-    tr.onclick=function(){DS.sel=ri;dealsSelP(ri);dealsRenderBatch();};
-    var city=p[2]?p[2]+', ':''; var loc=city+(p[3]||'');
-    var note=S.notes&&S.notes[ri]?S.notes[ri]:'';
-    tr.innerHTML='<td style="font-weight:700;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(p[0]||'—')+'</td>'
-      +'<td>'+(p[1]||'—')+'</td>'
-      +'<td style="white-space:nowrap">'+loc+'</td>'
-      +'<td>'+(p[4]||tzCode(p))+'</td>'
-      +'<td><span class="tag tag-'+st+'">'+st+'</span></td>'
-      +'<td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--muted)">'+note+'</td>'
-      +'<td><button onclick="event.stopPropagation();dealsMarkStatusAt('+ri+',\'skip\')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px">✕</button></td>';
-    tb.appendChild(tr);
-  });
+  var tb=document.getElementById('deals-ptbody');
+  if(!slice.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">No prospects found.</td></tr>';return;}
+  tb.innerHTML=slice.map(function(ri){
+    var p=P[ri], s=getStatus(ri);
+    var note=S.notes[ri]?'<span style="font-size:11px;color:var(--green)">✏️ '+S.notes[ri].substring(0,30)+(S.notes[ri].length>30?'...':'')+'</span>':'<span style="color:var(--muted);font-size:11px">—</span>';
+    var ph=p[1].replace(/\D/g,'');
+    var waNum=(ph.length===10?'1':'')+ph;
+    return '<tr class="'+(DS.sel===ri?'sel':'')+'" onclick="DS.sel='+ri+';dealsSelP('+ri+');dealsRenderBatch()">'
+      +'<td><div class="pn">'+p[0]+'</div>'+(S.contacts&&S.contacts[ri]?'<div style="font-size:11px;color:var(--green);margin-top:2px;font-weight:700">👤 '+S.contacts[ri]+'</div>':'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+whoToAsk(p[0])+'</div>')+'</td>'
+      +'<td><div style="display:flex;gap:5px;align-items:center">'
+      +'<a href="tel:+'+ph+'" onclick="callBtn(event,this)" data-ph="'+ph+'" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none;white-space:nowrap">📞</a>'
+      +'<a href="https://wa.me/'+waNum+'" target="_blank" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:#25D366;text-decoration:none;white-space:nowrap">💬</a>'
+      +'<span style="font-size:12px;color:var(--muted)">'+p[1]+'</span>'
+      +'</div></td>'
+      +'<td>'+p[2]+', '+p[3]+'</td>'
+      +'<td style="font-size:11px;color:var(--muted)">'+p[4]+'</td>'
+      +'<td><span class="sbadge '+s+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</span></td>'
+      +'<td>'+note+'</td>'
+      +'<td><div class="abtns"><button class="ab ab-wa" onclick="event.stopPropagation();waP('+ri+')" title="WhatsApp">💬</button><button class="ab ab-done" onclick="event.stopPropagation();quickCall('+ri+')" title="Called">✓</button></div></td>'
+      +'</tr>';
+  }).join('');
 }
 
 function dealsSelP(i){
