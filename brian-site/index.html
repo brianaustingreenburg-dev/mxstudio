@@ -1379,22 +1379,22 @@ upd();
 // ── PROSPECTS & DEALS TAB ──────────────────────────────────────────────────
 var DS = {sel:null};
 
-// Event delegation: intercept ALL ptbody row clicks at the document level.
-// If the panel is currently inside tab-deals, route to dealsSelP instead of selP.
-document.addEventListener('click', function(e){
-  var tr = e.target.closest('#ptbody tr');
+// Intercept ptbody row clicks when panel is in Deals tab — update deals right column.
+// Uses bubble phase so inner buttons (📞💬) still work normally via stopPropagation.
+document.getElementById('ptbody').addEventListener('click', function(e){
+  // Skip if a button/link inside the row was clicked (they call stopPropagation)
+  if(e.target.closest('button,a')) return;
+  var tr = e.target.closest('tr');
   if(!tr) return;
   var tabDeals = document.getElementById('tab-deals');
   var panel = document.getElementById('prospects-real-panel');
+  // Only act when panel lives inside Deals tab
   if(!tabDeals || !panel || !tabDeals.contains(panel)) return;
-  // We're in Deals tab — extract index from onclick and call dealsSelP
   var oc = tr.getAttribute('onclick') || '';
-  var m = oc.match(/selP\((\d+)\)/);
+  var m = oc.match(/(\d+)/);
   if(!m) return;
-  e.stopImmediatePropagation();
-  e.preventDefault();
   dealsSelP(+m[1]);
-}, true); // capture phase — fires before onclick attribute
+});
 
 function dealsSelP(i){
   DS.sel=i;
