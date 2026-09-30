@@ -1373,40 +1373,39 @@ var DS = {batch:0, sel:null, filter:'all', q:''};
 
 function dealsRenderBatch(){
   var q=DS.q.toLowerCase(), f=DS.filter;
-  var now=new Date(), nowH=now.getHours()+(now.getMinutes()/60);
-  var rows=P.filter(function(p){
-    if(f==='new'&&p.status!=='new') return false;
-    if(f==='called'&&p.status!=='called') return false;
-    if(f==='closed'&&p.status!=='closed') return false;
-    if(f==='skip'&&p.status!=='skip') return false;
-    if(f==='now'){
-      var tz=p.tz||'';
-      var off=tz.includes('ET')?-4:tz.includes('CT')?-5:tz.includes('MT')?-6:tz.includes('PT')?-7:0;
-      var lh=(nowH+off+24)%24;
-      if(lh<8||lh>=20) return false;
-    }
-    if(q){var s=(p.co||'')+(p.city||'')+(p.state||'');if(!s.toLowerCase().includes(q))return false;}
-    return true;
-  });
-  var tot=rows.length, start=DS.batch*100, slice=rows.slice(start,start+100);
+  var idxs=[];
+  for(var i=0;i<P.length;i++){
+    var p=P[i], st=getStatus(i);
+    if(p[5]==='old') continue;
+    if(f==='new'&&st!=='new') continue;
+    if(f==='called'&&st!=='called') continue;
+    if(f==='closed'&&st!=='closed') continue;
+    if(f==='skip'&&st!=='skip') continue;
+    if(f==='now'&&!isOpen(tzCode(p))) continue;
+    if(q){var s=((p[0]||'')+(p[2]||'')+(p[3]||'')).toLowerCase();if(s.indexOf(q)===-1)continue;}
+    idxs.push(i);
+  }
+  var tot=idxs.length, start=DS.batch*100, slice=idxs.slice(start,start+100);
   document.getElementById('deals-p-count').textContent=tot;
   document.getElementById('deals-pag-info').textContent=(tot===0)?'0 results':(start+1)+'–'+(start+slice.length)+' of '+tot;
   document.getElementById('deals-btn-prev').disabled=DS.batch===0;
   document.getElementById('deals-btn-next').disabled=start+100>=tot;
   document.getElementById('deals-batch-lbl').textContent='Batch '+(DS.batch+1)+' of '+Math.max(1,Math.ceil(tot/100));
   var tb=document.getElementById('deals-ptbody'); tb.innerHTML='';
-  slice.forEach(function(p,i){
-    var ri=start+i, st=p.status||'new';
+  slice.forEach(function(ri){
+    var p=P[ri], st=getStatus(ri);
     var tr=document.createElement('tr');
     tr.style.cursor='pointer';
     if(DS.sel===ri) tr.style.background='rgba(0,230,118,.08)';
     tr.onclick=function(){DS.sel=ri;dealsSelP(ri);dealsRenderBatch();};
-    tr.innerHTML='<td style="font-weight:700;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(p.co||'—')+'</td>'
-      +'<td>'+(p.phone||'—')+'</td>'
-      +'<td style="white-space:nowrap">'+(p.city?p.city+', ':''+(p.state||''))+'</td>'
-      +'<td>'+(p.tz||'')+'</td>'
-      +'<td><span class="tag '+'tag-'+st+'">'+st+'</span></td>'
-      +'<td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--muted)">'+(p.notes||'')+'</td>'
+    var city=p[2]?p[2]+', ':''; var loc=city+(p[3]||'');
+    var note=S.notes&&S.notes[ri]?S.notes[ri]:'';
+    tr.innerHTML='<td style="font-weight:700;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(p[0]||'—')+'</td>'
+      +'<td>'+(p[1]||'—')+'</td>'
+      +'<td style="white-space:nowrap">'+loc+'</td>'
+      +'<td>'+(p[4]||tzCode(p))+'</td>'
+      +'<td><span class="tag tag-'+st+'">'+st+'</span></td>'
+      +'<td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--muted)">'+note+'</td>'
       +'<td><button onclick="event.stopPropagation();dealsMarkStatusAt('+ri+',\'skip\')" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px">✕</button></td>';
     tb.appendChild(tr);
   });
@@ -1414,11 +1413,9 @@ function dealsRenderBatch(){
 
 function dealsSelP(i){
   DS.sel=i; var p=P[i];
-  document.getElementById('deals-det-empty').style.display='none';
-  document.getElementById('deals-det-header').style.display='block';
-  document.getElementById('deals-d-name').textContent=p.co||'Unknown';
-  document.getElementById('deals-d-loc').textContent=(p.city?p.city+', ':'')+p.state+' '+p.tz;
-  // sync with main det so all functions work
+  document.getElementById('deals-d-name').textContent=p[0]||'Unknown';
+  document.getElementById('deals-d-loc').textContent=(p[2]?p[2]+', ':'')+p[3]+' '+(p[4]||tzCode(p));
+  // sync with main selP so call/WA/mark functions all work
   selP(i);
 }
 
