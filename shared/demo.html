@@ -10,17 +10,24 @@
   .header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.15);flex-shrink:0;}
   .header-logo{font-size:15px;font-weight:900;color:#00e676}
   .header-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
-  .layout{display:flex;height:calc(100vh - 49px);}
+  .layout{display:flex;height:calc(100vh - 49px);height:calc(100dvh - 49px);}
+  .mtabs{display:none}
   .pane{flex:1;display:flex;flex-direction:column;border-right:1px solid rgba(0,230,118,.1);}
   .pane:last-child{border-right:none;}
   .pane-label{background:#111318;padding:8px 14px;font-size:11px;font-weight:800;color:rgba(0,230,118,.7);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(0,230,118,.1);flex-shrink:0;}
   .pane iframe{flex:1;width:100%;border:none;background:#0d0f14;}
 
   /* Mobile: stack vertically with tabs */
+  /* Phones: two big tabs, one screen at a time */
   @media(max-width:700px){
-    .layout{flex-direction:column;}
-    .pane{flex:none;height:50%;}
-    .pane:last-child{border-right:none;border-top:1px solid rgba(0,230,118,.15);}
+    .header-sub{display:none}
+    .mtabs{display:flex;gap:6px;padding:8px 10px;background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.15)}
+    .mtabs button{flex:1;border:1px solid rgba(0,230,118,.25);background:#111318;color:rgba(255,255,255,.7);font:800 14px/1 inherit;font-family:inherit;padding:12px 8px;border-radius:10px;cursor:pointer}
+    .mtabs button[aria-pressed="true"]{background:#00e676;color:#000;border-color:#00e676}
+    .layout{flex-direction:column;height:calc(100vh - 110px);height:calc(100dvh - 110px)}
+    .pane{flex:1;border-right:none}
+    .pane[hidden]{display:none}
+    .pane-label{display:none}
   }
 </style>
 </head>
@@ -32,15 +39,28 @@
   </div>
   <a href="https://go.myjefetech.app/checkout.html?ref=brian" style="background:#ff6b2b;color:#fff;font-size:12px;font-weight:900;padding:9px 16px;border-radius:9px;text-decoration:none;white-space:nowrap">💳 Get Started — $137/mo</a>
 </div>
+<div class="mtabs" role="tablist">
+  <button type="button" data-p="app" aria-pressed="true">📱 App</button>
+  <button type="button" data-p="dash" aria-pressed="false">🖥️ Dashboard</button>
+</div>
 <div class="layout">
-  <div class="pane">
+  <div class="pane" data-pane="dash">
     <div class="pane-label">🖥️ Owner Dashboard</div>
-    <iframe src="https://go.myjefetech.app/la-forja.html" title="JefeTech Dashboard" loading="lazy" allow="clipboard-write"></iframe>
+    <iframe src="https://go.myjefetech.app/la-forja.html" title="JefeTech Dashboard" allow="clipboard-write"></iframe>
   </div>
-  <div class="pane">
+  <div class="pane" data-pane="app">
     <div class="pane-label">📱 Crew App</div>
-    <iframe src="https://myjefetech.app" title="JefeTech App" loading="lazy" allow="clipboard-write"></iframe>
+    <iframe src="https://myjefetech.app" title="JefeTech App" allow="clipboard-write"></iframe>
   </div>
 </div>
+<script>
+(function(){
+  var mq=window.matchMedia('(max-width:700px)'),cur='app';
+  function paint(){document.querySelectorAll('.pane').forEach(function(p){p.hidden=mq.matches&&p.dataset.pane!==cur;});
+    document.querySelectorAll('.mtabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p===cur?'true':'false');});}
+  document.querySelectorAll('.mtabs button').forEach(function(b){b.addEventListener('click',function(){cur=b.dataset.p;paint();});});
+  (mq.addEventListener?mq.addEventListener('change',paint):mq.addListener(paint));paint();
+})();
+</script>
 </body>
 </html>
