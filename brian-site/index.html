@@ -750,33 +750,27 @@ window.bizMail=function(to,subj,body){
   <!-- Main layout: Prospect list left, Info boxes right -->
   <div class="p-layout" style="margin-top:10px;grid-template-columns:2fr 3fr">
     <div>
+      <!-- Mirror of the original Prospects panel — driven by the same filterP/renderP -->
       <div class="p-panel">
-        <div class="p-head">
-          <div class="p-title">👥 Prospects</div>
-          <div class="batch-lbl" id="deals-batch-lbl">Batch 1 of 34</div>
-          <span style="font-size:11px;color:var(--muted);margin-left:8px" id="deals-p-count">100</span>
-        </div>
-        <div class="p-search">
-          <input class="si" type="text" placeholder="Search name, city, state..." id="deals-si" oninput="dealsFilterP()">
-          <button class="fb" id="df-now" onclick="dealsSetFilter('now')">⏰ Now</button>
-          <button class="fb" id="df-all" onclick="dealsSetFilter('all')">All</button>
-          <button class="fb" id="df-new" onclick="dealsSetFilter('new')">New</button>
-          <button class="fb" id="df-called" onclick="dealsSetFilter('called')">Called</button>
-          <button class="fb" id="df-closed" onclick="dealsSetFilter('closed')">Closed</button>
-        </div>
+        <div class="p-head" id="deals-phead-mirror"></div>
+        <div class="p-search" id="deals-psearch-mirror"></div>
         <div style="overflow-x:auto">
           <table class="ptable">
             <thead><tr><th>Company</th><th>Phone</th><th>Location</th><th>TZ</th><th>Status</th><th>Notes</th><th></th></tr></thead>
-            <tbody id="deals-ptbody"><tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">Loading...</td></tr></tbody>
+            <tbody id="deals-ptbody-mirror"></tbody>
           </table>
         </div>
-        <div class="pag">
-          <div class="pag-info" id="deals-pag-info">1–100 of 3,400</div>
-          <div class="pag-btns">
-            <button class="pb" id="deals-btn-prev" onclick="dealsPrevBatch()" disabled>← Prev</button>
-            <button class="pb" id="deals-btn-next" onclick="dealsNextBatch()">Next →</button>
+        <div class="pag" id="deals-ppag-mirror"></div>
+        <!-- hidden placeholders so existing JS refs don't throw -->
+        <span id="deals-p-count" style="display:none"></span>
+        <div id="deals-pag-info" style="display:none"></div>
+        <button id="deals-btn-prev" style="display:none"></button>
+        <button id="deals-btn-next" style="display:none"></button>
+        <div id="deals-batch-lbl" style="display:none"></div>
+        <div class="pag-btns" style="display:none">
+            <button class="pb" style="display:none"></button>
+            <button class="pb" style="display:none"></button>
           </div>
-        </div>
       </div>
     </div>
 
@@ -1410,63 +1404,66 @@ loadNotes();
 upd();
 
 // ── PROSPECTS & DEALS TAB ──────────────────────────────────────────────────
-var DS = {batch:0, sel:null, filter:'all', q:''};
+var DS = {sel:null};
 
-function dealsRenderBatch(){
-  var q=DS.q.toLowerCase(), f=DS.filter;
-  var idxs=[];
-  for(var i=0;i<P.length;i++){
-    var p=P[i], st=getStatus(i);
-    if(p[5]==='old') continue;
-    if(f==='new'&&st!=='new') continue;
-    if(f==='called'&&st!=='called') continue;
-    if(f==='closed'&&st!=='closed') continue;
-    if(f==='skip'&&st!=='skip') continue;
-    if(f==='now'&&!isOpen(tzCode(p))) continue;
-    if(q){var s=((p[0]||'')+(p[2]||'')+(p[3]||'')).toLowerCase();if(s.indexOf(q)===-1)continue;}
-    idxs.push(i);
+// Mirror the original prospect panel into the deals tab
+function dealsMirrorPanel(){
+  // Mirror p-head (title, batch label, count)
+  var srcHead=document.getElementById('p-head-orig')||document.querySelector('#tab-prospects .p-head');
+  var dstHead=document.getElementById('deals-phead-mirror');
+  if(srcHead&&dstHead) dstHead.innerHTML=srcHead.innerHTML;
+
+  // Mirror p-search (search input + filter buttons)
+  var srcSearch=document.querySelector('#tab-prospects .p-search');
+  var dstSearch=document.getElementById('deals-psearch-mirror');
+  if(srcSearch&&dstSearch) dstSearch.innerHTML=srcSearch.innerHTML;
+
+  // Mirror tbody rows — clone so row clicks work independently
+  var srcTbody=document.getElementById('ptbody');
+  var dstTbody=document.getElementById('deals-ptbody-mirror');
+  if(srcTbody&&dstTbody){
+    dstTbody.innerHTML=srcTbody.innerHTML;
+    // Intercept row clicks to also update deals right column
+    dstTbody.querySelectorAll('tr[onclick]').forEach(function(tr){
+      var orig=tr.getAttribute('onclick');
+      var m=orig.match(/selP\((\d+)\)/);
+      if(m) tr.setAttribute('onclick','dealsSelP('+m[1]+');'+orig);
+    });
   }
-  var tot=idxs.length, start=DS.batch*100, slice=idxs.slice(start,start+100);
-  var tb=document.getElementById('deals-ptbody');
-  if(!tb)return; // tab not in DOM yet
-  var _pc=document.getElementById('deals-p-count'); if(_pc) _pc.textContent=tot;
-  var _pi=document.getElementById('deals-pag-info'); if(_pi) _pi.textContent=(tot===0)?'0 results':(start+1)+'–'+(start+slice.length)+' of '+tot;
-  var _bp=document.getElementById('deals-btn-prev'); if(_bp) _bp.disabled=DS.batch===0;
-  var _bn=document.getElementById('deals-btn-next'); if(_bn) _bn.disabled=start+100>=tot;
-  var _bl=document.getElementById('deals-batch-lbl'); if(_bl) _bl.textContent='Batch '+(DS.batch+1)+' of '+Math.max(1,Math.ceil(tot/100));
-  if(!slice.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">No prospects found.</td></tr>';return;}
-  tb.innerHTML=slice.map(function(ri){
-    var p=P[ri], s=getStatus(ri);
-    var note=S.notes[ri]?'<span style="font-size:11px;color:var(--green)">✏️ '+S.notes[ri].substring(0,30)+(S.notes[ri].length>30?'...':'')+'</span>':'<span style="color:var(--muted);font-size:11px">—</span>';
-    var ph=p[1].replace(/\D/g,'');
-    var waNum=(ph.length===10?'1':'')+ph;
-    return '<tr class="'+(DS.sel===ri?'sel':'')+'" onclick="DS.sel='+ri+';dealsSelP('+ri+');dealsRenderBatch()">'
-      +'<td><div class="pn">'+p[0]+'</div>'+(S.contacts&&S.contacts[ri]?'<div style="font-size:11px;color:var(--green);margin-top:2px;font-weight:700">👤 '+S.contacts[ri]+'</div>':'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+whoToAsk(p[0])+'</div>')+'</td>'
-      +'<td><div style="display:flex;gap:5px;align-items:center">'
-      +'<a href="tel:+'+ph+'" onclick="callBtn(event,this)" data-ph="'+ph+'" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none;white-space:nowrap">📞</a>'
-      +'<a href="https://wa.me/'+waNum+'" target="_blank" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:#25D366;text-decoration:none;white-space:nowrap">💬</a>'
-      +'<span style="font-size:12px;color:var(--muted)">'+p[1]+'</span>'
-      +'</div></td>'
-      +'<td>'+p[2]+', '+p[3]+'</td>'
-      +'<td style="font-size:11px;color:var(--muted)">'+p[4]+'</td>'
-      +'<td><span class="sbadge '+s+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</span></td>'
-      +'<td>'+note+'</td>'
-      +'<td><div class="abtns"><button class="ab ab-wa" onclick="event.stopPropagation();waP('+ri+')" title="WhatsApp">💬</button><button class="ab ab-done" onclick="event.stopPropagation();quickCall('+ri+')" title="Called">✓</button></div></td>'
-      +'</tr>';
-  }).join('');
+
+  // Mirror pagination
+  var srcPag=document.querySelector('#tab-prospects .pag');
+  var dstPag=document.getElementById('deals-ppag-mirror');
+  if(srcPag&&dstPag) dstPag.innerHTML=srcPag.innerHTML;
 }
+
+// Watch ptbody for changes and re-mirror automatically
+(function(){
+  function setupMirror(){
+    var tb=document.getElementById('ptbody');
+    if(!tb) return;
+    new MutationObserver(function(){dealsMirrorPanel();}).observe(tb,{childList:true,subtree:true,characterData:true});
+    dealsMirrorPanel();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',setupMirror);
+  else setupMirror();
+})();
+
+// Keep compat — these are called by old HTML refs, now no-ops or delegates
+function dealsRenderBatch(){dealsMirrorPanel();}
+function dealsFilterP(){var si=document.getElementById('si');var dsi=document.getElementById('deals-si-mirror');if(dsi&&si){si.value=dsi.value;}filterP();}
+function dealsSetFilter(f){setFilter(f);}
+function dealsNextBatch(){S.batch++;filterP();}
+function dealsPrevBatch(){S.batch=Math.max(0,S.batch-1);filterP();}
 
 function dealsSelP(i){
   DS.sel=i; var p=P[i], s=getStatus(i);
-  // Update deals header box
   var dn=document.getElementById('deals-d-name');
   var dl=document.getElementById('deals-d-loc');
   if(dn) dn.textContent=p[0]||'Unknown';
   if(dl) dl.textContent=(p[2]?p[2]+', ':'')+p[3]+' · '+(p[4]||tzCode(p))+' · '+s;
-  // Auto-fill share screen phone from prospect
   var sp=document.getElementById('deals-share-phone');
   if(sp) sp.value=p[1]||'';
-  // Also sync main selP so call/WA/mark/stripe functions all work
   selP(i);
 }
 
@@ -1550,18 +1547,12 @@ function copyDealsScript(k){
   setTimeout(function(){btn.textContent=orig;btn.style.color='';},1500);
 }
 
-// Initialize deals tab when tab is shown
+// Mirror re-runs whenever the deals tab is opened (in case panel changed)
 var _origShowTab=window.showTab;
 window.showTab=function(n,b){
   _origShowTab(n,b);
-  if(n==='deals'){setTimeout(function(){dealsSetFilter('all');},0);}
+  if(n==='deals') setTimeout(dealsMirrorPanel,0);
 };
-// Pre-populate on page load so it's ready
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',function(){dealsRenderBatch();});
-}else{
-  setTimeout(function(){dealsRenderBatch();},0);
-}
 </script>
 
 
