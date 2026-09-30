@@ -1427,12 +1427,13 @@ function dealsRenderBatch(){
     idxs.push(i);
   }
   var tot=idxs.length, start=DS.batch*100, slice=idxs.slice(start,start+100);
-  document.getElementById('deals-p-count').textContent=tot;
-  document.getElementById('deals-pag-info').textContent=(tot===0)?'0 results':(start+1)+'–'+(start+slice.length)+' of '+tot;
-  document.getElementById('deals-btn-prev').disabled=DS.batch===0;
-  document.getElementById('deals-btn-next').disabled=start+100>=tot;
-  document.getElementById('deals-batch-lbl').textContent='Batch '+(DS.batch+1)+' of '+Math.max(1,Math.ceil(tot/100));
   var tb=document.getElementById('deals-ptbody');
+  if(!tb)return; // tab not in DOM yet
+  var _pc=document.getElementById('deals-p-count'); if(_pc) _pc.textContent=tot;
+  var _pi=document.getElementById('deals-pag-info'); if(_pi) _pi.textContent=(tot===0)?'0 results':(start+1)+'–'+(start+slice.length)+' of '+tot;
+  var _bp=document.getElementById('deals-btn-prev'); if(_bp) _bp.disabled=DS.batch===0;
+  var _bn=document.getElementById('deals-btn-next'); if(_bn) _bn.disabled=start+100>=tot;
+  var _bl=document.getElementById('deals-batch-lbl'); if(_bl) _bl.textContent='Batch '+(DS.batch+1)+' of '+Math.max(1,Math.ceil(tot/100));
   if(!slice.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">No prospects found.</td></tr>';return;}
   tb.innerHTML=slice.map(function(ri){
     var p=P[ri], s=getStatus(ri);
@@ -1553,8 +1554,14 @@ function copyDealsScript(k){
 var _origShowTab=window.showTab;
 window.showTab=function(n,b){
   _origShowTab(n,b);
-  if(n==='deals'){dealsSetFilter('all');dealsRenderBatch();}
+  if(n==='deals'){setTimeout(function(){dealsSetFilter('all');},0);}
 };
+// Pre-populate on page load so it's ready
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',function(){dealsRenderBatch();});
+}else{
+  setTimeout(function(){dealsRenderBatch();},0);
+}
 </script>
 
 
