@@ -1079,7 +1079,7 @@ function renderP(){
   tbody.innerHTML=CL.map(function(i){
     var p=P[i],s=getStatus(i);
     var note=S.notes[i]?'<span style="font-size:11px;color:var(--green)">✏️ '+S.notes[i].substring(0,30)+(S.notes[i].length>30?'...':'')+'</span>':'<span style="color:var(--muted);font-size:11px">—</span>';
-    return '<tr class="'+(S.sel===i?'sel':'')+'" onclick="selP('+i+')">'
+    return '<tr class="'+(S.sel===i?'sel':'')+'" onclick="rowClick('+i+')">'
       +'<td><div class="pn">'+p[0]+'</div>'+(S.contacts&&S.contacts[i]?'<div style="font-size:11px;color:var(--green);margin-top:2px;font-weight:700">👤 '+S.contacts[i]+'</div>':'<div style="font-size:11px;color:var(--muted);margin-top:2px">'+whoToAsk(p[0])+'</div>')+'</td>'
       +'<td><div style="display:flex;gap:5px;align-items:center">'
       +'<a href="tel:+'+p[1].replace(/\D/g,'')+'" data-ph="'+p[1].replace(/\D/g,'')+'" onclick="callBtn(event,this)" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--green);text-decoration:none;white-space:nowrap">📞</a>'
@@ -1379,22 +1379,15 @@ upd();
 // ── PROSPECTS & DEALS TAB ──────────────────────────────────────────────────
 var DS = {sel:null};
 
-// Intercept ptbody row clicks when panel is in Deals tab — update deals right column.
-// Uses bubble phase so inner buttons (📞💬) still work normally via stopPropagation.
-document.getElementById('ptbody').addEventListener('click', function(e){
-  // Skip if a button/link inside the row was clicked (they call stopPropagation)
-  if(e.target.closest('button,a')) return;
-  var tr = e.target.closest('tr');
-  if(!tr) return;
-  var tabDeals = document.getElementById('tab-deals');
-  var panel = document.getElementById('prospects-real-panel');
-  // Only act when panel lives inside Deals tab
-  if(!tabDeals || !panel || !tabDeals.contains(panel)) return;
-  var oc = tr.getAttribute('onclick') || '';
-  var m = oc.match(/(\d+)/);
-  if(!m) return;
-  dealsSelP(+m[1]);
-});
+function inDeals(){
+  var panel=document.getElementById('prospects-real-panel');
+  var tabDeals=document.getElementById('tab-deals');
+  return !!(panel&&tabDeals&&tabDeals.contains(panel));
+}
+function rowClick(i){
+  if(inDeals()) dealsSelP(i);
+  else selP(i);
+}
 
 function dealsSelP(i){
   DS.sel=i;
@@ -1643,7 +1636,7 @@ function copyDealsScript(k){
     _renderP();
     var rows=document.querySelectorAll('#ptbody tr');
     rows.forEach(function(tr){
-      var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(!m)return;
+      var m=(tr.getAttribute('onclick')||'').match(/(?:selP|rowClick)\((\d+)\)/);if(!m)return;
       var p=P[+m[1]],code=tzCode(p),o=ZONES[ZI[code]],td=tr.children[3];if(!td)return;
       if(p[5]==='old'&&!tr.dataset.oldTag){tr.dataset.oldTag=1;var n=tr.children[0];if(n)n.insertAdjacentHTML('beforeend','<div style="font-size:10px;color:#FFB020;font-weight:700;margin-top:2px">⚠️ Old list — number not verified</div>');}
       var ab=tr.querySelector('.abtns');if(ab&&!ab.dataset.bad){ab.dataset.bad=1;ab.insertAdjacentHTML('beforeend','<button class="ab" title="Bad number — remove from my list" style="background:rgba(239,68,68,.12);color:#EF4444" onclick="event.stopPropagation();badNumber('+m[1]+')">✕</button>');}
@@ -1818,7 +1811,7 @@ function copyDealsScript(k){
   };
   var _rp=renderP;
   window.renderP=function(){_rp();document.querySelectorAll('#ptbody tr').forEach(function(tr){
-    var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(!m||tr.dataset.en)return;var p=P[+m[1]];
+    var m=(tr.getAttribute('onclick')||'').match(/(?:selP|rowClick)\((\d+)\)/);if(!m||tr.dataset.en)return;var p=P[+m[1]];
     if(p&&isEnglishMX(p)){tr.dataset.en=1;var n=tr.children[0];if(n)n.insertAdjacentHTML('beforeend','<div style="font-size:10px;color:#60A5FA;font-weight:800;margin-top:2px">🗣️ English likely · open with "Hi, do you speak English?"</div>');}
   });};
   var _rl=renderLineup;
@@ -1966,7 +1959,7 @@ function copyDealsScript(k){
   window.viberP=function(i){var p=P[i];if(!p)return;window.location.href=vb(p);};
   var _rp=renderP;
   window.renderP=function(){_rp();document.querySelectorAll('#ptbody tr').forEach(function(tr){
-    var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(!m||tr.dataset.vb)return;var i=+m[1];if(!isPH(P[i]))return;
+    var m=(tr.getAttribute('onclick')||'').match(/(?:selP|rowClick)\((\d+)\)/);if(!m||tr.dataset.vb)return;var i=+m[1];if(!isPH(P[i]))return;
     tr.dataset.vb=1;var w=tr.querySelector('.ab-wa');if(!w)return;
     w.insertAdjacentHTML('afterend','<button class="ab" style="background:#7360F2;color:#fff" onclick="event.stopPropagation();viberP('+i+')" title="Viber" aria-label="Viber">💜</button>');
   });};
@@ -2782,7 +2775,7 @@ function copyDealsScript(k){
     }
     _rp.apply(this,arguments);
     document.querySelectorAll('#ptbody tr').forEach(function(tr){
-      var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(!m||tr.dataset.cost)return;tr.dataset.cost=1;
+      var m=(tr.getAttribute('onclick')||'').match(/(?:selP|rowClick)\((\d+)\)/);if(!m||tr.dataset.cost)return;tr.dataset.cost=1;
       var i=+m[1],cell=tr.children[1];if(!cell)return;var row=cell.querySelector('div')||cell;
       row.insertAdjacentHTML('beforeend','<span class="wa-b" style="display:inline-flex;gap:4px">'+badge(i)+'</span>');
       if(waOnly(P[i])){var call=row.querySelector('a[href^="tel:"]');if(call)call.style.display='none';}
@@ -2817,7 +2810,7 @@ function copyDealsScript(k){
     if(t.closest('#wa-ask')||t.closest('button[data-wa]'))return;
     var isWA=t.closest('a[href*="wa.me/"],.ab-wa,[onclick*="waSelected"],[onclick*="waP("]');if(!isWA)return;
     var tr=t.closest('#ptbody tr'),i=null;
-    if(tr){var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(m)i=+m[1];}
+    if(tr){var m=(tr.getAttribute('onclick')||'').match(/(?:selP|rowClick)\((\d+)\)/);if(m)i=+m[1];}
     else if(typeof S!=='undefined'&&S.sel!==null&&S.sel!==undefined&&document.getElementById('det')&&document.getElementById('det').contains(t))i=S.sel;
     if(i!==null&&P[i])setTimeout(function(){ask(i);},300);
   },true);
