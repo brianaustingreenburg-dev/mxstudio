@@ -8,7 +8,7 @@
 <title>Refer a Seller · 7% · MX Studio</title>
 <meta name="description" content="Send MX Studio someone who sells JefeTech and earn 7% of every sale they make, every month.">
 <meta property="og:title" content="Know someone who can sell? Earn 7%, every month.">
-<meta property="og:description" content="Refer a seller to MX Studio. You earn 7% of every sale they make, every month, for as long as they keep selling.">
+<meta property="og:description" content="Refer a seller to MX Studio. You earn 7% of every sale they make, every month, plus 3% on the sellers they bring in.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0b0f;--card:#12151d;--card2:#181c26;--line:rgba(255,255,255,.08);--green:#00E676;--gdim:rgba(0,230,118,.10);--gmid:rgba(0,230,118,.26);--orange:#FF6B2B;--gold:#FFC53D;--wa:#25D366;--blue:#0A84FF;--text:#F4F2EE;--muted:#98A1B2;color-scheme:dark}
@@ -94,13 +94,13 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
     <div>
       <div class="eyebrow" data-t="eyebrow">Know someone who can sell?</div>
       <h1 data-t="h1" data-html="1">Send us a seller. <em>Earn 7%, every month.</em></h1>
-      <p class="lead" data-t="lead">Refer someone who sells JefeTech for MX Studio. You earn 7% of every sale they make, every month, for as long as they keep selling. You don't sell anything yourself.</p>
+      <p class="lead" data-t="lead">Refer someone who sells JefeTech for MX Studio. You earn 7% of every sale they make, every month, for as long as they keep selling. If they bring in a seller too, you get 3% of that seller's sales as well. You don't sell anything yourself.</p>
       <div class="row">
         <a class="btn share" href="#refer" data-t="ctaRefer">🤝 Refer someone</a>
         <button class="btn ghost" type="button" id="shareTop" data-t="shareBtn">📤 Share this page</button>
       </div>
     </div>
-    <div class="pct"><b>7%</b><span data-t="pctCap">of every sale they make · paid monthly · as long as they're selling</span></div>
+    <div class="pct"><b>7%</b><span data-t="pctCap">of every sale they make · paid monthly · as long as they're selling</span><div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line)"><b style="font-size:40px;color:var(--gold);letter-spacing:-1px">+3%</b><span data-t="pct2">on the sellers they bring in</span></div></div>
   </section>
 
   <h2><span class="n">1</span><span data-t="howT">How it works</span></h2>
@@ -109,6 +109,7 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
     <div class="card"><b data-t="s2b">2. They join as a Partner</b><p data-t="s2p">They get their own dashboard, scripts and prospect list, and earn their own commission selling JefeTech.</p></div>
     <div class="card"><b data-t="s3b">3. You get 7%, every month</b><p data-t="s3p">7% of what every customer they sign pays, every month, for as long as that Partner keeps selling.</p></div>
   </div>
+  <div class="card" style="margin-top:12px;border-color:rgba(255,197,61,.35);background:rgba(255,197,61,.06)"><b data-t="s4b" style="color:var(--gold)">➕ Bonus: 3% one level down</b><p data-t="s4p">If the seller you sent brings in a seller of their own, you also get 3% of that new seller's sales, every month, as long as they're active. They still get their full 7%.</p></div>
 
   <h2><span class="n">2</span><span data-t="ladderT">What it can add up to</span></h2>
   <div class="ladder">
@@ -116,6 +117,7 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
     <div class="rung"><div class="when" data-t="r2w">3 months</div><div class="what" data-t="r2" data-html="1">They're up to 20 customers<small>20 × $137 × 7%</small></div><div class="amt">$191.80<small data-t="perMo">a month</small></div></div>
     <div class="rung"><div class="when" data-t="r3w">1 year</div><div class="what" data-t="r3" data-html="1">They reach 50 customers<small>50 × $137 × 7% = $5,754 a year</small></div><div class="amt">$479.50<small data-t="perMo">a month</small></div></div>
     <div class="rung"><div class="when" data-t="r4w">Long term</div><div class="what" data-t="r4" data-html="1">You've sent 3 sellers with 50 customers each<small>150 × $137 × 7% = $17,262 a year</small></div><div class="amt">$1,438.50<small data-t="perMo">a month</small></div></div>
+    <div class="rung" style="border-color:rgba(255,197,61,.35)"><div class="when" data-t="r5w">+3% bonus</div><div class="what" data-t="r5" data-html="1">Each of your 3 sellers brings in 1 seller with 50 customers<small>150 × $137 × 3%</small></div><div class="amt" style="color:var(--gold)">+$616.50<small data-t="perMo">a month</small></div></div>
   </div>
   <div class="note" data-t="ladderNote">Examples, not promises. Based on the $137/month plan. It keeps paying only while your seller is active and their customers keep paying.</div>
 
@@ -124,6 +126,8 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
     <div class="card">
       <label for="c-sellers"><span data-t="cSellers">Sellers you refer</span><b id="c-s-v">1</b></label>
       <input type="range" id="c-sellers" min="1" max="10" value="1">
+      <label for="c-s2"><span data-t="cS2">Sellers they bring in (3%)</span><b id="c-s2-v">0</b></label>
+      <input type="range" id="c-s2" min="0" max="10" value="0">
       <label for="c-cust"><span data-t="cCust">Customers each seller signs</span><b id="c-c-v">20</b></label>
       <input type="range" id="c-cust" min="1" max="100" value="20">
     </div>
@@ -166,12 +170,14 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
     <li data-t="ru3">It lasts as long as that Partner is actively selling. If they stop, the 7% stops.</li>
     <li data-t="ru4">The person you refer must be new to MX Studio and join as a Partner. You can't refer yourself.</li>
     <li data-t="ru5">MX Studio can update the program with notice. Referrals already active keep their terms.</li>
+    <li data-t="ru6">3% bonus: when a Partner you referred refers a new Partner, you also get 3% of that new Partner's customers' subscription payments, as long as that Partner is active. One level only.</li>
   </ul>
 
   <h2><span class="n">7</span><span data-t="faqT">Questions</span></h2>
   <details><summary data-t="q1">Do I have to sell anything?</summary><p data-t="a1">No. You just connect us. If you want to sell too, you can join as a Partner yourself.</p></details>
   <details><summary data-t="q2">How do I get paid?</summary><p data-t="a2">Monthly, straight to your bank account in your own currency. We just need your name and email.</p></details>
   <details><summary data-t="q3">How long does it last?</summary><p data-t="a3">As long as the person you referred keeps selling for MX Studio.</p></details>
+  <details><summary data-t="q5">What if my seller refers someone?</summary><p data-t="a5">You get 3% of that new seller's sales too, every month, as long as they're active. Your seller still gets their full 7% on them. It goes one level down.</p></details>
   <details><summary data-t="q4">What is JefeTech?</summary><p data-t="a4">An app that runs a contractor's whole crew: jobs, crew, roof measurements from an address, photos and payments, plus an owner dashboard. English and Spanish.</p></details>
 
   <h2><span class="n">8</span><span data-t="talkT">Talk to Brian</span></h2>
@@ -193,8 +199,8 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
 (function(){
   var PHONE='14084223505', EMAIL='brian@myjefetech.app', URL_='https://go.myjefetech.app/referral.html', RATE=0.07, PRICE=137;
   var T={
-    es:{brandSub:'Programa de referidos · JefeTech',eyebrow:'¿Conoce a alguien que sepa vender?',h1:'Mándenos un vendedor. <em>Gane 7%, cada mes.</em>',
-      lead:'Recomiende a alguien que venda JefeTech para MX Studio. Usted gana el 7% de cada venta que haga, cada mes, mientras siga vendiendo. Usted no tiene que vender nada.',
+    es:{pct2:'de los vendedores que esa persona traiga',s4b:'➕ Bono: 3% un nivel abajo',s4p:'Si el vendedor que mandó trae a otro vendedor, usted también gana 3% de las ventas de ese nuevo vendedor, cada mes, mientras esté activo. Su vendedor sigue ganando su 7% completo.',r5w:'Bono +3%',r5:'Cada uno de sus 3 vendedores trae 1 vendedor con 50 clientes<small>150 × $137 × 3%</small>',cS2:'Vendedores que ellos traen (3%)',ru6:'Bono 3%: cuando un Socio que usted recomendó recomienda a un nuevo Socio, usted también gana 3% de los pagos de suscripción de los clientes de ese nuevo Socio, mientras esté activo. Solo un nivel.',q5:'¿Y si mi vendedor recomienda a alguien?',a5:'Usted gana 3% de las ventas de ese nuevo vendedor también, cada mes, mientras esté activo. Su vendedor sigue ganando su 7% completo. Es un nivel abajo.',brandSub:'Programa de referidos · JefeTech',eyebrow:'¿Conoce a alguien que sepa vender?',h1:'Mándenos un vendedor. <em>Gane 7%, cada mes.</em>',
+      lead:'Recomiende a alguien que venda JefeTech para MX Studio. Usted gana el 7% de cada venta que haga, cada mes, mientras siga vendiendo. Si esa persona trae a otro vendedor, usted gana 3% de esas ventas también. Usted no tiene que vender nada.',
       ctaRefer:'🤝 Recomendar a alguien',shareBtn:'📤 Compartir esta página',pctCap:'de cada venta que haga · pago mensual · mientras siga vendiendo',
       howT:'Cómo funciona',s1b:'1. Nos manda un nombre',s1p:'Alguien bueno al teléfono, en ventas, o que conozca contratistas. EE. UU., Canadá, México, Australia o Filipinas.',
       s2b:'2. Entra como Socio',s2p:'Recibe su propio dashboard, guiones y lista de prospectos, y gana su propia comisión vendiendo JefeTech.',
@@ -212,8 +218,8 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
       faqT:'Preguntas',q1:'¿Tengo que vender algo?',a1:'No. Solo nos conecta. Si también quiere vender, puede entrar como Socio.',q2:'¿Cómo me pagan?',a2:'Cada mes, directo a su cuenta bancaria en su propia moneda. Solo necesitamos su nombre y correo.',
       q3:'¿Cuánto tiempo dura?',a3:'Mientras la persona que recomendó siga vendiendo para MX Studio.',q4:'¿Qué es JefeTech?',a4:'Una app para manejar toda la cuadrilla de un contratista: trabajos, equipo, medidas del techo con solo la dirección, fotos y pagos, más un dashboard para el dueño. En inglés y español.',
       talkT:'Hable con Brian',talkP:'Brian Lalo, dueño de MX Studio. Persona real, respuesta rápida.',cText:'✉️ Mensaje',cEmail:'📧 Correo'},
-    fil:{brandSub:'Referral Program · JefeTech',eyebrow:'May kilala ka bang marunong magbenta?',h1:'Magpadala ng seller. <em>Kumita ng 7%, buwan-buwan.</em>',
-      lead:'Mag-refer ng taong magbebenta ng JefeTech para sa MX Studio. Kikita ka ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila. Hindi mo kailangang magbenta.',
+    fil:{pct2:'sa mga sellers na ire-refer nila',s4b:'➕ Bonus: 3% isang level pababa',s4p:'Kung magdala rin ng seller ang ni-refer mo, kikita ka rin ng 3% ng benta ng bagong seller, buwan-buwan, habang aktibo sila. Buo pa rin ang 7% ng seller mo.',r5w:'+3% bonus',r5:'Bawat isa sa 3 sellers mo ay nagdala ng 1 seller na may 50 customers<small>150 × $137 × 3%</small>',cS2:'Sellers na dinala nila (3%)',ru6:'3% bonus: kapag ang Partner na ni-refer mo ay nag-refer ng bagong Partner, kikita ka rin ng 3% ng subscription ng customers ng bagong Partner, habang aktibo sila. Isang level lang.',q5:'Paano kung mag-refer din ang seller ko?',a5:'Kikita ka rin ng 3% ng benta ng bagong seller, buwan-buwan, habang aktibo sila. Buo pa rin ang 7% ng seller mo. Isang level pababa lang.',brandSub:'Referral Program · JefeTech',eyebrow:'May kilala ka bang marunong magbenta?',h1:'Magpadala ng seller. <em>Kumita ng 7%, buwan-buwan.</em>',
+      lead:'Mag-refer ng taong magbebenta ng JefeTech para sa MX Studio. Kikita ka ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila. Kung magdala rin sila ng seller, kikita ka ng 3% ng benta nito. Hindi mo kailangang magbenta.',
       ctaRefer:'🤝 Mag-refer',shareBtn:'📤 I-share ang page',pctCap:'ng bawat benta nila · buwanang bayad · hangga\'t nagbebenta sila',
       howT:'Paano ito gumagana',s1b:'1. Magpadala ka ng pangalan',s1p:'Taong magaling sa telepono, sa sales, o may kilalang contractors. US, Canada, Mexico, Australia o Pilipinas.',
       s2b:'2. Sasali sila bilang Partner',s2p:'May sarili silang dashboard, scripts at listahan ng prospects, at sariling komisyon sa pagbebenta ng JefeTech.',
@@ -246,10 +252,10 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
   }
   document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){LANG=b.dataset.l;try{localStorage.setItem('ref-lang',LANG);}catch(e){}apply();});});
   function money(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
-  var S=document.getElementById('c-sellers'),C=document.getElementById('c-cust');
-  function calc(){var s=+S.value,c=+C.value,m=s*c*PRICE*RATE;document.getElementById('c-s-v').textContent=s;document.getElementById('c-c-v').textContent=c;
+  var S=document.getElementById('c-sellers'),S2=document.getElementById('c-s2'),C=document.getElementById('c-cust');
+  function calc(){var s=+S.value,s2=+S2.value,c=+C.value,m=s*c*PRICE*RATE+s2*c*PRICE*0.03;document.getElementById('c-s-v').textContent=s;document.getElementById('c-s2-v').textContent=s2;document.getElementById('c-c-v').textContent=c;
     document.getElementById('c-mo').textContent=money(m);document.getElementById('c-yr').textContent='$'+Math.round(m*12).toLocaleString('en-US')+({en:' a year',es:' al año',fil:' kada taon'})[LANG];}
-  S.addEventListener('input',calc);C.addEventListener('input',calc);
+  S.addEventListener('input',calc);S2.addEventListener('input',calc);C.addEventListener('input',calc);
   var HELLO={en:'Hi Brian, I saw the MX Studio referral program and have a question.',es:'Hola Brian, vi el programa de referidos de MX Studio y tengo una pregunta.',fil:'Hi Brian, nakita ko ang referral program ng MX Studio at may tanong ako.'};
   function links(){
     document.getElementById('c-wa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(HELLO[LANG]);
@@ -268,9 +274,9 @@ details p{margin:8px 0 0;color:var(--muted);font-size:14px}
     else if(k==='sms')location.href='sms:+'+PHONE+'?&body='+encodeURIComponent(msg);
     else location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Referral: '+v('f-them'))+'&body='+encodeURIComponent(msg);
   });});
-  var SHARE={en:'Know someone who can sell? MX Studio pays 7% of every sale they make, every month, for as long as they keep selling. Take a look:',
-             es:'¿Conoce a alguien que sepa vender? MX Studio paga el 7% de cada venta que haga, cada mes, mientras siga vendiendo. Mire:',
-             fil:'May kilala ka bang marunong magbenta? Nagbabayad ang MX Studio ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila. Tingnan mo:'};
+  var SHARE={en:'Know someone who can sell? MX Studio pays 7% of every sale they make, every month, for as long as they keep selling, plus 3% on the sellers they bring in. Take a look:',
+             es:'¿Conoce a alguien que sepa vender? MX Studio paga el 7% de cada venta que haga, cada mes, mientras siga vendiendo, más 3% de los vendedores que esa persona traiga. Mire:',
+             fil:'May kilala ka bang marunong magbenta? Nagbabayad ang MX Studio ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila, dagdag 3% sa mga sellers na ire-refer nila. Tingnan mo:'};
   function share(){
     var u=URL_+'?lang='+LANG,txt=SHARE[LANG];
     if(navigator.share){navigator.share({title:'MX Studio · 7% referral',text:txt,url:u}).catch(function(){});return;}

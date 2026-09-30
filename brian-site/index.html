@@ -341,7 +341,7 @@ window.bizMail=function(to,subj,body){
     <div id="cm-store" style="font-size:10px;color:var(--muted);margin-top:10px"></div>
   </div>
 
-  <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" style="display:block;background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.25);border-radius:14px;padding:16px 20px;margin-bottom:14px;text-decoration:none;color:#FFC53D;font-weight:900;font-size:15px">🤝 Referral Program — 7% of every sale a referred seller makes <span style="display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:3px">Script, rules and referral tracker</span></a>
+  <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" style="display:block;background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.25);border-radius:14px;padding:16px 20px;margin-bottom:14px;text-decoration:none;color:#FFC53D;font-weight:900;font-size:15px">🤝 Referral Program — 7% of every sale a referred seller makes, + 3% on the sellers they refer <span style="display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:3px">Script, rules and referral tracker</span></a>
 
   <!-- PARTNER 2 -->
   <div style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:14px;padding:20px;margin-bottom:14px">
@@ -765,88 +765,97 @@ window.bizMail=function(to,subj,body){
 </div>
 
 <div id="tab-refhub" class="tab">
-  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;background:linear-gradient(135deg,rgba(0,230,118,.10),rgba(255,197,61,.06));border-color:var(--gmid)">
+  <div style="display:flex;justify-content:flex-end;margin-bottom:10px"><div role="group" aria-label="Language" style="display:inline-flex;gap:2px;background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:3px">
+    <button type="button" class="rh-lb" data-l="en" onclick="rhLang('en')" style="border:none;border-radius:999px;padding:8px 14px;font:800 13px inherit;font-family:inherit;cursor:pointer">🇺🇸 English</button>
+    <button type="button" class="rh-lb" data-l="es" onclick="rhLang('es')" style="border:none;border-radius:999px;padding:8px 14px;font:800 13px inherit;font-family:inherit;cursor:pointer">🇲🇽 Español</button></div></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;background:linear-gradient(135deg,rgba(0,230,118,.10),rgba(255,197,61,.06));border-color:var(--gmid)">
     <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
       <div style="min-width:0;flex:1 1 280px">
         <div style="font-size:11px;font-weight:900;color:#FFC53D;letter-spacing:1px;text-transform:uppercase">🤝 Referral Hub ✝️</div>
-        <div style="font-size:24px;font-weight:900;line-height:1.15;margin:4px 0 6px">Not buying? Get a seller. <span style="color:var(--green)">They earn 7%, every month.</span></div>
-        <div style="font-size:13px;color:var(--muted)">Share the public page with anyone. It has the offer, the math, and buttons that message you.</div>
+        <div style="font-size:24px;font-weight:900;line-height:1.15;margin:4px 0 6px"><span data-rhes="¿No compra? Consiga un vendedor. ">Not buying? Get a seller. </span><span style="color:var(--green)"><span data-rhes="Ellos ganan 7%, cada mes.">They earn 7%, every month.</span></span></div>
+        <div style="display:inline-block;margin:2px 0 8px;background:rgba(255,197,61,.12);border:1px solid rgba(255,197,61,.35);color:#FFC53D;border-radius:8px;padding:5px 10px;font-size:13px;font-weight:800"><span data-rhes="➕ Más 3% de cada venta de los vendedores que &lt;u&gt;ellos&lt;/u&gt; recomienden">➕ Plus 3% of every sale from the sellers <u>they</u> refer</span></div>
+        <div style="font-size:13px;color:var(--muted)"><span data-rhes="Comparta la página pública con quien sea. Tiene la oferta, los números y botones que le escriben a usted.">Share the public page with anyone. It has the offer, the math, and buttons that message you.</span></div>
         <div id="rh-to" style="font-size:12px;color:var(--green);font-weight:800;margin-top:8px"></div>
       </div>
-      <div style="text-align:center;min-width:120px"><div style="font-size:60px;font-weight:900;color:var(--green);line-height:1">7%</div><div style="font-size:11px;color:var(--muted)">of every sale · monthly</div></div>
+      <div style="text-align:center;min-width:120px"><div style="font-size:60px;font-weight:900;color:var(--green);line-height:1">7%</div><div style="font-size:11px;color:var(--muted)"><span data-rhes="de cada venta · mensual">of every sale · monthly</span></div><div style="font-size:22px;font-weight:900;color:#FFC53D;margin-top:4px">+3%</div><div style="font-size:11px;color:var(--muted)"><span data-rhes="de sus referidos">on their referrals</span></div></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
-      <button type="button" onclick="rhShare('native')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:var(--green);color:#000">📤 Share page</button>
+      <button type="button" onclick="rhShare('native')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:var(--green);color:#000"><span data-rhes="📤 Compartir">📤 Share page</span></button>
       <button type="button" onclick="rhShare('wa')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:#25D366;color:#fff">💬 WhatsApp</button>
-      <button type="button" onclick="rhShare('sms')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:#0A84FF;color:#fff">✉️ Text</button>
-      <button type="button" onclick="rhShare('mail')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:var(--card2);color:var(--white);border:1px solid var(--border)">📧 Email</button>
-      <a href="https://go.myjefetech.app/referral.html" target="_blank" rel="noopener" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:transparent;color:var(--muted);border:1px solid var(--border);text-align:center;text-decoration:none">👀 Open page</a>
+      <button type="button" onclick="rhShare('sms')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:#0A84FF;color:#fff"><span data-rhes="✉️ Mensaje">✉️ Text</span></button>
+      <button type="button" onclick="rhShare('mail')" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:var(--card2);color:var(--white);border:1px solid var(--border)"><span data-rhes="📧 Correo">📧 Email</span></button>
+      <a href="https://go.myjefetech.app/referral.html" target="_blank" rel="noopener" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:transparent;color:var(--muted);border:1px solid var(--border);text-align:center;text-decoration:none"><span data-rhes="👀 Ver página">👀 Open page</span></a>
     </div>
-    <div style="display:flex;gap:6px;align-items:center;margin-top:10px;font-size:12px;color:var(--muted)">Send in:
+    <div style="display:flex;gap:6px;align-items:center;margin-top:10px;font-size:12px;color:var(--muted)"><span data-rhes="Enviar en:">Send in:</span>
       <select id="rh-lang" style="background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:6px 8px;color:var(--white);font-family:inherit;font-size:12px"><option value="en">English</option><option value="es">Español</option><option value="fil">Filipino</option></select>
     </div>
   </div>
 
   <div class="rh-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
     <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;margin:0">
-      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">🎯 Short term · your referral goals</div>
+      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px"><span data-rhes="🎯 Corto plazo · sus metas de referidos">🎯 Short term · your referral goals</span></div>
       <div id="rh-goals"></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:8px">Counts reset by themselves: today at midnight, the week on Monday, the month on the 1st.</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px"><span data-rhes="Se reinician solos: hoy a medianoche, la semana el lunes, el mes el día 1.">Counts reset by themselves: today at midnight, the week on Monday, the month on the 1st.</span></div>
     </div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;margin:0">
-      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📈 Long term · what referrals are worth</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Move the sliders. MX Studio keeps 33% of each $137 after the Partner's 60% and the referrer's 7% (before Stripe fees).</div>
-      <label style="display:flex;justify-content:space-between;font-size:12px;font-weight:700">Active referred sellers <b id="rh-s-v">3</b></label>
+      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px"><span data-rhes="📈 Largo plazo · lo que valen los referidos">📈 <span data-rhes="Largo plazo">Long term</span> · what referrals are worth</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px"><span data-rhes="Mueva las barras. De cada $137: Socio 60%, quien recomendó 7%, y 3% más cuando el vendedor vino del referido de un referido. MX Studio se queda con 33%, o 30% en esos (antes de comisiones de Stripe).">Move the sliders. On each $137: Partner 60%, referrer 7%, and 3% more when the seller came from a referral's referral. <span data-rhes="MX Studio se queda">MX Studio keeps</span> 33%, or 30% on those (before Stripe fees).</span></div>
+      <label style="display:flex;justify-content:space-between;font-size:12px;font-weight:700"><span data-rhes="Vendedores referidos activos">Active referred sellers</span> <b id="rh-s-v">3</b></label>
       <input id="rh-s" type="range" min="1" max="30" value="3" style="width:100%;accent-color:var(--green)">
-      <label style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-top:6px">Customers each <b id="rh-c-v">20</b></label>
+      <label style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-top:6px"><span data-rhes="Vendedores que &lt;i&gt;ellos&lt;/i&gt; trajeron (nivel 3%)">Sellers <i>they</i> referred (3% level)</span> <b id="rh-s2-v">1</b></label>
+      <input id="rh-s2" type="range" min="0" max="30" value="1" style="width:100%;accent-color:#FFC53D">
+      <label style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-top:6px"><span data-rhes="Clientes cada uno">Customers each</span> <b id="rh-c-v">20</b></label>
       <input id="rh-c" type="range" min="1" max="100" value="20" style="width:100%;accent-color:var(--green)">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-        <div style="background:var(--card2);border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:var(--muted)">MX Studio keeps</div><div id="rh-mx" style="font-size:22px;font-weight:900;color:var(--green)"></div><div id="rh-mx-y" style="font-size:11px;color:var(--muted)"></div></div>
-        <div style="background:var(--card2);border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:var(--muted)">Referrers earn (7%)</div><div id="rh-ref" style="font-size:22px;font-weight:900;color:#FFC53D"></div><div id="rh-ref-y" style="font-size:11px;color:var(--muted)"></div></div>
+        <div style="background:var(--card2);border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:var(--muted)"><span data-rhes="MX Studio se queda">MX Studio keeps</span></div><div id="rh-mx" style="font-size:22px;font-weight:900;color:var(--green)"></div><div id="rh-mx-y" style="font-size:11px;color:var(--muted)"></div></div>
+        <div style="background:var(--card2);border-radius:10px;padding:10px;text-align:center"><div style="font-size:11px;color:var(--muted)"><span data-rhes="Quienes recomiendan ganan (7% + 3%)">Referrers earn (7% + 3%)</span></div><div id="rh-ref" style="font-size:22px;font-weight:900;color:#FFC53D"></div><div id="rh-ref-y" style="font-size:11px;color:var(--muted)"></div></div>
       </div>
       <div id="rh-total" style="font-size:12px;color:var(--muted);margin-top:8px;text-align:center"></div>
     </div>
   </div>
 
   <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;margin-top:14px">
-    <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">💵 What to tell them they can make</div>
+    <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px"><span data-rhes="💵 Lo que les puede decir que ganan">💵 What to tell them they can make</span></div>
     <div class="rh-ladder" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase">First month</div><div style="font-size:12px;margin:4px 0">Seller signs 5</div><div style="font-size:20px;font-weight:900;color:var(--green)">$47.95<span style="font-size:11px;color:var(--muted)">/mo</span></div></div>
-      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase">3 months</div><div style="font-size:12px;margin:4px 0">Up to 20</div><div style="font-size:20px;font-weight:900;color:var(--green)">$191.80<span style="font-size:11px;color:var(--muted)">/mo</span></div></div>
-      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase">1 year</div><div style="font-size:12px;margin:4px 0">50 customers</div><div style="font-size:20px;font-weight:900;color:var(--green)">$479.50<span style="font-size:11px;color:var(--muted)">/mo</span></div><div style="font-size:11px;color:var(--muted)">$5,754 a year</div></div>
-      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase">Long term</div><div style="font-size:12px;margin:4px 0">3 sellers × 50</div><div style="font-size:20px;font-weight:900;color:var(--green)">$1,438.50<span style="font-size:11px;color:var(--muted)">/mo</span></div><div style="font-size:11px;color:var(--muted)">$17,262 a year</div></div>
+      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase"><span data-rhes="Primer mes">First month</span></div><div style="font-size:12px;margin:4px 0"><span data-rhes="Su vendedor firma 5">Seller signs 5</span></div><div style="font-size:20px;font-weight:900;color:var(--green)">$47.95<span style="font-size:11px;color:var(--muted)">/mo</span></div></div>
+      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase"><span data-rhes="3 meses">3 months</span></div><div style="font-size:12px;margin:4px 0"><span data-rhes="Llega a 20">Up to 20</span></div><div style="font-size:20px;font-weight:900;color:var(--green)">$191.80<span style="font-size:11px;color:var(--muted)">/mo</span></div></div>
+      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase"><span data-rhes="1 año">1 year</span></div><div style="font-size:12px;margin:4px 0"><span data-rhes="50 clientes">50 customers</span></div><div style="font-size:20px;font-weight:900;color:var(--green)">$479.50<span style="font-size:11px;color:var(--muted)">/mo</span></div><div style="font-size:11px;color:var(--muted)"><span data-rhes="$5,754 al año">$5,754 a year</span></div></div>
+      <div style="background:var(--card2);border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:900;color:#FFC53D;text-transform:uppercase"><span data-rhes="Largo plazo">Long term</span></div><div style="font-size:12px;margin:4px 0"><span data-rhes="3 vendedores × 50">3 sellers × 50</span></div><div style="font-size:20px;font-weight:900;color:var(--green)">$1,438.50<span style="font-size:11px;color:var(--muted)">/mo</span></div><div style="font-size:11px;color:var(--muted)"><span data-rhes="$17,262 al año">$17,262 a year</span></div></div>
     </div>
-    <div style="font-size:11px;color:var(--muted);margin-top:8px">Examples, not promises: $137 plan × 7%. Pays only while their seller is active and customers keep paying. Yearly customer ($1,344): $94.08 once a year.</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px"><span data-rhes="Ejemplos, no promesas: plan de $137 × 7%. Solo paga mientras su vendedor esté activo y los clientes sigan pagando. Cliente anual ($1,344): $94.08 una vez al año.">Examples, not promises: $137 plan × 7%. Pays only while their seller is active and customers keep paying. Yearly customer ($1,344): $94.08 once a year.</span></div>
+    <div style="margin-top:10px;background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.3);border-radius:10px;padding:10px 12px;font-size:13px"><b style="color:#FFC53D"><span data-rhes="➕ El bono de 3%:">➕ The <span data-rhes="Bono 3%:">3% bonus:</span></span></b><span data-rhes=" si sus 3 vendedores traen cada uno a otro vendedor con 50 clientes, también ganan "> if their 3 sellers each bring in one more seller with 50 customers, they also get </span><b style="color:var(--green)">$616.50/mo</b><span data-rhes=" (150 × $137 × 3%). Solo un nivel abajo, mientras ese vendedor esté activo."> (150 × $137 × 3%). One level down only, as long as that seller is active.</span></div>
   </div>
 
   <div class="rh-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
     <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;margin:0">
-      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">🗣️ What to say on the call</div>
-      <div style="font-size:15px;line-height:1.7">"Totally fine, it's not for everybody. One thing before I let you go: <b style="color:var(--green)">do you know anybody who's good at sales?</b> Somebody who knows contractors, likes the phone, wants extra money? You send me somebody who sells for me, and <b style="color:var(--green)">you get 7% of every sale they make, every month, for as long as they're working.</b> You don't have to do anything else. Who comes to mind?"</div>
-      <div style="font-size:13px;color:var(--muted);margin-top:10px;line-height:1.6"><b style="color:#FFC53D">Español:</b> "No hay problema. Antes de colgar: ¿conoce a alguien bueno para vender? Usted me manda a alguien que venda para mí y gana el 7% de cada venta que haga, cada mes, mientras siga trabajando. ¿Quién se le viene a la mente?"</div>
+      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px"><span data-rhes="🗣️ Qué decir en la llamada">🗣️ What to say on the call</span></div>
+      <div class="rh-en-only"><div style="font-size:15px;line-height:1.7">"Totally fine, it's not for everybody. One thing before I let you go: <b style="color:var(--green)">do you know anybody who's good at sales?</b> Somebody who knows contractors, likes the phone, wants extra money? You send me somebody who sells for me, and <b style="color:var(--green)">you get 7% of every sale they make, every month, for as long as they're working.</b> And if that person brings in somebody too, <b style="color:#FFC53D">you get 3% of their sales as well.</b> You don't have to do anything else. Who comes to mind?"</div></div>
+      <div class="rh-es-block"><div style="font-size:13px;color:var(--muted);margin-top:10px;line-height:1.6"><b style="color:#FFC53D">Español:</b> "No hay problema. Antes de colgar: ¿conoce a alguien bueno para vender? Usted me manda a alguien que venda para mí y gana el 7% de cada venta que haga, cada mes, mientras siga trabajando. Y si esa persona trae a alguien más, usted gana 3% de esas ventas también. ¿Quién se le viene a la mente?"</div></div>
     </div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;margin:0">
-      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">🙋 When they ask…</div>
+      <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px"><span data-rhes="🙋 Cuando pregunten…">🙋 When they ask…</span></div>
       <div style="display:grid;gap:8px;font-size:13px">
-        <div><b style="color:var(--orange)">"How do I get paid?"</b> Monthly, straight to your bank, in your own currency. I just need your name and email.</div>
-        <div><b style="color:var(--orange)">"Do I have to sell?"</b> No. You just connect us. You can join as a Partner too if you want.</div>
-        <div><b style="color:var(--orange)">"How long does it last?"</b> As long as the person you sent keeps selling.</div>
-        <div><b style="color:var(--orange)">"Who's a good fit?"</b> Good on the phone, knows contractors, wants extra income. Any of our 5 countries.</div>
+        <div><b style="color:var(--orange)"><span data-rhes="&quot;¿Cómo me pagan?&quot;">"How do I get paid?"</span></b><span data-rhes=" Cada mes, directo a su banco, en su propia moneda. Solo necesito su nombre y correo."> Monthly, straight to your bank, in your own currency. I just need your name and email.</span></div>
+        <div><b style="color:var(--orange)"><span data-rhes="&quot;¿Tengo que vender?&quot;">"Do I have to sell?"</span></b><span data-rhes=" No. Solo nos conecta. También puede entrar como Socio si quiere."> No. You just connect us. You can join as a Partner too if you want.</span></div>
+        <div><b style="color:var(--orange)"><span data-rhes="&quot;¿Cuánto dura?&quot;">"How long does it last?"</span></b><span data-rhes=" Mientras la persona que mandó siga vendiendo."> As long as the person you sent keeps selling.</span></div>
+        <div><b style="color:var(--orange)"><span data-rhes="&quot;¿Y si mi vendedor recomienda a alguien?&quot;">"What if my seller refers someone?"</span></b><span data-rhes=" Usted gana 3% de las ventas de ese nuevo vendedor también, mientras esté activo. Un nivel abajo."> You get 3% of that new seller's sales too, as long as they're active. One level down.</span></div>
+        <div><b style="color:var(--orange)"><span data-rhes="&quot;¿Quién sirve?&quot;">"Who's a good fit?"</span></b><span data-rhes=" Bueno al teléfono, conoce contratistas, quiere ingresos extra. En cualquiera de nuestros 5 países."> Good on the phone, knows contractors, wants extra income. Any of our 5 countries.</span></div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
-        <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" target="_blank" rel="noopener" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:rgba(255,197,61,.12);border:1px solid rgba(255,197,61,.35);color:#FFC53D;text-align:center;text-decoration:none">📋 Referral tracker (private)</a>
+        <a href="https://claude.ai/artifact/RjksbrcXaFc13K4DGmGmUD" target="_blank" rel="noopener" style="border:none;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;flex:1;min-width:120px;background:rgba(255,197,61,.12);border:1px solid rgba(255,197,61,.35);color:#FFC53D;text-align:center;text-decoration:none"><span data-rhes="📋 Registro de referidos (privado)">📋 Referral tracker (private)</span></a>
       </div>
     </div>
   </div>
 
   <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;margin-top:14px">
-    <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📜 The rules</div>
+    <div style="font-size:11px;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px"><span data-rhes="📜 Las reglas">📜 The rules</span></div>
     <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.8">
-      <li>7% of the subscription money paid by every customer the referred Partner signs.</li>
-      <li>Paid monthly, straight to their bank, after the customer's payment clears. Refunds don't count.</li>
-      <li>Lasts as long as the referred Partner is actively selling. If they stop, the 7% stops.</li>
-      <li>The person referred must be new to MX Studio and join as a Partner. Nobody refers themselves.</li>
-      <li>MX Studio can update the program with notice. Active referrals keep their terms.</li>
+      <li><span data-rhes="7% del dinero de suscripción que paga cada cliente que firme el Socio recomendado.">7% of the subscription money paid by every customer the referred Partner signs.</span></li>
+      <li><span data-rhes="Se paga cada mes, directo a su banco, cuando se confirma el pago del cliente. Los reembolsos no cuentan.">Paid monthly, straight to their bank, after the customer's payment clears. Refunds don't count.</span></li>
+      <li><span data-rhes="Dura mientras el Socio recomendado siga vendiendo. Si deja de vender, el 7% se detiene.">Lasts as long as the referred Partner is actively selling. If they stop, the 7% stops.</span></li>
+      <li><span data-rhes="La persona recomendada debe ser nueva en MX Studio y entrar como Socio. Nadie se recomienda a sí mismo.">The person referred must be new to MX Studio and join as a Partner. Nobody refers themselves.</span></li>
+      <li><span data-rhes="MX Studio puede actualizar el programa con aviso previo. Los referidos activos conservan sus condiciones.">MX Studio can update the program with notice. Active referrals keep their terms.</span></li>
+      <li><b style="color:#FFC53D"><span data-rhes="Bono 3%:">3% bonus:</span></b><span data-rhes=" cuando un Socio que usted recomendó recomienda a un nuevo Socio, usted también gana 3% de los pagos de suscripción de los clientes de ese nuevo Socio, mientras esté activo. Solo un nivel."> when a Partner you referred refers a new Partner, you also get 3% of that new Partner's customers' subscription payments, as long as that Partner is active. One level only.</span></li>
     </ol>
   </div>
 </div>
@@ -2721,7 +2730,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 30 · 2:30 PM · Referral Hub';
+  var VERSION='Sept 30 · 2:50 PM · Referral 7% + 3%';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
@@ -2945,9 +2954,9 @@ window.refreshBossView=function(show){
 /* ===== 🤝 Referral Hub ✝️ ===== */
 (function(){
   var PAGE='https://go.myjefetech.app/referral.html',RATE=0.07,PRICE=137,KEEP=0.33;
-  var MSG={en:'Hey, it\'s Brian Lalo from MX Studio. Know anybody who\'s good at sales? Send them my way: you get 7% of every sale they make, every month, for as long as they keep selling. Everything is here 👉 ',
-           es:'Hola, soy Brian Lalo de MX Studio. ¿Conoce a alguien bueno para vender? Mándemelo: usted gana el 7% de cada venta que haga, cada mes, mientras siga vendiendo. Todo está aquí 👉 ',
-           fil:'Hi, si Brian Lalo ito ng MX Studio. May kilala ka bang magaling magbenta? I-refer mo sa akin: kikita ka ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila. Nandito lahat 👉 '};
+  var MSG={en:'Hey, it\'s Brian Lalo from MX Studio. Know anybody who\'s good at sales? Send them my way: you get 7% of every sale they make, every month, for as long as they keep selling, plus 3% on anyone they bring in. Everything is here 👉 ',
+           es:'Hola, soy Brian Lalo de MX Studio. ¿Conoce a alguien bueno para vender? Mándemelo: usted gana el 7% de cada venta que haga, cada mes, mientras siga vendiendo, más 3% de quien esa persona traiga. Todo está aquí 👉 ',
+           fil:'Hi, si Brian Lalo ito ng MX Studio. May kilala ka bang magaling magbenta? I-refer mo sa akin: kikita ka ng 7% ng bawat benta nila, buwan-buwan, hangga\'t nagbebenta sila, dagdag 3% sa mga ire-refer nila. Nandito lahat 👉 '};
   function money(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
   function lang(){var e=document.getElementById('rh-lang');return e?e.value:'en';}
   function target(){
@@ -2957,7 +2966,7 @@ window.refreshBossView=function(show){
     return {name:p[0],num:n.length>=7?n:'',email:em.trim()};
   }
   function paintTo(){var t=target(),el=document.getElementById('rh-to');if(!el)return;
-    el.textContent=t?('Sending to: '+t.name+(t.num?' · +'+t.num:'')):'No prospect selected: WhatsApp and Text open so you can pick who to send it to.';}
+    var ES=window.RH_LANG==='es';el.textContent=t?((ES?'Se envía a: ':'Sending to: ')+t.name+(t.num?' · +'+t.num:'')):(ES?'Sin prospecto seleccionado: WhatsApp y Mensaje se abren para que elija a quién.':'No prospect selected: WhatsApp and Text open so you can pick who to send it to.');}
   window.rhShare=function(k){
     var l=lang(),u=PAGE+'?lang='+l,txt=MSG[l]+u,t=target();
     if(k==='native'){if(navigator.share){navigator.share({title:'MX Studio · 7% referral',text:MSG[l],url:u}).catch(function(){});return;}k='wa';}
@@ -2967,7 +2976,7 @@ window.refreshBossView=function(show){
   };
   window.openRefHub=function(){var b=document.querySelector("button.tb[onclick*=\"'refhub'\"]");if(b)showTab('refhub',b);window.scrollTo(0,0);};
   /* goals */
-  var G=[{k:'ask',l:'Asked for a referral',p:'day',g:5},{k:'names',l:'Names received',p:'week',g:5},{k:'joined',l:'Sellers who joined',p:'month',g:2}];
+  var G=[{k:'ask',l:'Asked for a referral',es:'Pedí un referido',p:'day',g:5},{k:'names',l:'Names received',es:'Nombres recibidos',p:'week',g:5},{k:'joined',l:'Sellers who joined',es:'Vendedores que entraron',p:'month',g:2}];
   function stamp(p){var d=new Date();if(p==='day')return d.toDateString();if(p==='month')return d.getFullYear()+'-'+d.getMonth();var m=new Date(d);m.setDate(d.getDate()-((d.getDay()+6)%7));return 'w'+m.toDateString();}
   function load(){try{return JSON.parse(localStorage.getItem('bl-refgoals')||'{}');}catch(e){return {};}}
   function save(o){try{localStorage.setItem('bl-refgoals',JSON.stringify(o));}catch(e){}}
@@ -2975,24 +2984,39 @@ window.refreshBossView=function(show){
   window.rhBump=function(k,d){var o=load(),g=G.filter(function(x){return x.k===k;})[0];var n=Math.max(0,val(o,g)+d);o[k]={s:stamp(g.p),n:n};save(o);paintGoals();
     if(d>0&&n===g.g)showToast({i:'🔥',t:'Goal hit: '+g.l,s:'God wins. Keep going.'});};
   function paintGoals(){var o=load(),box=document.getElementById('rh-goals');if(!box)return;
-    box.innerHTML=G.map(function(g){var n=val(o,g),pct=Math.min(100,Math.round(n/g.g*100)),per={day:'today',week:'this week',month:'this month'}[g.p];
-      return '<div style="margin-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;font-size:13px;font-weight:700">'+g.l+' <span style="color:var(--muted);font-weight:500">'+per+'</span></div>'
+    box.innerHTML=G.map(function(g){var ES=window.RH_LANG==='es',n=val(o,g),pct=Math.min(100,Math.round(n/g.g*100)),per=(ES?{day:'hoy',week:'esta semana',month:'este mes'}:{day:'today',week:'this week',month:'this month'})[g.p];
+      return '<div style="margin-bottom:12px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;font-size:13px;font-weight:700">'+(ES?g.es:g.l)+' <span style="color:var(--muted);font-weight:500">'+per+'</span></div>'
         +'<button type="button" onclick="rhBump(\''+g.k+'\',-1)" aria-label="Minus one" style="width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--muted);font-size:16px;cursor:pointer">−</button>'
         +'<div style="min-width:52px;text-align:center;font-weight:900;font-size:18px">'+n+'<span style="font-size:12px;color:var(--muted)">/'+g.g+'</span></div>'
         +'<button type="button" onclick="rhBump(\''+g.k+'\',1)" aria-label="Plus one" style="width:32px;height:32px;border-radius:8px;border:none;background:var(--green);color:#000;font-size:16px;font-weight:900;cursor:pointer">+</button></div>'
         +'<div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;margin-top:6px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+(pct>=100?'#FFC53D':'var(--green)')+'"></div></div></div>';}).join('');}
-  function calc(){var s=+document.getElementById('rh-s').value,c=+document.getElementById('rh-c').value,cust=s*c;
-    document.getElementById('rh-s-v').textContent=s;document.getElementById('rh-c-v').textContent=c;
-    var mx=cust*PRICE*KEEP,rf=cust*PRICE*RATE;
-    document.getElementById('rh-mx').textContent=money(mx)+'/mo';document.getElementById('rh-mx-y').textContent='$'+Math.round(mx*12).toLocaleString('en-US')+' a year';
-    document.getElementById('rh-ref').textContent=money(rf)+'/mo';document.getElementById('rh-ref-y').textContent='$'+Math.round(rf*12).toLocaleString('en-US')+' a year';
-    document.getElementById('rh-total').textContent=cust+' customers bringing in '+money(cust*PRICE)+' a month in total.';}
+  function calc(){var s=+document.getElementById('rh-s').value,s2=+document.getElementById('rh-s2').value,c=+document.getElementById('rh-c').value,c1=s*c,c2=s2*c,cust=c1+c2;
+    document.getElementById('rh-s-v').textContent=s;document.getElementById('rh-s2-v').textContent=s2;document.getElementById('rh-c-v').textContent=c;
+    var mx=c1*PRICE*KEEP+c2*PRICE*(KEEP-0.03),rf=cust*PRICE*RATE+c2*PRICE*0.03;
+    document.getElementById('rh-mx').textContent=money(mx)+'/mo';var ES=window.RH_LANG==='es',YR=ES?' al año':' a year';document.getElementById('rh-mx-y').textContent='$'+Math.round(mx*12).toLocaleString('en-US')+YR;
+    document.getElementById('rh-ref').textContent=money(rf)+'/mo';document.getElementById('rh-ref-y').textContent='$'+Math.round(rf*12).toLocaleString('en-US')+YR;
+    document.getElementById('rh-total').textContent=ES?(cust+' clientes que pagan '+money(cust*PRICE)+' al mes en total.'):(cust+' customers bringing in '+money(cust*PRICE)+' a month in total.');}
   function init(){if(!document.getElementById('tab-refhub'))return;
-    document.getElementById('rh-s').addEventListener('input',calc);document.getElementById('rh-c').addEventListener('input',calc);
+    document.getElementById('rh-s').addEventListener('input',calc);document.getElementById('rh-s2').addEventListener('input',calc);document.getElementById('rh-c').addEventListener('input',calc);
     var sel=document.getElementById('rh-lang');try{var ml=window.mxLang&&mxLang.get();if(ml)sel.value=ml;}catch(e){}
-    calc();paintGoals();paintTo();}
+    calc();paintGoals();paintTo();window.rhRepaint=function(){calc();paintGoals();paintTo();};}
   var _st=window.showTab;window.showTab=function(n,b){var r=_st.apply(this,arguments);if(n==='refhub'){paintTo();paintGoals();}return r;};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* Referral Hub EN/ES switch ✝️ */
+(function(){
+  var cur='en';
+  window.rhLang=function(l){cur=l;try{localStorage.setItem('bl-rh-lang',l);}catch(e){}
+    document.querySelectorAll('#tab-refhub [data-rhes]').forEach(function(el){if(el.dataset.rhen==null)el.dataset.rhen=el.innerHTML;el.innerHTML=l==='es'?el.dataset.rhes:el.dataset.rhen;});
+    document.querySelectorAll('#tab-refhub .rh-lb').forEach(function(b){var on=b.dataset.l===l;b.setAttribute('aria-pressed',on);b.style.background=on?'var(--green)':'transparent';b.style.color=on?'#000':'var(--muted)';});
+    document.querySelectorAll('#tab-refhub .rh-en-only').forEach(function(el){el.style.display=l==='es'?'none':'';});
+    document.querySelectorAll('#tab-refhub .rh-es-block > div').forEach(function(el){el.style.fontSize=l==='es'?'15px':'13px';el.style.color=l==='es'?'var(--white)':'var(--muted)';el.style.marginTop=l==='es'?'0':'10px';el.style.lineHeight=l==='es'?'1.7':'1.6';});
+    var sel=document.getElementById('rh-lang');if(sel&&(sel.value==='en'||sel.value==='es'))sel.value=l;
+    window.RH_LANG=l;if(window.rhRepaint)window.rhRepaint();};
+  function init(){var l='en';try{l=localStorage.getItem('bl-rh-lang')||((window.mxLang&&mxLang.get()==='es')?'es':'en');}catch(e){}rhLang(l);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else setTimeout(init,0);
 })();
 </script>
 </body>
