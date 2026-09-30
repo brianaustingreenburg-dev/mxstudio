@@ -272,6 +272,7 @@ window.bizMail=function(to,subj,body){
   <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
   <button class="tb" onclick="showTab('deals',this)">📋 Prospects & Deals</button>
+  <button class="tb" onclick="showTab('share',this)">📺 Share Screen</button>
 </div>
 
 <!-- TEAM TAB -->
@@ -784,13 +785,20 @@ window.bizMail=function(to,subj,body){
 
       <!-- Selected prospect quick info -->
       <div id="deals-det-header" style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
-        <div style="font-size:13px;font-weight:800;color:var(--white)" id="deals-d-name">👆 Click a prospect</div>
-        <div style="font-size:11px;color:var(--muted)" id="deals-d-loc"></div>
-        <div style="display:flex;gap:6px;margin-top:8px">
-          <button class="da da-call" onclick="dealsCallSelected()" style="flex:1;padding:8px;font-size:12px">📞 Call</button>
-          <button class="da da-wa" onclick="dealsWaSelected()" style="flex:1;padding:8px;font-size:12px">💬 WhatsApp</button>
-          <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()" style="flex:1;padding:8px;font-size:12px">✓ Called</button>
-          <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:8px;font-size:12px">🔥 Closed</button>
+        <div style="font-size:14px;font-weight:800;color:var(--white)" id="deals-d-name">👆 Click a prospect</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px" id="deals-d-loc"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
+          <div style="display:flex;gap:6px">
+            <button class="da da-call" onclick="dealsCallSelected()" style="flex:1;padding:10px;font-size:13px;font-weight:800">📞 Call Now</button>
+            <button class="da da-wa" onclick="dealsWaSelected()" style="flex:1;padding:10px;font-size:13px;font-weight:800">💬 WhatsApp</button>
+          </div>
+          <button onclick="dealsSendPayment()" style="width:100%;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">💳 Send Payment Link via WhatsApp</button>
+          <button onclick="dealsSendDemo()" style="width:100%;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:11px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">📱 Send Demo App via WhatsApp</button>
+          <div style="display:flex;gap:6px">
+            <button class="da da-called" onclick="dealsMarkStatus('called');dealsAddCall()" style="flex:1;padding:9px;font-size:12px">✓ Mark Called</button>
+            <button class="da da-closed" onclick="dealsMarkStatus('closed');dealsAddClose()" style="flex:1;padding:9px;font-size:12px">🔥 Mark Closed</button>
+            <button class="da da-skip" onclick="dealsMarkStatus('skip')" style="flex:1;padding:9px;font-size:12px">✕ Skip</button>
+          </div>
         </div>
       </div>
 
@@ -827,22 +835,56 @@ window.bizMail=function(to,subj,body){
         </div>
       </div>
 
-      <!-- Scripts: Close / Setup / Follow Up -->
-      <div style="background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 14px">
-        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">📝 Scripts</div>
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <button onclick="copyDealsScript('close')" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">🤝 Copy Close Script</button>
-          <button onclick="copyDealsScript('setup')" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">📲 Copy Setup Script</button>
-          <button onclick="copyDealsScript('fu')" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">📲 Copy Follow Up Script</button>
-          <button onclick="copyStripe(this)" style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;text-align:left">💳 Copy Checkout Link</button>
-          <button onclick="sendLink('pay')" style="background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:8px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit;text-align:left">💬 Send Payment via WhatsApp</button>
-        </div>
-      </div>
 
     </div>
   </div>
 </div>
 <!-- END PROSPECTS & DEALS TAB -->
+
+<!-- SHARE SCREEN TAB -->
+<div id="tab-share" class="tab">
+  <div style="max-width:600px;margin:24px auto;padding:0 16px">
+
+    <div style="font-size:18px;font-weight:900;color:var(--white);margin-bottom:4px">📺 Share Screen</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Open the app or dashboard to share your screen — or send directly to their phone.</div>
+
+    <!-- Live view buttons -->
+    <div style="display:flex;gap:10px;margin-bottom:24px">
+      <a href="https://myjefetech.app" target="_blank" style="flex:1;display:block;background:var(--gdim);border:1px solid var(--gmid);border-radius:12px;padding:20px 16px;text-align:center;text-decoration:none">
+        <div style="font-size:28px;margin-bottom:6px">📱</div>
+        <div style="font-size:14px;font-weight:900;color:var(--green)">Open App</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">myjefetech.app</div>
+      </a>
+      <a href="https://go.myjefetech.app/la-forja.html" target="_blank" style="flex:1;display:block;background:var(--gdim);border:1px solid var(--gmid);border-radius:12px;padding:20px 16px;text-align:center;text-decoration:none">
+        <div style="font-size:28px;margin-bottom:6px">🖥️</div>
+        <div style="font-size:14px;font-weight:900;color:var(--green)">Open Dashboard</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">go.myjefetech.app/la-forja.html</div>
+      </a>
+    </div>
+
+    <!-- Send to their phone -->
+    <div style="background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:18px">
+      <div style="font-size:12px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">📲 Send to Their Phone</div>
+
+      <div style="margin-bottom:12px">
+        <label style="font-size:12px;color:var(--muted);font-weight:700;display:block;margin-bottom:6px">Their Phone Number</label>
+        <input id="share-phone" type="tel" inputmode="numeric" placeholder="e.g. 5551234567" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:13px 14px;font-size:16px;color:var(--white);font-family:inherit;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gmid)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <button onclick="shareToPhone('app','wa')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:12px 8px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">💬 App via WhatsApp</button>
+        <button onclick="shareToPhone('app','sms')" style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:12px 8px;font-size:13px;font-weight:800;color:var(--white);cursor:pointer;font-family:inherit">📱 App via SMS</button>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="shareToPhone('dash','wa')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:12px 8px;font-size:13px;font-weight:800;color:var(--green);cursor:pointer;font-family:inherit">💬 Dashboard via WhatsApp</button>
+        <button onclick="shareToPhone('dash','sms')" style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:12px 8px;font-size:13px;font-weight:800;color:var(--white);cursor:pointer;font-family:inherit">📱 Dashboard via SMS</button>
+      </div>
+
+      <div id="share-status" style="font-size:12px;color:var(--muted);margin-top:10px;min-height:16px;text-align:center"></div>
+    </div>
+  </div>
+</div>
+<!-- END SHARE SCREEN TAB -->
 
 <!-- TOAST -->
 <div class="toast" id="toast">
@@ -1438,8 +1480,42 @@ function dealsMarkStatusAt(i,st){P[i].status=st;sv();dealsRenderBatch();}
 function dealsMarkStatus(st){if(DS.sel===null)return;dealsMarkStatusAt(DS.sel,st);markStatus(st);}
 function dealsAddCall(){if(typeof addCall==='function')addCall();}
 function dealsAddClose(){if(typeof addClose==='function')addClose();}
-function dealsCallSelected(){if(DS.sel===null)return;selP(DS.sel);callSelected();}
-function dealsWaSelected(){if(DS.sel===null)return;selP(DS.sel);waSelected();}
+function dealsCallSelected(){
+  if(DS.sel===null){showToast({i:'👆',t:'Select a prospect first',s:'Tap a row in the list.'});return;}
+  selP(DS.sel);callSelected();
+}
+function dealsWaSelected(){
+  if(DS.sel===null){showToast({i:'👆',t:'Select a prospect first',s:'Tap a row in the list.'});return;}
+  selP(DS.sel);waSelected();
+}
+function dealsSendPayment(){
+  if(DS.sel===null){showToast({i:'👆',t:'Select a prospect first',s:'Tap a row in the list.'});return;}
+  selP(DS.sel);sendLink('pay');
+}
+function dealsSendDemo(){
+  if(DS.sel===null){showToast({i:'👆',t:'Select a prospect first',s:'Tap a row in the list.'});return;}
+  selP(DS.sel);sendLink('demo');
+}
+function shareToPhone(type,method){
+  var raw=document.getElementById('share-phone').value.replace(/\D/g,'');
+  var st=document.getElementById('share-status');
+  if(!raw||raw.length<7){st.textContent='⚠️ Enter their phone number first.';return;}
+  if(raw.length===10)raw='1'+raw;
+  var urls={app:'https://myjefetech.app',dash:'https://go.myjefetech.app/la-forja.html'};
+  var msgs={
+    app:'Hey! Here\'s the JefeTech app — free to try, check it out 👉 https://myjefetech.app\n\n— Brian Lalo',
+    dash:'Hey! Here\'s the JefeTech dashboard — see exactly what your crew command center looks like 👉 https://go.myjefetech.app/la-forja.html\n\n— Brian Lalo'
+  };
+  var msg=msgs[type]||urls[type];
+  if(method==='wa'){
+    window.open('https://wa.me/'+raw+'?text='+encodeURIComponent(msg),'_blank');
+    st.textContent='✅ Opening WhatsApp...';
+  } else {
+    window.open('sms:+'+raw+'?body='+encodeURIComponent(msg),'_self');
+    st.textContent='✅ Opening SMS...';
+  }
+  setTimeout(function(){st.textContent='';},3000);
+}
 
 var DEALS_SCRIPTS={
   opener:'"Hey, this is Brian Lalo. I own MX Studio. You got a second?"\n\nThey say sure →\n\n"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."\n\nThen listen. Let them talk. Ask one more question about what bugs them most. You\'re the owner, so talk like one: no script, just a conversation.',
