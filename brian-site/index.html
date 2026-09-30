@@ -2452,7 +2452,7 @@ upd();
   var helper=null,ht=null;
   function viaHelper(url){ /* inside claude.ai only: frame can't open apps itself */
     try{helper=_open.call(window,url,'mxcall','width=360,height=200,left=40,top=40');}catch(e){helper=null;}
-    if(ht)clearTimeout(ht);ht=setTimeout(function(){try{if(helper&&!helper.closed)helper.close();}catch(e){}},12000);
+    if(ht)clearTimeout(ht);ht=setTimeout(function(){try{if(helper&&!helper.closed)helper.close();}catch(e){}},3000);
   }
   function openWa(w){
     var u=waUrls(w);
@@ -2462,7 +2462,23 @@ upd();
     var left=false;function lv(){left=true;}
     window.addEventListener('blur',lv,{once:true});document.addEventListener('visibilitychange',lv,{once:true});
     go(u.app);
-    setTimeout(function(){window.removeEventListener('blur',lv);document.removeEventListener('visibilitychange',lv);if(!left)_open.call(window,u.web,'mxwhatsapp');},1800);
+    setTimeout(function(){window.removeEventListener('blur',lv);document.removeEventListener('visibilitychange',lv);if(!left)noApp(u.web);},1800);
+  }
+  /* No WhatsApp desktop app: ask instead of opening a new tab ✝️ */
+  function noApp(web){
+    var old=document.getElementById('mx-noapp');if(old)old.remove();
+    var d=document.createElement('div');d.id='mx-noapp';d.setAttribute('role','dialog');d.setAttribute('aria-label','WhatsApp');
+    d.style.cssText='position:fixed;right:20px;bottom:20px;z-index:10000;max-width:360px;background:#111318;border:1px solid rgba(37,211,102,.45);border-radius:14px;padding:14px 16px;box-shadow:0 10px 40px rgba(0,0,0,.6);color:#F5F2EE;font-family:inherit';
+    d.innerHTML='<div style="font-weight:900;font-size:14px;margin-bottom:4px">💬 WhatsApp app didn\'t open</div>'
+      +'<div style="font-size:12px;color:#9CA3AF;margin-bottom:10px">Install WhatsApp for your computer so messages open right in the app, no new windows.</div>'
+      +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
+      +'<a href="https://www.whatsapp.com/download" target="_blank" rel="noopener" data-mx="1" style="flex:1;min-width:130px;text-align:center;background:#25D366;color:#fff;border-radius:9px;padding:9px 10px;font-size:12px;font-weight:800;text-decoration:none">Get WhatsApp for computer</a>'
+      +'<button type="button" id="mx-noapp-web" style="flex:1;min-width:130px;background:transparent;border:1px solid rgba(255,255,255,.18);color:#F5F2EE;border-radius:9px;padding:9px 10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">Use WhatsApp Web this once</button>'
+      +'<button type="button" id="mx-noapp-x" aria-label="Close" style="background:transparent;border:none;color:#9CA3AF;font-size:18px;cursor:pointer;padding:0 4px">×</button></div>';
+    document.body.appendChild(d);
+    document.getElementById('mx-noapp-web').onclick=function(){_open.call(window,web,'mxwhatsapp');d.remove();};
+    document.getElementById('mx-noapp-x').onclick=function(){d.remove();};
+    setTimeout(function(){if(d.parentNode)d.remove();},20000);
   }
   function openProto(u){u=norm(u);if(FRAMED&&!MOBILE)viaHelper(u);else go(u);}
   function handle(u){var w=parseWa(u);if(w){openWa(w);return true;}if(isProto(u)){openProto(u);return true;}return false;}
@@ -2732,7 +2748,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 30 · 3:00 PM · Referral 3 levels';
+  var VERSION='Sept 30 · 5:15 PM · WhatsApp opens the app';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
