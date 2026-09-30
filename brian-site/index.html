@@ -26,9 +26,10 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',system-ui,
 .hdr-time{font-size:13px;font-weight:700;color:var(--green);margin-left:16px;font-variant-numeric:tabular-nums}
 
 .tabs{display:flex;border-bottom:1px solid var(--border);background:rgba(10,10,10,.97);position:sticky;top:53px;z-index:99;overflow:hidden}
-.tb{padding:10px 22px;font-size:12px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap}
-.tb.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,230,118,.05)}
-.tab{display:none;padding:22px;max-width:1400px;margin:0 auto}
+.tb{padding:12px 24px;font-size:13px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color .15s}
+.tb.active{color:var(--green);border-bottom-color:var(--green);background:none}
+.tb:not(.active):hover{color:var(--white)}
+.tab{display:none;padding:24px 32px;max-width:100%;margin:0 auto}
 .tab.active{display:block}
 
 /* GOALS */
@@ -266,10 +267,11 @@ window.bizMail=function(to,subj,body){
   <div class="hdr-time" id="hdr-time">--:--</div>
 </div>
 
-<div class="tabs" style="background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.1)">
+<div class="tabs" style="background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.1);padding:0 24px">
   <button class="tb active" onclick="showTab('team',this)" style="color:var(--orange)">🤝 Partners</button>
   <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
+</div>
 
 <!-- LOYALTY / EARNINGS (embedded in Partners tab) -->
 <div id="loyalty-embed" style="margin-top:24px;border-top:1px solid rgba(0,230,118,.15);padding-top:20px">
@@ -1656,7 +1658,7 @@ upd();
 </script>
 
 <!-- TEAM TAB -->
-<div id="tab-team" class="tab active" style="max-width:1200px">
+<div id="tab-team" class="tab active">
 
   <!-- TOTALS ROW -->
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
