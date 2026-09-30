@@ -1146,6 +1146,8 @@ function renderP(){
   var mclN=document.getElementById('m-closes-needed');if(mclN)mclN.textContent=closesLeft+' to go';
   var tp=document.getElementById('today-pace');if(tp)tp.textContent=callsPerDay+' calls + '+closesPerDay+' closes per day to hit monthly goal';
   var me=document.getElementById('m-earned');if(me)me.textContent='$'+(mcl*82.2).toFixed(2);
+  // Mirror to Deals tab
+  if(typeof dealsMirrorPanel==='function') dealsMirrorPanel();
 }
 
 function updPag(){
@@ -1421,18 +1423,9 @@ function dealsMirrorPanel(){
   });
 }
 
-// Hook into renderP so mirror updates every time the list renders
-(function(){
-  function patch(){
-    if(typeof window.renderP!=='function'){setTimeout(patch,50);return;}
-    var _rp=window.renderP;
-    window.renderP=function(){_rp();dealsMirrorPanel();};
-    // Also mirror right now in case renderP already ran
-    dealsMirrorPanel();
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',patch);
-  else patch();
-})();
+// Mirror fires directly from renderP — see call at end of renderP()
+// Also mirror when deals tab opens
+document.addEventListener('DOMContentLoaded',function(){dealsMirrorPanel();});
 
 function dealsRenderBatch(){dealsMirrorPanel();}
 function dealsFilterP(){var si=document.getElementById('si');if(si){si.value=(document.getElementById('deals-si-mirror')||{value:''}).value;}filterP();}
