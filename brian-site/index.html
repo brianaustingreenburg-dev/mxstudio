@@ -324,6 +324,134 @@ window.bizMail=function(to,subj,body){
     <button onclick="navigator.clipboard.writeText('https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414').then(function(){alert('Copied!')})" style="display:block;width:100%;margin-top:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:#8B5CF6;font-size:12px;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;font-family:inherit">📋 Copy Partner 2 Link</button>
   </div>
 
+
+  <!-- TOTALS ROW -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:var(--green);line-height:1" id="boss-t-calls">0</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Total Calls Today</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:var(--orange);line-height:1" id="boss-t-closes">0</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Total Closes</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:var(--green);line-height:1" id="boss-t-earned">$0</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Total Earned</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:var(--white);line-height:1" id="boss-t-active">0/2</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Reps Active</div>
+    </div>
+  </div>
+
+  <!-- REP CARDS -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
+
+    <!-- Brian Lalo -->
+    <div style="background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;overflow:hidden">
+      <div style="padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gmid);background:rgba(0,230,118,.05)">
+        <div style="width:34px;height:34px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#000;flex-shrink:0">BL</div>
+        <div><div style="font-size:13px;font-weight:800">Brian Lalo ✝️</div><div style="font-size:10px;color:var(--green)">You — God Wins</div></div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--green)" id="boss-bl-calls">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Calls</div></div>
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--green)" id="boss-bl-closes">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Closes</div></div>
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--white)" id="boss-bl-goal">20</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Goal</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;margin-bottom:4px"><div id="boss-bl-bar" style="height:100%;background:var(--green);border-radius:4px;width:0%;max-width:100%"></div></div>
+        <div style="font-size:10px;color:var(--muted);text-align:right;margin-bottom:10px" id="boss-bl-pct">0% of goal</div>
+        <div style="background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:var(--green)" id="boss-bl-earned">$0 earned</div>
+      </div>
+    </div>
+
+    <!-- Partner -->
+    <div style="background:rgba(255,107,43,.05);border:1px solid rgba(255,107,43,.15);border-radius:14px;overflow:hidden">
+      <div style="padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,107,43,.15)">
+        <div style="width:34px;height:34px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;flex-shrink:0">P</div>
+        <div><div style="font-size:13px;font-weight:800">Partner</div><div style="font-size:10px;color:var(--muted)" id="boss-r2-status">Waiting for activity...</div></div>
+        <div style="margin-left:auto;display:flex;gap:6px">
+          <a href="https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92" style="background:var(--orange);border-radius:6px;padding:5px 12px;font-size:10px;font-weight:800;color:#fff;text-decoration:none;display:inline-block">▶ Open</a>
+          <button onclick="copyRepLink('https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92')" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2);border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">📋</button>
+        </div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--orange)" id="boss-r2-calls">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Calls</div></div>
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--orange)" id="boss-r2-closes">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Closes</div></div>
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--white)" id="boss-r2-goal">20</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Goal</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;margin-bottom:4px"><div id="boss-r2-bar" style="height:100%;background:var(--orange);border-radius:4px;width:0%;max-width:100%"></div></div>
+        <div style="font-size:10px;color:var(--muted);text-align:right;margin-bottom:10px" id="boss-r2-pct">0% of goal</div>
+        <div style="background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.15);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:var(--orange)" id="boss-r2-earned">$0 earned</div>
+        <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:6px" id="boss-r2-updated">No data yet</div>
+      </div>
+    </div>
+
+    <!-- Partner -->
+    <div style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:14px;overflow:hidden">
+      <div style="padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(139,92,246,.15)">
+        <div style="width:34px;height:34px;border-radius:8px;background:#8B5CF6;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;flex-shrink:0">P</div>
+        <div><div style="font-size:13px;font-weight:800">Partner</div><div style="font-size:10px;color:var(--muted)" id="boss-r3-status">Waiting for activity...</div></div>
+        <div style="margin-left:auto;display:flex;gap:6px">
+          <a href="https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414" style="background:var(--orange);border-radius:6px;padding:5px 12px;font-size:10px;font-weight:800;color:#fff;text-decoration:none;display:inline-block">▶ Open</a>
+          <button onclick="copyRepLink('https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414')" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2);border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">📋</button>
+        </div>
+      </div>
+      <div style="padding:16px 18px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:#8B5CF6" id="boss-r3-calls">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Calls</div></div>
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:#8B5CF6" id="boss-r3-closes">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Closes</div></div>
+          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--white)" id="boss-r3-goal">20</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Goal</div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;margin-bottom:4px"><div id="boss-r3-bar" style="height:100%;background:#8B5CF6;border-radius:4px;width:0%;max-width:100%"></div></div>
+        <div style="font-size:10px;color:var(--muted);text-align:right;margin-bottom:10px" id="boss-r3-pct">0% of goal</div>
+        <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.15);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:#8B5CF6" id="boss-r3-earned">$0 earned</div>
+        <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:6px" id="boss-r3-updated">No data yet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px">
+    <div style="font-size:13px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between">
+      <span>🏆 Leaderboard</span>
+      <button onclick="refreshBossView()" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit">↻ Refresh</button>
+    </div>
+    <div id="boss-leaderboard"><div style="text-align:center;color:var(--muted);padding:20px;font-size:13px">Activate reps to see leaderboard</div></div>
+  </div>
+
+<!-- LOYALTY / EARNINGS (embedded in Partners tab) -->
+<div id="loyalty-embed2" style="margin-top:24px;border-top:1px solid rgba(0,230,118,.15);padding-top:20px">
+  <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">✝️ Loyalty Program — My Numbers</div>
+  <div class="e2">
+    <div class="gc">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Earned</div>
+      <div class="earn-big" id="earn-total2">$0</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px" id="earn-sub2">0 closes</div>
+      <div class="eg">
+        <div class="ec"><div class="ec-n g" id="e-up2">$0</div><div class="ec-l">Upfront (60%)</div></div>
+        <div class="ec"><div class="ec-n" id="e-res2">$0/mo</div><div class="ec-l">Residual</div></div>
+        <div class="ec"><div class="ec-n" id="e-cl2">0</div><div class="ec-l">Closes</div></div>
+        <div class="ec"><div class="ec-n" id="e-ca2">0</div><div class="ec-l">Calls</div></div>
+      </div>
+    </div>
+    <div class="gc">
+      <div class="proj">
+        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">If you close 30 total</div>
+        <div class="pr"><span class="pr-l">Month 1 upfront</span><span class="pr-v">$2,466</span></div>
+        <div class="pr"><span class="pr-l">Monthly residual</span><span class="pr-v">$2,466/mo</span></div>
+        <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
+      </div>
+      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
+        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
+        Just me, a bowl of ceviche, a Yoli 🍤🥤
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <div id="tab-goals" class="tab">
@@ -1084,133 +1212,6 @@ loadNotes();
 upd();
 </script>
 
-
-  <!-- TOTALS ROW -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
-      <div style="font-size:36px;font-weight:900;color:var(--green);line-height:1" id="boss-t-calls">0</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Total Calls Today</div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
-      <div style="font-size:36px;font-weight:900;color:var(--orange);line-height:1" id="boss-t-closes">0</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Total Closes</div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
-      <div style="font-size:36px;font-weight:900;color:var(--green);line-height:1" id="boss-t-earned">$0</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Total Earned</div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
-      <div style="font-size:36px;font-weight:900;color:var(--white);line-height:1" id="boss-t-active">0/2</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.5px">Reps Active</div>
-    </div>
-  </div>
-
-  <!-- REP CARDS -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
-
-    <!-- Brian Lalo -->
-    <div style="background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;overflow:hidden">
-      <div style="padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gmid);background:rgba(0,230,118,.05)">
-        <div style="width:34px;height:34px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#000;flex-shrink:0">BL</div>
-        <div><div style="font-size:13px;font-weight:800">Brian Lalo ✝️</div><div style="font-size:10px;color:var(--green)">You — God Wins</div></div>
-      </div>
-      <div style="padding:16px 18px">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--green)" id="boss-bl-calls">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Calls</div></div>
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--green)" id="boss-bl-closes">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Closes</div></div>
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--white)" id="boss-bl-goal">20</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Goal</div></div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;margin-bottom:4px"><div id="boss-bl-bar" style="height:100%;background:var(--green);border-radius:4px;width:0%;max-width:100%"></div></div>
-        <div style="font-size:10px;color:var(--muted);text-align:right;margin-bottom:10px" id="boss-bl-pct">0% of goal</div>
-        <div style="background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:var(--green)" id="boss-bl-earned">$0 earned</div>
-      </div>
-    </div>
-
-    <!-- Partner -->
-    <div style="background:rgba(255,107,43,.05);border:1px solid rgba(255,107,43,.15);border-radius:14px;overflow:hidden">
-      <div style="padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,107,43,.15)">
-        <div style="width:34px;height:34px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;flex-shrink:0">P</div>
-        <div><div style="font-size:13px;font-weight:800">Partner</div><div style="font-size:10px;color:var(--muted)" id="boss-r2-status">Waiting for activity...</div></div>
-        <div style="margin-left:auto;display:flex;gap:6px">
-          <a href="https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92" style="background:var(--orange);border-radius:6px;padding:5px 12px;font-size:10px;font-weight:800;color:#fff;text-decoration:none;display:inline-block">▶ Open</a>
-          <button onclick="copyRepLink('https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92')" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2);border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">📋</button>
-        </div>
-      </div>
-      <div style="padding:16px 18px">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--orange)" id="boss-r2-calls">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Calls</div></div>
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--orange)" id="boss-r2-closes">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Closes</div></div>
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--white)" id="boss-r2-goal">20</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Goal</div></div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;margin-bottom:4px"><div id="boss-r2-bar" style="height:100%;background:var(--orange);border-radius:4px;width:0%;max-width:100%"></div></div>
-        <div style="font-size:10px;color:var(--muted);text-align:right;margin-bottom:10px" id="boss-r2-pct">0% of goal</div>
-        <div style="background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.15);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:var(--orange)" id="boss-r2-earned">$0 earned</div>
-        <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:6px" id="boss-r2-updated">No data yet</div>
-      </div>
-    </div>
-
-    <!-- Partner -->
-    <div style="background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:14px;overflow:hidden">
-      <div style="padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(139,92,246,.15)">
-        <div style="width:34px;height:34px;border-radius:8px;background:#8B5CF6;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;flex-shrink:0">P</div>
-        <div><div style="font-size:13px;font-weight:800">Partner</div><div style="font-size:10px;color:var(--muted)" id="boss-r3-status">Waiting for activity...</div></div>
-        <div style="margin-left:auto;display:flex;gap:6px">
-          <a href="https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414" style="background:var(--orange);border-radius:6px;padding:5px 12px;font-size:10px;font-weight:800;color:#fff;text-decoration:none;display:inline-block">▶ Open</a>
-          <button onclick="copyRepLink('https://claude.ai/artifact/SKVAYvjPadCaU1NgjuG414')" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2);border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">📋</button>
-        </div>
-      </div>
-      <div style="padding:16px 18px">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:#8B5CF6" id="boss-r3-calls">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Calls</div></div>
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:#8B5CF6" id="boss-r3-closes">0</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Closes</div></div>
-          <div style="text-align:center;background:var(--card);border-radius:8px;padding:10px 6px"><div style="font-size:20px;font-weight:900;color:var(--white)" id="boss-r3-goal">20</div><div style="font-size:9px;color:var(--muted);margin-top:2px">Goal</div></div>
-        </div>
-        <div style="background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;margin-bottom:4px"><div id="boss-r3-bar" style="height:100%;background:#8B5CF6;border-radius:4px;width:0%;max-width:100%"></div></div>
-        <div style="font-size:10px;color:var(--muted);text-align:right;margin-bottom:10px" id="boss-r3-pct">0% of goal</div>
-        <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.15);border-radius:8px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:#8B5CF6" id="boss-r3-earned">$0 earned</div>
-        <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:6px" id="boss-r3-updated">No data yet</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LEADERBOARD -->
-  <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px">
-    <div style="font-size:13px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between">
-      <span>🏆 Leaderboard</span>
-      <button onclick="refreshBossView()" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:7px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit">↻ Refresh</button>
-    </div>
-    <div id="boss-leaderboard"><div style="text-align:center;color:var(--muted);padding:20px;font-size:13px">Activate reps to see leaderboard</div></div>
-  </div>
-
-<!-- LOYALTY / EARNINGS (embedded in Partners tab) -->
-<div id="loyalty-embed2" style="margin-top:24px;border-top:1px solid rgba(0,230,118,.15);padding-top:20px">
-  <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">✝️ Loyalty Program — My Numbers</div>
-  <div class="e2">
-    <div class="gc">
-      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Earned</div>
-      <div class="earn-big" id="earn-total2">$0</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:16px" id="earn-sub2">0 closes</div>
-      <div class="eg">
-        <div class="ec"><div class="ec-n g" id="e-up2">$0</div><div class="ec-l">Upfront (60%)</div></div>
-        <div class="ec"><div class="ec-n" id="e-res2">$0/mo</div><div class="ec-l">Residual</div></div>
-        <div class="ec"><div class="ec-n" id="e-cl2">0</div><div class="ec-l">Closes</div></div>
-        <div class="ec"><div class="ec-n" id="e-ca2">0</div><div class="ec-l">Calls</div></div>
-      </div>
-    </div>
-    <div class="gc">
-      <div class="proj">
-        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">If you close 30 total</div>
-        <div class="pr"><span class="pr-l">Month 1 upfront</span><span class="pr-v">$2,466</span></div>
-        <div class="pr"><span class="pr-l">Monthly residual</span><span class="pr-v">$2,466/mo</span></div>
-        <div class="pr"><span class="pr-l">Month 6 total</span><span class="pr-v big">$14,796 🔥</span></div>
-      </div>
-      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.9">
-        <strong style="color:var(--white);font-style:normal">— Brian Lalo · MX Studio 🇲🇽🤝🇺🇸</strong><br>
-        Just me, a bowl of ceviche, a Yoli 🍤🥤
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <script>
