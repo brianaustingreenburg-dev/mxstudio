@@ -1430,12 +1430,12 @@ upd();
   var _quickCall=quickCall;
   window.quickCall=function(i){_quickCall(i);if(S.filter==='now'||String(S.filter).indexOf('z-')===0)filterP();};
   var _selP=selP;
-  window.selP=function(i){_selP(i);if(window.innerWidth<=760){var d=document.getElementById('det');if(d)d.scrollIntoView({behavior:'smooth',block:'start'});}};
+  window.selP=function(i){_selP(i);if(window.innerWidth<=900){var d=document.getElementById('det');if(d)setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'start'});},80);}};
 
   setTimeout(recycleLabel,0);
-  // Start in Call Now mode
-  S.filter='now';
-  var nb=document.getElementById('f-now');
+  // Start in All mode so rows always show
+  S.filter='all';
+  var nb=document.getElementById('f-all');
   document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('active');});
   if(nb)nb.classList.add('active');
   filterP();
