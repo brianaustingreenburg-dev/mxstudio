@@ -7,7 +7,7 @@
 <title>JefeTech Checkout ✝️</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#0b0d10;--card:#14171c;--card2:#1b1f26;--line:#262b33;--ink:#f2f0ea;--muted:#9aa3b0;--green:#00e676;--gold:#ffc53d}
+:root{color-scheme:dark;--bg:#0b0d10;--card:#14171c;--card2:#1b1f26;--line:#262b33;--ink:#f2f0ea;--muted:#9aa3b0;--green:#00e676;--gold:#ffc53d;--red:#ff6b6b}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter Tight',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 18px) 16px calc(env(safe-area-inset-bottom,0px) + 40px)}
@@ -21,14 +21,14 @@ h1{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:28px;lin
 .sub{color:var(--muted);font-size:15px;line-height:1.5;margin:0}
 .lock{font-size:13px;color:var(--gold);font-weight:600}
 
-/* Plan tabs */
+/* Tabs */
 .tab-row{display:flex;gap:8px;margin-top:18px;border-bottom:2px solid var(--line);padding-bottom:0}
 .tab-btn{background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 14px 12px;color:var(--muted);font:700 13px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
 .tab-btn[aria-selected="true"]{color:var(--green);border-bottom-color:var(--green)}
 .tab-panel{display:none;margin-top:16px}
 .tab-panel.active{display:block}
 
-/* Plan cards inside subscription tab */
+/* Subscription plan cards */
 .plans{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
 .plan{position:relative;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px 12px 12px;color:var(--ink);font-family:inherit;cursor:pointer}
 .plan[aria-pressed="true"]{border-color:var(--green);background:#0f1a14}
@@ -39,17 +39,32 @@ h1{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:28px;lin
 .plan .tag{position:absolute;top:-10px;right:10px;background:var(--gold);color:#1a1200;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
 .plan:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
+/* Founder30 banner */
+.f30-banner{background:linear-gradient(135deg,#1a0d00 0%,#261500 100%);border:2px solid var(--gold);border-radius:14px;padding:14px 14px 12px;margin-bottom:14px;position:relative;overflow:hidden}
+.f30-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(255,197,61,.08) 0%,transparent 70%);pointer-events:none}
+.f30-crown{font-size:28px;line-height:1}
+.f30-title{font-family:'Archivo',system-ui,sans-serif;font-weight:900;font-size:20px;color:var(--gold);line-height:1.1;margin:6px 0 2px}
+.f30-sub{font-size:13px;color:#d4a843;line-height:1.45}
+.f30-bar-wrap{margin-top:12px;background:rgba(255,197,61,.12);border-radius:999px;height:8px;overflow:hidden}
+.f30-bar{height:100%;background:var(--gold);border-radius:999px;transition:width .6s ease}
+.f30-slots{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:var(--muted)}
+.f30-slots b{color:var(--gold)}
+.f30-closed{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.3);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--red);text-align:center;font-weight:600;display:none}
+
 /* Custom App price cards */
 .cplan-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.cplan{position:relative;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px 12px 12px;color:var(--ink);font-family:inherit;cursor:pointer}
+.cplan{position:relative;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px 12px 12px;color:var(--ink);font-family:inherit;cursor:pointer;transition:border-color .15s}
 .cplan[aria-pressed="true"]{border-color:var(--green);background:#0f1a14}
+.cplan.founder-active[aria-pressed="true"]{border-color:var(--gold);background:#1a0d00}
 .cplan .cn{display:block;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.cplan .cp{display:block;font-family:'Archivo',system-ui,sans-serif;font-size:26px;font-weight:900;line-height:1.1;margin-top:4px}
+.cplan .cp{display:block;font-family:'Archivo',system-ui,sans-serif;font-size:22px;font-weight:900;line-height:1.1;margin-top:4px}
+.cplan .cp-orig{display:block;font-family:'Archivo',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-decoration:line-through;margin-top:2px}
 .cplan .cp small{font-family:'Inter Tight',system-ui,sans-serif;font-size:12px;font-weight:600;color:var(--muted)}
 .cplan .cd{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.3}
 .cplan .ctag{position:absolute;top:-10px;right:10px;background:var(--gold);color:#1a1200;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
 .cplan:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
+/* Feature card */
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:14px}
 .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
 .item:last-child{border-bottom:0}
@@ -60,10 +75,12 @@ label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:14p
 input{width:100%;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:13px 12px;color:var(--ink);font:500 16px/1.2 inherit;font-family:inherit}
 input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 .go{display:block;width:100%;margin-top:16px;background:var(--green);color:#04130a;border:0;border-radius:12px;padding:16px;font:800 17px/1 inherit;font-family:inherit;cursor:pointer}
+.go.gold{background:var(--gold);color:#1a0d00}
+.go:disabled{opacity:.5;cursor:not-allowed}
 .go:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .wa-note{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px;color:var(--muted);line-height:1.55;margin-top:14px}
 .wa-note b{color:var(--ink)}
-.err{color:#ff6b6b;font-size:13px;min-height:18px;margin-top:6px}
+.err{color:var(--red);font-size:13px;min-height:18px;margin-top:6px}
 .fine{color:var(--muted);font-size:12.5px;line-height:1.55;margin-top:12px;text-align:center}
 .steps{display:grid;gap:8px;margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.45}
 .steps div{display:flex;gap:10px}
@@ -84,7 +101,6 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
   <h1 data-t="h1">Choose your plan.</h1>
   <p class="sub" data-t="sub">JefeTech for your whole crew — field app and owner dashboard together.</p>
 
-  <!-- Tab row -->
   <div class="tab-row" role="tablist">
     <button class="tab-btn" role="tab" data-tab="sub" aria-selected="true" data-t="tabSub">📱 Subscription</button>
     <button class="tab-btn" role="tab" data-tab="custom" aria-selected="false" data-t="tabCustom">👑 Custom App</button>
@@ -106,13 +122,11 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       </button>
     </div>
     <div class="lock" style="margin-top:10px" data-t="lock">Price locked for life · Cancel anytime · Money-back guarantee (terms apply)</div>
-
     <div class="card">
       <div class="item"><span class="ic">📱</span><div><b data-t="appT">JefeTech app</b><small data-t="appD">Jobs, crew, satellite roof measure, safety checklists, photos and payments. Works offline. English and Spanish.</small></div></div>
       <div class="item"><span class="ic">🖥️</span><div><b data-t="dashT">Owner dashboard</b><small data-t="dashD">See every job, crew member, invoice and dollar in one place, from your phone or computer.</small></div></div>
       <div class="item"><span class="ic">👷</span><div><b data-t="usersT">Unlimited users</b><small data-t="usersD">One price for your whole company. No setup fees, no hidden fees.</small></div></div>
     </div>
-
     <form id="f-sub" novalidate>
       <label for="email-sub" data-t="emailL">Your email (we send your receipt and links here)</label>
       <input id="email-sub" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@company.com" required>
@@ -121,7 +135,6 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       <div class="err" id="err-sub" role="alert"></div>
       <button class="go" type="submit" id="go-sub" data-t="go">Continue — $137/month →</button>
     </form>
-
     <div class="steps">
       <div><b>1</b><span data-t="s1">Pay securely with Stripe (card, Apple Pay, Google Pay).</span></div>
       <div><b>2</b><span data-t="s2">You land on your welcome page with your app and dashboard links.</span></div>
@@ -132,18 +145,31 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 
   <!-- CUSTOM APP TAB -->
   <div id="panel-custom" class="tab-panel">
-    <div style="margin-top:4px;font-size:13.5px;color:var(--muted);line-height:1.55" data-t="customSub">Your company name, logo, and colors — on your own web address. One-time price, 1 year of updates included.</div>
 
-    <div class="cplan-row" style="margin-top:14px" role="group" aria-label="Custom App region">
+    <!-- Founder30 banner -->
+    <div class="f30-banner" id="f30-banner">
+      <div class="f30-crown">👑</div>
+      <div class="f30-title" data-t="f30Title">Founder30 — 50% off</div>
+      <div class="f30-sub" data-t="f30Sub">The first 30 companies to get a Custom App pay half price. Forever. When they're gone, they're gone.</div>
+      <div class="f30-bar-wrap"><div class="f30-bar" id="f30-bar" style="width:0%"></div></div>
+      <div class="f30-slots"><span id="f30-left" data-t="f30Loading">Loading…</span><span id="f30-pct"></span></div>
+      <div class="f30-closed" id="f30-closed" data-t="f30Closed">All 30 Founder slots are filled. Full price applies.</div>
+    </div>
+
+    <div style="font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:14px" data-t="customSub">Your company name, logo, and colors — on your own web address. One-time price, 1 year of updates included.</div>
+
+    <div class="cplan-row" role="group" aria-label="Custom App region">
       <button type="button" class="cplan" data-cplan="us" aria-pressed="true">
         <span class="cn" data-t="cusUsN">US · CA · AU</span>
-        <span class="cp">$4,997<small data-t="cusUsP"> once</small></span>
+        <span class="cp" id="cp-us">$2,497<small data-t="cusUsP"> once</small></span>
+        <span class="cp-orig" id="cp-us-orig">was $4,997</span>
         <span class="cd" data-t="cusUsD">Full setup · crew training · 1 yr support</span>
       </button>
       <button type="button" class="cplan" data-cplan="mx" aria-pressed="false">
         <span class="ctag" data-t="cusTag">MX · PH</span>
         <span class="cn" data-t="cusMxN">Mexico · Philippines</span>
-        <span class="cp">$2,497<small data-t="cusMxP"> once</small></span>
+        <span class="cp" id="cp-mx">$1,247<small data-t="cusMxP"> once</small></span>
+        <span class="cp-orig" id="cp-mx-orig">was $2,497</span>
         <span class="cd" data-t="cusMxD">Full setup · crew training · 1 yr support</span>
       </button>
     </div>
@@ -162,7 +188,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       <label for="company-custom" data-t="compL">Company name</label>
       <input id="company-custom" name="company" type="text" autocomplete="organization" placeholder="Garcia Roofing">
       <div class="err" id="err-custom" role="alert"></div>
-      <button class="go" type="submit" id="go-custom" data-t="cusGo">Send to Brian via WhatsApp →</button>
+      <button class="go gold" type="submit" id="go-custom">👑 <span id="go-custom-txt" data-t="cusGoFounder">Claim Founder Slot — WhatsApp Brian →</span></button>
     </form>
 
     <div class="wa-note">
@@ -179,6 +205,13 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
   var STRIPE_MO='https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h';
   var STRIPE_YR='https://buy.stripe.com/00w8wRda70bqc0qcBH0Jq0i';
   var WA='https://wa.me/14084223505?text=';
+  var FOUNDER_JSON='/shared/founder30.json';
+
+  // Pricing
+  var PRICE={
+    us:{full:4997,founder:2497},
+    mx:{full:2497,founder:1247}
+  };
 
   var T={
     en:{
@@ -195,6 +228,11 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       s1:'Pay securely with Stripe (card, Apple Pay, Google Pay).',s2:'You land on your welcome page with your app and dashboard links.',s3:'Your receipt and invoice arrive by email.',
       fine:'Payments are processed by Stripe. We never see your card number.',
       bad:'Enter a valid email so we can send your links.',
+      f30Title:'Founder30 — 50% off',
+      f30Sub:'The first 30 companies to get a Custom App pay half price. Forever. When they\'re gone, they\'re gone.',
+      f30Loading:'Loading…',
+      f30Slots:'{left} of 30 slots left',
+      f30Closed:'All 30 Founder slots are filled. Full price applies.',
       customSub:'Your company name, logo, and colors — on your own web address. One-time price, 1 year of updates included.',
       cusUsN:'US · CA · AU',cusUsP:' once',cusUsD:'Full setup · crew training · 1 yr support',
       cusTag:'MX · PH',cusMxN:'Mexico · Philippines',cusMxP:' once',cusMxD:'Full setup · crew training · 1 yr support',
@@ -203,9 +241,11 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       cusF3T:'Live crew training',cusF3D:'A live session for your team so everyone is running on day one.',
       cusF4T:'1 year priority support',cusF4D:'WhatsApp support direct with the developer for a full year.',
       cusF5T:'1 year of updates',cusF5D:'Every new feature for 12 months. Optional $497/yr after that.',
-      cusGo:'Send to Brian via WhatsApp →',
+      cusGoFounder:'Claim Founder Slot — WhatsApp Brian →',
+      cusGoFull:'Get Custom App — WhatsApp Brian →',
       cusNoteT:'How it works:',cusNoteD:' Brian reviews your info and sends you a Stripe invoice. Setup starts within 48 hours.',
-      waMsg:'Hi Brian! I want the JefeTech Custom App. Region: {region}. Company: {co}. Email: {em}. Let\'s talk!'
+      waMsgFounder:'Hi Brian! I want the JefeTech Custom App — Founder30 price. Region: {region}. Company: {co}. Email: {em}. Let\'s talk!',
+      waMsgFull:'Hi Brian! I want the JefeTech Custom App. Region: {region}. Company: {co}. Email: {em}. Let\'s talk!'
     },
     es:{
       h1:'Elige tu plan.',sub:'JefeTech para toda tu cuadrilla — app de campo y dashboard del dueño juntos.',
@@ -221,6 +261,11 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       s1:'Paga seguro con Stripe (tarjeta, Apple Pay, Google Pay).',s2:'Llegas a tu página de bienvenida con los links de tu app y dashboard.',s3:'Tu recibo y factura llegan por correo.',
       fine:'Los pagos los procesa Stripe. Nunca vemos el número de tu tarjeta.',
       bad:'Escribe un correo válido para enviarte tus links.',
+      f30Title:'Founder30 — 50% de descuento',
+      f30Sub:'Las primeras 30 empresas en conseguir una App Personalizada pagan la mitad. Para siempre. Cuando se acaben, se acaban.',
+      f30Loading:'Cargando…',
+      f30Slots:'{left} de 30 lugares disponibles',
+      f30Closed:'Los 30 lugares Founder están llenos. Aplica el precio completo.',
       customSub:'El nombre, logo y colores de tu empresa — en tu propia dirección web. Precio único, 1 año de actualizaciones incluido.',
       cusUsN:'EE.UU. · CA · AU',cusUsP:' una vez',cusUsD:'Configuración completa · capacitación · 1 año soporte',
       cusTag:'MX · PH',cusMxN:'México · Filipinas',cusMxP:' una vez',cusMxD:'Configuración completa · capacitación · 1 año soporte',
@@ -229,9 +274,11 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
       cusF3T:'Capacitación en vivo',cusF3D:'Una sesión en vivo para tu equipo para que todos estén activos desde el primer día.',
       cusF4T:'1 año de soporte prioritario',cusF4D:'Soporte por WhatsApp directo con el desarrollador durante un año completo.',
       cusF5T:'1 año de actualizaciones',cusF5D:'Todas las funciones nuevas durante 12 meses. $497/año opcional después.',
-      cusGo:'Enviar a Brian por WhatsApp →',
+      cusGoFounder:'Reclamar Lugar Founder — WhatsApp Brian →',
+      cusGoFull:'Obtener App Personalizada — WhatsApp Brian →',
       cusNoteT:'Cómo funciona:',cusNoteD:' Brian revisa tu info y te manda una factura de Stripe. El setup empieza en 48 horas.',
-      waMsg:'¡Hola Brian! Quiero la App Personalizada JefeTech. Región: {region}. Empresa: {co}. Correo: {em}. ¡Hablemos!'
+      waMsgFounder:'¡Hola Brian! Quiero la App Personalizada JefeTech — precio Founder30. Región: {region}. Empresa: {co}. Correo: {em}. ¡Hablemos!',
+      waMsgFull:'¡Hola Brian! Quiero la App Personalizada JefeTech. Región: {region}. Empresa: {co}. Correo: {em}. ¡Hablemos!'
     }
   };
 
@@ -242,80 +289,135 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
   var lang=(q.get('lang')||'').toLowerCase()==='es'?'es':'en';
   try{var s=localStorage.getItem('jt-lang');if(!q.get('lang')&&(s==='es'||s==='en'))lang=s;}catch(e){}
 
+  // Founder30 state
+  var f30={sold:0,total:30,open:true};
+
+  function isFounderOpen(){return f30.open&&f30.sold<f30.total;}
+
+  function getPrice(region){
+    return isFounderOpen()?PRICE[region].founder:PRICE[region].full;
+  }
+
+  function paintPrices(){
+    var usOpen=isFounderOpen();
+    // US card
+    var usP=document.getElementById('cp-us');
+    var usOrig=document.getElementById('cp-us-orig');
+    if(usOpen){
+      usP.childNodes[0].textContent='$'+PRICE.us.founder.toLocaleString();
+      usOrig.style.display='block';
+      usOrig.textContent='was $'+PRICE.us.full.toLocaleString();
+    } else {
+      usP.childNodes[0].textContent='$'+PRICE.us.full.toLocaleString();
+      usOrig.style.display='none';
+    }
+    // MX card
+    var mxP=document.getElementById('cp-mx');
+    var mxOrig=document.getElementById('cp-mx-orig');
+    if(usOpen){
+      mxP.childNodes[0].textContent='$'+PRICE.mx.founder.toLocaleString();
+      mxOrig.style.display='block';
+      mxOrig.textContent='was $'+PRICE.mx.full.toLocaleString();
+    } else {
+      mxP.childNodes[0].textContent='$'+PRICE.mx.full.toLocaleString();
+      mxOrig.style.display='none';
+    }
+    // cplan border gold when founder open
+    document.querySelectorAll('.cplan').forEach(function(b){
+      b.classList.toggle('founder-active',usOpen);
+    });
+  }
+
+  function paintF30(){
+    var left=f30.total-f30.sold;
+    var pct=Math.min(100,Math.round((f30.sold/f30.total)*100));
+    var bar=document.getElementById('f30-bar');
+    var leftEl=document.getElementById('f30-left');
+    var pctEl=document.getElementById('f30-pct');
+    var closed=document.getElementById('f30-closed');
+    bar.style.width=pct+'%';
+    if(isFounderOpen()){
+      leftEl.innerHTML='<b style="color:var(--gold)">'+left+'</b> '+(T[lang].f30Slots||'{left} of 30 left').replace('{left}','').trim();
+      pctEl.textContent=pct+'% claimed';
+      closed.style.display='none';
+      document.getElementById('go-custom').disabled=false;
+      document.getElementById('go-custom').classList.add('gold');
+      document.getElementById('go-custom-txt').dataset.t='cusGoFounder';
+    } else {
+      leftEl.textContent=T[lang].f30Closed||'All 30 slots filled.';
+      pctEl.textContent='';
+      closed.style.display='block';
+      document.getElementById('go-custom').disabled=false;
+      document.getElementById('go-custom').classList.remove('gold');
+      document.getElementById('go-custom-txt').dataset.t='cusGoFull';
+    }
+    paintPrices();
+  }
+
   function paint(){
     document.documentElement.lang=lang;
-    // translate all data-t elements
     document.querySelectorAll('[data-t]').forEach(function(el){
       var k=el.dataset.t;
       if(T[lang][k]!==undefined)el.textContent=T[lang][k];
     });
-    // lang buttons
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
-    // sub plan buttons
     document.querySelectorAll('.plan').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.plan===plan?'true':'false');});
-    // custom plan buttons
     document.querySelectorAll('.cplan').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cplan===cplan?'true':'false');});
-    // sub go button label
     document.getElementById('go-sub').textContent=plan==='year'?T[lang].goYr:T[lang].go;
-    // tab buttons
     document.querySelectorAll('.tab-btn').forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===tab?'true':'false');});
-    // panels
     document.getElementById('panel-sub').classList.toggle('active',tab==='sub');
     document.getElementById('panel-custom').classList.toggle('active',tab==='custom');
+    paintF30();
   }
 
-  // Tab switching
-  document.querySelectorAll('.tab-btn').forEach(function(b){
-    b.onclick=function(){tab=b.dataset.tab;paint();};
-  });
-  // Subscription plan cards
-  document.querySelectorAll('.plan').forEach(function(b){
-    b.onclick=function(){plan=b.dataset.plan;paint();};
-  });
-  // Custom app region cards
-  document.querySelectorAll('.cplan').forEach(function(b){
-    b.onclick=function(){cplan=b.dataset.cplan;paint();};
-  });
-  // Language
-  document.querySelectorAll('.lang button').forEach(function(b){
-    b.onclick=function(){lang=b.dataset.l;try{localStorage.setItem('jt-lang',lang);}catch(e){}paint();};
-  });
+  // Load Founder30 counter
+  fetch(FOUNDER_JSON+'?_='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(d){
+      f30.sold=d.sold||0;
+      f30.total=d.total||30;
+      f30.open=d.open!==false;
+      paint();
+    })
+    .catch(function(){paint();}); // fallback: show founder price (assume open)
 
-  // Pre-fill email from URL
+  // Events
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.onclick=function(){tab=b.dataset.tab;paint();};});
+  document.querySelectorAll('.plan').forEach(function(b){b.onclick=function(){plan=b.dataset.plan;paint();};});
+  document.querySelectorAll('.cplan').forEach(function(b){b.onclick=function(){cplan=b.dataset.cplan;paint();};});
+  document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){lang=b.dataset.l;try{localStorage.setItem('jt-lang',lang);}catch(e){}paint();};});
+
   var qEmail=q.get('email')||'';
   if(qEmail){document.getElementById('email-sub').value=qEmail;document.getElementById('email-custom').value=qEmail;}
 
-  // Subscription form submit
+  // Subscription submit
   document.getElementById('f-sub').addEventListener('submit',function(e){
     e.preventDefault();
     var em=document.getElementById('email-sub').value.trim();
     var co=document.getElementById('company-sub').value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){
-      document.getElementById('err-sub').textContent=T[lang].bad;
-      document.getElementById('email-sub').focus();return;
-    }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){document.getElementById('err-sub').textContent=T[lang].bad;document.getElementById('email-sub').focus();return;}
     document.getElementById('err-sub').textContent='';
     var ref=(q.get('ref')||'direct').replace(/[^A-Za-z0-9_-]/g,'').slice(0,40)||'direct';
     try{localStorage.setItem('jt-checkout',JSON.stringify({email:em,company:co,ref:ref,lang:lang,plan:plan,at:Date.now()}));}catch(e){}
     var stripe=plan==='year'?STRIPE_YR:STRIPE_MO;
-    var u=stripe+'?prefilled_email='+encodeURIComponent(em)+'&client_reference_id='+encodeURIComponent(ref)+(lang==='es'?'&locale=es':'');
-    location.href=u;
+    location.href=stripe+'?prefilled_email='+encodeURIComponent(em)+'&client_reference_id='+encodeURIComponent(ref)+(lang==='es'?'&locale=es':'');
   });
 
-  // Custom App form submit → WhatsApp
+  // Custom App submit → WhatsApp
   document.getElementById('f-custom').addEventListener('submit',function(e){
     e.preventDefault();
     var em=document.getElementById('email-custom').value.trim();
     var co=document.getElementById('company-custom').value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){
-      document.getElementById('err-custom').textContent=T[lang].bad;
-      document.getElementById('email-custom').focus();return;
-    }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){document.getElementById('err-custom').textContent=T[lang].bad;document.getElementById('email-custom').focus();return;}
     document.getElementById('err-custom').textContent='';
-    var region=cplan==='us'?'US/CA/AU ($4,997)':'MX/PH ($2,497)';
-    var msg=T[lang].waMsg.replace('{region}',region).replace('{co}',co||'(no name)').replace('{em}',em);
+    var founder=isFounderOpen();
+    var price=getPrice(cplan);
+    var regionLabel=cplan==='us'?'US/CA/AU':'MX/PH';
+    var regionStr=regionLabel+' ($'+price.toLocaleString()+(founder?' Founder30':'')+')'
+    var tplKey=founder?'waMsgFounder':'waMsgFull';
+    var msg=T[lang][tplKey].replace('{region}',regionStr).replace('{co}',co||'(no name)').replace('{em}',em);
     var ref=(q.get('ref')||'direct').replace(/[^A-Za-z0-9_-]/g,'').slice(0,40)||'direct';
-    try{localStorage.setItem('jt-checkout',JSON.stringify({email:em,company:co,ref:ref,lang:lang,plan:'custom-'+cplan,at:Date.now()}));}catch(e){}
+    try{localStorage.setItem('jt-checkout',JSON.stringify({email:em,company:co,ref:ref,lang:lang,plan:'custom-'+cplan+(founder?'-founder':''),at:Date.now()}));}catch(e){}
     location.href=WA+encodeURIComponent(msg+' · ref '+ref);
   });
 

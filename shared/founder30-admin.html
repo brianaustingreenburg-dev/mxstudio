@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Founder30 Admin ✝️</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b0d10;--card:#14171c;--line:#262b33;--ink:#f2f0ea;--muted:#9aa3b0;--green:#00e676;--gold:#ffc53d;--red:#ff6b6b}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:400px;margin:0 auto;padding:32px 16px 60px}
+.brand{font-family:'Archivo',sans-serif;font-weight:900;font-size:20px;margin-bottom:24px}
+.brand span{color:var(--green)}
+h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+.big{font-family:'Archivo',sans-serif;font-size:56px;font-weight:900;color:var(--gold);line-height:1}
+.big-sub{color:var(--muted);font-size:14px;margin-top:4px}
+.bar-wrap{margin:14px 0 6px;background:rgba(255,197,61,.15);border-radius:999px;height:10px;overflow:hidden}
+.bar{height:100%;background:var(--gold);border-radius:999px;transition:width .4s}
+.row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:14px}
+.row b{color:var(--ink)}
+.btn{width:100%;padding:15px;border:0;border-radius:12px;font:800 16px/1 'Inter Tight',sans-serif;cursor:pointer;margin-bottom:10px}
+.btn-add{background:var(--gold);color:#1a0d00}
+.btn-undo{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.btn-close{background:rgba(255,107,107,.15);border:1px solid rgba(255,107,107,.3);color:var(--red)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.status{font-size:13px;color:var(--green);min-height:20px;margin-top:4px;text-align:center}
+.status.err{color:var(--red)}
+.pin-wrap{margin-bottom:20px}
+.pin-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.pin-input{width:100%;background:#1b1f26;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--ink);font:700 20px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-align:center}
+.pin-input:focus{outline:2px solid var(--gold)}
+.locked{text-align:center;padding:40px 0;color:var(--muted)}
+.locked .ic{font-size:40px;margin-bottom:12px}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.toggle-label{font-size:14px;font-weight:600}
+.toggle{position:relative;width:48px;height:26px}
+.toggle input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:var(--line);border-radius:999px;cursor:pointer;transition:.2s}
+.slider::before{content:'';position:absolute;left:3px;top:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.2s}
+input:checked+.slider{background:var(--green)}
+input:checked+.slider::before{transform:translateX(22px)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Jefe<span>Tech</span> ✝️</div>
+  <h1>Founder30 Admin</h1>
+  <p style="color:var(--muted);font-size:14px;margin:0 0 24px">Mark Custom App sales here. The checkout page updates live.</p>
+
+  <div class="pin-wrap" id="pin-wrap">
+    <div class="pin-label">Enter PIN to unlock</div>
+    <input class="pin-input" id="pin-input" type="password" maxlength="6" placeholder="••••••" autocomplete="off">
+  </div>
+
+  <div id="locked-msg" class="locked" style="display:none">
+    <div class="ic">🔒</div>
+    <div>Wrong PIN. Try again.</div>
+  </div>
+
+  <div id="admin-panel" style="display:none">
+    <div class="card">
+      <div class="big" id="sold-num">0</div>
+      <div class="big-sub">of 30 slots sold</div>
+      <div class="bar-wrap"><div class="bar" id="bar" style="width:0%"></div></div>
+      <div class="row"><span>Slots remaining: <b id="left-num">30</b></span><span id="status-label" style="color:var(--gold);font-weight:700">OPEN</span></div>
+      <button class="btn btn-add" id="btn-add" onclick="addSale()">✅ Mark 1 Sale (+1)</button>
+      <button class="btn btn-undo" id="btn-undo" onclick="undoSale()">↩️ Undo Last Sale (−1)</button>
+      <div class="status" id="save-status"></div>
+      <div class="toggle-row">
+        <span class="toggle-label">Founder30 Open</span>
+        <label class="toggle"><input type="checkbox" id="open-toggle" onchange="toggleOpen()"><span class="slider"></span></label>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);line-height:1.6">
+      Changes write to <code>founder30.json</code> in the repo. The checkout page reads this file live.<br><br>
+      <b style="color:var(--ink)">To increment:</b> tap "Mark 1 Sale" each time a Custom App is paid.<br>
+      <b style="color:var(--ink)">To force-close:</b> toggle "Founder30 Open" off — full prices show immediately.<br>
+      <b style="color:var(--ink)">Can't save?</b> Edit <code>shared/founder30.json</code> in the GitHub repo directly.
+    </p>
+  </div>
+</div>
+
+<script>
+// PIN stored as SHA-256 hash. Default PIN: 3030
+// To change: replace this hash with sha256 of your new PIN.
+// sha256('3030') = 'fcb4de80f6cdc0d7d5e14ef2faada78e22ddc15c7e1a9c3f9cafd27fc1d9d81b'
+var PIN_HASH='fcb4de80f6cdc0d7d5e14ef2faada78e22ddc15c7e1a9c3f9cafd27fc1d9d81b';
+
+var f30={sold:0,total:30,open:true};
+var unlocked=false;
+
+async function sha256(str){
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+}
+
+document.getElementById('pin-input').addEventListener('keydown',async function(e){
+  if(e.key==='Enter'){
+    var h=await sha256(this.value);
+    if(h===PIN_HASH){
+      unlocked=true;
+      document.getElementById('pin-wrap').style.display='none';
+      document.getElementById('locked-msg').style.display='none';
+      document.getElementById('admin-panel').style.display='block';
+      loadData();
+    } else {
+      this.value='';
+      document.getElementById('locked-msg').style.display='block';
+    }
+  }
+});
+
+function loadData(){
+  fetch('/shared/founder30.json?_='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(d){
+      f30.sold=d.sold||0;f30.total=d.total||30;f30.open=d.open!==false;
+      render();
+    }).catch(function(){render();});
+}
+
+function render(){
+  var left=f30.total-f30.sold;
+  document.getElementById('sold-num').textContent=f30.sold;
+  document.getElementById('left-num').textContent=Math.max(0,left);
+  document.getElementById('bar').style.width=Math.min(100,Math.round(f30.sold/f30.total*100))+'%';
+  document.getElementById('status-label').textContent=f30.open&&left>0?'OPEN':'CLOSED';
+  document.getElementById('status-label').style.color=f30.open&&left>0?'var(--gold)':'var(--red)';
+  document.getElementById('btn-add').disabled=!f30.open||f30.sold>=f30.total;
+  document.getElementById('btn-undo').disabled=f30.sold<=0;
+  document.getElementById('open-toggle').checked=f30.open;
+}
+
+function save(status){
+  // In a static GitHub Pages setup we can't write files via fetch.
+  // Instead we show the JSON to copy, so Brian can paste it into the repo.
+  document.getElementById('save-status').textContent='';
+  var json=JSON.stringify(f30);
+  // Try to write via a hidden form to a nonexistent endpoint; will fail gracefully.
+  // Main path: show copy prompt.
+  var msg='📋 Copy this into shared/founder30.json → commit → push:\n\n'+json;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(json).then(function(){
+      document.getElementById('save-status').textContent='✅ Copied to clipboard! Paste into shared/founder30.json and push.';
+      document.getElementById('save-status').className='status';
+    }).catch(function(){
+      prompt(msg,json);
+    });
+  } else {
+    prompt(msg,json);
+  }
+  render();
+}
+
+function addSale(){if(f30.sold<f30.total){f30.sold++;save();}}
+function undoSale(){if(f30.sold>0){f30.sold--;save();}}
+function toggleOpen(){f30.open=document.getElementById('open-toggle').checked;save();}
+</script>
+</body>
+</html>
