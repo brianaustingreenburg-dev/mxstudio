@@ -268,16 +268,41 @@ window.bizMail=function(to,subj,body){
 
 <div class="tabs" style="background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.1)">
   <button class="tb active" onclick="showTab('team',this)" style="color:var(--orange)">🤝 Partners</button>
-  <button class="tb" onclick="showTab('goals',this)">🎯 Goals</button>
-  <button class="tb" onclick="showTab('gametime',this)">🏆 Game Time</button>
+  <button class="tb" onclick="showTab('goals',this)">🎯 Goals & Notes</button>
   <button class="tb" onclick="showTab('prospects',this)">👥 Prospects</button>
-  <button class="tb" onclick="showTab('script',this)">🔨 JefeTech</button>
-  <button class="tb" onclick="showTab('notes',this)">📝 Notes</button>
   <button class="tb" onclick="showTab('earnings',this)">✝️ Loyalty Program</button>
 </div>
 
 <!-- GOALS -->
 <div id="tab-goals" class="tab">
+<!-- GAME BANNER -->
+  <div class="game-banner">
+    <div>
+      <div class="game-h" id="gt-q">Loading...</div>
+      <div class="game-s" id="gt-s"></div>
+    </div>
+    <div style="text-align:right">
+      <div class="game-date" id="gt-date"></div>
+      <div class="game-time" id="gt-time"></div>
+    </div>
+  </div>
+  <div class="glance">
+    <div class="gl"><div class="gl-n" id="g-calls">0</div><div class="gl-l">Calls Today</div></div>
+    <div class="gl"><div class="gl-n" id="g-closes">0</div><div class="gl-l">Closes Today</div></div>
+    <div class="gl"><div class="gl-n" id="g-batch">-</div><div class="gl-l">Batch Progress</div></div>
+    <div class="gl"><div class="gl-n" id="g-earned" style="font-size:24px">$0</div><div class="gl-l">Earned Today</div></div>
+  </div>
+  <div class="blank">
+    <div class="blank-icon">✝️</div>
+    <div>
+      <h3>God Wins. Mind blank? He's got you.</h3>
+      <p>Go to Script tab. Read the opener once out loud. Pick up the phone.<br>
+      You fished 13 seasons in the Bering Sea. You can make one more call. 🎣<br>
+      <em style="color:var(--green)">"I can do all things through Christ who strengthens me." — Phil 4:13</em></p>
+    </div>
+  </div>
+</div>
+
   <div class="g2">
     <div class="gc">
       <div class="gc-title">📞 Calls Today <button class="gc-reset" onclick="resetDay()">Reset day</button></div>
@@ -349,34 +374,6 @@ window.bizMail=function(to,subj,body){
   </div>
 </div>
 
-<!-- GAME TIME -->
-<div id="tab-gametime" class="tab">
-  <div class="game-banner">
-    <div>
-      <div class="game-h" id="gt-q">Loading...</div>
-      <div class="game-s" id="gt-s"></div>
-    </div>
-    <div style="text-align:right">
-      <div class="game-date" id="gt-date"></div>
-      <div class="game-time" id="gt-time"></div>
-    </div>
-  </div>
-  <div class="glance">
-    <div class="gl"><div class="gl-n" id="g-calls">0</div><div class="gl-l">Calls Today</div></div>
-    <div class="gl"><div class="gl-n" id="g-closes">0</div><div class="gl-l">Closes Today</div></div>
-    <div class="gl"><div class="gl-n" id="g-batch">-</div><div class="gl-l">Batch Progress</div></div>
-    <div class="gl"><div class="gl-n" id="g-earned" style="font-size:24px">$0</div><div class="gl-l">Earned Today</div></div>
-  </div>
-  <div class="blank">
-    <div class="blank-icon">✝️</div>
-    <div>
-      <h3>God Wins. Mind blank? He's got you.</h3>
-      <p>Go to Script tab. Read the opener once out loud. Pick up the phone.<br>
-      You fished 13 seasons in the Bering Sea. You can make one more call. 🎣<br>
-      <em style="color:var(--green)">"I can do all things through Christ who strengthens me." — Phil 4:13</em></p>
-    </div>
-  </div>
-</div>
 
 <!-- PROSPECTS -->
 <div id="tab-prospects" class="tab">
@@ -458,103 +455,28 @@ window.bizMail=function(to,subj,body){
       </div>
     </div>
   </div>
-</div>
 
-<!-- SCRIPT -->
-<div id="tab-script" class="tab">
-  <div style="margin-bottom:20px">
-  <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">🔨 JefeTech — Open & Share</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-    <a href="https://myjefetech.app" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
-      <div style="font-size:32px;margin-bottom:8px">📱</div>
-      <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo App</div>
-      <div style="font-size:11px;color:var(--muted)">myjefetech.app</div>
-    </a>
-    <a href="https://go.myjefetech.app/la-forja.html" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
-      <div style="font-size:32px;margin-bottom:8px">📊</div>
-      <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo Dashboard</div>
-      <div style="font-size:11px;color:var(--muted)">La Forja</div>
-    </a>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-    <button onclick="sendLink('demo')" style="background:var(--green);color:#000;font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💬 Send Demo App</button>
-    <button onclick="sendLink('dash')" style="background:var(--green);color:#000;font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💬 Send Dashboard</button>
-  </div>
-</div>
+<!-- JEFETECH SCRIPTS (inside Prospects) -->
+<div id="prospect-scripts" style="margin-top:20px;border-top:1px solid rgba(0,230,118,.15);padding-top:16px">
 <div class="s-layout">
     <div class="s-nav">
       <button class="sp active" onclick="showScript('opener',this)">👋 Opener</button>
       <button class="sp" onclick="showScript('close',this)">🤝 Close</button>
+      <button class="sp" onclick="showScript('setup',this)">📲 Setup</button>
       <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
-      <button class="sp" onclick="showScript('phsolar',this)">🇵🇭 Solar Pitch</button>
+      <button class="sp ph-solar-btn" onclick="showScript('phsolar',this)" style="display:none">🇵🇭 Solar Pitch</button>
     </div>
     <div>
       <div id="script-opener" class="sb active">
-        <div class="sb-lbl">Opener — First 10 Seconds</div>
-        <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
+        <div class="sb-lbl" style="display:flex;align-items:center;justify-content:space-between">
+          <span>Opener — First 10 Seconds</span>
+          <button id="opener-edit-btn" onclick="(function(){var v=document.getElementById('opener-view'),e=document.getElementById('opener-edit'),btn=document.getElementById('opener-edit-btn');if(e.style.display==='none'){e.value=v.innerText;e.style.display='block';v.style.display='none';btn.textContent='\u2713 Save';}else{v.innerHTML=e.value.replace(/\n/g,'<br>');try{localStorage.setItem('bl-opener',e.value);}catch(x){}e.style.display='none';v.style.display='block';btn.textContent='\u270f\ufe0f Edit';}})()" style="font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--muted);cursor:pointer;font-family:inherit">✏️ Edit</button>
+        </div>
+        <div class="sb-txt" id="opener-view">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
+        <textarea id="opener-edit" style="display:none;width:100%;background:var(--card2);border:1px solid var(--green);border-radius:10px;padding:12px;color:var(--white);font-family:inherit;font-size:13px;line-height:1.7;resize:none;min-height:140px;outline:none" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
         <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
       </div>
-      <div id="script-pitch" class="sb" style="display:none">
-        <div class="sb-lbl">The Pitch — 60 Seconds</div>
-        <div class="sb-txt"><strong style="color:var(--green);font-size:16px">📋 JefeTech Feature Reference</strong><br><br>
-
-<strong>🛡️ Safety</strong><br>
-OSHA checklist — required before every job starts. Covers all 7 trades. Can't skip it.<br><br>
-
-<strong>💼 Jobs Tab</strong><br>
-Create jobs, assign crew, track materials, manage change orders. See everything in the field in real time.<br><br>
-
-<strong>📊 La Forja Dashboard</strong><br>
-Command center for owners. Weather, alerts, crew status, invoices, financial snapshot. Live.<br><br>
-
-<strong>🛰️ Satellite Viewer</strong><br>
-Type any address — the roof outline and measurements fill in by themselves, for every trade.<br><br>
-
-<strong>👥 Unlimited Users</strong><br>
-Add your whole crew, office, subs. 1 or 100 — same $137/mo. No per-seat fees. Ever.<br><br>
-
-<strong>💰 Payroll Export</strong><br>
-Crew hours ready to export for Gusto, QuickBooks or Deel. No extra cost.<br><br>
-
-<strong>🇲🇽🤝🇺🇸 US + Mexico</strong><br>
-Full English + Spanish. US shingles + Mexico materials. Both markets. One app.<br><br>
-
-<strong>🎣 Fishing Tab</strong><br>
-7 world fishing spots + travel booking. Because we work hard so we can fish harder.<br><br>
-
-<strong>✅ 7 Trades Covered</strong><br>
-Roofing · HVAC · Painting · Electrical · Plumbing · Solar · General Contracting<br><br>
-
-<strong>🛡️ Lifetime Money-Back Guarantee (terms apply)</strong><br>
-Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
-        <button class="copy-btn" onclick="copyScript('pitch')">Copy Script</button>
-      </div>
-      <div id="script-obj" class="sb" style="display:none">
-        <div class="sb-lbl">Objections</div>
-        <div class="sb-txt">
-          <strong>"We use ServiceTitan"</strong><br>
-          "How much are you paying? JefeTech is $137 for your whole crew — that's $200–$400 back in your pocket every month."<br><br>
-          <strong>"Don't need an app"</strong><br>
-          "Your crew's already on their phones. What if those phones tracked jobs, safety, and payroll — with no internet required?"<br><br>
-          <strong>"Need to think about it"</strong><br>
-          "I get it — here's what I'll do. Use it next to your current setup. If you ever decide it's not for you, cancel and I refund your most recent month. That's our lifetime money-back guarantee. You just try it."<br><br>
-          <strong>"I don't have an iPhone / tablet / device"</strong><br>
-          "No worries at all — I have a few devices to choose from. I'll send you one. The device is yours either way. And if you ever decide the app isn't for you, cancel and I refund your most recent month."<br><br>
-          <strong>"Too expensive"</strong><br>
-          "It's $137 for your WHOLE crew — no per-seat fees. And remember our lifetime money-back guarantee: if it's ever not saving you time and money, cancel and get your most recent month back. You have nothing to lose."
-        </div>
-        <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📦 If They Need a Device — Send Amazon Link</div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.6">They pay for the device. You handle setup. If they ever cancel, refund their most recent $137 month. Device is theirs either way.</div>
-          <div style="display:flex;flex-direction:column;gap:7px">
-            <a href="https://www.amazon.com/s?k=android+tablet+under+100+dollars" target="_blank" style="background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;color:#FF9900;text-decoration:none;display:block">📦 Amazon — Budget Android Tablet (under $100)</a>
-            <a href="https://www.amazon.com/s?k=refurbished+iphone" target="_blank" style="background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;color:#FF9900;text-decoration:none;display:block">📱 Amazon — Refurbished iPhone</a>
-            <button onclick="sendDeviceLink()" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit;text-align:left">💬 Send Device Options to Prospect via WhatsApp</button>
-          </div>
-        </div>
-        <button class="copy-btn" onclick="copyScript('obj')">Copy Script</button>
-      </div>
-      <div id="script-close" class="sb">
+      <div id="script-close" class="sb" style="display:none">
         <div class="sb-lbl">The Close</div>
         <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month (or $1,344 a year, save $300), for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
         <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
@@ -563,19 +485,25 @@ Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
           <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);color:var(--orange);font-size:13px;font-weight:800;padding:14px;border-radius:10px;cursor:pointer;font-family:inherit">💬 Send via WhatsApp</button>
         </div>
       </div>
-      <div id="script-phsolar" class="sb">
-        <div class="sb-lbl">🇵🇭 Philippines — Solar Pitch ✝️</div>
-        <div class="sb-txt"><strong>Open:</strong> "Good day! This is Brian Lalo, owner of MX Studio. We work with solar and construction companies. Do you have one minute?"<br><br>
-<strong>The hook:</strong> "Quick question — with electricity prices up almost 20% this year, your phone must be ringing off the hook for solar. How are you keeping up with all the jobs?"<br><br><em>Let them answer. Most will say they're swamped.</em><br><br>
-🛰️ <strong>Roof in seconds</strong> — "Type any address, the satellite view pulls up the roof. Measure it on the spot for your panel layout, before you send a crew."<br><br>
-💼 <strong>Every install, one screen</strong> — "Every site live: which crew, what materials, how far along."<br><br>
-🛡️ <strong>DOLE safety, done</strong> — "Before anyone climbs a roof, the DOLE OSH checklist gets done. Protects your workers and your permit."<br><br>
-👥 <strong>Whole crew, one price</strong> — "Installers, electricians, office, subs. 1 or 100, same price."<br><br>
-🗣️ <strong>English + Spanish</strong> — "The whole crew reads it in their own language."<br><br>
-<strong>Close:</strong> "$137 a month — or $1,344 for the year and save $300 — unlimited users, cancel anytime, lifetime money-back guarantee. Want me to email you the link right now?"</div>
-        <button class="copy-btn" onclick="copyScript('phsolar')">Copy Script</button>
+      <div id="script-setup" class="sb" style="display:none">
+        <div class="sb-lbl">Setup — While They Pay (2 min)</div>
+        <div class="sb-txt"><strong>Walk them through this right after they checkout:</strong><br><br>
+1️⃣ <b>Open the app link</b> on their phone<br>
+   → Safari (iPhone) or Chrome (Android)<br>
+   → Tap the <b>Share icon</b> (box with ↑ arrow)<br>
+   → <b>"Add to Home Screen"</b> → Add<br>
+   ✅ App icon appears on their home screen<br><br>
+2️⃣ <b>Open the dashboard link</b> — same steps<br>
+   ✅ Dashboard icon on home screen too<br><br>
+3️⃣ <b>They're set up.</b> Show them the Jobs tab. Done.<br><br>
+<em style="color:var(--green)">"No App Store. No download. 2 minutes."</em></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+          <button onclick="copyLink('https://myjefetech.app',this)" class="copy-btn" style="text-align:left">📱 Copy App Link</button>
+          <button onclick="copyLink('https://go.myjefetech.app/app/',this)" class="copy-btn" style="text-align:left">🖥️ Copy Dashboard Link</button>
+        </div>
+        <button class="copy-btn" onclick="copyScript('setup')" style="margin-top:8px">Copy Script</button>
       </div>
-      <div id="script-fu" class="sb">
+      <div id="script-fu" class="sb" style="display:none">
         <div class="sb-lbl">Follow Up — 24 Hours Later</div>
         <div class="sb-txt">"Hey [Name], Brian Lalo here — sent you the JefeTech link yesterday. Did you get a chance to look?<br><br>I can walk you through it in 5 minutes right now."<br><br><strong>If they looked →</strong> "What did you think? Any questions?"<br><strong>If they forgot →</strong> "No worries — sending it again right now. Two minutes tonight."<br><br><strong>Guarantee close →</strong> "Remember — use it next to your current app. If you ever don't love it, cancel and get your most recent month back. Zero risk."</div>
         <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px">
@@ -588,20 +516,24 @@ Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
         </div>
         <button class="copy-btn" onclick="copyScript('fu')">Copy Script</button>
       </div>
+      <div id="script-phsolar" class="sb" style="display:none">
+        <div class="sb-lbl">🇵🇭 Philippines — Solar Pitch ✝️</div>
+        <div class="sb-txt"><strong>Open:</strong> "Good day! This is Brian Lalo, owner of MX Studio. We work with solar and construction companies. Do you have one minute?"<br><br>
+<strong>The hook:</strong> "Quick question — with electricity prices up almost 20% this year, your phone must be ringing off the hook for solar. How are you keeping up with all the jobs?"<br><br><em>Let them answer. Most will say they're swamped.</em><br><br>
+🛰️ <strong>Roof in seconds</strong> — "Type any address, the satellite view pulls up the roof. Measure it on the spot for your panel layout, before you send a crew."<br><br>
+💼 <strong>Every install, one screen</strong> — "Every site live: which crew, what materials, how far along."<br><br>
+🛡️ <strong>DOLE safety, done</strong> — "Before anyone climbs a roof, the DOLE OSH checklist gets done. Protects your workers and your permit."<br><br>
+👥 <strong>Whole crew, one price</strong> — "Installers, electricians, office, subs. 1 or 100, same price."<br><br>
+<strong>Close:</strong> "$137 a month — or $1,344 for the year and save $300 — unlimited users, cancel anytime, lifetime money-back guarantee. Want me to email you the link right now?"</div>
+        <button class="copy-btn" onclick="copyScript('phsolar')">Copy Script</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- NOTES -->
-<div id="tab-notes" class="tab">
-  <div class="n4">
-    <div class="nc"><h3>📝 Today's Notes</h3><textarea class="nta" id="note-today" placeholder="Key conversations, follow-ups..."></textarea><button class="ns" onclick="saveNote2('today')">Save</button></div>
-    <div class="nc"><h3>🎯 This Week's Plan</h3><textarea class="nta" id="note-week" placeholder="Weekly targets, strategy..."></textarea><button class="ns" onclick="saveNote2('week')">Save</button></div>
-    <div class="nc"><h3>💡 Ideas & Reminders</h3><textarea class="nta" id="note-ideas" placeholder="Ideas, things to remember..."></textarea><button class="ns" onclick="saveNote2('ideas')">Save</button></div>
-    <div class="nc"><h3>🙏 Prayer & Purpose</h3><textarea class="nta" id="note-prayer" placeholder="Gratitude, God's guidance..."></textarea><button class="ns" onclick="saveNote2('prayer')">Save</button></div>
-  </div>
 </div>
 
+<!-- NOTES -->
 <!-- EARNINGS -->
 <div id="tab-earnings" class="tab">
   <div class="e2">
@@ -838,6 +770,9 @@ function showDet(i){
   document.getElementById('d-name').textContent=p[0];
   var contact=S.contacts[i]?'👤 '+S.contacts[i]+' · ':'';
   document.getElementById('d-loc').textContent=contact+p[2]+', '+p[3];
+  // Show PH Solar Pitch tab only for Philippines prospects
+  var isPH=(p[3]==='PH'||p[3]==='Philippines'||(p[2]&&p[2].indexOf('Philippines')>=0));
+  document.querySelectorAll('.ph-solar-btn').forEach(function(b){b.style.display=isPH?'':'none';});
   document.getElementById('d-phone').textContent=p[1];
   document.getElementById('d-tz').textContent=p[4]||'—';
   document.getElementById('d-status').textContent=s.charAt(0).toUpperCase()+s.slice(1);
@@ -1001,7 +936,9 @@ function copyScript(n){
 
 // NOTES
 function saveNote2(w){localStorage.setItem('bl-note-'+w,document.getElementById('note-'+w).value);}
-function loadNotes(){['today','week','ideas','prayer'].forEach(function(w){var el=document.getElementById('note-'+w);if(el)el.value=localStorage.getItem('bl-note-'+w)||'';});}
+function loadNotes(){
+  try{var saved=localStorage.getItem('bl-opener');if(saved){var ov=document.getElementById('opener-view');if(ov)ov.innerHTML=saved.replace(/\n/g,'<br>');}}catch(x){}
+  ['today','week','ideas','prayer'].forEach(function(w){var el=document.getElementById('note-'+w);if(el)el.value=localStorage.getItem('bl-note-'+w)||'';});}
 
 // UPDATE
 function upd(){
@@ -1063,41 +1000,6 @@ upd();
 <div id="tab-team" class="tab active">
   <button onclick="showTab('goals', document.querySelector('.tb'))" style="background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px">← Back to Goals</button>
 
-  <!-- CAPTAIN -->
-  <div style="background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.18);border-radius:14px;padding:20px;margin-bottom:14px;display:flex;align-items:center;gap:14px">
-    <div style="width:44px;height:44px;border-radius:11px;background:var(--green);color:#000;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">BL</div>
-    <div style="flex:1">
-      <div style="font-size:16px;font-weight:900">Brian Lalo ✝️</div>
-      <div style="font-size:11px;color:var(--green)">Jesus is the light guiding my ship</div>
-    </div>
-    <div style="text-align:right">
-      <div style="font-size:22px;font-weight:900;color:var(--green)" id="team-bl-calls">0</div>
-      <div style="font-size:9px;color:var(--muted)">CALLS</div>
-    </div>
-    <div style="text-align:right">
-      <div style="font-size:22px;font-weight:900;color:var(--orange)" id="team-bl-closes">0</div>
-      <div style="font-size:9px;color:var(--muted)">CLOSES</div>
-    </div>
-  </div>
-
-  <!-- PARTNER 1 -->
-  <div style="background:rgba(255,107,43,.05);border:1px solid rgba(255,107,43,.15);border-radius:14px;padding:20px;margin-bottom:14px">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
-      <div style="width:44px;height:44px;border-radius:11px;background:var(--orange);color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">P1</div>
-      <div style="flex:1">
-        <div style="font-size:16px;font-weight:900">Partner 1 🇲🇽</div>
-        <div style="font-size:11px;color:var(--muted)">MX Studio · Mexico Territory</div>
-      </div>
-    </div>
-    <a href="https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92" style="display:block;background:var(--orange);color:#fff;font-size:15px;font-weight:800;padding:14px;border-radius:10px;text-decoration:none;text-align:center">▶ Open Partner 1 Dashboard</a>
-    <button onclick="navigator.clipboard.writeText('https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92').then(function(){alert('Copied!')})" style="display:block;width:100%;margin-top:8px;background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.2);color:var(--orange);font-size:12px;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;font-family:inherit">📋 Copy Partner 1 Link</button>
-  </div>
-
-  <div style="background:var(--card);border:1px solid var(--gmid);border-radius:14px;padding:18px 20px;margin-bottom:14px">
-    <div style="font-size:15px;font-weight:900;margin-bottom:4px">🌎 Country Partner Dashboards ✝️</div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:12px">One per country, each loaded with that country's prospects. Share a link with the partner you hire there.</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px"><a href="https://claude.ai/artifact/5Zm19DvPwszEnHdwDCNfsb" style="display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);font-weight:800;font-size:14px"><span style="font-size:20px">🇺🇸</span>United States ✝️<span style="margin-left:auto;color:var(--green)">›</span></a><a href="https://claude.ai/artifact/A5z7z6VZ4dq529YXL6Cx4e" style="display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);font-weight:800;font-size:14px"><span style="font-size:20px">🇨🇦</span>Canada ✝️<span style="margin-left:auto;color:var(--green)">›</span></a><a href="https://claude.ai/artifact/VWhvCpmKusAZnETgJq1J92" style="display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);font-weight:800;font-size:14px"><span style="font-size:20px">🇲🇽</span>Mexico (Partner 1) ✝️<span style="margin-left:auto;color:var(--green)">›</span></a><a href="https://claude.ai/artifact/4h6XYyC8zWUCfGmkSyXPUr" style="display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);font-weight:800;font-size:14px"><span style="font-size:20px">🇦🇺</span>Australia ✝️<span style="margin-left:auto;color:var(--green)">›</span></a><a href="https://claude.ai/artifact/3pm6YN6fvr1pdcCMNDmYtv" style="display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--white);font-weight:800;font-size:14px"><span style="font-size:20px">🇵🇭</span>Philippines ✝️<span style="margin-left:auto;color:var(--green)">›</span></a></div>
-  </div>
 
   <!-- COMMISSIONS OWED -->
   <div id="comm" style="background:var(--card);border:1px solid rgba(255,197,61,.35);border-radius:14px;padding:18px 20px;margin-bottom:14px">
@@ -1221,233 +1123,23 @@ upd();
     </div>
   </div>
 </div>
-
-<!-- GAME TIME -->
-<div id="tab-gametime" class="tab">
-  <div class="game-banner">
-    <div>
-      <div class="game-h" id="gt-q">Loading...</div>
-      <div class="game-s" id="gt-s"></div>
-    </div>
-    <div style="text-align:right">
-      <div class="game-date" id="gt-date"></div>
-      <div class="game-time" id="gt-time"></div>
-    </div>
-  </div>
-  <div class="glance">
-    <div class="gl"><div class="gl-n" id="g-calls">0</div><div class="gl-l">Calls Today</div></div>
-    <div class="gl"><div class="gl-n" id="g-closes">0</div><div class="gl-l">Closes Today</div></div>
-    <div class="gl"><div class="gl-n" id="g-batch">-</div><div class="gl-l">Batch Progress</div></div>
-    <div class="gl"><div class="gl-n" id="g-earned" style="font-size:24px">$0</div><div class="gl-l">Earned Today</div></div>
-  </div>
-  <div class="blank">
-    <div class="blank-icon">✝️</div>
-    <div>
-      <h3>God Wins. Mind blank? He's got you.</h3>
-      <p>Go to Script tab. Read the opener once out loud. Pick up the phone.<br>
-      You fished 13 seasons in the Bering Sea. You can make one more call. 🎣<br>
-      <em style="color:var(--green)">"I can do all things through Christ who strengthens me." — Phil 4:13</em></p>
-    </div>
-  </div>
-</div>
-
-<!-- PROSPECTS -->
-<div id="tab-prospects" class="tab">
-  <div class="p-layout">
-    <div>
-      <div class="p-panel">
-        <div class="p-head">
-          <div class="p-title">👥 Prospects</div>
-          <div id="recycle-info" style="font-size:10px;color:var(--muted);margin-left:8px">♻️ Recycles every 30 days</div>
-          <div class="batch-lbl" id="batch-lbl">Batch 1 of 34</div>
-          <span style="font-size:11px;color:var(--muted);margin-left:8px" id="p-count">100</span>
-        </div>
-        <div class="p-search">
-          <input class="si" type="text" placeholder="Search name, city, state..." id="si" oninput="filterP()">
-          <button class="fb active" id="f-all" onclick="setFilter('all')">All</button>
-          <button class="fb" id="f-new" onclick="setFilter('new')">New</button>
-          <button class="fb" id="f-called" onclick="setFilter('called')">Called</button>
-          <button class="fb" id="f-closed" onclick="setFilter('closed')">Closed</button>
-        </div>
-        <div style="overflow-x:auto">
-          <table class="ptable">
-            <thead><tr><th>Company</th><th>Phone</th><th>Location</th><th>TZ</th><th>Status</th><th>Notes</th><th></th></tr></thead>
-            <tbody id="ptbody"></tbody>
-          </table>
-        </div>
-        <div class="pag">
-          <div class="pag-info" id="pag-info">1–100 of 3,400</div>
-          <div class="pag-btns">
-            <button class="pb" id="btn-prev" onclick="prevBatch()" disabled>← Prev</button>
-            <button class="pb" id="btn-next" onclick="nextBatch()">Next →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="det" id="det">
-      <div class="det-empty" id="det-empty">👆 Click a prospect</div>
-      <div id="det-body" style="display:none">
-        <div class="det-name" id="d-name"></div>
-        <div class="det-trade" id="d-loc"></div>
-        <div class="det-row"><span class="det-l">📞 Phone</span><span class="det-v" id="d-phone"></span></div>
-        <div class="det-row"><span class="det-l">🕐 Time Zone</span><span class="det-v" id="d-tz"></span></div>
-        <div class="det-row"><span class="det-l">📊 Status</span><span class="det-v" id="d-status"></span></div>
-        <div class="det-row" style="flex-direction:column;align-items:flex-start;gap:6px">
-          <span class="det-l">👤 Contact Name</span>
-          <input id="d-contact" type="text" placeholder="Enter contact name when you find out..." 
-            style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:13px;color:var(--white);font-family:inherit;outline:none"
-            oninput="saveContact()" onfocus="this.style.borderColor='var(--gmid)'" onblur="this.style.borderColor='var(--border)'">
-        </div>
-        <div class="dacts">
-          <button class="da da-wa" onclick="waSelected()">💬 WhatsApp</button>
-          <button class="da da-call" onclick="callSelected()">📞 Call Now</button>
-          <button class="da da-stripe" onclick="stripeSelected()">💳 Send via WhatsApp</button>
-          <button class="da da-copy" onclick="copyMsg()" style="background:rgba(255,255,255,.08);color:var(--white);border:1px solid var(--border)">📋 Copy Message (SMS/Email)</button>
-          <button class="da da-called" onclick="markStatus('called');addCall()">✓ Mark Called</button>
-          <button class="da da-closed" onclick="markStatus('closed');addClose();showClosedLinks()">🔥 Mark Closed!</button>
-          <div id="closed-links" style="display:none;background:var(--gdim);border:1px solid var(--gmid);border-radius:10px;padding:14px;margin-top:2px">
-            <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">✅ Send Clean Links to New Customer</div>
-            <div style="display:flex;flex-direction:column;gap:6px">
-              <button onclick="sendLink('demo')" style="background:var(--card);border:1px solid var(--border);border-radius:7px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">📱 Clean App → myjefetech.app</button>
-              <button onclick="sendCleanDash()" style="background:var(--card);border:1px solid var(--border);border-radius:7px;padding:9px 12px;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit;text-align:left">📊 Clean Dashboard → myjefetech.app/la-forja.html</button>
-            </div>
-          </div>
-          <button class="da da-skip" onclick="markStatus('skip')">✕ Skip</button>
-        </div>
-        <textarea class="det-notes" id="d-notes" placeholder="Notes..." oninput="saveNote()"></textarea>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SCRIPT -->
-<div id="tab-script" class="tab">
-  <div style="margin-bottom:20px">
-  <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px">🔨 JefeTech — Open & Share</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-    <a href="https://myjefetech.app" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
-      <div style="font-size:32px;margin-bottom:8px">📱</div>
-      <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo App</div>
-      <div style="font-size:11px;color:var(--muted)">myjefetech.app</div>
-    </a>
-    <a href="https://go.myjefetech.app/la-forja.html" target="_blank" style="display:block;background:var(--gdim);border:2px solid var(--gmid);border-radius:14px;padding:20px;text-decoration:none;text-align:center">
-      <div style="font-size:32px;margin-bottom:8px">📊</div>
-      <div style="font-size:14px;font-weight:800;color:var(--green);margin-bottom:4px">Demo Dashboard</div>
-      <div style="font-size:11px;color:var(--muted)">La Forja</div>
-    </a>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-    <button onclick="sendLink('demo')" style="background:var(--green);color:#000;font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💬 Send Demo App</button>
-    <button onclick="sendLink('dash')" style="background:var(--green);color:#000;font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💬 Send Dashboard</button>
-  </div>
-</div>
-<div class="s-layout">
-    <div class="s-nav">
-      <button class="sp active" onclick="showScript('opener',this)">👋 Opener</button>
-      <button class="sp" onclick="showScript('close',this)">🤝 Close</button>
-      <button class="sp" onclick="showScript('fu',this)">📲 Follow Up</button>
-    </div>
-    <div>
-      <div id="script-opener" class="sb active">
-        <div class="sb-lbl">Opener — First 10 Seconds</div>
-        <div class="sb-txt">"Hey, this is Brian Lalo. I own MX Studio. You got a second?"<br><br><strong>They say sure →</strong><br><br>"Quick question: how are you running your crew right now? Jobs, measurements, hours, all of it."<br><br><strong>Then listen.</strong> Let them talk. Ask one more question about what bugs them most. You're the owner, so talk like one: no script, just a conversation.</div>
-        <button class="copy-btn" onclick="copyScript('opener')">Copy Script</button>
-      </div>
-      <div id="script-pitch" class="sb" style="display:none">
-        <div class="sb-lbl">The Pitch — 60 Seconds</div>
-        <div class="sb-txt"><strong style="color:var(--green);font-size:16px">📋 JefeTech Feature Reference</strong><br><br>
-
-<strong>🛡️ Safety</strong><br>
-OSHA checklist — required before every job starts. Covers all 7 trades. Can't skip it.<br><br>
-
-<strong>💼 Jobs Tab</strong><br>
-Create jobs, assign crew, track materials, manage change orders. See everything in the field in real time.<br><br>
-
-<strong>📊 La Forja Dashboard</strong><br>
-Command center for owners. Weather, alerts, crew status, invoices, financial snapshot. Live.<br><br>
-
-<strong>🛰️ Satellite Viewer</strong><br>
-Type any address — the roof outline and measurements fill in by themselves, for every trade.<br><br>
-
-<strong>👥 Unlimited Users</strong><br>
-Add your whole crew, office, subs. 1 or 100 — same $137/mo. No per-seat fees. Ever.<br><br>
-
-<strong>💰 Payroll Export</strong><br>
-Crew hours ready to export for Gusto, QuickBooks or Deel. No extra cost.<br><br>
-
-<strong>🇲🇽🤝🇺🇸 US + Mexico</strong><br>
-Full English + Spanish. US shingles + Mexico materials. Both markets. One app.<br><br>
-
-<strong>🎣 Fishing Tab</strong><br>
-7 world fishing spots + travel booking. Because we work hard so we can fish harder.<br><br>
-
-<strong>✅ 7 Trades Covered</strong><br>
-Roofing · HVAC · Painting · Electrical · Plumbing · Solar · General Contracting<br><br>
-
-<strong>🛡️ Lifetime Money-Back Guarantee (terms apply)</strong><br>
-Not happy, ever? Cancel and we refund your most recent month. No drama.</div>
-        <button class="copy-btn" onclick="copyScript('pitch')">Copy Script</button>
-      </div>
-      <div id="script-obj" class="sb" style="display:none">
-        <div class="sb-lbl">Objections</div>
-        <div class="sb-txt">
-          <strong>"We use ServiceTitan"</strong><br>
-          "How much are you paying? JefeTech is $137 for your whole crew — that's $200–$400 back in your pocket every month."<br><br>
-          <strong>"Don't need an app"</strong><br>
-          "Your crew's already on their phones. What if those phones tracked jobs, safety, and payroll — with no internet required?"<br><br>
-          <strong>"Need to think about it"</strong><br>
-          "I get it — here's what I'll do. Use it next to your current setup. If you ever decide it's not for you, cancel and I refund your most recent month. That's our lifetime money-back guarantee. You just try it."<br><br>
-          <strong>"I don't have an iPhone / tablet / device"</strong><br>
-          "No worries at all — I have a few devices to choose from. I'll send you one. The device is yours either way. And if you ever decide the app isn't for you, cancel and I refund your most recent month."<br><br>
-          <strong>"Too expensive"</strong><br>
-          "It's $137 for your WHOLE crew — no per-seat fees. And remember our lifetime money-back guarantee: if it's ever not saving you time and money, cancel and get your most recent month back. You have nothing to lose."
-        </div>
-        <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📦 If They Need a Device — Send Amazon Link</div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.6">They pay for the device. You handle setup. If they ever cancel, refund their most recent $137 month. Device is theirs either way.</div>
-          <div style="display:flex;flex-direction:column;gap:7px">
-            <a href="https://www.amazon.com/s?k=android+tablet+under+100+dollars" target="_blank" style="background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;color:#FF9900;text-decoration:none;display:block">📦 Amazon — Budget Android Tablet (under $100)</a>
-            <a href="https://www.amazon.com/s?k=refurbished+iphone" target="_blank" style="background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.25);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;color:#FF9900;text-decoration:none;display:block">📱 Amazon — Refurbished iPhone</a>
-            <button onclick="sendDeviceLink()" style="background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit;text-align:left">💬 Send Device Options to Prospect via WhatsApp</button>
-          </div>
-        </div>
-        <button class="copy-btn" onclick="copyScript('obj')">Copy Script</button>
-      </div>
-      <div id="script-close" class="sb">
-        <div class="sb-lbl">The Close</div>
-        <div class="sb-txt"><strong>Know three things cold:</strong><br><br><strong>1. Your opener:</strong> your name, that you own MX Studio, and one real question about how they run their crew today. Then listen.<br><br><strong>2. Three proof points you can show, not claim:</strong><br>• Type their address and the roof measures itself.<br>• English and Spanish for the whole crew.<br>• One price, $137 a month (or $1,344 a year, save $300), for unlimited users.<br><br><strong>3. Your close:</strong> "Let's get you set up today. If it's ever not worth it, cancel and I refund your most recent month."<br><br><strong>Then →</strong> send the checkout link (💳 Checkout in Deal Links).<br><strong>If they hesitate →</strong> "What's the one thing holding you back? Let's solve it."</div>
-        <button class="copy-btn" onclick="copyScript('close')">Copy Script</button>
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <button onclick="copyStripe(this)" style="flex:1;background:var(--orange);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:10px;border:none;cursor:pointer;font-family:inherit">💳 Copy Checkout Link</button>
-          <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);color:var(--orange);font-size:13px;font-weight:800;padding:14px;border-radius:10px;cursor:pointer;font-family:inherit">💬 Send via WhatsApp</button>
-        </div>
-      </div>
-      <div id="script-fu" class="sb">
-        <div class="sb-lbl">Follow Up — 24 Hours Later</div>
-        <div class="sb-txt">"Hey [Name], Brian Lalo here — sent you the JefeTech link yesterday. Did you get a chance to look?<br><br>I can walk you through it in 5 minutes right now."<br><br><strong>If they looked →</strong> "What did you think? Any questions?"<br><strong>If they forgot →</strong> "No worries — sending it again right now. Two minutes tonight."<br><br><strong>Guarantee close →</strong> "Remember — use it next to your current app. If you ever don't love it, cancel and get your most recent month back. Zero risk."</div>
-        <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:14px">
-          <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">📝 Follow Up Notes — <span id="fu-prospect-name" style="color:var(--muted);text-transform:none;font-weight:400">Select a prospect first</span></div>
-          <textarea id="fu-notes" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;color:var(--white);font-family:inherit;resize:none;outline:none;min-height:100px;line-height:1.7" placeholder="What happened on the last call? What did they say? When to follow up?..." oninput="saveFuNote()"></textarea>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button onclick="sendLink('demo')" style="flex:1;background:var(--gdim);border:1px solid var(--gmid);border-radius:8px;padding:9px;font-size:12px;font-weight:700;color:var(--green);cursor:pointer;font-family:inherit">📱 Resend Demo</button>
-            <button onclick="sendLink('pay')" style="flex:1;background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:8px;padding:9px;font-size:12px;font-weight:700;color:var(--orange);cursor:pointer;font-family:inherit">💳 Send Payment Link</button>
-          </div>
-        </div>
-        <button class="copy-btn" onclick="copyScript('fu')">Copy Script</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- NOTES -->
-<div id="tab-notes" class="tab">
-  <div class="n4">
+  <!-- NOTES (moved here from separate tab) -->
+  <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+    <button onclick="var d=document.getElementById('notes-collapse');d.style.display=d.style.display==='none'?'':'none'" style="width:100%;background:none;border:none;padding:16px 20px;color:var(--white);font-size:14px;font-weight:800;text-align:left;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:space-between">
+      📝 Notes &amp; Prayer <span style="color:var(--muted);font-weight:400;font-size:12px">tap to expand ▾</span>
+    </button>
+    <div id="notes-collapse" style="display:none;padding:0 20px 20px">
+<div class="n4">
     <div class="nc"><h3>📝 Today's Notes</h3><textarea class="nta" id="note-today" placeholder="Key conversations, follow-ups..."></textarea><button class="ns" onclick="saveNote2('today')">Save</button></div>
     <div class="nc"><h3>🎯 This Week's Plan</h3><textarea class="nta" id="note-week" placeholder="Weekly targets, strategy..."></textarea><button class="ns" onclick="saveNote2('week')">Save</button></div>
     <div class="nc"><h3>💡 Ideas & Reminders</h3><textarea class="nta" id="note-ideas" placeholder="Ideas, things to remember..."></textarea><button class="ns" onclick="saveNote2('ideas')">Save</button></div>
     <div class="nc"><h3>🙏 Prayer & Purpose</h3><textarea class="nta" id="note-prayer" placeholder="Gratitude, God's guidance..."></textarea><button class="ns" onclick="saveNote2('prayer')">Save</button></div>
   </div>
 </div>
+    </div>
+  </div>
+
+
 
 <!-- EARNINGS -->
 <div id="tab-earnings" class="tab">
@@ -1767,6 +1459,9 @@ function showDet(i){
   document.getElementById('d-name').textContent=p[0];
   var contact=S.contacts[i]?'👤 '+S.contacts[i]+' · ':'';
   document.getElementById('d-loc').textContent=contact+p[2]+', '+p[3];
+  // Show PH Solar Pitch tab only for Philippines prospects
+  var isPH=(p[3]==='PH'||p[3]==='Philippines'||(p[2]&&p[2].indexOf('Philippines')>=0));
+  document.querySelectorAll('.ph-solar-btn').forEach(function(b){b.style.display=isPH?'':'none';});
   document.getElementById('d-phone').textContent=p[1];
   document.getElementById('d-tz').textContent=p[4]||'—';
   document.getElementById('d-status').textContent=s.charAt(0).toUpperCase()+s.slice(1);
@@ -2629,7 +2324,7 @@ upd();
 /* ===== 💼 JefeTech Packages ✝️ ===== */
 (function(){
   var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph;
-  var half=ph||mx, BRIAN=!!document.getElementById('tab-script')&&/Brian Lalo/.test(document.title);
+  var half=ph||mx, BRIAN=!!document.getElementById('prospect-scripts')&&/Brian Lalo/.test(document.title);
   var P=half?{s:1497,p:2497}:{s:2997,p:4997};
   function m(n){return '$'+n.toLocaleString('en-US');}
   var T={
@@ -2683,7 +2378,7 @@ upd();
   }
   function init(){
     var host=document.getElementById('pane-script')||document.getElementById('tab-goals');
-    if(BRIAN)host=document.getElementById('tab-script');
+    if(BRIAN)host=document.getElementById('prospect-scripts');
     if(!host)return;
     box=document.createElement('div');box.id='packages';
     box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.3);border-radius:14px;padding:16px;margin:0 0 14px';
@@ -3090,8 +2785,8 @@ upd();
   }
   function init(){
     // Deal Links live only in the 🔨 JefeTech tab, under the script (Partners tab stays clean)
-    document.querySelectorAll('[id="tab-script"]').forEach(function(host){
-      [].slice.call(host.children).forEach(function(c){if(/JefeTech — Open & Share/.test(c.textContent||'')&&c.querySelector('a[href*="myjefetech.app"]'))c.style.display='none';});
+    document.querySelectorAll('[id="prospect-scripts"]').forEach(function(host){
+      // Open & Share cards removed — scripts embedded directly
       var b=document.createElement('div');b.className='deal-links';
       b.style.cssText='background:var(--card);border:1px solid rgba(0,230,118,.4);border-radius:14px;padding:14px;margin:14px 0';
       var sb=host.querySelector('.sb.active');var anchor=sb&&sb.parentNode;
