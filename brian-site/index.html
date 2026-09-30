@@ -766,6 +766,7 @@ if(false&&S.lastMonth!==thisMonth){ /* replaced by 30-day recycle */
   if(recycled>0) showRecycleToast(recycled);
 }
 
+function showToast(msg){var t=document.createElement('div');t.textContent=msg;t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1);white-space:nowrap;pointer-events:none;';document.body.appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(function(){t.remove();},300);},2500);}
 function sv(){
   localStorage.setItem('bl-calls',S.calls);
   localStorage.setItem('bl-closes',S.closes);
@@ -1017,7 +1018,7 @@ function clearDet(){
 
 function waP(i){var p=P[i],n=p[1].replace(/\D/g,'');if(n.length===10)n='1'+n;window.open('https://wa.me/'+n,'_blank');}
 function waSelected(){if(S.sel!==null)waP(S.sel);}
-function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'');window.open('tel:+'+n,'_self');}
+function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'');var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);if(isMobile){window.open('tel:+'+n,'_self');}else{navigator.clipboard.writeText('+'+n).then(function(){showToast('📋 Number copied: +'+n);}).catch(function(){showToast('📞 Call: +'+n);});}}
 function buildMsg(name){
   var link='https://go.myjefetech.app/checkout.html?ref=brian';
   var appLink='https://myjefetech.app';
