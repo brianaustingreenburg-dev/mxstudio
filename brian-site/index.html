@@ -2101,6 +2101,29 @@ upd();
   function digits(v){var n=String(v||'').replace(/\D/g,'');if(n.length===10)n='1'+n;return n;}
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function toast(i,t,s){if(typeof showToast==='function')showToast({i:i,t:t,s:s});}
+  function startLiveDemo(b){
+    var code=Math.random().toString(36).slice(2,8).toUpperCase();
+    var url='https://myjefetech.app?demo='+code;
+    var p=cur();var pName=p?p[0]:'';
+    var phEl=b.querySelector('.sx-ph');var ph=phEl?digits(phEl.value):'';
+    var waMsg='Follow along on my live JefeTech demo 👇\n\nOpen this link on your phone — you\'ll see everything I tap in real time:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️';
+    var waUrl=ph?'https://wa.me/'+ph+'?text='+encodeURIComponent(waMsg):'https://wa.me/?text='+encodeURIComponent(waMsg);
+    window.open(url,'_blank');
+    var existing=b.querySelector('.sx-demo-panel');if(existing)existing.remove();
+    var panel=document.createElement('div');
+    panel.className='sx-demo-panel';
+    panel.style.cssText='background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.3);border-radius:10px;padding:12px;margin-bottom:8px';
+    panel.innerHTML='<div style="font-size:12px;font-weight:800;color:#FF6B2B;margin-bottom:8px">📡 Demo started! Code: <span style="font-family:monospace;letter-spacing:2px;font-size:14px">'+code+'</span></div>'
+      +'<div style="font-size:11px;color:#9CA3AF;margin-bottom:6px">Send to '+(pName||'your client')+' — they open it and see your screen live:</div>'
+      +'<div style="font-family:monospace;font-size:11px;background:rgba(0,0,0,.3);border-radius:6px;padding:8px;margin-bottom:10px;word-break:break-all;color:#fff">'+url+'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'
+      +'<button onclick="window.open(\''+waUrl+'\',\'_blank\')" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">💬 WhatsApp</button>'
+      +'<button onclick="navigator.clipboard.writeText(\''+url+'\');this.textContent=\'✅ Copied!\';var me=this;setTimeout(function(){me.textContent=\'📋 Copy Link\'},2000)" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:8px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">📋 Copy Link</button>'
+      +'</div>'
+      +'<button onclick="this.parentNode.remove()" style="margin-top:8px;width:100%;background:none;border:none;color:#9CA3AF;font-size:11px;cursor:pointer;font-family:inherit;padding:4px">✕ Close</button>';
+    var demoBtn=b.querySelector('.sx-live-demo');
+    demoBtn.parentNode.insertBefore(panel,demoBtn.nextSibling);
+  }
   function chosen(){return ORDER.filter(function(k){return pick[k]&&U(k);});}
   var SIG='Brian Lalo ✝️\nMX Studio · JefeTech\nbrian@myjefetech.app\nPhone / WhatsApp: +1 (408) 422-3505';
   function build(lang){
@@ -2202,10 +2225,8 @@ upd();
       +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:6px">'
       +[['new','🆕 New'],['called','📞 Called'],['closed','✝️ Closed'],['skip','⛔ Skip']].map(function(x){return '<button type="button" class="sx-s" data-s="'+x[0]+'" style="border:1px solid var(--border);border-radius:8px;padding:9px 2px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">'+x[1]+'</button>';}).join('')
       +'</div></div>'
-      +'<div style="font-size:12px;font-weight:800;margin-bottom:6px">1️⃣ Tap what to send</div>'
-      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px">'
-      +ORDER.map(function(k){return '<button type="button" class="sx-chip" data-k="'+k+'" style="border:1px solid var(--gmid);border-radius:10px;padding:11px 6px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit'+(k==='pay'?';grid-column:1/-1':'')+'">'+T.en[k][0]+'</button>';}).join('')+'</div>'
-      +'<div style="font-size:12px;font-weight:800;margin-bottom:6px">2️⃣ Email: type theirs, tap SEND. Done.</div>'
+      +'<button type="button" class="sx-live-demo" style="width:100%;background:linear-gradient(135deg,#FF6B2B,#ff8c42);color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:900;cursor:pointer;font-family:inherit;margin-bottom:10px">🎬 Start Live Demo — they see your screen</button>'
+      +'<div style="font-size:12px;font-weight:800;margin-bottom:6px">1️⃣ Email: type theirs, tap SEND. Done.</div>'
       +'<input class="sx-em" type="email" inputmode="email" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="owner@company.com" style="'+IN+';margin-bottom:8px">'
       +'<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">'+(window.mxLang?'<div style="flex-basis:100%">'+mxLang.html()+'</div>':'')+''
       +'<button type="button" class="sx-send" style="flex:1;background:var(--green);color:#000;border:none;border-radius:10px;padding:15px;font-size:16px;font-weight:900;cursor:pointer;font-family:inherit">📧 SEND EMAIL</button></div>'
@@ -2224,7 +2245,7 @@ upd();
       if(to==='new')delete S.statuses[i];else S.statuses[i]=to;
       if(to==='closed'&&was!=='closed'){if(typeof addClose==='function')addClose();toast('✝️','Closed! God wins',P[i][0]+' counted.');}
       if(typeof sv==='function')sv();if(typeof renderP==='function')renderP();syncOthers();};});
-    b.querySelectorAll('.sx-chip').forEach(function(c){c.onclick=function(){var k=c.dataset.k;if(!U(k)){toast('🔗','No web address yet','Add it with ✏️ in the 🔗 Deal Links box (Partners tab).');return;}pick[k]=!pick[k];fill();};});
+    b.querySelector('.sx-live-demo').onclick=function(){startLiveDemo(b);};
     b.querySelector('.sx-send').onclick=function(){sendEmail(b);};
     b.querySelector('.sx-sms').onclick=function(){sendText(b,false);};
     b.querySelector('.sx-wa').onclick=function(){sendText(b,true);};
