@@ -103,7 +103,16 @@ body{background:#0f1117;color:#fff;font-family:'DM Sans',system-ui,sans-serif;mi
       </div>
       <button type="button" onclick="jtRefresh()" id="jt-refresh" title="Refresh" style="background:rgba(255,107,43,.15);border:1px solid rgba(255,107,43,.45);border-radius:20px;padding:5px 9px;font-size:11px;font-weight:700;cursor:pointer;color:#fff;font-family:inherit;white-space:nowrap">🔄 Refresh</button>
       <button onclick="toggleMarket()" id="market-btn" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;color:#fff;font-family:inherit;white-space:nowrap">🌎 Country</button>
+      <button onclick="toggleDemo()" id="demo-btn" style="display:none;background:rgba(255,107,43,.15);border:1px solid rgba(255,107,43,.45);border-radius:20px;padding:5px 9px;font-size:11px;font-weight:700;cursor:pointer;color:#FF6B2B;font-family:inherit;white-space:nowrap">🎬 Demo</button>
     </div>
+  </div>
+  <!-- DEMO BANNER (host) -->
+  <div id="demo-banner" style="display:none;background:rgba(255,107,43,.12);border-bottom:1px solid rgba(255,107,43,.3);padding:8px 16px;text-align:center;font-size:12px;font-weight:700;color:#FF6B2B;cursor:pointer" onclick="showDemoShare()">
+    📡 LIVE DEMO ACTIVE — tap to share link with client
+  </div>
+  <!-- VIEWER BANNER -->
+  <div id="viewer-banner" style="display:none;background:rgba(34,197,94,.08);border-bottom:1px solid rgba(34,197,94,.25);padding:8px 16px;text-align:center;font-size:12px;font-weight:700;color:#22C55E">
+    👁️ LIVE DEMO — following Brian's screen
   </div>
 
 <!-- AI BAR -->
@@ -329,6 +338,7 @@ var TX={
 function startApp(){
   document.getElementById('splash').style.display='none';
   document.getElementById('main').style.display='block';
+  if(!DEMO_VIEWER){var db=document.getElementById('demo-btn');if(db)db.style.display='block';}
   renderAll();
 }
 function setLang(l){
@@ -337,7 +347,95 @@ function setLang(l){
   document.getElementById('btn-es').className='lang-btn'+(l==='es'?' on':'');
   renderAll();
 }
-function goTab(t){TAB=t;renderAll();}
+function goTab(t){TAB=t;renderAll();demoEmit();}
+
+// ── LIVE DEMO SYNC ────────────────────────────────────────────────────────────
+var DEMO_MODE=false,DEMO_CODE='',DEMO_WS=null,DEMO_VIEWER=false,DEMO_LAST='';
+// Check if we're a viewer (?demo=CODE)
+(function(){
+  try{
+    var _dc=(new URLSearchParams(location.search).get('demo')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+    if(_dc.length>=4){DEMO_VIEWER=true;DEMO_CODE=_dc;demoStartViewer();}
+  }catch(e){}
+})();
+
+function demoGenCode(){return Math.random().toString(36).substr(2,6).toUpperCase();}
+function demoWsUrl(code){return 'wss://ws.piesocket.com/v3/jt-'+code+'?api_key=oCdCMcMPQpsbzs3QANhXk2xFkMoZI1VZkT5mAL&notify_self=0';}
+
+function demoConnect(code,onMsg){
+  try{
+    var ws=new WebSocket(demoWsUrl(code));
+    ws.onmessage=function(e){try{onMsg(JSON.parse(e.data));}catch(x){}};
+    ws.onclose=function(){if(DEMO_MODE||DEMO_VIEWER)setTimeout(function(){DEMO_WS=demoConnect(code,onMsg);},3000);};
+    return ws;
+  }catch(e){return null;}
+}
+
+function demoEmit(){
+  if(!DEMO_MODE||!DEMO_WS||DEMO_WS.readyState!==1)return;
+  var state=JSON.stringify({tab:TAB,jobTab:JOB_TAB});
+  if(state===DEMO_LAST)return;
+  DEMO_LAST=state;
+  try{DEMO_WS.send(JSON.stringify({tab:TAB,jobTab:JOB_TAB,t:Date.now()}));}catch(e){}
+}
+
+function toggleDemo(){
+  if(DEMO_MODE){demoStop();return;}
+  DEMO_CODE=demoGenCode();
+  DEMO_MODE=true;
+  DEMO_WS=demoConnect(DEMO_CODE,function(){/* host ignores inbound */});
+  document.getElementById('demo-banner').style.display='block';
+  document.getElementById('demo-btn').textContent='⏹ Stop';
+  document.getElementById('demo-btn').style.color='#EF4444';
+  document.getElementById('demo-btn').style.borderColor='#EF4444';
+  document.getElementById('demo-btn').style.background='rgba(239,68,68,.12)';
+  setTimeout(showDemoShare,400);
+}
+
+function demoStop(){
+  DEMO_MODE=false;
+  if(DEMO_WS){try{DEMO_WS.close();}catch(e){}}
+  DEMO_WS=null;DEMO_CODE='';DEMO_LAST='';
+  document.getElementById('demo-banner').style.display='none';
+  document.getElementById('demo-btn').textContent='🎬 Demo';
+  document.getElementById('demo-btn').style.color='#FF6B2B';
+  document.getElementById('demo-btn').style.borderColor='rgba(255,107,43,.45)';
+  document.getElementById('demo-btn').style.background='rgba(255,107,43,.15)';
+}
+
+function showDemoShare(){
+  var url=location.origin+location.pathname+'?demo='+DEMO_CODE;
+  var wa='https://wa.me/?text='+encodeURIComponent('Follow my JefeTech live demo here 👇\n'+url);
+  var msg='Share this link with your client:\n\n'+url+'\n\nThey open it on their phone and see everything you tap.';
+  if(confirm(msg+'\n\nTap OK to send via WhatsApp, or Cancel to copy the link.')){
+    window.open(wa,'_blank');
+  } else {
+    try{navigator.clipboard.writeText(url);}catch(e){}
+    alert('Link copied! ✅\n\n'+url);
+  }
+}
+
+function demoStartViewer(){
+  // Show viewer banner once DOM ready (or immediately if already ready)
+  function showViewerUI(){
+    var vb=document.getElementById('viewer-banner');
+    if(vb)vb.style.display='block';
+    var db=document.getElementById('demo-btn');
+    if(db)db.style.display='none';
+    // Also hide the AI bar to keep it clean for the client
+    var ab=document.getElementById('ai-bar');
+    if(ab)ab.style.display='none';
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',showViewerUI);}
+  else{showViewerUI();}
+  DEMO_WS=demoConnect(DEMO_CODE,function(data){
+    if(data.tab&&typeof data.tab==='string'){
+      TAB=data.tab;
+      if(data.jobTab&&typeof data.jobTab==='string')JOB_TAB=data.jobTab;
+      try{renderAll();}catch(e){}
+    }
+  });
+}
 function renderAll(){
   var t=TX[L];
   document.getElementById('hdr-title').textContent=t.hdrScreens[TAB]||'JefeTech';
@@ -1531,7 +1629,7 @@ function renderJobsHub(){
   });
   document.getElementById('jobs-tabs').innerHTML=tabs;
   document.querySelectorAll('.tab-btn').forEach(function(b){
-    b.onclick=function(){JOB_TAB=this.getAttribute('data-jt');renderJobsHub();};
+    b.onclick=function(){JOB_TAB=this.getAttribute('data-jt');renderJobsHub();demoEmit();};
   });
   var body='';
   // Always show Start Job card at top of Jobs
@@ -3717,10 +3815,16 @@ function init(){
     b.onclick=function(){goTab(this.getAttribute('data-tab'));};
   });
   goTab('safety');
-  setTimeout(function(){
-    document.getElementById('splash').style.opacity='0';
-    setTimeout(function(){document.getElementById('splash').style.display='none';document.getElementById('main').style.display='block';},400);
-  },1800);
+  if(DEMO_VIEWER){
+    // Skip splash for viewers — jump straight into the app
+    document.getElementById('splash').style.display='none';
+    document.getElementById('main').style.display='block';
+  } else {
+    setTimeout(function(){
+      document.getElementById('splash').style.opacity='0';
+      setTimeout(function(){document.getElementById('splash').style.display='none';document.getElementById('main').style.display='block';if(!DEMO_VIEWER){var db=document.getElementById('demo-btn');if(db)db.style.display='block';}},400);
+    },1800);
+  }
 }
 init();
 </script>
