@@ -1184,11 +1184,12 @@ function clearDet(){
   document.getElementById('det-body').style.display='none';
 }
 
-function waP(i){var p=P[i],n=p[1].replace(/\D/g,'');if(n.length===10)n='1'+n;window.open('https://wa.me/'+n,'_blank');}
+function goURL(u){var a=document.createElement('a');a.href=u;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();document.body.removeChild(a);}
+function waP(i){var p=P[i],n=p[1].replace(/\D/g,'');if(n.length===10)n='1'+n;goURL('https://wa.me/'+n);}
 function waSelected(){if(S.sel!==null)waP(S.sel);}
 function callBtn(e,el){var n=el.getAttribute('data-ph');if(!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){e.preventDefault();navigator.clipboard.writeText('+'+n).then(function(){showToast('📋 Copied: +'+n);}).catch(function(){showToast('📞 '+n);});}}
 function callSelected(){if(S.sel===null)return;var n=P[S.sel][1].replace(/\D/g,'');var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);if(isMobile){window.open('tel:+'+n,'_self');}else{navigator.clipboard.writeText('+'+n).then(function(){showToast('📋 Number copied: +'+n);}).catch(function(){showToast('📞 Call: +'+n);});}}
-function shareScreenDet(type){var el=document.getElementById('share-phone-det');var phone=(el&&el.value.trim())||(S.sel!==null?P[S.sel][1]:'');if(!phone){showToast({i:'📺',t:'Enter their phone number first',s:'Or tap a prospect'});return;}var n=phone.replace(/\D/g,'');if(n.length===10)n='1'+n;var url='https://go.myjefetech.app/demo.html';var msg='Hey, it\'s Brian Lalo from MX Studio. Open this link while we talk, it pops up the JefeTech app and owner dashboard and I\'ll walk you through it real quick 👉 '+url;if(type==='wa'){window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');}else{location.href='sms:+'+n+'?&body='+encodeURIComponent(msg);}}
+function shareScreenDet(type){var el=document.getElementById('share-phone-det');var phone=(el&&el.value.trim())||(S.sel!==null?P[S.sel][1]:'');if(!phone){showToast({i:'📺',t:'Enter their phone number first',s:'Or tap a prospect'});return;}var n=phone.replace(/\D/g,'');if(n.length===10)n='1'+n;var url='https://go.myjefetech.app/demo.html';var msg='Hey, it\'s Brian Lalo from MX Studio. Open this link while we talk, it pops up the JefeTech app and owner dashboard and I\'ll walk you through it real quick 👉 '+url;if(type==='wa'){goURL('https://wa.me/'+n+'?text='+encodeURIComponent(msg));}else{location.href='sms:+'+n+'?&body='+encodeURIComponent(msg);}}
 function buildMsg(name){
   var link='https://go.myjefetech.app/checkout.html?ref=brian';
   var appLink='https://myjefetech.app';
@@ -1210,7 +1211,7 @@ function sendLink(type){
     var p=P[S.sel],n=p[1].replace(/\D/g,'');
     if(n.length===10)n='1'+n;
     var msg='Hey '+p[0]+'! '+msgs[type].split('Hey! ')[1];
-    window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
+    goURL('https://wa.me/'+n+'?text='+encodeURIComponent(msg));
   } else {
     navigator.clipboard.writeText(links[type]);
     showToast({i:"📋",t:"Link Copied!",s:"Paste it into any message."});
@@ -1231,7 +1232,7 @@ function stripeSelected(){
   var n=p[1].replace(/\D/g,'');
   if(n.length===10)n='1'+n;
   var msg=buildMsg(p[0]);
-  window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
+  goURL('https://wa.me/'+n+'?text='+encodeURIComponent(msg));
 }
 function sendDeviceLink(){
   var tabletLink='https://www.amazon.com/s?k=android+tablet+under+100+dollars';
@@ -1240,7 +1241,7 @@ function sendDeviceLink(){
     var p=P[S.sel],n=p[1].replace(/\D/g,'');
     if(n.length===10)n='1'+n;
     var msg='Hey '+p[0]+'! No worries about the device — here are a couple options on Amazon:\n\n📦 Budget Android Tablet (under $100):\n'+tabletLink+'\n\n📱 Refurbished iPhone:\n'+iphoneLink+'\n\nPick one, get it delivered, and we get you set up on JefeTech. If you ever don\'t want to keep the app, cancel and I refund your most recent month.\n\n— Brian Lalo · +1 (408) 422-3505';
-    window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
+    goURL('https://wa.me/'+n+'?text='+encodeURIComponent(msg));
   } else {
     showToast({i:"👆",t:"Select a prospect first",s:"Click a row in the Prospects tab."});
   }
@@ -1318,7 +1319,7 @@ function sendCleanDash(){
     var p=P[S.sel],n=p[1].replace(/\D/g,'');
     if(n.length===10)n='1'+n;
     var msg='Hey '+p[0]+'! Welcome to JefeTech! 🎉\n\nHere is your dashboard (La Forja) — your command center for every job and crew member:\n👉 '+link+'\n\nAnd your field app:\n👉 https://myjefetech.app\n\nAny questions, WhatsApp me anytime.\n— Brian Lalo · +1 (408) 422-3505';
-    window.open('https://wa.me/'+n+'?text='+encodeURIComponent(msg),'_blank');
+    goURL('https://wa.me/'+n+'?text='+encodeURIComponent(msg));
   } else {
     navigator.clipboard.writeText(link);
     showToast({i:"📋",t:"Dashboard Link Copied!",s:"Send to your new customer."});
@@ -2967,7 +2968,7 @@ window.showTab=function(n,b){
     if(num.length===10)num='1'+num;
     var who=(S.contacts&&S.contacts[S.sel])?S.contacts[S.sel].split(' ')[0]:'';
     var msg='Hi'+(who?' '+who:'')+', Brian Lalo from MX Studio here. Here is JefeTech '+p.n+': '+p.w+'\n\nSign up here 👉 '+p.u+'\n\nAny questions, just reply. God bless.';
-    if(via==='wa')window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
+    if(via==='wa')goURL('https://wa.me/'+num+'?text='+encodeURIComponent(msg));
     else location.href='sms:+'+num+'?&body='+encodeURIComponent(msg);
   };
 })();
@@ -3013,7 +3014,7 @@ window.refreshBossView=function(show){
   window.rhShare=function(k){
     var l=lang(),u=PAGE+'?lang='+l,txt=MSG[l]+u,t=target();
     if(k==='native'){if(navigator.share){navigator.share({title:'MX Studio · 7% referral',text:MSG[l],url:u}).catch(function(){});return;}k='wa';}
-    if(k==='wa')window.open('https://wa.me/'+(t&&t.num?t.num:'')+'?text='+encodeURIComponent(txt),'_blank');
+    if(k==='wa')goURL('https://wa.me/'+(t&&t.num?t.num:'')+'?text='+encodeURIComponent(txt));
     else if(k==='sms')location.href='sms:'+(t&&t.num?'+'+t.num:'')+'?&body='+encodeURIComponent(txt);
     else location.href='mailto:'+(t&&t.email?t.email:'')+'?subject='+encodeURIComponent(l==='es'?'Programa de referidos MX Studio (7%)':'MX Studio referral program (7%)')+'&body='+encodeURIComponent(txt);
   };
