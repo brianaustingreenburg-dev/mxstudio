@@ -2108,17 +2108,18 @@ upd();
     var phEl=b.querySelector('.sx-ph');var ph=phEl?digits(phEl.value):'';
     var waMsg='Follow along on my live JefeTech demo 👇\n\nOpen this link on your phone — you\'ll see everything I tap in real time:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️';
     var waUrl=ph?'https://wa.me/'+ph+'?text='+encodeURIComponent(waMsg):'https://wa.me/?text='+encodeURIComponent(waMsg);
-    var smsUrl='sms:+'+(ph||'')+( ph?'&':'?')+'&body='+encodeURIComponent(waMsg);
+    // Open app in new tab (you demo on Mac)
+    window.open(url,'_blank');
+    // Open WhatsApp Web to their number with demo link pre-filled
+    window.open(waUrl,'_blank');
+    // Small panel confirms it fired, lets them copy if needed
     var existing=b.querySelector('.sx-demo-panel');if(existing)existing.remove();
     var panel=document.createElement('div');
     panel.className='sx-demo-panel';
     panel.style.cssText='background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.3);border-radius:10px;padding:12px;margin-bottom:8px';
-    panel.innerHTML='<div style="font-size:11px;font-weight:800;color:#FF6B2B;margin-bottom:10px">🔴 Live Demo — send link to '+(pName||'client')+'</div>'
-      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">'
-      +'<a href="'+waUrl+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:13px;font-size:14px;font-weight:900;text-align:center;text-decoration:none">💬 WhatsApp</a>'
-      +'<a href="'+smsUrl+'" style="display:block;background:#0A84FF;color:#fff;border-radius:8px;padding:13px;font-size:14px;font-weight:900;text-align:center;text-decoration:none">📱 SMS</a>'
-      +'</div>'
-      +'<button onclick="navigator.clipboard.writeText(\''+url+'\');this.textContent=\'✅ Copied!\';var me=this;setTimeout(function(){me.textContent=\'📋 Copy Link\'},2000)" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:8px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;margin-bottom:6px">📋 Copy Link</button>'
+    panel.innerHTML='<div style="font-size:12px;font-weight:800;color:#FF6B2B;margin-bottom:6px">🔴 Live! App open + WhatsApp sent to '+(pName||'client')+'</div>'
+      +'<div style="font-size:11px;color:#9CA3AF;margin-bottom:8px">Code: <span style="font-family:monospace;letter-spacing:2px;color:#fff">'+code+'</span></div>'
+      +'<button onclick="navigator.clipboard.writeText(\''+url+'\');this.textContent=\'✅ Copied!\';var me=this;setTimeout(function(){me.textContent=\'📋 Copy Link\'},2000)" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;margin-bottom:6px">📋 Copy Link</button>'
       +'<button onclick="this.parentNode.remove()" style="width:100%;background:none;border:none;color:#9CA3AF;font-size:11px;cursor:pointer;font-family:inherit;padding:2px">✕ Close</button>';
     var demoBtn=b.querySelector('.sx-live-demo');
     demoBtn.parentNode.insertBefore(panel,demoBtn.nextSibling);
