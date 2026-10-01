@@ -1438,7 +1438,33 @@ upd();
     {c:'QR',z:'America/Cancun',n:'Mexico — Cancún / Quintana Roo',f:'🇲🇽'},
     {c:'AU',z:'Australia/Sydney',n:'Australia — Sydney / Melbourne',f:'🇦🇺'},
     {c:'AQ',z:'Australia/Brisbane',n:'Australia — Brisbane',f:'🇦🇺'},
-    {c:'PH',z:'Asia/Manila',n:'Philippines (+ Perth)',f:'🇵🇭'}
+    {c:'PH',z:'Asia/Manila',n:'Philippines (+ Perth)',f:'🇵🇭'},
+    {c:'GB',z:'Europe/London',n:'United Kingdom',f:'🇬🇧'},
+    {c:'NZ',z:'Pacific/Auckland',n:'New Zealand',f:'🇳🇿'},
+    {c:'ZA',z:'Africa/Johannesburg',n:'South Africa',f:'🇿🇦'},
+    {c:'AE',z:'Asia/Dubai',n:'UAE / Dubai',f:'🇦🇪'},
+    {c:'IN',z:'Asia/Kolkata',n:'India',f:'🇮🇳'},
+    {c:'SG',z:'Asia/Singapore',n:'Singapore / Malaysia',f:'🇸🇬🇲🇾'},
+    {c:'BR',z:'America/Sao_Paulo',n:'Brazil',f:'🇧🇷'},
+    {c:'DO',z:'America/Santo_Domingo',n:'Dominican Republic',f:'🇩🇴'},
+    {c:'CO',z:'America/Bogota',n:'Colombia',f:'🇨🇴'},
+    {c:'JM',z:'America/Jamaica',n:'Jamaica',f:'🇯🇲'},
+    {c:'PA',z:'America/Panama',n:'Panama',f:'🇵🇦'},
+    {c:'CR',z:'America/Costa_Rica',n:'Costa Rica',f:'🇨🇷'},
+    {c:'GT',z:'America/Guatemala',n:'Guatemala',f:'🇬🇹'},
+    {c:'HN',z:'America/Tegucigalpa',n:'Honduras',f:'🇭🇳'},
+    {c:'EC',z:'America/Guayaquil',n:'Ecuador',f:'🇪🇨'},
+    {c:'PE',z:'America/Lima',n:'Peru',f:'🇵🇪'},
+    {c:'CL',z:'America/Santiago',n:'Chile',f:'🇨🇱'},
+    {c:'AR',z:'America/Argentina/Buenos_Aires',n:'Argentina',f:'🇦🇷'},
+    {c:'NG',z:'Africa/Lagos',n:'Nigeria',f:'🇳🇬'},
+    {c:'GH',z:'Africa/Accra',n:'Ghana',f:'🇬🇭'},
+    {c:'KE',z:'Africa/Nairobi',n:'Kenya',f:'🇰🇪'},
+    {c:'IE',z:'Europe/Dublin',n:'Ireland',f:'🇮🇪'},
+    {c:'BD',z:'Asia/Dhaka',n:'Bangladesh',f:'🇧🇩'},
+    {c:'PK',z:'Asia/Karachi',n:'Pakistan',f:'🇵🇰'},
+    {c:'RO',z:'Europe/Bucharest',n:'Romania',f:'🇷🇴'},
+    {c:'UA',z:'Europe/Kiev',n:'Ukraine',f:'🇺🇦'}
   ];
   var ZI={};ZONES.forEach(function(o,i){ZI[o.c]=i;});
   var ST={CT:'ET',DE:'ET',DC:'ET',FL:'ET',GA:'ET',IN:'ET',KY:'ET',ME:'ET',MD:'ET',MA:'ET',MI:'ET',NH:'ET',NJ:'ET',NY:'ET',NC:'ET',OH:'ET',PA:'ET',RI:'ET',SC:'ET',VT:'ET',VA:'ET',WV:'ET',ON:'ET',QC:'ET',
@@ -1449,12 +1475,17 @@ upd();
     SK:'CT',NS:'ET',NB:'ET',PE:'ET',NL:'MX',
     CDMX:'MX',JAL:'MX',PUE:'MX',YUC:'MX',GRO:'MX',MEX:'MX',QRO:'MX',GTO:'MX',VER:'MX',OAX:'MX',MICH:'MX',COAH:'MX',TAM:'MX',SLP:'MX',AGS:'MX',HGO:'MX',MOR:'MX',CHIS:'MX',TAB:'MX',CAMP:'MX',QROO:'QR',ZAC:'MX',DGO:'MX',
     NSW:'AU',VIC:'AU',TAS:'AU',ACT:'AU',SAU:'AU',QLD:'AQ',NT:'AQ',WAU:'PH',SON:'AZ',BCN:'PT',CHIH:'MX',SIN:'AZ',NAY:'AZ',COL:'MX',TLAX:'MX',HI:'HI',NF:'ET',
-    PH:'PH'};
+    PH:'PH',
+    GB:'GB',NZ:'NZ',ZA:'ZA',AE:'AE',IN:'IN',SG:'SG',MY:'SG',
+    BR:'BR',DO:'DO',CO:'CO',JM:'JM',PA:'PA',CR:'CR',GT:'GT',HN:'HN',
+    EC:'EC',PE:'PE',CL:'CL',AR:'AR',
+    NG:'NG',GH:'GH',KE:'KE',IE:'IE',BD:'BD',PK:'PK',RO:'RO',UA:'UA'};
   var CITY={'knoxville':'ET','chattanooga':'ET','johnson city':'ET','kingsport':'ET','pensacola':'CT','panama city':'CT','el paso':'MT','rapid city':'MT','coeur d\'alene':'PT'};
   function startH(code){var d=diffH(ZONES[ZI[code]].z),st=((8-d)%24+24)%24;return st<4?st+24:st;}
   function rank(code){return startH(code)*10+ZI[code];}
   function tzCode(p){if((p[3]||'').toUpperCase()==='WA'&&/australia|perth/i.test(p[2]||''))return 'PH';var c=CITY[(p[2]||'').toLowerCase()];return c||ST[(p[3]||'').toUpperCase()]||'CT';}
   window.tzCode=tzCode;
+  window.PARTNERS=PARTNERS;
 
   function wall(zone){ // current wall-clock time in a zone as a Date
     return new Date(new Date().toLocaleString('en-US',{timeZone:zone}));
@@ -1882,7 +1913,25 @@ upd();
 <script>
 /* ===== ✝️ Loyalty Program (Brian) ===== */
 (function(){
-  var PARTNERS=[{k:'p1',n:'Partner 1 🇲🇽'},{k:'p2',n:'Partner 2 🇺🇸'},{k:'us',n:'Partner 🇺🇸 US'},{k:'ca',n:'Partner 🇨🇦 Canada'},{k:'au',n:'Partner 🇦🇺 Australia'},{k:'ph',n:'Partner 🇵🇭 Philippines'}];
+  var PARTNERS=[
+    {k:'p1',n:'Partner 1 🇲🇽'},{k:'p2',n:'Partner 2 🇺🇸'},
+    {k:'us',n:'Partner 🇺🇸 US'},{k:'ca',n:'Partner 🇨🇦 Canada'},
+    {k:'mx',n:'Partner 🇲🇽 Mexico'},{k:'au',n:'Partner 🇦🇺 Australia'},
+    {k:'ph',n:'Partner 🇵🇭 Philippines'},{k:'gb',n:'Partner 🇬🇧 UK'},
+    {k:'nz',n:'Partner 🇳🇿 New Zealand'},{k:'za',n:'Partner 🇿🇦 South Africa'},
+    {k:'ae',n:'Partner 🇦🇪 UAE'},{k:'in',n:'Partner 🇮🇳 India'},
+    {k:'sg',n:'Partner 🇸🇬 Singapore'},{k:'br',n:'Partner 🇧🇷 Brazil'},
+    {k:'do',n:'Partner 🇩🇴 Dominican Republic'},{k:'co',n:'Partner 🇨🇴 Colombia'},
+    {k:'jm',n:'Partner 🇯🇲 Jamaica'},{k:'pa',n:'Partner 🇵🇦 Panama'},
+    {k:'cr',n:'Partner 🇨🇷 Costa Rica'},{k:'gt',n:'Partner 🇬🇹 Guatemala'},
+    {k:'hn',n:'Partner 🇭🇳 Honduras'},{k:'ec',n:'Partner 🇪🇨 Ecuador'},
+    {k:'pe',n:'Partner 🇵🇪 Peru'},{k:'cl',n:'Partner 🇨🇱 Chile'},
+    {k:'ar',n:'Partner 🇦🇷 Argentina'},{k:'ng',n:'Partner 🇳🇬 Nigeria'},
+    {k:'gh',n:'Partner 🇬🇭 Ghana'},{k:'ke',n:'Partner 🇰🇪 Kenya'},
+    {k:'ie',n:'Partner 🇮🇪 Ireland'},{k:'my',n:'Partner 🇲🇾 Malaysia'},
+    {k:'bd',n:'Partner 🇧🇩 Bangladesh'},{k:'pk',n:'Partner 🇵🇰 Pakistan'},
+    {k:'ro',n:'Partner 🇷🇴 Romania'},{k:'ua',n:'Partner 🇺🇦 Ukraine'}
+  ];
   var LS='bl-loyalty', data={}, col=null, box=null;
   function rate(y){return y<=3?3:(y<=7?7:13);}
   function money(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -2622,7 +2671,7 @@ upd();
     box.style.cssText='background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:16px';
     var la=document.getElementById('loyalty-admin');
     if(la&&la.parentNode===host)host.insertBefore(box,la.nextSibling);else host.insertBefore(box,host.firstChild);
-    function who(){return [{k:'p1',n:'Partner 1 🇲🇽'},{k:'p2',n:'Partner 2 🇺🇸'},{k:'us',n:'Partner 🇺🇸 US'},{k:'ca',n:'Partner 🇨🇦 Canada'},{k:'au',n:'Partner 🇦🇺 Australia'},{k:'ph',n:'Partner 🇵🇭 Philippines'}].filter(function(w){var ld=window.__loyData||{};return (ld[w.k]&&ld[w.k].start)||(window.__cmRows||[]).some(function(r){return r.partner===w.k;});});}
+    function who(){return window.PARTNERS.filter(function(w){var ld=window.__loyData||{};return (ld[w.k]&&ld[w.k].start)||(window.__cmRows||[]).some(function(r){return r.partner===w.k;});});}
     function render(){
       var rows=window.__cmRows||[],t=T[lang()];var WHO=who();
       var h='<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:8px"><div style="font-size:16px;font-weight:900">📜 Active Partners ✝️</div><div style="font-size:11px;color:var(--muted)">60 days no sale = inactive · residuals 6 more months</div></div>';
