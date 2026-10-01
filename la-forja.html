@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Forja — JefeTech War Room</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08090d;
+  --surface:#0f1117;
+  --card:#141720;
+  --border:rgba(255,255,255,.07);
+  --orange:#FF6B2B;
+  --gold:#F59E0B;
+  --green:#22C55E;
+  --red:#EF4444;
+  --blue:#60A5FA;
+  --white:#F0EDE8;
+  --muted:#94A3B8;
+  --dim:#3a3f52;
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,sans-serif}
+
+/* ── HEADER ── */
+.hdr{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,9,13,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+  display:flex;align-items:center;gap:16px;height:56px;
+}
+.hdr-cross{font-size:22px;flex-shrink:0}
+.hdr-brand{display:flex;flex-direction:column}
+.hdr-name{font-size:15px;font-weight:900;color:var(--white);letter-spacing:-.3px}
+.hdr-sub{font-size:10px;color:var(--dim);font-weight:500;font-family:DM Mono,monospace}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(34,197,94,.4);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.live-label{font-size:10px;font-weight:700;color:var(--green);font-family:DM Mono,monospace}
+.clock{font-size:13px;font-weight:600;color:var(--muted);font-family:DM Mono,monospace}
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;color:var(--white);cursor:pointer;font-family:inherit}
+
+/* ── LAYOUT ── */
+.main{padding:20px 24px 40px;max-width:1400px;margin:0 auto}
+
+/* ── FORJA TITLE ── */
+.forja-title{
+  text-align:center;padding:32px 0 24px;
+  border-bottom:1px solid var(--border);margin-bottom:24px;
+}
+.forja-cross{font-size:48px;display:block;margin-bottom:8px;filter:drop-shadow(0 0 20px rgba(255,107,43,.4))}
+.forja-wordmark{font-size:42px;font-weight:900;letter-spacing:-1px;color:var(--white)}
+.forja-wordmark span{color:var(--orange)}
+.forja-tagline{font-size:12px;color:var(--dim);margin-top:4px;font-family:DM Mono,monospace;letter-spacing:2px}
+
+/* ── KPI ROW ── */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--orange))}
+.kpi-label{font-size:10px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;font-family:DM Mono,monospace}
+.kpi-value{font-size:32px;font-weight:900;color:var(--accent,var(--orange));line-height:1;margin-bottom:4px}
+.kpi-sub{font-size:11px;color:var(--dim)}
+
+/* ── GRID ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.span-2{grid-column:span 2}
+
+/* ── SECTION ── */
+.section{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.section-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.section-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-family:DM Mono,monospace}
+.section-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px}
+.section-body{padding:14px 18px}
+
+/* ── JOB ROWS ── */
+.job-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.job-row:last-child{border-bottom:none}
+.job-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.job-name{font-size:13px;font-weight:700;color:var(--white);flex:1;min-width:0}
+.job-addr{font-size:11px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.job-bar-wrap{width:80px;background:rgba(255,255,255,.06);border-radius:20px;height:5px;overflow:hidden;flex-shrink:0}
+.job-bar{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--orange),var(--gold))}
+.job-pct{font-size:11px;font-weight:700;color:var(--orange);width:32px;text-align:right;flex-shrink:0;font-family:DM Mono,monospace}
+.job-val{font-size:11px;font-weight:700;color:var(--green);flex-shrink:0;font-family:DM Mono,monospace}
+.status-pill{font-size:9px;font-weight:700;border-radius:20px;padding:2px 7px;flex-shrink:0;text-transform:uppercase}
+
+/* ── CREW ROWS ── */
+.crew-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.crew-row:last-child{border-bottom:none}
+.crew-avatar{width:30px;height:30px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+.crew-name{font-size:12px;font-weight:700;color:var(--white);flex:1}
+.crew-role{font-size:10px;color:var(--dim)}
+.crew-status{font-size:10px;font-weight:700;font-family:DM Mono,monospace}
+.crew-hrs{font-size:11px;color:var(--muted);font-family:DM Mono,monospace}
+
+/* ── ALERT ROWS ── */
+.alert-row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;margin-bottom:6px}
+.alert-row:last-child{margin-bottom:0}
+
+/* ── MONEY ROW ── */
+.money-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.money-row:last-child{border-bottom:none}
+.money-label{font-size:12px;color:var(--muted)}
+.money-val{font-size:14px;font-weight:800;font-family:DM Mono,monospace}
+
+/* ── WEATHER ── */
+.weather-card{background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.15);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.weather-icon{font-size:28px;flex-shrink:0}
+.weather-temp{font-size:20px;font-weight:800;color:var(--white)}
+.weather-desc{font-size:11px;color:var(--muted)}
+.weather-meta{font-size:10px;color:var(--dim);font-family:DM Mono,monospace}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:24px;border-top:1px solid var(--border);margin-top:24px}
+.footer-cross{font-size:28px;display:block;margin-bottom:6px}
+.footer-text{font-size:11px;color:var(--dim);line-height:1.8;font-family:DM Mono,monospace}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .span-2{grid-column:span 1}
+}
+@media(max-width:500px){
+  .job-row{flex-wrap:wrap;gap:6px 10px}
+  .job-row>div:nth-child(2){flex:1 1 calc(100% - 20px)!important}
+  .job-row .job-bar-wrap{flex:1;width:auto;margin-left:18px}
+  .job-addr{white-space:normal}
+  .hdr{height:auto;flex-wrap:wrap;padding:8px 14px;gap:8px}.hdr-right{margin-left:0;width:100%;flex-wrap:wrap;gap:6px}.clock,.live-label,.pulse{display:none}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .kpi-value{font-size:24px}
+  .forja-wordmark{font-size:30px}
+  .main{padding:14px 14px 40px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <span class="hdr-cross">✝️</span>
+  <div class="hdr-brand">
+    <div class="hdr-name">La Forja</div>
+    <div class="hdr-sub" data-en="JefeTech · MX Studio · War Room" data-es="JefeTech · MX Studio · Sala de Guerra">JefeTech · MX Studio · War Room</div>
+  </div>
+  <div class="hdr-right">
+    <div class="pulse"></div>
+    <span class="live-label">LIVE</span>
+    <span class="clock" id="clock">--:--</span>
+    <button onclick="sendToOffice()" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#22C55E;cursor:pointer;font-family:inherit" data-en="📤 Share" data-es="📤 Compartir">📤 Share</button>
+    <a href="https://myjefetech.app" target="_blank" rel="noopener" style="background:rgba(255,107,43,.1);border:1px solid rgba(255,107,43,.25);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:#FF6B2B;text-decoration:none">📱 App</a>
+    <button class="lang-btn" onclick="toggleLang()">ES</button>
+    <button class="lang-btn" onclick="location.replace(location.href.split('?')[0]+'?v='+Date.now())" title="Refresh" data-en="🔄 Refresh" data-es="🔄 Actualizar">🔄 Refresh</button>
+  </div>
+</header>
+
+<!-- AI BAR -->
+<div style="background:rgba(255,107,43,.06);border-bottom:1px solid rgba(255,107,43,.15);padding:10px 16px">
+  <div id="ai-messages" style="display:none;margin-bottom:8px;max-height:160px;overflow-y:auto"></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <span style="font-size:18px;flex-shrink:0">🤖</span>
+    <input class="ai-input" id="ai-input" placeholder="Hey, I'm Claude — ask me anything about your jobs, crew, or money..." onkeydown="if(event.key==='Enter')sendToAI()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;color:#F0EDE8;font-size:13px;font-family:inherit;outline:none">
+    <button class="ai-send" onclick="sendToAI()" style="background:#FF6B2B;border:none;border-radius:10px;padding:10px 16px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap">Send</button>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- FORJA TITLE -->
+  <div class="forja-title">
+    <span class="forja-cross">✝️</span>
+    <div class="forja-wordmark">La <span>Forja</span></div>
+    <div class="forja-tagline" id="tagline">THE FORGE · JEFETECH WAR ROOM</div>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="kpi-row">
+    <div class="kpi" style="--accent:#FF6B2B">
+      <div class="kpi-label" data-en="Active Jobs" data-es="Trabajos Activos">Active Jobs</div>
+      <div class="kpi-value" id="kpi-jobs">--</div>
+      <div class="kpi-sub" id="kpi-jobs-sub">loading...</div>
+    </div>
+    <div class="kpi" style="--accent:#F59E0B">
+      <div class="kpi-label" data-en="Crew On Site" data-es="Cuadrilla en Sitio">Crew On Site</div>
+      <div class="kpi-value" id="kpi-crew">--</div>
+      <div class="kpi-sub" id="kpi-crew-sub">loading...</div>
+    </div>
+    <div class="kpi" style="--accent:#22C55E">
+      <div class="kpi-label" data-en="Pipeline" data-es="Pipeline Total">Pipeline</div>
+      <div class="kpi-value" id="kpi-pipeline">--</div>
+      <div class="kpi-sub" id="kpi-pipeline-sub">loading...</div>
+    </div>
+    <div class="kpi" style="--accent:#60A5FA">
+      <div class="kpi-label" data-en="Collected" data-es="Cobrado">Collected</div>
+      <div class="kpi-value" id="kpi-collected">--</div>
+      <div class="kpi-sub" id="kpi-collected-sub">loading...</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Jobs + Alerts -->
+  <div class="grid-2">
+
+    <!-- Job Board -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="📋 Job Board" data-es="📋 Tablero de Trabajos">📋 Job Board</span>
+        <span class="section-badge" id="jobs-badge" style="background:rgba(255,107,43,.12);color:#FF6B2B">-- active</span>
+      </div>
+      <div class="section-body" id="job-board">
+        <div style="text-align:center;padding:24px;color:var(--dim);font-size:12px">Loading jobs...</div>
+      </div>
+    </div>
+
+    <!-- Alerts + Money -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <!-- Alerts -->
+      <div class="section">
+        <div class="section-hdr">
+          <span class="section-title" data-en="🔔 Alerts" data-es="🔔 Alertas">🔔 Alerts</span>
+          <span class="section-badge" id="alerts-badge" style="background:rgba(239,68,68,.12);color:#EF4444">--</span>
+        </div>
+        <div class="section-body" id="alerts-board">
+          <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Checking for alerts...</div>
+        </div>
+      </div>
+
+      <!-- Money -->
+      <div class="section">
+        <div class="section-hdr">
+          <span class="section-title" data-en="💰 Financial Snapshot" data-es="💰 Resumen Financiero">💰 Financial Snapshot</span>
+        </div>
+        <div class="section-body" id="money-board">
+          <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading financials...</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ROW 2B: Supervisor Reports + Change Orders + Materials -->
+  <div class="grid-2" style="margin-bottom:16px">
+
+    <!-- Supervisor Daily Reports -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="📋 Supervisor Reports" data-es="📋 Reportes del Supervisor">📋 Supervisor Reports</span>
+      </div>
+      <div class="section-body" id="supervisor-reports">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Change Orders -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="✍️ Change Orders" data-es="✍️ Órdenes de Cambio">✍️ Change Orders</span>
+        <span class="section-badge" id="co-badge" style="background:rgba(245,158,11,.12);color:#F59E0B">--</span>
+      </div>
+      <div class="section-body" id="change-orders-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 2C: Materials + Invoice Tracker + Clock Log -->
+  <div class="grid-3" style="margin-bottom:16px">
+
+    <!-- Materials Needed -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="🧱 Materials Needed" data-es="🧱 Materiales Necesarios">🧱 Materials Needed</span>
+        <span class="section-badge" id="mat-badge" style="background:rgba(239,68,68,.12);color:#EF4444">--</span>
+      </div>
+      <div class="section-body" id="materials-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Invoice Tracker -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="🧾 Invoices" data-es="🧾 Facturas">🧾 Invoices</span>
+      </div>
+      <div class="section-body" id="invoice-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Clock Log -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="🕐 Time Log" data-es="🕐 Registro de Horas">🕐 Time Log</span>
+      </div>
+      <div class="section-body" id="clock-log-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 2D: Job Progress + Next Jobs -->
+  <div class="grid-2" style="margin-bottom:16px">
+
+    <!-- Job Progress -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="📊 Job Progress" data-es="📊 Progreso de Trabajos">📊 Job Progress</span>
+      </div>
+      <div class="section-body" id="job-progress-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Next Jobs Scheduled -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="📅 Scheduled Next" data-es="📅 Próximos Trabajos">📅 Scheduled Next</span>
+      </div>
+      <div class="section-body" id="next-jobs-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW 3: Crew + Weather + Quick Actions -->
+  <div class="grid-3">
+
+    <!-- Crew Status -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="👷 Crew Status" data-es="👷 Estado de Cuadrilla">👷 Crew Status</span>
+        <span class="section-badge" id="crew-badge" style="background:rgba(34,197,94,.12);color:#22C55E">-- on site</span>
+      </div>
+      <div class="section-body" id="crew-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Loading crew...</div>
+      </div>
+    </div>
+
+    <!-- Weather -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="🌤️ Weather" data-es="🌤️ Clima">🌤️ Weather</span>
+        <button onclick="fetchWeather()" style="background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.2);border-radius:8px;padding:4px 10px;color:#60A5FA;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit" data-en="🔄 Refresh" data-es="🔄 Actualizar">🔄 Refresh</button>
+      </div>
+      <div class="section-body" id="weather-board">
+        <div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">Fetching weather...</div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title" data-en="⚡ Quick Actions" data-es="⚡ Acciones Rápidas">⚡ Quick Actions</span>
+      </div>
+      <div class="section-body" style="display:flex;flex-direction:column;gap:8px">
+        <div onclick="clearAlerts()" style="display:flex;align-items:center;gap:10px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:12px;cursor:pointer">
+          <span style="font-size:18px">✅</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--white)" data-en="Clear Alerts" data-es="Limpiar Alertas">Clear Alerts</div>
+            <div style="font-size:10px;color:var(--dim)" data-en="Mark all as reviewed" data-es="Marcar todas como revisadas">Mark all as reviewed</div>
+          </div>
+        </div>
+        <div onclick="exportDailyReport()" style="display:flex;align-items:center;gap:10px;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.2);border-radius:10px;padding:12px;cursor:pointer">
+          <span style="font-size:18px">📤</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--white)" data-en="Send Daily Report" data-es="Enviar Reporte Diario">Send Daily Report</div>
+            <div style="font-size:10px;color:var(--dim)" data-en="WhatsApp summary to all crew" data-es="Resumen por WhatsApp a cuadrilla">WhatsApp summary to all crew</div>
+          </div>
+        </div>
+        <div onclick="exportPayroll()" style="display:flex;align-items:center;gap:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px;cursor:pointer">
+          <span style="font-size:18px">💰</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--white)" data-en="Export Payroll" data-es="Exportar Nómina">Export Payroll</div>
+            <div style="font-size:10px;color:var(--dim)" data-en="Crew hours & pay summary" data-es="Horas y pago de cuadrilla">Crew hours & pay summary</div>
+          </div>
+        </div>
+        <div onclick="callCrewMeeting()" style="display:flex;align-items:center;gap:10px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:10px;padding:12px;cursor:pointer">
+          <span style="font-size:18px">📢</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--white)" data-en="Crew Announcement" data-es="Anuncio a Cuadrilla">Crew Announcement</div>
+            <div style="font-size:10px;color:var(--dim)" data-en="Send message to all workers" data-es="Enviar mensaje a todos">Send message to all workers</div>
+          </div>
+        </div>
+        <div onclick="window.print()" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;cursor:pointer">
+          <span style="font-size:18px">🖨️</span>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--white)" data-en="Print War Room" data-es="Imprimir Sala de Guerra">Print War Room</div>
+            <div style="font-size:10px;color:var(--dim)" data-en="Full daily summary" data-es="Resumen completo del día">Full daily summary</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <!-- CONTACT SECTION -->
+  <div class="section" style="margin-bottom:16px">
+    <div class="section-hdr">
+      <span class="section-title" data-en="📞 Contact Crew" data-es="📞 Contactar Cuadrilla">📞 Contact Crew</span>
+    </div>
+    <div class="section-body">
+
+      <!-- Message all crew -->
+      <div onclick="messageAllCrew()" style="display:flex;align-items:center;gap:12px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:12px;padding:14px;margin-bottom:8px;cursor:pointer">
+        <span style="font-size:22px">📢</span>
+        <div style="flex:1">
+          <p style="font-size:13px;font-weight:700;color:#fff;margin:0 0 2px" data-en="Message All Crew" data-es="Mensaje a Toda la Cuadrilla">Message All Crew</p>
+          <p style="font-size:11px;color:var(--dim);margin:0" data-en="Send WhatsApp to everyone on site" data-es="Enviar WhatsApp a todos en sitio">Send WhatsApp to everyone on site</p>
+        </div>
+        <span style="color:#25D366;font-size:18px">💬</span>
+      </div>
+
+      <!-- Individual crew -->
+      <div id="crew-contact-list"></div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-cross">✝️</span>
+    <div class="footer-text">
+      LA FORJA · JEFETECH · MX STUDIO<br>
+      Acapulco, Guerrero, México 🇲🇽🤝🇺🇸<br>
+      <span style="color:var(--orange)">brian@myjefetech.app</span><br>
+      <span style="color:var(--dim)">"The app that does the heavy lifting." · © 2026 JefeTech</span>
+    </div>
+  </div>
+
+</main>
+
+<script>
+var LANG='en';
+
+// ── Sample data (mirrors app state) ──────────────────────────
+var JOBS=[
+  {id:'j1',name:'Martinez Residence — Full Tear Off',addr:'1425 Oak St, Austin TX 78701',status:'active',progress:65,value:12500,crew:4,trade:'roofing',
+   payments:[{amount:4000,method:'Check'},{amount:2000,method:'Zelle'}],photos:['x'],date:'2026-09-20',
+   invoiceSent:false,materialsNeeded:['Shingles x20 bundles','Felt paper x2 rolls'],
+   report:'Tear off complete on east side. Starting on west tomorrow. Weather holding.',
+   changeOrders:[],nextJob:new Date(Date.now()+1*864e5).toISOString()},
+  {id:'j2',name:'Downtown Office Complex — HVAC',addr:'2200 Congress Ave, Austin TX 78704',status:'active',progress:30,value:28000,crew:3,trade:'hvac',
+   payments:[{amount:8000,method:'Card'}],photos:[],date:'2026-09-19',
+   invoiceSent:true,materialsNeeded:['Duct tape x5','Copper fittings 1/2 in x12'],
+   report:'',changeOrders:[{desc:'Added 2 extra vents in conference room',amount:850}],nextJob:new Date(Date.now()+2*864e5).toISOString()},
+  {id:'j3',name:'Riverside Apartments — Painting',addr:'800 Riverside Dr, Austin TX 78704',status:'active',progress:85,value:9200,crew:2,trade:'painting',
+   payments:[{amount:4600,method:'Check'},{amount:2000,method:'Venmo'}],photos:['x','x','x'],date:'2026-09-18',
+   invoiceSent:true,materialsNeeded:[],
+   report:'Two units left. On track to finish tomorrow.',
+   changeOrders:[],nextJob:new Date(Date.now()+1*864e5).toISOString()},
+  {id:'j4',name:'Highland Hills — Solar Install',addr:'3300 Bee Cave Rd, Austin TX 78746',status:'complete',progress:100,value:22000,crew:0,trade:'solar',
+   payments:[{amount:22000,method:'Stripe'}],photos:['x','x'],date:'2026-09-15',
+   invoiceSent:true,materialsNeeded:[],report:'Job complete. System online.',
+   changeOrders:[],nextJob:null},
+];
+
+var CREW=[
+  {id:'c1',name:'Carlos Mendoza',role:'Lead Roofer',clockIn:(function(){var d=new Date();d.setHours(7,15,0,0);return new Date(Math.min(d.getTime(),Date.now()-60*60000)).toISOString();})(),clockOut:null,pay:950},
+  {id:'c2',name:'Miguel Ruiz',role:'Roofer',clockIn:(function(){var d=new Date();d.setHours(7,30,0,0);return new Date(Math.min(d.getTime(),Date.now()-50*60000)).toISOString();})(),clockOut:null,pay:850},
+  {id:'c3',name:'Roberto Sanchez',role:'Laborer',clockIn:(function(){var d=new Date();d.setHours(7,45,0,0);return new Date(Math.min(d.getTime(),Date.now()-40*60000)).toISOString();})(),clockOut:null,pay:750},
+  {id:'c4',name:'Jose Garcia',role:'HVAC Tech',clockIn:(function(){var d=new Date();d.setHours(8,0,0,0);return new Date(Math.min(d.getTime(),Date.now()-30*60000)).toISOString();})(),clockOut:null,pay:1100},
+  {id:'c5',name:'Luis Torres',role:'Painter',clockIn:null,clockOut:null,pay:800},
+];
+
+// ── Send to Office ────────────────────────────────────────────
+function copyForjaLink(){
+  var url = window.location.hostname==='jefetech.app'?'https://jefetech.app/la-forja.html':window.location.href;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(function(){alert('✅ Link copied!');});
+  }
+}
+
+function sendToOffice(){
+  var es = LANG==='es';
+  var url = window.location.href.replace('index.html','').replace(/\/+$/, '') + '/la-forja.html';
+  // If on jefetech.app use clean URL
+  if(window.location.hostname === 'jefetech.app'){
+    url = 'https://jefetech.app/la-forja.html';
+  }
+  var msg = (es
+    ? '✝️ La Forja — Sala de Guerra JefeTech\n\nAbre este enlace en tu computadora o tablet para ver el dashboard en tiempo real:\n\n'
+    : '✝️ La Forja — JefeTech War Room\n\nOpen this link on your computer or tablet to see the live dashboard:\n\n')
+    + url;
+
+  if(navigator.share){
+    navigator.share({
+      title: 'La Forja — JefeTech War Room',
+      text: msg,
+      url: url
+    }).catch(function(){});
+  } else {
+    // Show share options
+    var sheet = document.createElement('div');
+    sheet.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#1a1d27;border-top:1px solid rgba(255,255,255,.1);border-radius:20px 20px 0 0;padding:24px;z-index:9999;text-align:center';
+    sheet.innerHTML = '<p style="font-size:14px;font-weight:700;color:#E8E0D5;margin:0 0 6px">✝️ '+(es?'Enviar a la Oficina':'Send to Office')+'</p>'
+      +'<p style="font-size:11px;color:#555;margin:0 0 20px">'+url+'</p>'
+      +'<a href="https://wa.me/?text='+encodeURIComponent(msg)+'" target="_blank" style="display:block;background:#25D366;color:#fff;font-size:14px;font-weight:700;padding:14px;border-radius:12px;text-decoration:none;margin-bottom:8px">💬 WhatsApp</a>'
+      +'<a href="mailto:?subject=La Forja — JefeTech War Room&body='+encodeURIComponent(msg)+'" style="display:block;background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-weight:700;padding:14px;border-radius:12px;text-decoration:none;margin-bottom:8px">📧 '+(es?'Correo':'Email')+'</a>'
+      +'<button onclick="copyForjaLink()" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px">🔗 '+(es?'Copiar enlace':'Copy link')+'</button>'
+      +'<button onclick="this.parentElement.remove()" style="width:100%;background:none;border:none;color:#555;font-size:13px;cursor:pointer;font-family:inherit;padding:8px">'+(es?'Cancelar':'Cancel')+'</button>';
+    document.body.appendChild(sheet);
+  }
+}
+
+// ── Clock ─────────────────────────────────────────────────────
+function updateClock(){
+  var now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// ── Lang ──────────────────────────────────────────────────────
+function toggleLang(){
+  LANG=LANG==='en'?'es':'en';
+  document.querySelector('.lang-btn').textContent=LANG==='en'?'ES':'EN';
+  document.getElementById('tagline').textContent=LANG==='es'?'LA FORJA · SALA DE GUERRA JEFETECH':'THE FORGE · JEFETECH WAR ROOM';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    el.textContent=LANG==='en'?el.getAttribute('data-en'):el.getAttribute('data-es');
+  });
+  renderAll();
+}
+
+
+// ── New Dashboard Sections ────────────────────────────────────
+function renderSupervisorReports(){
+  var es=LANG==='es';
+  var html='';
+  var active=JOBS.filter(function(j){return j.status==='active';});
+  if(!active.length){
+    html='<p style="text-align:center;font-size:12px;color:var(--dim);padding:16px">'+(es?'Sin trabajos activos':'No active jobs')+'</p>';
+  } else {
+    active.forEach(function(j){
+      html+='<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
+        +'<p style="font-size:11px;font-weight:700;color:#FF6B2B;margin:0 0 4px">'+j.name.split('—')[0].trim()+'</p>'
+        +(j.report
+          ?'<p style="font-size:12px;color:var(--white);margin:0;line-height:1.5">'+j.report+'</p>'
+          :'<p style="font-size:11px;color:var(--dim);margin:0;font-style:italic">'+(es?'Sin reporte hoy':'No report today')+'</p>')
+        +'</div>';
+    });
+  }
+  var el=document.getElementById('supervisor-reports');
+  if(el) el.innerHTML=html;
+}
+
+function renderChangeOrders(){
+  var es=LANG==='es';
+  var allCOs=[];
+  JOBS.forEach(function(j){
+    (j.changeOrders||[]).forEach(function(co){
+      allCOs.push({job:j.name.split('—')[0].trim(),desc:co.desc,amount:co.amount});
+    });
+  });
+  var badge=document.getElementById('co-badge');
+  if(badge) badge.textContent=allCOs.length+' '+(es?'total':'total');
+  var html='';
+  if(!allCOs.length){
+    html='<p style="text-align:center;font-size:12px;color:#22C55E;padding:16px">✅ '+(es?'Sin órdenes pendientes':'No pending change orders')+'</p>';
+  } else {
+    allCOs.forEach(function(co){
+      html+='<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
+        +'<p style="font-size:11px;color:#F59E0B;font-weight:700;margin:0 0 2px">'+co.job+'</p>'
+        +'<p style="font-size:12px;color:var(--white);margin:0 0 4px">'+co.desc+'</p>'
+        +'<p style="font-size:13px;font-weight:800;color:#22C55E;margin:0">+$'+co.amount.toLocaleString()+'</p>'
+        +'</div>';
+    });
+  }
+  var el=document.getElementById('change-orders-board');
+  if(el) el.innerHTML=html;
+}
+
+function renderMaterialsNeeded(){
+  var es=LANG==='es';
+  var allMats=[];
+  JOBS.forEach(function(j){
+    (j.materialsNeeded||[]).forEach(function(m){
+      allMats.push({job:j.name.split('—')[0].trim(),item:m});
+    });
+  });
+  var badge=document.getElementById('mat-badge');
+  if(badge) badge.textContent=allMats.length+' '+(es?'items':'items');
+  var html='';
+  if(!allMats.length){
+    html='<p style="text-align:center;font-size:12px;color:#22C55E;padding:16px">✅ '+(es?'Sin materiales pendientes':'All materials stocked')+'</p>';
+  } else {
+    allMats.forEach(function(m){
+      html+='<div style="display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
+        +'<span style="font-size:14px;flex-shrink:0">🧱</span>'
+        +'<div>'
+        +'<p style="font-size:11px;color:#EF4444;font-weight:700;margin:0 0 1px">'+m.job+'</p>'
+        +'<p style="font-size:12px;color:var(--white);margin:0">'+m.item+'</p>'
+        +'</div></div>';
+    });
+  }
+  var el=document.getElementById('materials-board');
+  if(el) el.innerHTML=html;
+}
+
+function renderInvoiceTracker(){
+  var es=LANG==='es';
+  var html='';
+  JOBS.filter(function(j){return j.status==='active';}).forEach(function(j){
+    var paid=(j.payments||[]).reduce(function(s,p){return s+(p.amount||0);},0);
+    var outstanding=(j.value||0)-paid;
+    html+='<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center">'
+      +'<p style="font-size:11px;font-weight:700;color:var(--white);margin:0;flex:1">'+j.name.split('—')[0].trim()+'</p>'
+      +(j.invoiceSent
+        ?'<span style="font-size:9px;font-weight:700;background:rgba(34,197,94,.12);color:#22C55E;border-radius:20px;padding:2px 7px">✅ '+(es?'Enviada':'Sent')+'</span>'
+        :'<span style="font-size:9px;font-weight:700;background:rgba(239,68,68,.12);color:#EF4444;border-radius:20px;padding:2px 7px">⏳ '+(es?'Pendiente':'Pending')+'</span>')
+      +'</div>'
+      +'<p style="font-size:11px;color:var(--dim);margin:3px 0 0">'+(es?'Por cobrar: ':'Outstanding: ')+'<span style="color:#F59E0B;font-weight:700">$'+outstanding.toLocaleString()+'</span></p>'
+      +'</div>';
+  });
+  var el=document.getElementById('invoice-board');
+  if(el) el.innerHTML=html||'<p style="text-align:center;font-size:12px;color:var(--dim);padding:16px">'+(es?'Sin trabajos activos':'No active jobs')+'</p>';
+}
+
+function renderClockLog(){
+  var es=LANG==='es';
+  var html='';
+  if(!CREW.length){
+    html='<p style="text-align:center;font-size:12px;color:var(--dim);padding:16px">'+(es?'Sin cuadrilla':'No crew')+'</p>';
+  } else {
+    CREW.forEach(function(w){
+      var inTime=w.clockIn?new Date(w.clockIn).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'--:--';
+      var outTime=w.clockOut?new Date(w.clockOut).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):(w.clockIn?(es?'En sitio':'On site'):(es?'Sin entrada':'Not clocked in'));
+      var hrs=w.clockIn?Math.round((new Date()-new Date(w.clockIn))/360000)/10:0;
+      html+='<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
+        +'<div style="width:28px;height:28px;border-radius:50%;background:'+(w.clockIn&&!w.clockOut?'#FF6B2B':'#333')+';display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0">'+w.name.charAt(0)+'</div>'
+        +'<div style="flex:1">'
+        +'<p style="font-size:11px;font-weight:700;color:var(--white);margin:0">'+w.name+'</p>'
+        +'<p style="font-size:10px;color:var(--dim);margin:0;font-family:DM Mono,monospace">▶ '+inTime+' → '+outTime+'</p>'
+        +'</div>'
+        +'<p style="font-size:12px;font-weight:700;color:#FF6B2B;margin:0;font-family:DM Mono,monospace">'+hrs+'h</p>'
+        +'</div>';
+    });
+  }
+  var el=document.getElementById('clock-log-board');
+  if(el) el.innerHTML=html;
+}
+
+function renderJobProgress(){
+  var es=LANG==='es';
+  var html='';
+  JOBS.filter(function(j){return j.status==='active';}).forEach(function(j){
+    var color=j.progress>=80?'#22C55E':j.progress>=40?'#F59E0B':'#EF4444';
+    html+='<div style="margin-bottom:12px">'
+      +'<div style="display:flex;justify-content:space-between;margin-bottom:4px">'
+      +'<p style="font-size:11px;font-weight:700;color:var(--white);margin:0">'+j.name.split('—')[0].trim()+'</p>'
+      +'<p style="font-size:11px;font-weight:800;color:'+color+';margin:0;font-family:DM Mono,monospace">'+(j.progress||0)+'%</p>'
+      +'</div>'
+      +'<div style="background:rgba(255,255,255,.06);border-radius:20px;height:8px;overflow:hidden">'
+      +'<div style="width:'+(j.progress||0)+'%;height:100%;background:'+color+';border-radius:20px;transition:width .3s"></div>'
+      +'</div>'
+      +'</div>';
+  });
+  var el=document.getElementById('job-progress-board');
+  if(el) el.innerHTML=html||'<p style="text-align:center;font-size:12px;color:var(--dim);padding:16px">'+(es?'Sin trabajos activos':'No active jobs')+'</p>';
+}
+
+function renderNextJobs(){
+  var es=LANG==='es';
+  var html='';
+  var upcoming=JOBS.filter(function(j){return j.status==='active'&&j.nextJob;});
+  if(!upcoming.length){
+    html='<p style="text-align:center;font-size:12px;color:var(--dim);padding:16px">'+(es?'Sin trabajos programados':'No jobs scheduled')+'</p>';
+  } else {
+    upcoming.forEach(function(j){
+      var d=new Date(j.nextJob);
+      var dateStr=d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});
+      html+='<div style="display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">'
+        +'<div style="background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:10px;padding:6px 10px;text-align:center;flex-shrink:0">'
+        +'<p style="font-size:10px;font-weight:800;color:#FF6B2B;margin:0">'+dateStr+'</p>'
+        +'</div>'
+        +'<div>'
+        +'<p style="font-size:12px;font-weight:700;color:var(--white);margin:0">'+j.name.split('—')[0].trim()+'</p>'
+        +'<p style="font-size:10px;color:var(--dim);margin:0">'+j.addr+'</p>'
+        +'</div>'
+        +'</div>';
+    });
+  }
+  var el=document.getElementById('next-jobs-board');
+  if(el) el.innerHTML=html;
+}
+
+// ── Render ────────────────────────────────────────────────────
+function renderAll(){
+  renderKPIs();
+  renderJobBoard();
+  renderAlerts();
+  renderMoney();
+  renderCrew();
+  [renderSupervisorReports,renderChangeOrders,renderMaterialsNeeded,renderInvoiceTracker,renderClockLog,renderJobProgress,renderNextJobs,renderCrewContact].forEach(function(f){try{f();}catch(e){}});
+}
+
+function renderKPIs(){
+  var es=LANG==='es';
+  var activeJobs=JOBS.filter(function(j){return j.status==='active';});
+  var totalValue=JOBS.reduce(function(s,j){return s+(j.value||0);},0);
+  var totalPaid=JOBS.reduce(function(s,j){return s+((j.payments||[]).reduce(function(p,x){return p+(x.amount||0);},0));},0);
+  var clockedIn=CREW.filter(function(w){return w.clockIn&&!w.clockOut;});
+  var totalHrs=0;
+  clockedIn.forEach(function(w){
+    if(w.clockIn){var hrs=(new Date()-new Date(w.clockIn))/3600000;totalHrs+=hrs;}
+  });
+
+  document.getElementById('kpi-jobs').textContent=activeJobs.length;
+  document.getElementById('kpi-jobs-sub').textContent=JOBS.filter(function(j){return j.status==='complete';}).length+' '+(es?'completados':'completed');
+  document.getElementById('kpi-crew').textContent=clockedIn.length;
+  document.getElementById('kpi-crew-sub').textContent=Math.round(totalHrs*10)/10+' '+(es?'hrs hoy':'hrs today');
+  document.getElementById('kpi-pipeline').textContent='$'+Math.round(totalValue/1000)+'k';
+  document.getElementById('kpi-pipeline-sub').textContent=es?'en cotizaciones':'in quotes';
+  var pct=totalValue>0?Math.round((totalPaid/totalValue)*100):0;
+  document.getElementById('kpi-collected').textContent='$'+Math.round(totalPaid/1000)+'k';
+  document.getElementById('kpi-collected-sub').textContent=pct+'% '+(es?'del total':'of total');
+}
+
+function renderJobBoard(){
+  var es=LANG==='es';
+  var active=JOBS.filter(function(j){return j.status==='active';});
+  document.getElementById('jobs-badge').textContent=active.length+' '+(es?'activos':'active');
+
+  var statusColor={active:'#F59E0B',complete:'#22C55E',hold:'#EF4444',pending:'#94A3B8'};
+  var statusLabel={
+    active:es?'Activo':'Active',
+    complete:es?'Completo':'Complete',
+    hold:es?'En pausa':'On Hold',
+    pending:es?'Pendiente':'Pending'
+  };
+
+  var html='';
+  if(!JOBS.length){
+    html='<div style="text-align:center;padding:24px;color:var(--dim);font-size:12px">'+(es?'Sin trabajos registrados':'No jobs registered')+'</div>';
+  } else {
+    JOBS.forEach(function(job){
+      var paid=(job.payments||[]).reduce(function(s,p){return s+(p.amount||0);},0);
+      html+='<div class="job-row">'
+        +'<div class="job-dot" style="background:'+statusColor[job.status]+'"></div>'
+        +'<div style="flex:1;min-width:0">'
+        +'<div class="job-name">'+job.name+'</div>'
+        +'<div class="job-addr">📍 '+job.addr+'</div>'
+        +'</div>'
+        +'<div class="job-bar-wrap"><div class="job-bar" style="width:'+(job.progress||0)+'%"></div></div>'
+        +'<div class="job-pct">'+(job.progress||0)+'%</div>'
+        +'<div class="job-val">$'+Math.round(paid/1000)+'k<span style="display:block;font-size:9px;font-weight:600;color:var(--dim)">'+(LANG==='es'?'de':'of')+' $'+(Math.round((job.value||0)/100)/10)+'k</span></div>'
+        +'<span class="status-pill" style="background:'+statusColor[job.status]+'22;color:'+statusColor[job.status]+'">'+statusLabel[job.status]+'</span>'
+        +'</div>';
+    });
+  }
+  document.getElementById('job-board').innerHTML=html;
+}
+
+function renderAlerts(){
+  var es=LANG==='es';
+  var alerts=[];
+  JOBS.forEach(function(j){
+    if(j.status==='active'&&(j.progress||0)<10)
+      alerts.push({icon:'⚠️',msg:(es?'Sin progreso: ':'No progress: ')+j.name,color:'rgba(239,68,68,.08)',border:'rgba(239,68,68,.2)',text:'#EF4444'});
+    if(j.status==='active'&&!(j.photos&&j.photos.length))
+      alerts.push({icon:'📸',msg:(es?'Sin fotos hoy: ':'No photos today: ')+j.name,color:'rgba(245,158,11,.08)',border:'rgba(245,158,11,.2)',text:'#F59E0B'});
+    if(j.status==='active'&&(j.payments||[]).reduce(function(s,p){return s+(p.amount||0);},0)===0)
+      alerts.push({icon:'💰',msg:(es?'Sin cobros: ':'No payment collected: ')+j.name,color:'rgba(96,165,250,.08)',border:'rgba(96,165,250,.2)',text:'#60A5FA'});
+  });
+
+  var clocked=CREW.filter(function(w){return !w.clockIn;});
+  if(clocked.length)
+    alerts.push({icon:'👷',msg:(es?clocked.length+' sin registrar entrada':clocked.length+' crew not clocked in'),color:'rgba(148,163,184,.08)',border:'rgba(148,163,184,.2)',text:'#94A3B8'});
+
+  // 911 emergency alerts — highest priority, shown first
+  var emergencyAlerts=[];
+  EMERGENCY_LOG.forEach(function(e){
+    var timeStr=new Date(e.time).toLocaleString();
+    var mapsLink=e.lat&&e.lng?(' <a href="https://maps.google.com/?q='+e.lat+','+e.lng+'" target="_blank" style="color:#EF4444;font-size:10px">📍 Maps</a>'):'';
+    emergencyAlerts.push({
+      icon:'🚨',
+      msg:'✝️ 911 CALLED · '+e.jobName+' · '+e.addr+' · '+timeStr,
+      mapsLink:mapsLink,
+      color:'rgba(239,68,68,.15)',
+      border:'rgba(239,68,68,.4)',
+      text:'#EF4444',
+      emergency:true
+    });
+  });
+  // Prepend 911 alerts
+  alerts=emergencyAlerts.concat(alerts);
+
+  document.getElementById('alerts-badge').textContent=alerts.length+(es?' alertas':' alerts');
+
+  if(!alerts.length){
+    document.getElementById('alerts-board').innerHTML='<div style="text-align:center;padding:16px;color:#22C55E;font-size:13px;font-weight:700">✅ '+(es?'Todo en orden':'All clear')+'</div>';
+    return;
+  }
+
+  var html='';
+  alerts.forEach(function(a){
+    html+='<div class="alert-row" style="background:'+a.color+';border:1px solid '+a.border+(a.emergency?';box-shadow:0 0 12px rgba(239,68,68,.2)':'')+'">'
+      +'<span style="font-size:'+(a.emergency?'20':'16')+'px;flex-shrink:0">'+a.icon+'</span>'
+      +'<span style="font-size:'+(a.emergency?'13':'12')+'px;color:'+a.text+';font-weight:'+(a.emergency?'800':'600')+';line-height:1.4">'+a.msg+(a.mapsLink||'')+'</span>'
+      +'</div>';
+  });
+  document.getElementById('alerts-board').innerHTML=html;
+}
+
+function renderMoney(){
+  var es=LANG==='es';
+  var totalValue=JOBS.reduce(function(s,j){return s+(j.value||0);},0);
+  var totalPaid=JOBS.reduce(function(s,j){return s+((j.payments||[]).reduce(function(p,x){return p+(x.amount||0);},0));},0);
+  var outstanding=totalValue-totalPaid;
+  var activeVal=JOBS.filter(function(j){return j.status==='active';}).reduce(function(s,j){return s+(j.value||0);},0);
+
+  var rows=[
+    {label:es?'Pipeline total':'Total pipeline',val:'$'+totalValue.toLocaleString(),color:'var(--white)'},
+    {label:es?'Cobrado':'Collected',val:'$'+totalPaid.toLocaleString(),color:'#22C55E'},
+    {label:es?'Por cobrar':'Outstanding',val:'$'+outstanding.toLocaleString(),color:'#F59E0B'},
+    {label:es?'Trabajos activos':'Active jobs value',val:'$'+activeVal.toLocaleString(),color:'#FF6B2B'},
+  ];
+
+  var html='';
+  rows.forEach(function(r){
+    html+='<div class="money-row">'
+      +'<span class="money-label">'+r.label+'</span>'
+      +'<span class="money-val" style="color:'+r.color+'">'+r.val+'</span>'
+      +'</div>';
+  });
+  document.getElementById('money-board').innerHTML=html;
+}
+
+function renderCrew(){
+  var es=LANG==='es';
+  var clocked=CREW.filter(function(w){return w.clockIn&&!w.clockOut;});
+  document.getElementById('crew-badge').textContent=clocked.length+' '+(es?'en sitio':'on site');
+
+  var html='';
+  if(!CREW.length){
+    html='<div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">'+(es?'Sin cuadrilla':'No crew')+'</div>';
+  } else {
+    CREW.forEach(function(w){
+      var on=w.clockIn&&!w.clockOut;
+      var hrs=0;
+      if(w.clockIn){hrs=Math.round((new Date()-new Date(w.clockIn))/360000)/10;}
+      html+='<div class="crew-row">'
+        +'<div class="crew-avatar">'+w.name.charAt(0)+'</div>'
+        +'<div style="flex:1">'
+        +'<div class="crew-name">'+w.name+'</div>'
+        +'<div class="crew-role">'+w.role+'</div>'
+        +'</div>'
+        +(on
+          ?'<div class="crew-status" style="color:#22C55E">🟢 '+hrs+'h</div>'
+          :'<div class="crew-status" style="color:var(--dim)">⚫ '+(es?'fuera':'off')+'</div>')
+        +'</div>';
+    });
+  }
+  document.getElementById('crew-board').innerHTML=html;
+}
+
+// ── Weather ───────────────────────────────────────────────────
+function fetchWeather(){
+  var es=LANG==='es';
+  document.getElementById('weather-board').innerHTML='<div style="text-align:center;padding:16px;color:var(--dim);font-size:12px">'+(es?'Obteniendo clima...':'Fetching weather...')+'</div>';
+  
+  function renderWeather(tempF,wind,humidity,code,city){
+    var tempC=Math.round((tempF-32)*5/9);
+    var icons={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',71:'❄️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',95:'⛈️'};
+    var descs={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm'};
+    var icon=icons[code]||'🌤️';
+    var desc=descs[code]||(es?'Condición desconocida':'Unknown condition');
+    var windAlert='';
+    var rainAlert='';
+    if(wind>25) windAlert='<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:8px 10px;margin-top:8px;font-size:11px;color:#EF4444;font-weight:700">⛔ '+(es?'Viento alto — verificar equipos en sitio':'High wind — check all job sites')+'</div>';
+    if(code>=61&&code<=82) rainAlert='<div style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:8px;padding:8px 10px;margin-top:6px;font-size:11px;color:#60A5FA;font-weight:700">🌧️ '+(es?'Lluvia activa — verificar trabajos exteriores':'Active rain — check outdoor jobs')+'</div>';
+    document.getElementById('weather-board').innerHTML=
+      '<div class="weather-card">'
+      +'<span class="weather-icon">'+icon+'</span>'
+      +'<div>'
+      +'<div class="weather-temp">'+tempF+'°F / '+tempC+'°C</div>'
+      +'<div class="weather-desc">'+desc+'</div>'
+      +'<div class="weather-meta">💨 '+wind+' mph · 💧 '+humidity+'% · 📍 '+city+'</div>'
+      +'</div></div>'
+      +windAlert+rainAlert
+      +'<p style="font-size:9px;color:var(--dim);margin-top:8px;font-family:DM Mono,monospace">'+(es?'Última actualización: ':'Last updated: ')+new Date().toLocaleTimeString()+'</p>';
+  }
+
+  // Demo: weather for the sample job sites (no location prompt)
+  if(false&&navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var lat=pos.coords.latitude;
+      var lng=pos.coords.longitude;
+      fetch('https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lng+'&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto')
+        .then(function(r){return r.json();})
+        .then(function(w){
+          var cur=w.current;
+          renderWeather(Math.round(cur.temperature_2m),Math.round(cur.wind_speed_10m),cur.relative_humidity_2m,cur.weather_code,'Your location');
+        })
+        .catch(function(){tryAcapulco();});
+    },function(){tryAcapulco();},{timeout:5000});
+  } else {
+    tryAcapulco();
+  }
+
+  function tryAcapulco(){
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=30.267&longitude=-97.743&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Mexico_City')
+      .then(function(r){return r.json();})
+      .then(function(w){
+        var cur=w.current;
+        renderWeather(Math.round(cur.temperature_2m),Math.round(cur.wind_speed_10m),cur.relative_humidity_2m,cur.weather_code,es?'Austin, TX · obras':'Austin, TX · job sites');
+      })
+      .catch(function(){
+        document.getElementById('weather-board').innerHTML=
+          '<div style="text-align:center;padding:12px;color:var(--dim);font-size:12px">📶 '+(es?'Sin conexión — datos de clima no disponibles':'No connection — weather unavailable')+'</div>';
+      });
+  }
+}
+
+// ── 911 Alert System ──────────────────────────────────────────
+var EMERGENCY_LOG=[];
+function log911(jobName,addr,lat,lng){
+  var entry={
+    time:new Date().toISOString(),
+    jobName:jobName||'Unknown Job',
+    addr:addr||'Unknown Address',
+    lat:lat||null,
+    lng:lng||null
+  };
+  EMERGENCY_LOG.unshift(entry);
+  try{localStorage.setItem('jefetech_911_log',JSON.stringify(EMERGENCY_LOG));}catch(e){}
+  renderAlerts();
+}
+
+function load911Log(){
+  try{
+    var stored=localStorage.getItem('jefetech_911_log');
+    if(stored) EMERGENCY_LOG=JSON.parse(stored);
+  }catch(e){}
+}
+
+// ── Contact Functions ─────────────────────────────────────────
+function messageAllCrew(){
+  var es = LANG==='es';
+  var msg = prompt(es?'Mensaje para toda la cuadrilla:':'Message to all crew:');
+  if(!msg) return;
+  var text = '📢 '+(es?'MENSAJE DEL JEFE':'BOSS MESSAGE')+'\n\n'+msg+'\n\n— La Forja · JefeTech';
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+}
+
+function msgCrew(idx){
+  var w=CREW[idx];
+  if(w) messageCrewMember(w.name, w.phone||'');
+}
+function messageCrewMember(name, phone){
+  var es = LANG==='es';
+  var msg = prompt((es?'Mensaje para ':'Message for ')+name+':');
+  if(!msg) return;
+  var text = '👷 '+msg+'\n\n— La Forja · JefeTech';
+  if(phone){
+    window.open('https://wa.me/'+phone.replace(/[^0-9]/g,'')+' ?text='+encodeURIComponent(text),'_blank');
+  } else {
+    window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+  }
+}
+
+function renderCrewContact(){
+  var es = LANG==='es';
+  var el = document.getElementById('crew-contact-list');
+  if(!el) return;
+
+  if(!CREW.length){
+    el.innerHTML='<p style="font-size:12px;color:var(--dim);text-align:center;padding:12px">'+(es?'Sin cuadrilla registrada':'No crew registered')+'</p>';
+    return;
+  }
+
+  var html = '<p style="font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;font-family:DM Mono,monospace">'+(es?'INDIVIDUALES':'INDIVIDUAL')+'</p>';
+
+  CREW.forEach(function(w){
+    var on = w.clockIn && !w.clockOut;
+    html += '<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:10px;margin-bottom:6px">'
+      +'<div style="width:32px;height:32px;border-radius:50%;background:'+(on?'#22C55E':'#333')+';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0">'+w.name.charAt(0)+'</div>'
+      +'<div style="flex:1">'
+      +'<p style="font-size:12px;font-weight:700;color:#fff;margin:0">'+w.name+'</p>'
+      +'<p style="font-size:10px;color:var(--dim);margin:0">'+w.role+' · '+(on?'🟢 '+(es?'En sitio':'On site'):'⚫ '+(es?'Fuera':'Off'))+'</p>'
+      +'</div>'
+      +'<button onclick="msgCrew('+CREW.indexOf(w)+')" style="background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:8px;padding:6px 12px;color:#25D366;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">💬 '+(es?'Mensaje':'Message')+'</button>'
+      +'</div>';
+  });
+
+  el.innerHTML = html;
+}
+
+// ── Quick Action Functions ────────────────────────────────────
+function clearAlerts(){
+  var es=LANG==='es';
+  EMERGENCY_LOG=[];
+  try{localStorage.removeItem('jefetech_911_log');}catch(e){}
+  renderAlerts();
+  alert(es?'✅ Alertas limpiadas.':'✅ Alerts cleared.');
+}
+
+function exportDailyReport(){
+  var es=LANG==='es';
+  var today=new Date().toLocaleDateString();
+  var lines=['✝️ '+(es?'REPORTE DIARIO — La Forja':'DAILY REPORT — La Forja'),'📅 '+today,''];
+  var active=JOBS.filter(function(j){return j.status==='active';});
+  lines.push('📋 '+(es?'TRABAJOS ACTIVOS:':'ACTIVE JOBS:')+' '+active.length);
+  active.forEach(function(j){
+    var paid=(j.payments||[]).reduce(function(s,p){return s+(p.amount||0);},0);
+    lines.push('  • '+j.name+' — '+(j.progress||0)+'% — $'+paid.toLocaleString()+' '+(es?'cobrado':'collected'));
+  });
+  lines.push('');
+  var onSite=CREW.filter(function(w){return w.clockIn&&!w.clockOut;});
+  lines.push('👷 '+(es?'CUADRILLA EN SITIO:':'CREW ON SITE:')+' '+onSite.length);
+  onSite.forEach(function(w){
+    var hrs=w.clockIn?Math.round((new Date()-new Date(w.clockIn))/360000)/10:0;
+    lines.push('  • '+w.name+' — '+hrs+(es?' hrs':' hrs'));
+  });
+  lines.push('');
+  lines.push('— '+(es?'Enviado desde La Forja · JefeTech':'Sent from La Forja · JefeTech'));
+  var msg=lines.join('\n');
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+}
+
+function exportPayroll(){
+  var es=LANG==='es';
+  var lines=['💰 '+(es?'NÓMINA — La Forja':'PAYROLL — La Forja'),'📅 '+new Date().toLocaleDateString(),''];
+  var total=0;
+  CREW.forEach(function(w){
+    var hrs=w.clockIn?Math.round((new Date()-new Date(w.clockIn))/360000)/10:0;
+    var earned=Math.round(w.pay*(hrs/8));
+    total+=earned;
+    lines.push(w.name+' · '+w.role);
+    lines.push('  '+hrs+(es?' hrs · $'+w.pay+(es?'/día':'/day')+' · Total: $'+earned:' hrs · $'+w.pay+'/day · Earned: $'+earned));
+  });
+  lines.push('');
+  lines.push((es?'Total nómina hoy: ':'Total payroll today: ')+'$'+total.toLocaleString());
+  lines.push('— La Forja · JefeTech');
+  window.open('https://wa.me/?text='+encodeURIComponent(lines.join('\n')),'_blank');
+}
+
+function callCrewMeeting(){
+  var es=LANG==='es';
+  var msg=prompt(es?'Escribe tu anuncio para toda la cuadrilla:':'Type your announcement to all crew:');
+  if(!msg) return;
+  var text='📢 '+(es?'ANUNCIO DEL JEFE':'BOSS ANNOUNCEMENT')+'\n\n'+msg+'\n\n— La Forja · JefeTech · '+new Date().toLocaleString();
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+}
+
+// ── Init ──────────────────────────────────────────────────────
+renderAll();
+fetchWeather();
+// Refresh data every 60 seconds
+setInterval(renderAll,60000);
+initAI();
+
+// ── Claude AI Assistant ───────────────────────────────────────
+var AI_OPEN = false;
+var AI_SAMPLE = null;
+
+async function initAI(){
+  try {
+    AI_SAMPLE = await claude.use('sample');
+  } catch(e) {}
+}
+
+function toggleAI(){ if(!AI_SAMPLE) initAI(); }
+
+function askQuick(q){
+  var input = document.getElementById('ai-input');
+  if(input){ input.value = q; sendToAI(); }
+}
+
+function addMsg(text, role){
+  var msgs = document.getElementById('ai-messages');
+  if(!msgs) return null;
+  msgs.style.display = 'flex';
+  msgs.style.flexDirection = 'column';
+  msgs.style.gap = '6px';
+  var div = document.createElement('div');
+  div.style.cssText = role==='user'
+    ? 'background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.2);border-radius:10px;padding:7px 10px;font-size:12px;color:#F0EDE8;align-self:flex-end;max-width:80%'
+    : 'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:7px 10px;font-size:12px;color:#F0EDE8;align-self:flex-start;max-width:90%;line-height:1.5';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+async function sendToAI(){
+  var input = document.getElementById('ai-input');
+  if(!input || !input.value.trim()) return;
+  var question = input.value.trim();
+  input.value = '';
+
+  if(!AI_SAMPLE){
+    await initAI();
+    if(!AI_SAMPLE){ addMsg('AI not available right now.', 'claude'); return; }
+  }
+
+  addMsg(question, 'user');
+  var thinkingEl = addMsg('Thinking...', 'claude');
+  if(thinkingEl) thinkingEl.classList.add('ai-msg-thinking');
+
+  var es = LANG === 'es';
+  var context = 'You are La Forja AI, a construction job site assistant built into JefeTech. Answer in '+(es?'Spanish':'English')+'. Be concise and practical. Live data:\n\nJOBS:\n'+JSON.stringify(JOBS.map(function(j){
+    return {name:j.name,status:j.status,progress:(j.progress||0)+'%',value:'$'+(j.value||0),paid:'$'+(j.payments||[]).reduce(function(s,p){return s+(p.amount||0);},0),trade:j.trade,report:j.report||'No report',materialsNeeded:j.materialsNeeded||[],changeOrders:j.changeOrders||[]};
+  }))+'\n\nCREW:\n'+JSON.stringify(CREW.map(function(w){
+    var hrs=w.clockIn?Math.round((new Date()-new Date(w.clockIn))/360000)/10:0;
+    return {name:w.name,role:w.role,onSite:!!(w.clockIn&&!w.clockOut),hoursToday:hrs};
+  }));
+
+  try {
+    await AI_SAMPLE(context+'\n\nQuestion: '+question, {
+      onText: function(t){
+        if(thinkingEl){
+          thinkingEl.textContent = t.text;
+          thinkingEl.classList.remove('ai-msg-thinking');
+          var msgs = document.getElementById('ai-messages');
+          if(msgs) msgs.scrollTop = msgs.scrollHeight;
+        }
+      }
+    });
+  } catch(e) {
+    if(thinkingEl) thinkingEl.textContent = 'Error: '+(e.message||'Something went wrong');
+  }
+}
+
+</script>
+
+
+
+<script>
+/* Demo copy: the Claude AI box only works inside Claude, so hide it on the public page */
+(function(){if(window.claude)return;var i=document.getElementById('ai-input');var bar=i&&i.closest('div[style*="border-bottom"]');if(bar)bar.style.display='none';})();
+</script>
+</body>
+</html>
