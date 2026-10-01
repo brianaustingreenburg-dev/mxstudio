@@ -2108,16 +2108,16 @@ upd();
     var phEl=b.querySelector('.sx-ph');var ph=phEl?digits(phEl.value):'';
     var waMsg='Follow along on my live JefeTech demo 👇\n\nOpen this link on your phone — you\'ll see everything I tap in real time:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️';
     var waUrl=ph?'https://wa.me/'+ph+'?text='+encodeURIComponent(waMsg):'https://wa.me/?text='+encodeURIComponent(waMsg);
-    window.open(url,'_blank');
     var existing=b.querySelector('.sx-demo-panel');if(existing)existing.remove();
     var panel=document.createElement('div');
     panel.className='sx-demo-panel';
     panel.style.cssText='background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.3);border-radius:10px;padding:12px;margin-bottom:8px';
-    panel.innerHTML='<div style="font-size:12px;font-weight:800;color:#FF6B2B;margin-bottom:8px">📡 Demo started! Code: <span style="font-family:monospace;letter-spacing:2px;font-size:14px">'+code+'</span></div>'
-      +'<div style="font-size:11px;color:#9CA3AF;margin-bottom:6px">Send to '+(pName||'your client')+' — they open it and see your screen live:</div>'
+    panel.innerHTML='<div style="font-size:12px;font-weight:800;color:#FF6B2B;margin-bottom:8px">🔴 Demo ready! Code: <span style="font-family:monospace;letter-spacing:2px;font-size:14px">'+code+'</span></div>'
+      +'<div style="font-size:11px;color:#9CA3AF;margin-bottom:8px">1. Open the app on YOUR phone, then send the link to '+(pName||'your client')+':</div>'
+      +'<a href="'+url+'" target="_blank" rel="noopener" style="display:block;background:linear-gradient(135deg,#FF6B2B,#ff8c42);color:#fff;border-radius:8px;padding:11px;font-size:13px;font-weight:800;text-align:center;text-decoration:none;margin-bottom:10px">📱 Open App (tap here first)</a>'
       +'<div style="font-family:monospace;font-size:11px;background:rgba(0,0,0,.3);border-radius:6px;padding:8px;margin-bottom:10px;word-break:break-all;color:#fff">'+url+'</div>'
       +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'
-      +'<button onclick="window.open(\''+waUrl+'\',\'_blank\')" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">💬 WhatsApp</button>'
+      +'<a href="'+waUrl+'" target="_blank" rel="noopener" style="background:#25D366;color:#fff;border:none;border-radius:8px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;text-align:center;text-decoration:none;display:block">💬 WhatsApp</a>'
       +'<button onclick="navigator.clipboard.writeText(\''+url+'\');this.textContent=\'✅ Copied!\';var me=this;setTimeout(function(){me.textContent=\'📋 Copy Link\'},2000)" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:8px;padding:11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit">📋 Copy Link</button>'
       +'</div>'
       +'<button onclick="this.parentNode.remove()" style="margin-top:8px;width:100%;background:none;border:none;color:#9CA3AF;font-size:11px;cursor:pointer;font-family:inherit;padding:4px">✕ Close</button>';
