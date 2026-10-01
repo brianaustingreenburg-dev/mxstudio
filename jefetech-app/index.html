@@ -462,6 +462,8 @@ var COUNTRIES={
 var COUNTRY='us';
 /* Opens in the US by default. A saved pick wins; a link can set it with ?country=mx|ca|au|ph|us ✝️ */
 try{var _q=(new URLSearchParams(location.search).get('country')||'').toLowerCase();if(_q&&COUNTRIES[_q]){COUNTRY=_q;localStorage.setItem('jt_country',_q);}else{var _c=localStorage.getItem('jt_country');if(_c&&COUNTRIES[_c])COUNTRY=_c;}}catch(e){}
+/* Deep link: ?tab=solar → open Jobs → Solar tab ✝️ */
+try{var _qt=(new URLSearchParams(location.search).get('tab')||'').toLowerCase();if(_qt==='solar'){TAB='jobs';JOB_TAB='solar';}}catch(e){}
 function CC(){return COUNTRIES[COUNTRY];}
 var CS=CC().sym; // currency symbol shown in the app
 var PPP={us:1,ca:1,au:1,mx:.5,ph:.4}; // local cost level vs US (rough starting point)
