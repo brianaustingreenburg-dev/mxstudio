@@ -561,7 +561,61 @@ var COUNTRIES={
       storm:['Typhoons (bagyo)','Tifones'],
       banner:['linear-gradient(90deg,#0038A8,#CE1126,#0038A8)','#fff','🇵🇭 PHILIPPINES MODE · PHP · METERS · GCASH · DOLE OSH · TYPHOON-READY'],
       pay:['GCash','Maya','Bank transfer (InstaPay)','Cash','Card','Stripe'],payEs:['GCash','Maya','Transferencia (InstaPay)','Efectivo','Tarjeta','Stripe'],
-      payroll:['🇵🇭 Philippines Payroll — SSS · PhilHealth · Pag-IBIG · BIR withholding · 13th-month pay by Dec 24 · pay at least twice a month','🇵🇭 Nómina Filipinas — SSS · PhilHealth · Pag-IBIG · BIR · 13.º mes antes del 24 dic']}
+      payroll:['🇵🇭 Philippines Payroll — SSS · PhilHealth · Pag-IBIG · BIR withholding · 13th-month pay by Dec 24 · pay at least twice a month','🇵🇭 Nómina Filipinas — SSS · PhilHealth · Pag-IBIG · BIR · 13.º mes antes del 24 dic']},
+  gb:{flag:'🇬🇧',name:'United Kingdom',es:'Reino Unido',cur:'GBP',sym:'£',fx:0.79,unit:'metric',emerg:'999',
+      safety:'HSE Construction (CDM 2015 · Work at Height Regs)',dig:['Dial Before You Dig (0800 266 837) — underground services located','Dial Before You Dig llamado — servicios subterráneos ubicados'],
+      storm:['Storms & flooding','Tormentas e inundaciones'],
+      banner:['linear-gradient(90deg,#012169,#C8102E,#012169)','#fff','🇬🇧 UK MODE · GBP · METRES · BACS · HSE CDM 2015'],
+      pay:['BACS / Faster Payments','Cash','Card','Stripe'],payEs:['BACS / Faster Payments','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇬🇧 UK Payroll — PAYE · NI contributions (employer 13.8%) · pension auto-enrolment · RTI to HMRC','🇬🇧 Nómina UK — PAYE · NI · pensión auto-enrolment · RTI a HMRC']},
+  nz:{flag:'🇳🇿',name:'New Zealand',es:'Nueva Zelanda',cur:'NZD',sym:'$',fx:1.63,unit:'metric',emerg:'111',
+      safety:'WorkSafe NZ (Health and Safety at Work Act 2015)',dig:['Dial Before You Dig NZ (0800 248 344) — utilities located','Dial Before You Dig NZ llamado — servicios ubicados'],
+      storm:['Storms & earthquakes','Tormentas y terremotos'],
+      banner:['linear-gradient(90deg,#00247D,#CC142B,#00247D)','#fff','🇳🇿 NZ MODE · NZD · METRES · WORKSAFE NZ'],
+      pay:['Bank transfer','Cash','Card','Stripe'],payEs:['Transferencia bancaria','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇳🇿 NZ Payroll — PAYE · KiwiSaver (3% employer) · ACC levy · fortnightly or weekly','🇳🇿 Nómina NZ — PAYE · KiwiSaver · ACC levy']},
+  za:{flag:'🇿🇦',name:'South Africa',es:'Sudáfrica',cur:'ZAR',sym:'R',fx:18.5,unit:'metric',emerg:'112',
+      safety:'OHS Act (Act 85 of 1993) · Construction Regs 2014',dig:['MISS DIG (0800 100 000) — underground services located','MISS DIG llamado — servicios subterráneos ubicados'],
+      storm:['Thunderstorms & load-shedding awareness','Tormentas y cortes de energía'],
+      banner:['linear-gradient(90deg,#007A4D,#FFB612,#007A4D)','#111','🇿🇦 SA MODE · ZAR · METRES · EFT · OHS ACT'],
+      pay:['EFT','Cash','Card','Stripe'],payEs:['EFT','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇿🇦 SA Payroll — PAYE · UIF (1% each) · SDL (1%) · SARS submission · IRP5 annual','🇿🇦 Nómina SA — PAYE · UIF · SDL · SARS']},
+  ae:{flag:'🇦🇪',name:'UAE / Dubai',es:'Emiratos Árabes',cur:'AED',sym:'د.إ',fx:3.67,unit:'metric',emerg:'999',
+      safety:'UAE Ministerial Resolution 32 · Dubai Municipality OSH',dig:['Utility permit from relevant authority obtained — services marked','Permiso de utilidades obtenido — servicios marcados'],
+      storm:['Sandstorms & extreme heat (stop work >45°C)','Tormentas de arena y calor extremo (parar >45°C)'],
+      banner:['linear-gradient(90deg,#009A44,#fff,#FF0000)','#111','🇦🇪 UAE MODE · AED · METRES · BANK TRANSFER · UAE OSH'],
+      pay:['Bank transfer','Cash','Card','Stripe'],payEs:['Transferencia bancaria','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇦🇪 UAE Payroll — No income tax · WPS payroll system · gratuity after 1 yr','🇦🇪 Nómina UAE — Sin impuesto · WPS · gratificación tras 1 año']},
+  in:{flag:'🇮🇳',name:'India',es:'India',cur:'INR',sym:'₹',fx:83.5,unit:'metric',emerg:'112',
+      safety:'Building & Other Construction Workers Act 1996 · BOCW · IS 4130',dig:['Utility NOC from local authority obtained — services marked','NOC de autoridad local obtenido — servicios marcados'],
+      storm:['Monsoon & cyclones','Monzones y ciclones'],
+      banner:['linear-gradient(90deg,#FF9933,#fff,#138808)','#111','🇮🇳 INDIA MODE · INR · METRES · UPI · BOCW'],
+      pay:['UPI','NEFT / RTGS','Cash','Card','Stripe'],payEs:['UPI','NEFT / RTGS','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇮🇳 India Payroll — PF (12% employer) · ESI · PT · TDS · Form 16 annual','🇮🇳 Nómina India — PF · ESI · PT · TDS']},
+  sg:{flag:'🇸🇬',name:'Singapore',es:'Singapur',cur:'SGD',sym:'$',fx:1.34,unit:'metric',emerg:'995',
+      safety:'WSH Act (Workplace Safety & Health Act) · MOM regulations',dig:['Call 1800-DIAL DIG — utility plans from OneMap obtained','OneMap / 1800-DIAL DIG — planes de utilidades obtenidos'],
+      storm:['Thunderstorms & haze','Tormentas y neblina'],
+      banner:['linear-gradient(90deg,#EF3340,#fff,#EF3340)','#111','🇸🇬 SINGAPORE MODE · SGD · METRES · PAYNOW · WSH ACT'],
+      pay:['PayNow','Bank transfer','Cash','Card','Stripe'],payEs:['PayNow','Transferencia bancaria','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇸🇬 Singapore Payroll — CPF (17% employer) · SDL · IR8A annual · pay by 7th of month','🇸🇬 Nómina Singapur — CPF (17% empleador) · SDL · IR8A']},
+  br:{flag:'🇧🇷',name:'Brazil',es:'Brasil',cur:'BRL',sym:'R$',fx:4.97,unit:'metric',emerg:'192',
+      safety:'NR-18 Construção Civil · Ministério do Trabalho',dig:['Concessionárias locais notificadas — serviços subterrâneos localizados','Concesionarias locales notificadas — servicios subterráneos ubicados'],
+      storm:['Chuvas intensas & vendavais','Lluvias intensas y vientos fuertes'],
+      banner:['linear-gradient(90deg,#009C3B,#FFDF00,#009C3B)','#111','🇧🇷 BRASIL MODE · BRL · METROS · PIX · NR-18'],
+      pay:['Pix','Boleto bancário','Cash','Card','Stripe'],payEs:['Pix','Boleto bancário','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇧🇷 Brazil Payroll — FGTS (8%) · INSS · IRRF · 13º salário · férias 30 dias','🇧🇷 Nómina Brasil — FGTS · INSS · IRRF · 13.º salario · vacaciones 30 días']},
+  do:{flag:'🇩🇴',name:'Dominican Republic',es:'República Dominicana',cur:'DOP',sym:'RD$',fx:58.5,unit:'metric',emerg:'911',
+      safety:'Reglamento 522-06 · INFOTEP seguridad construcción',dig:['CDEEE / distribuidoras notificadas — líneas subterráneas marcadas','CDEEE / distribuidoras notificadas — líneas marcadas'],
+      storm:['Hurricanes & tropical storms','Huracanes y tormentas tropicales'],
+      banner:['linear-gradient(90deg,#002D62,#CE1126,#002D62)','#fff','🇩🇴 RD MODE · DOP · METROS · TRANSFERENCIA · REGLAMENTO 522-06'],
+      pay:['Transferencia bancaria','Depósito','Cash','Card','Stripe'],payEs:['Transferencia bancaria','Depósito','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇩🇴 RD Payroll — TSS (7.1% employer) · AFP (7.1%) · SFS (7.09%) · 13.º mes en diciembre','🇩🇴 Nómina RD — TSS · AFP · SFS · 13.º mes diciembre']},
+  co:{flag:'🇨🇴',name:'Colombia',es:'Colombia',cur:'COP',sym:'$',fx:3950,unit:'metric',emerg:'123',
+      safety:'Decreto 1072 de 2015 · Resolución 0312 · ARL',dig:['EPM / Gas Natural notificados — redes subterráneas marcadas','EPM / Gas Natural notificados — redes marcadas'],
+      storm:['Lluvias & deslizamientos','Lluvias e inundaciones'],
+      banner:['linear-gradient(90deg,#FCD116,#003087,#CE1126)','#111','🇨🇴 COLOMBIA MODE · COP · METROS · NEQUI · DECRETO 1072'],
+      pay:['Nequi','Daviplata','Transferencia PSE','Cash','Card','Stripe'],payEs:['Nequi','Daviplata','Transferencia PSE','Efectivo','Tarjeta','Stripe'],
+      payroll:['🇨🇴 Colombia Payroll — parafiscales (SENA 2% · ICBF 3% · Caja 4%) · EPS · ARL · pensión 12% · prima semestral','🇨🇴 Nómina Colombia — parafiscales · EPS · ARL · pensión · prima semestral']}
 };
 var COUNTRY='us';
 /* Opens in the US by default. A saved pick wins; a link can set it with ?country=mx|ca|au|ph|us ✝️ */
@@ -570,7 +624,7 @@ try{var _q=(new URLSearchParams(location.search).get('country')||'').toLowerCase
 try{var _qt=(new URLSearchParams(location.search).get('tab')||'').toLowerCase();if(_qt==='solar'){TAB='jobs';JOB_TAB='solar';}}catch(e){}
 function CC(){return COUNTRIES[COUNTRY];}
 var CS=CC().sym; // currency symbol shown in the app
-var PPP={us:1,ca:1,au:1,mx:.5,ph:.4}; // local cost level vs US (rough starting point)
+var PPP={us:1,ca:1,au:1,mx:.5,ph:.4,gb:1,nz:1,za:.35,ae:.9,in:.25,sg:.95,br:.4,do:.35,co:.3}; // local cost level vs US (rough starting point)
 function LP(usd){return Math.round(usd*CC().fx*(PPP[COUNTRY]||1));} // default price → local currency
 function applyCountry(){
   var c=CC();
@@ -578,17 +632,18 @@ function applyCountry(){
   UNIT=c.unit;CS=c.sym;MXN_RATE=COUNTRIES.mx.fx;
 }
 applyCountry();
-if(COUNTRY==='mx')L='es';
+if(['mx','do','co','br'].indexOf(COUNTRY)>=0)L='es';
 // live exchange rates (falls back to the built-in estimates)
 try{fetch('https://api.exchangerate-api.com/v4/latest/USD').then(function(r){return r.json();}).then(function(d){
-  if(!d||!d.rates)return;['ca','mx','au','ph'].forEach(function(k){var r=d.rates[COUNTRIES[k].cur];if(r)COUNTRIES[k].fx=r;});applyCountry();
+  if(!d||!d.rates)return;['ca','mx','au','ph','gb','nz','za','ae','in','sg','br','do','co'].forEach(function(k){var r=d.rates[COUNTRIES[k].cur];if(r)COUNTRIES[k].fx=r;});applyCountry();
 }).catch(function(){});}catch(e){}
 function setCountry(k){
   if(!COUNTRIES[k])return;
   COUNTRY=k;try{localStorage.setItem('jt_country',k);}catch(e){}
   applyCountry();
-  if(k==='mx'&&L!=='es')L='es';
-  if(k!=='mx'&&k!=='us'&&L==='es')L='en';
+  var esFirst=['mx','do','co','br'];
+  if(esFirst.indexOf(k)>=0&&L!=='es')L='es';
+  if(esFirst.indexOf(k)<0&&L==='es')L='en';
   try{document.getElementById('btn-en').className='lang-btn'+(L==='en'?' on':'');document.getElementById('btn-es').className='lang-btn'+(L==='es'?' on':'');}catch(e){}
   var o=document.getElementById('country-picker');if(o)o.remove();
   renderAll();
