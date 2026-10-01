@@ -357,8 +357,10 @@ var DEMO_MODE=false,DEMO_CODE='',DEMO_WS=null,DEMO_VIEWER=false,DEMO_LAST='';
     var _sp=new URLSearchParams(location.search);
     var _dc=(_sp.get('demo')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
     var _lg=(_sp.get('lang')||'').toLowerCase();
-    if(_lg==='es')L='es';
-    if(_lg==='en')L='en';
+    var _host=_sp.get('host')==='1';
+    if(_host)L='en'; // Brian's tab always English
+    else if(_lg==='es')L='es';
+    else if(_lg==='en')L='en';
     if(_dc.length>=4){DEMO_VIEWER=true;DEMO_CODE=_dc;demoStartViewer();}
   }catch(e){}
 })();

@@ -2108,6 +2108,7 @@ upd();
     // Detect Mexico number (52 country code) → send Spanish link
     var isMx=ph&&(ph.startsWith('52')||ph.startsWith('521'));
     var url='https://myjefetech.app?demo='+code+(isMx?'&lang=es':'');
+    var hostUrl='https://myjefetech.app?demo='+code+'&lang=en&host=1';
     var waMsg=isMx
       ?'Sígueme en mi demo en vivo de JefeTech 👇\n\nAbre este link en tu teléfono — verás todo lo que toco en tiempo real:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️'
       :'Follow along on my live JefeTech demo 👇\n\nOpen this link on your phone — you\'ll see everything I tap in real time:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️';
@@ -2118,7 +2119,7 @@ upd();
     panel.className='sx-demo-panel';
     panel.style.cssText='background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.3);border-radius:10px;padding:12px;margin-bottom:8px';
     var smsUrl='sms:+'+(ph?ph:'')+'&body='+encodeURIComponent(waMsg);
-    var openApp='window.open(\''+url+'\',\'_blank\');';
+    var openApp='window.open(\''+hostUrl+'\',\'_blank\');';
     panel.innerHTML='<div style="font-size:12px;font-weight:800;color:#FF6B2B;margin-bottom:4px">🔴 Send them the link — app opens too</div>'
       +'<div style="font-size:11px;color:#9CA3AF;margin-bottom:10px">Code: <span style="font-family:monospace;letter-spacing:2px;color:#fff">'+code+'</span>'+(pName?' · '+pName:'')+'</div>'
       +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px">'
