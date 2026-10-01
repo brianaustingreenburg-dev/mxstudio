@@ -2739,10 +2739,7 @@ upd();
     pending=i;var p=P[i];if(!p)return;
     if(!bar){bar=document.createElement('div');bar.id='wa-ask';
       bar.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0f1a13;border-top:2px solid #25D366;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.4)';
-      document.body.appendChild(bar);
-      bar.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||pending===null)return;
-        var v=b.dataset.v;if(v==='y'||v==='n'){W[pending]=v;save();}
-        bar.hidden=true;pending=null;if(window.filterP)window.filterP();});}
+      document.body.appendChild(bar);}
     bar.innerHTML='<div style="flex:1;min-width:180px;font-size:14px;line-height:1.35;color:#f2f0ea"><b>Was '+String(p[0]).replace(/</g,'&lt;')+' on WhatsApp?</b><div style="font-size:11px;color:#8c95a3">Tap one so your list remembers.</div></div>'
       +'<button data-v="y" style="background:#25D366;color:#fff;border:0;border-radius:9px;padding:11px 16px;font-weight:900;font-size:14px">✅ Yes</button>'
       +'<button data-v="n" style="background:#2a2f36;color:#f2f0ea;border:0;border-radius:9px;padding:11px 16px;font-weight:900;font-size:14px">❌ No</button>'
@@ -2751,7 +2748,14 @@ upd();
   }
   document.addEventListener('click',function(e){
     var t=e.target;if(!t.closest)return;
-    if(t.closest('#wa-ask')||t.closest('button[data-wa]'))return;
+    // Handle Yes/No/Later inside the wa-ask bar
+    if(t.closest('#wa-ask')){
+      var btn=t.closest('button[data-v]');if(!btn||pending===null)return;
+      var v=btn.dataset.v;if(v==='y'||v==='n'){W[pending]=v;save();}
+      bar.hidden=true;pending=null;if(window.filterP)window.filterP();
+      return;
+    }
+    if(t.closest('button[data-wa]'))return;
     var isWA=t.closest('a[href*="wa.me/"],.ab-wa,[onclick*="waSelected"],[onclick*="waP("]');if(!isWA)return;
     var tr=t.closest('#ptbody tr'),i=null;
     if(tr){var m=(tr.getAttribute('onclick')||'').match(/selP\((\d+)\)/);if(m)i=+m[1];}
