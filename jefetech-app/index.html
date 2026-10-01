@@ -204,7 +204,7 @@ body{background:#0f1117;color:#fff;font-family:'DM Sans',system-ui,sans-serif;mi
 
 <script>
 // ── State ─────────────────────────────────────────────────────
-var L='en', TAB='safety', PHASE=0, CHECKED={}, INCIDENTS=[], SAFETY_TRADE=null;
+var L=(navigator.language||navigator.userLanguage||'en').toLowerCase().startsWith('es')?'es':'en', TAB='safety', PHASE=0, CHECKED={}, INCIDENTS=[], SAFETY_TRADE=null;
 var TRADE_SEL=null;
 var JOB_TAB='measure'; // measure, quote, crew, changeorder, report, suppliers
 
@@ -351,10 +351,14 @@ function goTab(t){TAB=t;renderAll();demoEmit();}
 
 // ── LIVE DEMO SYNC ────────────────────────────────────────────────────────────
 var DEMO_MODE=false,DEMO_CODE='',DEMO_WS=null,DEMO_VIEWER=false,DEMO_LAST='';
-// Check if we're a viewer (?demo=CODE)
+// Check if we're a viewer (?demo=CODE) and honor &lang= param
 (function(){
   try{
-    var _dc=(new URLSearchParams(location.search).get('demo')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+    var _sp=new URLSearchParams(location.search);
+    var _dc=(_sp.get('demo')||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+    var _lg=(_sp.get('lang')||'').toLowerCase();
+    if(_lg==='es')L='es';
+    if(_lg==='en')L='en';
     if(_dc.length>=4){DEMO_VIEWER=true;DEMO_CODE=_dc;demoStartViewer();}
   }catch(e){}
 })();

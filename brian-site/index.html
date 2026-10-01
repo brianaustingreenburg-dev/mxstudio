@@ -2103,10 +2103,14 @@ upd();
   function toast(i,t,s){if(typeof showToast==='function')showToast({i:i,t:t,s:s});}
   function startLiveDemo(b){
     var code=Math.random().toString(36).slice(2,8).toUpperCase();
-    var url='https://myjefetech.app?demo='+code;
     var p=cur();var pName=p?p[0]:'';
     var phEl=b.querySelector('.sx-ph');var ph=phEl?digits(phEl.value):'';
-    var waMsg='Follow along on my live JefeTech demo 👇\n\nOpen this link on your phone — you\'ll see everything I tap in real time:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️';
+    // Detect Mexico number (52 country code) → send Spanish link
+    var isMx=ph&&(ph.startsWith('52')||ph.startsWith('521'));
+    var url='https://myjefetech.app?demo='+code+(isMx?'&lang=es':'');
+    var waMsg=isMx
+      ?'Sígueme en mi demo en vivo de JefeTech 👇\n\nAbre este link en tu teléfono — verás todo lo que toco en tiempo real:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️'
+      :'Follow along on my live JefeTech demo 👇\n\nOpen this link on your phone — you\'ll see everything I tap in real time:\n'+url+'\n\n— Brian Lalo, MX Studio ✝️';
     var waUrl=ph?'https://wa.me/'+ph+'?text='+encodeURIComponent(waMsg):'https://wa.me/?text='+encodeURIComponent(waMsg);
     // Show panel first — WhatsApp/SMS buttons also open the app when tapped
     var existing=b.querySelector('.sx-demo-panel');if(existing)existing.remove();
