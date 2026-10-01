@@ -1098,7 +1098,7 @@ function renderP(){
       +'<span style="font-size:12px;color:var(--muted)">'+p[1]+'</span>'
       +'</div></td>'
       +'<td>'+p[2]+', '+p[3]+'</td>'
-      +'<td style="font-size:11px;color:var(--muted);white-space:nowrap"><span class="live-tz" data-zone="'+(ZONES[ZI[p[4]]]?ZONES[ZI[p[4]]].z:'')+'">'+clockIn(ZONES[ZI[p[4]]]?ZONES[ZI[p[4]]].z:'America/Chicago')+'</span><br>'+p[4]+'</td>'
+      +'<td style="font-size:11px;color:var(--muted)">'+p[4]+'</td>'
       +'<td><span class="sbadge '+s+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</span></td>'
       +'<td>'+note+'</td>'
       +'<td><div class="abtns"><button class="ab ab-wa" onclick="event.stopPropagation();waP('+i+')" title="WhatsApp">💬</button><button class="ab ab-done" onclick="event.stopPropagation();quickCall('+i+')" title="Called">✓</button></div></td>'
@@ -1614,8 +1614,6 @@ upd();
   filterP();
   window._lineupReady=true;
   setInterval(function(){renderLineup();if(S.filter==='now'||String(S.filter).indexOf('z-')===0){var r=document.querySelectorAll('#ptbody tr');if(r.length)window.renderP();}},60000);
-  // Tick live-tz clocks every 30s without re-rendering the whole table
-  setInterval(function(){document.querySelectorAll('.live-tz').forEach(function(el){var z=el.dataset.zone;if(z)el.textContent=clockIn(z);});},30000);
 })();
 </script>
 
