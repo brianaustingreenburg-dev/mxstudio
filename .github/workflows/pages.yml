@@ -23,6 +23,7 @@ jobs:
           cp shared/checkout.html out/checkout.html
           cp shared/welcome.html out/welcome.html
           cp shared/owner.html out/owner.html
+          cp shared/partner-demo.html out/partner-demo.html
           cp -R brian-site out/brian
           cp -R daniel out/mexico
           cp -R cristian out/us
