@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -243,8 +242,8 @@ body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,san
     <div class="jefe-av">BL</div>
     <div class="jefe-name">Brian Lalo ✝️</div>
     <div class="jefe-sub" id="j-sub">Owner · MX Studio · Acapulco, México 🇲🇽🤝🇺🇸</div>
-    <a href="https://web.whatsapp.com/send?phone=14084223505?text=Hola%20Brian%20Lalo%2C%20soy%20tu%20socio.%20Necesito%20ayuda." class="wa-main"  id="j-wa-es">💬 WhatsApp Brian — Español</a>
-    <a href="https://web.whatsapp.com/send?phone=14084223505?text=Hey%20Brian%20Lalo%2C%20it%27s%20your%20partner.%20Need%20some%20help." class="wa-sec"  id="j-wa-en">💬 WhatsApp Brian — English</a>
+    <a href="https://wa.me/14084223505?text=Hola%20Brian%20Lalo%2C%20soy%20tu%20socio.%20Necesito%20ayuda." class="wa-main"  id="j-wa-es">💬 WhatsApp Brian — Español</a>
+    <a href="https://wa.me/14084223505?text=Hey%20Brian%20Lalo%2C%20it%27s%20your%20partner.%20Need%20some%20help." class="wa-sec"  id="j-wa-en">💬 WhatsApp Brian — English</a>
   </div>
 
   <div class="card">
@@ -603,7 +602,7 @@ function renderProspects(list){
     var pd = PDATA[key]||{status:'new',note:''};
     var raw = p[1].replace(/\D/g,'');
     var tel = 'tel:'+p[1];
-    var wa  = 'https://web.whatsapp.com/send?phone='+(raw.indexOf('52')===0?raw:'52'+raw);
+    var wa  = 'https://wa.me/'+(raw.indexOf('52')===0?raw:'52'+raw);
     var badges = STATUSES.map(function(s){
       var active = pd.status===s ? ' active' : '';
       return '<span class="sbadge '+s+active+'" data-s="'+s+'" onclick="setStatus(this)">'+sl[s]+'</span>';
@@ -643,7 +642,7 @@ function copyStripe(btn){
 function sendStripeWA(){
   var l=window.mxLang?mxLang.get():(LANG==='es'?'es':'en');
   var M={en:'JefeTech: $137/mo for your whole crew. Over $300/mo of value, price locked for life. Lifetime money-back guarantee (terms apply) ✝️\n',es:'JefeTech: $137 USD/mes para todo su equipo. Más de $300/mes de valor, precio fijo de por vida. Garantía de devolución de por vida (aplican términos) ✝️\n',fil:'JefeTech: $137/buwan para sa buong crew mo. Higit $300/buwan na value, hindi na tataas ang presyo habambuhay. Lifetime money-back guarantee (may terms) ✝️\n'};
-  window.open('https://web.whatsapp.com/send?phone=14084223505&text='+encodeURIComponent(M[l]+STRIPE),'_blank');
+  window.open('https://wa.me/?text='+encodeURIComponent(M[l]+STRIPE),'_blank');
 }
 function copyLink(url,btn){
   navigator.clipboard.writeText(url).then(function(){
@@ -674,7 +673,7 @@ function ldpCopy(){
 function ldpWA(){
   var url=document.getElementById('ldp-url').textContent;
   var msg='🎬 Te mando el link para que veas la demo en vivo: '+url;
-  window.open('https://web.whatsapp.com/send?phone=14084223505&text='+encodeURIComponent(msg),'_blank');
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
 function ldpStop(){
   document.getElementById('live-demo-panel').style.display='none';
@@ -998,7 +997,7 @@ updateMotiv();
       +'<div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px">'+t.say+'</div>'
       +'<div style="font-size:13px;line-height:1.7;background:rgba(0,230,118,.07);border-left:3px solid var(--green);border-radius:8px;padding:10px 12px">'+t.line+'</div>';
     if(!BRIAN)h+='<div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.how+'</div>'
-      +'<a href="https://web.whatsapp.com/send?phone=14084223505?text='+encodeURIComponent(t.wa.replace(/^💬 [^:]+: /,''))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:800;font-size:13px;text-decoration:none;margin-top:8px">'+t.wa+'</a>';
+      +'<a href="https://wa.me/14084223505?text='+encodeURIComponent(t.wa.replace(/^💬 [^:]+: /,''))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:800;font-size:13px;text-decoration:none;margin-top:8px">'+t.wa+'</a>';
     box.innerHTML=(window.mxLang?mxLang.bar():'')+h;
   }
   function init(){
@@ -1063,11 +1062,11 @@ updateMotiv();
       +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px">'
       +t.items.map(function(x){return '<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:9px 10px;display:flex;gap:8px;align-items:flex-start"><span style="font-size:18px;line-height:1.2">'+x[0]+'</span><span><b style="font-size:12px;display:block;line-height:1.3">'+x[1]+'</b><span style="font-size:11px;color:var(--muted);line-height:1.35;display:block">'+x[2]+'</span></span></div>';}).join('')
       +'</div><div style="text-align:center;font-size:11px;color:var(--green);font-weight:800;margin-top:10px">'+t.f+'</div>'
-      +'<a href="https://web.whatsapp.com/send?phone=14084223505&text='+encodeURIComponent(waText(t))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:10px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:10px">'+W[lang()]+'</a>';
+      +'<a href="https://wa.me/?text='+encodeURIComponent(waText(t))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:10px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:10px">'+W[lang()]+'</a>';
   }
   var W={en:'💬 Share on WhatsApp',es:'💬 Compartir por WhatsApp',fil:'💬 I-share sa WhatsApp'};
   var J={en:'Want in? WhatsApp Brian Lalo:',es:'¿Te interesa? Escríbele a Brian Lalo:',fil:'Interesado? I-WhatsApp si Brian Lalo:'};
-  function waText(t){var l=lang();return '*'+t.h+'*\n\n'+t.items.map(function(x){return x[0]+' *'+x[1]+'*: '+x[2];}).join('\n')+'\n\n'+J[l]+' https://web.whatsapp.com/send?phone=14084223505\n'+t.f;}
+  function waText(t){var l=lang();return '*'+t.h+'*\n\n'+t.items.map(function(x){return x[0]+' *'+x[1]+'*: '+x[2];}).join('\n')+'\n\n'+J[l]+' https://wa.me/14084223505\n'+t.f;}
   function init(){
     var host=document.getElementById('pane-jefe')||(/Brian Lalo/.test(document.title)?document.getElementById('tab-team'):null)||document.getElementById('tab-goals');if(!host)return;
     box=document.createElement('div');box.id='partner-perks';
@@ -1146,7 +1145,7 @@ updateMotiv();
      +'<div class="tr-chk"><span>🗣️ Tell your story out loud 5 times</span><span><button type="button" class="tr-mini" data-act="rep">+1</button> <b id="tr-reps">0</b>/5</span></div>'
      +'<label class="tr-chk"><span>👨‍👩‍👧 Tell it to a friend or family member</span><input type="checkbox" data-p="friend"></label>'
      +'<label class="tr-chk"><span>📲 Send Brian a voice note of your story on WhatsApp</span><input type="checkbox" data-p="brian"></label>'
-     +'<a class="tr-btn tr-wa" href="https://web.whatsapp.com/send?phone=14084223505?text=Hey%20Brian%2C%20here%27s%20my%20story%20for%20training%20%E2%9C%9D%EF%B8%8F" target="_blank" rel="noopener">💬 Open WhatsApp to Brian</a>'
+     +'<a class="tr-btn tr-wa" href="https://wa.me/14084223505?text=Hey%20Brian%2C%20here%27s%20my%20story%20for%20training%20%E2%9C%9D%EF%B8%8F" target="_blank" rel="noopener">💬 Open WhatsApp to Brian</a>'
      +'<div class="tr-f" style="margin-top:12px"><label>Your name for the certificate</label><input data-s="name" placeholder="First and last name"></div>'
      +'<div id="tr-cert"></div>',
     q:null}
@@ -1210,7 +1209,7 @@ updateMotiv();
      +'<div class="tr-chk"><span>🗣️ Cuenta tu historia en voz alta 5 veces</span><span><button type="button" class="tr-mini" data-act="rep">+1</button> <b id="tr-reps">0</b>/5</span></div>'
      +'<label class="tr-chk"><span>👨‍👩‍👧 Cuéntasela a un amigo o familiar</span><input type="checkbox" data-p="friend"></label>'
      +'<label class="tr-chk"><span>📲 Mándale a Brian una nota de voz con tu historia por WhatsApp</span><input type="checkbox" data-p="brian"></label>'
-     +'<a class="tr-btn tr-wa" href="https://web.whatsapp.com/send?phone=14084223505?text=Hola%20Brian%2C%20aqu%C3%AD%20va%20mi%20historia%20para%20la%20capacitaci%C3%B3n%20%E2%9C%9D%EF%B8%8F" target="_blank" rel="noopener">💬 Abrir WhatsApp con Brian</a>'
+     +'<a class="tr-btn tr-wa" href="https://wa.me/14084223505?text=Hola%20Brian%2C%20aqu%C3%AD%20va%20mi%20historia%20para%20la%20capacitaci%C3%B3n%20%E2%9C%9D%EF%B8%8F" target="_blank" rel="noopener">💬 Abrir WhatsApp con Brian</a>'
      +'<div class="tr-f" style="margin-top:12px"><label>Tu nombre para el certificado</label><input data-s="name" placeholder="Nombre y apellido"></div>'
      +'<div id="tr-cert"></div>',
     q:null}
@@ -1354,7 +1353,7 @@ updateMotiv();
   function waUrls(w){
     var q=[];if(w.ph)q.push('phone='+w.ph);if(w.txt)q.push('text='+encodeURIComponent(w.txt));var qs=q.length?'?'+q.join('&'):'';
     return {app:'whatsapp://send'+qs,
-            uni:'https://web.whatsapp.com/send?phone='+(w.ph||'')+(w.txt?'?text='+encodeURIComponent(w.txt):''),
+            uni:'https://wa.me/'+(w.ph||'')+(w.txt?'?text='+encodeURIComponent(w.txt):''),
             web:'https://web.whatsapp.com/send'+qs};
   }
   function norm(u){return String(u).replace(/^(tel:\+?)(\d{10})$/i,'tel:+1$2').replace(/(number=%2B)(\d{10})$/i,'$11$2');}
@@ -1411,7 +1410,7 @@ updateMotiv();
       +'<div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin:12px 0 5px"><span>'+t.p+'</span><span style="color:#A78BFA">'+Math.min(n,GOAL)+' / '+GOAL+'</span></div>'
       +'<div style="height:9px;background:rgba(255,255,255,.07);border-radius:5px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#8B5CF6,#00E676);border-radius:5px;transition:.4s"></div></div>'
       +'<div style="font-size:12px;margin-top:7px;font-weight:700;color:'+(won?'var(--green)':'var(--muted)')+'">'+(won?t.won:t.left.replace('{n}',GOAL-n))+'</div>'
-      +(won?'<a href="https://web.whatsapp.com/send?phone=14084223505?text='+encodeURIComponent(t.msg)+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:9px">'+t.claim+'</a>':'')
+      +(won?'<a href="https://wa.me/14084223505?text='+encodeURIComponent(t.msg)+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:9px">'+t.claim+'</a>':'')
       +'<div style="font-size:10px;color:var(--muted);margin-top:9px;line-height:1.5">'+t.f+'</div>';
   }
   function init(){
@@ -1573,5 +1572,3 @@ updateMotiv();
 </script>
 </body>
 </html>
-
-</body></html>
