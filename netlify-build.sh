@@ -16,4 +16,6 @@ cp shared/la-forja.html _site/la-forja.html
 cp shared/checkout.html _site/checkout.html
 cp shared/welcome.html _site/welcome.html
 cp shared/owner.html _site/owner.html
+cp shared/demo.html _site/demo.html
+cp shared/partner-demo.html _site/partner-demo.html
 echo "Published $src for $SITE_NAME"
