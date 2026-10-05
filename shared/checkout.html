@@ -114,6 +114,9 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 .steps div{display:flex;gap:10px}
 .steps b{color:var(--ink);min-width:18px}
 .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;line-height:1.7}
+.wa-contact{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:20px;padding:14px 20px;background:#1a2e1a;border:1.5px solid #00e676;border-radius:12px;color:#00e676;font:700 15px/1 'Inter Tight',system-ui,sans-serif;text-decoration:none;transition:background .15s}
+.wa-contact:hover{background:#1f3d1f}
+.wa-contact .wa-icon{font-size:22px;line-height:1}
 </style>
 </head>
 <body>
@@ -288,6 +291,11 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
     </div>
   </div>
 
+  <a class="wa-contact" href="https://web.whatsapp.com/send?phone=14084223505&text=Hi%20Brian%2C%20I%27m%20interested%20in%20JefeTech." target="_blank" rel="noopener">
+    <span class="wa-icon">💬</span>
+    <span>Questions? Message Brian on WhatsApp</span>
+  </a>
+
   <div class="foot">MX Studio · JefeTech ✝️<br>brian@myjefetech.app · WhatsApp +1 (408) 422-3505</div>
 </div>
 
@@ -299,7 +307,7 @@ input:focus-visible{outline:2px solid var(--green);outline-offset:1px}
   var STRIPE_PAYG_TOPUP='https://buy.stripe.com/eVq4gBb1ZaQ45C2atz0Jq0l'; // $97 one-time top-up
   var STRIPE_AI='https://buy.stripe.com/6oU9AV4DB1fud4uatz0Jq0k';  // $20/mo AI add-on
   var STRIPE_PAYG_BUNDLE='https://buy.stripe.com/fZu28t7PN7DS7Ka9pv0Jq0m'; // $117/mo bundle// TODO: $117/mo bundle link (PAYG+AI)
-  var WA='https://wa.me/14084223505?text=';
+  var WA='https://web.whatsapp.com/send?phone=14084223505&text=';
   var FOUNDER_JSON='/shared/founder30.json';
 
   // Pricing
