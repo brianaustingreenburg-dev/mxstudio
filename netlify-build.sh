@@ -6,7 +6,7 @@ case "$SITE_NAME" in
   mxstudio-daniel)   src=daniel ;;
   mxstudio-cristian) src=cristian ;;
   mxstudio-partners) src=partners-site/public ;;
-  endearing-dieffenbachia-d028e4|family-first) src=family-first; only_site=1 ;;
+  deluxe-tartufo-364c6c|endearing-dieffenbachia-d028e4|family-first) src=family-first; only_site=1 ;;
   *) echo "Unknown site: $SITE_NAME"; exit 1 ;;
 esac
 rm -rf _site && mkdir _site
