@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0a0a0a"><meta name="apple-mobile-web-app-title" content="MX Studio ✝️">
+<script>window.MXSYNC={"api": "/api/sync", "key": "p_YgszsmdXKHtOjqKwC6edbJUv", "space": "partner-ca", "prefix": "ca:"};</script>
+<script id="mx-sync">
+/* ===== ✝️ MX Studio live sync: same data on every device, within seconds ===== */
+(function(){
+  var C=window.MXSYNC;if(!C||!window.XMLHttpRequest||window.top!==window)return;
+  var LS;try{LS=window.localStorage;LS.setItem('mxs:test','1');LS.removeItem('mxs:test');}catch(e){return;}
+  var P=C.prefix||'';
+  var proto=Storage.prototype,_get=proto.getItem,_set=proto.setItem,_rem=proto.removeItem;
+  function rawGet(k){return _get.call(LS,k);} function rawSet(k,v){_set.call(LS,k,v);} function rawRem(k){_rem.call(LS,k);}
+  var REVK='mxs:rev:'+C.space, DEVK='mxs:dev';
+  var dev=rawGet(DEVK);if(!dev){dev=Math.random().toString(36).slice(2,12);rawSet(DEVK,dev);}
+  var rev=+rawGet(REVK)||0, pend={}, timer=null, applying=false, dirty=false;
+  function internal(k){return k.indexOf('mxs:')===0;}
+  function apply(items){
+    var n=0;applying=true;
+    for(var k in items){if(!items.hasOwnProperty(k)||internal(k))continue;var it=items[k];
+      if(it.t>rev)rev=it.t;
+      if(it.d===dev)continue;
+      var cur=rawGet(P+k);
+      if(it.v===null){if(cur!==null){rawRem(P+k);n++;}}
+      else if(cur!==it.v){rawSet(P+k,it.v);n++;}}
+    applying=false;rawSet(REVK,String(rev));return n;
+  }
+  function url(q){return C.api+'?space='+encodeURIComponent(C.space)+(q||'');}
+  /* 1) before the page reads anything: pull the latest from the cloud (fast, blocks ~0.3s) */
+  try{var x=new XMLHttpRequest();x.open('GET',url('&since='+rev),false);x.setRequestHeader('x-mx-key',C.key);x.send();
+    if(x.status===200){apply(JSON.parse(x.responseText).items||{});}}catch(e){}
+  /* 2) every save on this device goes to the cloud */
+  function push(){timer=null;var body=pend;pend={};if(!Object.keys(body).length)return;
+    fetch(url(),{method:'POST',headers:{'content-type':'application/json','x-mx-key':C.key},body:JSON.stringify({set:body,dev:dev}),keepalive:true})
+      .then(function(r){return r.json();}).then(function(j){if(j&&j.rev>rev){/* keep rev: our own writes are skipped on read */}})
+      .catch(function(){for(var k in body)if(!(k in pend))pend[k]=body[k];rawSet('mxs:pend:'+C.space,JSON.stringify(pend));setTimeout(push,5000);});
+  }
+  try{var old=JSON.parse(rawGet('mxs:pend:'+C.space)||'{}');for(var k0 in old)pend[k0]=old[k0];rawRem('mxs:pend:'+C.space);if(Object.keys(pend).length)setTimeout(push,1500);}catch(e){}
+  function queue(k,v){if(applying||internal(k))return;pend[k]=v;if(timer)clearTimeout(timer);timer=setTimeout(push,400);}
+  proto.getItem=function(k){if(this===LS&&!internal(String(k)))return _get.call(this,P+k);return _get.apply(this,arguments);};
+  proto.setItem=function(k,v){if(this===LS&&!internal(String(k))){_set.call(this,P+k,String(v));queue(String(k),String(v));return;}return _set.apply(this,arguments);};
+  proto.removeItem=function(k){if(this===LS&&!internal(String(k))){_rem.call(this,P+k);queue(String(k),null);return;}return _rem.apply(this,arguments);};
+  window.addEventListener('pagehide',function(){if(timer){clearTimeout(timer);push();}});
+  /* 3) changes from your other devices show up here within a few seconds */
+  function busy(){var a=document.activeElement;return a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable);}
+  function saveUI(){try{var tbs=[].slice.call(document.querySelectorAll('.tb'));var ai=tbs.findIndex(function(t){return t.classList.contains('active');});
+    sessionStorage.setItem('mxs:ui',JSON.stringify({tab:ai,sel:(typeof S!=='undefined'&&S&&S.sel!=null)?S.sel:null,y:window.scrollY,t:Date.now()}));}catch(e){}}
+  function refresh(){if(busy()||document.querySelector('dialog[open]')){dirty=true;return;}dirty=false;saveUI();location.reload();}
+  function poll(){
+    if(document.hidden)return;
+    fetch(url('&since='+rev),{headers:{'x-mx-key':C.key},cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+      if(j&&apply(j.items||{})>0)refresh();
+    }).catch(function(){});
+  }
+  setInterval(poll,4000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)poll();});
+  window.addEventListener('focus',poll);
+  document.addEventListener('focusout',function(){setTimeout(function(){if(dirty&&!busy())refresh();},300);});
+  /* after a sync refresh, put you back on the same tab, prospect and scroll spot */
+  function restore(){try{var u=JSON.parse(sessionStorage.getItem('mxs:ui')||'null');sessionStorage.removeItem('mxs:ui');if(!u||Date.now()-u.t>15000)return;
+    var tbs=document.querySelectorAll('.tb');if(u.tab>=0&&tbs[u.tab])tbs[u.tab].click();
+    if(u.sel!=null&&typeof window.selP==='function'){try{window.selP(u.sel);}catch(e){}}
+    setTimeout(function(){window.scrollTo(0,u.y||0);},60);}catch(e){}}
+  window.addEventListener('load',function(){setTimeout(restore,50);});
+  window.MXSYNC.status=function(){return {rev:rev,pending:Object.keys(pend).length,dev:dev};};
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MX Studio Partner ✝️</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090b10;--card:#12151e;--border:rgba(255,255,255,.07);
+  --orange:#FF6B2B;--green:#00E676;--wa:#25D366;
+  --white:#F8F8F6;--muted:#8896A8;
+  --gdim:rgba(0,230,118,.06);--gmid:rgba(0,230,118,.16)
+}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,sans-serif;min-height:100vh;padding-bottom:48px}
+
+/* HEADER */
+.hdr{padding:13px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,230,118,.12);position:sticky;top:0;background:rgba(9,11,16,.97);backdrop-filter:blur(14px);z-index:99}
+.logo{width:34px;height:34px;border-radius:9px;background:var(--green);color:#000;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0,230,118,.25);flex-shrink:0}
+.hdr-text{flex:1;min-width:0}
+.hdr-name{font-size:14px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-sub{font-size:10px;color:var(--green);font-weight:600}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.toggle-label{font-size:11px;font-weight:800;min-width:24px}
+.toggle-track{width:42px;height:22px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--border);cursor:pointer;position:relative;transition:.25s;flex-shrink:0}
+.toggle-knob{width:16px;height:16px;border-radius:8px;position:absolute;top:2px;left:2px;transition:.25s}
+.toggle-track.en .toggle-knob{left:22px}
+
+/* TABS */
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--border);background:#0b0d14;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex-shrink:0;padding:11px 14px;font-size:11px;font-weight:800;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;letter-spacing:.2px;transition:.2s;white-space:nowrap}
+.tb.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,230,118,.04)}
+
+/* TAB PANES */
+.pane{display:none;padding:16px}
+.pane.active{display:block}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.clabel{font-size:9px;font-weight:800;color:var(--green);letter-spacing:.9px;text-transform:uppercase;margin-bottom:12px}
+
+/* GOALS */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.gc{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;text-align:center}
+.gc-lbl{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.gc-n{font-size:48px;font-weight:900;line-height:1}
+.gc-s{font-size:10px;color:var(--muted);margin-top:3px}
+.btn{display:block;width:100%;padding:11px;border-radius:9px;border:1px solid var(--border);background:var(--gdim);color:var(--green);font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:8px;text-align:center}
+.btn-o{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn-wa{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.25);color:var(--wa)}
+.btn-stripe{background:var(--orange);border:none;color:#fff}
+
+/* PROGRESS */
+.prog{margin-bottom:12px}
+.prog-top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.prog-bar{height:7px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;transition:.4s}
+
+/* PROSPECTS */
+.srch{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:9px;padding:9px 13px;color:var(--white);font-size:13px;font-family:inherit;margin-bottom:10px;outline:none}
+.srch:focus{border-color:rgba(0,230,118,.3)}
+.pct{font-size:10px;color:var(--muted);text-align:center;margin-bottom:8px}
+.plist{display:flex;flex-direction:column;gap:7px;max-height:58vh;overflow-y:auto}
+.prow{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:9px}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pmeta{font-size:10px;color:var(--muted);margin-top:2px}
+.pbtns{display:flex;gap:5px;flex-shrink:0}
+.pbtns a{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;border:1px solid var(--border)}
+.pbcall{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.18)}
+.pbwa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.18)}
+
+/* SCRIPT */
+.step{border-radius:13px;padding:16px;margin-bottom:10px}
+.step-opener{background:var(--card);border:1px solid var(--border)}
+.step-pitch{background:var(--card);border:1px solid var(--border)}
+.step-close{background:rgba(255,107,43,.06);border:1px solid rgba(255,107,43,.18)}
+.step-fu{background:var(--card);border:1px solid var(--border)}
+.step-lbl{font-size:9px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;margin-bottom:10px;color:var(--orange)}
+.step-txt{font-size:13px;line-height:1.75;color:var(--white)}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.demo-a{display:block;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:10px;text-decoration:none;text-align:center}
+.demo-icon{font-size:22px}
+.demo-lbl{font-size:11px;font-weight:800;color:var(--green);margin-top:4px}
+.copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.cbtn{background:var(--gdim);border:1px solid var(--gmid);color:var(--green);font-size:11px;font-weight:800;padding:8px;border-radius:8px;cursor:pointer;font-family:inherit}
+.close-btns{display:flex;gap:8px;margin-top:10px}
+.close-btns button{flex:1;padding:12px;border-radius:9px;border:none;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+
+/* EARNINGS */
+.earn-big{font-size:38px;font-weight:900;margin:6px 0 2px}
+.earn-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}
+.earn-row:last-child{border:none}
+.el{color:var(--muted)}
+.ev{font-weight:700}
+.slider-wrap{margin-top:10px}
+.slider-wrap input[type=range]{width:100%;accent-color:var(--green)}
+.calc-result{font-size:26px;font-weight:900;color:var(--green);text-align:center;margin-top:8px}
+.calc-sub{font-size:11px;color:var(--muted);text-align:center}
+
+/* JEFE */
+.jefe-card{background:linear-gradient(135deg,rgba(255,107,43,.07),rgba(0,230,118,.05));border:1px solid rgba(255,107,43,.18);border-radius:15px;padding:22px;text-align:center;margin-bottom:12px}
+.jefe-av{width:58px;height:58px;border-radius:14px;background:var(--orange);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.jefe-name{font-size:17px;font-weight:900;margin-bottom:3px}
+.jefe-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.wa-main{display:block;background:var(--wa);color:#fff;font-size:14px;font-weight:800;padding:13px;border-radius:11px;text-decoration:none;margin-bottom:8px}
+.wa-sec{display:block;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);color:var(--wa);font-size:12px;font-weight:700;padding:11px;border-radius:10px;text-decoration:none}
+
+/* RULES */
+.rule{font-size:12px;line-height:1.9;color:var(--white)}
+
+/* STATUS BADGES */
+.status-wrap{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.sbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;cursor:pointer;border:1px solid transparent;transition:.15s}
+.sbadge.new{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:var(--muted)}
+.sbadge.called{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.2);color:var(--green)}
+.sbadge.interested{background:rgba(255,200,0,.08);border-color:rgba(255,200,0,.2);color:#FFD600}
+.sbadge.closed{background:rgba(255,107,43,.12);border-color:rgba(255,107,43,.25);color:var(--orange)}
+.sbadge.skip{background:rgba(255,50,50,.08);border-color:rgba(255,50,50,.18);color:#FF5555}
+.sbadge.active{opacity:1;font-weight:900}
+.sbadge:not(.active){opacity:.4}
+
+/* NOTES */
+.p-note{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:7px;padding:6px 9px;color:var(--white);font-size:11px;font-family:inherit;margin-top:6px;resize:none;outline:none}
+.p-note:focus{border-color:rgba(0,230,118,.3)}
+
+/* PROW expanded */
+.prow{flex-direction:column;align-items:stretch;gap:0}
+.prow-top{display:flex;align-items:center;gap:9px}
+
+/* MOTIVATION */
+.motiv{background:linear-gradient(135deg,rgba(255,107,43,.08),rgba(0,230,118,.05));border:1px solid rgba(0,230,118,.12);border-radius:13px;padding:14px 16px;margin-bottom:12px;text-align:center}
+.motiv-quote{font-size:14px;font-weight:700;color:var(--white);line-height:1.5}
+.motiv-sub{font-size:10px;color:var(--orange);font-weight:800;margin-top:6px;letter-spacing:.5px}
+
+/* COUNTER */
+.p-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.p-counter-left{font-size:10px;color:var(--muted)}
+.p-counter-right{font-size:10px;font-weight:800;color:var(--green)}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:12px;font-weight:800;padding:9px 20px;border-radius:18px;z-index:999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">CA</div>
+  <div class="hdr-text">
+    <div class="hdr-name" id="h-title">MX Studio Partner 🇨🇦 ✝️</div>
+    <div class="hdr-sub" id="h-sub">MX Studio · God Wins · myjefetech.app</div>
+  </div>
+  <div class="toggle-wrap">
+    <span class="toggle-label" id="tl-left" style="color:var(--green)">ES</span>
+    <div class="toggle-track" id="toggle-track" onclick="toggleLang()">
+      <div class="toggle-knob" id="toggle-knob" style="background:var(--green)"></div>
+    </div>
+    <span class="toggle-label" id="tl-right" style="color:var(--muted)">EN</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tb active" onclick="showTab('jefe',this)" id="tab-btn-jefe">👑 Jefe</button>
+  <button class="tb" onclick="showTab('goals',this)" id="tab-btn-goals">🎯 Goals</button>
+  <button class="tb" onclick="showTab('prospects',this)" id="tab-btn-prospects">👥 Prospects</button>
+  <button class="tb" onclick="showTab('script',this)" id="tab-btn-script">🤝 Help You, Help Me</button>
+  <button class="tb" onclick="showTab('earnings',this)" id="tab-btn-earnings">✝️ Loyalty Program</button>
+</div>
+
+<!-- JEFE TAB -->
+<div id="pane-jefe" class="pane active">
+  <div class="jefe-card">
+    <div class="jefe-av">BL</div>
+    <div class="jefe-name">Brian Lalo ✝️</div>
+    <div class="jefe-sub" id="j-sub">Owner · MX Studio · Acapulco, México </div>
+    <a href="https://wa.me/14084223505?text=Hola%20Brian%20Lalo%2C%20soy%20tu%20socio.%20Necesito%20ayuda." class="wa-main"  id="j-wa-es">💬 WhatsApp Brian — Español</a>
+    <a href="https://wa.me/14084223505?text=Hey%20Brian%20Lalo%2C%20it%27s%20your%20partner.%20Need%20some%20help." class="wa-sec"  id="j-wa-en">💬 WhatsApp Brian — English</a>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="j-links-lbl">📋 Links Rápidos</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <a href="https://myjefetech.app" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+        <span style="font-size:22px">📱</span>
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-app-lbl">Demo App</div>
+          <div style="font-size:10px;color:var(--muted)">myjefetech.app</div>
+        </div>
+      </a>
+      <a href="https://go.myjefetech.app/la-forja.html" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+        <span style="font-size:22px">📊</span>
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-dash-lbl">Demo Dashboard — La Forja</div>
+          <div style="font-size:10px;color:var(--muted)">Sample data · opens in any browser</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" style="background:rgba(255,107,43,.05);border-color:rgba(255,107,43,.14)">
+    <div class="clabel" style="color:var(--orange)" id="j-rules-lbl">⚡ Reglas del Jefe</div>
+    <div class="rule" id="j-rules">
+      1. Siempre sé honesto — nunca prometas lo que no tenemos.<br>
+      2. Garantía de devolución de por vida — respáldala siempre.<br>
+      3. Manda el demo antes de pedir el cierre.<br>
+      4. Si estás atorado, WhatsApp al Jefe directo.<br>
+      5. Registra cada llamada. Cada cierre. Sin excepciones.<br>
+      6. <strong style="color:var(--orange)">Dios gana. ✝️</strong>
+    </div>
+  </div>
+</div>
+
+<!-- GOALS TAB -->
+<div id="pane-goals" class="pane">
+  <div class="motiv" id="motiv-card">
+    <div class="motiv-quote" id="motiv-quote">Dios ya puso el trabajo en ti. Solo tienes que marcar.</div>
+    <div class="motiv-sub" id="motiv-sub">✝️ DIOS GANA — MX STUDIO</div>
+  </div>
+  <div class="gg">
+    <div class="gc">
+      <div class="gc-lbl" id="g-calls-lbl">📞 Llamadas Hoy</div>
+      <div class="gc-n" style="color:var(--green)" id="g-calls-n">0</div>
+      <div class="gc-s" id="g-calls-goal">meta: 15</div>
+      <button class="btn" onclick="addCall()" id="g-log-call">+ Llamada</button>
+      <button class="btn" onclick="undoCall()" style="font-size:10px;color:var(--muted);margin-top:4px" id="g-undo">↩ Deshacer</button>
+    </div>
+    <div class="gc">
+      <div class="gc-lbl" id="g-closes-lbl">🔥 Cierres Hoy</div>
+      <div class="gc-n" style="color:var(--orange)" id="g-closes-n">0</div>
+      <div class="gc-s" id="g-earn-today">= $0 ganado</div>
+      <button class="btn btn-o" onclick="addClose()" id="g-log-close">+ Cierre 🔥</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="g-monthly-lbl">📊 Progreso Mensual</div>
+    <div class="prog">
+      <div class="prog-top"><span id="g-calls-prog-lbl">Llamadas</span><span id="g-calls-prog-ct">0 / 300</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="g-calls-bar" style="background:var(--green);width:0%"></div></div>
+    </div>
+    <div class="prog">
+      <div class="prog-top"><span id="g-closes-prog-lbl">Cierres</span><span id="g-closes-prog-ct">0 / 28</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="g-closes-bar" style="background:var(--orange);width:0%"></div></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px" id="g-pace"></div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="g-set-lbl">⚙️ Ajustar Metas</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px" id="g-daily-lbl">Meta diaria de llamadas</div>
+        <input id="g-call-goal" type="number" value="15" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:7px;color:var(--white);font-size:14px;font-weight:700;font-family:inherit;text-align:center" onchange="saveGoals()">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px" id="g-monthly-close-lbl">Meta mensual de cierres</div>
+        <input id="g-close-goal" type="number" value="28" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:7px;color:var(--white);font-size:14px;font-weight:700;font-family:inherit;text-align:center" onchange="saveGoals()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROSPECTS TAB -->
+<div id="pane-prospects" class="pane">
+  <input class="srch" id="p-search" placeholder="🔍  Buscar empresa, ciudad, giro..." oninput="filterP(this.value)">
+  <div class="pct" id="p-count">626 prospects</div>
+  <div class="plist" id="p-list"></div>
+</div>
+
+<!-- SCRIPT TAB -->
+<div id="pane-script" class="pane">
+  <div style="font-size:9px;font-weight:800;color:var(--muted);text-align:center;margin-bottom:14px;letter-spacing:.5px" id="sc-header">SCROLL · 15-20 MIN MAX</div>
+
+  <!-- OPENER -->
+  <div class="step step-opener">
+    <div class="step-lbl" id="sc-opener-lbl">🎯 PASO 1 — APERTURA</div>
+    <div class="step-txt" id="sc-opener-txt"></div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="step step-pitch">
+    <div class="step-lbl" id="sc-pitch-lbl">🌮 PASO 2 — PITCH</div>
+    <div class="step-txt" id="sc-pitch-txt"></div>
+    <div class="demo-grid">
+      <a href="https://myjefetech.app" class="demo-a">
+        <div class="demo-icon">📱</div>
+        <div class="demo-lbl" id="sc-app-lbl">Demo App</div>
+      </a>
+      <a href="https://go.myjefetech.app/la-forja.html" class="demo-a">
+        <div class="demo-icon">📊</div>
+        <div class="demo-lbl" id="sc-dash-lbl">Dashboard</div>
+      </a>
+    </div>
+    <div class="copy-grid">
+      <button class="cbtn" onclick="copyLink('https://myjefetech.app',this)" id="sc-copy-app">📋 Copiar App</button>
+      <button class="cbtn" onclick="copyLink('https://go.myjefetech.app/la-forja.html',this)" id="sc-copy-dash">📋 Copiar Dashboard</button>
+    </div>
+  </div>
+
+  <!-- CLOSE -->
+  <div class="step step-close">
+    <div class="step-lbl" id="sc-close-lbl">🤝 PASO 3 — CIERRE</div>
+    <div class="step-txt" id="sc-close-txt"></div>
+    <div class="close-btns">
+      <button onclick="copyStripe(this)" style="background:var(--orange);color:#fff" id="sc-stripe-btn">💳 Copiar Link de Pago</button>
+      <button onclick="sendStripeWA()" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:var(--wa)" id="sc-wa-btn">💬 WhatsApp</button>
+    </div>
+  </div>
+
+
+  <!-- SETUP GUIDE -->
+  <div class="step step-fu">
+    <div class="step-lbl" id="sc-setup-lbl">📲 PASO 4 — CÓMO INSTALAR</div>
+    <div class="step-txt" id="sc-setup-txt"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+      <button onclick="copyLink('https://myjefetech.app',this)" class="cbtn" id="su-app-btn" style="text-align:left;padding:10px 12px">📋 <span id="su-app-lbl">Copiar Link App</span></button>
+      <button onclick="copyLink('https://go.myjefetech.app',this)" class="cbtn" id="su-dash-btn" style="text-align:left;padding:10px 12px">📋 <span id="su-dash-lbl">Copiar Link Dashboard</span></button>
+    </div>
+  </div>
+  <!-- FOLLOW UP -->
+  <div class="step step-fu">
+    <div class="step-lbl" id="sc-fu-lbl">📲 PASO 5 — SEGUIMIENTO</div>
+    <div class="step-txt" id="sc-fu-txt"></div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px">
+      <button onclick="copyFU(1,this)" class="cbtn" id="fu-btn-1" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #1</button>
+      <button onclick="copyFU(2,this)" class="cbtn" id="fu-btn-2" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #2</button>
+    </div>
+  </div>
+</div>
+
+<!-- EARNINGS TAB -->
+<div id="pane-earnings" class="pane">
+  <div class="card" style="text-align:center">
+    <div class="clabel" id="e-total-lbl">💰 Total Ganado Este Mes</div>
+    <div class="earn-big" style="color:var(--green)" id="e-total-usd">$0 USD</div>
+    <div style="font-size:14px;color:var(--muted);margin-bottom:4px" id="e-total-mxn">≈ $0 MXN</div>
+    <div style="font-size:10px;color:var(--muted)" id="e-rate-note">$1 USD ≈ $17.50 MXN</div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="e-breakdown-lbl">📊 Desglose</div>
+    <div class="earn-row"><span class="el" id="e-closes-lbl">Cierres este mes</span><span class="ev" id="e-closes-val">0</span></div>
+    <div class="earn-row"><span class="el" id="e-price-lbl">Precio por cierre</span><span class="ev">$137/mo</span></div>
+    <div class="earn-row"><span class="el" id="e-cut-lbl">Tu comisión (60%)</span><span class="ev" id="e-cut-val">$82.20 por cierre</span></div>
+    <div class="earn-row"><span class="el" id="e-upfront-lbl">Ganado en USD</span><span class="ev" id="e-upfront-val">$0</span></div>
+    <div class="earn-row"><span class="el" id="e-mxn-lbl">Equivalente en pesos</span><span class="ev" id="e-mxn-val">$0 MXN</span></div>
+    <div class="earn-row" style="border-top:1px solid rgba(0,230,118,.15);padding-top:10px;margin-top:4px">
+      <span style="color:var(--green);font-weight:800" id="e-6mo-lbl">Proyección 6 meses</span>
+      <span style="color:var(--green);font-weight:900" id="e-6mo-val">$0</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="e-calc-lbl">🧮 Calculadora</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px" id="e-calc-sub">¿Cuántos cierres este mes?</div>
+    <input type="range" id="e-slider" min="1" max="50" value="10" style="width:100%;accent-color:var(--green)" oninput="calcEarnings(this.value)">
+    <div style="text-align:center;margin-top:8px">
+      <span style="font-size:12px;color:var(--muted)" id="e-at">En </span>
+      <span style="font-size:16px;font-weight:900" id="e-slider-val">10</span>
+      <span style="font-size:12px;color:var(--muted)" id="e-closes-label"> cierres:</span>
+      <div class="calc-result" id="e-calc-result">$822 USD</div>
+      <div class="calc-sub" id="e-calc-mxn">≈ $14,385 MXN</div>
+      <div class="calc-sub" id="e-calc-residual">+ $822 USD/mes residual</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── PROSPECTS ──
+var PROSPECTS = [["D'Angelo & Sons Roofing & Exteriors","(905) 387-3000","Hamilton","ON"],["Horizons Roofing","(905) 933-0112","Hamilton","ON"],["Maximum Roofing","(905) 628-9402","Dundas","ON"],["Mike Fuller Electric Ltd.","(613) 225-3249","Ottawa","ON"],["Ring Electric Inc","(613) 421-4442","Ottawa","ON"],["Forge Electrical Contracting Ltd.","(613) 252-3333","Ottawa","ON"],["MAC Contracting","(519) 497-0055","Kitchener","ON"],["GLUZMAN Contractors Ltd","(226) 270-3300","Kitchener","ON"],["Westmount Craftsmen","(519) 635-7089","Kitchener","ON"],["Menno S. Martin Contractor Ltd.","(519) 664-2245","Waterloo","ON"],["Olympic Heating and Air Inc.","(416) 402-6435","Mississauga","ON"],["Even Better Painting","(604) 359-7979","Vancouver","BC"],["AZ Painting Ltd","(778) 231-6622","Burnaby","BC"],["Garibaldi Painting","(604) 880-7590","Vancouver","BC"],["Blue World Painting Ltd.","(604) 803-8277","Port Coquitlam","BC"],["Comfort Tech Heating & Cooling Ltd","(250) 258-5713","Kelowna","BC"],["Key West Mechanical","(250) 300-3682","Kelowna","BC"],["Air Temp Heating & Cooling Specialist","(250) 707-0381","Kelowna","BC"],["BESOLAR","(778) 405-1354","Langford","BC"],["Calgary Air Heating and Cooling Ltd","(403) 720-0003","Calgary","AB"],["Roof-Ex","(780) 803-1616","Edmonton","AB"],["Alf's Roofing Ltd","(780) 464-6464","Edmonton","AB"],["Family Roofing","(780) 450-2941","Sherwood Park","AB"],["Ridgeline Solar","(780) 499-6831","Edmonton","AB"],["Genie Plomberie","(514) 501-1077","Montreal","QC"],["J.W. Plumbing & Heating Inc.","(514) 735-5583","Montreal","QC"],["Plomberie et Chauffage Rochon Inc.","(514) 600-0244","Sainte-Genevieve","QC"],["ABBEY Roofing","(514) 695-0111","Saint-Laurent","QC"],["Couverture M.D. Roofing","(514) 694-2356","Beaconsfield","QC"],["Toiture Bininng Roofing","(514) 638-8282","Vaudreuil-Dorion","QC"],["Argo Plumbing Ltd.","(204) 250-7266","Winnipeg","MB"],["Dean's Plumbing & Heating","(204) 801-2008","Winnipeg","MB"],["Nordic Plumbing","(204) 885-7881","Winnipeg","MB"],["The Pleasant Plumbers","(204) 930-9630","Winnipeg","MB"],["Expert Electric Ltd.","(204) 942-9200","Winnipeg","MB"],["Highland Electric Inc.","(204) 807-6144","Winnipeg","MB"],["CLEAN Electrical Solutions","(204) 771-8517","Winnipeg","MB"],["Prairie Sun Solar","(306) 206-1055","Regina","SK"],["Saskatoon Solar","(306) 988-2488","Saskatoon","SK"],["Pro Temp Mechanical","(306) 550-5506","Regina","SK"],["Certified Plumbing & Heating Ltd.","(306) 352-7554","Regina","SK"],["All Season Heating and Air Conditioning Ltd","(306) 540-5354","Regina","SK"],["Brown Electrical Contracting Ltd.","(306) 290-8619","Saskatoon","SK"],["AIM Electric Ltd","(306) 934-1922","Saskatoon","SK"],["Anytime Electric","(306) 203-4798","Saskatoon","SK"],["1st Electric Inc.","(902) 830-1226","Lucasville","NS"],["New Age Electrical Services","(902) 817-6243","Halifax","NS"],["Benoit Electric","(902) 876-0904","Beechville","NS"],["Kelly Electric Ltd","(902) 334-6442","Halifax","NS"],["Accurate Roofing","(902) 817-1967","Halifax","NS"],["Leverman Roofing","(902) 830-0309","Porters Lake","NS"],["Halifax Plumbing & Heating","(902) 880-5748","Halifax","NS"],["Blackburn Bennett Plumbing and Heating","(902) 877-0850","Dartmouth","NS"],["Rain Safe Roofing Inc","(647) 232-9167","Mississauga","ON"],["Best Roofer & Renovation","(437) 419-7409","Mississauga","ON"],["DVR Roofing","(416) 361-1800","Mississauga","ON"],["Coverall Roofing","(647) 470-4076","Mississauga","ON"],["Let It Rain Ltd","(905) 795-0212","Mississauga","ON"],["Country Roofing Inc.","(416) 457-9047","Mississauga","ON"],["George Kent Home Improvements Ltd","(647) 955-2946","Mississauga","ON"],["Real Blue Roofing Services Inc","(647) 712-5225","Mississauga","ON"],["Quality Home Remodeling","(647) 889-9091","Mississauga","ON"],["Port Credit Roofing And Exteriors","(647) 460-6350","Mississauga","ON"],["Gentech Roofing","(905) 270-6799","Mississauga","ON"],["TD Roofing Inc","(905) 247-6052","Mississauga","ON"],["Roofs on Homes","(416) 676-7655","Mississauga","ON"],["Home Vision","(437) 989-2199","Mississauga","ON"],["Jackson & Associates Inc","(416) 693-7870","Toronto","ON"],["Belco Contracting & Renovations Ltd","(416) 518-5620","Toronto","ON"],["Avenue Road Roofing","(416) 785-5129","Toronto","ON"],["A&M Roofmax Inc","(437) 974-3838","Toronto","ON"],["GTA Roofing Pros","(647) 588-3357","Toronto","ON"],["Solar Roofing & Sheet Metal Ltd","(416) 658-6045","Toronto","ON"],["Vina Roofing Inc","(416) 830-6227","Toronto","ON"],["Toronto Roofing Industries Ltd.","(416) 694-0906","Toronto","ON"],["Ascot Home Improvement Inc","(416) 363-4744","Toronto","ON"],["GA Construction Group","(416) 650-1844","Toronto","ON"],["JapJas Renovations Inc","(416) 509-4220","Brampton","ON"],["GTA Plumbing Services Inc","(647) 859-5363","Brampton","ON"],["Everest Drain and Plumbing Inc","(416) 383-0220","Mississauga","ON"],["Tornado Plumbing & Drains","(647) 784-8448","Mississauga","ON"],["Water Guard Plumbing","(647) 832-1673","Mississauga","ON"],["Total Plumbing & Mechanical Inc","(647) 346-5645","Vaughan","ON"],["Yess Boss Plumbing Inc","(437) 245-2324","Mississauga","ON"],["Canadian Design & Construction Inc","(905) 712-1232","Mississauga","ON"],["PHD Mechanical Plumbing Inc","(416) 245-1118","Toronto","ON"],["Anta Plumbing","(416) 231-3331","Toronto","ON"],["Ozz Electric Inc.","(905) 695-6829","Vaughan","ON"],["Mid-Northern Electric Ltd.","(416) 614-5289","Vaughan","ON"],["Easy Electric Inc","(416) 466-1030","Toronto","ON"],["Global Tech Electric Inc","(647) 966-8324","Richmond Hill","ON"],["Electric FX Inc.","(437) 292-4970","Toronto","ON"],["AMPS Logics Electric Ltd","(647) 648-4507","Toronto","ON"],["Safe Electrical Solutions","(905) 785-9000","Toronto","ON"],["Rusco Electric Services Ltd","(647) 342-8837","Toronto","ON"],["Crawford Electrical Contracting Inc","(416) 910-1169","Toronto","ON"],["Astron Electric Limited","(416) 422-3865","Toronto","ON"],["Absolute Power Electrical Contracting Ltd.","(416) 402-0949","Toronto","ON"],["Mann Electric Company Limited","(905) 898-8900","Newmarket","ON"],["Dynasty Air Systems Ltd","(416) 412-1772","Toronto","ON"],["United Home Services Centre Inc","(647) 688-6999","Markham","ON"],["Superior Care Home Services Inc","(416) 859-8555","Markham","ON"],["Laird & Son Heating & Air Conditioning","(416) 421-2121","Toronto","ON"],["Eco Star Home Services Co.","(416) 321-8666","Markham","ON"],["ThermEnergy Heating & Cooling","(416) 335-9255","Toronto","ON"],["Cana-Air Cooling and Heating Ltd","(416) 298-3786","Toronto","ON"],["Aire One Heating & Cooling Inc","(416) 460-5300","Markham","ON"],["Spring Home Heating and Cooling Systems Inc","(416) 272-8898","Markham","ON"],["Primipair Home Services","(905) 597-0629","Richmond Hill","ON"],["Con-Rep Services Ltd.","(416) 230-1132","Mississauga","ON"],["Rob's Quality Construction Corporation Inc.","(905) 484-2837","Burlington","ON"],["TruLink Construction Inc","(905) 599-3070","Burlington","ON"],["M & D Buildings","(416) 822-2249","Mississauga","ON"],["Majestic Colours Painting Services","(647) 786-4888","Milton","ON"],["Renovaint Inc","(437) 800-0644","Milton","ON"],["Proper Color Painting & Remodelling","(905) 634-3253","Burlington","ON"],["Platinum Pro Painters Inc","(416) 986-8633","Milton","ON"],["Absolute Home Services Inc","(905) 635-9879","Burlington","ON"],["Celtic Finishes Inc","(647) 693-8485","Toronto","ON"],["McRae Roofing Inc","(905) 433-0107","Oshawa","ON"],["Wilson's Roofing","(905) 723-5716","Oshawa","ON"],["Smith and Sons Roofing","(289) 240-5043","Oshawa","ON"],["U - Save Provincial Roofing & Windows","(905) 427-0206","Whitby","ON"],["Ajax Roofing & Repairs","(905) 427-2116","Oshawa","ON"],["Mint Roofing Ltd","(905) 447-6468","Oshawa","ON"],["Treasure Roofing Services and Constructions Ltd","(647) 291-9142","Oshawa","ON"],["Mega City Roofing Inc","(416) 419-9836","Whitby","ON"],["Durham Region Roofing Ltd","(905) 999-9069","Ajax","ON"],["Leonardo's Contracting","(647) 834-4995","Ajax","ON"],["Raymore Exteriors Corporation","(905) 426-2010","Pickering","ON"],["804 Group Ltd","(416) 436-3106","Burlington","ON"],["Eighty6 Custom Renovations","(905) 906-5865","Burlington","ON"],["Nat's Reno's Inc","(416) 428-2100","Burlington","ON"],["Gilhome Carpentry & Renovations Ltd","(905) 635-4172","Burlington","ON"],["Marcon Construction Ltd","(905) 332-9834","Burlington","ON"],["Domilya GROUP Inc.","(905) 366-4592","Burlington","ON"],["Davies General Contracting Inc","(905) 746-5625","Burlington","ON"],["Mastercrete Construction Inc.","(416) 700-5273","Burlington","ON"],["Touchwood Custom Solutions Ltd","(905) 693-2063","Burlington","ON"],["Pine Glen General Contractors Inc","(905) 827-1117","Oakville","ON"],["Express Paving Ltd","(416) 856-0112","Richmond Hill","ON"],["Action Home Services Inc","(647) 937-1023","Richmond Hill","ON"],["National Renovations","(905) 953-2839","Vaughan","ON"],["Metro Asphalt Interlocking & Paving Inc","(416) 674-8786","Vaughan","ON"],["General Asphalt Paving Ltd","(416) 292-9687","Markham","ON"],["Forge Floors Inc","(647) 227-1211","Newmarket","ON"],["CJ Constructors","(647) 987-5420","Toronto","ON"],["Last King Construction Inc","(647) 569-4498","Toronto","ON"],["King Kongtracting Corporation","(647) 242-9083","Richmond Hill","ON"],["Caspian Development Group Corp.","(647) 292-1331","Richmond Hill","ON"],["Inno Interlocking","(647) 863-9990","Richmond Hill","ON"],["Quality Property Services","(416) 888-8681","Markham","ON"],["Oborne Contracting Inc.","(905) 889-2841","Richmond Hill","ON"],["HAUS Renovation Group Ltd.","(647) 588-7366","Toronto","ON"],["GSI Contracting","(416) 824-1415","Toronto","ON"],["DAVESDUCTS","(416) 668-4607","Whitby","ON"],["W-HC Inc.","(905) 622-5435","Whitby","ON"],["Limcan Certified Heating and Air Conditioning","(905) 579-6616","Whitby","ON"],["JLN HVAC Solutions Inc","(647) 202-8618","Ajax","ON"],["Total Home Comfort","(905) 666-9993","Whitby","ON"],["Cambridge Heating Cooling & Duct Cleaning Inc","(647) 860-0241","Oshawa","ON"],["Cullen Heating & Air Conditioning Inc","(905) 725-9731","Oshawa","ON"],["Climate Experts Heating & Cooling Inc","(905) 492-7171","Pickering","ON"],["Gart Electric Inc","(905) 840-0492","Brampton","ON"],["GILVIC ELECTRIC INC","(437) 236-2591","Brampton","ON"],["Safer Electric Inc","(647) 383-9500","Brampton","ON"],["Buzzbolt Electric Limited","(905) 499-3859","Brampton","ON"],["Ridgewood Electric Ltd","(905) 454-2721","Mississauga","ON"],["Main Wire","(416) 771-7447","Brampton","ON"],["Danmar Electric Limited","(905) 595-0545","Mississauga","ON"],["A.A. Carter Electric Ltd.","(416) 993-1335","Mississauga","ON"],["Trademark Electric Co Ltd","(416) 236-5678","Toronto","ON"],["Langstaff & Sloan Inc","(416) 707-2109","Toronto","ON"],["Electrix Group Inc","(647) 946-2201","Toronto","ON"],["Infinite Renovation","(647) 237-6936","Mississauga","ON"],["Steve's Jobs","(416) 456-3990","Toronto","ON"],["Kalins Pro Painting","(647) 870-9295","Toronto","ON"],["Padda Construction Group Ltd.","(905) 291-2490","Brampton","ON"],["Soca Services Painting","(647) 551-4389","Toronto","ON"],["Sewer Squad Plumbing","(647) 699-2212","Ajax","ON"],["TRC Plumbing","(416) 985-0312","Toronto","ON"],["Saving Plumbing Inc","(647) 705-7618","Toronto","ON"],["Dima Plumbing","(647) 289-9576","Markham","ON"],["Forward Mechanical Services","(905) 439-4360","Whitby","ON"],["Fast Lane Plumbing","(289) 372-0330","Whitby","ON"],["Vaillancourt Plumbing & Drains Ltd","(289) 512-2321","Oshawa","ON"],["Caldwell Plumbing","(905) 239-3950","Oshawa","ON"],["A and Y Plumbing","(416) 835-7986","Toronto","ON"],["Hayes Plumbing Inc","(905) 576-3043","Oshawa","ON"],["Preferred Plumbing Solutions Inc","(905) 597-8555","Markham","ON"],["PR Plumbing","(905) 926-9365","Oshawa","ON"],["Park Lane Plumbing Limited","(416) 533-1186","Toronto","ON"],["Premier Plumbing","(647) 868-4217","Toronto","ON"],["Silva's Roofing Ltd","(365) 675-1696","Hamilton","ON"],["Gateway Exteriors Inc.","(905) 966-3052","Hamilton","ON"],["A M Roofing Systems Inc","(905) 522-5911","Hamilton","ON"],["Atlantic Roofers Ontario Ltd","(905) 573-6202","Hamilton","ON"],["ENR Roofing Inc","(905) 643-9744","Stoney Creek","ON"],["Edge's Roofing Co","(289) 768-2834","Hamilton","ON"],["Tops Roofing & Siding","(905) 312-0558","Hamilton","ON"],["Affordable Roofing","(905) 818-3034","Hamilton","ON"],["The Roof Doctor","(905) 627-1900","Hamilton","ON"],["Platinum Roofing","(905) 928-7528","Hamilton","ON"],["Ludwig W Roofing","(905) 544-9377","Hamilton","ON"],["B & G Roofing And Sheet Metal Inc","(905) 545-4493","Hamilton","ON"],["Jackson Roofing","(289) 389-9996","Hamilton","ON"],["Allied Roofing","(905) 529-7829","Hamilton","ON"],["Classified Roofing Services Inc","(905) 929-5872","Hamilton","ON"],["Nexus Electric","(343) 633-3402","Ottawa","ON"],["Carp Valley Electric Ltd.","(613) 699-2209","Ottawa","ON"],["C & N Electric and Plumbing Ltd","(613) 692-3284","Ottawa","ON"],["Nepean Electric","(613) 699-8920","Ottawa","ON"],["PowerCore Electric","(613) 716-4131","Ottawa","ON"],["Broder Electric Ltd","(613) 224-1176","Ottawa","ON"],["Day-View Electric","(613) 737-9608","Ottawa","ON"],["K T B Electric","(613) 832-3549","Ottawa","ON"],["Watson Electrical","(613) 319-9994","Ottawa","ON"],["Watts Electric Ltd","(613) 720-1433","Ottawa","ON"],["C Leclair Electric","(613) 223-4912","Ottawa","ON"],["Newell Electric","(613) 224-0663","Ottawa","ON"],["Farley Electric Ltd","(613) 744-2088","Ottawa","ON"],["Diotte Electric","(613) 371-5570","Ottawa","ON"],["Boss Electric","(613) 822-2677","Ottawa","ON"],["T.M 24 Electrique Inc","(819) 462-0084","Gatineau","QC"],["Royal Painting & Decorating","(519) 252-9012","Windsor","ON"],["Performance Painting","(519) 251-9959","Windsor","ON"],["Rainbow Painting & Decorating","(226) 782-9369","Windsor","ON"],["Hastings Painting Corp.","(519) 945-2400","Windsor","ON"],["Perfection Painting","(226) 340-5470","Windsor","ON"],["Wayne's Painting Maintenance","(519) 890-2812","Windsor","ON"],["Prism Painting","(519) 974-7386","Windsor","ON"],["AP Painting Solutions Limited","(519) 966-8890","Windsor","ON"],["XL Painters","(519) 991-6661","Windsor","ON"],["Alltech Painting","(519) 948-2807","Windsor","ON"],["Basile Interiors Ltd","(519) 250-6401","Windsor","ON"],["Gold Brush","(519) 972-6610","Windsor","ON"],["Able Air Conditioning & Heating","(226) 896-0613","Kitchener","ON"],["Cronin Verheul Heating & Air Conditioning Ltd","(226) 806-5637","Waterloo","ON"],["Face Heating & Cooling","(226) 887-0481","Cambridge","ON"],["APS Air Pro Services","(519) 743-7100","Kitchener","ON"],["Reitzel Heating And Air Conditioning","(519) 884-3510","Waterloo","ON"],["Beer R M Heating & Air Conditioning","(519) 623-1440","Cambridge","ON"],["Hy-Pro Heating & Cooling","(226) 336-6223","Kitchener","ON"],["Regional Mechanical","(519) 576-9577","Kitchener","ON"],["Constant Home Comfort","(226) 887-8535","Waterloo","ON"],["Fast Plumbing & Heating Contractors","(519) 893-5800","Kitchener","ON"],["Delta Air Systems Ltd","(519) 885-2740","Waterloo","ON"],["Bast Home Comfort","(519) 725-0852","Waterloo","ON"],["Davis Mechanical","(519) 570-2770","Kitchener","ON"],["Sponagle and Sons","(519) 404-0973","Cambridge","ON"],["Steve Young Plumbing & Heating Ltd","(226) 213-4583","London","ON"],["La Fleche Roofing (1992) Ltd","(519) 681-7610","London","ON"],["Onsite Roofing","(519) 897-3569","London","ON"],["Thomas Roofing","(519) 457-2650","London","ON"],["A & K Roofing Company Limited","(519) 681-6570","London","ON"],["Courtney Roofing Inc.","(519) 652-6859","London","ON"],["B & B Roofing & Exteriors","(519) 637-3707","London","ON"],["Smaill Roofing","(519) 421-6717","London","ON"],["Forest City Roofing","(519) 659-6937","London","ON"],["Discount Roofing","(519) 709-3275","London","ON"],["Portman Roofing Ltd","(226) 241-7685","London","ON"],["Eric's Roofing","(519) 668-7381","London","ON"],["1st Class Exteriors","(519) 520-3820","London","ON"],["Byron Roofing","(519) 457-9111","London","ON"],["Plumbtech Plumbing Inc","(705) 999-0380","Barrie","ON"],["Royal Flush Plumbing","(705) 309-0454","Barrie","ON"],["Smd Plumbing Services","(705) 716-1255","Barrie","ON"],["Bayfield Plumbing","(705) 728-4409","Barrie","ON"],["Wolf Plumbing","(705) 985-1015","Barrie","ON"],["PlumbEX","(705) 252-4444","Barrie","ON"],["Northern Plumbing Systems","(705) 812-2560","Barrie","ON"],["Sawchuk Plumbing","(705) 279-1086","Barrie","ON"],["Custom Plumbing","(705) 790-1336","Barrie","ON"],["KAPA Plumbing","(705) 309-7868","Barrie","ON"],["S. Belanger Electrical & Construction","(705) 507-2041","Sudbury","ON"],["T & G Electric Ltd","(705) 522-0747","Sudbury","ON"],["Madden Electric","(705) 524-3100","Sudbury","ON"],["Kev's Electrical & Construction","(705) 677-7334","Sudbury","ON"],["Alliance Electric","(705) 999-0982","Sudbury","ON"],["McAnsh Electric","(705) 968-0918","Sudbury","ON"],["GP Electric","(705) 238-0109","Sudbury","ON"],["TMT Electric","(705) 929-0673","Sudbury","ON"],["Hynes Electrical","(705) 521-4262","Sudbury","ON"],["Brothers Electric","(705) 562-0426","Sudbury","ON"],["Island Electric","(705) 562-8952","Sudbury","ON"],["Creo Concepts Inc","(226) 770-5899","Guelph","ON"],["Renaissance Landscape Group Inc","(519) 822-8668","Guelph","ON"],["From The Ground Up","(519) 837-2896","Guelph","ON"],["Dreamestate Landscaping","(519) 823-9287","Guelph","ON"],["Landscape Revolution","(519) 341-9303","Guelph","ON"],["A&K Landscape Makeovers","(519) 546-1266","Guelph","ON"],["Eco-Logics Landscaping","(519) 803-1643","Guelph","ON"],["All Round Landscaping","(226) 791-5725","Guelph","ON"],["Forestell Designed Landscapes","(519) 362-1194","Guelph","ON"],["J M Contractors","(613) 546-4214","Kingston","ON"],["H V Construction Ltd","(613) 417-1509","Kingston","ON"],["Kavaner Concrete","(613) 876-1162","Kingston","ON"],["Santos Brothers Construction","(613) 546-0079","Kingston","ON"],["Catena Bros Concrete","(613) 929-0949","Kingston","ON"],["C & M Construction","(613) 634-3219","Kingston","ON"],["Thompson Concrete","(613) 532-0152","Kingston","ON"],["Corsi M Construction Ltd","(613) 389-2258","Kingston","ON"],["Mont-Rose Roofing (Que) Ltd","(438) 448-6887","Montreal","QC"],["N D G Roofing Inc","(514) 486-0535","Montreal","QC"],["Quality Roofing","(438) 938-7064","Montreal","QC"],["Couvreur Rene Perron Ltee","(514) 327-1100","Montreal","QC"],["Toiture Extreme","(514) 835-8835","Montreal","QC"],["JSO Advanced Construction Inc","(437) 925-4608","St. Catharines","ON"],["Boldt John Builders Ltd","(905) 682-5958","St. Catharines","ON"],["First General Services","(905) 687-4149","St. Catharines","ON"],["JT Construction","(289) 501-8363","Niagara Falls","ON"],["PVS Contractors","(905) 397-4434","St. Catharines","ON"],["Melnick Contracting","(905) 328-1330","St. Catharines","ON"],["RD Contracting","(289) 990-3154","St. Catharines","ON"],["Hahn Builders","(905) 934-9558","St. Catharines","ON"],["Thermal Mechanical Systems Inc","(807) 345-5200","Thunder Bay","ON"],["Takk Plumbing","(807) 707-0260","Thunder Bay","ON"],["Grant Mechanical","(807) 623-1304","Thunder Bay","ON"],["Patriot Plumbing","(807) 286-7586","Thunder Bay","ON"],["A. Villeneuve Mechanical","(807) 622-8835","Thunder Bay","ON"],["Scharf Mechanical Ltd","(807) 935-4488","Thunder Bay","ON"],["Axelson's Plumbing","(807) 683-8811","Thunder Bay","ON"],["Thunder Bay Plumbing","(807) 631-8784","Thunder Bay","ON"],["DLM Plumbing & Heating","(807) 626-9807","Thunder Bay","ON"],["Lampshire & Terry Ltd","(807) 345-8866","Thunder Bay","ON"],["Northwest Plumbing and Heating","(807) 355-3238","Thunder Bay","ON"],["Ernie's Plumbing Service","(807) 475-0719","Thunder Bay","ON"],["Massaro Mech Plumb & Heating","(807) 767-8702","Thunder Bay","ON"],["Aqua North Plumbing and Heating","(807) 767-3726","Thunder Bay","ON"],["M Zaporzan Plumbing & Heating","(807) 628-9169","Thunder Bay","ON"],["Robert's Plumbing & Sheet Metal","(807) 345-9353","Thunder Bay","ON"],["B. Gibson Mechanical","(807) 631-9060","Thunder Bay","ON"],["Dell Mechanical Contracting","(807) 626-3032","Thunder Bay","ON"],["Larry's Mechanical Systems","(807) 474-1420","Thunder Bay","ON"],["G4 Mechanical Services","(807) 628-6980","Thunder Bay","ON"],["Giardetti Bros Plumbing Ltd","(807) 345-6933","Thunder Bay","ON"],["Rob's Plumbing","(807) 627-8365","Thunder Bay","ON"],["Westview Siding & Roofing Ltd.","(604) 657-6080","Vancouver","BC"],["All Star Roofing Inc.","(778) 951-4600","Vancouver","BC"],["GoodVans Roofing Ltd.","(778) 377-8209","Vancouver","BC"],["Adanac Roofing & Gutters","(778) 655-3036","Vancouver","BC"],["Norton Roofing Systems Ltd.","(604) 281-4759","Vancouver","BC"],["Vantage Roofing Ltd.","(778) 548-6731","Vancouver","BC"],["Cooper Roofing","(604) 674-0319","Vancouver","BC"],["Raise the Roof Roofing and Repair Ltd.","(778) 385-9585","Vancouver","BC"],["AlphaNova Roofing Inc.","(604) 771-0790","Vancouver","BC"],["Pacific West Exteriors Ltd.","(604) 733-1347","Vancouver","BC"],["Taves Roofing Ltd.","(604) 670-7553","Vancouver","BC"],["Our Cedar Roofs Inc.","(778) 371-3525","Vancouver","BC"],["Northstrata Construction","(604) 722-1522","Vancouver","BC"],["Millwall Roofing","(604) 763-1930","North Vancouver","BC"],["Advanced Systems Roofing & Waterproofing Ltd.","(604) 515-7971","Coquitlam","BC"],["Broadway Roofing Co. Ltd.","(604) 439-9107","Burnaby","BC"],["Cambie Roofing Contractors Ltd.","(604) 874-4444","Vancouver","BC"],["Cascade Roofing & Exteriors Inc.","(604) 792-9600","Chilliwack","BC"],["Crown Roofing Ltd.","(604) 370-6288","Richmond","BC"],["Bollman Roofing & Sheet Metal Ltd.","(604) 513-8637","Surrey","BC"],["Homan Roofing Ltd.","(604) 514-9456","Langley","BC"],["Langley Roofing Co. Ltd.","(604) 534-8651","Surrey","BC"],["Marine Roofing (1996) Ltd.","(604) 433-4322","Burnaby","BC"],["Metro Roofing & Sheet Metal Ltd.","(604) 888-4856","Surrey","BC"],["Olympic Roofing Ltd.","(604) 690-8654","Coquitlam","BC"],["Raven Roofing Ltd.","(604) 531-9619","Surrey","BC"],["Ridgeline Exteriors Inc.","(604) 792-1479","Chilliwack","BC"],["RooFix Services Inc.","(604) 444-4342","Burnaby","BC"],["Roy Dennis Roofing (2005) Ltd.","(604) 278-0442","Richmond","BC"],["Transwest Roofing Ltd.","(604) 596-7448","Surrey","BC"],["Villa Roofing & Sheet Metal Ltd.","(604) 261-2441","Vancouver","BC"],["Alpha Roofing & Sheet Metal (2016) Ltd.","(250) 374-0181","Kamloops","BC"],["Arcona Roofing & Sheet Metal Ltd.","(250) 374-2818","Kamloops","BC"],["Interior Roofing (2011) Ltd.","(250) 492-7985","Penticton","BC"],["Kelowna Roofing (1984) Ltd.","(250) 765-4441","Kelowna","BC"],["Laing Roofing (Vernon) Ltd.","(250) 542-5544","Vernon","BC"],["Nielsen Roofing & Sheet Metal Ltd.","(250) 492-3916","Penticton","BC"],["TRS Building Envelope","(250) 765-8122","Kelowna","BC"],["Admiral Roofing Ltd.","(250) 561-1230","Prince George","BC"],["Prince Sheet Metal & Heating Ltd.","(250) 564-6991","Prince George","BC"],["G & G Roofing Ltd.","(250) 585-0041","Nanaimo","BC"],["Top Line Roofing Ltd.","(250) 478-0500","Victoria","BC"],["M.D. Roofing Ltd.","(778) 882-0183","Surrey","BC"],["PR Peter Roofing Ltd.","(604) 589-4603","Surrey","BC"],["Blue Star Roofing Ltd.","(604) 807-8244","Surrey","BC"],["TBH Roofing & Renovations Ltd.","(604) 721-6765","Surrey","BC"],["Signature Roofing","(604) 616-9016","Surrey","BC"],["Mattu Roofing Ltd.","(604) 961-2035","Surrey","BC"],["Aims Roofing & Sheet Metal Ltd.","(604) 369-1490","Surrey","BC"],["All Seasons Roofing Ltd.","(604) 502-8683","Surrey","BC"],["Arnold & Sons Roofing Ltd.","(604) 599-0821","Surrey","BC"],["OTE Gutters & Roofing Ltd.","(604) 404-9744","Surrey","BC"],["G.L. Roofing Ltd.","(604) 240-5362","Surrey","BC"],["Zentech Construction Ltd.","(778) 875-5993","Surrey","BC"],["A1 Canadian Roofing Ltd.","(778) 878-2617","Surrey","BC"],["Dulay Roofing Ltd.","(604) 250-9842","Surrey","BC"],["JJ Roofing and Exteriors","(250) 469-3231","Kelowna","BC"],["TI Roof Rescue Inc.","(250) 491-3399","Kelowna","BC"],["Premium Roofing Ltd.","(250) 258-8600","Kelowna","BC"],["Horizon Roofing and Metal Works","(778) 241-8789","Kelowna","BC"],["Suns out Guns out Roofing","(236) 593-5951","Kelowna","BC"],["Credo Roofing","(236) 338-1753","Kelowna","BC"],["Madge Custom Roofing Ltd.","(250) 765-1180","Kelowna","BC"],["Roof Doctor","(250) 765-3013","Kelowna","BC"],["Pinnacle Roofing Ltd.","(778) 753-6464","Kelowna","BC"],["Drain Pro Plumbing","(778) 265-7757","Victoria","BC"],["Bridgeman Plumbing & Heating Ltd.","(250) 727-1228","Victoria","BC"],["New Age Plumbing & Heating Ltd.","(250) 880-7422","Victoria","BC"],["GoodSense Plumbing & Drain Cleaning","(250) 213-8700","Victoria","BC"],["Thunderbird Plumbing Solutions Inc.","(250) 514-4044","Victoria","BC"],["Callaway Plumbing & Drains Ltd.","(250) 216-7159","Victoria","BC"],["Menzies Plumbing & Heating Ltd.","(250) 472-0110","Victoria","BC"],["Archie Johnstone Plumbing & Heating Ltd.","(250) 385-8439","Victoria","BC"],["C3M Mechanical","(250) 479-4093","Victoria","BC"],["HomeWise Plumbing & Drainage Services Ltd.","(250) 883-7270","Victoria","BC"],["Rather Be Plumbing Ltd.","(250) 589-8555","Victoria","BC"],["Battalion Plumbing & Gas","(250) 857-3836","Victoria","BC"],["Phil Ballam Plumbing & Heating Co. Ltd.","(250) 598-4581","Victoria","BC"],["Marsic Contracting Ltd.","(604) 338-5795","Burnaby","BC"],["AmpTec Electric Ltd.","(604) 418-6314","Burnaby","BC"],["Trigger Electric","(604) 719-4143","Burnaby","BC"],["Zeus Electric & Controls Inc.","(236) 869-6119","Burnaby","BC"],["S.L Electrical","(604) 339-3754","Burnaby","BC"],["Milani Electric Solar & Roofing Ltd.","(604) 456-8888","Burnaby","BC"],["Pacific Total Electric","(236) 688-7579","Burnaby","BC"],["A Maximum & Sons Electrical Contracting","(604) 341-6059","Vancouver","BC"],["Electrical Savvy Contracting Inc.","(778) 788-5515","Burnaby","BC"],["Lumenex Electric Ltd.","(604) 825-9403","Burnaby","BC"],["Green Power Electric Ltd.","(778) 322-0797","Burnaby","BC"],["Laxton Plumbing And Heating Ltd.","(604) 300-8787","Abbotsford","BC"],["Dagg's Gas Contracting","(604) 466-4909","Abbotsford","BC"],["Air Eagle Mechanical Ltd.","(778) 242-9443","Abbotsford","BC"],["Primo Heat Inc.","(778) 883-8447","Abbotsford","BC"],["Blue Gold Plumbing & Heating Ltd.","(778) 823-0972","Abbotsford","BC"],["Knowledge HVAC & Refrigeration Ltd.","(778) 522-5669","Abbotsford","BC"],["Wagner Heating & Air Ltd.","(604) 855-9516","Abbotsford","BC"],["Pennington Mechanical","(778) 893-6646","Abbotsford","BC"],["K & R Mechanical Ltd.","(604) 857-4185","Langley","BC"],["Seriously Painting Ltd.","(250) 802-7763","Nanaimo","BC"],["Pride Painting Ltd.","(250) 816-1641","Nanaimo","BC"],["Cogito Painting","(250) 716-6857","Nanaimo","BC"],["Riverside Painting Ltd.","(250) 619-7317","Nanaimo","BC"],["Harbour City Construction Inc","(250) 951-5813","Nanaimo","BC"],["Rob Carrell Contracting","(236) 565-6063","Kamloops","BC"],["Humbek & Sons General Contracting Ltd.","(778) 694-9075","Kamloops","BC"],["Kellermeier Contracting Ltd.","(778) 471-1396","Kamloops","BC"],["SSV Developments Ltd.","(250) 319-5775","Kamloops","BC"],["PJ DeVries Construction Ltd.","(250) 309-6295","Vernon","BC"],["D. Wiens Contracting","(778) 954-8709","Vernon","BC"],["Canuck Mechanical Ltd.","(250) 564-4567","Prince George","BC"],["RZ Plumbing Ltd.","(778) 675-4350","Prince George","BC"],["Star Tek Mechanical Ltd.","(250) 552-8646","Prince George","BC"],["Carrier Plumbing & Heating","(250) 614-0036","Prince George","BC"],["All Pro Plumbing & Heating Inc","(250) 613-2268","Prince George","BC"],["RH Jones & Son Mechanical Ltd.","(250) 564-7272","Prince George","BC"],["Innovation Plumbing Services Inc.","(250) 961-6149","Prince George","BC"],["Mainline Plumbing and Heating","(250) 564-9808","Prince George","BC"],["CDL Mayfair Gas & Plumbing Inc","(250) 562-8590","Prince George","BC"],["Red Rock BC Plumbing & Heating Ltd.","(778) 349-7596","Prince George","BC"],["A+ Lawn & Garden","(604) 908-3596","Richmond","BC"],["Get Growing Landscaping Ltd.","(778) 895-7710","Richmond","BC"],["Lubberts Landscaping & Maintenance Ltd.","(604) 273-4944","Richmond","BC"],["Hyland Landscapes","(778) 957-7222","Vancouver","BC"],["Yard Ventures Inc.","(604) 321-0212","Vancouver","BC"],["Little Frog Landscaping","(778) 323-1706","Vancouver","BC"],["Jones Outdoor Living Ltd.","(604) 780-6683","Vancouver","BC"],["Cottonwood Electrical Services Ltd.","(250) 550-6111","Vernon","BC"],["Vernon BC Air Conditioning Inc.","(778) 403-7886","Vernon","BC"],["New Generation Electrical","(778) 559-2825","Kelowna","BC"],["BHW Electrical Contracting Ltd.","(250) 448-1685","Kelowna","BC"],["Atlas Electrical Inc.","(250) 899-5650","Kelowna","BC"],["Horizon Electric Inc.","(250) 861-4777","Kelowna","BC"],["Reliance Electrical Ltd.","(250) 899-9005","Kelowna","BC"],["Valleywide Painting Services","(250) 809-1779","Penticton","BC"],["Kellco Custom Painting","(250) 809-1632","Penticton","BC"],["Conquest Painting","(250) 869-9819","Kelowna","BC"],["Little Paint Co","(236) 800-5726","Kelowna","BC"],["Pro Works Okanagan","(250) 899-4612","Kelowna","BC"],["Pedron Contracting Ltd.","(604) 936-8484","Coquitlam","BC"],["The Concrete Guys","(604) 902-1905","Coquitlam","BC"],["True Level Concrete Ltd.","(604) 589-4800","Surrey","BC"],["Calabria Concrete","(604) 240-5380","Vancouver","BC"],["Active Concrete Lifting Inc.","(604) 541-4121","Burnaby","BC"],["SEK Construction Ltd","(778) 998-1540","Surrey","BC"],["Central Roofing (Calgary) Ltd","(587) 287-4051","Calgary","AB"],["Bains Roofing Inc.","(825) 803-5772","Calgary","AB"],["Markit Roofing Ltd.","(587) 816-5066","Calgary","AB"],["Houston Roofing Ltd","(403) 910-2607","Calgary","AB"],["Highlander Roofing","(587) 330-1299","Calgary","AB"],["Tru-Craft Roofing (2005) Ltd","(403) 264-7225","Calgary","AB"],["Kellys Roofing Ltd.","(403) 590-2440","Calgary","AB"],["Ridgestone Roofing Ltd","(587) 971-7546","Calgary","AB"],["Nash Roofing","(403) 808-7697","Calgary","AB"],["Alpine Roofing","(403) 277-4922","Calgary","AB"],["Done Right Roofing","(403) 651-0214","Calgary","AB"],["SDH Roofing Ltd","(403) 708-1231","Calgary","AB"],["LOJ Electrical","(780) 915-2994","Edmonton","AB"],["Bert Grimmon Electric 1974 Inc","(780) 974-5445","Edmonton","AB"],["Alstar Electric Ltd","(587) 487-2479","Edmonton","AB"],["Tetra Electrical Solutions Ltd","(587) 570-5672","Edmonton","AB"],["Canpo Electric Ltd","(780) 447-5825","Edmonton","AB"],["SR Electrical Ltd","(780) 884-4487","Edmonton","AB"],["Westside Electric Ltd","(780) 446-5357","Edmonton","AB"],["Tiger Electric Ltd","(780) 465-1690","Edmonton","AB"],["Action Electrical Ltd","(780) 465-0793","Edmonton","AB"],["Concept Electric Ltd","(780) 435-5915","Edmonton","AB"],["Beachrock Plumbing & Heating","(587) 815-5847","Red Deer","AB"],["Jeet's Plumbing & Heating","(587) 802-4717","Red Deer","AB"],["Ruttan Mechanical","(403) 406-0874","Red Deer","AB"],["Service Plumbing & Heating","(403) 342-1338","Red Deer","AB"],["Arrow Plumbing Services (2013) Ltd","(403) 343-6100","Red Deer","AB"],["Call The Plumber","(403) 342-5961","Red Deer","AB"],["Burroughs Plumbing & Heating Inc.","(403) 505-5924","Red Deer","AB"],["Tarzan & Jane Plumbing Heating and Drain","(587) 877-4553","Red Deer","AB"],["KDH Painting Inc","(825) 609-4294","Lethbridge","AB"],["Hamilton Painting Ltd","(403) 381-4926","Lethbridge","AB"],["Wolverine Painting Ltd","(403) 320-1566","Lethbridge","AB"],["AMPM Painters","(403) 331-9176","Lethbridge","AB"],["Dudas Painting Inc","(403) 394-5132","Lethbridge","AB"],["Windy City Painting","(403) 894-2661","Lethbridge","AB"],["R&D Painting","(403) 381-2500","Lethbridge","AB"],["Brush With Excellence","(403) 421-0065","Lethbridge","AB"],["Hardline Heating & Plumbing","(780) 532-6844","Grande Prairie","AB"],["LADD Plumbing & Heating Ltd","(780) 618-7707","Grande Prairie","AB"],["Absolute HVAC","(780) 882-5946","Grande Prairie","AB"],["Peace Country Heating Ltd","(780) 897-4328","Grande Prairie","AB"],["Cenalta Plumbing & Heating Ltd","(780) 532-1043","Grande Prairie","AB"],["Triton Sheet Metal","(780) 532-7522","Grande Prairie","AB"],["Indoor Elements Mechanical","(780) 539-6799","Grande Prairie","AB"],["Grande Prairie Service & Heating","(780) 513-6240","Grande Prairie","AB"],["LCL Landscaping Ltd.","(587) 991-3758","Airdrie","AB"],["Rock Bottom Hardlandscaping Ltd","(403) 617-6676","Airdrie","AB"],["Avro Landscaping","(403) 542-2876","Airdrie","AB"],["Airdrie Landscaping","(403) 991-9273","Airdrie","AB"],["Airdrie Lawn & Landscaping","(587) 429-2885","Airdrie","AB"],["Second to Nature Landscapes","(403) 479-0118","Airdrie","AB"],["Olive Tree Yardworks","(403) 630-9449","Airdrie","AB"],["Creteland Inc","(403) 470-3711","Airdrie","AB"],["Greco & Son Concrete & Construction Inc","(587) 318-3211","Calgary","AB"],["Crackmaster Concrete","(403) 283-2938","Calgary","AB"],["TNA Concrete","(403) 295-3585","Calgary","AB"],["Cemrock Concrete & Construction Ltd","(587) 288-1707","Calgary","AB"],["Bracha Concrete & Coatings Inc.","(403) 901-8490","Calgary","AB"],["Kerridge Concrete Ltd","(403) 236-5496","Calgary","AB"],["A-1 Cement Contractors Ltd","(403) 249-4515","Calgary","AB"],["Solo Epoxy Flooring and Concrete","(403) 280-1115","Calgary","AB"],["Standard Roofing Company Inc","(587) 200-9719","Edmonton","AB"],["R & D Roofing Ltd","(587) 855-5825","Edmonton","AB"],["Save On Roofing","(587) 672-1190","Edmonton","AB"],["Shamrock Roofing","(780) 479-6891","Edmonton","AB"],["YEG Contracting","(587) 306-9111","Edmonton","AB"],["Christensen McLean Roofing Co. Ltd.","(780) 447-1672","Edmonton","AB"],["MCM Home Exteriors","(780) 468-9297","Edmonton","AB"],["Zion Roofing","(306) 450-6074","Regina","SK"],["Excel Roofing","(306) 543-2004","Regina","SK"],["All About Roofing","(306) 351-7888","Regina","SK"],["Four Corners Roofing","(306) 994-0348","Regina","SK"],["Canridge Roofing","(306) 502-1660","Regina","SK"],["Pyramid Roofing","(306) 382-2972","Regina","SK"],["Flex Roofing","(306) 520-7501","Regina","SK"],["Fastdone Roofing","(306) 581-2466","Regina","SK"],["Rooftec Roofing","(306) 775-3338","Regina","SK"],["Hebert Metal Roofing & Exteriors Ltd","(306) 347-0242","Regina","SK"],["Kadco Electric Inc","(306) 700-6398","Saskatoon","SK"],["JESK Electric","(306) 912-5872","Saskatoon","SK"],["Pete's Electric","(306) 380-3525","Saskatoon","SK"],["Amtech Electric Ltd","(306) 975-0101","Saskatoon","SK"],["Tyson Electrical","(306) 341-0799","Saskatoon","SK"],["Avalon Electric","(306) 262-6023","Saskatoon","SK"],["Cantek Electrical","(306) 717-3489","Saskatoon","SK"],["MCL Electrical","(306) 270-8878","Saskatoon","SK"],["Fateh Electrical","(306) 202-6113","Saskatoon","SK"],["Fehr Electric","(306) 229-9962","Saskatoon","SK"],["Legend Electric","(306) 250-5429","Saskatoon","SK"],["Lowe Mechanical Services Ltd","(204) 818-8422","Winnipeg","MB"],["Next - Gen Plumbing And Heating Ltd.","(204) 809-1094","Winnipeg","MB"],["Boulet Sewer & Drain Ltd","(204) 832-1767","Winnipeg","MB"],["S S Plumbing & Heating Co Ltd","(204) 222-0723","Winnipeg","MB"],["JB Plumbing & Heating","(204) 479-6878","Winnipeg","MB"],["Hot Shots Plumbing & Heating Corporation","(204) 253-3773","Winnipeg","MB"],["East Kildonan Plumbing & Heating Inc","(204) 222-2493","Winnipeg","MB"],["Balcaen & Sons Ltd","(204) 475-1506","Winnipeg","MB"],["B C Plumbing & Heating (1992) Ltd","(204) 586-3719","Winnipeg","MB"],["Kawakami & Gilchrist Plumbing & Heating Co Ltd","(204) 795-6701","Winnipeg","MB"],["Trout Plumbing","(204) 479-3547","Winnipeg","MB"],["Emmanuel Painting Winnipeg","(431) 441-6711","Winnipeg","MB"],["Brilliant Colours Professional Painters","(204) 292-9048","Winnipeg","MB"],["Bel - Artistic Painting And Decorating Ltd","(204) 452-1679","Winnipeg","MB"],["Pro-Guard Painters","(204) 809-5421","Winnipeg","MB"],["Security Decorating","(204) 772-2489","Winnipeg","MB"],["Madani Group Painting & Stucco Coating","(204) 809-5023","Winnipeg","MB"],["Buhle Painting & Decorating","(204) 233-4769","Winnipeg","MB"],["InsideOut Painting","(204) 489-1361","Winnipeg","MB"],["KD Roofing","(902) 701-4885","Halifax","NS"],["JL Dufour Roofing Services Ltd.","(902) 702-7076","Halifax","NS"],["Night Star Renovation Ltd","(902) 702-4619","Halifax","NS"],["Elevated Exteriors","(902) 442-7626","Dartmouth","NS"],["Classic Roofing & Siding Limited","(902) 705-3190","Dartmouth","NS"],["Don & Son Contracting Ltd","(902) 704-5232","Halifax","NS"],["Exact Roofing","(902) 465-7106","Halifax","NS"],["Lafitte's Roofing","(902) 209-1701","Dartmouth","NS"],["Atlantic Roofers","(902) 445-5044","Dartmouth","NS"],["Lumar Electric","(506) 854-2415","Moncton","NB"],["Netco Electric Ltd","(506) 858-7879","Moncton","NB"],["Cash Electric","(506) 858-2274","Moncton","NB"],["Moncton Electrical Services","(506) 229-4592","Dieppe","NB"],["Robinson Electrical Services LTD","(506) 777-2781","Riverview","NB"],["Bourgeois Electric","(506) 863-9529","Moncton","NB"],["Future Electric Ltd","(506) 803-2751","Moncton","NB"],["Bishop's Plumbing & Heating (1998) Inc","(709) 701-3891","St. John's","NF"],["Hubley's Plumbing Ltd","(709) 800-8397","St. John's","NF"],["Avalon Plumbing & Heating Ltd","(709) 697-0746","St. John's","NF"],["Downtown Plumbers","(709) 682-7881","St. John's","NF"],["A1 Plumbing & Heating Ltd","(709) 682-8631","St. John's","NF"],["Morco Plumbing","(709) 764-3343","St. John's","NF"],["True Comfort","(709) 747-7310","Mount Pearl","NF"],["K & M Home Heating","(902) 892-1254","Charlottetown","PE"],["Chris Macdougall Heating & Plumbing","(902) 218-8288","Charlottetown","PE"],["Blair Gillis Plumbing & Heating Ltd","(902) 628-9949","Stratford","PE"],["Loves Painting","(506) 261-4049","Fredericton","NB"],["MPG Painting","(506) 447-2322","Fredericton","NB"],["J J Electric","(204) 728-1246","Brandon","MB"],["Lightning Electric","(204) 728-9884","Brandon","MB"],["Amped Electric","(204) 761-6420","Brandon","MB"],["Soder Electric","(204) 851-2578","Brandon","MB"],["Prairie Electric","(204) 761-2521","Brandon","MB"],["Wheat City Electric","(204) 727-6699","Brandon","MB"],["Brandon Avenue Electric","(204) 727-8856","Brandon","MB"],["Figol Electric Ltd","(204) 727-6556","Brandon","MB"]];
+
+// ── STATE ──
+var S = {
+  calls: 0, closes: 0,
+  mCalls: 0, mCloses: 0,
+  callGoal: 15, closeGoal: 28,
+  reset: ''
+};
+
+try {
+  S.calls     = +localStorage.getItem('p-calls')  || 0;
+  S.closes    = +localStorage.getItem('p-closes') || 0;
+  S.mCalls    = +localStorage.getItem('p-mc')     || 0;
+  S.mCloses   = +localStorage.getItem('p-ml')     || 0;
+  S.callGoal  = +localStorage.getItem('p-cg')     || 15;
+  S.closeGoal = +localStorage.getItem('p-lg')     || 28;
+  S.reset     =  localStorage.getItem('p-reset')  || '';
+} catch(e){}
+
+function save(){
+  try {
+    localStorage.setItem('p-calls',  S.calls);
+    localStorage.setItem('p-closes', S.closes);
+    localStorage.setItem('p-mc',     S.mCalls);
+    localStorage.setItem('p-ml',     S.mCloses);
+    localStorage.setItem('p-cg',     S.callGoal);
+    localStorage.setItem('p-lg',     S.closeGoal);
+    localStorage.setItem('p-reset',  S.reset);
+  } catch(e){}
+}
+
+function checkReset(){
+  var d = new Date().toDateString();
+  if(S.reset !== d){
+    S.mCalls  += S.calls;
+    S.mCloses += S.closes;
+    S.calls = 0; S.closes = 0;
+    S.reset = d;
+    save();
+  }
+}
+
+var MXN_RATE = 17.5;
+var PER_CLOSE = 137 * 0.6; // $82.20
+
+function render(){
+  var tc = S.mCalls + S.calls;
+  var cl = S.mCloses + S.closes;
+  var todayEarn = (S.closes * PER_CLOSE).toFixed(0);
+  var totalEarn = (cl * PER_CLOSE).toFixed(0);
+  var totalMXN  = Math.round(cl * PER_CLOSE * MXN_RATE).toLocaleString();
+
+  setText('g-calls-n',    S.calls);
+  setText('g-closes-n',   S.closes);
+  setText('g-earn-today', (LANG==='es'?'= $':'= $') + todayEarn + ' ' + (LANG==='es'?'ganado':'earned'));
+
+  var cp = Math.min(100,(tc/300)*100);
+  var lp = Math.min(100,(cl/S.closeGoal)*100);
+  document.getElementById('g-calls-bar').style.width  = cp+'%';
+  document.getElementById('g-closes-bar').style.width = lp+'%';
+  setText('g-calls-prog-ct',  tc+' / 300');
+  setText('g-closes-prog-ct', cl+' / '+S.closeGoal);
+
+  var day = new Date().getDate();
+  var left = 30 - day;
+  var pace = left > 0 ? Math.ceil((S.closeGoal-cl)/left) : 0;
+  setText('g-pace', pace>0 ? (LANG==='es'?'📈 Necesitas '+pace+' cierre(s)/día':'📈 Need '+pace+' close(s)/day') : (LANG==='es'?'🎉 ¡Al ritmo!':'🎉 On pace!'));
+
+  setText('g-calls-goal', (LANG==='es'?'meta: ':'goal: ') + S.callGoal);
+
+  // Earnings
+  setText('e-closes-val',  cl);
+  setText('e-upfront-val', '$'+totalEarn+' USD');
+  setText('e-mxn-val',     '$'+totalMXN+' MXN');
+  setText('e-total-usd',   '$'+totalEarn+' USD');
+  setText('e-total-mxn',   '≈ $'+totalMXN+' MXN');
+  var proj = (cl * PER_CLOSE + cl * PER_CLOSE * 5).toFixed(0);
+  setText('e-6mo-val', '$'+proj+' USD');
+}
+
+function setText(id, val){ var e=document.getElementById(id); if(e) e.textContent=val; }
+
+function addCall(){ S.calls++; save(); render(); toast('📞 '+(LANG==='es'?'¡Llamada registrada!':'Call logged!')); }
+function undoCall(){ if(S.calls>0){S.calls--;} save(); render(); }
+function addClose(){
+  S.calls++; S.closes++; save(); render();
+  toast('🔥 '+(LANG==='es'?'¡Cierre! $'+PER_CLOSE.toFixed(0)+' USD ganados!':'Close! $'+PER_CLOSE.toFixed(0)+' USD earned!'));
+}
+function saveGoals(){
+  S.callGoal  = +document.getElementById('g-call-goal').value  || 15;
+  S.closeGoal = +document.getElementById('g-close-goal').value || 28;
+  save(); render();
+}
+
+function calcEarnings(v){
+  var usd = (v * PER_CLOSE).toFixed(0);
+  var mxn = Math.round(v * PER_CLOSE * MXN_RATE).toLocaleString();
+  setText('e-slider-val',   v);
+  setText('e-calc-result',  '$'+usd+' USD');
+  setText('e-calc-mxn',     '≈ $'+mxn+' MXN');
+  setText('e-calc-residual','+ $'+usd+' USD/'+(LANG==='es'?'mes residual':'mo residual'));
+}
+
+// ── TABS ──
+function showTab(id, el){
+  document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tb').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('pane-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── PROSPECTS ──
+// Prospect data store
+var PDATA = {};
+try { PDATA = JSON.parse(localStorage.getItem('p-data')||'{}'); } catch(e){}
+function savePData(){ try{ localStorage.setItem('p-data', JSON.stringify(PDATA)); }catch(e){} }
+
+var STATUSES = ['new','called','interested','closed','skip'];
+var STATUS_LABELS = {
+  es:{new:'Nuevo',called:'Llamado',interested:'Interesado',closed:'Cerrado',skip:'Saltar'},
+  en:{new:'New',called:'Called',interested:'Interested',closed:'Closed',skip:'Skip'}
+};
+
+function setStatus(el){
+  var status = el.dataset.s;
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'new',note:''};
+  PDATA[key].status = status;
+  savePData();
+  el.closest('.status-wrap').querySelectorAll('.sbadge').forEach(function(b){
+    b.classList.toggle('active', b.dataset.s===status);
+  });
+}
+
+function saveNote(el){
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'new',note:''};
+  PDATA[key].note = el.value;
+  savePData();
+}
+
+function callProspect(el){
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'called',note:''};
+  PDATA[key].status = 'called';
+  savePData();
+  el.closest('.status-wrap').querySelectorAll('.sbadge').forEach(function(b){
+    b.classList.toggle('active', b.dataset.s==='called');
+  });
+}
+
+function renderProspects(list){
+  var sl = STATUS_LABELS[LANG];
+  var called = Object.values(PDATA).filter(function(d){ return d.status==='called'||d.status==='closed'||d.status==='skip'; }).length;
+  var left = PROSPECTS.length - called;
+  var h = '<div class="p-counter"><span class="p-counter-left">'+(LANG==='es'?'Restantes':'Remaining')+'</span><span class="p-counter-right">'+left+' / '+PROSPECTS.length+'</span></div>';
+
+  list.forEach(function(p){
+    var key = p[0]+'|'+p[1];
+    var pd = PDATA[key]||{status:'new',note:''};
+    var raw = p[1].replace(/\D/g,'');
+    var tel = 'tel:'+p[1];
+    var wa  = 'https://wa.me/'+(raw.length===10?'1'+raw:raw);
+    var badges = STATUSES.map(function(s){
+      var active = pd.status===s ? ' active' : '';
+      return '<span class="sbadge '+s+active+'" data-s="'+s+'" onclick="setStatus(this)">'+sl[s]+'</span>';
+    }).join('');
+    var noteVal = (pd.note||'').replace(/"/g,'&quot;');
+    h += '<div class="prow" data-pkey="'+key.replace(/"/g,'&quot;')+'">'
+      +'<div class="prow-top">'
+      +'<div class="pinfo"><div class="pname">'+p[0]+'</div>'
+      +'<div class="pmeta">'+p[1]+' · '+p[2]+', '+p[3]+'</div></div>'
+      +'<div class="pbtns">'
+      +'<a href="'+tel+'" class="pbcall" onclick="callProspect(this)">📞</a>'
+      +'<a href="'+wa+'" class="pbwa">💬</a>'
+      +'</div></div>'
+      +'<div class="status-wrap">'+badges+'</div>'
+      +'<textarea class="p-note" rows="1" placeholder="'+(LANG==='es'?'Notas...':'Notes...')+'" oninput="saveNote(this)">'+noteVal+'</textarea>'
+      +'</div>';
+  });
+  document.getElementById('p-list').innerHTML = h;
+  setText('p-count', list.length+' '+(LANG==='es'?'prospectos':'prospects'));
+}
+
+
+function filterP(q){
+  q=(q||'').toLowerCase().trim();
+  var list=!q?PROSPECTS:PROSPECTS.filter(function(p){return (p[0]+' '+p[2]+' '+p[3]).toLowerCase().indexOf(q)>-1;});
+  renderProspects(list);
+}
+
+// ── STRIPE ──
+var STRIPE = 'https://go.myjefetech.app/checkout.html?ref=ca';
+function copyStripe(btn){
+  navigator.clipboard.writeText(STRIPE).then(function(){
+    var o=btn.textContent; btn.textContent='✅ Copiado!';
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+function sendStripeWA(){
+  window.open('https://wa.me/?text='+encodeURIComponent('JefeTech — $137/mes o $1,344/año · '+STRIPE),'_blank');
+}
+function copyLink(url,btn){
+  navigator.clipboard.writeText(url).then(function(){
+    var o=btn.textContent; btn.textContent='✅';
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+
+// ── TOAST ──
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); },2500);
+}
+
+// ── LANGUAGE ──
+var LANG = 'en';
+
+var TX = {
+  es:{
+    'h-title':'MX Studio Partner 🇨🇦 ✝️',
+    'h-sub':'MX Studio · Dios Gana · myjefetech.app',
+    'tl-left':'ES','tl-right':'EN',
+    'tab-btn-jefe':'👑 Jefe',
+    'tab-btn-goals':'🎯 Metas',
+    'tab-btn-prospects':'👥 Prospectos',
+    'tab-btn-script':'🤝 Ayúdame a Ayudarte',
+    'tab-btn-earnings':'✝️ Programa de Lealtad',
+    'j-sub':'Dueño · MX Studio · Acapulco, México ',
+    'j-links-lbl':'📋 Links Rápidos',
+    'j-app-lbl':'Demo App',
+    'j-dash-lbl':'Demo Dashboard — La Forja',
+    'j-rules-lbl':'⚡ Reglas del Jefe',
+    'j-rules':'1. Siempre sé honesto — nunca prometas lo que no tenemos.<br>2. Garantía de devolución de por vida — respáldala siempre.<br>3. Manda el demo antes de pedir el cierre.<br>4. Si estás atorado, WhatsApp al Jefe directo.<br>5. Registra cada llamada. Cada cierre. Sin excepciones.<br>6. <strong style="color:var(--orange)">Dios gana. ✝️</strong>',
+    'g-calls-lbl':'📞 Llamadas Hoy',
+    'g-closes-lbl':'🔥 Cierres Hoy',
+    'g-log-call':'+ Llamada',
+    'g-undo':'↩ Deshacer',
+    'g-log-close':'+ Cierre 🔥',
+    'g-monthly-lbl':'📊 Progreso Mensual',
+    'g-calls-prog-lbl':'Llamadas',
+    'g-closes-prog-lbl':'Cierres',
+    'g-set-lbl':'⚙️ Ajustar Metas',
+    'g-daily-lbl':'Meta diaria de llamadas',
+    'g-monthly-close-lbl':'Meta mensual de cierres',
+    'sc-header':'DESLIZA · MÁX 15-20 MIN POR CLIENTE',
+    'sc-opener-lbl':'🎯 PASO 1 — APERTURA',
+    'sc-pitch-lbl':'🌮 PASO 2 — PITCH',
+    'sc-close-lbl':'🤝 PASO 3 — CIERRE',
+    'sc-fu-lbl':'📲 PASO 5 — SEGUIMIENTO',
+    'sc-app-lbl':'Demo App',
+    'sc-dash-lbl':'Dashboard',
+    'sc-copy-app':'📋 Copiar App',
+    'sc-copy-dash':'📋 Copiar Dashboard',
+    'sc-stripe-btn':'💳 Copiar Link de Pago',
+    'sc-wa-btn':'💬 WhatsApp',
+    'e-total-lbl':'💰 Total Ganado Este Mes',
+    'e-rate-note':'$1 USD ≈ $17.50 MXN',
+    'e-breakdown-lbl':'📊 Desglose',
+    'e-closes-lbl':'Cierres este mes',
+    'e-price-lbl':'Precio por cierre',
+    'e-cut-lbl':'Tu comisión (60%)',
+    'e-cut-val':'$82.20 por cierre',
+    'e-upfront-lbl':'Ganado en USD',
+    'e-mxn-lbl':'Equivalente en pesos',
+    'e-6mo-lbl':'Proyección 6 meses',
+    'e-calc-lbl':'🧮 Calculadora',
+    'e-calc-sub':'¿Cuántos cierres este mes?',
+    'e-at':'En ',
+    'e-closes-label':' cierres:',
+    'p-search-ph':'🔍  Buscar empresa, ciudad, giro...',
+    'sc-opener-txt':'"Hola, mi nombre es [Tu Nombre]. Soy socio de MX Studio, basados en Acapulco, México. ¿Me regala un segundo?"<br><br><strong>Dicen que sí →</strong> Ir al Pitch.',
+    'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">🌮 El Pitch — Uno a la Vez</strong><br><br><strong>"Le pregunto algo — cuando le da hambre de tacos, ¿va al Taco Bell... o al taquero de la esquina con ingredientes frescos y carne asada recién salida del comal?"</strong><br><br><em>Deja que contesten. Escucha.</em><br><br><strong style="color:var(--orange)">↓ Suelta features uno por uno:</strong><br><br>🛡️ <strong>Feature 1</strong> — "Lo primero que hace su cuadrilla antes de cualquier trabajo — checklist de seguridad (WorkSafe / OHS provincial). No pueden empezar sin completarlo. Lo aprendí en 13 temporadas pescando en Alaska."<br><br><em>Deja que respondan...</em><br><br>📡 <strong>Feature 2</strong> — "Escribe cualquier dirección y las medidas del techo se llenan solas, para cada oficio."<br><br><em>Deja que respondan...</em><br><br>💼 <strong>Feature 3</strong> — "Tiene un tab de trabajos. Ve en tiempo real qué pasa en el campo — cuadrilla, materiales, progreso. Sin hacer cinco llamadas."<br><br><em>Deja que respondan...</em><br><br>📊 <strong>Feature 4</strong> — "Y un dashboard — La Forja. Clima, alertas, estado de cuadrilla, facturas. Todo en vivo."<br><br><em>Deja que respondan...</em><br><br>👥 <strong>Feature 5</strong> — "¿Cuánta gente tiene? No importa — 1 o 100, mismo precio. Sin cobros por usuario."<br><br><em>Deja que respondan...</em><br><br>🗣️ <strong>Feature 6</strong> — "Inglés y español para toda la cuadrilla. Cada quien la lee en su idioma."<br><br><em>Deja que respondan...</em><br><br>🎣 <strong>Feature 7</strong> — "Y tiene un tab de pesca. Porque trabajamos duro para pescar más tranquilos. 🎣"<br><br><em style="color:var(--green)">Cuando pregunten ¿cuánto cuesta? → Paso 3 ✅</em>',
+    'sc-close-txt':'"Te digo algo — son $137 dólares al mes. O paga el año completo — $1,344 dólares, y ahorras $300. Más de $300 de valor, y tu precio queda congelado de por vida. Usuarios ilimitados. Cancela cuando quieras. Garantía de devolución de por vida — si algún día no estás contento, cancelas y te devolvemos tu último mes. ¿Le entramos ahorita?"<br><br><strong>Dicen que sí →</strong> Manda el link de pago.',
+    'sc-setup-lbl':'📲 PASO 4 — CÓMO INSTALAR','sc-setup-txt':'<strong>Mientras pagan, explícales:</strong><br><br>1️⃣ <b>Abre el link de la app</b> → Safari → toca el ícono de compartir (cuadro con flecha ↑) → "Agregar a pantalla de inicio" → ya queda como app.<br><br>2️⃣ <b>Abre el link del dashboard</b> → mismo proceso → lo guardan como app también.<br><br>✅ En 2 minutos tienen las dos apps instaladas. Sin App Store, sin descarga.','su-app-lbl':'Copiar Link App','su-dash-lbl':'Copiar Link Dashboard',
+    'sc-fu-txt':'"Buen día [Nombre] — le escribo de MX Studio. ¿Tuvo oportunidad de ver el link? Cualquier duda con gusto le ayudo. 🤝"<br><br><strong>Segunda llamada:</strong><br>"Buenas — le llamo de MX Studio. ¿Tuvo alguna pregunta? Son 2 minutos — ¿lo vemos juntos ahorita?"'
+  },
+  en:{
+    'h-title':'MX Studio Partner 🇨🇦 ✝️',
+    'h-sub':'MX Studio · God Wins · myjefetech.app',
+    'tl-left':'ES','tl-right':'EN',
+    'tab-btn-jefe':'👑 Jefe',
+    'tab-btn-goals':'🎯 Goals',
+    'tab-btn-prospects':'👥 Prospects',
+    'tab-btn-script':'🤝 Help You, Help Me',
+    'tab-btn-earnings':'✝️ Loyalty Program',
+    'j-sub':'Owner · MX Studio · Acapulco, Mexico ',
+    'j-links-lbl':'📋 Quick Links',
+    'j-app-lbl':'Demo App',
+    'j-dash-lbl':'Demo Dashboard — La Forja',
+    'j-rules-lbl':'⚡ Rules from the Jefe',
+    'j-rules':'1. Always be honest — never promise what we do not have.<br>2. Lifetime money-back guarantee — stand behind it always.<br>3. Send the demo before asking for the close.<br>4. If you are stuck, WhatsApp the Jefe directly.<br>5. Log every call. Every close. No exceptions.<br>6. <strong style="color:var(--orange)">God Wins. ✝️</strong>',
+    'g-calls-lbl':'📞 Calls Today',
+    'g-closes-lbl':'🔥 Closes Today',
+    'g-log-call':'+ Log a Call',
+    'g-undo':'↩ Undo',
+    'g-log-close':'+ Log a Close 🔥',
+    'g-monthly-lbl':'📊 Monthly Progress',
+    'g-calls-prog-lbl':'Calls',
+    'g-closes-prog-lbl':'Closes',
+    'g-set-lbl':'⚙️ Set Goals',
+    'g-daily-lbl':'Daily call goal',
+    'g-monthly-close-lbl':'Monthly close goal',
+    'sc-header':'SCROLL THROUGH · 15-20 MIN MAX',
+    'sc-opener-lbl':'🎯 STEP 1 — OPENER',
+    'sc-pitch-lbl':'🌮 STEP 2 — PITCH',
+    'sc-close-lbl':'🤝 STEP 3 — CLOSE',
+    'sc-fu-lbl':'📲 STEP 5 — FOLLOW UP',
+    'sc-app-lbl':'Demo App',
+    'sc-dash-lbl':'Dashboard',
+    'sc-copy-app':'📋 Copy App Link',
+    'sc-copy-dash':'📋 Copy Dashboard',
+    'sc-stripe-btn':'💳 Copy Payment Link',
+    'sc-wa-btn':'💬 WhatsApp',
+    'e-total-lbl':'💰 Total Earned This Month',
+    'e-rate-note':'$1 USD ≈ $17.50 MXN',
+    'e-breakdown-lbl':'📊 Breakdown',
+    'e-closes-lbl':'Closes this month',
+    'e-price-lbl':'Price per close',
+    'e-cut-lbl':'Your cut (60%)',
+    'e-cut-val':'$82.20 per close',
+    'e-upfront-lbl':'Earned in USD',
+    'e-mxn-lbl':'Equivalent in pesos',
+    'e-6mo-lbl':'6-Month projection',
+    'e-calc-lbl':'🧮 What-If Calculator',
+    'e-calc-sub':'How many closes this month?',
+    'e-at':'At ',
+    'e-closes-label':' closes:',
+    'p-search-ph':'🔍  Search company, city, trade...',
+    'sc-opener-txt':'"Hi, my name is [Your Name]. I am a partner with MX Studio out of Acapulco, Mexico. You got a second?"<br><br><strong>They say sure →</strong> Go to Pitch.',
+    'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">🌮 The Pitch — One Feature at a Time</strong><br><br><strong>"Let me ask you something — when you are craving tacos, do you go to Taco Bell... or the taco stand on the corner with fresh ingredients and carne asada right off the grill?"</strong><br><br><em>Let them answer. Listen.</em><br><br><strong style="color:var(--orange)">↓ Drop features one at a time:</strong><br><br>🛡️ <strong>Feature 1</strong> — "First thing your crew does before any job — safety checklist built on WorkSafe and provincial OHS rules. Cannot skip it. I learned that in 13 seasons fishing in Alaska."<br><br><em>Let them respond...</em><br><br>📡 <strong>Feature 2</strong> — "Type any address and the roof measurements fill in by themselves, for every trade."<br><br><em>Let them respond...</em><br><br>💼 <strong>Feature 3</strong> — "Jobs tab. See everything in the field in real time — crew, materials, progress. Without making five calls."<br><br><em>Let them respond...</em><br><br>📊 <strong>Feature 4</strong> — "Command dashboard — La Forja. Weather, alerts, crew status, invoices. All live."<br><br><em>Let them respond...</em><br><br>👥 <strong>Feature 5</strong> — "How many people on your crew? 1 or 100 — same price. No per-seat fees."<br><br><em>Let them respond...</em><br><br>🗣️ <strong>Feature 6</strong> — "English and Spanish for the whole crew. Everybody reads it in their own language."<br><br><em>Let them respond...</em><br><br>🎣 <strong>Feature 7</strong> — "And I threw in a fishing tab. Because we work hard so we can fish harder. 🎣"<br><br><em style="color:var(--green)">When they ask how much? → Step 3 ✅</em>',
+    'sc-close-txt':'"$137 a month. Or pay for the year — $1,344, and save $300. Over $300 worth of tools, and your price is locked for life. Unlimited users. Cancel anytime. Lifetime money-back guarantee — not happy, ever? Cancel and get your most recent month back. Ready to get set up right now?"<br><br><strong>They say yes →</strong> Send payment link.',
+    'sc-setup-lbl':'📲 STEP 4 — HOW TO SET UP','sc-setup-txt':'<strong>While they pay, walk them through this:</strong><br><br>1️⃣ <b>Open the app link</b> → Safari → tap the Share icon (box with arrow ↑) → "Add to Home Screen" → done, it\'s on their phone like an app.<br><br>2️⃣ <b>Open the dashboard link</b> → same steps → saved as an app too.<br><br>✅ 2 minutes. No App Store, no download.','su-app-lbl':'Copy App Link','su-dash-lbl':'Copy Dashboard Link',
+    'sc-fu-txt':'"Hey [Name] — following up from MX Studio. Did you get a chance to check out the link? Happy to answer any questions. 🤝"<br><br><strong>Second call:</strong><br>"Hey — calling back from MX Studio. Any questions about the app? Takes 2 minutes — want to look at it together right now?"'
+  }
+};
+
+function applyLang(){
+  var t = TX[LANG];
+  // Update all text elements
+  Object.keys(t).forEach(function(id){
+    if(id==='sc-opener-txt'||id==='sc-pitch-txt'||id==='sc-close-txt'||id==='sc-setup-txt'||id==='sc-fu-txt'||id==='j-rules'){
+      var el=document.getElementById(id); if(el) el.innerHTML=t[id];
+    } else if(id==='p-search-ph'){
+      var el=document.getElementById('p-search'); if(el) el.placeholder=t[id];
+    } else {
+      var el=document.getElementById(id); if(el) el.textContent=t[id];
+    }
+  });
+  // Toggle visual
+  var track = document.getElementById('toggle-track');
+  var knob  = document.getElementById('toggle-knob');
+  var left  = document.getElementById('tl-left');
+  var right = document.getElementById('tl-right');
+  if(LANG==='en'){
+    track.classList.add('en');
+    knob.style.background = 'var(--orange)';
+    left.style.color  = 'var(--muted)';
+    right.style.color = 'var(--orange)';
+  } else {
+    track.classList.remove('en');
+    knob.style.background = 'var(--green)';
+    left.style.color  = 'var(--green)';
+    right.style.color = 'var(--muted)';
+  }
+  render();
+  filterP(document.getElementById('p-search').value);
+  updateMotiv();
+}
+
+function toggleLang(){
+  LANG = LANG==='es' ? 'en' : 'es';
+  applyLang();
+}
+
+// ── FOLLOW UP COPY ──
+var FU_MSGS = {
+  es:[
+    'Buen dia, le escribo de MX Studio. Tuve el gusto de hablarle. Queria saber si tuvo oportunidad de ver el link que le mande: https://myjefetech.app - Cualquier duda con gusto le ayudo. Saludos!',
+    'Buenas, le llamo de MX Studio. Queria ver si tuvo alguna pregunta sobre la app. Son 2 minutos y creo que le puede ayudar mucho a su cuadrilla. Cuando guste hablamos.'
+  ],
+  en:[
+    'Hey, following up from MX Studio. Wanted to see if you had a chance to check out the link I sent: https://myjefetech.app - Happy to answer any questions. Thanks!',
+    'Hey, calling back from MX Studio. Wanted to see if you had any questions about the app. Takes 2 minutes and I think it could really help your crew. Let me know when is a good time.'
+  ]
+};
+function copyFU(n, btn){
+  var msg = FU_MSGS[LANG][n-1];
+  navigator.clipboard.writeText(msg).then(function(){
+    var o=btn.textContent; btn.textContent='✅ '+(LANG==='es'?'Copiado!':'Copied!');
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+
+// ── MOTIVATION ──
+var MOTIVS = {
+  es:['Dios ya puso el trabajo en ti. Solo tienes que marcar.','Cada llamada es una oportunidad. Marca.','13 temporadas en Alaska. Tu jefe sabe lo que es trabajar duro. Hazlo por el.','No necesitas suerte. Necesitas marcar el telefono.','Un cierre mas. Eso es todo. Uno mas.','El que trabaja duro duerme sabroso. Marca.','Dios gana. Siempre. ✝️'],
+  en:['God already put the work in you. Just dial.','Every call is an opportunity. Make it.','Your Jefe fished 13 seasons in Alaska. Work hard for him.','You do not need luck. You need to dial.','One more close. That is all. One more.','Hard work sleeps well. Make the call.','God Wins. Always. ✝️']
+};
+function updateMotiv(){
+  var day = new Date().getDay();
+  var q = MOTIVS[LANG][day];
+  var el = document.getElementById('motiv-quote');
+  var sub = document.getElementById('motiv-sub');
+  if(el) el.textContent = q;
+  if(sub) sub.textContent = LANG==='es'?'✝️ DIOS GANA — MX STUDIO':'✝️ GOD WINS — MX STUDIO';
+}
+
+// ── LOCAL: USD only ──
+function hideMXN(){['e-total-mxn','e-rate-note','e-calc-mxn'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='none';});var r=document.getElementById('e-mxn-lbl');if(r&&r.parentNode)r.parentNode.style.display='none';}
+// ── INIT ──
+checkReset();
+renderProspects(PROSPECTS);
+applyLang();
+calcEarnings(10);
+updateMotiv();
+hideMXN();
+</script>
+<script>
+/* ===== ✝️ Loyalty Program (partner) ===== */
+(function(){
+  var PER=82.20, KEY='loy-start', KEYN='loy-closes';
+  var T={
+    en:{vt:'🌴 Vacation Bonus',vs:'Every 3 years with MX Studio, take up to 2 weeks off and get a bonus of <b>3% of everything you earned in those 3 years</b>. You keep everything you earned, plus the bonus. You pick when you go.',vn:'Next vacation bonus: {d} · in {n} days',vc:'At that pace: {c} in 3 years → <b>{b}</b> vacation bonus',title:'✝️ Loyalty Program',sub:'Every year on your start anniversary, you get a bonus on top of all the commissions you earned that year. The longer you stay, the bigger it gets.',t1:'Years 1–3',t2:'Years 4–7',t3:'Year 8 and beyond',start:'My start date',year:'You\'re in year {y} · {r}% bonus',next:'Next bonus: {d} · in {n} days',nostart:'Enter your start date to see your countdown.',calc:'If I close',pm:'a month',res:'{c} a year in commissions → <b>{b}</b> loyalty bonus',tier:'At {r}% ({t}): {b}',fine:'Paid through Stripe on your anniversary while you\'re an active Partner. Refunded sales don\'t count.',earn:'💰 Earnings',now:'you are here'},
+    es:{vt:'🌴 Bono de Vacaciones',vs:'Cada 3 años con MX Studio, toma hasta 2 semanas libres y recibe un bono del <b>3% de todo lo que ganaste en esos 3 años</b>. Te quedas con todo lo que ganaste, más el bono. Tú eliges cuándo.',vn:'Próximo bono de vacaciones: {d} · en {n} días',vc:'A ese ritmo: {c} en 3 años → <b>{b}</b> de bono de vacaciones',title:'✝️ Programa de Lealtad',sub:'Cada año, en tu aniversario, recibes un bono extra sobre todas las comisiones que ganaste ese año. Mientras más tiempo te quedes, más grande es.',t1:'Años 1–3',t2:'Años 4–7',t3:'Año 8 en adelante',start:'Mi fecha de inicio',year:'Vas en el año {y} · bono de {r}%',next:'Próximo bono: {d} · en {n} días',nostart:'Pon tu fecha de inicio para ver tu cuenta regresiva.',calc:'Si cierro',pm:'al mes',res:'{c} al año en comisiones → <b>{b}</b> de bono de lealtad',tier:'Con {r}% ({t}): {b}',fine:'Se paga por Stripe en tu aniversario mientras sigas activo como Socio. Las ventas reembolsadas no cuentan.',earn:'💰 Ganancias',now:'aquí estás'},
+    fil:{vt:'🌴 Vacation Bonus',vs:'Kada 3 taon sa MX Studio, mag-day off ka hanggang 2 linggo at may bonus kang <b>3% ng lahat ng kinita mo sa 3 taong iyon</b>. Sa iyo pa rin lahat ng kinita mo, plus ang bonus. Ikaw ang pipili kung kailan.',vn:'Susunod na vacation bonus: {d} · {n} araw pa',vc:'Sa ganyang bilis: {c} sa 3 taon → <b>{b}</b> vacation bonus',title:'✝️ Loyalty Program',sub:'Taon-taon, sa anniversary mo, may bonus ka pa sa ibabaw ng lahat ng commission mo sa taong iyon. Mas matagal ka, mas malaki.',t1:'Taon 1–3',t2:'Taon 4–7',t3:'Taon 8 pataas',start:'Petsa ng simula ko',year:'Nasa taon {y} ka · {r}% bonus',next:'Susunod na bonus: {d} · {n} araw pa',nostart:'Ilagay ang petsa ng simula mo para makita ang countdown.',calc:'Kung makaka-close ako ng',pm:'kada buwan',res:'{c} kada taon na commission → <b>{b}</b> loyalty bonus',tier:'Sa {r}% ({t}): {b}',fine:'Binabayaran sa Stripe tuwing anniversary mo habang aktibo kang Partner. Hindi kasama ang na-refund na benta.',earn:'💰 Kita',now:'nandito ka'}
+  };
+  function lang(){var ph=/Philippines/.test(document.title);if(typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  function rate(y){return y<=3?3:(y<=7?7:13);}
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function f(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k];});}
+  function get(k,d){try{return localStorage.getItem(k)||d;}catch(e){return d;}}
+  function put(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  function addY(d,n){var x=new Date(d);x.setFullYear(x.getFullYear()+n);return x;}
+  var box=null;
+  function vac(t,n){var c=n*36*PER;return f(t.vc,{c:money(c),b:money(c*.03)});}
+  function calc(t,n,cur){var yr=n*12*PER;return '<div style="font-size:13px;margin-top:8px;line-height:1.6">'+f(t.res,{c:money(yr),b:money(yr*(cur||3)/100)})+'</div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.7">'+f(t.tier,{r:7,t:t.t2,b:money(yr*.07)})+'<br>'+f(t.tier,{r:13,t:t.t3,b:money(yr*.13)})+'</div>';}
+
+  function render(){
+    if(!box)return;var t=T[lang()],st=get(KEY,''),n=+get(KEYN,'10')||0,y=0,nx=null;
+    if(st){var s=new Date(st+'T12:00:00'),now=new Date();y=1;while(addY(s,y)<=now)y++;nx=addY(s,y);}
+    var cur=y?rate(y):0;
+    function row(lbl,r,on){return '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;margin-bottom:6px;'+(on?'background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.4)':'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)')+'"><span style="font-size:13px;font-weight:700">'+lbl+(on?' <span style="font-size:10px;color:var(--green)">← '+t.now+'</span>':'')+'</span><span style="font-size:18px;font-weight:900;color:'+(r===13?'#FFC53D':'var(--green)')+'">'+r+'%'+(r===13?' 👑':'')+'</span></div>';}
+    var h='<div style="font-size:18px;font-weight:900;margin-bottom:4px">'+t.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">'+t.sub+'</div>'
+      +row(t.t1,3,cur===3)+row(t.t2,7,cur===7)+row(t.t3,13,cur===13)
+      +'<label style="display:block;font-size:11px;color:var(--muted);margin:14px 0 4px">'+t.start+'</label>'
+      +'<input type="date" id="loy-start" value="'+st+'" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:14px;color-scheme:dark">'
+      +'<div style="margin-top:10px;font-size:13px;line-height:1.7">'+(y?('<b style="color:var(--green)">'+f(t.year,{y:y,r:cur})+'</b><br>'+f(t.next,{d:nx.toLocaleDateString(),n:Math.ceil((nx-new Date())/864e5)})):'<span style="color:var(--muted)">'+t.nostart+'</span>')+'</div>'
+      +'<div style="margin-top:14px;background:rgba(255,255,255,.04);border-radius:10px;padding:12px">'
+      +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px">'+t.calc+' <input type="number" id="loy-n" min="0" value="'+n+'" inputmode="numeric" style="width:64px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:6px;color:var(--white);font-size:15px;font-weight:800;text-align:center;font-family:inherit"> '+t.pm+'</div>'
+      +'<div id="loy-calc">'+calc(t,n,cur)+'</div></div>'
+      +'<div style="margin-top:14px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.35);border-radius:11px;padding:12px">'
+      +'<div style="font-size:15px;font-weight:900;margin-bottom:4px">'+t.vt+'</div><div style="font-size:12px;line-height:1.6;color:var(--muted)">'+t.vs+'</div>'
+      +(st?'<div style="font-size:12px;margin-top:8px;color:#22D3EE;font-weight:700">'+(function(){var s0=new Date(st+'T12:00:00'),k=3;while(addY(s0,k)<=new Date())k+=3;var d=addY(s0,k);return f(t.vn,{d:d.toLocaleDateString(),n:Math.ceil((d-new Date())/864e5)});})()+'</div>':'')
+      +'<div id="loy-vac" style="font-size:12px;margin-top:6px">'+vac(t,n)+'</div></div>'
+      +'<div style="font-size:10px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.fine+'</div>';
+    box.innerHTML=h;
+    var lab=document.getElementById('loy-earn-lbl');if(lab)lab.textContent=t.earn;
+    document.getElementById('loy-start').onchange=function(){put(KEY,this.value);render();};
+    document.getElementById('loy-n').oninput=function(){put(KEYN,this.value);document.getElementById('loy-calc').innerHTML=calc(t,+this.value||0,cur);document.getElementById('loy-vac').innerHTML=vac(t,+this.value||0);};
+  }
+
+  function init(){
+    var pane=document.getElementById('pane-earnings')||document.getElementById('tab-earnings');if(!pane)return;
+    box=document.createElement('div');box.id='loyalty';
+    box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.07),rgba(255,197,61,.06));border:1px solid rgba(0,230,118,.25);border-radius:14px;padding:18px;margin-bottom:16px';
+    var lab=document.createElement('div');lab.id='loy-earn-lbl';
+    lab.style.cssText='font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:6px 0 10px';
+    pane.insertBefore(lab,pane.firstChild);pane.insertBefore(box,lab);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 💼 JefeTech Packages ✝️ ===== */
+(function(){
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph;
+  var half=ph||mx, BRIAN=!!document.getElementById('tab-script')&&/Brian Lalo/.test(document.title);
+  var P=half?{s:1497,p:2497}:{s:2997,p:4997};
+  function m(n){return '$'+n.toLocaleString('en-US');}
+  var T={
+    en:{title:'💼 JefeTech Packages ✝️',sub:'Subscription is still the main offer. Some owners want their own app with their company name on it. Now we can do that too.',
+      mo:'Monthly',moD:'Over $300/mo of value for $137. Your price is locked for life. Cancel anytime, lifetime money-back guarantee (terms apply).',yrN:'Yearly',yrD:'$112/mo paid once a year. They save $300 (2+ months free). Price locked for life. Cancel anytime, one month ($112) back.',yrE:'$806.40 once, 30 days after the sale (again each renewal)',
+      st:'🔨 Custom App: Starter',stD:'Their company name, logo and colors, their own web address, all features, 1 year of updates.',
+      pr:'👑 Custom App',prD:'Their company name, logo and colors, their own web address, all features, 1 year of updates, plus Spanish/country setup, a live training session for their crew, and priority WhatsApp support for 1 year.',
+      up:'Updates after year 1 (optional)',upD:'New features, fixes and support.',once:'once',yr:'/year',you:'You earn',
+      note:'<b>Plus a flat yearly Hosting & AI fee</b>, set per customer by Brian. No usage bills, one simple price. They get a <b>license</b> to use their app. They don\'t own the code and can\'t resell it.',
+      say:'Say it like this',line:'"Some owners want their own app, with their company name on it for their crew and their customers. We can do that. One payment, your name on it, all the same features."',
+      how:'No payment link yet for Custom App. When someone wants it, WhatsApp Brian and he\'ll set it up.',wa:'💬 WhatsApp Brian: I have a Custom App lead'},
+    es:{title:'💼 Paquetes JefeTech ✝️',sub:'La suscripción sigue siendo la oferta principal. Algunos dueños quieren su propia app con el nombre de su empresa. Ahora también podemos hacer eso.',
+      mo:'Mensual',moD:'Más de $300/mes de valor por $137. Tu precio queda congelado de por vida. Cancela cuando quieras, garantía de devolución de por vida (aplican términos).',yrN:'Anual',yrD:'$112/mes pagado una vez al año. Ahorran $300 (más de 2 meses gratis). Precio congelado de por vida. Cancelan cuando quieran y reciben un mes ($112) de vuelta.',yrE:'$806.40 en un pago, 30 días después de la venta (y otra vez cada renovación)',
+      st:'🔨 Tu Propia App: Básica',stD:'El nombre, logo y colores de su empresa, su propia dirección web, todas las funciones, 1 año de actualizaciones.',
+      pr:'👑 Tu Propia App',prD:'El nombre, logo y colores de su empresa, su propia dirección web, todas las funciones, 1 año de actualizaciones, más configuración en español/por país, una capacitación en vivo para su cuadrilla y soporte prioritario por WhatsApp por 1 año.',
+      up:'Actualizaciones después del año 1 (opcional)',upD:'Nuevas funciones, correcciones y soporte.',once:'un pago',yr:'/año',you:'Tú ganas',
+      note:'<b>Más una cuota anual fija de Hosting e IA</b>, que Brian define por cliente. Sin cobros por uso, un solo precio. Reciben una <b>licencia</b> para usar su app. No son dueños del código y no pueden revenderla.',
+      say:'Dilo así',line:'"Algunos dueños quieren su propia app, con el nombre de su empresa para su cuadrilla y sus clientes. Eso lo podemos hacer. Un solo pago, con tu nombre, las mismas funciones."',
+      how:'Todavía no hay link de pago para Tu Propia App. Cuando alguien la quiera, manda WhatsApp a Brian y él la configura.',wa:'💬 WhatsApp a Brian: tengo un cliente para Tu Propia App'},
+    fil:{title:'💼 JefeTech Packages ✝️',sub:'Subscription pa rin ang main offer. May mga owner na gusto ng sariling app na may pangalan ng kumpanya nila. Kaya na rin natin iyon.',
+      mo:'Monthly',moD:'Higit $300/mo na value sa $137. Hindi na tataas ang presyo habambuhay. Cancel anytime, lifetime money-back guarantee (may terms).',yrN:'Yearly',yrD:'$112/mo, bayad isang beses kada taon. Makakatipid sila ng $300 (2+ buwang libre). Hindi tataas ang presyo habambuhay. Cancel anytime, isang buwan ($112) ang ibabalik.',yrE:'$806.40 isang bayad, 30 araw pagkatapos ng benta (ulit tuwing renewal)',
+      st:'🔨 Custom App: Starter',stD:'Pangalan, logo at kulay ng kumpanya nila, sariling web address, lahat ng features, 1 taon ng updates.',
+      pr:'👑 Custom App',prD:'Pangalan, logo at kulay ng kumpanya nila, sariling web address, lahat ng features, 1 taon ng updates, plus country setup, live training para sa crew nila, at priority WhatsApp support sa loob ng 1 taon.',
+      up:'Updates pagkatapos ng taon 1 (optional)',upD:'Bagong features, fixes at support.',once:'isang bayad',yr:'/taon',you:'Kita mo',
+      note:'<b>Plus flat na yearly Hosting & AI fee</b>, na itatakda ni Brian kada customer. Walang usage bill, isang presyo lang. <b>License</b> ang makukuha nila para gamitin ang app. Hindi nila pag-aari ang code at hindi nila puwedeng ibenta ulit.',
+      say:'Sabihin ito',line:'"May mga owner na gusto ng sariling app, may pangalan ng kumpanya nila para sa crew at customers nila. Kaya namin iyon. Isang bayad, pangalan mo, parehong features."',
+      how:'Wala pang payment link para sa Custom App. Kapag may gusto, i-WhatsApp si Brian at siya ang mag-se-set up.',wa:'💬 WhatsApp kay Brian: may lead ako para sa Custom App'}
+  };
+  function lang(){if(BRIAN||typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  var box=null;
+  function row(name,price,desc,earn,hl,t){
+    return '<div style="border-radius:11px;padding:12px 13px;margin-bottom:8px;'+(hl?'background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.35)':'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)')+'">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b style="font-size:14px">'+name+'</b><b style="font-size:17px;color:'+(hl?'#FFC53D':'var(--green)')+';white-space:nowrap">'+price+'</b></div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:3px">'+desc+'</div>'
+      +(earn?'<div style="font-size:11px;font-weight:800;color:var(--green);margin-top:5px">'+(BRIAN?'Partner earns':t.you)+': '+earn+'</div>':'')+'</div>';
+  }
+  function render(){
+    if(!box)return;var t=T[lang()];
+    var h='<div style="font-size:17px;font-weight:900;margin-bottom:4px">'+t.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px">'+t.sub+(BRIAN&&!half?'<br><span style="color:#FFC53D">Mexico & Philippines: $2,497.</span>':'')+'</div>'
+      +row(t.mo,'$137/mo',t.moD,'$82.20/mo',false,t)
+      +row(t.yrN,'$1,344/yr',t.yrD,t.yrE,false,t)
+      +row(t.pr,m(P.p)+' <span style="font-size:11px;font-weight:600">'+t.once+'</span>',t.prD,m(Math.round(P.p*.2))+' (20%)',true,t)
+      +row(t.up,'$497'+t.yr,t.upD,'',false,t)
+      +'<div style="font-size:12px;line-height:1.6;background:rgba(255,197,61,.07);border-radius:9px;padding:10px 12px;margin:10px 0">'+t.note+'</div>'
+      +'<div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px">'+t.say+'</div>'
+      +'<div style="font-size:13px;line-height:1.7;background:rgba(0,230,118,.07);border-left:3px solid var(--green);border-radius:8px;padding:10px 12px">'+t.line+'</div>';
+    if(!BRIAN)h+='<div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.how+'</div>'
+      +'<a href="https://wa.me/14084223505?text='+encodeURIComponent(t.wa.replace(/^💬 [^:]+: /,''))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:800;font-size:13px;text-decoration:none;margin-top:8px">'+t.wa+'</a>';
+    box.innerHTML=h;
+  }
+  function init(){
+    var host=document.getElementById('pane-script')||document.getElementById('tab-goals');
+    if(BRIAN)host=document.getElementById('tab-script');
+    if(!host)return;
+    box=document.createElement('div');box.id='packages';
+    box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.3);border-radius:14px;padding:16px;margin:0 0 14px';
+    if(BRIAN)host.insertBefore(box,host.firstChild);else host.appendChild(box);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 🤝 Partner benefits banner ✝️ ===== */
+(function(){
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph, half=ph||mx;
+  var own=half?'$249':'$499';
+  var T={
+    en:{h:'🤝 What you get as an MX Studio Partner ✝️',items:[
+      ['💵','60% commission','$82.20/mo per $137 sale · $806.40 per $1,344 yearly'],
+      ['👑','Custom App sales',own+' on every one (20%)'],
+      ['✝️','Loyalty Bonus every year','3% → 7% → 13% of your commissions'],
+      ['🌴','Vacation Bonus every 3 years','3% of everything you earned'],
+      ['🤝','Refer a Partner','3% of their sales, every month'],
+      ['📋','Verified prospect lists','600+ real, verified numbers to call'],
+      ['🎓','Training & coaching','Learn to sell with your own story'],
+      ['🌎','Your hours, anywhere','Your own dashboard and scripts'],
+      ['💳','Paid by Stripe','Straight to your bank, in your currency']],f:'God wins. ✝️'},
+    es:{h:'🤝 Lo que recibes como Socio de MX Studio ✝️',items:[
+      ['💵','60% de comisión','$82.20/mes por venta de $137 · $806.40 por anual de $1,344'],
+      ['👑','Ventas de Tu Propia App',own+' por cada una (20%)'],
+      ['✝️','Bono de Lealtad cada año','3% → 7% → 13% de tus comisiones'],
+      ['🌴','Bono de Vacaciones cada 3 años','3% de todo lo que ganaste'],
+      ['🤝','Recomienda a un Socio','3% de sus ventas, cada mes'],
+      ['📋','Listas de prospectos verificadas','600+ números reales y verificados'],
+      ['🎓','Capacitación y coaching','Aprende a vender con tu propia historia'],
+      ['🌎','Tus horarios, desde donde sea','Tu propio dashboard y guiones'],
+      ['💳','Pago por Stripe','Directo a tu banco, en tu moneda']],f:'Dios gana. ✝️'},
+    fil:{h:'🤝 Ang makukuha mo bilang MX Studio Partner ✝️',items:[
+      ['💵','60% commission','$82.20/buwan sa $137 na benta · $806.40 sa $1,344 yearly'],
+      ['👑','Custom App sales',own+' sa bawat isa (20%)'],
+      ['✝️','Loyalty Bonus taon-taon','3% → 7% → 13% ng commission mo'],
+      ['🌴','Vacation Bonus kada 3 taon','3% ng lahat ng kinita mo'],
+      ['🤝','Mag-refer ng Partner','7% ng benta nila, buwan-buwan'],
+      ['📋','Verified na prospect lists','600+ totoo at verified na numero'],
+      ['🎓','Training at coaching','Matutong magbenta gamit ang sariling kuwento'],
+      ['🌎','Sariling oras, kahit saan','Sariling dashboard at scripts'],
+      ['💳','Bayad sa Stripe','Diretso sa bangko mo, sa currency mo']],f:'God wins. ✝️'}
+  };
+  function lang(){if(typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  var box=null;
+  function render(){
+    if(!box)return;var t=T[lang()];
+    box.innerHTML='<div style="font-size:16px;font-weight:900;margin-bottom:10px;text-align:center">'+t.h+'</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px">'
+      +t.items.map(function(x){return '<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:9px 10px;display:flex;gap:8px;align-items:flex-start"><span style="font-size:18px;line-height:1.2">'+x[0]+'</span><span><b style="font-size:12px;display:block;line-height:1.3">'+x[1]+'</b><span style="font-size:11px;color:var(--muted);line-height:1.35;display:block">'+x[2]+'</span></span></div>';}).join('')
+      +'</div><div style="text-align:center;font-size:11px;color:var(--green);font-weight:800;margin-top:10px">'+t.f+'</div>'
+      +'<a href="https://wa.me/?text='+encodeURIComponent(waText(t))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:10px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:10px">'+W[lang()]+'</a>';
+  }
+  var W={en:'💬 Share on WhatsApp',es:'💬 Compartir por WhatsApp',fil:'💬 I-share sa WhatsApp'};
+  var J={en:'Want in? WhatsApp Brian Lalo:',es:'¿Te interesa? Escríbele a Brian Lalo:',fil:'Interesado? I-WhatsApp si Brian Lalo:'};
+  function waText(t){var l=lang();return '*'+t.h+'*\n\n'+t.items.map(function(x){return x[0]+' *'+x[1]+'*: '+x[2];}).join('\n')+'\n\n'+J[l]+' https://wa.me/14084223505\n'+t.f;}
+  function init(){
+    var host=document.getElementById('pane-jefe')||(/Brian Lalo/.test(document.title)?document.getElementById('tab-team'):null)||document.getElementById('tab-goals');if(!host)return;
+    box=document.createElement('div');box.id='partner-perks';
+    box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.10),rgba(255,197,61,.08));border:1px solid rgba(0,230,118,.35);border-radius:15px;padding:14px;margin-bottom:14px';
+    host.insertBefore(box,host.firstChild);render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script id="wa-app">
+/* ===== 💬📞💜 Call buttons open the apps on any device ✝️ ===== */
+(function(){
+  var _open=window.open;
+  var UA=navigator.userAgent||'';
+  var MOBILE=/Android|iPhone|iPad|iPod|Mobile/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var FRAMED=window.top!==window;
+  function parseWa(u){
+    var m=String(u||'').match(/^(?:https?:\/\/(?:wa\.me|api\.whatsapp\.com\/send)\/?(\d*)\/?|whatsapp:\/\/send\/?)(?:\?(.*))?$/i);
+    if(!m)return null;var ph=m[1]||'',txt='';
+    if(m[2]){try{var q=new URLSearchParams(m[2]);ph=ph||(q.get('phone')||'').replace(/\D/g,'');txt=q.get('text')||'';}catch(e){}}
+    if(/^\d{10}$/.test(ph))ph='1'+ph;
+    return {ph:ph,txt:txt};
+  }
+  function waUrls(w){
+    var q=[];if(w.ph)q.push('phone='+w.ph);if(w.txt)q.push('text='+encodeURIComponent(w.txt));var qs=q.length?'?'+q.join('&'):'';
+    return {app:'whatsapp://send'+qs,
+            uni:'https://wa.me/'+(w.ph||'')+(w.txt?'?text='+encodeURIComponent(w.txt):''),
+            web:'https://web.whatsapp.com/send'+qs};
+  }
+  function norm(u){return String(u).replace(/^(tel:\+?)(\d{10})$/i,'tel:+1$2').replace(/(number=%2B)(\d{10})$/i,'$11$2');}
+  function isProto(u){return /^(tel|sms|mailto|viber|facetime|facetime-audio):/i.test(String(u||''));}
+  function go(url){var l=document.createElement('a');l.href=url;l.setAttribute('data-mx','1');l.style.display='none';document.body.appendChild(l);l.click();setTimeout(function(){l.remove();},500);}
+  var helper=null,ht=null;
+  function viaHelper(url){ /* inside claude.ai only: frame can't open apps itself */
+    try{helper=_open.call(window,url,'mxcall','width=360,height=200,left=40,top=40');}catch(e){helper=null;}
+    if(ht)clearTimeout(ht);ht=setTimeout(function(){try{if(helper&&!helper.closed)helper.close();}catch(e){}},12000);
+  }
+  function openWa(w){
+    var u=waUrls(w);
+    if(MOBILE){ if(FRAMED)_open.call(window,u.uni,'_blank'); else location.href=u.uni; return; }
+    if(FRAMED){viaHelper(u.app);return;}
+    /* computer: try the desktop app; if nothing takes over in 1.8s, use WhatsApp Web in one reused tab */
+    var left=false;function lv(){left=true;}
+    window.addEventListener('blur',lv,{once:true});document.addEventListener('visibilitychange',lv,{once:true});
+    go(u.app);
+    setTimeout(function(){window.removeEventListener('blur',lv);document.removeEventListener('visibilitychange',lv);if(!left)_open.call(window,u.web,'mxwhatsapp');},1800);
+  }
+  function openProto(u){u=norm(u);if(FRAMED&&!MOBILE)viaHelper(u);else go(u);}
+  function handle(u){var w=parseWa(u);if(w){openWa(w);return true;}if(isProto(u)){openProto(u);return true;}return false;}
+  window.mxLaunch=handle;
+  window.open=function(u){if(handle(u))return null;return _open.apply(window,arguments);};
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.hasAttribute('data-mx'))return;
+    var h=a.getAttribute('href');if(!parseWa(h)&&!isProto(h))return;
+    e.preventDefault();e.stopPropagation();handle(h);
+  },true);
+  function fixViber(){
+    if(typeof window.viberP!=='function'||window.viberP._mx)return;
+    var f=function(i){var p=(typeof P!=='undefined')&&P[i];if(!p)return;handle('viber://chat?number=%2B'+String(p[1]).replace(/\D/g,''));};
+    f._mx=1;window.viberP=f;
+  }
+  fixViber();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fixViber);
+})();
+</script>
+</body>
+</html>
