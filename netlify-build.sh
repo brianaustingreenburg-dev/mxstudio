@@ -2,11 +2,11 @@
 # Copies the right folder into _site for whichever Netlify site is building.
 set -e
 case "$SITE_NAME" in
-  mxstudio-brian)    src=brian-site ;;
+  mxstudio-brian|endearing-dieffenbachia-d028e4)    src=brian-site ;;
   mxstudio-daniel)   src=daniel ;;
   mxstudio-cristian) src=cristian ;;
   mxstudio-partners) src=partners-site/public ;;
-  deluxe-tartufo-364c6c|endearing-dieffenbachia-d028e4|family-first) src=family-first; only_site=1 ;;
+  deluxe-tartufo-364c6c|family-first) src=family-first; only_site=1 ;;
   *) echo "Unknown site: $SITE_NAME"; exit 1 ;;
 esac
 rm -rf _site && mkdir _site
