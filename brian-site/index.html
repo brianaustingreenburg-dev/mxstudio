@@ -741,6 +741,12 @@ window.bizMail=function(to,subj,body){
           <div style="display:flex;gap:6px;margin-top:9px"><button type="button" onclick="pkgSend('yearly','wa')" style="flex:1;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">💬 WhatsApp</button><button type="button" onclick="pkgSend('yearly','sms')" style="flex:1;background:#0A84FF;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">✉️ Text</button></div>
         </div>
         <div style="background:rgba(255,197,61,.07);border:1px solid rgba(255,197,61,.35);border-radius:11px;padding:12px 13px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><b style="font-size:14px">🚀 founder3.0</b><span style="white-space:nowrap"><b style="font-size:15px;color:#FFC53D">$38</b><span style="font-size:11px;color:var(--muted)">/mo</span></span></div>
+          <div style="display:inline-block;margin-top:5px;font-size:10px;font-weight:800;color:#FFC53D;background:rgba(255,197,61,.12);border-radius:5px;padding:2px 7px">New · founder price</div>
+          <div style="font-size:11px;font-weight:800;color:var(--green);margin-top:6px">Partner earns: $22.80/mo</div>
+          <div style="display:flex;gap:6px;margin-top:9px"><button type="button" onclick="pkgSend('founder3','wa')" style="flex:1;background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">💬 WhatsApp</button><button type="button" onclick="pkgSend('founder3','sms')" style="flex:1;background:#0A84FF;color:#fff;border:none;border-radius:8px;padding:9px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">✉️ Text</button><button type="button" onclick="var b=this,u='https://buy.stripe.com/fZuaEZ7PN7DS4xYfNT0Jq0n';(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).catch(function(){var t=document.createElement('textarea');t.value=u;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();});b.textContent='✓ Copied';setTimeout(function(){b.textContent='📋 Copy';},1500)" style="flex:1;background:var(--gdim);color:var(--green);border:1px solid var(--gmid);border-radius:8px;padding:9px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit">📋 Copy</button></div>
+        </div>
+        <div style="background:rgba(255,197,61,.07);border:1px solid rgba(255,197,61,.35);border-radius:11px;padding:12px 13px">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><b style="font-size:14px">👑 Custom App</b><span style="white-space:nowrap"><s style="font-size:11px;color:var(--muted);font-weight:600;margin-right:5px">$4,997</s><b style="font-size:15px;color:#FFC53D">$2,497</b><span style="font-size:11px;color:var(--muted)"> once</span></span></div>
           <div style="display:inline-block;margin-top:5px;font-size:10px;font-weight:800;color:#FFC53D;background:rgba(255,197,61,.12);border-radius:5px;padding:2px 7px">👑 Founder 30 · first 30 companies</div>
           <div style="font-size:12px;color:var(--white);margin-top:6px;line-height:1.45"><b>This is them if:</b> 3+ crews or 15–20+ people, or any company that wants clients to see <b>their</b> name on the app. <i>Garcia Roofing wants “Garcia Roofing”, not JefeTech.</i> Half price for the first 30 companies only. MX/PH: <b>$1,247</b> <s>$2,497</s>.</div>
@@ -2832,7 +2838,7 @@ upd();
 <script>
 /* ===== 🔄 Refresh button + version stamp (home-screen apps can't pull-to-refresh) ✝️ ===== */
 (function(){
-  var VERSION='Sept 30 · 5:15 PM · WhatsApp opens the app';
+  var VERSION='Oct 12 · 10:15 AM · founder3.0 $38/mo';
   function init(){
     var h=document.querySelector('.hdr-name');if(!h||document.getElementById('app-ver'))return;
     var wrap=h.parentNode;
@@ -3014,6 +3020,7 @@ window.showTab=function(n,b){
     paygai:{n:'Pay As You Go + AI, $117/mo',w:'everything in Pay As You Go, plus an AI assistant your whole crew can ask anything, set up for you after you sign up. And type any address, the roof measurements fill in by themselves.',u:'https://buy.stripe.com/fZu28t7PN7DS7Ka9pv0Jq0m'},
     monthly:{n:'Monthly, $137/mo',w:'unlimited users, the full app and owner dashboard in English and Spanish. Price locked for life, cancel anytime, money-back guarantee (terms apply).',u:'https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h'},
     yearly:{n:'Yearly, $1,344/yr',w:'everything in Monthly for $112 a month. You save $300 and the price is locked for life.',u:'https://buy.stripe.com/00w8wRda70bqc0qcBH0Jq0i'},
+    founder3:{n:'founder3.0, $38/mo',w:'our founder price on the JefeTech field app and owner dashboard.',u:'https://buy.stripe.com/fZuaEZ7PN7DS4xYfNT0Jq0n'},
     custom:{n:'Custom App, Founder 30 price: half off for the first 30 companies only ($2,497 instead of $4,997; Mexico and Philippines $1,247)',w:'your own app with your company name, logo, colors and web address, all features, 1 year of updates, live crew training and priority WhatsApp support.',u:'https://go.myjefetech.app/checkout.html?tab=custom&ref=brian'},
     ai:{n:'AI add-on, $20/mo',w:'an AI assistant your whole crew can ask anything, set up for you after you sign up. Turn it off anytime.',u:'https://buy.stripe.com/6oU9AV4DB1fud4uatz0Jq0k'},
     topup:{n:'Credit top-up, $97',w:'refills your Pay As You Go credits right away, no waiting for next month.',u:'https://buy.stripe.com/eVq4gBb1ZaQ45C2atz0Jq0l'}
