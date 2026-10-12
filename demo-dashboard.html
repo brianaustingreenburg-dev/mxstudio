@@ -1,0 +1,162 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>JefeTech Demo Dashboard ✝️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: job-site foreman's board — status strip up top, jobs as the main column, crew + money + safety at the side */
+:root{
+  --bg:#f3f1ec;--panel:#ffffff;--ink:#1d1f22;--muted:#626a73;--line:#e2ded5;
+  --accent:#e2620e;--accent-ink:#ffffff;--ok:#1f8a4c;--warn:#b77900;--bad:#c2372b;--chip:#f1ebe2;
+  --display:'Barlow Condensed','Arial Narrow',sans-serif;--body:'Figtree',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--panel:#1d2024;--ink:#eeebe5;--muted:#9aa2ab;--line:#2d3136;--accent:#ff7a2a;--accent-ink:#15171a;--ok:#3fc07a;--warn:#e0a526;--bad:#ef6a5c;--chip:#272a2f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15171a;--panel:#1d2024;--ink:#eeebe5;--muted:#9aa2ab;--line:#2d3136;--accent:#ff7a2a;--accent-ink:#15171a;--ok:#3fc07a;--warn:#e0a526;--bad:#ef6a5c;--chip:#272a2f;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:16px 48px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;padding-block:6px 14px;border-bottom:2px solid var(--ink)}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,40px);line-height:1;margin:0;letter-spacing:.3px;text-transform:uppercase}
+h1 span{color:var(--accent)}
+.co{font-size:14px;color:var(--muted)}
+.demo{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--chip);border:1px dashed var(--muted);padding:3px 8px;border-radius:4px}
+.tools{display:flex;gap:8px;align-items:center}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.lang button{border:0;background:var(--panel);color:var(--muted);font:600 13px var(--body);padding:7px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-block:16px}
+.stat{background:var(--panel);padding:12px 14px}
+.stat b{display:block;font-family:var(--display);font-weight:700;font-size:34px;line-height:1.05;font-variant-numeric:tabular-nums}
+.stat small{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}
+.col{display:grid;gap:16px;min-width:0}
+section{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+h2{font-family:var(--display);font-weight:700;font-size:21px;text-transform:uppercase;letter-spacing:.4px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+h2 small{font-family:var(--body);font-size:12.5px;font-weight:500;color:var(--muted);text-transform:none;letter-spacing:0}
+.job{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:11px 0;border-top:1px solid var(--line)}
+.job:first-of-type{border-top:0}
+.job .n{font-weight:700}
+.job .a{font-size:13px;color:var(--muted)}
+.job .v{font-family:var(--mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.bar{grid-column:1/-1;height:7px;background:var(--chip);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px;color:var(--muted)}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em;border:1px solid currentColor}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.row:first-of-type{border-top:0}
+.row span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.alert{display:flex;gap:10px;padding:9px 10px;border-left:4px solid currentColor;background:var(--chip);border-radius:0 4px 4px 0;font-size:14px;margin-bottom:8px}
+.alert:last-child{margin-bottom:0}
+.alert span{color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center;justify-content:space-between;background:var(--ink);color:var(--bg);padding:16px 18px;border-radius:6px}
+.cta p{margin:0;max-width:52ch}
+.cta .btns{display:flex;flex-wrap:wrap;gap:8px}
+.cta a{font-weight:700;text-decoration:none;padding:10px 16px;border-radius:5px;font-size:14px}
+.cta .p{background:var(--accent);color:var(--accent-ink)}
+.cta .s{border:1px solid var(--bg);color:var(--bg)}
+footer{margin-top:18px;font-size:12.5px;color:var(--muted);text-align:center}
+@media (max-width:820px){.grid{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Jefe<span>Tech</span> ✝️</h1>
+      <span class="co" id="co"></span>
+      <span class="demo" id="demo"></span>
+    </div>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="l-en" data-l="en">EN</button>
+        <button type="button" id="l-es" data-l="es">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="strip" id="strip"></div>
+
+  <div class="grid">
+    <div class="col">
+      <section><h2><span id="h-jobs"></span><small id="h-jobs-s"></small></h2><div id="jobs"></div></section>
+      <section><h2><span id="h-alerts"></span></h2><div id="alerts"></div></section>
+    </div>
+    <div class="col">
+      <section><h2><span id="h-crew"></span><small id="h-crew-s"></small></h2><div id="crew"></div></section>
+      <section><h2><span id="h-money"></span></h2><div id="money"></div></section>
+      <section><h2><span id="h-safety"></span><small id="h-safety-s"></small></h2><div id="safety"></div></section>
+    </div>
+  </div>
+
+  <div class="cta">
+    <p id="cta-t"></p>
+    <div class="btns">
+      <a class="s" href="https://myjefetech.app" target="_blank" rel="noopener" id="cta-app"></a>
+      <a class="p" href="https://buy.stripe.com/8x228tb1Z1fu6G645b0Jq0h" target="_blank" rel="noopener" id="cta-pay"></a>
+    </div>
+  </div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+var JOBS=[
+ {n:'Martinez Residence',w:{en:'Full tear-off, 32 squares',es:'Retiro completo, 32 cuadros'},a:'1425 Oak St, Austin TX',p:65,v:12500,paid:6000,crew:4,st:'ok',due:{en:'Finish Fri',es:'Termina vie'}},
+ {n:'Congress Plaza Offices',w:{en:'HVAC, 3 rooftop units',es:'HVAC, 3 equipos en azotea'},a:'2200 Congress Ave, Austin TX',p:30,v:28000,paid:8000,crew:3,st:'warn',due:{en:'Parts late',es:'Material atrasado'}},
+ {n:'Riverside Apartments',w:{en:'Exterior paint, 12 units',es:'Pintura exterior, 12 unidades'},a:'800 Riverside Dr, Austin TX',p:85,v:9200,paid:6600,crew:2,st:'ok',due:{en:'2 units left',es:'Faltan 2 unidades'}},
+ {n:'Bee Cave Solar',w:{en:'8.4 kW solar install',es:'Instalación solar 8.4 kW'},a:'3300 Bee Cave Rd, Austin TX',p:10,v:22000,paid:0,crew:3,st:'bad',due:{en:'No deposit yet',es:'Sin anticipo'}}
+];
+var CREW=[
+ {n:'Carlos Mendoza',r:{en:'Lead roofer',es:'Jefe de techos'},in:'6:58',job:'Martinez'},
+ {n:'Miguel Ruiz',r:{en:'Roofer',es:'Techero'},in:'7:04',job:'Martinez'},
+ {n:'José García',r:{en:'HVAC tech',es:'Técnico HVAC'},in:'7:15',job:'Congress'},
+ {n:'Luis Torres',r:{en:'Painter',es:'Pintor'},in:'7:22',job:'Riverside'},
+ {n:'Ana Flores',r:{en:'Solar installer',es:'Instaladora solar'},in:null,job:'Bee Cave'}
+];
+var T={
+ en:{co:'Sample company: Martinez Roofing & Solar',demo:'Demo · sample data',jobs:'Jobs today',jobsS:'4 active',crew:'Crew',crewS:'4 of 5 clocked in',money:'Money',alerts:'Needs your attention',safety:'Safety (OSHA)',safetyS:'Today’s checklists',
+  s:['Active jobs','On site now','Collected this month','Owed to you'],
+  m:['Contract value','Collected','Owed to you','Crew pay this week (hours × rate)'],
+  al:[['bad','No deposit on Bee Cave Solar. Send the invoice from the app.'],['warn','Congress Plaza: copper fittings arrive Thursday. Crew moved to Riverside.'],['warn','Ana Flores has not clocked in (Bee Cave Solar).'],['ok','Martinez: 14 photos uploaded today.']],
+  sf:[['ok','Fall protection check · Martinez'],['ok','Ladder inspection · Riverside'],['warn','Roof-edge check not done · Congress Plaza']],
+  in:'in',notin:'Not in',crewOn:'on',
+  cta:'This is what your office sees, live, while your crew works in the app. Your own dashboard starts empty and fills in as your crew uses it.',app:'Try the crew app',pay:'Start for $137/mo',
+  foot:'MX Studio · brian@myjefetech.app · WhatsApp +1 (408) 422-3505 · God wins ✝️'},
+ es:{co:'Empresa de ejemplo: Martinez Roofing & Solar',demo:'Demo · datos de ejemplo',jobs:'Trabajos de hoy',jobsS:'4 activos',crew:'Cuadrilla',crewS:'4 de 5 registrados',money:'Dinero',alerts:'Requiere tu atención',safety:'Seguridad (OSHA)',safetyS:'Listas de hoy',
+  s:['Trabajos activos','En sitio ahora','Cobrado este mes','Te deben'],
+  m:['Valor de contratos','Cobrado','Te deben','Pago de cuadrilla esta semana (horas × tarifa)'],
+  al:[['bad','Sin anticipo en Bee Cave Solar. Manda la factura desde la app.'],['warn','Congress Plaza: las conexiones de cobre llegan el jueves. Cuadrilla movida a Riverside.'],['warn','Ana Flores no ha registrado entrada (Bee Cave Solar).'],['ok','Martinez: 14 fotos subidas hoy.']],
+  sf:[['ok','Revisión de protección contra caídas · Martinez'],['ok','Inspección de escaleras · Riverside'],['warn','Revisión de orilla de techo pendiente · Congress Plaza']],
+  in:'entró',notin:'Sin entrada',crewOn:'en',
+  cta:'Esto es lo que ve tu oficina, en vivo, mientras tu cuadrilla trabaja en la app. Tu propio dashboard empieza vacío y se llena mientras tu cuadrilla lo usa.',app:'Prueba la app de cuadrilla',pay:'Empieza por $137/mes',
+  foot:'MX Studio · brian@myjefetech.app · WhatsApp +1 (408) 422-3505 · Dios gana ✝️'}
+};
+function $(id){return document.getElementById(id);}
+function usd(n){return '$'+n.toLocaleString('en-US');}
+var L='en';
+try{var q=localStorage.getItem('jt-demo-lang');if(q==='es'||q==='en')L=q;else if(/^es/i.test(navigator.language||''))L='es';}catch(e){}
+function render(){
+  var t=T[L];document.documentElement.lang=L;
+  ['en','es'].forEach(function(k){$('l-'+k).setAttribute('aria-pressed',k===L?'true':'false');});
+  $('co').textContent=t.co;$('demo').textContent=t.demo;
+  $('h-jobs').textContent=t.jobs;$('h-jobs-s').textContent=t.jobsS;$('h-crew').textContent=t.crew;$('h-crew-s').textContent=t.crewS;
+  $('h-money').textContent=t.money;$('h-alerts').textContent=t.alerts;$('h-safety').textContent=t.safety;$('h-safety-s').textContent=t.safetyS;
+  var val=0,paid=0;JOBS.forEach(function(j){val+=j.v;paid+=j.paid;});
+  var vals=[JOBS.length,CREW.filter(function(c){return c.in;}).length,usd(paid),usd(val-paid)];
+  $('strip').innerHTML=vals.map(function(v,i){return '<div class="stat"><b>'+v+'</b><small>'+t.s[i]+'</small></div>';}).join('');
+  $('jobs').innerHTML=JOBS.map(function(j){return '<div class="job"><div><div class="n">'+j.n+'</div><div class="a">'+j.w[L]+' · '+j.a+'</div></div><div class="v">'+usd(j.paid)+' / '+usd(j.v)+'</div>'
+    +'<div class="bar" role="img" aria-label="'+j.p+'%"><i style="width:'+j.p+'%"></i></div>'
+    +'<div class="meta"><span class="pill '+j.st+'">'+j.due[L]+'</span><span>'+j.p+'%</span><span>· 👷 '+j.crew+'</span></div></div>';}).join('');
+  $('crew').innerHTML=CREW.map(function(c){return '<div class="row"><span><b>'+c.n+'</b><br><small style="color:var(--muted)">'+c.r[L]+' · '+c.job+'</small></span><span class="'+(c.in?'ok':'bad')+'">'+(c.in?t.in+' '+c.in:t.notin)+'</span></div>';}).join('');
+  var m=[val,paid,val-paid,6840];
+  $('money').innerHTML=m.map(function(v,i){return '<div class="row"><span>'+t.m[i]+'</span><span class="'+(i===2?'warn':(i===1?'ok':''))+'">'+usd(v)+'</span></div>';}).join('');
+  $('alerts').innerHTML=t.al.map(function(a){return '<div class="alert '+a[0]+'"><span>'+a[1]+'</span></div>';}).join('');
+  $('safety').innerHTML=t.sf.map(function(a){return '<div class="row"><span>'+a[1]+'</span><span class="'+a[0]+'">'+(a[0]==='ok'?'✓':'!')+'</span></div>';}).join('');
+  $('cta-t').textContent=t.cta;$('cta-app').textContent=t.app;$('cta-pay').textContent=t.pay;$('foot').textContent=t.foot;
+}
+document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){L=b.dataset.l;try{localStorage.setItem('jt-demo-lang',L);}catch(e){}render();};});
+render();
+</script>
+
+</body></html>
