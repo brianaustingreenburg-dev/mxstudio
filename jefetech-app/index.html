@@ -1928,7 +1928,8 @@ function renderMeasure(){
   html+='<p class="sec-lbl">📍 '+(es?'DIRECCIÓN':'ADDRESS')+'</p>';
   html+='<div style="display:flex;gap:8px;margin-bottom:12px">'
     +'<input id="bp-addr-inp" class="inp" style="flex:1;margin:0" placeholder="'+(es?'Escribe la dirección...':'Enter address...')+'" value="'+BP_ADDR+'" oninput="BP_ADDR=this.value;ACTIVE_JOB.addr=this.value">'
-    +'<button onclick="lookupAddress()" style="background:#FF6B2B;border:none;border-radius:10px;width:44px;height:44px;font-size:20px;cursor:pointer;flex-shrink:0">🛰️</button>'
+    +'<button onclick="lookupAddress()" title="'+(es?'Medir esta dirección':'Measure this address')+'" style="background:#FF6B2B;border:none;border-radius:10px;width:44px;height:44px;font-size:20px;cursor:pointer;flex-shrink:0">🛰️</button>'
+    +'<button onclick="jtGpsMeasure()" title="'+(es?'Medir donde estoy':'Measure where I am')+'" style="background:rgba(255,107,43,.12);border:1px solid rgba(255,107,43,.5);border-radius:10px;width:44px;height:44px;font-size:20px;cursor:pointer;flex-shrink:0">📍</button>'
     +'</div>';
   html+='<div id="bp-satellite-view">'+(BP_ADDR?'<div style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,107,43,.2);margin-bottom:16px"><div style="background:rgba(255,107,43,.08);padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,107,43,.15)"><span style="font-size:14px">🛰️</span><p style="font-size:11px;font-weight:700;color:#FF6B2B;margin:0">'+BP_ADDR+'</p></div><iframe width="100%" height="280" frameborder="0" style="display:block" src="https://maps.google.com/maps?q='+encodeURIComponent(BP_ADDR)+'&t=k&z=19&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe></div>':'')+'</div>';
 
@@ -2221,15 +2222,16 @@ function useMyLocation(){
   navigator.geolocation.getCurrentPosition(function(pos){
     BP_LAT=pos.coords.latitude;BP_LNG=pos.coords.longitude;
     BP_ADDR='My location';
+    var gpsMeasure=function(){try{if(window.jtMeasureAt)jtMeasureAt(BP_LAT,BP_LNG,BP_ADDR==='My location'?null:BP_ADDR);}catch(e){}};
     fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat='+BP_LAT+'&lon='+BP_LNG,
-      {headers:{'Accept-Language':'en','User-Agent':'JefeTech/1.0'}})
+      {headers:{'Accept-Language':(typeof L!=='undefined'&&L==='es')?'es':'en'}})
     .then(function(r){return r.json();})
     .then(function(d){
       if(d&&d.display_name) BP_ADDR=d.display_name.split(',').slice(0,3).join(',').trim();
       BP_LOADING=false;BP_VIEW='canvas';BP_ZONES=[];BP_PTS=[];
-      renderJobsHub();setTimeout(initBpCanvas,120);
-    }).catch(function(){BP_LOADING=false;BP_VIEW='canvas';renderJobsHub();setTimeout(initBpCanvas,120);});
-  },function(){BP_LOADING=false;BP_ERROR='Could not get GPS location. Check permissions.';renderJobsHub();});
+      gpsMeasure();renderJobsHub();setTimeout(initBpCanvas,120);
+    }).catch(function(){BP_LOADING=false;BP_VIEW='canvas';gpsMeasure();renderJobsHub();setTimeout(initBpCanvas,120);});
+  },function(){BP_LOADING=false;BP_ERROR=(typeof L!=='undefined'&&L==='es')?'No se pudo obtener tu ubicación. Activa el GPS y permite la ubicación para esta página.':'Could not get your location. Turn on GPS and allow location for this page.';renderJobsHub();},{enableHighAccuracy:true,timeout:15000,maximumAge:60000});
 }
 
 function loadSaved(i){
@@ -4121,18 +4123,31 @@ function sendToAI(){
   function centroid(poly){var la=0,ln=0;poly.forEach(function(p){la+=p.lat;ln+=p.lng;});return {lat:la/poly.length,lng:ln/poly.length};}
   function dist(a,b){var k=Math.cos(a.lat*Math.PI/180);return Math.hypot((a.lng-b.lng)*111320*k,(a.lat-b.lat)*110540);}
 
-  function measure(addr,cb){
+  // map servers: if one is busy, try the next ✝️
+  var OVERPASS=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter'];
+  function overpass(q,i){i=i||0;
+    return fetch(OVERPASS[i],{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+      .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+      .catch(function(e){if(i+1<OVERPASS.length)return overpass(q,i+1);throw e;});}
+  function geocode(addr){
+    function q(t){return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=0&q='+encodeURIComponent(t),{headers:{'Accept-Language':es()?'es':'en'}})
+      .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();});}
+    return q(addr).then(function(g){
+      if(g&&g.length)return {lat:+g[0].lat,lng:+g[0].lon};
+      var parts=addr.split(',').map(function(x){return x.trim();}).filter(Boolean);
+      if(parts.length>2)return q(parts.slice(0,1).concat(parts.slice(-2)).join(', ')).then(function(g2){return g2&&g2.length?{lat:+g2[0].lat,lng:+g2[0].lon}:null;});
+      return null;});
+  }
+  function measure(addr,cb,at){
     var k=key(addr);if(!k)return;
-    if(MEAS[k]&&MEAS[k].v===1){cb&&cb(MEAS[k]);return;}
+    if(MEAS[k]&&MEAS[k].v===1&&MEAS[k].status==='ok'){cb&&cb(MEAS[k]);return;}
     if(BUSY[k])return;BUSY[k]=1;paint();
-    fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=0&q='+encodeURIComponent(addr),{headers:{'Accept-Language':es()?'es':'en'}})
-    .then(function(r){return r.json();})
+    (at&&isFinite(at.lat)&&isFinite(at.lng)?Promise.resolve({lat:+at.lat,lng:+at.lng}):geocode(addr))
     .then(function(g){
-      if(!g||!g.length){MEAS[k]={v:1,status:'noaddr',addr:addr};return null;}
-      var lat=+g[0].lat,lng=+g[0].lon;
-      var q='[out:json][timeout:20];way["building"](around:45,'+lat+','+lng+');out geom tags;';
-      return fetch('https://overpass-api.de/api/interpreter',{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'}})
-      .then(function(r){return r.json();})
+      if(!g){MEAS[k]={v:1,status:'noaddr',addr:addr};return null;}
+      var lat=g.lat,lng=g.lng;
+      var q='[out:json][timeout:25];way["building"](around:'+(at?60:45)+','+lat+','+lng+');out geom tags;';
+      return overpass(q)
       .then(function(o){
         var pt={lat:lat,lng:lng},cands=[];
         (o&&o.elements||[]).forEach(function(el){if(el.geometry&&el.geometry.length>3){var poly=el.geometry.map(function(p){return {lat:p.lat,lng:p.lon};});
@@ -4146,9 +4161,24 @@ function sendToAI(){
       });
     })
     .catch(function(){MEAS[k]={v:1,status:'neterr',addr:addr,t:Date.now()};})
-    .then(function(){delete BUSY[k];if(MEAS[k]&&MEAS[k].status!=='neterr')save();paint();cb&&MEAS[k]&&cb(MEAS[k]);});
+    .then(function(){delete BUSY[k];if(MEAS[k]&&(MEAS[k].status==='ok'||MEAS[k].status==='nofoot'))save();paint();cb&&MEAS[k]&&cb(MEAS[k]);});
   }
   window.jtMeasure=measure;
+  // 📍 measure the building where the phone is right now
+  window.jtGpsMeasure=function(){
+    var e=es(),v=document.getElementById('bp-satellite-view');
+    if(!navigator.geolocation){alert(e?'Este teléfono no tiene GPS disponible.':'GPS is not available on this device.');return;}
+    if(v){v.style.display='block';v.innerHTML='<p style="padding:14px;text-align:center;color:#94A3B8;font-size:13px;margin:0 0 16px;border:1px solid rgba(255,107,43,.25);border-radius:14px">📍 '+(e?'Buscando tu ubicación…':'Finding your location…')+'</p>';}
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var lat=pos.coords.latitude,lng=pos.coords.longitude,label=(e?'Mi ubicación':'My location')+' ('+lat.toFixed(5)+', '+lng.toFixed(5)+')';
+      var inp=document.getElementById('bp-addr-inp');if(inp)inp.value=label;
+      jtMeasureAt(lat,lng,label);
+    },function(err){
+      var msg=(err&&err.code===1)?(e?'Permite la ubicación para esta página (ajustes del navegador) y toca 📍 otra vez.':'Allow location for this page in your browser settings, then tap 📍 again.'):(e?'No se pudo obtener tu ubicación. Sal a cielo abierto y toca 📍 otra vez.':'Could not get your location. Step outside and tap 📍 again.');
+      if(v)v.innerHTML='<p style="padding:14px;color:#F59E0B;font-size:13px;margin:0 0 16px;border:1px solid rgba(255,107,43,.25);border-radius:14px">⚠️ '+msg+'</p>';
+    },{enableHighAccuracy:true,timeout:15000,maximumAge:60000});
+  };
+  window.jtMeasureAt=function(lat,lng,label){var a=label||(lat.toFixed(5)+', '+lng.toFixed(5));var k=key(a);if(MEAS[k]&&MEAS[k].status!=='ok')delete MEAS[k];BP_ADDR=a;try{if(typeof ACTIVE_JOB!=='undefined')ACTIVE_JOB.addr=a;}catch(e){}measure(a,null,{lat:lat,lng:lng});paint();};
 
   function num(v,d){return (Math.round(v*Math.pow(10,d||0))/Math.pow(10,d||0)).toLocaleString('en-US');}
   function L1(m){return metric()?m:m*FT;} // meters -> display length
