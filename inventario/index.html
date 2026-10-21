@@ -282,7 +282,7 @@ const T = {
   saved:"Guardado", savedQueue:"Guardado en el teléfono. Se envía al volver la conexión.",
   logSet:"Conteo", logIn:"Entrada", logAdj:"Salida", logImp:"Eleventa", logNew:"Nuevo",
   today:"hoy", tomorrow:"mañana", expired:"caducado", daysLeft:"días",
-  scanTitle:"Escanear producto", desc:"Descripción", catT:"Categoría", catGuess:"La app la sugirió; tócala para cambiarla.", looking:"Buscando la descripción…", notInDb:"No la encontré. Escríbela una vez y la app la recuerda.", found:"Descripción encontrada", done:"Listo", pieces:"Piezas", dl:"Descargar lista (Excel)", dlH:"Guarda tu lista con descripción, código y cantidad.", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
+  scanTitle:"Escanear producto", desc:"Descripción", editT:"Editar producto", edit:"Editar", del:"Eliminar", delSure:"Toca otra vez para eliminar", deleted:"Eliminado", catT:"Categoría", catGuess:"La app la sugirió; tócala para cambiarla.", looking:"Buscando la descripción…", notInDb:"No la encontré. Escríbela una vez y la app la recuerda.", found:"Descripción encontrada", done:"Listo", pieces:"Piezas", dl:"Descargar lista (Excel)", dlH:"Guarda tu lista con descripción, código y cantidad.", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
   manual:"O escribe el código", find:"Buscar", quick:"Prueba rápida: toca un producto", reading:"Leyendo código…",
   notRead:"No se pudo leer el código. Acércate más, con buena luz, o escríbelo abajo.",
   notFound:"Este código no está en tu lista", addNew:"Agregar producto", name:"Nombre", price:"Precio", qty:"Cantidad", dept:"Departamento", min:"Mínimo",
@@ -309,7 +309,7 @@ const T = {
   saved:"Saved", savedQueue:"Saved on this phone. It sends when the connection is back.",
   logSet:"Count", logIn:"Received", logAdj:"Removed", logImp:"Eleventa", logNew:"New",
   today:"today", tomorrow:"tomorrow", expired:"expired", daysLeft:"days",
-  scanTitle:"Scan a product", desc:"Description", catT:"Category", catGuess:"The app suggested it; tap to change it.", looking:"Looking up the description…", notInDb:"Not found. Type it once and the app remembers it.", found:"Description found", done:"Done", pieces:"Pieces", dl:"Download list (Excel)", dlH:"Saves your list with description, code and quantity.", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
+  scanTitle:"Scan a product", desc:"Description", editT:"Edit product", edit:"Edit", del:"Delete", delSure:"Tap again to delete", deleted:"Deleted", catT:"Category", catGuess:"The app suggested it; tap to change it.", looking:"Looking up the description…", notInDb:"Not found. Type it once and the app remembers it.", found:"Description found", done:"Done", pieces:"Pieces", dl:"Download list (Excel)", dlH:"Saves your list with description, code and quantity.", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
   manual:"Or type the code", find:"Find", quick:"Quick test: tap a product", reading:"Reading code…",
   notRead:"Couldn't read the code. Move closer with good light, or type it below.",
   notFound:"This code isn't on your list", addNew:"Add product", name:"Name", price:"Price", qty:"Quantity", dept:"Department", min:"Minimum",
@@ -437,12 +437,12 @@ function openPad(id){ S.pad = {id, mode:"set", val:"", store: S.view==="scan" ? 
 function newHTML(){
   const N=S.newp; if (!N) return "";
   return `<div class="padwrap" data-act="newClose"><div class="pad" role="dialog" aria-modal="true" aria-label="${t("newT")}" data-stop="1">
-    <div class="rowhead"><b style="font-size:1.1rem">${t("newT")}</b><button class="btn ghost" data-act="newClose" aria-label="${t("cancel")}">✕</button></div>
+    <div class="rowhead"><b style="font-size:1.1rem">${N.editId?t("editT"):t("newT")}</b><button class="btn ghost" data-act="newClose" aria-label="${t("cancel")}">✕</button></div>
     <span class="small muted">${t("newCode")}: <span class="mono">${esc(N.code||"—")}</span></span>
     <label class="field"><span class="label">${t("desc")}</span><input class="f" id="nw_name" value="${esc(N.name||"")}" placeholder="${N.looking?t("looking"):"Ej. Coca-Cola 600 ml"}" autocomplete="off"></label>
     <span class="small" id="nw_status" style="color:${N.looking?"var(--muted)":N.name?"var(--ok)":"var(--warn)"}">${N.looking?t("looking"):N.name?"✓ "+t("found"):t("notInDb")}</span>
     <div class="field"><span class="label">${t("catT")}</span><div class="catpick">${Object.keys(T.es.cats).map(c=>`<button type="button" data-act="pickCat" data-v="${c}" aria-pressed="${N.cat===c}">${esc(catName(c))}</button>`).join("")}</div></div>
-    <label class="field"><span class="label">${t("qty")}</span><input class="f" id="nw_qty" inputmode="numeric" placeholder="0" style="font-size:1.6rem;font-weight:800;text-align:center"></label>
+    <label class="field"><span class="label">${t("qty")}</span><input class="f" id="nw_qty" inputmode="numeric" placeholder="0" value="${N.qty!=null?N.qty:""}" style="font-size:1.6rem;font-weight:800;text-align:center"></label>
     <button class="btn primary big" data-act="newSave">${t("done")}</button></div></div>`;
 }
 /* description lookup: public product databases by barcode */
@@ -515,6 +515,7 @@ function padHTML(){
     <div class="padshow"><span class="small muted">${t("current")}: <b>${cur}</b></span><span class="padval">${P.mode==="add"?"+":P.mode==="sub"?"−":""}${P.val||"0"}</span><span class="small">${t("willBe")}: <b>${next}</b> ${t("units")}</span></div>
     <div class="padkeys">${["1","2","3","4","5","6","7","8","9","C","0","⌫"].map(k=>`<button data-act="padKey" data-v="${k}" class="${k==="C"||k==="⌫"?"op":""}">${k}</button>`).join("")}</div>
     <button class="btn primary big" data-act="padSave" ${P.val===""?"disabled":""}>${t("save")} · ${next} ${t("units")}</button>
+    <div class="btns" style="justify-content:space-between"><button class="btn ghost" data-act="editProd">✎ ${t("edit")}</button><button class="btn ghost" data-act="delProd" style="color:var(--bad)">${P.delArm?t("delSure"):t("del")}</button></div>
   </div></div>`;
 }
 function padSave(){
@@ -776,16 +777,20 @@ document.addEventListener("click", e=>{
     refresh(){ doRefresh(); return "skip"; },
     filter(){ S.filter=v; }, cat(){ S.cat=v; },
     pad(){ openPad(id); },
-    padClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('[data-act="padClose"]')) return "skip"; S.pad=null; },
+    padClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('button[data-act="padClose"]')) return "skip"; S.pad=null; },
     padStore(){ S.pad.store=v; }, padMode(){ S.pad.mode=v; },
     padKey(){ const P=S.pad; if (v==="C") P.val=""; else if (v==="⌫") P.val=P.val.slice(0,-1); else if (P.val.length<4) P.val=(P.val==="0"?"":P.val)+v; },
     padSave(){ padSave(); },
     scanStore(){ S.scanStore=v; }, scanClear(){ S.scan=null; }, camMode(){ S.camMode=v; },
+    editProd(){ const p=S.products[S.pad.id]; if (!p) return; S.newp={code:p.code||"", name:p.name, cat:p.cat||"otros", catPicked:true, looking:false, editId:S.pad.id, qty:p.s1||0}; S.pad=null; },
+    delProd(){ const P=S.pad; if (!P.delArm){ P.delArm=true; setTimeout(()=>{ if (S.pad===P){ P.delArm=false; render(); } },4000); return; }
+      const p=S.products[P.id]; if (p){ logIt("adj", `${p.name} · ${t("deleted")}`, "1"); delete S.products[P.id]; } S.pad=null; changed(); toast(t("deleted")); },
     pickCat(){ if (S.newp){ S.newp.catPicked=true; setPickedCat(v); } return "skip"; },
-    newClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('[data-act="newClose"]')) return "skip"; S.newp=null; },
+    newClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('button[data-act="newClose"]')) return "skip"; S.newp=null; },
     newSave(){ const n=$("#nw_name").value.trim(); if (!n){ $("#nw_name").focus(); return "skip"; }
       const q=Math.max(0,parseInt($("#nw_qty").value,10)||0), pid=uid("p"), code=S.newp.code;
       const cat=S.newp.cat||guessCat(null,"",n);
+      if (S.newp.editId){ const p=S.products[S.newp.editId]; if (p){ const before=p.s1||0; p.name=n; p.brand=n.split(" ")[0]; p.cat=cat; p.dept=catName(cat); p.s1=q; if (p.code) rememberName(p.code,n,cat); logIt("set", `${n}: ${before} → ${q}`, "1"); } S.newp=null; changed(); toast(`${n} · ${t("saved")}`); return; }
       S.products[pid]={name:n, brand:n.split(" ")[0], cat, dept:catName(cat), price:0, cost:0, min:0, s1:q, s2:0, code, exp:null};
       rememberName(code, n, cat); logIt("new", `${n}: ${q}`, "1"); S.newp=null; changed(); toast(`${n} · ${q} ${t("units")}`); },
     manualFind(){ const c=$("#manualCode").value; if (c.trim()) showScanned(c); return "skip"; },
@@ -847,4 +852,4 @@ try{ const x=JSON.parse(sessionStorage.getItem("pdc_inv_view")||"null"); if (x){
 render();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792625996";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792626661";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
