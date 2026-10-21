@@ -197,7 +197,13 @@ details summary{cursor:pointer;font-weight:600}
 .padkeys button.op{background:var(--sunk);color:var(--muted);font-size:1.15rem}
 body.padopen{overflow:hidden}
 
-.tabbar{grid-template-columns:repeat(5,1fr)}
+.tabbar{grid-template-columns:repeat(3,1fr)}
+.catpick{display:flex;flex-wrap:wrap;gap:6px}
+.catpick button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font-weight:600;font-size:.88rem}
+.catpick button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.cathead{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:6px 2px;border-bottom:2px solid var(--line);font-weight:800;font-family:var(--f-display)}
+.cathead:first-child{margin-top:0}
+.t-dulces{background:#FBE0EF;color:#9B2C6B} .t-limpieza{background:#DDF3F0;color:#14706A} .t-cuidado{background:#EDE3F6;color:#6A3E92} .t-otros{background:var(--sunk);color:var(--muted)}
 .cam{position:relative;width:100%;aspect-ratio:4/3;max-height:52vh;background:#000;border-radius:14px;overflow:hidden}
 .cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cam-frame{position:absolute;left:8%;right:8%;top:50%;height:36%;transform:translateY(-50%);border:3px solid rgba(255,255,255,.9);border-radius:14px;box-shadow:0 0 0 2000px rgba(0,0,0,.3);transition:border-color .15s}
@@ -276,7 +282,7 @@ const T = {
   saved:"Guardado", savedQueue:"Guardado en el teléfono. Se envía al volver la conexión.",
   logSet:"Conteo", logIn:"Entrada", logAdj:"Salida", logImp:"Eleventa", logNew:"Nuevo",
   today:"hoy", tomorrow:"mañana", expired:"caducado", daysLeft:"días",
-  scanTitle:"Escanear producto", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
+  scanTitle:"Escanear producto", desc:"Descripción", catT:"Categoría", catGuess:"La app la sugirió; tócala para cambiarla.", looking:"Buscando la descripción…", notInDb:"No la encontré. Escríbela una vez y la app la recuerda.", found:"Descripción encontrada", done:"Listo", pieces:"Piezas", dl:"Descargar lista (Excel)", dlH:"Guarda tu lista con descripción, código y cantidad.", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
   manual:"O escribe el código", find:"Buscar", quick:"Prueba rápida: toca un producto", reading:"Leyendo código…",
   notRead:"No se pudo leer el código. Acércate más, con buena luz, o escríbelo abajo.",
   notFound:"Este código no está en tu lista", addNew:"Agregar producto", name:"Nombre", price:"Precio", qty:"Cantidad", dept:"Departamento", min:"Mínimo",
@@ -292,7 +298,7 @@ const T = {
   role:"Quién usa la app", owner:"Dueño", worker:"Empleado", roleH:"El empleado solo cuenta; el dueño también ve costos y el valor del inventario.",
   lang:"Idioma", offlineMode:"Simular sin conexión", offlineH:"Apaga la conexión para ver que los cambios se guardan en el teléfono y se envían al volver.",
   reset:"Borrar todo el inventario", resetH:"Deja la app vacía, sin productos.", emptyT:"Todavía no hay productos", emptyS:"Escanea cada producto del estante y se agrega a tu lista.", emptyBtn:"Escanear el primer producto", newT:"Producto nuevo", newCode:"Código", newHint:"Escribe el nombre y cuántos hay. El precio es opcional.", added:"Agregado a la lista", resetConfirm:"Toca otra vez para confirmar", demoNote:"Los datos se guardan en este teléfono.",
-  cats:{botanas:"Botanas",bebidas:"Bebidas",panaderia:"Pan",lacteos:"Lácteos",despensa:"Despensa",hogar:"Hogar",frescos:"Frescos"}, ago:"hace"},
+  cats:{bebidas:"Bebidas",botanas:"Botanas",dulces:"Dulces",panaderia:"Pan",lacteos:"Lácteos",despensa:"Despensa",frescos:"Frescos",limpieza:"Limpieza",cuidado:"Cuidado personal",otros:"Otros"}, ago:"hace"},
  en:{tag:"Inventory", inv:"Inventory", scan:"Scan", ele:"Eleventa", setup:"Setup", set:"Settings",
   t1:"Store 1", t2:"Store 2", both:"Both", online:"Online", offline:"Offline", waiting:"waiting", refresh:"Refresh", refreshed:"Up to date",
   pullR:"Pull to refresh", releaseR:"Release to refresh",
@@ -303,7 +309,7 @@ const T = {
   saved:"Saved", savedQueue:"Saved on this phone. It sends when the connection is back.",
   logSet:"Count", logIn:"Received", logAdj:"Removed", logImp:"Eleventa", logNew:"New",
   today:"today", tomorrow:"tomorrow", expired:"expired", daysLeft:"days",
-  scanTitle:"Scan a product", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
+  scanTitle:"Scan a product", desc:"Description", catT:"Category", catGuess:"The app suggested it; tap to change it.", looking:"Looking up the description…", notInDb:"Not found. Type it once and the app remembers it.", found:"Description found", done:"Done", pieces:"Pieces", dl:"Download list (Excel)", dlH:"Saves your list with description, code and quantity.", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
   manual:"Or type the code", find:"Find", quick:"Quick test: tap a product", reading:"Reading code…",
   notRead:"Couldn't read the code. Move closer with good light, or type it below.",
   notFound:"This code isn't on your list", addNew:"Add product", name:"Name", price:"Price", qty:"Quantity", dept:"Department", min:"Minimum",
@@ -319,7 +325,7 @@ const T = {
   role:"Who uses the app", owner:"Owner", worker:"Worker", roleH:"Workers only count; the owner also sees costs and inventory value.",
   lang:"Language", offlineMode:"Simulate offline", offlineH:"Turn off the connection to see changes saved on the phone and sent when it's back.",
   reset:"Erase the whole inventory", resetH:"Leaves the app empty, with no products.", emptyT:"No products yet", emptyS:"Scan each product on the shelf and it gets added to your list.", emptyBtn:"Scan the first product", newT:"New product", newCode:"Code", newHint:"Type the name and how many there are. Price is optional.", added:"Added to the list", resetConfirm:"Tap again to confirm", demoNote:"Data is saved on this phone.",
-  cats:{botanas:"Snacks",bebidas:"Drinks",panaderia:"Bread",lacteos:"Dairy",despensa:"Pantry",hogar:"Home",frescos:"Fresh"}, ago:""}
+  cats:{bebidas:"Drinks",botanas:"Snacks",dulces:"Candy",panaderia:"Bread",lacteos:"Dairy",despensa:"Pantry",frescos:"Fresh",limpieza:"Cleaning",cuidado:"Personal care",otros:"Other"}, ago:""}
 };
 const S = { lang:"es", role:"owner", store:"1", view:"inv", filter:"all", cat:"all", q:"", offline:false, pending:0,
   products:{}, log:[], lastImp:null, lastExp:null, setup:{prog:"eleventa", done:{}}, pad:null, scan:null, camMode:"count", camPaused:false, scanStore:"1", imp:null, expStore:"1", resetArm:false };
@@ -362,7 +368,7 @@ const I = {
  setup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l1.5 1.5L12 7M8 14l1.5 1.5L12 13M14 8h3M14 14h3"/></svg>',
  cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>'
 };
-const NAV = ["inv","scan","ele","setup","set"];
+const NAV = ["inv","scan","set"];
 
 /* ---------- shell ---------- */
 function render(){
@@ -381,7 +387,6 @@ function render(){
 function header(){
   return `<div class="toprow"><div class="brand"><div class="tile" aria-hidden="true"></div><div><b>${esc(STORE_NAME)}</b><span>${t("tag")}</span></div></div>
     <div class="chips"><button class="chip refresh" data-act="refresh">${I.refresh}<span>${t("refresh")}</span></button>
-    <button class="chip ${S.offline?"off":""}" data-act="toggleOffline"><span class="dot"></span>${S.offline?t("offline"):t("online")}${S.pending?` · ${S.pending} ${t("waiting")}`:""}</button>
     <div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">ES</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">EN</button></div></div></div>`;
 }
 function thumb(p){ return `<div class="thumb t-${esc(p.cat||"")}" aria-hidden="true">${esc(initials(p.brand||p.name))}</div>`; }
@@ -398,31 +403,33 @@ function viewInv(){
   <div class="empty" style="display:flex;flex-direction:column;gap:12px;align-items:center;padding:32px 16px">
     <b style="font-size:1.1rem;color:var(--ink)">${t("emptyT")}</b><span>${t("emptyS")}</span>
     <button class="btn primary big" data-nav="scan">${I.scan} ${t("emptyBtn")}</button></div>`;
+  const pieces=ps.reduce((n,p)=>n+(p.s1||0),0);
   return `<h2>${t("inv")}</h2>
-  <div class="kpis">
+  <div class="kpis" style="grid-template-columns:1fr 1fr">
     <div class="kpi"><span class="label">${t("products")}</span><span class="v">${ps.length}</span></div>
-    <div class="kpi ${lows.length?"alert":""}"><span class="label">${t("low")}</span><span class="v">${lows.length}</span></div>
-    <div class="kpi ${exps.length?"warn":""}"><span class="label">${t("expiring")}</span><span class="v">${exps.length}</span></div>
-    <div class="kpi hide-worker"><span class="label">${t("value")}</span><span class="v">${money0(value)}</span></div>
+    <div class="kpi"><span class="label">${t("pieces")}</span><span class="v">${pieces}</span></div>
   </div>
+  <button class="btn primary big" data-nav="scan">${I.scan} ${t("scanTitle")}</button>
   <section class="card">
     <span class="small muted">${t("tapHint")}</span>
     <input class="f" id="q" type="search" placeholder="${t("search")}" value="${esc(S.q)}" autocomplete="off">
-    <div class="filters">${[["all",t("all"),ps.length],["low",t("low"),lows.length],["exp",t("expiring"),exps.length]].map(([k,l,n])=>`<button data-act="filter" data-v="${k}" aria-pressed="${S.filter===k}">${l} · ${n}</button>`).join("")}</div>
-    <div class="seg">${cats.map(c=>`<button data-act="cat" data-v="${c}" aria-pressed="${S.cat===c}">${c==="all"?t("all"):esc(catName(c))}</button>`).join("")}</div>
+    ${(()=>{ const present=Object.keys(T.es.cats).filter(c=>ps.some(p=>(p.cat||"otros")===c)); if (present.length<2) return "";
+      return `<div class="seg">${["all",...present].map(c=>`<button data-act="cat" data-v="${c}" aria-pressed="${S.cat===c}">${c==="all"?t("all"):esc(catName(c))} · ${c==="all"?ps.length:ps.filter(p=>(p.cat||"otros")===c).length}</button>`).join("")}</div>`; })()}
     <div id="list">${listHTML()}</div>
   </section>
-  <section class="card"><h3>${t("recent")}</h3>${S.log.length?`<div class="list">${S.log.slice(0,8).map(l=>`<div class="item"><span class="pill ${l.type==="in"?"p-ok":l.type==="imp"?"p-blue":l.type==="adj"?"p-bad":"p-warn"}">${esc(t({set:"logSet",in:"logIn",adj:"logAdj",imp:"logImp",new:"logNew"}[l.type]||"logSet"))}</span><div class="grow small">${esc(l.text)}</div><span class="small muted">${timeAgo(l.ts)}</span></div>`).join("")}</div>`:`<p class="muted">${t("noActivity")}</p>`}</section>`;
+  <section class="card"><h3>${t("recent")}</h3>${S.log.length?`<div class="list">${S.log.slice(0,8).map(l=>`<div class="item"><span class="pill ${l.type==="in"?"p-ok":l.type==="adj"?"p-bad":l.type==="new"?"p-blue":"p-warn"}">${esc(t({set:"logSet",in:"logIn",adj:"logAdj",imp:"logImp",new:"logNew"}[l.type]||"logSet"))}</span><div class="grow small">${esc(l.text)}</div><span class="small muted">${timeAgo(l.ts)}</span></div>`).join("")}</div>`:`<p class="muted">${t("noActivity")}</p>`}</section>`;
 }
 function listHTML(){
-  const q=S.q.trim().toLowerCase(), st=S.store;
-  const rows=prodList().filter(p=>(S.cat==="all"||p.cat===S.cat)
-    && (S.filter==="all" || (S.filter==="low" && level(p,st)!=="ok") || (S.filter==="exp" && (()=>{const d=daysTo(p.exp); return d!=null && d<=4 && stockOf(p,st)>0;})()))
-    && (!q || p.name.toLowerCase().includes(q) || String(p.code||"").includes(q) || String(p.brand||"").toLowerCase().includes(q)))
-    .sort((a,b)=>a.name.localeCompare(b.name));
+  const q=S.q.trim().toLowerCase();
+  const rows=prodList().filter(p=>!q || p.name.toLowerCase().includes(q) || String(p.code||"").includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
   if (!rows.length) return `<p class="muted">${t("none")}</p>`;
-  return `<div class="tapl">${rows.map(p=>`<button class="tapr" data-act="pad" data-id="${p.id}">${thumb(p)}<span class="grow"><span class="name">${esc(p.name)}</span><span class="small muted">${money(p.price)}<span class="hide-worker"> · ${t("cost")} ${money(p.cost)}</span> ${expPill(p)}</span></span>
-    ${st==="all"?`<span class="tapq2"><span class="small muted">T1</span>${pill(p,"1")}<span class="small muted">T2</span>${pill(p,"2")}</span>`:`<span class="tapq ${level(p,st)}">${stockOf(p,st)}</span>`}</button>`).join("")}</div>`;
+  const order=Object.keys(T.es.cats), groups={};
+  rows.filter(p=>S.cat==="all"||(p.cat||"otros")===S.cat).forEach(p=>{ const c=order.includes(p.cat)?p.cat:"otros"; (groups[c]=groups[c]||[]).push(p); });
+  const keys=order.filter(c=>groups[c]); if (!keys.length) return `<p class="muted">${t("none")}</p>`;
+  return keys.map(c=>`<div class="cathead"><span>${esc(catName(c))}</span><span class="small muted">${groups[c].length}</span></div>`+rowsHTML(groups[c])).join("");
+}
+function rowsHTML(rows){
+  return `<div class="tapl">${rows.map(p=>`<button class="tapr" data-act="pad" data-id="${p.id}">${thumb(p)}<span class="grow"><span class="name">${esc(p.name)}</span><span class="small muted mono">${esc(p.code||"")}</span></span><span class="tapq ${(p.s1||0)===0?"out":"ok"}">${p.s1||0}</span></button>`).join("")}</div>`;
 }
 
 /* ---------- keypad ---------- */
@@ -432,12 +439,71 @@ function newHTML(){
   return `<div class="padwrap" data-act="newClose"><div class="pad" role="dialog" aria-modal="true" aria-label="${t("newT")}" data-stop="1">
     <div class="rowhead"><b style="font-size:1.1rem">${t("newT")}</b><button class="btn ghost" data-act="newClose" aria-label="${t("cancel")}">✕</button></div>
     <span class="small muted">${t("newCode")}: <span class="mono">${esc(N.code||"—")}</span></span>
-    <label class="field"><span class="label">${t("name")}</span><input class="f" id="nw_name" placeholder="Ej. Coca-Cola 600 ml" autocomplete="off"></label>
-    <div class="fields"><label class="field"><span class="label">${t("qty")}</span><input class="f" id="nw_qty" inputmode="numeric" value="${S.camMode==="plus"?1:""}" placeholder="0"></label>
-      <label class="field"><span class="label">${t("price")}</span><input class="f" id="nw_price" inputmode="decimal" placeholder="$"></label></div>
-    <label class="field"><span class="label">${t("dept")}</span><select class="f" id="nw_cat">${Object.keys(T.es.cats).map(c=>`<option value="${c}" ${c==="despensa"?"selected":""}>${esc(catName(c))}</option>`).join("")}</select></label>
-    <span class="small muted">${t("newHint")}</span>
-    <button class="btn primary big" data-act="newSave">${t("save")}</button></div></div>`;
+    <label class="field"><span class="label">${t("desc")}</span><input class="f" id="nw_name" value="${esc(N.name||"")}" placeholder="${N.looking?t("looking"):"Ej. Coca-Cola 600 ml"}" autocomplete="off"></label>
+    <span class="small" id="nw_status" style="color:${N.looking?"var(--muted)":N.name?"var(--ok)":"var(--warn)"}">${N.looking?t("looking"):N.name?"✓ "+t("found"):t("notInDb")}</span>
+    <div class="field"><span class="label">${t("catT")}</span><div class="catpick">${Object.keys(T.es.cats).map(c=>`<button type="button" data-act="pickCat" data-v="${c}" aria-pressed="${N.cat===c}">${esc(catName(c))}</button>`).join("")}</div></div>
+    <label class="field"><span class="label">${t("qty")}</span><input class="f" id="nw_qty" inputmode="numeric" placeholder="0" style="font-size:1.6rem;font-weight:800;text-align:center"></label>
+    <button class="btn primary big" data-act="newSave">${t("done")}</button></div></div>`;
+}
+/* description lookup: public product databases by barcode */
+const NAMES_KEY="pdc_live_names";
+function cachedInfo(code){ try{ const v=(JSON.parse(localStorage.getItem(NAMES_KEY)||"{}"))[code]; return typeof v==="string"?{name:v}:(v||null); }catch(_){ return null; } }
+function cachedName(code){ const i=cachedInfo(code); return i?i.name||"":""; }
+function rememberName(code,name,cat){ try{ const m=JSON.parse(localStorage.getItem(NAMES_KEY)||"{}"); m[code]={name,cat}; localStorage.setItem(NAMES_KEY, JSON.stringify(m)); }catch(_){} }
+function nameFrom(p){
+  if (!p) return "";
+  let n=(p.product_name_es||p.product_name||p.generic_name_es||p.generic_name||"").trim();
+  const brand=String(p.brands||"").split(",")[0].trim(), qty=String(p.quantity||"").trim();
+  if (!n) return "";
+  if (brand && !n.toLowerCase().includes(brand.toLowerCase())) n=brand+" "+n;
+  if (qty && !n.toLowerCase().includes(qty.toLowerCase())) n=n+" "+qty;
+  return n.replace(/\s+/g," ").slice(0,80);
+}
+async function lookupName(code){
+  const c=cachedName(code); if (c) return c;
+  const fields="product_name,product_name_es,generic_name,generic_name_es,brands,quantity,categories_tags";
+  const hosts=["https://world.openfoodfacts.org","https://world.openproductsfacts.org","https://world.openbeautyfacts.org"];
+  for (const h of hosts){
+    try{
+      const ctl=new AbortController(); const tm=setTimeout(()=>ctl.abort(), 6000);
+      const r=await fetch(`${h}/api/v2/product/${encodeURIComponent(code)}.json?fields=${fields}`, {signal:ctl.signal}); clearTimeout(tm);
+      if (!r.ok) continue; const j=await r.json(); const n=j && j.status===1 ? nameFrom(j.product) : "";
+      if (n) return {name:n, cat: guessCat(j.product, h, n)};
+    }catch(_){}
+  }
+  return {name:"", cat:""};
+}
+function guessCat(p, host, name){
+  const tags=((p&&p.categories_tags)||[]).join(" ").toLowerCase()+" "+String(name||"").toLowerCase();
+  if (host.includes("beauty")) return "cuidado";
+  const rules=[["bebidas",/beverage|drink|soda|refresco|water|agua|juice|jugo|beer|cerveza|coffee|cafe|tea|energy|coca|pepsi|fanta|sprite|jarritos|ciel|bonafont|peñafiel|electrolit|gatorade|boing|powerade|squirt|manzanita/],
+    ["dulces",/candies|candy|chocolate|confection|dulce|gum|chicle|gomit|paleta|caramel|mazapan|de la rosa|pulparindo|lucas|vero|ricolino|carlos v|kinder|m&m|snickers/],
+    ["botanas",/snack|chip|crisps|botana|papas|nachos|cacahuate|peanut|popcorn|palomit|sabritas|doritos|takis|ruffles|cheetos|barcel|runners|tostitos|churrumais|fritos/],
+    ["panaderia",/bread|pan |bakery|cake|pastel|pastry|biscuit|galleta|cookie|tortilla|bimbo|marinela|gansito|tia rosa|tortillinas|gamesa|wonder/],
+    ["lacteos",/dair|milk|leche|yogur|cheese|queso|cream|crema|butter|mantequilla|lala|alpura|danone|yoplait|nestle svelty|santa clara/],
+    ["limpieza",/clean|limpi|detergent|jabon para|soap for|bleach|cloro|dish|zote|cloralex|fabuloso|pinol|ariel|roma|axion|salvo|suavitel|downy|foca/],
+    ["cuidado",/shampoo|toothpaste|pasta dental|deodor|desodor|lotion|crema corporal|papel hig|toilet paper|diaper|pañal|colgate|palmolive|head &|dove|rexona|kleenex|petalo|regio|huggies|kotex|saba|gillette/],
+    ["frescos",/fruit|fruta|vegetable|verdura|egg|huevo|meat|carne|fresh/],
+    ["despensa",/cereal|rice|arroz|bean|frijol|oil|aceite|sauce|salsa|canned|enlatado|flour|harina|sugar|azucar|pasta|soup|sopa|condiment|spice|coffee/]];
+  for (const [c,re] of rules) if (re.test(tags)) return c;
+  return "otros";
+}
+function setPickedCat(cat){ const N=S.newp; if (!N) return; N.cat=cat; document.querySelectorAll(".catpick button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.v===cat)); }
+function openNew(code){
+  code=String(code||"").trim(); const info=cachedInfo(code), cached=info&&info.name||"";
+  S.newp={code, name:cached, cat:(info&&info.cat)||"", catPicked:false, looking:!cached};
+  if (!cached) lookupName(code).then(res=>{ const n=res.name;
+    const N=S.newp; if (!N || N.code!==code) return; N.looking=false;
+    const inp=document.getElementById("nw_name"), st=document.getElementById("nw_status");
+    if (n && inp && !inp.value.trim()){ inp.value=n; N.name=n; }
+    if (res.cat && !N.catPicked) setPickedCat(res.cat);
+    if (st){ const has=inp&&inp.value.trim(); st.textContent=has?"✓ "+t("found"):t("notInDb"); st.style.color=has?"var(--ok)":"var(--warn)"; }
+    if (inp) inp.placeholder="Ej. Coca-Cola 600 ml";
+    const q=document.getElementById("nw_qty"), nm=document.getElementById("nw_name");
+    if (inp && inp.value.trim()) q&&q.focus(); else nm&&nm.focus();
+  });
+  setTimeout(()=>{ const N=S.newp; if (!N || N.code!==code) return; const a=document.activeElement; if (a && (a.id==="nw_qty"||a.id==="nw_name")) return;
+    const f=document.getElementById((N.name||(document.getElementById("nw_name")||{}).value)?"nw_qty":"nw_name"); if (f) f.focus(); }, 60);
 }
 function padHTML(){
   const P=S.pad; if (!P || !S.products[P.id]) return "";
@@ -472,15 +538,12 @@ function viewScan(){
     <div class="btns"><button class="btn primary" data-act="newProduct" data-code="${esc(sr.code)}">${t("save")}</button><button class="btn" data-act="scanClear">${t("cancel")}</button></div></div>`;
   return `<h2>${t("scanTitle")}</h2>
   <div class="card" style="padding:12px;gap:10px">
-    <span class="label">${t("camMode")}</span>
-    <div class="seg">${[["count","mCount"],["plus","mPlus"]].map(([m,k])=>`<button data-act="camMode" data-v="${m}" aria-pressed="${S.camMode===m}">${t(k)}</button>`).join("")}</div>
     <div id="camSlot"></div>
     <span class="small muted" id="camMsg">${t("camHint")}</span>
   </div>
   ${res}
   <div class="card"><span class="label">${t("manual")}</span>
-    <div style="display:flex;gap:8px"><input class="f mono" id="manualCode" inputmode="numeric" placeholder="7501000…" autocomplete="off"><button class="btn primary" data-act="manualFind">${t("find")}</button></div>
-    <label class="btn filebtn" style="align-self:flex-start">${I.cam} ${t("barcode")}<input id="fileBarcode" type="file" accept="image/*" capture="environment"></label></div>`;
+    <div style="display:flex;gap:8px"><input class="f mono" id="manualCode" inputmode="numeric" placeholder="7501000…" autocomplete="off"><button class="btn primary" data-act="manualFind">${t("find")}</button></div></div>`;
 }
 /* ---------- live camera scanner (one element, moved into the scan screen on each render) ---------- */
 const CAM = { el:null, video:null, stream:null, running:false, detector:null, zx:null, lastCode:"", lastAt:0, canvas:null, ctx:null, ac:null };
@@ -534,7 +597,7 @@ function camHit(code){
   if (code===CAM.lastCode && now-CAM.lastAt<1200){ CAM.lastAt=now; return; }   // still in view: count once
   CAM.lastCode=code; CAM.lastAt=now;
   const p=prodList().find(x=>String(x.code)===code);
-  if (!p){ beep(true); camFlash(t("newT")+": "+code, true); openNew(code); render(); setTimeout(()=>{ const n=document.getElementById("nw_name"); if (n) n.focus(); }, 60); return; }
+  if (!p){ beep(true); camFlash(t("newT")+": "+code, true); openNew(code); render(); return; }
   beep(true);
   if (S.camMode==="plus"){ const q=S.products[p.id]; const cur=q.s1||0; q.s1=cur+1; logIt("in", `${q.name}: ${cur} → ${q.s1}`, "1"); changed(); camFlash(`+1 ${q.name} · ${q.s1}`, true); }
   else { camFlash(p.name, true); S.scan=null; openPad(p.id); render(); }
@@ -548,7 +611,6 @@ function afterRender(){
 document.addEventListener("visibilitychange", ()=>{ if (document.hidden) camStop(); else if (S.view==="scan") camStart(); });
 function findCode(code){ code=String(code).trim(); if (!code) return null; const ps=prodList(); return ps.find(p=>String(p.code)===code) || ps.find(p=>p.name.toLowerCase().includes(code.toLowerCase())) || null; }
 function showScanned(code){ const p=findCode(code); S.scan=null; if (p) openPad(p.id); else openNew(code); render(); }
-function openNew(code){ S.newp={code:String(code||"").trim()}; }
 async function decodeBarcode(file){
   const url=URL.createObjectURL(file);
   try{ const img=new Image(); img.src=url; await img.decode();
@@ -696,10 +758,9 @@ function tick(id){ if (!S.setup.done[id]){ S.setup.done[id]=true; save(); } }
 /* ---------- settings ---------- */
 function viewSet(){
   return `<h2>${t("set")}</h2><section class="card">
-   <div class="field"><span class="label">${t("role")}</span><div class="seg"><button data-act="role" data-v="owner" aria-pressed="${S.role==="owner"}">${t("owner")}</button><button data-act="role" data-v="worker" aria-pressed="${S.role==="worker"}">${t("worker")}</button></div><span class="small muted">${t("roleH")}</span></div>
    <div class="field"><span class="label">${t("lang")}</span><div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">Español</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">English</button></div></div>
-   <div class="field"><span class="label">${t("offlineMode")}</span><div><button class="btn ${S.offline?"gold":""}" data-act="toggleOffline">${S.offline?t("offline"):t("online")}${S.pending?` · ${S.pending} ${t("waiting")}`:""}</button></div><span class="small muted">${t("offlineH")}</span></div>
-   <div class="field hide-worker"><span class="label">${t("reset")}</span><div><button class="btn" data-act="reset">${S.resetArm?t("resetConfirm"):t("reset")}</button></div><span class="small muted">${t("resetH")}</span></div>
+   <div class="field"><span class="label">${t("dl")}</span><div><button class="btn" data-act="dlList" ${prodList().length?"":"disabled"}>${t("dl")}</button></div><span class="small muted">${t("dlH")}</span></div>
+   <div class="field"><span class="label">${t("reset")}</span><div><button class="btn" data-act="reset">${S.resetArm?t("resetConfirm"):t("reset")}</button></div><span class="small muted">${t("resetH")}</span></div>
   </section>`;
 }
 
@@ -720,11 +781,13 @@ document.addEventListener("click", e=>{
     padKey(){ const P=S.pad; if (v==="C") P.val=""; else if (v==="⌫") P.val=P.val.slice(0,-1); else if (P.val.length<4) P.val=(P.val==="0"?"":P.val)+v; },
     padSave(){ padSave(); },
     scanStore(){ S.scanStore=v; }, scanClear(){ S.scan=null; }, camMode(){ S.camMode=v; },
+    pickCat(){ if (S.newp){ S.newp.catPicked=true; setPickedCat(v); } return "skip"; },
     newClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('[data-act="newClose"]')) return "skip"; S.newp=null; },
     newSave(){ const n=$("#nw_name").value.trim(); if (!n){ $("#nw_name").focus(); return "skip"; }
-      const pid=uid("p"), cat=$("#nw_cat").value, price=parseFloat($("#nw_price").value)||0, q=Math.max(0,parseInt($("#nw_qty").value,10)||0);
-      S.products[pid]={name:n, brand:n.split(" ")[0], cat, dept:T.es.cats[cat], price, cost:0, min:3, s1:q, s2:0, code:S.newp.code, exp:null};
-      logIt("new", `${n} (${q})`, "1"); S.newp=null; tick("count"); changed(); toast(`${n} · ${t("added")}`); },
+      const q=Math.max(0,parseInt($("#nw_qty").value,10)||0), pid=uid("p"), code=S.newp.code;
+      const cat=S.newp.cat||guessCat(null,"",n);
+      S.products[pid]={name:n, brand:n.split(" ")[0], cat, dept:catName(cat), price:0, cost:0, min:0, s1:q, s2:0, code, exp:null};
+      rememberName(code, n, cat); logIt("new", `${n}: ${q}`, "1"); S.newp=null; changed(); toast(`${n} · ${q} ${t("units")}`); },
     manualFind(){ const c=$("#manualCode").value; if (c.trim()) showScanned(c); return "skip"; },
     quickScan(){ showScanned(S.products[id].code); return "skip"; },
     newProduct(){ const n=$("#np_name").value.trim(); if (!n){ $("#np_name").focus(); return "skip"; } const pid=uid("p"), cat=$("#np_cat").value, price=parseFloat($("#np_price").value)||0, q=parseInt($("#np_qty").value)||0;
@@ -733,6 +796,9 @@ document.addEventListener("click", e=>{
     trySample(){ previewImport(parseRows(sampleEleventa()), "eleventa-ejemplo.xlsx"); },
     impStore(){ S.imp.store=v; }, impApply(){ applyImport(); }, impCancel(){ S.imp=null; },
     expStore(){ S.expStore=v; }, export(){ doExport(); return "skip"; },
+    dlList(){ if (!window.XLSX) return "skip"; const rows=prodList().sort((a,b)=>a.name.localeCompare(b.name)).map(p=>[p.name, String(p.code||""), p.s1||0]);
+      const ws=XLSX.utils.aoa_to_sheet([[S.lang==="es"?"Descripción":"Description", S.lang==="es"?"Código":"Code", S.lang==="es"?"Cantidad":"Quantity"], ...rows]); ws["!cols"]=[{wch:40},{wch:16},{wch:10}];
+      const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Inventario"); XLSX.writeFile(wb, `inventario-${new Date().toISOString().slice(0,10)}.xlsx`); return "skip"; },
     prog(){ S.setup.prog=v; save(); },
     tick(){ S.setup.done[v]=!S.setup.done[v]; save(); },
     untickAll(){ S.setup.done={}; save(); },
@@ -781,4 +847,4 @@ try{ const x=JSON.parse(sessionStorage.getItem("pdc_inv_view")||"null"); if (x){
 render();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792624714";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792625996";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
