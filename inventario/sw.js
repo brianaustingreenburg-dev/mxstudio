@@ -1,5 +1,5 @@
 // Works offline: keeps the app files on the phone; always tries the newest version first.
-const C="inv-v1"; const FILES=["./","index.html","xlsx.full.min.js","zxing.min.js","manifest.webmanifest","icon-192.png"];
+const C="inv-v2"; const FILES=["./","index.html","xlsx.full.min.js","zxing.min.js","manifest.webmanifest","icon-192.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{const r=e.request; if(r.method!=="GET"||new URL(r.url).origin!==location.origin) return;

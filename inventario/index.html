@@ -262,7 +262,7 @@ body.padopen{overflow:hidden}
 <script src="zxing.min.js"></script>
 <script>
 "use strict";
-const SEED = {"products": {"sab-orig": {"name": "Sabritas Original 45 g", "brand": "Sabritas", "cat": "botanas", "price": 21, "cost": 15.75, "sup": "pepsico", "min": 12, "s1": 18, "s2": 9, "sold7": 64, "barcode": "7501000524457", "exp": null}, "dor-nacho": {"name": "Doritos Nacho 58 g", "brand": "Sabritas", "cat": "botanas", "price": 21, "cost": 15.12, "sup": "pepsico", "min": 12, "s1": 5, "s2": 14, "sold7": 58, "barcode": "7501037617504", "exp": null}, "ruf-queso": {"name": "Ruffles Queso 50 g", "brand": "Sabritas", "cat": "botanas", "price": 21, "cost": 15.12, "sup": "pepsico", "min": 10, "s1": 11, "s2": 3, "sold7": 31, "barcode": "7501074194945", "exp": null}, "che-torc": {"name": "Cheetos Torciditos 52 g", "brand": "Sabritas", "cat": "botanas", "price": 16, "cost": 11.52, "sup": "pepsico", "min": 10, "s1": 22, "s2": 17, "sold7": 27, "barcode": "7501111579315", "exp": null}, "tak-fuego": {"name": "Takis Fuego 70 g", "brand": "Barcel", "cat": "botanas", "price": 20, "cost": 15.0, "sup": "barcel", "min": 15, "s1": 4, "s2": 20, "sold7": 88, "barcode": "7501148765101", "exp": null}, "run-orig": {"name": "Runners 58 g", "brand": "Barcel", "cat": "botanas", "price": 18, "cost": 12.96, "sup": "barcel", "min": 8, "s1": 9, "s2": 8, "sold7": 12, "barcode": "7501185149148", "exp": null}, "chi-jal": {"name": "Chip's Jalapeño 56 g", "brand": "Barcel", "cat": "botanas", "price": 20, "cost": 16.0, "sup": "barcel", "min": 8, "s1": 14, "s2": 2, "sold7": 9, "barcode": "7501222668380", "exp": null}, "coc-600": {"name": "Coca-Cola 600 ml", "brand": "Coca-Cola", "cat": "bebidas", "price": 20, "cost": 15.0, "sup": "femsa", "min": 24, "s1": 31, "s2": 12, "sold7": 142, "barcode": "7501259191561", "exp": null}, "coc-2l": {"name": "Coca-Cola 2 L", "brand": "Coca-Cola", "cat": "bebidas", "price": 38, "cost": 30.4, "sup": "femsa", "min": 12, "s1": 7, "s2": 15, "sold7": 49, "barcode": "7501296218894", "exp": null}, "fan-600": {"name": "Fanta Naranja 600 ml", "brand": "Fanta", "cat": "bebidas", "price": 18, "cost": 12.96, "sup": "femsa", "min": 12, "s1": 16, "s2": 10, "sold7": 22, "barcode": "7501333177474", "exp": null}, "cie-1l": {"name": "Agua Ciel 1 L", "brand": "Ciel", "cat": "bebidas", "price": 12, "cost": 8.64, "sup": "femsa", "min": 18, "s1": 40, "s2": 6, "sold7": 37, "barcode": "7501370392601", "exp": null}, "jar-tam": {"name": "Jarritos Tamarindo 370 ml", "brand": "Jarritos", "cat": "bebidas", "price": 17, "cost": 13.6, "sup": "novamex", "min": 12, "s1": 10, "s2": 19, "sold7": 41, "barcode": "7501407856427", "exp": null}, "jar-man": {"name": "Jarritos Mandarina 370 ml", "brand": "Jarritos", "cat": "bebidas", "price": 17, "cost": 12.75, "sup": "novamex", "min": 12, "s1": 21, "s2": 16, "sold7": 35, "barcode": "7501444164998", "exp": null}, "jar-lim": {"name": "Jarritos Limón 370 ml", "brand": "Jarritos", "cat": "bebidas", "price": 17, "cost": 12.75, "sup": "novamex", "min": 10, "s1": 3, "s2": 11, "sold7": 19, "barcode": "7501481161059", "exp": null}, "bim-blanco": {"name": "Pan Blanco Bimbo grande", "brand": "Bimbo", "cat": "panaderia", "price": 52, "cost": 41.6, "sup": "bimbo", "min": 6, "s1": 8, "s2": 2, "sold7": 30, "barcode": "7501518479591", "exp": "2026-10-10"}, "gan-mar": {"name": "Gansito Marinela", "brand": "Marinela", "cat": "panaderia", "price": 18, "cost": 12.96, "sup": "bimbo", "min": 12, "s1": 20, "s2": 15, "sold7": 46, "barcode": "7501555289078", "exp": "2026-10-16"}, "tia-rosa": {"name": "Tortillinas Tía Rosa 10 pz", "brand": "Tía Rosa", "cat": "panaderia", "price": 34, "cost": 26.52, "sup": "bimbo", "min": 6, "s1": 5, "s2": 7, "sold7": 14, "barcode": "7501592848306", "exp": "2026-10-13"}, "lal-leche": {"name": "Leche Lala Entera 1 L", "brand": "Lala", "cat": "lacteos", "price": 30, "cost": 22.5, "sup": "lala", "min": 12, "s1": 14, "s2": 4, "sold7": 52, "barcode": "7501629834340", "exp": "2026-10-11"}, "lal-yog": {"name": "Yoghurt Lala Fresa 220 g", "brand": "Lala", "cat": "lacteos", "price": 14, "cost": 10.5, "sup": "lala", "min": 10, "s1": 12, "s2": 9, "sold7": 25, "barcode": "7501666235070", "exp": "2026-10-09"}, "lal-crema": {"name": "Crema Lala 200 ml", "brand": "Lala", "cat": "lacteos", "price": 22, "cost": 15.84, "sup": "lala", "min": 6, "s1": 2, "s2": 8, "sold7": 11, "barcode": "7501703588107", "exp": "2026-10-14"}, "cos-jal": {"name": "Chiles Jalapeños La Costeña 220 g", "brand": "La Costeña", "cat": "despensa", "price": 22, "cost": 15.84, "sup": "costena", "min": 8, "s1": 12, "s2": 10, "sold7": 15, "barcode": "7501740817932", "exp": null}, "cos-frij": {"name": "Frijoles Refritos Bayos 580 g", "brand": "La Costeña", "cat": "despensa", "price": 30, "cost": 21.6, "sup": "costena", "min": 8, "s1": 6, "s2": 13, "sold7": 18, "barcode": "7501777839723", "exp": null}, "mas-1kg": {"name": "Harina Maseca 1 kg", "brand": "Maseca", "cat": "despensa", "price": 26, "cost": 19.5, "sup": "abarrotes", "min": 10, "s1": 15, "s2": 3, "sold7": 21, "barcode": "7501814911344", "exp": null}, "val-370": {"name": "Salsa Valentina 370 ml", "brand": "Valentina", "cat": "despensa", "price": 20, "cost": 16.0, "sup": "abarrotes", "min": 6, "s1": 9, "s2": 9, "sold7": 13, "barcode": "7501851750661", "exp": null}, "nes-120": {"name": "Nescafé Clásico 120 g", "brand": "Nescafé", "cat": "despensa", "price": 85, "cost": 68.0, "sup": "abarrotes", "min": 4, "s1": 6, "s2": 5, "sold7": 7, "barcode": "7501888511754", "exp": null}, "abu-tab": {"name": "Chocolate Abuelita 6 tablillas", "brand": "Abuelita", "cat": "despensa", "price": 58, "cost": 46.4, "sup": "abarrotes", "min": 4, "s1": 3, "s2": 6, "sold7": 6, "barcode": "7501925867509", "exp": null}, "zot-400": {"name": "Jabón Zote Blanco 400 g", "brand": "Zote", "cat": "hogar", "price": 25, "cost": 19.5, "sup": "abarrotes", "min": 6, "s1": 11, "s2": 12, "sold7": 4, "barcode": "7501962573937", "exp": null}, "hue-12": {"name": "Huevo blanco 12 pz", "brand": "Granja local", "cat": "frescos", "price": 48, "cost": 36.0, "sup": "local", "min": 10, "s1": 13, "s2": 6, "sold7": 39, "barcode": "7501999425612", "exp": "2026-10-19"}, "tor-1kg": {"name": "Tortillas de maíz 1 kg", "brand": "Tortillería", "cat": "frescos", "price": 24, "cost": 17.28, "sup": "local", "min": 15, "s1": 6, "s2": 10, "sold7": 96, "barcode": "7502036419946", "exp": "2026-10-08"}}};
+const SEED = {"products": {}};
 const STORE_NAME = "Mercado Pie de la Cuesta";
 
 const T = {
@@ -291,7 +291,7 @@ const T = {
   eleNote:"Eleventa sigue registrando las ventas en caja. Esta app es para contar lo que hay en el estante; cada vez que importas y exportas, las dos quedan iguales.",
   role:"Quién usa la app", owner:"Dueño", worker:"Empleado", roleH:"El empleado solo cuenta; el dueño también ve costos y el valor del inventario.",
   lang:"Idioma", offlineMode:"Simular sin conexión", offlineH:"Apaga la conexión para ver que los cambios se guardan en el teléfono y se envían al volver.",
-  reset:"Volver a los productos de ejemplo", resetH:"Borra la lista y carga los productos de ejemplo.", resetConfirm:"Toca otra vez para confirmar", demoNote:"Los datos se guardan en este teléfono.",
+  reset:"Borrar todo el inventario", resetH:"Deja la app vacía, sin productos.", emptyT:"Todavía no hay productos", emptyS:"Escanea cada producto del estante y se agrega a tu lista.", emptyBtn:"Escanear el primer producto", newT:"Producto nuevo", newCode:"Código", newHint:"Escribe el nombre y cuántos hay. El precio es opcional.", added:"Agregado a la lista", resetConfirm:"Toca otra vez para confirmar", demoNote:"Los datos se guardan en este teléfono.",
   cats:{botanas:"Botanas",bebidas:"Bebidas",panaderia:"Pan",lacteos:"Lácteos",despensa:"Despensa",hogar:"Hogar",frescos:"Frescos"}, ago:"hace"},
  en:{tag:"Inventory", inv:"Inventory", scan:"Scan", ele:"Eleventa", setup:"Setup", set:"Settings",
   t1:"Store 1", t2:"Store 2", both:"Both", online:"Online", offline:"Offline", waiting:"waiting", refresh:"Refresh", refreshed:"Up to date",
@@ -318,7 +318,7 @@ const T = {
   eleNote:"Eleventa keeps recording register sales. This app is for counting what's on the shelf; each time you import and export, both match.",
   role:"Who uses the app", owner:"Owner", worker:"Worker", roleH:"Workers only count; the owner also sees costs and inventory value.",
   lang:"Language", offlineMode:"Simulate offline", offlineH:"Turn off the connection to see changes saved on the phone and sent when it's back.",
-  reset:"Back to sample products", resetH:"Clears the list and loads the sample products.", resetConfirm:"Tap again to confirm", demoNote:"Data is saved on this phone.",
+  reset:"Erase the whole inventory", resetH:"Leaves the app empty, with no products.", emptyT:"No products yet", emptyS:"Scan each product on the shelf and it gets added to your list.", emptyBtn:"Scan the first product", newT:"New product", newCode:"Code", newHint:"Type the name and how many there are. Price is optional.", added:"Added to the list", resetConfirm:"Tap again to confirm", demoNote:"Data is saved on this phone.",
   cats:{botanas:"Snacks",bebidas:"Drinks",panaderia:"Bread",lacteos:"Dairy",despensa:"Pantry",hogar:"Home",frescos:"Fresh"}, ago:""}
 };
 const S = { lang:"es", role:"owner", store:"1", view:"inv", filter:"all", cat:"all", q:"", offline:false, pending:0,
@@ -342,7 +342,7 @@ const timeAgo = iso => { if (!iso) return t("never"); const m=Math.round((Date.n
 let toastTimer; function toast(m){ const el=$("#toast"); el.textContent=m; el.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.hidden=true, 2600); }
 
 /* ---------- storage (this phone) ---------- */
-const KEY="pdc_inv_v1";
+const KEY="pdc_live_v1";
 function seedProducts(){ const o={}; for (const [id,p] of Object.entries(SEED.products)) o[id]={name:p.name, brand:p.brand, cat:p.cat, dept:T.es.cats[p.cat], price:p.price, cost:p.cost, min:p.min, s1:p.s1, s2:p.s2, code:p.barcode, exp:p.exp}; return o; }
 function load(){ let d=null; try{ d=JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){}
   if (d && d.products){ Object.assign(S, {products:d.products, log:d.log||[], lastImp:d.lastImp||null, lastExp:d.lastExp||null, setup:d.setup||{prog:"eleventa",done:{}}}); } else { S.products=seedProducts(); S.log=[]; }
@@ -374,7 +374,7 @@ function render(){
   $("#tabbar").innerHTML = NAV.map(v=>`<button data-nav="${v}" class="${v==="scan"?"scan":""}" ${S.view===v?'aria-current="page"':""}><span class="ic">${I[v]}</span><span style="color:${v==="scan"&&S.view!=="scan"?"var(--muted)":"inherit"}">${t(v)}</span></button>`).join("");
   $("#top").innerHTML = header();
   $("#main").innerHTML = ({inv:viewInv, scan:viewScan, ele:viewEle, setup:viewSetup, set:viewSet}[S.view]||viewInv)();
-  $("#padHost").innerHTML = padHTML(); document.body.classList.toggle("padopen", !!S.pad);
+  $("#padHost").innerHTML = padHTML() + newHTML(); document.body.classList.toggle("padopen", !!(S.pad||S.newp));
   afterRender();
   if (fid){ const el=document.getElementById(fid); if (el){ el.focus(); try{ if(s0!=null) el.setSelectionRange(s0,s1); }catch(e){} } }
 }
@@ -394,8 +394,11 @@ function viewInv(){
   const lows=ps.filter(p=>level(p,st)!=="ok"), exps=ps.filter(p=>{const d=daysTo(p.exp); return d!=null && d<=4 && stockOf(p,st)>0;});
   const value=ps.reduce((a,p)=>a+stockOf(p,st)*(p.cost||0),0);
   const cats=["all",...new Set(ps.map(p=>p.cat).filter(Boolean))];
-  return `<div class="banner info small">${t("demoNote")}</div>
-  <h2>${t("inv")}</h2>
+  if (!ps.length) return `<h2>${t("inv")}</h2>
+  <div class="empty" style="display:flex;flex-direction:column;gap:12px;align-items:center;padding:32px 16px">
+    <b style="font-size:1.1rem;color:var(--ink)">${t("emptyT")}</b><span>${t("emptyS")}</span>
+    <button class="btn primary big" data-nav="scan">${I.scan} ${t("emptyBtn")}</button></div>`;
+  return `<h2>${t("inv")}</h2>
   <div class="kpis">
     <div class="kpi"><span class="label">${t("products")}</span><span class="v">${ps.length}</span></div>
     <div class="kpi ${lows.length?"alert":""}"><span class="label">${t("low")}</span><span class="v">${lows.length}</span></div>
@@ -424,6 +427,18 @@ function listHTML(){
 
 /* ---------- keypad ---------- */
 function openPad(id){ S.pad = {id, mode:"set", val:"", store: S.view==="scan" ? S.scanStore : (S.store==="all" ? "1" : S.store)}; }
+function newHTML(){
+  const N=S.newp; if (!N) return "";
+  return `<div class="padwrap" data-act="newClose"><div class="pad" role="dialog" aria-modal="true" aria-label="${t("newT")}" data-stop="1">
+    <div class="rowhead"><b style="font-size:1.1rem">${t("newT")}</b><button class="btn ghost" data-act="newClose" aria-label="${t("cancel")}">✕</button></div>
+    <span class="small muted">${t("newCode")}: <span class="mono">${esc(N.code||"—")}</span></span>
+    <label class="field"><span class="label">${t("name")}</span><input class="f" id="nw_name" placeholder="Ej. Coca-Cola 600 ml" autocomplete="off"></label>
+    <div class="fields"><label class="field"><span class="label">${t("qty")}</span><input class="f" id="nw_qty" inputmode="numeric" value="${S.camMode==="plus"?1:""}" placeholder="0"></label>
+      <label class="field"><span class="label">${t("price")}</span><input class="f" id="nw_price" inputmode="decimal" placeholder="$"></label></div>
+    <label class="field"><span class="label">${t("dept")}</span><select class="f" id="nw_cat">${Object.keys(T.es.cats).map(c=>`<option value="${c}" ${c==="despensa"?"selected":""}>${esc(catName(c))}</option>`).join("")}</select></label>
+    <span class="small muted">${t("newHint")}</span>
+    <button class="btn primary big" data-act="newSave">${t("save")}</button></div></div>`;
+}
 function padHTML(){
   const P=S.pad; if (!P || !S.products[P.id]) return "";
   const p={id:P.id, ...S.products[P.id]}, cur=stockOf(p,P.store), n=parseInt(P.val||"0",10)||0;
@@ -497,7 +512,7 @@ function camStop(){ CAM.running=false; if (CAM.stream){ CAM.stream.getTracks().f
 async function camLoop(){
   if (!CAM.running) return;
   const v=CAM.video;
-  if (!S.camPaused && !S.pad && v.readyState>=2){
+  if (!S.camPaused && !S.pad && !S.newp && v.readyState>=2){
     try{
       if (CAM.detector){ const r=await CAM.detector.detect(v); if (r&&r[0]) camHit(r[0].rawValue); }
       else if (window.ZXing){
@@ -519,20 +534,21 @@ function camHit(code){
   if (code===CAM.lastCode && now-CAM.lastAt<1200){ CAM.lastAt=now; return; }   // still in view: count once
   CAM.lastCode=code; CAM.lastAt=now;
   const p=prodList().find(x=>String(x.code)===code);
-  if (!p){ beep(false); camFlash("? "+code, false); S.scan={notFound:true, code}; render(); return; }
+  if (!p){ beep(true); camFlash(t("newT")+": "+code, true); openNew(code); render(); setTimeout(()=>{ const n=document.getElementById("nw_name"); if (n) n.focus(); }, 60); return; }
   beep(true);
   if (S.camMode==="plus"){ const q=S.products[p.id]; const cur=q.s1||0; q.s1=cur+1; logIt("in", `${q.name}: ${cur} → ${q.s1}`, "1"); changed(); camFlash(`+1 ${q.name} · ${q.s1}`, true); }
   else { camFlash(p.name, true); S.scan=null; openPad(p.id); render(); }
 }
 function afterRender(){
-  if (CAM._pad && !S.pad) CAM.lastAt=Date.now();   // just closed the keypad: do not re-read the same code still in view
-  CAM._pad=!!S.pad;
+  if (CAM._pad && !S.pad && !S.newp) CAM.lastAt=Date.now();   // just closed a sheet: do not re-read the same code still in view
+  CAM._pad=!!(S.pad||S.newp);
   if (S.view==="scan"){ camBuild(); const slot=document.getElementById("camSlot"); if (slot && CAM.el.parentNode!==slot){ slot.appendChild(CAM.el); if (CAM.video.srcObject) CAM.video.play().catch(()=>{}); } if (!CAM.running) camStart(); }
   else if (CAM.running) camStop();
 }
 document.addEventListener("visibilitychange", ()=>{ if (document.hidden) camStop(); else if (S.view==="scan") camStart(); });
 function findCode(code){ code=String(code).trim(); if (!code) return null; const ps=prodList(); return ps.find(p=>String(p.code)===code) || ps.find(p=>p.name.toLowerCase().includes(code.toLowerCase())) || null; }
-function showScanned(code){ const p=findCode(code); if (p){ S.scan=null; openPad(p.id); } else S.scan={notFound:true, code}; render(); }
+function showScanned(code){ const p=findCode(code); S.scan=null; if (p) openPad(p.id); else openNew(code); render(); }
+function openNew(code){ S.newp={code:String(code||"").trim()}; }
 async function decodeBarcode(file){
   const url=URL.createObjectURL(file);
   try{ const img=new Image(); img.src=url; await img.decode();
@@ -625,7 +641,7 @@ function viewEle(){
   <p class="muted" style="margin:0">${t("eleSub")}</p>
   <div class="chips"><span class="chip">${t("lastImp")}: ${timeAgo(S.lastImp)}</span><span class="chip">${t("lastExp")}: ${timeAgo(S.lastExp)}</span></div>
   <section class="card"><h3>${t("impTitle")}</h3><ol class="steps">${T[S.lang].impSteps.map(x=>`<li><span>${x}</span></li>`).join("")}</ol>
-    <div class="btns"><label class="btn primary filebtn">${t("chooseFile")}<input id="fileEle" type="file" accept=".xls,.xlsx,.csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"></label><button class="btn" data-act="trySample">${t("trySample")}</button></div></section>
+    <div class="btns"><label class="btn primary filebtn">${t("chooseFile")}<input id="fileEle" type="file" accept=".xls,.xlsx,.csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"></label></div></section>
   ${prev}
   <section class="card"><h3>${t("expTitle")}</h3><ol class="steps">${T[S.lang].expSteps.map(x=>`<li><span>${x}</span></li>`).join("")}</ol>
     <span class="small muted">${prodList().length} ${t("expReady")}</span>
@@ -704,6 +720,11 @@ document.addEventListener("click", e=>{
     padKey(){ const P=S.pad; if (v==="C") P.val=""; else if (v==="⌫") P.val=P.val.slice(0,-1); else if (P.val.length<4) P.val=(P.val==="0"?"":P.val)+v; },
     padSave(){ padSave(); },
     scanStore(){ S.scanStore=v; }, scanClear(){ S.scan=null; }, camMode(){ S.camMode=v; },
+    newClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('[data-act="newClose"]')) return "skip"; S.newp=null; },
+    newSave(){ const n=$("#nw_name").value.trim(); if (!n){ $("#nw_name").focus(); return "skip"; }
+      const pid=uid("p"), cat=$("#nw_cat").value, price=parseFloat($("#nw_price").value)||0, q=Math.max(0,parseInt($("#nw_qty").value,10)||0);
+      S.products[pid]={name:n, brand:n.split(" ")[0], cat, dept:T.es.cats[cat], price, cost:0, min:3, s1:q, s2:0, code:S.newp.code, exp:null};
+      logIt("new", `${n} (${q})`, "1"); S.newp=null; tick("count"); changed(); toast(`${n} · ${t("added")}`); },
     manualFind(){ const c=$("#manualCode").value; if (c.trim()) showScanned(c); return "skip"; },
     quickScan(){ showScanned(S.products[id].code); return "skip"; },
     newProduct(){ const n=$("#np_name").value.trim(); if (!n){ $("#np_name").focus(); return "skip"; } const pid=uid("p"), cat=$("#np_cat").value, price=parseFloat($("#np_price").value)||0, q=parseInt($("#np_qty").value)||0;
@@ -727,6 +748,8 @@ document.addEventListener("change", async e=>{
   if (el.id==="fileBarcode"){ S.scan={reading:true}; render(); const code=await decodeBarcode(f); if (code) showScanned(code); else { S.scan={error:t("notRead")}; render(); } }
 });
 document.addEventListener("keydown", e=>{
+  if (S.newp && e.key==="Enter" && e.target.tagName==="INPUT"){ e.preventDefault(); document.querySelector('[data-act="newSave"]').click(); return; }
+  if (S.newp && e.key==="Escape"){ S.newp=null; render(); return; }
   if (S.pad){ const k=e.key, P=S.pad;
     if (/^[0-9]$/.test(k)){ if (P.val.length<4) P.val=(P.val==="0"?"":P.val)+k; render(); e.preventDefault(); return; }
     if (k==="Backspace"){ P.val=P.val.slice(0,-1); render(); e.preventDefault(); return; }
