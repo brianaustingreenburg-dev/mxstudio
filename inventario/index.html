@@ -1,0 +1,761 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1C46B4"><meta name="robots" content="noindex"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Inventario"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png"><title>Inventario Pie de la Cuesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+
+/* Layout: app shell — sidebar on wide screens, bottom tab bar on phones; talavera cobalt + cempasúchil marigold on a cool paper ground */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --sunk:#E9EDF4; --ink:#14203A; --muted:#5A6684; --line:#DCE2EC;
+  --accent:#1C46B4; --accent-ink:#FFFFFF; --accent-soft:#E3EAFB; --gold:#E39B12; --gold-soft:#FCF0D6;
+  --ok:#1E8048; --ok-soft:#DDF2E5; --warn:#A8670E; --warn-soft:#FBEBD0; --bad:#BE2F2A; --bad-soft:#FBE1DF;
+  --shadow:0 1px 2px rgba(20,32,58,.06),0 6px 18px rgba(20,32,58,.06);
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1220; --surface:#161E30; --sunk:#1E2840; --ink:#E7ECF6; --muted:#97A3BE; --line:#28344E;
+  --accent:#7C9DFF; --accent-ink:#0D1220; --accent-soft:#1F2C52; --gold:#F2B441; --gold-soft:#3A2E14;
+  --ok:#5BC98A; --ok-soft:#163626; --warn:#EDB25A; --warn-soft:#3A2A12; --bad:#F27A72; --bad-soft:#3E1C1B;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1220; --surface:#161E30; --sunk:#1E2840; --ink:#E7ECF6; --muted:#97A3BE; --line:#28344E;
+  --accent:#7C9DFF; --accent-ink:#0D1220; --accent-soft:#1F2C52; --gold:#F2B441; --gold-soft:#3A2E14;
+  --ok:#5BC98A; --ok-soft:#163626; --warn:#EDB25A; --warn-soft:#3A2A12; --bad:#F27A72; --bad-soft:#3E1C1B;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:1.35rem;font-weight:800}
+h3{font-size:1.05rem;font-weight:600}
+.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.num{font-family:var(--f-body);font-weight:600}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+
+/* shell */
+.app{display:grid;grid-template-columns:1fr;min-height:100%}
+.side{display:none}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-direction:column;gap:10px}
+.toprow{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.tile{width:34px;height:34px;border-radius:8px;flex:none;background:
+  radial-gradient(circle at 50% 50%,var(--gold) 0 18%,transparent 19%),
+  conic-gradient(from 45deg,var(--accent) 0 25%,var(--surface) 0 50%,var(--accent) 0 75%,var(--surface) 0);
+  border:2px solid var(--accent)}
+.brand b{font-family:var(--f-display);font-weight:800;font-size:1.05rem;line-height:1.1;display:block}
+.brand span{font-size:.75rem;color:var(--muted)}
+.chips{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 10px;font-size:.8rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.chip.off{background:var(--warn-soft);border-color:transparent;color:var(--warn)}
+.chip.off .dot{background:var(--warn)}
+.seg{display:inline-flex;background:var(--sunk);border-radius:10px;padding:3px;gap:2px;max-width:100%;overflow-x:auto}
+.seg button{border:0;background:transparent;padding:7px 12px;border-radius:8px;font-weight:600;font-size:.85rem;color:var(--muted);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+main{padding:16px;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:16px;max-width:1180px;width:100%;margin:0 auto;min-width:0}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+.tabbar button,.side nav button{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.7rem;font-weight:600;color:var(--muted);padding:6px 2px;border-radius:10px}
+.tabbar button svg,.side nav button svg{width:22px;height:22px}
+.tabbar button[aria-current="page"],.side nav button[aria-current="page"]{color:var(--accent)}
+.tabbar button.scan{color:var(--accent-ink)}
+.tabbar button.scan span.ic{background:var(--accent);border-radius:14px;padding:6px 14px;display:grid;place-items:center}
+@media (min-width:900px){
+  .app{grid-template-columns:230px 1fr}
+  .side{display:flex;flex-direction:column;gap:18px;position:sticky;top:0;height:100vh;padding:18px 14px;border-right:1px solid var(--line);background:var(--surface)}
+  .side nav{display:flex;flex-direction:column;gap:2px}
+  .side nav button{flex-direction:row;gap:12px;font-size:.92rem;padding:10px 12px;justify-content:flex-start}
+  .side nav button[aria-current="page"]{background:var(--accent-soft)}
+  .tabbar{display:none}
+  .top .brand{display:none}
+  main{padding-bottom:40px}
+}
+
+/* blocks */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card.flat{box-shadow:none}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:700px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.kpi .v{font-family:var(--f-display);font-weight:800;font-size:1.55rem;font-variant-numeric:tabular-nums}
+.kpi.alert .v{color:var(--bad)}
+.kpi.warn .v{color:var(--warn)}
+.rowhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.list{display:flex;flex-direction:column}
+.item{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line);min-width:0}
+.item:first-child{border-top:0}
+.item .grow{flex:1;min-width:0}
+.item .name{font-weight:600;overflow-wrap:anywhere}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:.75rem;font-weight:700;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-blue{background:var(--accent-soft);color:var(--accent)} .p-gold{background:var(--gold-soft);color:var(--warn)}
+.thumb{width:40px;height:40px;border-radius:10px;flex:none;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:.95rem;background:var(--sunk);color:var(--muted)}
+.t-botanas{background:#FDE7C8;color:#9A5A00} .t-bebidas{background:#DCE6FF;color:#1C46B4} .t-panaderia{background:#F6E2D0;color:#8A4B1A} .t-lacteos{background:#E3F1F7;color:#1D6A86} .t-despensa{background:#E8EFDC;color:#4D6A1F} .t-hogar{background:#EDE3F6;color:#6A3E92} .t-frescos{background:#FBE2E2;color:#A3302B}
+:root[data-theme="dark"] .thumb{filter:saturate(.9) brightness(.85)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .thumb{filter:saturate(.9) brightness(.85)}}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.gold{background:var(--gold);color:#1B1300;border-color:var(--gold)}
+.btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--accent);padding:6px 8px}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.big{padding:16px;font-size:1.02rem;border-radius:14px;width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;flex:none}
+.stepper button{border:0;background:var(--sunk);width:34px;height:34px;font-size:1.1rem;font-weight:700}
+.stepper input{width:48px;height:34px;border:0;text-align:center;background:var(--surface);font-weight:700;font-variant-numeric:tabular-nums}
+input.f,select.f,textarea.f{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;min-width:0}
+input.f:focus,select.f:focus,textarea.f:focus{border-color:var(--accent);outline:none}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.fields{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))}
+.tablewrap{overflow-x:auto;margin:0 -16px;padding:0 16px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding:8px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.r,th.r{text-align:right}
+.bar{height:6px;border-radius:4px;background:var(--sunk);overflow:hidden;min-width:60px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.banner{border-radius:var(--r);padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:.9rem}
+.banner.info{background:var(--accent-soft)} .banner.warn{background:var(--warn-soft);color:var(--ink)} .banner.ok{background:var(--ok-soft)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:600;z-index:60;box-shadow:var(--shadow);max-width:calc(100% - 32px);text-align:center}
+@media (min-width:900px){.toast{bottom:28px}}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+.qrbox{background:#fff;padding:12px;border-radius:12px;display:inline-grid;place-items:center;border:1px solid var(--line)}
+.qrbox img,.qrbox canvas{display:block}
+.scanzone{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.scanzone label{cursor:pointer;border:2px dashed color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:16px;padding:22px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-weight:700;background:var(--surface)}
+.scanzone label svg{width:34px;height:34px;color:var(--accent)}
+.scanzone label small{font-weight:500;color:var(--muted)}
+.scanzone input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.result{border:2px solid var(--accent);border-radius:16px}
+.keypad{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.keypad button{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:16px 0;font-size:1.2rem;font-weight:600;font-variant-numeric:tabular-nums}
+.keypad button.op{background:var(--accent-soft);color:var(--accent)}
+.keypad button.eq{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.display{background:var(--sunk);border-radius:12px;padding:14px;text-align:right;font-family:var(--f-mono);font-size:1.7rem;overflow-x:auto;white-space:nowrap}
+.display small{display:block;font-size:.85rem;color:var(--muted)}
+.bills{display:flex;flex-wrap:wrap;gap:6px}
+.bill{border-radius:8px;padding:4px 9px;font-weight:700;font-size:.85rem;background:var(--sunk)}
+.morelinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px}
+.morelinks button{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:4px}
+.morelinks button b{font-family:var(--f-display);font-size:1.02rem}
+.morelinks button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.shop-head{background:var(--accent);color:var(--accent-ink);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+.shop-head h2{font-size:1.5rem}
+.shop-head::after{content:"";position:absolute;right:-30px;top:-30px;width:130px;height:130px;opacity:.25;background:
+  radial-gradient(circle,var(--gold) 0 14%,transparent 15%),conic-gradient(from 45deg,var(--accent-ink) 0 25%,transparent 0 50%,var(--accent-ink) 0 75%,transparent 0);background-size:44px 44px}
+.pgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr))}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:8px}
+.pcard .thumb{width:100%;height:64px;font-size:1.4rem}
+.cartbar{position:sticky;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:15}
+@media (min-width:900px){.cartbar{bottom:16px}}
+.paid{background:var(--ok);color:#fff;border-radius:20px;padding:28px 18px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
+.paid .check{width:72px;height:72px;border-radius:50%;background:#fff;color:var(--ok);display:grid;place-items:center}
+.paid .code{font-family:var(--f-mono);font-size:2rem;letter-spacing:.2em;background:rgba(255,255,255,.18);padding:6px 14px;border-radius:10px}
+@media (prefers-reduced-motion:no-preference){.paid .check{animation:pop .5s cubic-bezier(.2,1.6,.4,1)}@keyframes pop{from{transform:scale(.3)}to{transform:scale(1)}}}
+@media (max-width:599px){.rolehdr{display:none}}
+.chip.refresh{color:var(--accent)}
+.chip.refresh svg{width:15px;height:15px}
+.chip.refresh.spin svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);transform:translate(-50%,-60px);z-index:70;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:999px;padding:8px 14px;font-weight:600;font-size:.85rem;display:flex;gap:8px;align-items:center;color:var(--accent);transition:transform .15s}
+.ptr svg{width:16px;height:16px}
+.ptr.ready svg,.ptr.go svg{animation:spin .8s linear infinite}
+@media (prefers-reduced-motion:reduce){.chip.refresh.spin svg,.ptr svg{animation:none}}
+body.worker .hide-worker{display:none!important}
+.status-steps{display:flex;gap:4px;flex-wrap:wrap}
+details summary{cursor:pointer;font-weight:600}
+.tapl{display:flex;flex-direction:column}
+.tapr{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:12px 2px;min-height:64px}
+.tapr:first-child{border-top:0}
+.tapr:active{background:var(--accent-soft)}
+.tapr .grow{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.tapr .name{font-weight:600;overflow-wrap:anywhere}
+.tapq{min-width:56px;height:44px;padding:0 10px;border-radius:12px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.25rem;font-variant-numeric:tabular-nums;background:var(--ok-soft);color:var(--ok);flex:none}
+.tapq.low{background:var(--warn-soft);color:var(--warn)} .tapq.out{background:var(--bad-soft);color:var(--bad)}
+.tapq2{display:grid;grid-template-columns:auto auto;gap:4px 6px;align-items:center;flex:none}
+.padwrap{position:fixed;inset:0;z-index:80;background:rgba(10,14,28,.5);display:flex;align-items:flex-end;justify-content:center}
+.pad{background:var(--surface);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;max-height:100%;overflow-y:auto;box-shadow:var(--shadow)}
+@media (min-width:600px){.padwrap{align-items:center}.pad{border-radius:20px}}
+.padmodes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.padmodes button{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 4px;font-weight:700}
+.padmodes button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.padshow{background:var(--sunk);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.padval{font-family:var(--f-display);font-weight:800;font-size:2.6rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.padkeys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.padkeys button{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:15px 0;font-size:1.45rem;font-weight:700;font-variant-numeric:tabular-nums}
+.padkeys button:active{background:var(--accent-soft)}
+.padkeys button.op{background:var(--sunk);color:var(--muted);font-size:1.15rem}
+body.padopen{overflow:hidden}
+
+.tabbar{grid-template-columns:repeat(5,1fr)}
+.cam{position:relative;width:100%;aspect-ratio:4/3;max-height:52vh;background:#000;border-radius:14px;overflow:hidden}
+.cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cam-frame{position:absolute;left:8%;right:8%;top:50%;height:36%;transform:translateY(-50%);border:3px solid rgba(255,255,255,.9);border-radius:14px;box-shadow:0 0 0 2000px rgba(0,0,0,.3);transition:border-color .15s}
+.cam-frame::after{content:"";position:absolute;left:6%;right:6%;top:50%;height:2px;background:rgba(248,113,113,.9)}
+.cam-frame.hit{border-color:#4ADE80} .cam-frame.miss{border-color:#F87171}
+.cam.paused video{filter:grayscale(1) brightness(.5)}
+.cam-tools{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:8px}
+.cam-btn{width:44px;height:44px;border-radius:50%;border:0;background:rgba(14,20,36,.75);color:#fff;font-size:1.1rem}
+.cam-btn[aria-pressed="true"]{background:#E39B12;color:#1B1300}
+.cam-flash{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:#4ADE80;color:#06210F;font-weight:800;padding:7px 14px;border-radius:999px;max-width:92%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cam-flash.bad{background:#F87171;color:#2A0505}
+.cam-open{position:absolute;inset:0;margin:auto;width:max-content;height:max-content;border:0;border-radius:12px;padding:12px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.filebtn svg{width:20px;height:20px}
+
+.top{transition:transform .22s ease}.top.hidebar{transform:translateY(-110%)}@media (prefers-reduced-motion:reduce){.top{transition:none}}
+.prog{height:10px;border-radius:6px;background:var(--sunk);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok);border-radius:6px;transition:width .3s}
+.chk{display:flex;flex-direction:column}
+.chk-row{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line);align-items:start}
+.chk-row:first-child{border-top:0}
+.chk-box{width:32px;height:32px;border-radius:10px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;padding:0}
+.chk-box svg{width:20px;height:20px;opacity:0}
+.chk-row.done .chk-box{background:var(--ok);border-color:var(--ok);color:#fff}
+.chk-row.done .chk-box svg{opacity:1}
+.chk-row.done .chk-main{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--muted)}
+.chk-main{font-weight:700}
+.chk-alt{font-size:.85rem;color:var(--muted);font-style:italic}
+.chk-sub{font-size:.88rem;color:var(--ink);opacity:.85}
+.chk-go{margin-top:6px;align-self:flex-start}
+.chk-num{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.alldone{background:var(--ok-soft);border-radius:var(--r);padding:14px;font-weight:700;color:var(--ok);text-align:center}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:600;font-size:.85rem}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;display:grid;place-items:center;font-size:.85rem}
+.kbd{font-family:var(--f-mono);font-size:.8rem;background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.ele-badge{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.8rem;color:#0E7A3E;background:#DDF2E5;border-radius:8px;padding:3px 8px}
+.filebtn{position:relative;overflow:hidden}
+.filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.prev td,.prev th{font-size:.85rem;padding:6px 8px}
+.diff-up{color:var(--ok);font-weight:700} .diff-down{color:var(--bad);font-weight:700} .diff-new{color:var(--accent);font-weight:700}
+</style><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px)}</style></head><body>
+
+<div class="app" id="app">
+  <aside class="side">
+    <div class="brand"><div class="tile" aria-hidden="true"></div><div><b>Pie de la Cuesta</b><span data-tag></span></div></div>
+    <nav id="sideNav"></nav>
+  </aside>
+  <div style="min-width:0;display:flex;flex-direction:column">
+    <header class="top" id="top"></header>
+    <main id="main"></main>
+  </div>
+</div>
+<nav class="tabbar" id="tabbar"></nav>
+<div id="toast" class="toast" hidden></div>
+<div id="ptr" class="ptr" aria-hidden="true"></div>
+<div id="padHost"></div>
+
+<script src="xlsx.full.min.js"></script>
+<script src="zxing.min.js"></script>
+<script>
+"use strict";
+const SEED = {"products": {"sab-orig": {"name": "Sabritas Original 45 g", "brand": "Sabritas", "cat": "botanas", "price": 21, "cost": 15.75, "sup": "pepsico", "min": 12, "s1": 18, "s2": 9, "sold7": 64, "barcode": "7501000524457", "exp": null}, "dor-nacho": {"name": "Doritos Nacho 58 g", "brand": "Sabritas", "cat": "botanas", "price": 21, "cost": 15.12, "sup": "pepsico", "min": 12, "s1": 5, "s2": 14, "sold7": 58, "barcode": "7501037617504", "exp": null}, "ruf-queso": {"name": "Ruffles Queso 50 g", "brand": "Sabritas", "cat": "botanas", "price": 21, "cost": 15.12, "sup": "pepsico", "min": 10, "s1": 11, "s2": 3, "sold7": 31, "barcode": "7501074194945", "exp": null}, "che-torc": {"name": "Cheetos Torciditos 52 g", "brand": "Sabritas", "cat": "botanas", "price": 16, "cost": 11.52, "sup": "pepsico", "min": 10, "s1": 22, "s2": 17, "sold7": 27, "barcode": "7501111579315", "exp": null}, "tak-fuego": {"name": "Takis Fuego 70 g", "brand": "Barcel", "cat": "botanas", "price": 20, "cost": 15.0, "sup": "barcel", "min": 15, "s1": 4, "s2": 20, "sold7": 88, "barcode": "7501148765101", "exp": null}, "run-orig": {"name": "Runners 58 g", "brand": "Barcel", "cat": "botanas", "price": 18, "cost": 12.96, "sup": "barcel", "min": 8, "s1": 9, "s2": 8, "sold7": 12, "barcode": "7501185149148", "exp": null}, "chi-jal": {"name": "Chip's Jalapeño 56 g", "brand": "Barcel", "cat": "botanas", "price": 20, "cost": 16.0, "sup": "barcel", "min": 8, "s1": 14, "s2": 2, "sold7": 9, "barcode": "7501222668380", "exp": null}, "coc-600": {"name": "Coca-Cola 600 ml", "brand": "Coca-Cola", "cat": "bebidas", "price": 20, "cost": 15.0, "sup": "femsa", "min": 24, "s1": 31, "s2": 12, "sold7": 142, "barcode": "7501259191561", "exp": null}, "coc-2l": {"name": "Coca-Cola 2 L", "brand": "Coca-Cola", "cat": "bebidas", "price": 38, "cost": 30.4, "sup": "femsa", "min": 12, "s1": 7, "s2": 15, "sold7": 49, "barcode": "7501296218894", "exp": null}, "fan-600": {"name": "Fanta Naranja 600 ml", "brand": "Fanta", "cat": "bebidas", "price": 18, "cost": 12.96, "sup": "femsa", "min": 12, "s1": 16, "s2": 10, "sold7": 22, "barcode": "7501333177474", "exp": null}, "cie-1l": {"name": "Agua Ciel 1 L", "brand": "Ciel", "cat": "bebidas", "price": 12, "cost": 8.64, "sup": "femsa", "min": 18, "s1": 40, "s2": 6, "sold7": 37, "barcode": "7501370392601", "exp": null}, "jar-tam": {"name": "Jarritos Tamarindo 370 ml", "brand": "Jarritos", "cat": "bebidas", "price": 17, "cost": 13.6, "sup": "novamex", "min": 12, "s1": 10, "s2": 19, "sold7": 41, "barcode": "7501407856427", "exp": null}, "jar-man": {"name": "Jarritos Mandarina 370 ml", "brand": "Jarritos", "cat": "bebidas", "price": 17, "cost": 12.75, "sup": "novamex", "min": 12, "s1": 21, "s2": 16, "sold7": 35, "barcode": "7501444164998", "exp": null}, "jar-lim": {"name": "Jarritos Limón 370 ml", "brand": "Jarritos", "cat": "bebidas", "price": 17, "cost": 12.75, "sup": "novamex", "min": 10, "s1": 3, "s2": 11, "sold7": 19, "barcode": "7501481161059", "exp": null}, "bim-blanco": {"name": "Pan Blanco Bimbo grande", "brand": "Bimbo", "cat": "panaderia", "price": 52, "cost": 41.6, "sup": "bimbo", "min": 6, "s1": 8, "s2": 2, "sold7": 30, "barcode": "7501518479591", "exp": "2026-10-10"}, "gan-mar": {"name": "Gansito Marinela", "brand": "Marinela", "cat": "panaderia", "price": 18, "cost": 12.96, "sup": "bimbo", "min": 12, "s1": 20, "s2": 15, "sold7": 46, "barcode": "7501555289078", "exp": "2026-10-16"}, "tia-rosa": {"name": "Tortillinas Tía Rosa 10 pz", "brand": "Tía Rosa", "cat": "panaderia", "price": 34, "cost": 26.52, "sup": "bimbo", "min": 6, "s1": 5, "s2": 7, "sold7": 14, "barcode": "7501592848306", "exp": "2026-10-13"}, "lal-leche": {"name": "Leche Lala Entera 1 L", "brand": "Lala", "cat": "lacteos", "price": 30, "cost": 22.5, "sup": "lala", "min": 12, "s1": 14, "s2": 4, "sold7": 52, "barcode": "7501629834340", "exp": "2026-10-11"}, "lal-yog": {"name": "Yoghurt Lala Fresa 220 g", "brand": "Lala", "cat": "lacteos", "price": 14, "cost": 10.5, "sup": "lala", "min": 10, "s1": 12, "s2": 9, "sold7": 25, "barcode": "7501666235070", "exp": "2026-10-09"}, "lal-crema": {"name": "Crema Lala 200 ml", "brand": "Lala", "cat": "lacteos", "price": 22, "cost": 15.84, "sup": "lala", "min": 6, "s1": 2, "s2": 8, "sold7": 11, "barcode": "7501703588107", "exp": "2026-10-14"}, "cos-jal": {"name": "Chiles Jalapeños La Costeña 220 g", "brand": "La Costeña", "cat": "despensa", "price": 22, "cost": 15.84, "sup": "costena", "min": 8, "s1": 12, "s2": 10, "sold7": 15, "barcode": "7501740817932", "exp": null}, "cos-frij": {"name": "Frijoles Refritos Bayos 580 g", "brand": "La Costeña", "cat": "despensa", "price": 30, "cost": 21.6, "sup": "costena", "min": 8, "s1": 6, "s2": 13, "sold7": 18, "barcode": "7501777839723", "exp": null}, "mas-1kg": {"name": "Harina Maseca 1 kg", "brand": "Maseca", "cat": "despensa", "price": 26, "cost": 19.5, "sup": "abarrotes", "min": 10, "s1": 15, "s2": 3, "sold7": 21, "barcode": "7501814911344", "exp": null}, "val-370": {"name": "Salsa Valentina 370 ml", "brand": "Valentina", "cat": "despensa", "price": 20, "cost": 16.0, "sup": "abarrotes", "min": 6, "s1": 9, "s2": 9, "sold7": 13, "barcode": "7501851750661", "exp": null}, "nes-120": {"name": "Nescafé Clásico 120 g", "brand": "Nescafé", "cat": "despensa", "price": 85, "cost": 68.0, "sup": "abarrotes", "min": 4, "s1": 6, "s2": 5, "sold7": 7, "barcode": "7501888511754", "exp": null}, "abu-tab": {"name": "Chocolate Abuelita 6 tablillas", "brand": "Abuelita", "cat": "despensa", "price": 58, "cost": 46.4, "sup": "abarrotes", "min": 4, "s1": 3, "s2": 6, "sold7": 6, "barcode": "7501925867509", "exp": null}, "zot-400": {"name": "Jabón Zote Blanco 400 g", "brand": "Zote", "cat": "hogar", "price": 25, "cost": 19.5, "sup": "abarrotes", "min": 6, "s1": 11, "s2": 12, "sold7": 4, "barcode": "7501962573937", "exp": null}, "hue-12": {"name": "Huevo blanco 12 pz", "brand": "Granja local", "cat": "frescos", "price": 48, "cost": 36.0, "sup": "local", "min": 10, "s1": 13, "s2": 6, "sold7": 39, "barcode": "7501999425612", "exp": "2026-10-19"}, "tor-1kg": {"name": "Tortillas de maíz 1 kg", "brand": "Tortillería", "cat": "frescos", "price": 24, "cost": 17.28, "sup": "local", "min": 15, "s1": 6, "s2": 10, "sold7": 96, "barcode": "7502036419946", "exp": "2026-10-08"}}};
+const STORE_NAME = "Mercado Pie de la Cuesta";
+
+const T = {
+ es:{tag:"Inventario", inv:"Inventario", scan:"Escanear", ele:"Eleventa", setup:"Pasos", set:"Ajustes",
+  t1:"Tienda 1", t2:"Tienda 2", both:"Ambas", online:"En línea", offline:"Sin conexión", waiting:"en espera", refresh:"Actualizar", refreshed:"Actualizado",
+  pullR:"Jala para actualizar", releaseR:"Suelta para actualizar",
+  products:"Productos", low:"Por agotarse", expiring:"Por caducar", value:"Valor a costo", all:"Todo",
+  tapHint:"Toca un producto para poner la cantidad.", search:"Buscar producto o código…", units:"pzas", none:"No hay productos con ese filtro.",
+  recent:"Últimos cambios", noActivity:"Todavía no hay cambios.", cost:"Costo",
+  padSet:"Poner", padAdd:"+ Sumar", padSub:"− Restar", current:"Ahora hay", willBe:"Queda en", save:"Guardar", cancel:"Cancelar",
+  saved:"Guardado", savedQueue:"Guardado en el teléfono. Se envía al volver la conexión.",
+  logSet:"Conteo", logIn:"Entrada", logAdj:"Salida", logImp:"Eleventa", logNew:"Nuevo",
+  today:"hoy", tomorrow:"mañana", expired:"caducado", daysLeft:"días",
+  scanTitle:"Escanear producto", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
+  manual:"O escribe el código", find:"Buscar", quick:"Prueba rápida: toca un producto", reading:"Leyendo código…",
+  notRead:"No se pudo leer el código. Acércate más, con buena luz, o escríbelo abajo.",
+  notFound:"Este código no está en tu lista", addNew:"Agregar producto", name:"Nombre", price:"Precio", qty:"Cantidad", dept:"Departamento", min:"Mínimo",
+  eleTitle:"Conectar con Eleventa", eleSub:"Trae tus productos de Eleventa, cuenta en el teléfono y regresa las cantidades.",
+  impTitle:"1. Traer productos de Eleventa", impSteps:["En Eleventa abre <span class='kbd'>F3 Productos</span> → <b>Catálogo</b> → <b>Exportar</b>.","Guarda el archivo de Excel y pásalo a este teléfono.","Toca <b>Elegir archivo</b> y escoge ese Excel."],
+  chooseFile:"Elegir archivo de Eleventa", trySample:"Probar con archivo de ejemplo", impStore:"Cargar a",
+  impFound:"productos encontrados", impNew:"nuevos", impChanged:"cambian de cantidad", impApply:"Importar", impDone:"Importado de Eleventa",
+  impBad:"No encontré las columnas de Eleventa en ese archivo. Usa el Excel que sale de Productos → Catálogo → Exportar.",
+  expTitle:"2. Regresar las cantidades a Eleventa", expSteps:["Toca <b>Exportar para Eleventa</b> y guarda el archivo.","En Eleventa abre <span class='kbd'>F3 Productos</span> → <b>Importar</b> y elige el archivo.","Marca <b>Actualizar los productos cuyo código ya exista</b> y <b>Actualizar el inventario del producto</b>.","Toca <b>Siguiente</b>. Listo, Eleventa queda con tu conteo."],
+  expBtn:"Exportar para Eleventa", expReady:"productos listos para Eleventa", expDone:"Archivo listo", expNo:"No se pudo guardar el archivo aquí. Ábrelo desde el navegador del teléfono.",
+  lastImp:"Última importación", lastExp:"Última exportación", never:"nunca",
+  eleNote:"Eleventa sigue registrando las ventas en caja. Esta app es para contar lo que hay en el estante; cada vez que importas y exportas, las dos quedan iguales.",
+  role:"Quién usa la app", owner:"Dueño", worker:"Empleado", roleH:"El empleado solo cuenta; el dueño también ve costos y el valor del inventario.",
+  lang:"Idioma", offlineMode:"Simular sin conexión", offlineH:"Apaga la conexión para ver que los cambios se guardan en el teléfono y se envían al volver.",
+  reset:"Volver a los productos de ejemplo", resetH:"Borra la lista y carga los productos de ejemplo.", resetConfirm:"Toca otra vez para confirmar", demoNote:"Los datos se guardan en este teléfono.",
+  cats:{botanas:"Botanas",bebidas:"Bebidas",panaderia:"Pan",lacteos:"Lácteos",despensa:"Despensa",hogar:"Hogar",frescos:"Frescos"}, ago:"hace"},
+ en:{tag:"Inventory", inv:"Inventory", scan:"Scan", ele:"Eleventa", setup:"Setup", set:"Settings",
+  t1:"Store 1", t2:"Store 2", both:"Both", online:"Online", offline:"Offline", waiting:"waiting", refresh:"Refresh", refreshed:"Up to date",
+  pullR:"Pull to refresh", releaseR:"Release to refresh",
+  products:"Products", low:"Running low", expiring:"Expiring", value:"Value at cost", all:"All",
+  tapHint:"Tap a product to enter the quantity.", search:"Search product or code…", units:"pcs", none:"No products match that filter.",
+  recent:"Latest changes", noActivity:"No changes yet.", cost:"Cost",
+  padSet:"Set", padAdd:"+ Add", padSub:"− Remove", current:"Now", willBe:"New total", save:"Save", cancel:"Cancel",
+  saved:"Saved", savedQueue:"Saved on this phone. It sends when the connection is back.",
+  logSet:"Count", logIn:"Received", logAdj:"Removed", logImp:"Eleventa", logNew:"New",
+  today:"today", tomorrow:"tomorrow", expired:"expired", daysLeft:"days",
+  scanTitle:"Scan a product", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
+  manual:"Or type the code", find:"Find", quick:"Quick test: tap a product", reading:"Reading code…",
+  notRead:"Couldn't read the code. Move closer with good light, or type it below.",
+  notFound:"This code isn't on your list", addNew:"Add product", name:"Name", price:"Price", qty:"Quantity", dept:"Department", min:"Minimum",
+  eleTitle:"Connect with Eleventa", eleSub:"Bring your products from Eleventa, count on the phone, and send the quantities back.",
+  impTitle:"1. Bring products from Eleventa", impSteps:["In Eleventa open <span class='kbd'>F3 Productos</span> → <b>Catálogo</b> → <b>Exportar</b>.","Save the Excel file and get it onto this phone.","Tap <b>Choose file</b> and pick that Excel."],
+  chooseFile:"Choose Eleventa file", trySample:"Try with a sample file", impStore:"Load into",
+  impFound:"products found", impNew:"new", impChanged:"change quantity", impApply:"Import", impDone:"Imported from Eleventa",
+  impBad:"I couldn't find Eleventa's columns in that file. Use the Excel from Productos → Catálogo → Exportar.",
+  expTitle:"2. Send the quantities back to Eleventa", expSteps:["Tap <b>Export for Eleventa</b> and save the file.","In Eleventa open <span class='kbd'>F3 Productos</span> → <b>Importar</b> and pick the file.","Check <b>Actualizar los productos cuyo código ya exista</b> and <b>Actualizar el inventario del producto</b>.","Tap <b>Siguiente</b>. Done: Eleventa now has your count."],
+  expBtn:"Export for Eleventa", expReady:"products ready for Eleventa", expDone:"File ready", expNo:"The file couldn't be saved here. Open it in the phone's browser.",
+  lastImp:"Last import", lastExp:"Last export", never:"never",
+  eleNote:"Eleventa keeps recording register sales. This app is for counting what's on the shelf; each time you import and export, both match.",
+  role:"Who uses the app", owner:"Owner", worker:"Worker", roleH:"Workers only count; the owner also sees costs and inventory value.",
+  lang:"Language", offlineMode:"Simulate offline", offlineH:"Turn off the connection to see changes saved on the phone and sent when it's back.",
+  reset:"Back to sample products", resetH:"Clears the list and loads the sample products.", resetConfirm:"Tap again to confirm", demoNote:"Data is saved on this phone.",
+  cats:{botanas:"Snacks",bebidas:"Drinks",panaderia:"Bread",lacteos:"Dairy",despensa:"Pantry",hogar:"Home",frescos:"Fresh"}, ago:""}
+};
+const S = { lang:"es", role:"owner", store:"1", view:"inv", filter:"all", cat:"all", q:"", offline:false, pending:0,
+  products:{}, log:[], lastImp:null, lastExp:null, setup:{prog:"eleventa", done:{}}, pad:null, scan:null, camMode:"count", camPaused:false, scanStore:"1", imp:null, expStore:"1", resetArm:false };
+const t = k => (T[S.lang][k] ?? T.es[k] ?? k);
+const catName = c => T[S.lang].cats[c] || c;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = n => "$" + (Number(n)||0).toLocaleString("es-MX",{minimumFractionDigits:2, maximumFractionDigits:2});
+const money0 = n => "$" + Math.round(Number(n)||0).toLocaleString("es-MX");
+const TODAY = (() => { const d=new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); })();
+const daysTo = d => d ? Math.round((new Date(d+"T00:00:00") - TODAY)/86400000) : null;
+const storeLabel = s => s==="1"?t("t1"):s==="2"?t("t2"):t("both");
+const stockOf = (p, st=S.store) => st==="all" ? (p.s1||0)+(p.s2||0) : (p["s"+st]||0);
+const minOf = (p, st=S.store) => st==="all" ? (p.min||0)*2 : (p.min||0);
+const level = (p, st=S.store) => { const s=stockOf(p,st); return s===0 ? "out" : s < minOf(p,st) ? "low" : "ok"; };
+const prodList = () => Object.entries(S.products).map(([id,p]) => ({id, ...p}));
+const initials = n => String(n).replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase() || "•";
+const uid = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+const timeAgo = iso => { if (!iso) return t("never"); const m=Math.round((Date.now()-new Date(iso))/60000); if (m<1) return S.lang==="es"?"ahora":"now"; const u = m<60 ? m+" min" : m<1440 ? Math.round(m/60)+" h" : Math.round(m/1440)+(S.lang==="es"?" d":" d"); return S.lang==="es" ? "hace "+u : u+" ago"; };
+let toastTimer; function toast(m){ const el=$("#toast"); el.textContent=m; el.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.hidden=true, 2600); }
+
+/* ---------- storage (this phone) ---------- */
+const KEY="pdc_inv_v1";
+function seedProducts(){ const o={}; for (const [id,p] of Object.entries(SEED.products)) o[id]={name:p.name, brand:p.brand, cat:p.cat, dept:T.es.cats[p.cat], price:p.price, cost:p.cost, min:p.min, s1:p.s1, s2:p.s2, code:p.barcode, exp:p.exp}; return o; }
+function load(){ let d=null; try{ d=JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){}
+  if (d && d.products){ Object.assign(S, {products:d.products, log:d.log||[], lastImp:d.lastImp||null, lastExp:d.lastExp||null, setup:d.setup||{prog:"eleventa",done:{}}}); } else { S.products=seedProducts(); S.log=[]; }
+  try{ const p=JSON.parse(localStorage.getItem(KEY+"_prefs")||"{}"); if(p.lang) S.lang=p.lang; if(p.role) S.role=p.role; }catch(e){} S.store="1"; }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({products:S.products, log:S.log.slice(0,60), lastImp:S.lastImp, lastExp:S.lastExp, setup:S.setup})); }catch(e){} }
+function savePrefs(){ try{ localStorage.setItem(KEY+"_prefs", JSON.stringify({lang:S.lang, role:S.role, store:S.store})); }catch(e){} }
+function logIt(type, text, store){ S.log.unshift({type, text, store, ts:new Date().toISOString()}); S.log = S.log.slice(0,60); }
+function changed(){ if (S.offline) S.pending++; save(); }
+
+/* ---------- icons ---------- */
+const I = {
+ inv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4-8 4z"/><path d="M4 7v10l8 4 8-4V7"/><path d="M12 11v10"/></svg>',
+ scan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M8 8v8M11 8v8M14 8v8M17 8v8"/></svg>',
+ ele:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l5 5v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v5h5"/><path d="M9 13l3 3 3-3M12 16v-5"/></svg>',
+ set:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>',
+ refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>',
+ setup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l1.5 1.5L12 7M8 14l1.5 1.5L12 13M14 8h3M14 14h3"/></svg>',
+ cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>'
+};
+const NAV = ["inv","scan","ele","setup","set"];
+
+/* ---------- shell ---------- */
+function render(){
+  const ae=document.activeElement, fid=ae&&ae.id, s0=ae&&ae.selectionStart, s1=ae&&ae.selectionEnd;
+  document.documentElement.lang = S.lang;
+  document.body.classList.toggle("worker", S.role==="worker");
+  document.querySelectorAll("[data-tag]").forEach(e=>e.textContent=t("tag"));
+  $("#sideNav").innerHTML = NAV.map(v=>`<button data-nav="${v}" ${S.view===v?'aria-current="page"':""}>${I[v]}<span>${t(v)}</span></button>`).join("");
+  $("#tabbar").innerHTML = NAV.map(v=>`<button data-nav="${v}" class="${v==="scan"?"scan":""}" ${S.view===v?'aria-current="page"':""}><span class="ic">${I[v]}</span><span style="color:${v==="scan"&&S.view!=="scan"?"var(--muted)":"inherit"}">${t(v)}</span></button>`).join("");
+  $("#top").innerHTML = header();
+  $("#main").innerHTML = ({inv:viewInv, scan:viewScan, ele:viewEle, setup:viewSetup, set:viewSet}[S.view]||viewInv)();
+  $("#padHost").innerHTML = padHTML(); document.body.classList.toggle("padopen", !!S.pad);
+  afterRender();
+  if (fid){ const el=document.getElementById(fid); if (el){ el.focus(); try{ if(s0!=null) el.setSelectionRange(s0,s1); }catch(e){} } }
+}
+function header(){
+  return `<div class="toprow"><div class="brand"><div class="tile" aria-hidden="true"></div><div><b>${esc(STORE_NAME)}</b><span>${t("tag")}</span></div></div>
+    <div class="chips"><button class="chip refresh" data-act="refresh">${I.refresh}<span>${t("refresh")}</span></button>
+    <button class="chip ${S.offline?"off":""}" data-act="toggleOffline"><span class="dot"></span>${S.offline?t("offline"):t("online")}${S.pending?` · ${S.pending} ${t("waiting")}`:""}</button>
+    <div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">ES</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">EN</button></div></div></div>`;
+}
+function thumb(p){ return `<div class="thumb t-${esc(p.cat||"")}" aria-hidden="true">${esc(initials(p.brand||p.name))}</div>`; }
+function pill(p, st){ const l=level(p,st); return `<span class="pill ${l==="out"?"p-bad":l==="low"?"p-warn":"p-ok"}">${stockOf(p,st)}</span>`; }
+function expPill(p){ const d=daysTo(p.exp); if (d==null || d>4) return ""; const txt=d<0?t("expired"):d===0?t("today"):d===1?t("tomorrow"):`${d} ${t("daysLeft")}`; return `<span class="pill ${d<=1?"p-bad":"p-warn"}">${txt}</span>`; }
+
+/* ---------- inventory ---------- */
+function viewInv(){
+  const ps=prodList(), st=S.store;
+  const lows=ps.filter(p=>level(p,st)!=="ok"), exps=ps.filter(p=>{const d=daysTo(p.exp); return d!=null && d<=4 && stockOf(p,st)>0;});
+  const value=ps.reduce((a,p)=>a+stockOf(p,st)*(p.cost||0),0);
+  const cats=["all",...new Set(ps.map(p=>p.cat).filter(Boolean))];
+  return `<div class="banner info small">${t("demoNote")}</div>
+  <h2>${t("inv")}</h2>
+  <div class="kpis">
+    <div class="kpi"><span class="label">${t("products")}</span><span class="v">${ps.length}</span></div>
+    <div class="kpi ${lows.length?"alert":""}"><span class="label">${t("low")}</span><span class="v">${lows.length}</span></div>
+    <div class="kpi ${exps.length?"warn":""}"><span class="label">${t("expiring")}</span><span class="v">${exps.length}</span></div>
+    <div class="kpi hide-worker"><span class="label">${t("value")}</span><span class="v">${money0(value)}</span></div>
+  </div>
+  <section class="card">
+    <span class="small muted">${t("tapHint")}</span>
+    <input class="f" id="q" type="search" placeholder="${t("search")}" value="${esc(S.q)}" autocomplete="off">
+    <div class="filters">${[["all",t("all"),ps.length],["low",t("low"),lows.length],["exp",t("expiring"),exps.length]].map(([k,l,n])=>`<button data-act="filter" data-v="${k}" aria-pressed="${S.filter===k}">${l} · ${n}</button>`).join("")}</div>
+    <div class="seg">${cats.map(c=>`<button data-act="cat" data-v="${c}" aria-pressed="${S.cat===c}">${c==="all"?t("all"):esc(catName(c))}</button>`).join("")}</div>
+    <div id="list">${listHTML()}</div>
+  </section>
+  <section class="card"><h3>${t("recent")}</h3>${S.log.length?`<div class="list">${S.log.slice(0,8).map(l=>`<div class="item"><span class="pill ${l.type==="in"?"p-ok":l.type==="imp"?"p-blue":l.type==="adj"?"p-bad":"p-warn"}">${esc(t({set:"logSet",in:"logIn",adj:"logAdj",imp:"logImp",new:"logNew"}[l.type]||"logSet"))}</span><div class="grow small">${esc(l.text)}</div><span class="small muted">${timeAgo(l.ts)}</span></div>`).join("")}</div>`:`<p class="muted">${t("noActivity")}</p>`}</section>`;
+}
+function listHTML(){
+  const q=S.q.trim().toLowerCase(), st=S.store;
+  const rows=prodList().filter(p=>(S.cat==="all"||p.cat===S.cat)
+    && (S.filter==="all" || (S.filter==="low" && level(p,st)!=="ok") || (S.filter==="exp" && (()=>{const d=daysTo(p.exp); return d!=null && d<=4 && stockOf(p,st)>0;})()))
+    && (!q || p.name.toLowerCase().includes(q) || String(p.code||"").includes(q) || String(p.brand||"").toLowerCase().includes(q)))
+    .sort((a,b)=>a.name.localeCompare(b.name));
+  if (!rows.length) return `<p class="muted">${t("none")}</p>`;
+  return `<div class="tapl">${rows.map(p=>`<button class="tapr" data-act="pad" data-id="${p.id}">${thumb(p)}<span class="grow"><span class="name">${esc(p.name)}</span><span class="small muted">${money(p.price)}<span class="hide-worker"> · ${t("cost")} ${money(p.cost)}</span> ${expPill(p)}</span></span>
+    ${st==="all"?`<span class="tapq2"><span class="small muted">T1</span>${pill(p,"1")}<span class="small muted">T2</span>${pill(p,"2")}</span>`:`<span class="tapq ${level(p,st)}">${stockOf(p,st)}</span>`}</button>`).join("")}</div>`;
+}
+
+/* ---------- keypad ---------- */
+function openPad(id){ S.pad = {id, mode:"set", val:"", store: S.view==="scan" ? S.scanStore : (S.store==="all" ? "1" : S.store)}; }
+function padHTML(){
+  const P=S.pad; if (!P || !S.products[P.id]) return "";
+  const p={id:P.id, ...S.products[P.id]}, cur=stockOf(p,P.store), n=parseInt(P.val||"0",10)||0;
+  const next = P.mode==="set" ? n : P.mode==="add" ? cur+n : Math.max(0,cur-n);
+  return `<div class="padwrap" data-act="padClose"><div class="pad" role="dialog" aria-modal="true" aria-label="${esc(p.name)}" data-stop="1">
+    <div class="rowhead"><div style="display:flex;gap:10px;align-items:center;min-width:0">${thumb(p)}<b style="min-width:0">${esc(p.name)}</b></div><button class="btn ghost" data-act="padClose" aria-label="${t("cancel")}">✕</button></div>
+    <div class="padmodes">${[["set","padSet"],["add","padAdd"],["sub","padSub"]].map(([m,k])=>`<button data-act="padMode" data-v="${m}" aria-pressed="${P.mode===m}">${t(k)}</button>`).join("")}</div>
+    <div class="padshow"><span class="small muted">${t("current")}: <b>${cur}</b></span><span class="padval">${P.mode==="add"?"+":P.mode==="sub"?"−":""}${P.val||"0"}</span><span class="small">${t("willBe")}: <b>${next}</b> ${t("units")}</span></div>
+    <div class="padkeys">${["1","2","3","4","5","6","7","8","9","C","0","⌫"].map(k=>`<button data-act="padKey" data-v="${k}" class="${k==="C"||k==="⌫"?"op":""}">${k}</button>`).join("")}</div>
+    <button class="btn primary big" data-act="padSave" ${P.val===""?"disabled":""}>${t("save")} · ${next} ${t("units")}</button>
+  </div></div>`;
+}
+function padSave(){
+  const P=S.pad, p=S.products[P.id], k="s"+P.store, cur=p[k]||0, n=parseInt(P.val||"0",10)||0;
+  const next = P.mode==="set" ? n : P.mode==="add" ? cur+n : Math.max(0,cur-n);
+  p[k]=next; logIt(P.mode==="set"?"set":P.mode==="add"?"in":"adj", `${p.name}: ${cur} → ${next}`, P.store);
+  S.pad=null; tick("count"); changed(); toast(`${p.name} · ${S.offline?t("savedQueue"):t("saved")}`);
+}
+
+/* ---------- scan ---------- */
+function viewScan(){
+  const sr=S.scan; let res="";
+  if (sr && sr.reading) res=`<div class="card result"><p>${t("reading")}</p></div>`;
+  else if (sr && sr.error) res=`<div class="banner warn">${esc(sr.error)}</div>`;
+  else if (sr && sr.notFound) res=`<div class="card result"><div class="banner warn"><span><b>${t("notFound")}</b><br><span class="mono">${esc(sr.code)}</span></span></div>
+    <h3>${t("addNew")}</h3><div class="fields">
+      <label class="field"><span class="label">${t("name")}</span><input class="f" id="np_name" placeholder="Ej. Sabritas Limón 45 g"></label>
+      <label class="field"><span class="label">${t("price")}</span><input class="f" id="np_price" inputmode="decimal" placeholder="20"></label>
+      <label class="field"><span class="label">${t("qty")}</span><input class="f" id="np_qty" inputmode="numeric" value="1"></label>
+      <label class="field"><span class="label">${t("dept")}</span><select class="f" id="np_cat">${Object.keys(T.es.cats).map(c=>`<option value="${c}">${esc(catName(c))}</option>`).join("")}</select></label></div>
+    <div class="btns"><button class="btn primary" data-act="newProduct" data-code="${esc(sr.code)}">${t("save")}</button><button class="btn" data-act="scanClear">${t("cancel")}</button></div></div>`;
+  return `<h2>${t("scanTitle")}</h2>
+  <div class="card" style="padding:12px;gap:10px">
+    <span class="label">${t("camMode")}</span>
+    <div class="seg">${[["count","mCount"],["plus","mPlus"]].map(([m,k])=>`<button data-act="camMode" data-v="${m}" aria-pressed="${S.camMode===m}">${t(k)}</button>`).join("")}</div>
+    <div id="camSlot"></div>
+    <span class="small muted" id="camMsg">${t("camHint")}</span>
+  </div>
+  ${res}
+  <div class="card"><span class="label">${t("manual")}</span>
+    <div style="display:flex;gap:8px"><input class="f mono" id="manualCode" inputmode="numeric" placeholder="7501000…" autocomplete="off"><button class="btn primary" data-act="manualFind">${t("find")}</button></div>
+    <label class="btn filebtn" style="align-self:flex-start">${I.cam} ${t("barcode")}<input id="fileBarcode" type="file" accept="image/*" capture="environment"></label></div>`;
+}
+/* ---------- live camera scanner (one element, moved into the scan screen on each render) ---------- */
+const CAM = { el:null, video:null, stream:null, running:false, detector:null, zx:null, lastCode:"", lastAt:0, canvas:null, ctx:null, ac:null };
+function camBuild(){
+  if (CAM.el) return;
+  const el=document.createElement("div"); el.className="cam";
+  el.innerHTML=`<video playsinline muted autoplay></video><div class="cam-frame"></div><div class="cam-tools"><button type="button" class="cam-btn" data-cam="torch" hidden aria-label="Luz">💡</button><button type="button" class="cam-btn" data-cam="pause" aria-label="Pausa">⏸</button></div><div class="cam-flash" hidden></div><button type="button" class="cam-open" data-cam="open" hidden></button>`;
+  CAM.el=el; CAM.video=el.querySelector("video"); CAM.canvas=document.createElement("canvas"); CAM.ctx=CAM.canvas.getContext("2d",{willReadFrequently:true});
+  el.addEventListener("click", async e=>{ const b=e.target.closest("[data-cam]"); if (!b) return;
+    if (b.dataset.cam==="pause"){ S.camPaused=!S.camPaused; b.textContent=S.camPaused?"▶":"⏸"; el.classList.toggle("paused",S.camPaused); }
+    if (b.dataset.cam==="open"){ camStart(); }
+    if (b.dataset.cam==="torch"){ const tr=CAM.stream&&CAM.stream.getVideoTracks()[0]; if (!tr) return; const on=b.getAttribute("aria-pressed")!=="true"; try{ await tr.applyConstraints({advanced:[{torch:on}]}); b.setAttribute("aria-pressed",on); }catch(_){} }
+  });
+}
+function camMsg(k){ const m=document.getElementById("camMsg"); if (m) m.textContent=t(k); }
+async function camStart(){
+  camBuild(); if (CAM.running || CAM.starting) return; CAM.starting=true;
+  const openBtn=CAM.el.querySelector('[data-cam="open"]'); openBtn.hidden=true;
+  try{
+    CAM.stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}, width:{ideal:1280}, height:{ideal:720}}, audio:false});
+    CAM.video.srcObject=CAM.stream; await CAM.video.play();
+    try{ const caps=CAM.stream.getVideoTracks()[0].getCapabilities(); if (caps&&caps.torch) CAM.el.querySelector('[data-cam="torch"]').hidden=false; }catch(_){}
+    if (!CAM.detector && "BarcodeDetector" in window){ try{ const f=await BarcodeDetector.getSupportedFormats(); CAM.detector=new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e","code_128","code_39","itf"].filter(x=>f.includes(x))}); }catch(_){ CAM.detector=null; } }
+    CAM.running=true; camMsg("camHint"); camLoop();
+  }catch(e){ openBtn.hidden=false; openBtn.textContent=t("camOpen"); camMsg("camNo"); }
+  finally{ CAM.starting=false; }
+}
+function camStop(){ CAM.running=false; if (CAM.stream){ CAM.stream.getTracks().forEach(x=>x.stop()); CAM.stream=null; } }
+async function camLoop(){
+  if (!CAM.running) return;
+  const v=CAM.video;
+  if (!S.camPaused && !S.pad && v.readyState>=2){
+    try{
+      if (CAM.detector){ const r=await CAM.detector.detect(v); if (r&&r[0]) camHit(r[0].rawValue); }
+      else if (window.ZXing){
+        const w=v.videoWidth, h=v.videoHeight, cw=Math.min(960,w), ch=Math.round(h*cw/w), cropH=Math.round(ch*0.45), y0=Math.round((ch-cropH)/2);
+        CAM.canvas.width=cw; CAM.canvas.height=cropH; CAM.ctx.drawImage(v,0,Math.round(y0*h/ch),w,Math.round(cropH*h/ch),0,0,cw,cropH);
+        if (!CAM.zx){ CAM.zx=new ZXing.MultiFormatReader(); const H=new Map(); H.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.EAN_13,ZXing.BarcodeFormat.EAN_8,ZXing.BarcodeFormat.UPC_A,ZXing.BarcodeFormat.UPC_E,ZXing.BarcodeFormat.CODE_128,ZXing.BarcodeFormat.CODE_39,ZXing.BarcodeFormat.ITF]); H.set(ZXing.DecodeHintType.TRY_HARDER,true); CAM.zx.setHints(H); }
+        try{ camHit(CAM.zx.decode(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(CAM.canvas)))).getText()); }catch(_){}
+      }
+    }catch(_){}
+  }
+  setTimeout(()=>requestAnimationFrame(camLoop), CAM.detector?70:120);
+}
+function beep(ok){ try{ CAM.ac=CAM.ac||new (window.AudioContext||window.webkitAudioContext)(); const o=CAM.ac.createOscillator(), g=CAM.ac.createGain(); o.type="square"; o.frequency.value=ok?1760:440; g.gain.value=.06; o.connect(g); g.connect(CAM.ac.destination); o.start(); o.stop(CAM.ac.currentTime+(ok?.09:.25)); }catch(_){} try{ navigator.vibrate&&navigator.vibrate(ok?60:[60,60,60]); }catch(_){} }
+function camFlash(txt, ok){ const f=CAM.el.querySelector(".cam-flash"); f.textContent=txt; f.className="cam-flash"+(ok?"":" bad"); f.hidden=false; clearTimeout(f._t); f._t=setTimeout(()=>f.hidden=true,1300);
+  const fr=CAM.el.querySelector(".cam-frame"); fr.classList.add(ok?"hit":"miss"); setTimeout(()=>fr.classList.remove("hit","miss"),400); }
+function camHit(code){
+  code=String(code||"").trim(); if (!/^[A-Za-z0-9.\-]{3,40}$/.test(code)) return;
+  const now=Date.now();
+  if (code===CAM.lastCode && now-CAM.lastAt<1200){ CAM.lastAt=now; return; }   // still in view: count once
+  CAM.lastCode=code; CAM.lastAt=now;
+  const p=prodList().find(x=>String(x.code)===code);
+  if (!p){ beep(false); camFlash("? "+code, false); S.scan={notFound:true, code}; render(); return; }
+  beep(true);
+  if (S.camMode==="plus"){ const q=S.products[p.id]; const cur=q.s1||0; q.s1=cur+1; logIt("in", `${q.name}: ${cur} → ${q.s1}`, "1"); changed(); camFlash(`+1 ${q.name} · ${q.s1}`, true); }
+  else { camFlash(p.name, true); S.scan=null; openPad(p.id); render(); }
+}
+function afterRender(){
+  if (CAM._pad && !S.pad) CAM.lastAt=Date.now();   // just closed the keypad: do not re-read the same code still in view
+  CAM._pad=!!S.pad;
+  if (S.view==="scan"){ camBuild(); const slot=document.getElementById("camSlot"); if (slot && CAM.el.parentNode!==slot){ slot.appendChild(CAM.el); if (CAM.video.srcObject) CAM.video.play().catch(()=>{}); } if (!CAM.running) camStart(); }
+  else if (CAM.running) camStop();
+}
+document.addEventListener("visibilitychange", ()=>{ if (document.hidden) camStop(); else if (S.view==="scan") camStart(); });
+function findCode(code){ code=String(code).trim(); if (!code) return null; const ps=prodList(); return ps.find(p=>String(p.code)===code) || ps.find(p=>p.name.toLowerCase().includes(code.toLowerCase())) || null; }
+function showScanned(code){ const p=findCode(code); if (p){ S.scan=null; openPad(p.id); } else S.scan={notFound:true, code}; render(); }
+async function decodeBarcode(file){
+  const url=URL.createObjectURL(file);
+  try{ const img=new Image(); img.src=url; await img.decode();
+    if ("BarcodeDetector" in window){ try{ const r=await new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e","code_128"]}).detect(img); if (r&&r[0]) return r[0].rawValue; }catch(e){} }
+    if (window.ZXing){ for (const max of [1600,1000,700]){ try{ const sc=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight)); const c=document.createElement("canvas"); c.width=Math.round(img.naturalWidth*sc); c.height=Math.round(img.naturalHeight*sc); c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+      const h=new Map(); h.set(ZXing.DecodeHintType.TRY_HARDER,true); const r=new ZXing.MultiFormatReader(); r.setHints(h); return r.decode(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(c)))).getText(); }catch(e){} } }
+    return null; } finally { URL.revokeObjectURL(url); }
+}
+
+/* ---------- Eleventa ---------- */
+const norm = s => String(s??"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+function colIndex(head){
+  const H=head.map(norm), find=(...tests)=>H.findIndex(h=>tests.some(tt=>tt(h)));
+  return { code: find(h=>h==="codigo"||h.startsWith("codigo")||h==="clave"||h==="sku"),
+    name: find(h=>h.startsWith("descripcion")||h==="producto"||h==="nombre"),
+    cost: find(h=>h.includes("costo")),
+    price: find(h=>(h.includes("venta")&&h.includes("precio"))||h==="precio venta"||h==="p venta"||h==="precio"),
+    dept: find(h=>h.startsWith("departamento")||h==="depto"),
+    qty: find(h=>h.includes("existencia")||h.includes("inventario")||h==="cantidad"||h.startsWith("cantidad")),
+    min: find(h=>h.includes("minimo")||h==="inv min") };
+}
+function parseRows(aoa){
+  let hi=-1, ix=null;
+  for (let i=0;i<Math.min(aoa.length,15);i++){ const c=colIndex(aoa[i]||[]); if (c.code>-1 && c.name>-1){ hi=i; ix=c; break; } }
+  if (hi<0) return null;
+  const num=v=>{ const n=parseFloat(String(v??"").replace(/[$,\s]/g,"")); return isNaN(n)?null:n; };
+  return aoa.slice(hi+1).filter(r=>r && String(r[ix.code]??"").trim() && String(r[ix.name]??"").trim()).map(r=>({
+    code:String(r[ix.code]).trim(), name:String(r[ix.name]).trim(), cost: ix.cost>-1?num(r[ix.cost]):null, price: ix.price>-1?num(r[ix.price]):null,
+    dept: ix.dept>-1?String(r[ix.dept]??"").trim():"", qty: ix.qty>-1?num(r[ix.qty]):null, min: ix.min>-1?num(r[ix.min]):null }));
+}
+const deptToCat = d => { const n=norm(d); for (const [k,v] of Object.entries(T.es.cats)) if (norm(v)===n||k===n) return k;
+  if (/refresco|bebida|agua|jugo/.test(n)) return "bebidas"; if (/botana|dulce|galleta/.test(n)) return "botanas"; if (/pan|bimbo/.test(n)) return "panaderia";
+  if (/lacteo|leche|queso|crema/.test(n)) return "lacteos"; if (/limpieza|hogar|jabon/.test(n)) return "hogar"; if (/fruta|verdura|huevo|tortilla|carne|fresco/.test(n)) return "frescos"; return "despensa"; };
+function previewImport(rows, source){
+  const byCode={}; prodList().forEach(p=>byCode[String(p.code)]=p);
+  S.imp={rows, source, store: S.store==="all"?"1":S.store};
+}
+function impStats(){ const I0=S.imp, byCode={}; prodList().forEach(p=>byCode[String(p.code)]=p); let nw=0, ch=0;
+  I0.rows.forEach(r=>{ const p=byCode[r.code]; if (!p) nw++; else if (r.qty!=null && (p["s"+I0.store]||0)!==r.qty) ch++; }); return {nw, ch}; }
+function applyImport(){
+  const I0=S.imp, k="s"+I0.store, byCode={}; prodList().forEach(p=>byCode[String(p.code)]=p);
+  I0.rows.forEach(r=>{ let p=byCode[r.code];
+    if (!p){ const id=uid("p"); S.products[id]={name:r.name, brand:r.name.split(" ")[0], cat:deptToCat(r.dept), dept:r.dept||"", price:r.price||0, cost:r.cost||0, min:r.min||5, s1:0, s2:0, code:r.code, exp:null}; p=S.products[id]; }
+    else p=S.products[p.id];
+    p.name=r.name; if (r.price!=null) p.price=r.price; if (r.cost!=null) p.cost=r.cost; if (r.dept) p.dept=r.dept; if (r.min!=null) p.min=r.min; if (r.qty!=null) p[k]=r.qty; });
+  S.lastImp=new Date().toISOString(); logIt("imp", `${I0.rows.length} ${S.lang==="es"?"productos":"products"} ← ${I0.source}`, I0.store);
+  S.imp=null; tick("imp"); changed(); toast(t("impDone"));
+}
+function sampleEleventa(){
+  const head=["Código","Descripción","Precio Costo","Precio Venta","Precio Mayoreo","Departamento","Existencia","Inv. Mínimo"];
+  const rows=prodList().slice(0,22).map((p,i)=>[p.code,p.name,p.cost,p.price,"",p.dept||T.es.cats[p.cat],Math.max(0,(p.s1||0)+((i%5)-2)*3),p.min]);
+  rows.push(["7501055300075","Galletas Marías Gamesa 170 g",12.5,17,"","Botanas",24,8],["7501020515343","Atún Dolores en agua 140 g",17.8,24,"","Despensa",18,6],["7501031311309","Pinol Original 828 ml",22,30,"","Limpieza",9,4]);
+  return [head,...rows];
+}
+async function readFile(f){
+  if (!window.XLSX){ toast(S.lang==="es"?"Falta conexión para leer Excel. Intenta otra vez con internet.":"Needs internet to read Excel. Try again online."); return; }
+  try{ const wb=XLSX.read(await f.arrayBuffer(), {type:"array"}); let rows=null;
+    for (const n of wb.SheetNames){ rows=parseRows(XLSX.utils.sheet_to_json(wb.Sheets[n], {header:1, raw:false, defval:""})); if (rows && rows.length) break; }
+    if (!rows || !rows.length){ S.imp=null; toast(t("impBad")); render(); return; }
+    previewImport(rows, f.name); render();
+  }catch(e){ toast(t("impBad")); }
+}
+function exportAoa(st){
+  const head=["Código","Descripción","Precio Costo","Precio Venta","Departamento","Cantidad en inventario","Mínimo","Tipo de venta"];
+  return [head, ...prodList().sort((a,b)=>a.name.localeCompare(b.name)).map(p=>[String(p.code||""), p.name, p.cost||0, p.price||0, p.dept||T.es.cats[p.cat]||"", p["s"+st]||0, p.min||0, "Unidad"])];
+}
+let DL=null;
+async function doExport(){
+  if (!window.XLSX){ toast(S.lang==="es"?"Falta conexión para crear el Excel.":"Needs internet to build the Excel."); return; }
+  const st=S.expStore, ws=XLSX.utils.aoa_to_sheet(exportAoa(st)); ws["!cols"]=[{wch:16},{wch:34},{wch:12},{wch:12},{wch:14},{wch:12},{wch:9},{wch:12}];
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Productos");
+  const d=new Date(), name=`eleventa-inventario-${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}.xlsx`;
+  const buf=XLSX.write(wb, {bookType:"xlsx", type:"array"});
+  let ok=false;
+  if (DL){ try{ await DL.save({filename:name, data:new Blob([buf],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})}); ok=true; }catch(e){ if (e && e.code==="declined") return; } }
+  if (!ok){ try{ XLSX.writeFile(wb, name); ok=true; }catch(e){ toast(t("expNo")); return; } }
+  S.lastExp=new Date().toISOString(); tick("exp2"); logIt("imp", `${prodList().length} ${S.lang==="es"?"productos":"products"} → ${name}`, st); save(); toast(`${t("expDone")} · ${name}`); render();
+}
+function viewEle(){
+  let prev="";
+  if (S.imp){ const s=impStats(), I0=S.imp, byCode={}; prodList().forEach(p=>byCode[String(p.code)]=p);
+    prev=`<div class="card result"><div class="rowhead"><b>${esc(I0.source)}</b><span class="pill p-blue">${I0.rows.length} ${t("impFound")}</span></div>
+      <div class="chips"><span class="chip"><span class="diff-new">${s.nw}</span>&nbsp;${t("impNew")}</span><span class="chip"><b>${s.ch}</b>&nbsp;${t("impChanged")}</span></div>
+      <div class="tablewrap"><table class="prev"><thead><tr><th>${t("name")}</th><th class="r">App</th><th class="r">Eleventa</th></tr></thead><tbody>
+      ${I0.rows.slice(0,8).map(r=>{ const p=byCode[r.code], cur=p?(p["s"+I0.store]||0):null; const cls=!p?"diff-new":r.qty>cur?"diff-up":r.qty<cur?"diff-down":"";
+        return `<tr><td>${esc(r.name)}</td><td class="r num">${p?cur:"—"}</td><td class="r num ${cls}">${r.qty??"—"}</td></tr>`; }).join("")}
+      </tbody></table></div>${I0.rows.length>8?`<span class="small muted">+ ${I0.rows.length-8}…</span>`:""}
+      <div class="btns"><button class="btn primary" data-act="impApply">${t("impApply")}</button><button class="btn" data-act="impCancel">${t("cancel")}</button></div></div>`; }
+  return `<div class="rowhead"><h2>${t("eleTitle")}</h2><span class="ele-badge">eleventa</span></div>
+  <p class="muted" style="margin:0">${t("eleSub")}</p>
+  <div class="chips"><span class="chip">${t("lastImp")}: ${timeAgo(S.lastImp)}</span><span class="chip">${t("lastExp")}: ${timeAgo(S.lastExp)}</span></div>
+  <section class="card"><h3>${t("impTitle")}</h3><ol class="steps">${T[S.lang].impSteps.map(x=>`<li><span>${x}</span></li>`).join("")}</ol>
+    <div class="btns"><label class="btn primary filebtn">${t("chooseFile")}<input id="fileEle" type="file" accept=".xls,.xlsx,.csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"></label><button class="btn" data-act="trySample">${t("trySample")}</button></div></section>
+  ${prev}
+  <section class="card"><h3>${t("expTitle")}</h3><ol class="steps">${T[S.lang].expSteps.map(x=>`<li><span>${x}</span></li>`).join("")}</ol>
+    <span class="small muted">${prodList().length} ${t("expReady")}</span>
+    <button class="btn ok big" data-act="export">${t("expBtn")}</button></section>
+  <div class="banner info small">${t("eleNote")}</div>`;
+}
+
+/* ---------- setup checklist (both languages) ---------- */
+const CHECK_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+function setupSteps(){
+  const ele = S.setup.prog==="eleventa";
+  return [
+   {id:"home", es:"Abre el link y agrega la app a la pantalla de inicio", en:"Open the link and add the app to the home screen",
+    subEs:"iPhone: Safari → Compartir → Agregar a inicio. Android: Chrome → ⋮ → Agregar a pantalla principal.", subEn:"iPhone: Safari → Share → Add to Home Screen. Android: Chrome → ⋮ → Add to Home screen."},
+   {id:"lang", es:"Elige el idioma y quién la usa", en:"Choose the language and who uses it", subEs:"Dueño o empleado.", subEn:"Owner or worker.", go:"set"},
+   ele ? {id:"exp1", es:"En Eleventa: F3 Productos → Catálogo → Exportar", en:"In Eleventa: F3 Productos → Catálogo → Exportar", subEs:"Guarda el archivo de Excel.", subEn:"Save the Excel file."}
+       : {id:"exp1", es:"En tu programa, exporta tus productos a Excel o CSV", en:"In your program, export your products to Excel or CSV", subEs:"Que traiga Código, Descripción, Precio y Existencia.", subEn:"It should include Code, Description, Price and Stock."},
+   {id:"move1", es:"Pasa el archivo al teléfono", en:"Get the file onto the phone", subEs:"Por WhatsApp, correo o USB.", subEn:"By WhatsApp, email or USB."},
+   {id:"imp", es:"En la app: Eleventa → Elegir archivo → Importar", en:"In the app: Eleventa → Choose file → Import", subEs:"Se marca solo cuando importas.", subEn:"Checks itself when you import.", go:"ele", auto:true},
+   {id:"review", es:"Revisa que salgan todos tus productos", en:"Check that all your products show up", go:"inv"},
+   {id:"count", es:"Cuenta con el teclado", en:"Count with the keypad", subEs:"Toca un producto, pon la cantidad y guarda. Se marca solo.", subEn:"Tap a product, enter the quantity and save. Checks itself.", go:"inv", auto:true},
+   {id:"exp2", es:"Toca Exportar para Eleventa y pasa el archivo a la computadora", en:"Tap Export for Eleventa and move the file to the computer", subEs:"Se marca solo cuando exportas.", subEn:"Checks itself when you export.", go:"ele", auto:true},
+   ele ? {id:"imp2", es:"En Eleventa: Productos → Importar", en:"In Eleventa: Productos → Importar", subEs:"Marca «Actualizar los productos cuyo código ya exista» y «Actualizar el inventario del producto», luego Siguiente.", subEn:"Check «Actualizar los productos cuyo código ya exista» and «Actualizar el inventario del producto», then Siguiente."}
+       : {id:"imp2", es:"En tu programa, importa el archivo", en:"In your program, import the file", subEs:"Busca la opción de importar productos y elige actualizar la existencia.", subEn:"Look for the import products option and choose to update stock."},
+   {id:"confirm", es: ele?"Confirma que Eleventa muestra las cantidades nuevas":"Confirma que tu programa muestra las cantidades nuevas", en: ele?"Confirm Eleventa shows the new quantities":"Confirm your program shows the new quantities"}
+  ];
+}
+function viewSetup(){
+  const steps=setupSteps(), done=S.setup.done, n=steps.filter(x=>done[x.id]).length, L=S.lang, O=L==="es"?"en":"es";
+  const cap = x => x[L], alt = x => x[O], sub = x => x[L==="es"?"subEs":"subEn"], subAlt = x => x[L==="es"?"subEn":"subEs"];
+  return `<h2>${L==="es"?"Pasos para conectar":"Steps to connect"}</h2>
+  <p class="chk-alt" style="margin:0">${L==="es"?"Steps to connect":"Pasos para conectar"}</p>
+  <section class="card">
+    <span class="label">${L==="es"?"Programa de la tienda":"Store program"} · <span style="text-transform:none;letter-spacing:0">${L==="es"?"Store program":"Programa de la tienda"}</span></span>
+    <div class="seg"><button data-act="prog" data-v="eleventa" aria-pressed="${S.setup.prog==="eleventa"}">Eleventa</button><button data-act="prog" data-v="other" aria-pressed="${S.setup.prog==="other"}">${L==="es"?"Excel u otro":"Excel or other"}</button></div>
+    <div class="rowhead"><b>${n} ${L==="es"?"de":"of"} ${steps.length}</b><span class="small muted">${n} ${L==="es"?"of":"de"} ${steps.length}</span></div>
+    <div class="prog" role="progressbar" aria-valuenow="${n}" aria-valuemin="0" aria-valuemax="${steps.length}"><i style="width:${Math.round(n/steps.length*100)}%"></i></div>
+    ${n===steps.length?`<div class="alldone">${L==="es"?"¡Listo! Todo conectado.":"All set! Everything is connected."}<br><span class="chk-alt" style="color:inherit">${L==="es"?"All set! Everything is connected.":"¡Listo! Todo conectado."}</span></div>`:""}
+    <div class="chk">${steps.map((x,i)=>`<div class="chk-row ${done[x.id]?"done":""}">
+      <button class="chk-box" data-act="tick" data-v="${x.id}" aria-pressed="${!!done[x.id]}" aria-label="${esc(cap(x))}">${CHECK_SVG}</button>
+      <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+        <span class="chk-num">${L==="es"?"Paso":"Step"} ${i+1}${x.auto?` · ${L==="es"?"automático":"automatic"}`:""}</span>
+        <span class="chk-main">${esc(cap(x))}</span><span class="chk-alt">${esc(alt(x))}</span>
+        ${sub(x)?`<span class="chk-sub">${esc(sub(x))}</span><span class="chk-alt">${esc(subAlt(x))}</span>`:""}
+        ${x.go&&!done[x.id]?`<button class="btn chk-go" data-nav="${x.go}">${L==="es"?"Ir":"Go"} → ${esc(t(x.go))}</button>`:""}
+      </div></div>`).join("")}</div>
+    <button class="btn ghost" data-act="untickAll" style="align-self:flex-start">${L==="es"?"Empezar de nuevo · Start over":"Start over · Empezar de nuevo"}</button>
+  </section>`;
+}
+function tick(id){ if (!S.setup.done[id]){ S.setup.done[id]=true; save(); } }
+
+/* ---------- settings ---------- */
+function viewSet(){
+  return `<h2>${t("set")}</h2><section class="card">
+   <div class="field"><span class="label">${t("role")}</span><div class="seg"><button data-act="role" data-v="owner" aria-pressed="${S.role==="owner"}">${t("owner")}</button><button data-act="role" data-v="worker" aria-pressed="${S.role==="worker"}">${t("worker")}</button></div><span class="small muted">${t("roleH")}</span></div>
+   <div class="field"><span class="label">${t("lang")}</span><div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">Español</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">English</button></div></div>
+   <div class="field"><span class="label">${t("offlineMode")}</span><div><button class="btn ${S.offline?"gold":""}" data-act="toggleOffline">${S.offline?t("offline"):t("online")}${S.pending?` · ${S.pending} ${t("waiting")}`:""}</button></div><span class="small muted">${t("offlineH")}</span></div>
+   <div class="field hide-worker"><span class="label">${t("reset")}</span><div><button class="btn" data-act="reset">${S.resetArm?t("resetConfirm"):t("reset")}</button></div><span class="small muted">${t("resetH")}</span></div>
+  </section>`;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e=>{
+  const nav=e.target.closest("[data-nav]"); if (nav){ S.view=nav.dataset.nav; S.scan=null; render(); window.scrollTo(0,0); return; }
+  const b=e.target.closest("[data-act]"); if (!b || b.tagName==="INPUT") return;
+  const a=b.dataset.act, v=b.dataset.v, id=b.dataset.id;
+  const H={
+    lang(){ S.lang=v; savePrefs(); }, role(){ S.role=v; savePrefs(); },
+    store(){ S.store=v; if (v!=="all"){ S.scanStore=v; S.expStore=v; } savePrefs(); },
+    toggleOffline(){ S.offline=!S.offline; if (!S.offline && S.pending){ toast(S.lang==="es"?`Conexión de vuelta: ${S.pending} cambios enviados`:`Back online: ${S.pending} changes sent`); S.pending=0; } },
+    refresh(){ doRefresh(); return "skip"; },
+    filter(){ S.filter=v; }, cat(){ S.cat=v; },
+    pad(){ openPad(id); },
+    padClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('[data-act="padClose"]')) return "skip"; S.pad=null; },
+    padStore(){ S.pad.store=v; }, padMode(){ S.pad.mode=v; },
+    padKey(){ const P=S.pad; if (v==="C") P.val=""; else if (v==="⌫") P.val=P.val.slice(0,-1); else if (P.val.length<4) P.val=(P.val==="0"?"":P.val)+v; },
+    padSave(){ padSave(); },
+    scanStore(){ S.scanStore=v; }, scanClear(){ S.scan=null; }, camMode(){ S.camMode=v; },
+    manualFind(){ const c=$("#manualCode").value; if (c.trim()) showScanned(c); return "skip"; },
+    quickScan(){ showScanned(S.products[id].code); return "skip"; },
+    newProduct(){ const n=$("#np_name").value.trim(); if (!n){ $("#np_name").focus(); return "skip"; } const pid=uid("p"), cat=$("#np_cat").value, price=parseFloat($("#np_price").value)||0, q=parseInt($("#np_qty").value)||0;
+      S.products[pid]={name:n, brand:n.split(" ")[0], cat, dept:T.es.cats[cat], price, cost:Math.round(price*0.75*100)/100, min:5, s1:0, s2:0, code:b.dataset.code, exp:null}; S.products[pid]["s"+S.scanStore]=q;
+      logIt("new", `${n} (${q})`, S.scanStore); S.scan=null; changed(); toast(t("saved")); },
+    trySample(){ previewImport(parseRows(sampleEleventa()), "eleventa-ejemplo.xlsx"); },
+    impStore(){ S.imp.store=v; }, impApply(){ applyImport(); }, impCancel(){ S.imp=null; },
+    expStore(){ S.expStore=v; }, export(){ doExport(); return "skip"; },
+    prog(){ S.setup.prog=v; save(); },
+    tick(){ S.setup.done[v]=!S.setup.done[v]; save(); },
+    untickAll(){ S.setup.done={}; save(); },
+    reset(){ if (!S.resetArm){ S.resetArm=true; setTimeout(()=>{ S.resetArm=false; if (S.view==="set") render(); },4000); return; }
+      S.resetArm=false; S.products=seedProducts(); S.log=[]; S.lastImp=null; S.lastExp=null; S.pending=0; S.setup={prog:"eleventa",done:{}}; save(); toast(S.lang==="es"?"Demo reiniciada":"Demo reset"); }
+  };
+  if (H[a]){ const r=H[a](); if (r!=="skip") render(); }
+});
+document.addEventListener("input", e=>{ if (e.target.id==="q"){ S.q=e.target.value; $("#list").innerHTML=listHTML(); } });
+document.addEventListener("change", async e=>{
+  const el=e.target; if (el.type!=="file" || !el.files || !el.files[0]) return; const f=el.files[0]; el.value="";
+  if (el.id==="fileEle") return readFile(f);
+  if (el.id==="fileBarcode"){ S.scan={reading:true}; render(); const code=await decodeBarcode(f); if (code) showScanned(code); else { S.scan={error:t("notRead")}; render(); } }
+});
+document.addEventListener("keydown", e=>{
+  if (S.pad){ const k=e.key, P=S.pad;
+    if (/^[0-9]$/.test(k)){ if (P.val.length<4) P.val=(P.val==="0"?"":P.val)+k; render(); e.preventDefault(); return; }
+    if (k==="Backspace"){ P.val=P.val.slice(0,-1); render(); e.preventDefault(); return; }
+    if (k==="Escape"){ S.pad=null; render(); return; }
+    if (k==="Enter" && P.val!==""){ padSave(); render(); e.preventDefault(); return; } }
+  if (e.key==="Enter" && e.target.id==="manualCode"){ e.preventDefault(); const c=e.target.value; if (c.trim()) showScanned(c); }
+});
+window.addEventListener("online", ()=>{ if (S.offline){ S.offline=false; S.pending=0; render(); } });
+
+/* ---------- refresh ---------- */
+let refreshing=false;
+async function doRefresh(){
+  if (refreshing) return; refreshing=true; const btn=document.querySelector('[data-act="refresh"]'); if (btn) btn.classList.add("spin");
+  try{ if (!window.XLSX || !window.ZXing){ try{ sessionStorage.setItem("pdc_inv_view", JSON.stringify({view:S.view, y:scrollY})); }catch(e){} location.reload(); return; }
+    load(); if (!S.offline && S.pending) S.pending=0; await new Promise(r=>setTimeout(r,350)); render(); toast(t("refreshed"));
+  } finally { refreshing=false; const b2=document.querySelector('[data-act="refresh"]'); if (b2) b2.classList.remove("spin"); }
+}
+(function(){ const ind=$("#ptr"); let y0=null, dy=0;
+  const show=()=>{ ind.style.transform=`translate(-50%, ${Math.min(dy*.5,70)-60}px)`; ind.className="ptr"+(dy>110?" ready":""); ind.innerHTML=I.refresh+(dy>110?t("releaseR"):t("pullR")); };
+  addEventListener("touchstart", e=>{ if (scrollY<=0 && e.touches.length===1 && !S.pad && !e.target.closest("input,textarea,select,.tablewrap,.seg")){ y0=e.touches[0].clientY; dy=0; } else y0=null; }, {passive:true});
+  addEventListener("touchmove", e=>{ if (y0==null) return; dy=e.touches[0].clientY-y0; if (dy>8 && scrollY<=0) show(); }, {passive:true});
+  addEventListener("touchend", ()=>{ if (y0==null) return; const go=dy>110; y0=null; if (go){ ind.className="ptr go"; ind.innerHTML=I.refresh+t("refresh"); ind.style.transform="translate(-50%,10px)"; doRefresh().finally(()=>ind.style.transform="translate(-50%,-60px)"); } else ind.style.transform="translate(-50%,-60px)"; dy=0; }, {passive:true});
+})();
+
+/* ---------- boot ---------- */
+load(); S.scanStore=S.expStore=(S.store==="all"?"1":S.store);
+try{ const x=JSON.parse(sessionStorage.getItem("pdc_inv_view")||"null"); if (x){ sessionStorage.removeItem("pdc_inv_view"); S.view=x.view||S.view; setTimeout(()=>{ scrollTo(0,x.y||0); toast(t("refreshed")); },50); } }catch(e){}
+(function(){var last=0;addEventListener("scroll",function(){var t=document.getElementById("top");if(!t)return;var y=scrollY;if(innerWidth>=900||document.body.classList.contains("padopen")){t.classList.remove("hidebar");last=y;return;}if(y>last+4&&y>90)t.classList.add("hidebar");else if(y<last-4||y<90)t.classList.remove("hidebar");last=y;},{passive:true});})();
+render();
+if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body></html>
