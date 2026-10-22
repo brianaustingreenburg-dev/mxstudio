@@ -43,8 +43,16 @@ li p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
 .os strong{display:block}
 .small{color:var(--muted);font-size:.85rem}
 footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
-[data-l]{display:none}
-html[lang=es] [data-l=es],html[lang=en] [data-l=en]{display:revert}
+/* both languages at once: Spanish first, English underneath */
+h1[data-l=en],h2[data-l=en]{display:block;font-size:.95rem;font-weight:600;color:var(--muted);margin:-2px 0 8px}
+li b[data-l=en]{font-weight:600;color:var(--muted);font-size:.9rem}
+p[data-l=en],.os span[data-l=en]{font-style:italic;font-size:.88rem;opacity:.85}
+.os span{display:block}
+.tag[data-l=en]{display:none}
+.btn span[data-l=en]{display:block;font-size:.8rem;font-weight:600;opacity:.85}
+.btn{flex-direction:column;gap:0}
+.note[data-l=en]{margin-top:6px}
+footer span{display:block}
 </style>
 </head>
 <body>
@@ -52,7 +60,7 @@ html[lang=es] [data-l=es],html[lang=en] [data-l=en]{display:revert}
   <header>
     <img src="logo.webp" alt="MX Studio">
     <div><b>Mercado Pie de la Cuesta</b><span>Inventario · MX Studio</span></div>
-    <div class="lang"><button id="bes" aria-pressed="true">ES</button><button id="ben" aria-pressed="false">EN</button></div>
+    
   </header>
 
   <h1 data-l="es">Tu inventario en el teléfono</h1>
@@ -61,7 +69,7 @@ html[lang=es] [data-l=es],html[lang=en] [data-l=en]{display:revert}
   <p class="lead" data-l="en">It already has your 2,438 products from Eleventa, by department. Scan, enter the amount, done.</p>
 
   <section class="card">
-    <span class="tag" data-l="es">Paso 1 · Teléfono</span><span class="tag" data-l="en">Step 1 · Phone</span>
+    <span class="tag" data-l="es">Paso 1 · Teléfono / Step 1 · Phone</span><span class="tag" data-l="en">Step 1 · Phone</span>
     <h2 data-l="es">Instala la app en tu teléfono</h2><h2 data-l="en">Install the app on your phone</h2>
     <p class="sub" data-l="es">Toma 1 minuto. Hazlo en cada teléfono que vaya a contar.</p>
     <p class="sub" data-l="en">Takes 1 minute. Do it on every phone that will count.</p>
@@ -82,7 +90,7 @@ html[lang=es] [data-l=es],html[lang=en] [data-l=en]{display:revert}
   </section>
 
   <section class="card">
-    <span class="tag" data-l="es">Paso 2 · Computadora de la caja</span><span class="tag" data-l="en">Step 2 · Register computer</span>
+    <span class="tag" data-l="es">Paso 2 · Computadora / Step 2 · Computer</span><span class="tag" data-l="en">Step 2 · Register computer</span>
     <h2 data-l="es">Conéctala con Eleventa</h2><h2 data-l="en">Connect it to Eleventa</h2>
     <p class="sub" data-l="es">Una sola vez, en la computadora donde está Eleventa. Así lo que se vende en la caja baja solo en la app, y lo que cuentas en el teléfono pasa a Eleventa.</p>
     <p class="sub" data-l="en">Only once, on the computer that runs Eleventa. Then register sales come off the app on their own, and what you count on the phone goes into Eleventa.</p>
@@ -110,10 +118,6 @@ html[lang=es] [data-l=es],html[lang=en] [data-l=en]{display:revert}
 
   <footer><span data-l="es">¿Dudas? Escríbele a Brian · MX Studio</span><span data-l="en">Questions? Message Brian · MX Studio</span></footer>
 </div>
-<script>
-(function(){var h=document.documentElement,a=document.getElementById("bes"),b=document.getElementById("ben");
-function set(l){h.lang=l;a.setAttribute("aria-pressed",l==="es");b.setAttribute("aria-pressed",l==="en");}
-a.onclick=function(){set("es")};b.onclick=function(){set("en")};})();
-</script>
+
 </body>
 </html>
