@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Setup Guide · Pie de la Cuesta</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1C46B4">
+<meta property="og:title" content="Setup & Troubleshooting · Mercado Pie de la Cuesta">
+<meta property="og:description" content="How to install the inventory app, connect it to Eleventa, and fix common problems.">
+<meta property="og:image" content="https://go.myjefetech.app/inventario/icon-512.png">
+<link rel="icon" href="../inventario/icon-192.png">
+<style>
+:root{--bg:#F3F5F9;--card:#fff;--ink:#141A2B;--muted:#5B6478;--line:#E1E5EE;--accent:#1C46B4;--accent-soft:#E7EDFB;--ok:#1E8A4C;--ok-soft:#E5F5EC;--warn:#A15C00;--warn-soft:#FFF4E2;--bad:#B42318;--bad-soft:#FDECEA}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1220;--card:#171C2E;--ink:#EEF1F8;--muted:#9AA3B8;--line:#2A3149;--accent:#6E93F5;--accent-soft:#1E2A4D;--ok:#4CC27F;--ok-soft:#14291D;--warn:#F2B04C;--warn-soft:#2E2412;--bad:#F27A6E;--bad-soft:#2E1614}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:600px;margin:0 auto;padding:16px 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:8px 0 16px}
+header img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:#fff}
+header b{display:block;font-size:1.1rem;line-height:1.2}
+header span{color:var(--muted);font-size:.9rem}
+h1{font-size:1.6rem;line-height:1.2;margin:4px 0 6px}
+.lead{color:var(--muted);margin:0 0 14px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+nav.toc a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.88rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;scroll-margin-top:12px}
+.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+h2{font-size:1.2rem;margin:0 0 4px}
+h3{font-size:1rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol.steps>li:last-child{padding-bottom:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:-1px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem}
+li b{display:block}
+li p,.fix p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+ul.plain{margin:6px 0 0;padding-left:20px;color:var(--muted);font-size:.95rem}
+ul.plain li{margin:3px 0}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:1rem;border-radius:14px;padding:14px 18px;margin:10px 0 4px}
+.btn.alt{background:var(--accent-soft);color:var(--accent)}
+.note{border-radius:12px;padding:10px 12px;font-size:.92rem;margin-top:10px}
+.note.warn{background:var(--warn-soft);color:var(--warn)}
+.note.ok{background:var(--ok-soft);color:var(--ok)}
+.note.bad{background:var(--bad-soft);color:var(--bad)}
+.os{display:grid;gap:8px;margin-top:8px}
+.os div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.92rem}
+.os strong{display:block}
+code,.ui{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 5px;color:var(--ink);word-break:break-word}
+.fix{border-top:1px solid var(--line);padding:12px 0}
+.fix:first-of-type{border-top:0;padding-top:4px}
+.fix summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.fix summary::-webkit-details-marker{display:none}
+.fix summary::after{content:"+";color:var(--accent);font-weight:800}
+.fix[open] summary::after{content:"–"}
+.fix .body{margin-top:6px}
+.small{color:var(--muted);font-size:.85rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.webp" alt="MX Studio">
+    <div><b>Mercado Pie de la Cuesta</b><span>Setup &amp; Troubleshooting · MX Studio</span></div>
+  </header>
+
+  <h1>Inventory app setup guide</h1>
+  <p class="lead">Everything needed to set up the phones and the Eleventa computer, use it day to day, and fix the common problems. The app already has the store's 2,438 products from Eleventa.</p>
+  <nav class="toc"><a href="#before">Before you go</a><a href="#phones">1 · Phones</a><a href="#computer">2 · Computer</a><a href="#daily">3 · Daily use</a><a href="#trouble">Troubleshooting</a></nav>
+
+  <section class="card" id="before">
+    <span class="tag">Before you go</span>
+    <h2>Check the online service</h2>
+    <p class="sub">The phones and the computer talk through an online service. Check it first. It takes 10 seconds.</p>
+    <a class="btn" href="https://mxstudio-partners.netlify.app/api/inventario?k=checkdeploy_0123456789abcdef&amp;since=0">Open the check link</a>
+    <div class="note ok"><b>Working:</b> you see a short line of text that starts with <code>{"rev":0</code>.</div>
+    <div class="note bad"><b>Error page or "Not found":</b> don't do Step 2 yet. Send a screenshot to MX Studio first. The phones still work on their own (Step 1).</div>
+    <h3 style="margin-top:16px">What to bring</h3>
+    <ul class="plain">
+      <li>The owner's phone and any worker phones that will count.</li>
+      <li>Access to the Eleventa computer (Windows), with internet.</li>
+      <li>A time when that register isn't busy (about 15 minutes).</li>
+    </ul>
+  </section>
+
+  <section class="card" id="phones">
+    <span class="tag">Step 1 · Phones</span>
+    <h2>Install the app on each phone</h2>
+    <p class="sub">About 1 minute per phone. Works on Wi-Fi or mobile data.</p>
+    <ol class="steps">
+      <li><b>Open the app</b>
+        <a class="btn" href="https://go.myjefetech.app/inventario/">Open Inventario</a>
+        <p>If it opened inside WhatsApp, tap ⋮ or the share icon → «Open in Chrome» / «Open in Safari».</p></li>
+      <li><b>Add it to the home screen</b>
+        <div class="os">
+          <div><strong>iPhone (Safari)</strong>Share ⬆️ → «Add to Home Screen» (Agregar a inicio) → Add.</div>
+          <div><strong>Android (Chrome)</strong>⋮ → «Install app» or «Add to Home screen» (Instalar app / Agregar a pantalla principal).</div>
+        </div></li>
+      <li><b>Try one scan</b>
+        <p>Tap «Escanear producto», allow the camera, and scan any product. Its name and count show up. Enter the real count and tap Guardar.</p></li>
+    </ol>
+  </section>
+
+  <section class="card" id="computer">
+    <span class="tag">Step 2 · Eleventa computer</span>
+    <h2>Connect to Eleventa</h2>
+    <p class="sub">Only once. After this, register sales show up in the app on their own, and phone counts can be sent into Eleventa.</p>
+    <ol class="steps">
+      <li><b>Pick the right computer</b>
+        <p>If the store has two registers, use the <b style="display:inline">main</b> one: the computer where Eleventa's database lives. The other register usually connects to it. Step 5 tells you if you picked right.</p></li>
+      <li><b>Download the program on that computer</b>
+        <a class="btn" href="https://go.myjefetech.app/pie-de-la-cuesta/MX-Studio-Inventario.exe">Download program (47 MB)</a>
+        <p>Open this guide on the computer and tap the button. It's a Windows program and needs no installation.</p></li>
+      <li><b>Open it</b>
+        <p>Double-click <code>MX-Studio-Inventario.exe</code>. If Windows shows «Windows protected your PC», click «More info» → «Run anyway». A page opens in the browser: that's the program.</p></li>
+      <li><b>Connect each phone</b>
+        <p>Under «Teléfonos de la tienda» there's a QR code. Scan it with each phone's camera. The app opens and shows a green <b style="display:inline">«Conectado con la tienda»</b> at the top.</p></li>
+      <li><b>Test Eleventa and turn on sales</b>
+        <p>Click «Probar conexión con Eleventa». If it says OK, turn on «Pasar ventas a la app automáticamente». Take a screenshot of that screen and send it to MX Studio.</p></li>
+      <li><b>Test the typing (optional, recommended)</b>
+        <p>Click «Probar con Bloc de notas». The program types a test code and amount into Notepad. If Notepad shows them, the typing works.</p></li>
+    </ol>
+    <div class="note warn">Leave the program open while the store is open. If the computer restarts, open the program again.</div>
+  </section>
+
+  <section class="card" id="daily">
+    <span class="tag">Step 3 · Every day</span>
+    <h2>How the owner uses it</h2>
+    <ol class="steps">
+      <li><b>See register sales</b>
+        <p>Open the <b style="display:inline">Ventas</b> tab and tap «Llegué» on arrival. It shows everything sold since then: pieces, money and each product. «Hoy» shows the whole day. It updates about once a minute.</p></li>
+      <li><b>Check or count stock</b>
+        <p>Scan a product to see how many are in the store. If the shelf doesn't match, type the real number and tap Guardar.</p></li>
+      <li><b>Receive a delivery</b>
+        <p>Scan each product, tap «+ Sumar», enter how many came in, then Guardar.</p></li>
+      <li><b>Send counts into Eleventa</b>
+        <p>On the computer, open Eleventa's inventory screen and click «Pasar a Eleventa» in the program. Don't touch the mouse or keyboard while it types. Do it when that register isn't selling.</p></li>
+    </ol>
+    <div class="note ok">No need to be on the store Wi-Fi. Phones can check sales from anywhere with internet.</div>
+  </section>
+
+  <section class="card" id="trouble">
+    <span class="tag">Troubleshooting</span>
+    <h2>If something doesn't work</h2>
+    <p class="sub">Tap a problem to see the fix.</p>
+
+    <h3 style="margin-top:6px">Phone and app</h3>
+    <details class="fix"><summary>The link opens inside WhatsApp / no «Add to Home Screen»</summary><div class="body">
+      <p>WhatsApp's built-in browser can't install apps. Tap ⋮ (Android) or the share icon (iPhone) and choose «Open in Chrome» or «Open in Safari». Then add it to the home screen.</p></div></details>
+    <details class="fix"><summary>The camera doesn't open or stays black</summary><div class="body">
+      <ul class="plain">
+        <li><b style="display:inline">iPhone:</b> Settings → Safari → Camera → Allow. Then reload the app.</li>
+        <li><b style="display:inline">Android:</b> In Chrome, tap the icon left of the address → Permissions → Camera → Allow.</li>
+        <li>Close other apps using the camera (WhatsApp video, the camera app).</li>
+        <li>Still black? Close the app completely and open it again.</li>
+      </ul></div></details>
+    <details class="fix"><summary>It won't read a barcode</summary><div class="body">
+      <ul class="plain">
+        <li>Good light, hold the phone 15–20 cm away and steady. Avoid glare on shiny packages.</li>
+        <li>Or type the number under the barcode in «O escribe el código» on the Escanear screen.</li>
+      </ul></div></details>
+    <details class="fix"><summary>It says «Producto nuevo» for something the store already has</summary><div class="body">
+      <p>Some products in Eleventa use a word code instead of the barcode (for example <code>BOLSA DE KILO</code>), or the package barcode is different from Eleventa's. Close the new-product window, go to Inventario and search the product by name instead.</p></div></details>
+    <details class="fix"><summary>No «Ventas» tab / app looks old</summary><div class="body">
+      <p>Tap «Actualizar» at the top. If it's still old, close the app completely (swipe it away) and open it again. It updates itself whenever there's internet.</p></div></details>
+    <details class="fix"><summary>Top says «Sin conexión con la tienda» or «N en espera»</summary><div class="body">
+      <p>The phone has no internet right now. Counts are saved on the phone and sent automatically when it reconnects. Nothing is lost. If it never reconnects, see «Phone doesn't connect to the store» below.</p></div></details>
+    <details class="fix"><summary>Two phones show different numbers</summary><div class="body">
+      <p>Wait about 10 seconds, or tap «Actualizar». Both phones get the latest count. If two people count the same product, the last one saved wins, and each product shows who counted it.</p></div></details>
+
+    <h3 style="margin-top:14px">Computer and Eleventa</h3>
+    <details class="fix"><summary>Windows blocks the program</summary><div class="body">
+      <ul class="plain">
+        <li>«Windows protected your PC» → «More info» → «Run anyway».</li>
+        <li>If the antivirus deletes it, mark it as allowed in the antivirus and download it again.</li>
+      </ul></div></details>
+    <details class="fix"><summary>The program opened but no page appeared</summary><div class="body">
+      <p>Open Chrome or Edge on that computer and go to <code>http://localhost:8080/pc</code>. A black window that says the program is running must stay open; closing it closes the program.</p></div></details>
+    <details class="fix"><summary>Phone doesn't connect to the store after scanning the QR</summary><div class="body">
+      <ul class="plain">
+        <li>Open the <a href="#before">check link</a>. If it shows an error, the online service is down: send a screenshot to MX Studio.</li>
+        <li>Make sure the computer has internet.</li>
+        <li>Scan the QR again from the program, with the phone's normal camera.</li>
+      </ul></div></details>
+    <details class="fix"><summary>«Probar conexión con Eleventa» fails</summary><div class="body">
+      <ul class="plain">
+        <li><b style="display:inline">Wrong computer:</b> this is probably the second register. Install the program on the main register (where the database is) and test there.</li>
+        <li><b style="display:inline">Eleventa closed:</b> open Eleventa, then test again.</li>
+        <li><b style="display:inline">Password or location:</b> some installations change the database password or folder. Under «Opciones avanzadas», enter the path to the <code>.FDB</code> file and the password if you know them.</li>
+        <li>Either way, take a screenshot of the result and send it to MX Studio.</li>
+      </ul></div></details>
+    <details class="fix"><summary>Ventas shows no sales</summary><div class="body">
+      <ul class="plain">
+        <li>The Eleventa computer must be on, with internet and the program open.</li>
+        <li>In the program, «Pasar ventas a la app automáticamente» must be on.</li>
+        <li>«Desde que llegué» only counts sales after you tapped «Llegué». Check «Hoy» for the full day.</li>
+        <li>New sales take up to about a minute to show up.</li>
+      </ul></div></details>
+    <details class="fix"><summary>The money in Ventas doesn't match the register</summary><div class="body">
+      <p>The app estimates money as pieces × the price from the Eleventa list it was loaded with. Discounts, price changes, and products sold by weight won't match exactly. Eleventa's cash report is the official total.</p></div></details>
+    <details class="fix"><summary>«Pasar a Eleventa» typed in the wrong place or wrong numbers</summary><div class="body">
+      <ul class="plain">
+        <li>Eleventa's inventory screen must be open and in front before clicking. The program stops if Eleventa isn't in front.</li>
+        <li>Don't touch the mouse or keyboard while it types.</li>
+        <li>Try one product first. If the numbers land in the wrong field, take a photo of Eleventa's inventory screen and send it to MX Studio so the typing can be adjusted.</li>
+      </ul></div></details>
+    <details class="fix"><summary>Returns or cancelled sales don't show</summary><div class="body">
+      <p>Not supported yet. A returned item isn't added back in the app. Recount that product on the phone if needed.</p></div></details>
+  </section>
+
+  <section class="card">
+    <h2>Quick links</h2>
+    <a class="btn alt" href="https://go.myjefetech.app/inventario/">Inventory app</a>
+    <a class="btn alt" href="https://go.myjefetech.app/pie-de-la-cuesta/">Setup page for the owner (Spanish / English)</a>
+  </section>
+
+  <footer>MX Studio · Brian</footer>
+</div>
+</body>
+</html>
