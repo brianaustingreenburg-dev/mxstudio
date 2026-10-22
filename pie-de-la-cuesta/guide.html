@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Setup Guide · Pie de la Cuesta</title>
+<title>Guía de instalación · Pie de la Cuesta</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#1C46B4">
-<meta property="og:title" content="Setup & Troubleshooting · Mercado Pie de la Cuesta">
-<meta property="og:description" content="How to install the inventory app, connect it to Eleventa, and fix common problems.">
+<meta property="og:title" content="Guía y solución de problemas / Setup & Troubleshooting · Pie de la Cuesta">
+<meta property="og:description" content="Cómo instalar la app, conectarla con Eleventa y resolver problemas. / How to install, connect to Eleventa, and fix problems.">
 <meta property="og:image" content="https://go.myjefetech.app/inventario/icon-512.png">
 <link rel="icon" href="../inventario/icon-192.png">
 <style>
@@ -20,41 +20,46 @@ header{display:flex;align-items:center;gap:12px;padding:8px 0 16px}
 header img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:#fff}
 header b{display:block;font-size:1.1rem;line-height:1.2}
 header span{color:var(--muted);font-size:.9rem}
-h1{font-size:1.6rem;line-height:1.2;margin:4px 0 6px}
-.lead{color:var(--muted);margin:0 0 14px}
-nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
-nav.toc a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.88rem}
+h1{font-size:1.6rem;line-height:1.2;margin:4px 0 2px}
+.lead{color:var(--muted);margin:0 0 4px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 18px}
+nav.toc a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.85rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;scroll-margin-top:12px}
-.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-bottom:8px}
-h2{font-size:1.2rem;margin:0 0 4px}
-h3{font-size:1rem;margin:0 0 4px}
-.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
-ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-ol.steps>li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+h2{font-size:1.2rem;margin:0}
+h3{font-size:1rem;margin:0}
+.sub{color:var(--muted);margin:6px 0 2px;font-size:.95rem}
+ol.steps{list-style:none;margin:14px 0 0;padding:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 18px 44px}
 ol.steps>li:last-child{padding-bottom:0}
 ol.steps>li::before{content:counter(s);position:absolute;left:0;top:-1px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem}
-li b{display:block}
+li>b{display:block}
 li p,.fix p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
 ul.plain{margin:6px 0 0;padding-left:20px;color:var(--muted);font-size:.95rem}
-ul.plain li{margin:3px 0}
-.btn{display:flex;align-items:center;justify-content:center;width:100%;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:1rem;border-radius:14px;padding:14px 18px;margin:10px 0 4px}
+ul.plain li{margin:4px 0}
+/* English line under each Spanish line */
+.en{display:block;font-style:italic;font-size:.86em;color:var(--muted);opacity:.9;font-weight:500}
+h1 .en,h2 .en,h3 .en,li>b .en,summary .en{font-style:normal;font-weight:600;margin-top:1px}
+.btn{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:1rem;border-radius:14px;padding:12px 18px;margin:10px 0 4px;text-align:center}
+.btn .en{color:#fff;opacity:.85;font-style:normal;font-size:.8rem}
 .btn.alt{background:var(--accent-soft);color:var(--accent)}
+.btn.alt .en{color:var(--accent)}
 .note{border-radius:12px;padding:10px 12px;font-size:.92rem;margin-top:10px}
+.note .en{color:inherit}
 .note.warn{background:var(--warn-soft);color:var(--warn)}
 .note.ok{background:var(--ok-soft);color:var(--ok)}
 .note.bad{background:var(--bad-soft);color:var(--bad)}
 .os{display:grid;gap:8px;margin-top:8px}
 .os div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.92rem}
 .os strong{display:block}
-code,.ui{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 5px;color:var(--ink);word-break:break-word}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 5px;color:var(--ink);word-break:break-word;font-style:normal}
 .fix{border-top:1px solid var(--line);padding:12px 0}
-.fix:first-of-type{border-top:0;padding-top:4px}
-.fix summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.fix summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .fix summary::-webkit-details-marker{display:none}
-.fix summary::after{content:"+";color:var(--accent);font-weight:800}
+.fix summary::after{content:"+";color:var(--accent);font-weight:800;font-size:1.2rem;line-height:1}
 .fix[open] summary::after{content:"–"}
 .fix .body{margin-top:6px}
-.small{color:var(--muted);font-size:.85rem}
+.grp{margin:16px 0 0;padding-top:4px}
 footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
 </style>
 </head>
@@ -62,157 +67,184 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
 <div class="wrap">
   <header>
     <img src="logo.webp" alt="MX Studio">
-    <div><b>Mercado Pie de la Cuesta</b><span>Setup &amp; Troubleshooting · MX Studio</span></div>
+    <div><b>Mercado Pie de la Cuesta</b><span>Guía y soluciones · Setup &amp; Troubleshooting</span></div>
   </header>
 
-  <h1>Inventory app setup guide</h1>
-  <p class="lead">Everything needed to set up the phones and the Eleventa computer, use it day to day, and fix the common problems. The app already has the store's 2,438 products from Eleventa.</p>
-  <nav class="toc"><a href="#before">Before you go</a><a href="#phones">1 · Phones</a><a href="#computer">2 · Computer</a><a href="#daily">3 · Daily use</a><a href="#trouble">Troubleshooting</a></nav>
+  <h1>Guía de instalación del inventario<span class="en">Inventory app setup guide</span></h1>
+  <p class="lead">Todo para instalar los teléfonos y la computadora de Eleventa, usarlo cada día y resolver problemas. La app ya trae los 2,438 productos de la tienda.
+    <span class="en">Everything to set up the phones and the Eleventa computer, use it every day, and fix problems. The app already has the store's 2,438 products.</span></p>
+  <nav class="toc"><a href="#before">Antes · Before</a><a href="#phones">1 · Teléfonos / Phones</a><a href="#computer">2 · Computadora / Computer</a><a href="#daily">3 · Cada día / Daily</a><a href="#trouble">Problemas / Troubleshooting</a></nav>
 
   <section class="card" id="before">
-    <span class="tag">Before you go</span>
-    <h2>Check the online service</h2>
-    <p class="sub">The phones and the computer talk through an online service. Check it first. It takes 10 seconds.</p>
-    <a class="btn" href="https://mxstudio-partners.netlify.app/api/inventario?k=checkdeploy_0123456789abcdef&amp;since=0">Open the check link</a>
-    <div class="note ok"><b>Working:</b> you see a short line of text that starts with <code>{"rev":0</code>.</div>
-    <div class="note bad"><b>Error page or "Not found":</b> don't do Step 2 yet. Send a screenshot to MX Studio first. The phones still work on their own (Step 1).</div>
-    <h3 style="margin-top:16px">What to bring</h3>
+    <span class="tag">Antes de ir · Before you go</span>
+    <h2>Revisa el servicio en línea<span class="en">Check the online service</span></h2>
+    <p class="sub">Los teléfonos y la computadora se comunican por internet. Revísalo primero: tarda 10 segundos.
+      <span class="en">The phones and the computer talk over the internet. Check it first. It takes 10 seconds.</span></p>
+    <a class="btn" href="https://mxstudio-partners.netlify.app/api/inventario?k=checkdeploy_0123456789abcdef&amp;since=0">Abrir enlace de prueba<span class="en">Open the check link</span></a>
+    <div class="note ok"><b>Funciona:</b> ves una línea corta que empieza con <code>{"rev":0</code>.
+      <span class="en"><b>Working:</b> you see a short line that starts with <code>{"rev":0</code>.</span></div>
+    <div class="note bad"><b>Página de error:</b> no hagas el Paso 2 todavía. Manda una captura a MX Studio. Los teléfonos sí funcionan solos (Paso 1).
+      <span class="en"><b>Error page:</b> don't do Step 2 yet. Send a screenshot to MX Studio. The phones still work on their own (Step 1).</span></div>
+    <h3 style="margin-top:16px">Qué llevar<span class="en">What to bring</span></h3>
     <ul class="plain">
-      <li>The owner's phone and any worker phones that will count.</li>
-      <li>Access to the Eleventa computer (Windows), with internet.</li>
-      <li>A time when that register isn't busy (about 15 minutes).</li>
+      <li>El teléfono del dueño y de los empleados que van a contar.<span class="en">The owner's phone and any worker phones that will count.</span></li>
+      <li>Acceso a la computadora de Eleventa (Windows) con internet.<span class="en">Access to the Eleventa computer (Windows), with internet.</span></li>
+      <li>Un rato en que esa caja no esté ocupada (unos 15 minutos).<span class="en">A time when that register isn't busy (about 15 minutes).</span></li>
     </ul>
   </section>
 
   <section class="card" id="phones">
-    <span class="tag">Step 1 · Phones</span>
-    <h2>Install the app on each phone</h2>
-    <p class="sub">About 1 minute per phone. Works on Wi-Fi or mobile data.</p>
+    <span class="tag">Paso 1 · Teléfonos / Phones</span>
+    <h2>Instala la app en cada teléfono<span class="en">Install the app on each phone</span></h2>
+    <p class="sub">Un minuto por teléfono. Funciona con Wi-Fi o datos.<span class="en">About 1 minute per phone. Works on Wi-Fi or mobile data.</span></p>
     <ol class="steps">
-      <li><b>Open the app</b>
-        <a class="btn" href="https://go.myjefetech.app/inventario/">Open Inventario</a>
-        <p>If it opened inside WhatsApp, tap ⋮ or the share icon → «Open in Chrome» / «Open in Safari».</p></li>
-      <li><b>Add it to the home screen</b>
+      <li><b>Abre la app<span class="en">Open the app</span></b>
+        <a class="btn" href="https://go.myjefetech.app/inventario/">Abrir Inventario<span class="en">Open Inventory</span></a>
+        <p>Si se abrió dentro de WhatsApp, toca ⋮ o compartir → «Abrir en Chrome» / «Abrir en Safari».
+          <span class="en">If it opened inside WhatsApp, tap ⋮ or share → «Open in Chrome» / «Open in Safari».</span></p></li>
+      <li><b>Ponla en la pantalla de inicio<span class="en">Add it to the home screen</span></b>
         <div class="os">
-          <div><strong>iPhone (Safari)</strong>Share ⬆️ → «Add to Home Screen» (Agregar a inicio) → Add.</div>
-          <div><strong>Android (Chrome)</strong>⋮ → «Install app» or «Add to Home screen» (Instalar app / Agregar a pantalla principal).</div>
+          <div><strong>iPhone (Safari)</strong>Compartir ⬆️ → «Agregar a inicio» → Agregar.<span class="en">Share ⬆️ → «Add to Home Screen» → Add.</span></div>
+          <div><strong>Android (Chrome)</strong>⋮ → «Instalar app» o «Agregar a pantalla principal».<span class="en">⋮ → «Install app» or «Add to Home screen».</span></div>
         </div></li>
-      <li><b>Try one scan</b>
-        <p>Tap «Escanear producto», allow the camera, and scan any product. Its name and count show up. Enter the real count and tap Guardar.</p></li>
+      <li><b>Prueba un escaneo<span class="en">Try one scan</span></b>
+        <p>Toca «Escanear producto», permite la cámara y escanea cualquier producto. Sale su nombre y cantidad. Pon la cantidad real y toca Guardar.
+          <span class="en">Tap «Escanear producto», allow the camera, and scan any product. Its name and count show up. Enter the real count and tap Guardar (Save).</span></p></li>
     </ol>
   </section>
 
   <section class="card" id="computer">
-    <span class="tag">Step 2 · Eleventa computer</span>
-    <h2>Connect to Eleventa</h2>
-    <p class="sub">Only once. After this, register sales show up in the app on their own, and phone counts can be sent into Eleventa.</p>
+    <span class="tag">Paso 2 · Computadora de Eleventa / Eleventa computer</span>
+    <h2>Conecta con Eleventa<span class="en">Connect to Eleventa</span></h2>
+    <p class="sub">Solo una vez. Después, las ventas de la caja aparecen solas en la app y los conteos del teléfono pueden pasar a Eleventa.
+      <span class="en">Only once. After this, register sales show up in the app on their own, and phone counts can be sent into Eleventa.</span></p>
     <ol class="steps">
-      <li><b>Pick the right computer</b>
-        <p>If the store has two registers, use the <b style="display:inline">main</b> one: the computer where Eleventa's database lives. The other register usually connects to it. Step 5 tells you if you picked right.</p></li>
-      <li><b>Download the program on that computer</b>
-        <a class="btn" href="https://go.myjefetech.app/pie-de-la-cuesta/MX-Studio-Inventario.exe">Download program (47 MB)</a>
-        <p>Open this guide on the computer and tap the button. It's a Windows program and needs no installation.</p></li>
-      <li><b>Open it</b>
-        <p>Double-click <code>MX-Studio-Inventario.exe</code>. If Windows shows «Windows protected your PC», click «More info» → «Run anyway». A page opens in the browser: that's the program.</p></li>
-      <li><b>Connect each phone</b>
-        <p>Under «Teléfonos de la tienda» there's a QR code. Scan it with each phone's camera. The app opens and shows a green <b style="display:inline">«Conectado con la tienda»</b> at the top.</p></li>
-      <li><b>Test Eleventa and turn on sales</b>
-        <p>Click «Probar conexión con Eleventa». If it says OK, turn on «Pasar ventas a la app automáticamente». Take a screenshot of that screen and send it to MX Studio.</p></li>
-      <li><b>Test the typing (optional, recommended)</b>
-        <p>Click «Probar con Bloc de notas». The program types a test code and amount into Notepad. If Notepad shows them, the typing works.</p></li>
+      <li><b>Escoge la computadora correcta<span class="en">Pick the right computer</span></b>
+        <p>Si hay dos cajas, usa la <b>principal</b>: donde está la base de datos de Eleventa. La otra caja normalmente se conecta a esa. El paso 5 te dice si escogiste bien.
+          <span class="en">If there are two registers, use the <b>main</b> one: where Eleventa's database lives. The other register usually connects to it. Step 5 tells you if you picked right.</span></p></li>
+      <li><b>Descarga el programa en esa computadora<span class="en">Download the program on that computer</span></b>
+        <a class="btn" href="https://go.myjefetech.app/pie-de-la-cuesta/MX-Studio-Inventario.exe">Descargar programa (47 MB)<span class="en">Download program (47 MB)</span></a>
+        <p>Abre esta guía en la computadora y toca el botón. Es para Windows y no necesita instalación.
+          <span class="en">Open this guide on the computer and tap the button. It's for Windows and needs no installation.</span></p></li>
+      <li><b>Ábrelo<span class="en">Open it</span></b>
+        <p>Doble clic en <code>MX-Studio-Inventario.exe</code>. Si Windows dice «Windows protegió su PC», toca «Más información» → «Ejecutar de todas formas». Se abre una página en el navegador: ese es el programa.
+          <span class="en">Double-click <code>MX-Studio-Inventario.exe</code>. If Windows says «Windows protected your PC», click «More info» → «Run anyway». A page opens in the browser: that's the program.</span></p></li>
+      <li><b>Conecta cada teléfono<span class="en">Connect each phone</span></b>
+        <p>En «Teléfonos de la tienda» hay un código QR. Escanéalo con la cámara de cada teléfono. La app se abre y arriba dice en verde <b>«Conectado con la tienda»</b>.
+          <span class="en">Under «Teléfonos de la tienda» there's a QR code. Scan it with each phone's camera. The app opens and shows a green <b>«Conectado con la tienda»</b> at the top.</span></p></li>
+      <li><b>Prueba Eleventa y activa las ventas<span class="en">Test Eleventa and turn on sales</span></b>
+        <p>Toca «Probar conexión con Eleventa». Si sale OK, activa «Pasar ventas a la app automáticamente». Toma captura de esa pantalla y mándala a MX Studio.
+          <span class="en">Click «Probar conexión con Eleventa». If it says OK, turn on «Pasar ventas a la app automáticamente». Screenshot that screen and send it to MX Studio.</span></p></li>
+      <li><b>Prueba el tecleo (opcional, recomendado)<span class="en">Test the typing (optional, recommended)</span></b>
+        <p>Toca «Probar con Bloc de notas». El programa escribe un código y una cantidad de prueba en el Bloc de notas. Si aparecen, el tecleo funciona.
+          <span class="en">Click «Probar con Bloc de notas». The program types a test code and amount into Notepad. If they appear, typing works.</span></p></li>
     </ol>
-    <div class="note warn">Leave the program open while the store is open. If the computer restarts, open the program again.</div>
+    <div class="note warn">Deja el programa abierto mientras la tienda esté abierta. Si la computadora se reinicia, ábrelo otra vez.
+      <span class="en">Leave the program open while the store is open. If the computer restarts, open it again.</span></div>
   </section>
 
   <section class="card" id="daily">
-    <span class="tag">Step 3 · Every day</span>
-    <h2>How the owner uses it</h2>
+    <span class="tag">Paso 3 · Cada día / Every day</span>
+    <h2>Cómo lo usa el dueño<span class="en">How the owner uses it</span></h2>
     <ol class="steps">
-      <li><b>See register sales</b>
-        <p>Open the <b style="display:inline">Ventas</b> tab and tap «Llegué» on arrival. It shows everything sold since then: pieces, money and each product. «Hoy» shows the whole day. It updates about once a minute.</p></li>
-      <li><b>Check or count stock</b>
-        <p>Scan a product to see how many are in the store. If the shelf doesn't match, type the real number and tap Guardar.</p></li>
-      <li><b>Receive a delivery</b>
-        <p>Scan each product, tap «+ Sumar», enter how many came in, then Guardar.</p></li>
-      <li><b>Send counts into Eleventa</b>
-        <p>On the computer, open Eleventa's inventory screen and click «Pasar a Eleventa» in the program. Don't touch the mouse or keyboard while it types. Do it when that register isn't selling.</p></li>
+      <li><b>Ver las ventas de la caja<span class="en">See register sales</span></b>
+        <p>Abre la pestaña <b>Ventas</b> y toca «Llegué» al llegar. Muestra todo lo vendido desde ese momento: piezas, dinero y cada producto. «Hoy» muestra todo el día. Se actualiza cada minuto.
+          <span class="en">Open the <b>Ventas</b> tab and tap «Llegué» on arrival. It shows everything sold since then: pieces, money and each product. «Hoy» shows the whole day. It updates about once a minute.</span></p></li>
+      <li><b>Ver o contar existencias<span class="en">Check or count stock</span></b>
+        <p>Escanea un producto para ver cuántos hay. Si no coincide con el anaquel, pon el número real y toca Guardar.
+          <span class="en">Scan a product to see how many there are. If the shelf doesn't match, enter the real number and tap Guardar.</span></p></li>
+      <li><b>Recibir mercancía<span class="en">Receive a delivery</span></b>
+        <p>Escanea cada producto, toca «+ Sumar», pon cuántos llegaron y Guardar.
+          <span class="en">Scan each product, tap «+ Sumar», enter how many came in, then Guardar.</span></p></li>
+      <li><b>Pasar conteos a Eleventa<span class="en">Send counts into Eleventa</span></b>
+        <p>En la computadora, abre la pantalla de inventario de Eleventa y toca «Pasar a Eleventa» en el programa. No toques el mouse ni el teclado mientras escribe. Hazlo cuando esa caja no esté vendiendo.
+          <span class="en">On the computer, open Eleventa's inventory screen and click «Pasar a Eleventa» in the program. Don't touch the mouse or keyboard while it types. Do it when that register isn't selling.</span></p></li>
     </ol>
-    <div class="note ok">No need to be on the store Wi-Fi. Phones can check sales from anywhere with internet.</div>
+    <div class="note ok">No necesitas estar en el Wi-Fi de la tienda. Puedes ver las ventas desde cualquier lugar con internet.
+      <span class="en">No need to be on the store Wi-Fi. You can check sales from anywhere with internet.</span></div>
   </section>
 
   <section class="card" id="trouble">
-    <span class="tag">Troubleshooting</span>
-    <h2>If something doesn't work</h2>
-    <p class="sub">Tap a problem to see the fix.</p>
+    <span class="tag">Problemas · Troubleshooting</span>
+    <h2>Si algo no funciona<span class="en">If something doesn't work</span></h2>
+    <p class="sub">Toca un problema para ver la solución.<span class="en">Tap a problem to see the fix.</span></p>
 
-    <h3 style="margin-top:6px">Phone and app</h3>
-    <details class="fix"><summary>The link opens inside WhatsApp / no «Add to Home Screen»</summary><div class="body">
-      <p>WhatsApp's built-in browser can't install apps. Tap ⋮ (Android) or the share icon (iPhone) and choose «Open in Chrome» or «Open in Safari». Then add it to the home screen.</p></div></details>
-    <details class="fix"><summary>The camera doesn't open or stays black</summary><div class="body">
+    <h3 class="grp">Teléfono y app<span class="en">Phone and app</span></h3>
+    <details class="fix"><summary><span>El enlace se abre dentro de WhatsApp / no sale «Agregar a inicio»<span class="en">Link opens inside WhatsApp / no «Add to Home Screen»</span></span></summary><div class="body">
+      <p>El navegador de WhatsApp no puede instalar apps. Toca ⋮ (Android) o compartir (iPhone) y elige «Abrir en Chrome» o «Abrir en Safari». Luego agrégala a inicio.
+        <span class="en">WhatsApp's browser can't install apps. Tap ⋮ (Android) or share (iPhone) and choose «Open in Chrome» or «Open in Safari». Then add it to the home screen.</span></p></div></details>
+    <details class="fix"><summary><span>La cámara no abre o se queda negra<span class="en">The camera doesn't open or stays black</span></span></summary><div class="body">
       <ul class="plain">
-        <li><b style="display:inline">iPhone:</b> Settings → Safari → Camera → Allow. Then reload the app.</li>
-        <li><b style="display:inline">Android:</b> In Chrome, tap the icon left of the address → Permissions → Camera → Allow.</li>
-        <li>Close other apps using the camera (WhatsApp video, the camera app).</li>
-        <li>Still black? Close the app completely and open it again.</li>
+        <li><b>iPhone:</b> Ajustes → Safari → Cámara → Permitir. Luego recarga la app.<span class="en">Settings → Safari → Camera → Allow. Then reload the app.</span></li>
+        <li><b>Android:</b> en Chrome, toca el ícono a la izquierda de la dirección → Permisos → Cámara → Permitir.<span class="en">In Chrome, tap the icon left of the address → Permissions → Camera → Allow.</span></li>
+        <li>Cierra otras apps que usen la cámara (videollamada de WhatsApp, la cámara).<span class="en">Close other apps using the camera (WhatsApp video call, the camera app).</span></li>
+        <li>¿Sigue negra? Cierra la app por completo y ábrela otra vez.<span class="en">Still black? Close the app completely and open it again.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>It won't read a barcode</summary><div class="body">
+    <details class="fix"><summary><span>No lee un código de barras<span class="en">It won't read a barcode</span></span></summary><div class="body">
       <ul class="plain">
-        <li>Good light, hold the phone 15–20 cm away and steady. Avoid glare on shiny packages.</li>
-        <li>Or type the number under the barcode in «O escribe el código» on the Escanear screen.</li>
+        <li>Buena luz, teléfono a 15–20 cm y sin moverlo. Evita reflejos en empaques brillantes.<span class="en">Good light, phone 15–20 cm away and steady. Avoid glare on shiny packages.</span></li>
+        <li>O escribe el número debajo del código en «O escribe el código» en la pantalla Escanear.<span class="en">Or type the number under the barcode in «O escribe el código» on the Escanear screen.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>It says «Producto nuevo» for something the store already has</summary><div class="body">
-      <p>Some products in Eleventa use a word code instead of the barcode (for example <code>BOLSA DE KILO</code>), or the package barcode is different from Eleventa's. Close the new-product window, go to Inventario and search the product by name instead.</p></div></details>
-    <details class="fix"><summary>No «Ventas» tab / app looks old</summary><div class="body">
-      <p>Tap «Actualizar» at the top. If it's still old, close the app completely (swipe it away) and open it again. It updates itself whenever there's internet.</p></div></details>
-    <details class="fix"><summary>Top says «Sin conexión con la tienda» or «N en espera»</summary><div class="body">
-      <p>The phone has no internet right now. Counts are saved on the phone and sent automatically when it reconnects. Nothing is lost. If it never reconnects, see «Phone doesn't connect to the store» below.</p></div></details>
-    <details class="fix"><summary>Two phones show different numbers</summary><div class="body">
-      <p>Wait about 10 seconds, or tap «Actualizar». Both phones get the latest count. If two people count the same product, the last one saved wins, and each product shows who counted it.</p></div></details>
+    <details class="fix"><summary><span>Dice «Producto nuevo» en algo que la tienda ya tiene<span class="en">It says «Producto nuevo» for something the store already has</span></span></summary><div class="body">
+      <p>Algunos productos en Eleventa usan una palabra como código en vez del código de barras (por ejemplo <code>BOLSA DE KILO</code>), o el código del empaque es distinto al de Eleventa. Cierra la ventana, ve a Inventario y búscalo por nombre.
+        <span class="en">Some products in Eleventa use a word as their code instead of the barcode (e.g. <code>BOLSA DE KILO</code>), or the package barcode differs from Eleventa's. Close the window, go to Inventario and search it by name.</span></p></div></details>
+    <details class="fix"><summary><span>No aparece «Ventas» / la app se ve vieja<span class="en">No «Ventas» tab / app looks old</span></span></summary><div class="body">
+      <p>Toca «Actualizar» arriba. Si sigue igual, cierra la app por completo y ábrela otra vez. Se actualiza sola cuando hay internet.
+        <span class="en">Tap «Actualizar» at the top. If it's still old, close the app completely and open it again. It updates itself when there's internet.</span></p></div></details>
+    <details class="fix"><summary><span>Arriba dice «Sin conexión con la tienda» o «N en espera»<span class="en">Top says «Sin conexión con la tienda» or «N en espera»</span></span></summary><div class="body">
+      <p>El teléfono no tiene internet ahorita. Los conteos se guardan en el teléfono y se mandan solos cuando vuelve la conexión. No se pierde nada.
+        <span class="en">The phone has no internet right now. Counts are saved on the phone and sent automatically when it reconnects. Nothing is lost.</span></p></div></details>
+    <details class="fix"><summary><span>Dos teléfonos muestran números distintos<span class="en">Two phones show different numbers</span></span></summary><div class="body">
+      <p>Espera unos 10 segundos o toca «Actualizar». Si dos personas cuentan el mismo producto, se queda el último que se guardó, y cada producto muestra quién lo contó.
+        <span class="en">Wait about 10 seconds or tap «Actualizar». If two people count the same product, the last one saved wins, and each product shows who counted it.</span></p></div></details>
 
-    <h3 style="margin-top:14px">Computer and Eleventa</h3>
-    <details class="fix"><summary>Windows blocks the program</summary><div class="body">
+    <h3 class="grp">Computadora y Eleventa<span class="en">Computer and Eleventa</span></h3>
+    <details class="fix"><summary><span>Windows bloquea el programa<span class="en">Windows blocks the program</span></span></summary><div class="body">
       <ul class="plain">
-        <li>«Windows protected your PC» → «More info» → «Run anyway».</li>
-        <li>If the antivirus deletes it, mark it as allowed in the antivirus and download it again.</li>
+        <li>«Windows protegió su PC» → «Más información» → «Ejecutar de todas formas».<span class="en">«Windows protected your PC» → «More info» → «Run anyway».</span></li>
+        <li>Si el antivirus lo borra, márcalo como permitido y descárgalo otra vez.<span class="en">If the antivirus deletes it, mark it as allowed and download it again.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>The program opened but no page appeared</summary><div class="body">
-      <p>Open Chrome or Edge on that computer and go to <code>http://localhost:8080/pc</code>. A black window that says the program is running must stay open; closing it closes the program.</p></div></details>
-    <details class="fix"><summary>Phone doesn't connect to the store after scanning the QR</summary><div class="body">
+    <details class="fix"><summary><span>El programa abrió pero no salió la página<span class="en">The program opened but no page appeared</span></span></summary><div class="body">
+      <p>Abre Chrome o Edge en esa computadora y entra a <code>http://localhost:8080/pc</code>. La ventana negra del programa debe quedarse abierta: si la cierras, se cierra el programa.
+        <span class="en">Open Chrome or Edge on that computer and go to <code>http://localhost:8080/pc</code>. The program's black window must stay open: closing it closes the program.</span></p></div></details>
+    <details class="fix"><summary><span>El teléfono no se conecta después de escanear el QR<span class="en">Phone doesn't connect after scanning the QR</span></span></summary><div class="body">
       <ul class="plain">
-        <li>Open the <a href="#before">check link</a>. If it shows an error, the online service is down: send a screenshot to MX Studio.</li>
-        <li>Make sure the computer has internet.</li>
-        <li>Scan the QR again from the program, with the phone's normal camera.</li>
+        <li>Abre el <a href="#before">enlace de prueba</a>. Si sale error, el servicio en línea no está funcionando: manda captura a MX Studio.<span class="en">Open the <a href="#before">check link</a>. If it shows an error, the online service is down: send a screenshot to MX Studio.</span></li>
+        <li>Revisa que la computadora tenga internet.<span class="en">Make sure the computer has internet.</span></li>
+        <li>Escanea el QR otra vez con la cámara normal del teléfono.<span class="en">Scan the QR again with the phone's normal camera.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>«Probar conexión con Eleventa» fails</summary><div class="body">
+    <details class="fix"><summary><span>Falla «Probar conexión con Eleventa»<span class="en">«Probar conexión con Eleventa» fails</span></span></summary><div class="body">
       <ul class="plain">
-        <li><b style="display:inline">Wrong computer:</b> this is probably the second register. Install the program on the main register (where the database is) and test there.</li>
-        <li><b style="display:inline">Eleventa closed:</b> open Eleventa, then test again.</li>
-        <li><b style="display:inline">Password or location:</b> some installations change the database password or folder. Under «Opciones avanzadas», enter the path to the <code>.FDB</code> file and the password if you know them.</li>
-        <li>Either way, take a screenshot of the result and send it to MX Studio.</li>
+        <li><b>Computadora equivocada:</b> probablemente es la segunda caja. Instala el programa en la caja principal y prueba ahí.<span class="en"><b>Wrong computer:</b> probably the second register. Install the program on the main register and test there.</span></li>
+        <li><b>Eleventa cerrado:</b> abre Eleventa y prueba otra vez.<span class="en"><b>Eleventa closed:</b> open Eleventa and test again.</span></li>
+        <li><b>Contraseña o ubicación:</b> algunas instalaciones cambian la contraseña o carpeta de la base. En «Opciones avanzadas», pon la ruta del archivo <code>.FDB</code> y la contraseña si las sabes.<span class="en"><b>Password or location:</b> some installations change the database password or folder. Under «Opciones avanzadas», enter the <code>.FDB</code> file path and password if you know them.</span></li>
+        <li>En todo caso, toma captura del resultado y mándala a MX Studio.<span class="en">Either way, screenshot the result and send it to MX Studio.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>Ventas shows no sales</summary><div class="body">
+    <details class="fix"><summary><span>Ventas no muestra nada<span class="en">Ventas shows no sales</span></span></summary><div class="body">
       <ul class="plain">
-        <li>The Eleventa computer must be on, with internet and the program open.</li>
-        <li>In the program, «Pasar ventas a la app automáticamente» must be on.</li>
-        <li>«Desde que llegué» only counts sales after you tapped «Llegué». Check «Hoy» for the full day.</li>
-        <li>New sales take up to about a minute to show up.</li>
+        <li>La computadora de Eleventa debe estar prendida, con internet y el programa abierto.<span class="en">The Eleventa computer must be on, with internet and the program open.</span></li>
+        <li>En el programa, «Pasar ventas a la app automáticamente» debe estar activado.<span class="en">In the program, «Pasar ventas a la app automáticamente» must be on.</span></li>
+        <li>«Desde que llegué» solo cuenta ventas después de tocar «Llegué». Revisa «Hoy» para todo el día.<span class="en">«Desde que llegué» only counts sales after tapping «Llegué». Check «Hoy» for the whole day.</span></li>
+        <li>Las ventas nuevas tardan hasta un minuto en aparecer.<span class="en">New sales take up to about a minute to show up.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>The money in Ventas doesn't match the register</summary><div class="body">
-      <p>The app estimates money as pieces × the price from the Eleventa list it was loaded with. Discounts, price changes, and products sold by weight won't match exactly. Eleventa's cash report is the official total.</p></div></details>
-    <details class="fix"><summary>«Pasar a Eleventa» typed in the wrong place or wrong numbers</summary><div class="body">
+    <details class="fix"><summary><span>El dinero en Ventas no coincide con la caja<span class="en">Money in Ventas doesn't match the register</span></span></summary><div class="body">
+      <p>La app calcula el dinero como piezas × el precio de la lista de Eleventa con que se cargó. Descuentos, cambios de precio y productos a granel no coinciden exacto. El corte de caja de Eleventa es el total oficial.
+        <span class="en">The app estimates money as pieces × the price from the Eleventa list it was loaded with. Discounts, price changes and products sold by weight won't match exactly. Eleventa's cash report is the official total.</span></p></div></details>
+    <details class="fix"><summary><span>«Pasar a Eleventa» escribió en el lugar o número equivocado<span class="en">«Pasar a Eleventa» typed in the wrong place or wrong numbers</span></span></summary><div class="body">
       <ul class="plain">
-        <li>Eleventa's inventory screen must be open and in front before clicking. The program stops if Eleventa isn't in front.</li>
-        <li>Don't touch the mouse or keyboard while it types.</li>
-        <li>Try one product first. If the numbers land in the wrong field, take a photo of Eleventa's inventory screen and send it to MX Studio so the typing can be adjusted.</li>
+        <li>La pantalla de inventario de Eleventa debe estar abierta y al frente antes de tocar el botón. El programa se detiene si Eleventa no está al frente.<span class="en">Eleventa's inventory screen must be open and in front before clicking. The program stops if Eleventa isn't in front.</span></li>
+        <li>No toques el mouse ni el teclado mientras escribe.<span class="en">Don't touch the mouse or keyboard while it types.</span></li>
+        <li>Prueba primero con un producto. Si los números caen en el lugar equivocado, toma foto de la pantalla de inventario de Eleventa y mándala a MX Studio para ajustar el tecleo.<span class="en">Try one product first. If numbers land in the wrong field, photograph Eleventa's inventory screen and send it to MX Studio so the typing can be adjusted.</span></li>
       </ul></div></details>
-    <details class="fix"><summary>Returns or cancelled sales don't show</summary><div class="body">
-      <p>Not supported yet. A returned item isn't added back in the app. Recount that product on the phone if needed.</p></div></details>
+    <details class="fix"><summary><span>Las devoluciones o ventas canceladas no aparecen<span class="en">Returns or cancelled sales don't show</span></span></summary><div class="body">
+      <p>Todavía no. Un producto devuelto no se suma de nuevo en la app. Si hace falta, vuelve a contar ese producto en el teléfono.
+        <span class="en">Not supported yet. A returned item isn't added back in the app. Recount that product on the phone if needed.</span></p></div></details>
   </section>
 
   <section class="card">
-    <h2>Quick links</h2>
-    <a class="btn alt" href="https://go.myjefetech.app/inventario/">Inventory app</a>
-    <a class="btn alt" href="https://go.myjefetech.app/pie-de-la-cuesta/">Setup page for the owner (Spanish / English)</a>
+    <h2>Enlaces rápidos<span class="en">Quick links</span></h2>
+    <a class="btn alt" href="https://go.myjefetech.app/inventario/">App de inventario<span class="en">Inventory app</span></a>
+    <a class="btn alt" href="https://go.myjefetech.app/pie-de-la-cuesta/">Página de instalación para el dueño<span class="en">Setup page for the owner</span></a>
   </section>
 
   <footer>MX Studio · Brian</footer>
