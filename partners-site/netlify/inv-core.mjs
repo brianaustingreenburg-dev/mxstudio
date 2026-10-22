@@ -22,6 +22,24 @@ async function docKey(k) {
 }
 const clean = (v, n) => String(v ?? "").replace(/[\u0000-\u001f]/g, " ").trim().slice(0, n);
 const num = v => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.max(0, Math.min(1e7, n)) : 0; };
+// Register sales are kept per day (Mexico City time) so phones can see what sold today / since the owner arrived.
+const DAY_FMT = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Mexico_City", year: "numeric", month: "2-digit", day: "2-digit" });
+const dayOf = ms => DAY_FMT.format(new Date(ms));
+function addSale(doc, code, n) {
+  const now = Date.now(), d = dayOf(now);
+  doc.sales = doc.sales || {};
+  (doc.sales[d] = doc.sales[d] || []).push([now, code, n]);
+  const keep = Object.keys(doc.sales).sort().slice(-3); for (const k of Object.keys(doc.sales)) if (!keep.includes(k)) delete doc.sales[k];
+}
+function salesSummary(doc, from) {
+  const now = Date.now(), today = dayOf(now), all = Object.values(doc.sales || {}).flat();
+  const agg = list => { const m = {}; let pieces = 0, last = 0, first = 0;
+    for (const [t, c, n] of list) { m[c] = (m[c] || 0) + n; pieces += n; if (t > last) last = t; if (!first || t < first) first = t; }
+    return { lines: list.length, pieces, first: first || null, last: last || null, items: Object.entries(m).sort((a, b) => b[1] - a[1]) }; };
+  const todayL = all.filter(e => dayOf(e[0]) === today), sinceL = from ? all.filter(e => e[0] >= from) : todayL;
+  const names = {}; for (const [, c] of [...todayL, ...sinceL]) { const p = doc.products[c]; if (p) names[c] = p.name; }
+  return { now, day: today, from: from || null, today: agg(todayL), since: agg(sinceL), names };
+}
 const empty = () => ({ rev: 0, products: {}, ops: [], created: Date.now() });
 
 function applyOp(doc, op, rev) {
@@ -47,6 +65,7 @@ function applyOp(doc, op, rev) {
   } else if (op.t === "sale") {   // sold at the register: Eleventa already lowered its own stock
     const n = num(op.val);
     p.qty = Math.max(0, (p.qty || 0) - n);
+    if (n > 0) addSale(doc, code, n);
     if (p.eleQty !== null && p.eleQty !== undefined) p.eleQty = Math.max(0, p.eleQty - n);
     if (op.name && p.name === code) p.name = clean(op.name, 90);
   } else return { ok: false, error: "type" };
@@ -86,6 +105,8 @@ export async function handle(req, store) {
   if (req.method === "GET") {
     const cur = await store.get(key); const doc = cur && cur.data ? cur.data : empty();
     const list = Object.values(doc.products || {});
+    if (url.searchParams.get("sales") === "1")
+      return json(salesSummary(doc, Number(url.searchParams.get("from") || 0) || 0));
     if (url.searchParams.get("pending") === "1")
       return json({ rev: doc.rev || 0, pending: list.filter(p => !p.del && (p.qty || 0) !== p.eleQty).map(pub) });
     const since = Number(url.searchParams.get("since") || 0);
@@ -124,7 +145,7 @@ export async function handle(req, store) {
       return json({ ok: true, rev: doc.rev });
     }
     if (t === "reset") {
-      const { doc } = await mutate(store, key, (doc, rev) => { for (const p of Object.values(doc.products)) { p.del = true; p.rev = rev; } });
+      const { doc } = await mutate(store, key, (doc, rev) => { for (const p of Object.values(doc.products)) { p.del = true; p.rev = rev; } doc.sales = {}; });
       return json({ ok: true, rev: doc.rev });
     }
   } catch (e) {
