@@ -31,6 +31,7 @@ jobs:
           cp -R jefetech-app out/app
           cp -R escaner out/escaner
           cp -R inventario out/inventario
+          cp -R pie-de-la-cuesta out/pie-de-la-cuesta
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects

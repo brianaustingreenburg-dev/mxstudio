@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inventario · Pie de la Cuesta</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1C46B4">
+<meta property="og:title" content="Inventario · Mercado Pie de la Cuesta">
+<meta property="og:description" content="Cómo instalar la app en tu teléfono y conectarla con Eleventa.">
+<meta property="og:image" content="https://go.myjefetech.app/inventario/icon-512.png">
+<link rel="icon" href="../inventario/icon-192.png">
+<style>
+:root{--bg:#F3F5F9;--card:#fff;--ink:#141A2B;--muted:#5B6478;--line:#E1E5EE;--accent:#1C46B4;--accent-soft:#E7EDFB;--ok:#1E8A4C;--warn:#A15C00;--warn-soft:#FFF4E2}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1220;--card:#171C2E;--ink:#EEF1F8;--muted:#9AA3B8;--line:#2A3149;--accent:#6E93F5;--accent-soft:#1E2A4D;--ok:#4CC27F;--warn:#F2B04C;--warn-soft:#2E2412}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:8px 0 16px}
+header img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:#fff}
+header b{display:block;font-size:1.1rem;line-height:1.2}
+header span{color:var(--muted);font-size:.9rem}
+.lang{margin-left:auto;display:flex;background:var(--line);border-radius:10px;padding:3px}
+.lang button{border:0;background:transparent;color:var(--muted);font-weight:700;padding:6px 12px;border-radius:8px;font-size:.85rem}
+.lang button[aria-pressed=true]{background:var(--card);color:var(--ink)}
+h1{font-size:1.6rem;line-height:1.2;margin:4px 0 6px}
+.lead{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+h2{font-size:1.2rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+ol{list-style:none;margin:0;padding:0;counter-reset:s}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li:last-child{padding-bottom:0}
+ol li::before{content:counter(s);position:absolute;left:0;top:-1px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem}
+li b{display:block}
+li p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:1.05rem;border-radius:14px;padding:15px 18px;margin:10px 0 2px}
+.btn.alt{background:var(--accent-soft);color:var(--accent)}
+.note{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.os{display:grid;gap:8px;margin-top:8px}
+.os div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.92rem}
+.os strong{display:block}
+.small{color:var(--muted);font-size:.85rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
+[data-l]{display:none}
+html[lang=es] [data-l=es],html[lang=en] [data-l=en]{display:revert}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.webp" alt="MX Studio">
+    <div><b>Mercado Pie de la Cuesta</b><span>Inventario · MX Studio</span></div>
+    <div class="lang"><button id="bes" aria-pressed="true">ES</button><button id="ben" aria-pressed="false">EN</button></div>
+  </header>
+
+  <h1 data-l="es">Tu inventario en el teléfono</h1>
+  <h1 data-l="en">Your inventory on your phone</h1>
+  <p class="lead" data-l="es">Ya trae tus 2,438 productos de Eleventa, por departamento. Escaneas, pones la cantidad y listo.</p>
+  <p class="lead" data-l="en">It already has your 2,438 products from Eleventa, by department. Scan, enter the amount, done.</p>
+
+  <section class="card">
+    <span class="tag" data-l="es">Paso 1 · Teléfono</span><span class="tag" data-l="en">Step 1 · Phone</span>
+    <h2 data-l="es">Instala la app en tu teléfono</h2><h2 data-l="en">Install the app on your phone</h2>
+    <p class="sub" data-l="es">Toma 1 minuto. Hazlo en cada teléfono que vaya a contar.</p>
+    <p class="sub" data-l="en">Takes 1 minute. Do it on every phone that will count.</p>
+    <ol>
+      <li><b data-l="es">Abre la app</b><b data-l="en">Open the app</b>
+        <a class="btn" href="https://go.myjefetech.app/inventario/"><span data-l="es">Abrir Inventario</span><span data-l="en">Open Inventory</span></a>
+        <p data-l="es">Si lo abriste desde WhatsApp, toca ⋮ o el ícono de compartir y elige «Abrir en Chrome» o «Abrir en Safari».</p>
+        <p data-l="en">If you opened it from WhatsApp, tap ⋮ or the share icon and choose «Open in Chrome» or «Open in Safari».</p></li>
+      <li><b data-l="es">Ponla en tu pantalla de inicio</b><b data-l="en">Put it on your home screen</b>
+        <div class="os">
+          <div><strong>iPhone (Safari)</strong><span data-l="es">Toca Compartir ⬆️ → «Agregar a inicio» → Agregar.</span><span data-l="en">Tap Share ⬆️ → «Add to Home Screen» → Add.</span></div>
+          <div><strong>Android (Chrome)</strong><span data-l="es">Toca ⋮ → «Instalar app» o «Agregar a la pantalla principal».</span><span data-l="en">Tap ⋮ → «Install app» or «Add to Home screen».</span></div>
+        </div></li>
+      <li><b data-l="es">Escanea tu primer producto</b><b data-l="en">Scan your first product</b>
+        <p data-l="es">Toca «Escanear producto» y permite la cámara. Sale el producto, pones la cantidad y tocas Guardar.</p>
+        <p data-l="en">Tap «Escanear producto» and allow the camera. The product shows up, you enter the amount and tap Save.</p></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <span class="tag" data-l="es">Paso 2 · Computadora de la caja</span><span class="tag" data-l="en">Step 2 · Register computer</span>
+    <h2 data-l="es">Conéctala con Eleventa</h2><h2 data-l="en">Connect it to Eleventa</h2>
+    <p class="sub" data-l="es">Una sola vez, en la computadora donde está Eleventa. Así lo que se vende en la caja baja solo en la app, y lo que cuentas en el teléfono pasa a Eleventa.</p>
+    <p class="sub" data-l="en">Only once, on the computer that runs Eleventa. Then register sales come off the app on their own, and what you count on the phone goes into Eleventa.</p>
+    <ol>
+      <li><b data-l="es">En esa computadora, descarga el programa</b><b data-l="en">On that computer, download the program</b>
+        <a class="btn" href="MX-Studio-Inventario.exe" download><span data-l="es">Descargar programa (47 MB)</span><span data-l="en">Download program (47 MB)</span></a>
+        <p class="small" data-l="es">Para Windows. Abre esta misma página en la computadora para descargarlo.</p>
+        <p class="small" data-l="en">For Windows. Open this same page on the computer to download it.</p></li>
+      <li><b data-l="es">Ábrelo</b><b data-l="en">Open it</b>
+        <p data-l="es">Si Windows dice «Windows protegió su PC», toca «Más información» → «Ejecutar de todas formas». Se abre una página del programa.</p>
+        <p data-l="en">If Windows says «Windows protected your PC», tap «More info» → «Run anyway». A program page opens.</p></li>
+      <li><b data-l="es">Conecta cada teléfono</b><b data-l="en">Connect each phone</b>
+        <p data-l="es">En «Teléfonos de la tienda» aparece un código QR. Escanéalo con la cámara de cada teléfono. La app abre ya conectada y dice «Conectado con la tienda».</p>
+        <p data-l="en">Under «Teléfonos de la tienda» there's a QR code. Scan it with each phone's camera. The app opens already connected and says «Conectado con la tienda».</p></li>
+      <li><b data-l="es">Activa las ventas de la caja</b><b data-l="en">Turn on register sales</b>
+        <p data-l="es">Toca «Probar conexión con Eleventa». Si sale OK, activa «Pasar ventas a la app automáticamente». Mándale una captura de esa pantalla a Brian.</p>
+        <p data-l="en">Tap «Probar conexión con Eleventa». If it says OK, turn on «Pasar ventas a la app automáticamente». Send Brian a screenshot of that screen.</p></li>
+      <li><b data-l="es">Pasar conteos a Eleventa</b><b data-l="en">Send counts to Eleventa</b>
+        <p data-l="es">Abre la pantalla de inventario de Eleventa y toca «Pasar a Eleventa» en el programa. No muevas el mouse mientras escribe.</p>
+        <p data-l="en">Open Eleventa's inventory screen and tap «Pasar a Eleventa» in the program. Don't touch the mouse while it types.</p></li>
+    </ol>
+    <div class="note" data-l="es">Deja el programa abierto mientras la tienda esté abierta.</div>
+    <div class="note" data-l="en">Leave the program open while the store is open.</div>
+  </section>
+
+  <footer><span data-l="es">¿Dudas? Escríbele a Brian · MX Studio</span><span data-l="en">Questions? Message Brian · MX Studio</span></footer>
+</div>
+<script>
+(function(){var h=document.documentElement,a=document.getElementById("bes"),b=document.getElementById("ben");
+function set(l){h.lang=l;a.setAttribute("aria-pressed",l==="es");b.setAttribute("aria-pressed",l==="en");}
+a.onclick=function(){set("es")};b.onclick=function(){set("en")};})();
+</script>
+</body>
+</html>
