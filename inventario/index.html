@@ -282,7 +282,7 @@ const T = {
   saved:"Guardado", savedQueue:"Guardado en el teléfono. Se envía al volver la conexión.",
   logSet:"Conteo", logIn:"Entrada", logAdj:"Salida", logImp:"Eleventa", logNew:"Nuevo",
   today:"hoy", tomorrow:"mañana", expired:"caducado", daysLeft:"días",
-  scanTitle:"Escanear producto", desc:"Descripción", editT:"Editar producto", edit:"Editar", del:"Eliminar", delSure:"Toca otra vez para eliminar", deleted:"Eliminado", catT:"Categoría", catGuess:"La app la sugirió; tócala para cambiarla.", looking:"Buscando la descripción…", notInDb:"No la encontré. Escríbela una vez y la app la recuerda.", found:"Descripción encontrada", done:"Listo", pieces:"Piezas", dl:"Descargar lista (Excel)", dlH:"Guarda tu lista con descripción, código y cantidad.", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
+  scanTitle:"Escanear producto", desc:"Descripción", syT:"Conexión con la tienda", syOn:"Conectado con la tienda", syOff:"Sin conexión con la tienda", syWait:"en espera", syHow:"En la computadora de la tienda, abre el programa de MX Studio y escanea su código QR con este teléfono.", syWho:"Tu nombre", syWhoH:"Aparece en lo que cuentas.", syDisc:"Desconectar este teléfono", syDiscSure:"Toca otra vez para desconectar", syPend:"Por pasar a Eleventa", syDone:"En Eleventa", syJoined:"Conectado con la tienda", syShared:"Lo que cuentas aquí lo ven todos los teléfonos de la tienda y pasa a Eleventa desde la computadora.", syResetH:"Borra la lista de toda la tienda (todos los teléfonos).", syLocal:"Este teléfono trabaja solo. Conéctalo a la tienda para compartir la lista y pasarla a Eleventa.", editT:"Editar producto", edit:"Editar", del:"Eliminar", delSure:"Toca otra vez para eliminar", deleted:"Eliminado", catT:"Categoría", catGuess:"La app la sugirió; tócala para cambiarla.", looking:"Buscando la descripción…", notInDb:"No la encontré. Escríbela una vez y la app la recuerda.", found:"Descripción encontrada", done:"Listo", pieces:"Piezas", dl:"Descargar lista (Excel)", dlH:"Guarda tu lista con descripción, código y cantidad.", camMode:"Al escanear", mCount:"Contar", mPlus:"+1 por escaneo", camOpen:"Abrir cámara", camNo:"No pude abrir la cámara. Permite el acceso a la cámara para este sitio, o escribe el código abajo.", camHint:"Apunta al código de barras. Se lee solo.", scanStore:"¿En qué tienda estás?", barcode:"Foto del código de barras", barcodeH:"Apunta la cámara al código y toma la foto",
   manual:"O escribe el código", find:"Buscar", quick:"Prueba rápida: toca un producto", reading:"Leyendo código…",
   notRead:"No se pudo leer el código. Acércate más, con buena luz, o escríbelo abajo.",
   notFound:"Este código no está en tu lista", addNew:"Agregar producto", name:"Nombre", price:"Precio", qty:"Cantidad", dept:"Departamento", min:"Mínimo",
@@ -309,7 +309,7 @@ const T = {
   saved:"Saved", savedQueue:"Saved on this phone. It sends when the connection is back.",
   logSet:"Count", logIn:"Received", logAdj:"Removed", logImp:"Eleventa", logNew:"New",
   today:"today", tomorrow:"tomorrow", expired:"expired", daysLeft:"days",
-  scanTitle:"Scan a product", desc:"Description", editT:"Edit product", edit:"Edit", del:"Delete", delSure:"Tap again to delete", deleted:"Deleted", catT:"Category", catGuess:"The app suggested it; tap to change it.", looking:"Looking up the description…", notInDb:"Not found. Type it once and the app remembers it.", found:"Description found", done:"Done", pieces:"Pieces", dl:"Download list (Excel)", dlH:"Saves your list with description, code and quantity.", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
+  scanTitle:"Scan a product", desc:"Description", syT:"Store connection", syOn:"Connected to the store", syOff:"Not connected to the store", syWait:"waiting", syHow:"On the store computer, open the MX Studio program and scan its QR code with this phone.", syWho:"Your name", syWhoH:"Shows on what you count.", syDisc:"Disconnect this phone", syDiscSure:"Tap again to disconnect", syPend:"To send to Eleventa", syDone:"In Eleventa", syJoined:"Connected to the store", syShared:"What you count here is seen by every phone in the store and goes to Eleventa from the computer.", syResetH:"Erases the list for the whole store (all phones).", syLocal:"This phone works on its own. Connect it to the store to share the list and send it to Eleventa.", editT:"Edit product", edit:"Edit", del:"Delete", delSure:"Tap again to delete", deleted:"Deleted", catT:"Category", catGuess:"The app suggested it; tap to change it.", looking:"Looking up the description…", notInDb:"Not found. Type it once and the app remembers it.", found:"Description found", done:"Done", pieces:"Pieces", dl:"Download list (Excel)", dlH:"Saves your list with description, code and quantity.", camMode:"When scanning", mCount:"Count", mPlus:"+1 per scan", camOpen:"Open camera", camNo:"I couldn't open the camera. Allow camera access for this site, or type the code below.", camHint:"Point at the barcode. It reads by itself.", scanStore:"Which store are you in?", barcode:"Photo of the barcode", barcodeH:"Point the camera at the code and take the photo",
   manual:"Or type the code", find:"Find", quick:"Quick test: tap a product", reading:"Reading code…",
   notRead:"Couldn't read the code. Move closer with good light, or type it below.",
   notFound:"This code isn't on your list", addNew:"Add product", name:"Name", price:"Price", qty:"Quantity", dept:"Department", min:"Minimum",
@@ -387,6 +387,7 @@ function render(){
 function header(){
   return `<div class="toprow"><div class="brand"><div class="tile" aria-hidden="true"></div><div><b>${esc(STORE_NAME)}</b><span>${t("tag")}</span></div></div>
     <div class="chips"><button class="chip refresh" data-act="refresh">${I.refresh}<span>${t("refresh")}</span></button>
+    ${syncOn()?`<span class="chip ${SYNC.online?"":"off"}"><span class="dot"></span>${SYNC.online?t("syOn"):t("syOff")}${SYNC.queue.length?` · ${SYNC.queue.length} ${t("syWait")}`:""}</span>`:""}
     <div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">ES</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">EN</button></div></div></div>`;
 }
 function thumb(p){ return `<div class="thumb t-${esc(p.cat||"")}" aria-hidden="true">${esc(initials(p.brand||p.name))}</div>`; }
@@ -429,7 +430,7 @@ function listHTML(){
   return keys.map(c=>`<div class="cathead"><span>${esc(catName(c))}</span><span class="small muted">${groups[c].length}</span></div>`+rowsHTML(groups[c])).join("");
 }
 function rowsHTML(rows){
-  return `<div class="tapl">${rows.map(p=>`<button class="tapr" data-act="pad" data-id="${p.id}">${thumb(p)}<span class="grow"><span class="name">${esc(p.name)}</span><span class="small muted mono">${esc(p.code||"")}</span></span><span class="tapq ${(p.s1||0)===0?"out":"ok"}">${p.s1||0}</span></button>`).join("")}</div>`;
+  return `<div class="tapl">${rows.map(p=>`<button class="tapr" data-act="pad" data-id="${p.id}">${thumb(p)}<span class="grow"><span class="name">${esc(p.name)}</span><span class="small muted mono">${esc(p.code||"")}</span>${syncOn()&&p.code?`<span class="who" style="color:${p.eleQty!=null&&p.eleQty===(p.s1||0)?"var(--ok)":"var(--warn)"}">${p.eleQty!=null&&p.eleQty===(p.s1||0)?"✓ "+t("syDone"):"• "+t("syPend")}${p.by?` · ${esc(p.by)}`:""}</span>`:""}</span><span class="tapq ${(p.s1||0)===0?"out":"ok"}">${p.s1||0}</span></button>`).join("")}</div>`;
 }
 
 /* ---------- keypad ---------- */
@@ -522,6 +523,7 @@ function padSave(){
   const P=S.pad, p=S.products[P.id], k="s"+P.store, cur=p[k]||0, n=parseInt(P.val||"0",10)||0;
   const next = P.mode==="set" ? n : P.mode==="add" ? cur+n : Math.max(0,cur-n);
   p[k]=next; logIt(P.mode==="set"?"set":P.mode==="add"?"in":"adj", `${p.name}: ${cur} → ${next}`, P.store);
+  syncOp({t:"count", code:p.code, mode:P.mode, val:n});
   S.pad=null; tick("count"); changed(); toast(`${p.name} · ${S.offline?t("savedQueue"):t("saved")}`);
 }
 
@@ -758,10 +760,19 @@ function tick(id){ if (!S.setup.done[id]){ S.setup.done[id]=true; save(); } }
 
 /* ---------- settings ---------- */
 function viewSet(){
-  return `<h2>${t("set")}</h2><section class="card">
+  const P=SYNC.pair;
+  return `<h2>${t("set")}</h2>
+  <section class="card"><h3>${t("syT")}</h3>
+   ${syncOn()?`<span class="chip ${SYNC.online?"":"off"}" style="align-self:flex-start"><span class="dot"></span>${SYNC.online?t("syOn"):t("syOff")}${P.n?` · ${esc(P.n)}`:""}</span>
+     <span class="small muted">${t("syShared")}</span>
+     <label class="field"><span class="label">${t("syWho")}</span><input class="f" id="syWho" value="${esc(P.who||"")}" placeholder="Ej. Lalo" autocomplete="name"><span class="small muted">${t("syWhoH")}</span></label>
+     <div><button class="btn ghost" data-act="syDisc" style="color:var(--bad)">${S.discArm?t("syDiscSure"):t("syDisc")}</button></div>`
+   :`<span class="small muted">${t("syLocal")}</span><span class="small">${t("syHow")}</span>`}
+  </section>
+  <section class="card">
    <div class="field"><span class="label">${t("lang")}</span><div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">Español</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">English</button></div></div>
    <div class="field"><span class="label">${t("dl")}</span><div><button class="btn" data-act="dlList" ${prodList().length?"":"disabled"}>${t("dl")}</button></div><span class="small muted">${t("dlH")}</span></div>
-   <div class="field"><span class="label">${t("reset")}</span><div><button class="btn" data-act="reset">${S.resetArm?t("resetConfirm"):t("reset")}</button></div><span class="small muted">${t("resetH")}</span></div>
+   <div class="field"><span class="label">${t("reset")}</span><div><button class="btn" data-act="reset">${S.resetArm?t("resetConfirm"):t("reset")}</button></div><span class="small muted">${syncOn()?t("syResetH"):t("resetH")}</span></div>
   </section>`;
 }
 
@@ -774,7 +785,7 @@ document.addEventListener("click", e=>{
     lang(){ S.lang=v; savePrefs(); }, role(){ S.role=v; savePrefs(); },
     store(){ S.store=v; if (v!=="all"){ S.scanStore=v; S.expStore=v; } savePrefs(); },
     toggleOffline(){ S.offline=!S.offline; if (!S.offline && S.pending){ toast(S.lang==="es"?`Conexión de vuelta: ${S.pending} cambios enviados`:`Back online: ${S.pending} changes sent`); S.pending=0; } },
-    refresh(){ doRefresh(); return "skip"; },
+    refresh(){ if (syncOn()){ syncFlush().then(()=>toast(t("refreshed"))); return "skip"; } doRefresh(); return "skip"; },
     filter(){ S.filter=v; }, cat(){ S.cat=v; },
     pad(){ openPad(id); },
     padClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('button[data-act="padClose"]')) return "skip"; S.pad=null; },
@@ -784,15 +795,17 @@ document.addEventListener("click", e=>{
     scanStore(){ S.scanStore=v; }, scanClear(){ S.scan=null; }, camMode(){ S.camMode=v; },
     editProd(){ const p=S.products[S.pad.id]; if (!p) return; S.newp={code:p.code||"", name:p.name, cat:p.cat||"otros", catPicked:true, looking:false, editId:S.pad.id, qty:p.s1||0}; S.pad=null; },
     delProd(){ const P=S.pad; if (!P.delArm){ P.delArm=true; setTimeout(()=>{ if (S.pad===P){ P.delArm=false; render(); } },4000); return; }
-      const p=S.products[P.id]; if (p){ logIt("adj", `${p.name} · ${t("deleted")}`, "1"); delete S.products[P.id]; } S.pad=null; changed(); toast(t("deleted")); },
+      const p=S.products[P.id]; if (p){ logIt("adj", `${p.name} · ${t("deleted")}`, "1"); if (p.code) syncOp({t:"delete", code:p.code}); delete S.products[P.id]; } S.pad=null; changed(); toast(t("deleted")); },
+    syDisc(){ if (!S.discArm){ S.discArm=true; setTimeout(()=>{ S.discArm=false; if (S.view==="set") render(); },4000); return; }
+      S.discArm=false; clearInterval(SYNC.timer); SYNC.pair=null; SYNC.queue=[]; saveQueue(); try{ localStorage.removeItem(PAIR_KEY); }catch(_){} },
     pickCat(){ if (S.newp){ S.newp.catPicked=true; setPickedCat(v); } return "skip"; },
     newClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('button[data-act="newClose"]')) return "skip"; S.newp=null; },
     newSave(){ const n=$("#nw_name").value.trim(); if (!n){ $("#nw_name").focus(); return "skip"; }
-      const q=Math.max(0,parseInt($("#nw_qty").value,10)||0), pid=uid("p"), code=S.newp.code;
+      const q=Math.max(0,parseInt($("#nw_qty").value,10)||0), code=S.newp.code, pid=syncOn()&&code?"c"+code:uid("p");
       const cat=S.newp.cat||guessCat(null,"",n);
-      if (S.newp.editId){ const p=S.products[S.newp.editId]; if (p){ const before=p.s1||0; p.name=n; p.brand=n.split(" ")[0]; p.cat=cat; p.dept=catName(cat); p.s1=q; if (p.code) rememberName(p.code,n,cat); logIt("set", `${n}: ${before} → ${q}`, "1"); } S.newp=null; changed(); toast(`${n} · ${t("saved")}`); return; }
+      if (S.newp.editId){ const p=S.products[S.newp.editId]; if (p){ const before=p.s1||0; p.name=n; p.brand=n.split(" ")[0]; p.cat=cat; p.dept=catName(cat); p.s1=q; if (p.code) rememberName(p.code,n,cat); logIt("set", `${n}: ${before} → ${q}`, "1"); if (p.code) syncOp({t:"upsert", code:p.code, name:n, cat, qty:q}); } S.newp=null; changed(); toast(`${n} · ${t("saved")}`); return; }
       S.products[pid]={name:n, brand:n.split(" ")[0], cat, dept:catName(cat), price:0, cost:0, min:0, s1:q, s2:0, code, exp:null};
-      rememberName(code, n, cat); logIt("new", `${n}: ${q}`, "1"); S.newp=null; changed(); toast(`${n} · ${q} ${t("units")}`); },
+      rememberName(code, n, cat); logIt("new", `${n}: ${q}`, "1"); if (code) syncOp({t:"upsert", code, name:n, cat, qty:q}); S.newp=null; changed(); toast(`${n} · ${q} ${t("units")}`); },
     manualFind(){ const c=$("#manualCode").value; if (c.trim()) showScanned(c); return "skip"; },
     quickScan(){ showScanned(S.products[id].code); return "skip"; },
     newProduct(){ const n=$("#np_name").value.trim(); if (!n){ $("#np_name").focus(); return "skip"; } const pid=uid("p"), cat=$("#np_cat").value, price=parseFloat($("#np_price").value)||0, q=parseInt($("#np_qty").value)||0;
@@ -808,7 +821,7 @@ document.addEventListener("click", e=>{
     tick(){ S.setup.done[v]=!S.setup.done[v]; save(); },
     untickAll(){ S.setup.done={}; save(); },
     reset(){ if (!S.resetArm){ S.resetArm=true; setTimeout(()=>{ S.resetArm=false; if (S.view==="set") render(); },4000); return; }
-      S.resetArm=false; S.products=seedProducts(); S.log=[]; S.lastImp=null; S.lastExp=null; S.pending=0; S.setup={prog:"eleventa",done:{}}; save(); toast(S.lang==="es"?"Demo reiniciada":"Demo reset"); }
+      S.resetArm=false; if (syncOn()) fetch(SYNC.pair.u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({k:SYNC.pair.k,t:"reset"})}).then(()=>{SYNC.rev=0; syncPull();}).catch(()=>{}); S.products=seedProducts(); S.log=[]; S.lastImp=null; S.lastExp=null; S.pending=0; S.setup={prog:"eleventa",done:{}}; save(); toast(S.lang==="es"?"Inventario borrado":"Inventory erased"); }
   };
   if (H[a]){ const r=H[a](); if (r!=="skip") render(); }
 });
@@ -846,10 +859,76 @@ async function doRefresh(){
 })();
 
 /* ---------- boot ---------- */
+/* ---------- shared store inventory (phones + store computer) ---------- */
+const PAIR_KEY="pdc_live_pair", QUEUE_KEY="pdc_live_queue";
+const SYNC={ pair:null, rev:0, queue:[], online:false, busy:false, timer:null };
+try{ SYNC.pair=JSON.parse(localStorage.getItem(PAIR_KEY)||"null"); SYNC.queue=JSON.parse(localStorage.getItem(QUEUE_KEY)||"[]"); }catch(_){}
+(function(){ const h=new URLSearchParams(location.hash.slice(1)); const k=h.get("k"), u=h.get("u");
+  if (k && /^[A-Za-z0-9_-]{20,64}$/.test(k) && u && /^(https:\/\/|http:\/\/localhost)/.test(u)){
+    const prev=SYNC.pair; SYNC.pair={k, u, n:h.get("n")||"", who:(prev&&prev.who)||""}; SYNC.rev=0; SYNC.fresh=true;
+    try{ localStorage.setItem(PAIR_KEY, JSON.stringify(SYNC.pair)); }catch(_){}
+    history.replaceState(null,"",location.pathname); } })();
+const syncOn=()=>!!(SYNC.pair&&SYNC.pair.k);
+function saveQueue(){ try{ localStorage.setItem(QUEUE_KEY, JSON.stringify(SYNC.queue)); }catch(_){} }
+function syncOp(op){ if (!syncOn()) return; op.opId=uid("o"); op.who=(SYNC.pair.who||""); op.ts=new Date().toISOString(); SYNC.queue.push(op); saveQueue(); syncFlush(); }
+function applyLocalOp(op){
+  const id="c"+op.code; let p=S.products[id];
+  if (op.t==="delete"){ delete S.products[id]; return; }
+  if (!p){ if (op.t!=="upsert") return; p=S.products[id]={name:op.name||op.code, brand:"", cat:op.cat||"otros", dept:"", price:0, cost:0, min:0, s1:0, s2:0, code:op.code, exp:null}; }
+  if (op.t==="upsert"){ if (op.name) p.name=op.name; if (op.cat) p.cat=op.cat; if (op.qty!==undefined) p.s1=op.qty; }
+  if (op.t==="count"){ const n=parseInt(op.val,10)||0, cur=p.s1||0; p.s1=op.mode==="add"?cur+n:op.mode==="sub"?Math.max(0,cur-n):n; }
+  p.by=op.who; p.at=op.ts;
+}
+function mergeRemote(list, full){
+  if (full){ const keep={}; S.products=keep; }
+  for (const r of list){
+    const id="c"+r.code;
+    if (r.del){ delete S.products[id]; continue; }
+    const p=S.products[id]||(S.products[id]={brand:"", dept:"", price:0, cost:0, min:0, s2:0, exp:null});
+    Object.assign(p,{name:r.name, brand:String(r.name||"").split(" ")[0], cat:r.cat||"otros", s1:r.qty||0, code:r.code, eleQty:r.eleQty, by:r.by||"", at:r.at||null});
+    if (r.code && r.name && r.name!==r.code) rememberName(r.code, r.name, r.cat);
+  }
+  SYNC.queue.forEach(applyLocalOp);   // my changes that haven't reached the store yet stay on screen
+}
+async function syncFlush(){
+  if (!syncOn() || SYNC.busy || !SYNC.queue.length) return;
+  SYNC.busy=true; const batch=SYNC.queue.slice(0,200);
+  try{ const r=await fetch(SYNC.pair.u, {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({k:SYNC.pair.k, ops:batch})});
+    if (!r.ok) throw new Error("http "+r.status);
+    SYNC.queue=SYNC.queue.slice(batch.length); saveQueue(); SYNC.online=true;
+  }catch(_){ SYNC.online=false; }
+  finally{ SYNC.busy=false; }
+  if (SYNC.online && SYNC.queue.length) return syncFlush();
+  syncPull();
+}
+async function syncPull(){
+  if (!syncOn()) return;
+  try{ const r=await fetch(`${SYNC.pair.u}?k=${encodeURIComponent(SYNC.pair.k)}&since=${SYNC.rev}`, {cache:"no-store"});
+    if (!r.ok) throw new Error("http "+r.status);
+    const j=await r.json(); SYNC.online=true;
+    if (j.full || j.products.length){ mergeRemote(j.products, j.full); save(); }
+    SYNC.rev=j.rev||SYNC.rev;
+  }catch(_){ SYNC.online=false; }
+  const ae=document.activeElement; if (!S.pad && !S.newp && !(ae && (ae.tagName==="INPUT"||ae.tagName==="SELECT"||ae.tagName==="TEXTAREA"))) render(); else updateHeader();
+}
+function updateHeader(){ const h=document.getElementById("top"); if (h) h.innerHTML=header(); }
+async function syncJoin(){
+  // first time on this phone: send what it already counted, then take the store's list
+  if (SYNC.fresh){ SYNC.fresh=false;
+    for (const p of Object.values(S.products)) if (p.code) SYNC.queue.push({t:"upsert", code:p.code, name:p.name, cat:p.cat, qty:p.s1||0, opId:uid("o"), who:SYNC.pair.who||"", ts:new Date().toISOString()});
+    S.products={}; saveQueue(); save(); }
+  await syncFlush(); if (!SYNC.queue.length) await syncPull();
+}
+function syncStart(){ clearInterval(SYNC.timer); if (!syncOn()) return; syncJoin(); SYNC.timer=setInterval(()=>{ if (!document.hidden){ if (SYNC.queue.length) syncFlush(); else syncPull(); } }, 6000); }
+document.addEventListener("visibilitychange", ()=>{ if (!document.hidden && syncOn()) syncFlush().then(()=>{}); });
+addEventListener("online", ()=>syncFlush());
+document.addEventListener("change", e=>{ if (e.target.id==="syWho" && SYNC.pair){ SYNC.pair.who=e.target.value.trim().slice(0,30); try{ localStorage.setItem(PAIR_KEY, JSON.stringify(SYNC.pair)); }catch(_){} toast(t("saved")); } });
+
 load(); S.scanStore=S.expStore=(S.store==="all"?"1":S.store);
 try{ const x=JSON.parse(sessionStorage.getItem("pdc_inv_view")||"null"); if (x){ sessionStorage.removeItem("pdc_inv_view"); S.view=x.view||S.view; setTimeout(()=>{ scrollTo(0,x.y||0); toast(t("refreshed")); },50); } }catch(e){}
 (function(){var last=0;addEventListener("scroll",function(){var t=document.getElementById("top");if(!t)return;var y=scrollY;if(innerWidth>=900||document.body.classList.contains("padopen")){t.classList.remove("hidebar");last=y;return;}if(y>last+4&&y>90)t.classList.add("hidebar");else if(y<last-4||y<90)t.classList.remove("hidebar");last=y;},{passive:true});})();
 render();
+syncStart();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792626661";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792629019";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
