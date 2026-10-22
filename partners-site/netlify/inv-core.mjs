@@ -4,7 +4,7 @@
 // Storage is passed in so the same logic runs on Netlify Blobs and in local tests.
 
 const KEY_RE = /^[A-Za-z0-9_-]{20,64}$/;
-const CODE_RE = /^[A-Za-z0-9.\-]{1,40}$/;
+const CODE_RE = /^[^\u0000-\u001f]{1,40}$/;   // Eleventa codes can have spaces and accents (e.g. "BOLSA DE KILO")
 const MAX_PRODUCTS = 6000;
 
 export const CORS = {
