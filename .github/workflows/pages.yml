@@ -73,6 +73,9 @@ jobs:
             echo "--- vercel"
             curl -s -o /dev/null -m 25 -w "home HTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/" || echo "curl failed"
             curl -s -m 25 -w "\napi HTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/api/inventario?k=checkdeploy_0123456789abcdef&since=0" | head -c 400 || echo "curl failed"
+            echo "--- live app version (before this publish)"
+            curl -s -m 20 -D - "https://go.myjefetech.app/inventario/version.txt?t=$(date +%s)" | grep -iE "^(age|x-cache|x-served-by|server|last-modified|date):|^[0-9]+" || echo "curl failed"
+            dig +short go.myjefetech.app 2>/dev/null | head -5
             echo "--- secrets present"
             echo "NETLIFY_AUTH_TOKEN=$HAS_NETLIFY VERCEL_TOKEN=$HAS_VERCEL"
           } > out/_diag/service.txt
