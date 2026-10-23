@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const { spawn, exec } = require("child_process");
 const https = require("https");
 
-const VERSION = "1.5.2";
+const VERSION = "1.5.3";
 const IS_PKG = !!process.pkg;
 const HOME = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const PUBLIC = path.join(__dirname, "public");
@@ -33,7 +33,7 @@ const DEFAULT_CONFIG = {
   autoSendTime: "",
   cloud: { enabled: true, url: "", appUrl: "https://go.myjefetech.app/inventario/", key: "", pullSec: 15 },
   tunnel: { enabled: true, relay: "https://ntfy.sh", overrideUrl: "" },
-  eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, joinCol: "", joinTable: "", joinKey: "", joinCode: "", joinName: "", everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
+  eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, probeCode: "", writeVerified: false, hasBalances: false, joinCol: "", joinTable: "", joinKey: "", joinCode: "", joinName: "", everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
   scanner: { enabled: false, channel: "", pageUrl: "https://go.myjefetech.app/escaner/", relay: "https://ntfy.sh", pressEnter: true, maxAgeSec: 20 },
   openBrowser: true,
   autoUpdate: true,
@@ -530,9 +530,41 @@ async function eleventaDiagnose() {
         Object.assign(E, { path: report.db, prodTable: pt, prodCodeCol, stockCol }); saveConfig();
       } else report.writeError = "Encontré la tabla de productos pero no su columna de existencia.";
     } else report.writeError = "No encontré la tabla de productos.";
+    // Eleventa MultiCaja keeps stock per warehouse; until we confirm where, phone counts are not written
+    E.hasBalances = report.tables.some(n => /^INVENTARIO_BALANCES$/i.test(n)); saveConfig();
+    report.writePaused = E.hasBalances && !E.writeVerified;
+    try { report.deep = await deepProbe(report); } catch (e) { report.deepError = e.message || String(e); }
   } catch (e) { report.error = e.message || String(e); }
   salesState.report = report; version++; broadcast();
   return report;
+}
+// Shows every inventory table's rows for one product, to see where Eleventa keeps the stock it displays.
+async function deepProbe(report) {
+  const E = config.eleventaDb, pt = report.prodTable, pcc = report.prodCodeCol;
+  if (!pt || !pcc) return null;
+  const code = String(E.probeCode || (writeState.recent[0] && writeState.recent[0].code) || ((report.stockSample || [])[0] || {}).code || "").trim();
+  if (!code) return null;
+  const val = v => v == null ? "∅" : Buffer.isBuffer(v) ? "[bin]" : typeof v === "function" ? "[blob]" : v instanceof Date ? v.toISOString().slice(0, 16) : String(v).trim().slice(0, 40);
+  const fmt = rows => rows.map(r => Object.entries(r).slice(0, 30).map(([k, v]) => k + "=" + val(v)).join(" · "));
+  const out = { code, tables: [] };
+  const prow = await fbQuery(report.db, `SELECT FIRST 1 * FROM "${pt}" WHERE "${pcc}" = ?`, [code]);
+  out.tables.push({ name: pt, rows: fmt(prow) });
+  const pid = prow[0] ? (prow[0].ID ?? prow[0].PRODUCTO_ID ?? null) : null;
+  out.productId = pid == null ? null : String(pid);
+  for (const tn of (report.invTables || [])) {
+    try {
+      const cols = (await fbQuery(report.db, "SELECT TRIM(RDB$FIELD_NAME) AS C FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = ? ORDER BY RDB$FIELD_POSITION", [tn])).map(r => String(r.C).trim());
+      const idc = cols.find(c => /^(PRODUCTO_ID|ID_PRODUCTO|PRODUCTOID)$/i.test(c));
+      const cdc = cols.find(c => /^(PRODUCTO_CODIGO|CODIGO|CODIGO_PRODUCTO)$/i.test(c));
+      const order = cols.includes("ID") ? ` ORDER BY "ID" DESC` : "";
+      let rows = [];
+      if (idc && pid != null) rows = await fbQuery(report.db, `SELECT FIRST 4 * FROM "${tn}" WHERE "${idc}" = ?${order}`, [pid]);
+      else if (cdc) rows = await fbQuery(report.db, `SELECT FIRST 4 * FROM "${tn}" WHERE "${cdc}" = ?${order}`, [code]);
+      else rows = await fbQuery(report.db, `SELECT FIRST 3 * FROM "${tn}"${order}`);
+      out.tables.push({ name: tn, cols, rows: fmt(rows), by: idc ? "producto" : cdc ? "código" : "muestra" });
+    } catch (e) { out.tables.push({ name: tn, error: e.message }); }
+  }
+  return out;
 }
 async function syncSales() {
   const E = config.eleventaDb;
@@ -594,6 +626,7 @@ async function writeCounts() {
   const E = config.eleventaDb;
   if (!E.enabled || !config.cloud.enabled || !E.path || !E.prodTable || !E.stockCol || writeState.running) return;
   if (job.state === "typing" || job.state === "countdown") return;
+  if (E.hasBalances && !E.writeVerified) { writeState.error = "En pausa: confirmando dónde guarda Eleventa la existencia (MX Studio)."; return; }
   const todo = [];
   for (const p of cloud.pending) {
     const ele = ackedEleQty(p.code, p.eleQty ?? null), qty = Number(p.qty) || 0;
@@ -707,7 +740,7 @@ const server = http.createServer(async (req, res) => {
       }
       if (P === "/api/admin/send" && req.method === "POST") { const b = await readBody(req); return send(res, 200, startSend({ test: !!b.test })); }
       if (P === "/api/admin/clear-pending" && req.method === "POST") { for (const p of Object.values(db.products)) if (p.dirty) { p.dirty = false; p.eleQty = p.qty; } logIt("clear", "Pendientes marcados como pasados", "PC"); changed(); return send(res, 200, { ok: true }); }
-      if (P === "/api/admin/eleventa-test" && req.method === "POST") { const r = await eleventaDiagnose(); return send(res, 200, r); }
+      if (P === "/api/admin/eleventa-test" && req.method === "POST") { const b = await readBody(req).catch(() => ({})); if (typeof b.code === "string") { config.eleventaDb.probeCode = b.code.trim().slice(0, 40); saveConfig(); } const r = await eleventaDiagnose(); return send(res, 200, r); }
       if (P === "/api/admin/sales" && req.method === "POST") {
         const b = await readBody(req);
         if (typeof b.enabled === "boolean") config.eleventaDb.enabled = b.enabled && !!config.eleventaDb.table;
