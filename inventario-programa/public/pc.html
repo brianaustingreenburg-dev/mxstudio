@@ -161,7 +161,7 @@ function salesCard(d){
     ${r.error?`<span class="small">${esc(r.error)}</span>`:""}
     ${r.db?`<span class="small"><b>${t("saDb")}:</b> <span class="mono">${esc(r.db)}</span></span>`:(r.files&&r.files.length?`<span class="small mono">${r.files.map(esc).join("<br>")}</span>`:"")}
     ${r.salesTable?`<span class="small"><b>${t("saTable")}:</b> <span class="mono">${esc(r.salesTable)}</span></span><span class="small"><b>${t("saCols")}:</b> <span class="mono">${esc((r.columns||[]).join(", "))}</span></span>`:""}
-    ${!r.salesTable&&r.tables&&r.tables.length?`<span class="small mono" style="max-height:120px;overflow:auto">${esc(r.tables.join(", "))}</span>`:""}
+    ${!r.ok&&r.tables&&r.tables.length?`<span class="small mono" style="max-height:120px;overflow:auto">${esc(r.tables.join(", "))}</span>`:""}
     ${r.sample&&r.sample.length?`<span class="label">${t("saSample")}</span><div class="list">${r.sample.map(x=>`<div class="item"><span class="mono small">${esc(x.code)}</span><div class="grow small">${esc(x.name||"")}</div><b class="num">${esc(x.qty)}</b></div>`).join("")}</div>`:""}
     ${r.prodTable?`<span class="small"><b>${t("wrStock")}:</b> <span class="mono">${esc(r.prodTable)}.${esc(r.stockCol||"?")}</span> ${r.writeOk?`<span style="color:var(--ok)">✓ ${t("wrOk")}</span>`:""}</span>`:""}
     ${r.writeOk&&r.stockSample&&r.stockSample.length?`<span class="small mono">${r.stockSample.map(x=>esc(x.code)+" = "+esc(x.qty)).join(" · ")}</span>`:""}

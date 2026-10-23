@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const { spawn, exec } = require("child_process");
 const https = require("https");
 
-const VERSION = "1.4.0";
+const VERSION = "1.4.1";
 const IS_PKG = !!process.pkg;
 const HOME = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const PUBLIC = path.join(__dirname, "public");
@@ -33,7 +33,7 @@ const DEFAULT_CONFIG = {
   autoSendTime: "",
   cloud: { enabled: true, url: "", appUrl: "https://go.myjefetech.app/inventario/", key: "", pullSec: 15 },
   tunnel: { enabled: true, relay: "https://ntfy.sh", overrideUrl: "" },
-  eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
+  eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, joinCol: "", joinTable: "", joinKey: "", joinCode: "", joinName: "", everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
   scanner: { enabled: false, channel: "", pageUrl: "https://go.myjefetech.app/escaner/", relay: "https://ntfy.sh", pressEnter: true, maxAgeSec: 20 },
   openBrowser: true
 };
@@ -453,6 +453,10 @@ function findFdbFiles() {
   for (const r of roots) walk(r, 3, false);
   return out.sort((a, b) => (/pdvdata/i.test(b) - /pdvdata/i.test(a)));
 }
+function salesSql(c, first, where, order) {
+  if (c.joinCol) return `SELECT ${first} a."${c.idCol}" AS ID, p."${c.joinCode}" AS CODE, a."${c.qtyCol}" AS QTY${c.joinName ? `, p."${c.joinName}" AS NAME` : ""} FROM "${c.table}" a LEFT JOIN "${c.joinTable}" p ON p."${c.joinKey}" = a."${c.joinCol}" ${where} ${order}`;
+  return `SELECT ${first} a."${c.idCol}" AS ID, a."${c.codeCol}" AS CODE, a."${c.qtyCol}" AS QTY${c.nameCol ? `, a."${c.nameCol}" AS NAME` : ""} FROM "${c.table}" a ${where} ${order}`;
+}
 async function eleventaDiagnose() {
   const E = config.eleventaDb, report = { time: nowISO(), files: [], db: "", tables: [], salesTable: "", columns: [], sample: [], ok: false, error: "" };
   try {
@@ -466,23 +470,36 @@ async function eleventaDiagnose() {
       } catch (e) { lastErr = e; }
     }
     if (!report.db) throw new Error("Encontré el archivo pero no pude abrirlo: " + (lastErr ? lastErr.message : ""));
-    const cands = report.tables.filter(n => /VENTA/i.test(n) && /(ARTIC|DETALLE|PRODUC|PARTIDA)/i.test(n));
-    report.salesTable = cands[0] || "";
-    if (report.salesTable) {
-      const cols = await fbQuery(report.db, "SELECT TRIM(RDB$FIELD_NAME) AS C FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = ? ORDER BY RDB$FIELD_POSITION", [report.salesTable]);
-      report.columns = cols.map(r => String(r.C).trim());
-      const pick = re => report.columns.find(c => re.test(c)) || "";
-      const idCol = pick(/^ID$/i) || pick(/^ID_?/i), codeCol = pick(/COD/i), qtyCol = pick(/CANTIDAD|CANT/i), nameCol = pick(/DESCRIP|NOMBRE/i);
-      Object.assign(report, { idCol, codeCol, qtyCol, nameCol });
-      if (idCol && codeCol && qtyCol) {
-        report.sample = await fbQuery(report.db, `SELECT FIRST 5 "${idCol}" AS ID, "${codeCol}" AS CODE, "${qtyCol}" AS QTY${nameCol ? `, "${nameCol}" AS NAME` : ""} FROM "${report.salesTable}" ORDER BY "${idCol}" DESC`);
-        report.sample = report.sample.map(r => ({ id: r.ID, code: String(r.CODE ?? "").trim(), qty: Number(r.QTY), name: r.NAME != null ? String(r.NAME).trim() : "" }));
-        report.ok = true;
-        Object.assign(E, { path: report.db, table: report.salesTable, idCol, codeCol, qtyCol, nameCol });
-        if (!E.lastId) E.lastId = Math.max(0, ...report.sample.map(r => Number(r.id) || 0));   // start from now: old sales are not replayed
-        saveConfig();
-      } else report.error = "Encontré la tabla de ventas pero no reconocí sus columnas.";
-    } else report.error = "No encontré la tabla de ventas por producto.";
+    // products table first: sales lines may only carry the product's internal ID
+    const ptab = report.tables.find(n => /^PRODUCTOS$/i.test(n)) || report.tables.find(n => /PRODUCT/i.test(n) && !/VENTA|COMPRA|MOVIM|HIST|IMPUEST|PROVEED|KIT|LOTE|PROMO|INVENTARIO/i.test(n)) || "";
+    const pcols = ptab ? (await fbQuery(report.db, "SELECT TRIM(RDB$FIELD_NAME) AS C FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = ? ORDER BY RDB$FIELD_POSITION", [ptab])).map(r => String(r.C).trim()) : [];
+    const pFind = (...names) => names.map(n => pcols.find(c => c.toUpperCase() === n)).find(Boolean) || "";
+    const pKey = pFind("ID", "PRODUCTO_ID"), pCode = pFind("CODIGO", "CODIGO_BARRAS") || pcols.find(c => /COD/i.test(c)) || "", pName = pFind("DESCRIPCION", "NOMBRE") || pcols.find(c => /DESCRIP|NOMBRE/i.test(c)) || "";
+    // sales lines table: Eleventa's is VENTATICKETS_ARTICULOS; never INVENTARIO_* (that is receiving stock)
+    const isSales = n => { const x = n.toUpperCase().replace(/INVENTARIO/g, ""); return /VENTA/.test(x) && /(ARTIC|DETALLE|PRODUC|PARTIDA)/.test(x) && !/DEVOL|CANCEL|COTIZ|PEDIDO|APARTADO|COMPRA|RECIB|PENDIENTE|TEMP/.test(x); };
+    const cands = [...report.tables.filter(n => /^VENTATICKETS_ARTICULOS$/i.test(n)), ...report.tables.filter(n => isSales(n) && !/^VENTATICKETS_ARTICULOS$/i.test(n))];
+    report.candidates = cands;
+    for (const tname of cands) {
+      const cols = (await fbQuery(report.db, "SELECT TRIM(RDB$FIELD_NAME) AS C FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = ? ORDER BY RDB$FIELD_POSITION", [tname])).map(r => String(r.C).trim());
+      const ex = (...names) => names.map(n => cols.find(c => c.toUpperCase() === n)).find(Boolean) || "";
+      const idCol = ex("ID");
+      const codeCol = ex("PRODUCTO_CODIGO", "CODIGO", "CODIGO_PRODUCTO") || cols.find(c => /COD/i.test(c) && !/_ID$/i.test(c)) || "";
+      const joinCol = codeCol ? "" : (ex("PRODUCTO_ID", "ID_PRODUCTO") || "");
+      const qtyCol = ex("CANTIDAD") || cols.find(c => /CANTIDAD|CANT/i.test(c) && !/DEVUEL|ANTERIOR|EXISTEN|RECIBID/i.test(c)) || "";
+      const nameCol = codeCol ? (ex("PRODUCTO_NOMBRE", "DESCRIPCION", "NOMBRE") || cols.find(c => /DESCRIP|NOMBRE/i.test(c)) || "") : "";
+      report.salesTable = tname; report.columns = cols;
+      Object.assign(report, { idCol, codeCol, qtyCol, nameCol, joinCol });
+      const canJoin = joinCol && ptab && pKey && pCode;
+      if (!(idCol && qtyCol && (codeCol || canJoin))) continue;
+      const cfg = { table: tname, idCol, codeCol, qtyCol, nameCol, joinCol: canJoin ? joinCol : "", joinTable: canJoin ? ptab : "", joinKey: canJoin ? pKey : "", joinCode: canJoin ? pCode : "", joinName: canJoin ? pName : "" };
+      const rows = await fbQuery(report.db, salesSql(cfg, "FIRST 5", "", `ORDER BY a."${idCol}" DESC`));
+      report.sample = rows.map(r => ({ id: r.ID, code: String(r.CODE ?? "").trim(), qty: Number(r.QTY), name: r.NAME != null ? String(r.NAME).trim() : "" }));
+      report.ok = true;
+      Object.assign(E, { path: report.db, ...cfg });
+      E.lastId = Math.max(0, ...report.sample.map(r => Number(r.id) || 0));   // start from now: old sales are not replayed
+      saveConfig(); break;
+    }
+    if (!report.ok) report.error = cands.length ? "Encontré la tabla de ventas pero no reconocí sus columnas." : "No encontré la tabla de ventas por producto.";
     // products table + stock column (for writing phone counts straight into Eleventa)
     const pt = report.tables.find(n => /^PRODUCTOS$/i.test(n)) || report.tables.find(n => /PRODUCT/i.test(n) && !/VENTA|COMPRA|MOVIM|HIST|IMPUEST|PROVEED|KIT|LOTE|PROMO/i.test(n)) || "";
     report.prodTable = pt;
@@ -509,7 +526,7 @@ async function syncSales() {
   if (!E.enabled || !config.cloud.enabled || !E.path || !E.table || salesState.running) return;
   salesState.running = true;
   try {
-    const rows = await fbQuery(E.path, `SELECT FIRST 500 "${E.idCol}" AS ID, "${E.codeCol}" AS CODE, "${E.qtyCol}" AS QTY${E.nameCol ? `, "${E.nameCol}" AS NAME` : ""} FROM "${E.table}" WHERE "${E.idCol}" > ? ORDER BY "${E.idCol}"`, [E.lastId]);
+    const rows = await fbQuery(E.path, salesSql(E, "FIRST 500", `WHERE a."${E.idCol}" > ?`, `ORDER BY a."${E.idCol}"`), [E.lastId]);
     if (rows.length) {
       const ops = rows.map(r => ({ opId: "venta-" + r.ID, t: "sale", code: String(r.CODE ?? "").trim(), val: Math.max(0, Math.round(Number(r.QTY) || 0)), name: r.NAME != null ? String(r.NAME).trim() : "", who: "Caja" })).filter(o => o.code && o.val > 0);
       if (ops.length) await cloudPost({ ops });
