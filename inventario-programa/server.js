@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const { spawn, exec } = require("child_process");
 const https = require("https");
 
-const VERSION = "1.4.1";
+const VERSION = "1.5.0";
 const IS_PKG = !!process.pkg;
 const HOME = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const PUBLIC = path.join(__dirname, "public");
@@ -35,7 +35,11 @@ const DEFAULT_CONFIG = {
   tunnel: { enabled: true, relay: "https://ntfy.sh", overrideUrl: "" },
   eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, joinCol: "", joinTable: "", joinKey: "", joinCode: "", joinName: "", everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
   scanner: { enabled: false, channel: "", pageUrl: "https://go.myjefetech.app/escaner/", relay: "https://ntfy.sh", pressEnter: true, maxAgeSec: 20 },
-  openBrowser: true
+  openBrowser: true,
+  autoUpdate: true,
+  autoStart: true,
+  updateUrl: "https://go.myjefetech.app/pie-de-la-cuesta/version.json",
+  lastVersion: ""
 };
 function deepMerge(a, b) { const o = Array.isArray(a) ? [...a] : { ...a }; for (const k of Object.keys(b || {})) o[k] = (b[k] && typeof b[k] === "object" && !Array.isArray(b[k]) && a[k] && typeof a[k] === "object") ? deepMerge(a[k], b[k]) : b[k]; return o; }
 let config = DEFAULT_CONFIG;
@@ -305,10 +309,17 @@ async function serveInventario(req, res) {
 // A second, tiny server that only answers the inventory API. The public link points here, never at the owner screens.
 const apiServer = http.createServer((req, res) => {
   const p = (req.url || "").split("?")[0];
+  if (p === "/api/inventario" && /[?&]status=1(&|$)/.test(req.url || "")) {
+    const k = new URL("http://x" + req.url).searchParams.get("k");
+    const ok = k && k === config.cloud.key;
+    res.writeHead(ok ? 200 : 401, { "content-type": "application/json", "access-control-allow-origin": "*", "cache-control": "no-store" });
+    return res.end(JSON.stringify(ok ? programStatus() : { error: "key" }));
+  }
   if (p === "/api/inventario") return serveInventario(req, res);
   res.writeHead(404, { "content-type": "text/plain" }); res.end("not found");
 });
-apiServer.on("error", e => console.log("! No pude abrir el puerto del inventario:", e.message));
+let apiTries = 0;
+apiServer.on("error", e => { if (e.code === "EADDRINUSE" && ++apiTries < 20) return setTimeout(() => apiServer.listen(config.port + 1, "127.0.0.1"), 1500); console.log("! No pude abrir el puerto del inventario:", e.message); });
 apiServer.listen(config.port + 1, "127.0.0.1");
 
 /* ---------------- free public link so phones reach this computer from anywhere ---------------- */
@@ -496,7 +507,8 @@ async function eleventaDiagnose() {
       report.sample = rows.map(r => ({ id: r.ID, code: String(r.CODE ?? "").trim(), qty: Number(r.QTY), name: r.NAME != null ? String(r.NAME).trim() : "" }));
       report.ok = true;
       Object.assign(E, { path: report.db, ...cfg });
-      E.lastId = Math.max(0, ...report.sample.map(r => Number(r.id) || 0));   // start from now: old sales are not replayed
+      if (!E.lastId || E.lastTableSeen !== tname) E.lastId = Math.max(0, ...report.sample.map(r => Number(r.id) || 0));   // start from now: old sales are not replayed
+      E.lastTableSeen = tname;
       saveConfig(); break;
     }
     if (!report.ok) report.error = cands.length ? "Encontré la tabla de ventas pero no reconocí sus columnas." : "No encontré la tabla de ventas por producto.";
@@ -744,11 +756,77 @@ const server = http.createServer(async (req, res) => {
     console.log("! Error:", e.message); send(res, 500, { error: "server", message: e.message });
   }
 });
+let mainTries = 0;
 server.on("error", e => {
+  if (e.code === "EADDRINUSE" && ++mainTries < 20) return setTimeout(() => server.listen(config.port, "0.0.0.0"), 1500);
   if (e.code === "EADDRINUSE") { console.log(`\n! El puerto ${config.port} ya está en uso. ¿El programa ya está abierto en otra ventana?\n`); }
   else console.log("! Error del servidor:", e.message);
   setTimeout(() => process.exit(1), 15000);
 });
+function programStatus() {
+  const E = config.eleventaDb, r = salesState.report || {};
+  return { version: VERSION, now: nowISO(), latest: updState.latest, updateError: updState.error,
+    eleventa: { on: !!E.enabled, ok: !!(E.table && E.idCol), salesTable: E.table || "", stock: E.prodTable && E.stockCol ? E.prodTable + "." + E.stockCol : "", error: E.enabled ? (salesState.error || "") : (r.error || ""),
+      lastRead: salesState.lastRun, lastCount: salesState.lastCount },
+    writes: { lastRun: writeState.lastRun, lastCount: writeState.lastCount, error: writeState.error, notFound: writeState.notFound.slice(0, 20) } };
+}
+/* ---------------- runs by itself: self-update, start with Windows, Eleventa setup ---------------- */
+const vnum = v => String(v || "0").split(".").map(n => parseInt(n, 10) || 0);
+const newer = (a, b) => { const x = vnum(a), y = vnum(b); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); } return false; };
+const updState = { checkedAt: null, latest: "", error: "", updating: false };
+async function checkUpdate() {
+  if (!config.autoUpdate || !IS_PKG || (process.platform !== "win32" && !process.env.PDC_UPDATE_TEST) || updState.updating) return;
+  if (job.state === "typing" || job.state === "countdown" || writeState.running) return;
+  try {
+    const r = await fetchUrl(config.updateUrl + "?t=" + Date.now(), { timeout: 20000 });
+    if (r.status !== 200) throw new Error("http " + r.status);
+    const m = JSON.parse(r.body); updState.checkedAt = nowISO(); updState.latest = m.version || ""; updState.error = "";
+    if (!m.url || !newer(m.version, VERSION)) return;
+    updState.updating = true; console.log(`> Hay una versión nueva (${m.version}). Descargando…`);
+    const exe = process.execPath, tmp = exe + ".new";
+    try { fs.unlinkSync(tmp); } catch (_) {}
+    await fetchUrl(m.url + "?v=" + encodeURIComponent(m.version), { file: tmp, timeout: 600000 });
+    const sum = crypto.createHash("sha256").update(fs.readFileSync(tmp)).digest("hex");
+    if (m.sha256 && sum !== String(m.sha256).toLowerCase()) throw new Error("la descarga no coincide, lo intento más tarde");
+    try { fs.unlinkSync(exe + ".old"); } catch (_) {}
+    fs.renameSync(exe, exe + ".old"); fs.renameSync(tmp, exe);
+    console.log(`> Actualizado a ${m.version}. Reiniciando…`);
+    if (process.platform !== "win32") fs.chmodSync(exe, 0o755);
+    try { atomicWrite(DATA_FILE, JSON.stringify(db)); } catch (_) {}
+    const rollback = why => {   // the new copy didn't start: put the old one back and keep running
+      try { fs.renameSync(exe, exe + ".fallo"); fs.renameSync(exe + ".old", exe); } catch (_) {}
+      updState.updating = false; updState.error = "No pude abrir la versión nueva: " + why; console.log("! " + updState.error);
+    };
+    let child;
+    try { child = spawn(exe, [], { cwd: path.dirname(exe), detached: true, stdio: "ignore", env: { ...process.env, PDC_NO_BROWSER: "1" } }); }
+    catch (e) { return rollback(e.message); }
+    child.on("error", e => rollback(e.message));
+    child.on("spawn", () => { child.unref(); stopTunnel(); setTimeout(() => process.exit(0), 800); });
+  } catch (e) { updState.error = e.message || String(e); updState.updating = false; console.log("! No pude actualizar:", updState.error); }
+}
+setTimeout(checkUpdate, process.env.PDC_UPDATE_TEST ? 5000 : 90 * 1000); setInterval(checkUpdate, 30 * 60 * 1000);
+function ensureAutoStart() {
+  if (!config.autoStart || !IS_PKG || process.platform !== "win32" || !process.env.APPDATA) return;
+  try {
+    const dir = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
+    const f = path.join(dir, "MX Studio Inventario.cmd");
+    const body = `@echo off\r\ncd /d "${path.dirname(process.execPath)}"\r\nstart "" "${process.execPath}"\r\n`;
+    if (!fs.existsSync(f) || fs.readFileSync(f, "utf8") !== body) { fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(f, body); console.log("> Se abrirá solo cuando prendan la computadora."); }
+  } catch (e) { console.log("! No pude ponerlo al inicio de Windows:", e.message); }
+}
+ensureAutoStart();
+// Eleventa: test and turn on sync by itself the first time, and again after every update (detection fixes apply remotely)
+async function autoSetupEleventa() {
+  const E = config.eleventaDb, firstTime = !E.autoDone, upgraded = config.lastVersion !== VERSION;
+  if (!firstTime && !upgraded && E.table && E.prodTable) return;
+  const r = await eleventaDiagnose();
+  if (r.ok && (firstTime || E.enabled || E.autoDone)) { E.enabled = true; console.log("> Eleventa conectado: ventas y conteos se sincronizan solos."); }
+  else if (!r.ok) console.log("! Eleventa:", r.error || "no pude conectarme");
+  E.autoDone = true; config.lastVersion = VERSION; saveConfig(); version++; broadcast();
+  if (E.enabled) cloudPull();
+}
+setTimeout(() => { autoSetupEleventa().catch(e => console.log("! Eleventa:", e.message)); }, 8000);
+
 server.listen(config.port, "0.0.0.0", () => {
   const addrs = lanAddresses();
   console.log("\n  MX Studio · Inventario " + VERSION);

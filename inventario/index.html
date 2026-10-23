@@ -203,6 +203,7 @@ body.padopen{overflow:hidden}
 .catpick button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .deptlist{display:flex;flex-direction:column;gap:6px;margin-top:8px}.deptbtn{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:14px 14px;font-weight:700;font-size:1rem;color:var(--ink)}
 .vlist{display:flex;flex-direction:column}.vrow{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.vrow:last-child{border-bottom:0}.vrow .grow{flex:1;min-width:0}.vrow .name{font-weight:700}.vqty{font-size:1.5rem;font-weight:800;color:var(--accent)}
+.pcstat{display:flex;flex-direction:column;gap:3px;background:var(--sunk);border-radius:12px;padding:10px 12px}
 .cathead{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:6px 2px;border-bottom:2px solid var(--line);font-weight:800;font-family:var(--f-display)}
 .cathead:first-child{margin-top:0}
 .t-dulces{background:#FBE0EF;color:#9B2C6B} .t-limpieza{background:#DDF3F0;color:#14706A} .t-cuidado{background:#EDE3F6;color:#6A3E92} .t-otros{background:var(--sunk);color:var(--muted)}
@@ -274,7 +275,7 @@ const SEED = {"products":{"c7501101525025":{"name":"12 Huevos Bachoco","brand":"
 const STORE_NAME = "Mercado Pie de la Cuesta";
 
 const T = {
- es:{ventas:"Ventas", vT:"Ventas de la caja", vSince:"Desde que llegué", vToday:"Hoy", vArrive:"Llegué · empezar a contar ventas", vArrivedAt:"Llegaste a las", vReArrive:"Llegué ahora", vReSure:"Toca otra vez para empezar desde ahora", vPieces:"Piezas vendidas", vMoney:"Dinero", vLast:"Última venta", vNone:"Todavía no hay ventas", vNoneSince:"Todavía no hay ventas desde las", vNeed:"Para ver las ventas, conecta este teléfono con la computadora de la caja: escanea el código QR que aparece en el programa.", vHow:"Las ventas llegan de Eleventa cada minuto. La computadora de la caja debe estar prendida con el programa abierto.", vErr:"No pude cargar las ventas. Revisa el internet.", vLoading:"Cargando ventas…", vEach:"c/u", vNoPrice:"sin precio",
+ es:{pcT:"Computadora de la tienda", pcVer:"Programa", pcEle:"Eleventa", pcEleOk:"conectado · ventas y conteos se sincronizan solos", pcEleOff:"sincronización apagada", pcEleBad:"no conectado", pcSale:"Última lectura de ventas", pcWrite:"Último conteo que entró a Eleventa", pcMissing:"No existen en Eleventa", pcNo:"No pude ver la computadora de la tienda. ¿Está prendida con el programa abierto?", pcUpd:"Se actualiza sola", ventas:"Ventas", vT:"Ventas de la caja", vSince:"Desde que llegué", vToday:"Hoy", vArrive:"Llegué · empezar a contar ventas", vArrivedAt:"Llegaste a las", vReArrive:"Llegué ahora", vReSure:"Toca otra vez para empezar desde ahora", vPieces:"Piezas vendidas", vMoney:"Dinero", vLast:"Última venta", vNone:"Todavía no hay ventas", vNoneSince:"Todavía no hay ventas desde las", vNeed:"Para ver las ventas, conecta este teléfono con la computadora de la caja: escanea el código QR que aparece en el programa.", vHow:"Las ventas llegan de Eleventa cada minuto. La computadora de la caja debe estar prendida con el programa abierto.", vErr:"No pude cargar las ventas. Revisa el internet.", vLoading:"Cargando ventas…", vEach:"c/u", vNoPrice:"sin precio",
  tag:"Inventario", inv:"Inventario", scan:"Escanear", ele:"Eleventa", setup:"Pasos", set:"Ajustes",
   t1:"Tienda 1", t2:"Tienda 2", both:"Ambas", online:"En línea", offline:"Sin conexión", waiting:"en espera", refresh:"Actualizar", refreshed:"Actualizado",
   pullR:"Jala para actualizar", releaseR:"Suelta para actualizar",
@@ -302,7 +303,7 @@ const T = {
   lang:"Idioma", offlineMode:"Simular sin conexión", offlineH:"Apaga la conexión para ver que los cambios se guardan en el teléfono y se envían al volver.",
   reset:"Borrar todo el inventario", resetH:"Deja la app vacía, sin productos.", emptyT:"Todavía no hay productos", emptyS:"Escanea cada producto del estante y se agrega a tu lista.", emptyBtn:"Escanear el primer producto", newT:"Producto nuevo", newCode:"Código", newHint:"Escribe el nombre y cuántos hay. El precio es opcional.", added:"Agregado a la lista", resetConfirm:"Toca otra vez para confirmar", demoNote:"Los datos se guardan en este teléfono.",
   cats:{bebidas:"Bebidas",botanas:"Botanas",dulces:"Dulces",panaderia:"Pan",lacteos:"Lácteos",despensa:"Despensa",frescos:"Frescos",limpieza:"Limpieza",cuidado:"Cuidado personal",otros:"Otros"}, ago:"hace"},
- en:{ventas:"Sales", vT:"Register sales", vSince:"Since I arrived", vToday:"Today", vArrive:"I'm here · start counting sales", vArrivedAt:"You arrived at", vReArrive:"I just arrived", vReSure:"Tap again to start from now", vPieces:"Pieces sold", vMoney:"Money", vLast:"Last sale", vNone:"No sales yet", vNoneSince:"No sales yet since", vNeed:"To see sales, connect this phone to the register computer: scan the QR code shown in the program.", vHow:"Sales come from Eleventa every minute. The register computer must be on with the program open.", vErr:"Couldn't load sales. Check the internet.", vLoading:"Loading sales…", vEach:"each", vNoPrice:"no price",
+ en:{pcT:"Store computer", pcVer:"Program", pcEle:"Eleventa", pcEleOk:"connected · sales and counts sync by themselves", pcEleOff:"sync turned off", pcEleBad:"not connected", pcSale:"Last sales read", pcWrite:"Last count that went into Eleventa", pcMissing:"Not in Eleventa", pcNo:"I couldn't reach the store computer. Is it on with the program open?", pcUpd:"Updates itself", ventas:"Sales", vT:"Register sales", vSince:"Since I arrived", vToday:"Today", vArrive:"I'm here · start counting sales", vArrivedAt:"You arrived at", vReArrive:"I just arrived", vReSure:"Tap again to start from now", vPieces:"Pieces sold", vMoney:"Money", vLast:"Last sale", vNone:"No sales yet", vNoneSince:"No sales yet since", vNeed:"To see sales, connect this phone to the register computer: scan the QR code shown in the program.", vHow:"Sales come from Eleventa every minute. The register computer must be on with the program open.", vErr:"Couldn't load sales. Check the internet.", vLoading:"Loading sales…", vEach:"each", vNoPrice:"no price",
  tag:"Inventory", inv:"Inventory", scan:"Scan", ele:"Eleventa", setup:"Setup", set:"Settings",
   t1:"Store 1", t2:"Store 2", both:"Both", online:"Online", offline:"Offline", waiting:"waiting", refresh:"Refresh", refreshed:"Up to date",
   pullR:"Pull to refresh", releaseR:"Release to refresh",
@@ -809,12 +810,37 @@ function viewVentas(){
     :`<p class="muted" style="margin:0">${mode==="since"&&S.arr?`${t("vNoneSince")} ${clock(S.arr)}`:t("vNone")}</p>`}</section>`}
   <p class="small muted">${t("vHow")}</p>`;
 }
+S.pstat=null; S.pstatAt=0; S.pstatErr=false;
+async function pcStatusLoad(){
+  if (!syncOn() || Date.now()-S.pstatAt<10000) return; S.pstatAt=Date.now();
+  try{ const r=await fetch(`${await apiUrl()}?k=${encodeURIComponent(SYNC.pair.k)}&status=1`,{cache:"no-store"}); if (!r.ok) throw new Error(r.status); S.pstat=await r.json(); S.pstatErr=false; }
+  catch(_){ S.pstatErr=true; linkFailed(); }
+  if (S.view==="set" && !S.pad && !S.newp && !(document.activeElement&&document.activeElement.id==="syWho")) render();
+}
+setInterval(()=>{ if (!document.hidden && S.view==="set") pcStatusLoad(); }, 5000);
+function pcStatusHTML(){
+  if (!syncOn()) return "";
+  if (!S.pstat && !S.pstatErr){ setTimeout(pcStatusLoad,0); return ""; }
+  const d=S.pstat, hm=x=>x?new Date(x).toLocaleTimeString(S.lang==="es"?"es-MX":"en-US",{hour:"numeric",minute:"2-digit"}):"—";
+  if (!d) return `<div class="small" style="color:var(--warn)">${t("pcNo")}</div>`;
+  const e=d.eleventa||{}, w=d.writes||{};
+  const eleTxt = e.on&&e.ok ? `<span style="color:var(--ok)">✓ ${t("pcEleOk")}</span>` : e.ok ? `<span style="color:var(--warn)">${t("pcEleOff")}</span>` : `<span style="color:var(--bad)">✕ ${t("pcEleBad")}${e.error?` · ${esc(e.error)}`:""}</span>`;
+  return `<div class="pcstat"><b>${t("pcT")}</b>
+    <span class="small">${t("pcVer")}: ${esc(d.version)} · ${t("pcUpd")}</span>
+    <span class="small">${t("pcEle")}: ${eleTxt}</span>
+    ${e.lastRead?`<span class="small muted">${t("pcSale")}: ${hm(e.lastRead)}</span>`:""}
+    ${w.lastRun?`<span class="small muted">${t("pcWrite")}: ${hm(w.lastRun)}</span>`:""}
+    ${w.error?`<span class="small" style="color:var(--bad)">${esc(w.error)}</span>`:""}
+    ${w.notFound&&w.notFound.length?`<span class="small" style="color:var(--warn)">${t("pcMissing")}: <span class="mono">${w.notFound.map(esc).join(", ")}</span></span>`:""}
+    ${S.pstatErr?`<span class="small" style="color:var(--warn)">${t("pcNo")}</span>`:""}</div>`;
+}
 function viewSet(){
   const P=SYNC.pair;
   return `<h2>${t("set")}</h2>
   <section class="card"><h3>${t("syT")}</h3>
    ${syncOn()?`<span class="chip ${SYNC.online?"":"off"}" style="align-self:flex-start"><span class="dot"></span>${SYNC.online?t("syOn"):t("syOff")}${P.n?` · ${esc(P.n)}`:""}</span>
      <span class="small muted">${t("syShared")}</span>
+     ${pcStatusHTML()}
      <label class="field"><span class="label">${t("syWho")}</span><input class="f" id="syWho" value="${esc(P.who||"")}" placeholder="Ej. Lalo" autocomplete="name"><span class="small muted">${t("syWhoH")}</span></label>
      <div><button class="btn ghost" data-act="syDisc" style="color:var(--bad)">${S.discArm?t("syDiscSure"):t("syDisc")}</button></div>`
    :`<span class="small muted">${t("syLocal")}</span><span class="small">${t("syHow")}</span>`}
@@ -828,7 +854,7 @@ function viewSet(){
 
 /* ---------- events ---------- */
 document.addEventListener("click", e=>{
-  const nav=e.target.closest("[data-nav]"); if (nav){ S.view=nav.dataset.nav; if (S.view==="ventas") salesLoad(true); S.scan=null; render(); window.scrollTo(0,0); return; }
+  const nav=e.target.closest("[data-nav]"); if (nav){ S.view=nav.dataset.nav; if (S.view==="set"){ S.pstatAt=0; pcStatusLoad(); } if (S.view==="ventas") salesLoad(true); S.scan=null; render(); window.scrollTo(0,0); return; }
   const b=e.target.closest("[data-act]"); if (!b || b.tagName==="INPUT") return;
   const a=b.dataset.act, v=b.dataset.v, id=b.dataset.id;
   const H={
@@ -1016,4 +1042,4 @@ render();
 syncStart();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792722614";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792726629";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
