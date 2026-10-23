@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const { spawn, exec } = require("child_process");
 const https = require("https");
 
-const VERSION = "1.5.1";
+const VERSION = "1.5.2";
 const IS_PKG = !!process.pkg;
 const HOME = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const PUBLIC = path.join(__dirname, "public");
@@ -372,7 +372,7 @@ async function startTunnel() {
     const p = spawn(bin, ["tunnel", "--no-autoupdate", "--url", `http://127.0.0.1:${config.port + 1}`], { windowsHide: true });
     tunnel.proc = p;
     const onData = d => {
-      const m = String(d).match(/https:\/\/[a-z0-9-]+\.trycloudflare\.com/);
+      const m = String(d).match(/https:\/\/(?!api\.)[a-z0-9-]+\.trycloudflare\.com/);   // not api.trycloudflare.com (cloudflared mentions it while starting)
       if (m && m[0] !== tunnel.url) { tunnel.url = m[0]; tunnel.state = "on"; tunnel.fails = 0; console.log("> Los teléfonos se conectan por:", tunnel.url); setTimeout(publishAddress, 4000); }
     };
     p.stdout.on("data", onData); p.stderr.on("data", onData);
@@ -515,6 +515,7 @@ async function eleventaDiagnose() {
     // products table + stock column (for writing phone counts straight into Eleventa)
     const pt = report.tables.find(n => /^PRODUCTOS$/i.test(n)) || report.tables.find(n => /PRODUCT/i.test(n) && !/VENTA|COMPRA|MOVIM|HIST|IMPUEST|PROVEED|KIT|LOTE|PROMO/i.test(n)) || "";
     report.prodTable = pt;
+    report.invTables = report.tables.filter(n => /INVENT|EXIST|ALMAC|KARDEX|MOVIM/i.test(n));
     if (pt) {
       const pc = (await fbQuery(report.db, "SELECT TRIM(RDB$FIELD_NAME) AS C FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = ? ORDER BY RDB$FIELD_POSITION", [pt])).map(r => String(r.C).trim());
       report.prodColumns = pc;
@@ -768,7 +769,7 @@ function programStatus() {
   return { version: VERSION, now: nowISO(), latest: updState.latest, updateError: updState.error,
     eleventa: { on: !!E.enabled, ok: !!(E.table && E.idCol), salesTable: E.table || "", stock: E.prodTable && E.stockCol ? E.prodTable + "." + E.stockCol : "", error: E.enabled ? (salesState.error || "") : (r.error || ""),
       lastRead: salesState.lastRun, lastCount: salesState.lastCount },
-    writes: { lastRun: writeState.lastRun, lastCount: writeState.lastCount, error: writeState.error, notFound: writeState.notFound.slice(0, 20) } };
+    writes: { lastRun: writeState.lastRun, lastCount: writeState.lastCount, error: writeState.error, notFound: writeState.notFound.slice(0, 20), recent: writeState.recent.slice(0, 6).map(r => ({ name: r.name || r.code, old: r.old, new: r.new, ts: r.ts, who: r.who })) } };
 }
 /* ---------------- runs by itself: self-update, start with Windows, Eleventa setup ---------------- */
 const vnum = v => String(v || "0").split(".").map(n => parseInt(n, 10) || 0);

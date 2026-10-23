@@ -172,6 +172,8 @@ function salesCard(d){
     ${r.prodTable?`<span class="small"><b>${t("wrStock")}:</b> <span class="mono">${esc(r.prodTable)}.${esc(r.stockCol||"?")}</span> ${r.writeOk?`<span style="color:var(--ok)">✓ ${t("wrOk")}</span>`:""}</span>`:""}
     ${r.writeOk&&r.stockSample&&r.stockSample.length?`<span class="small mono">${r.stockSample.map(x=>esc(x.code)+" = "+esc(x.qty)).join(" · ")}</span>`:""}
     ${!r.writeOk&&r.db?`<span class="small" style="color:var(--bad)">✕ ${esc(r.writeError||t("wrNo"))}</span>${r.prodColumns?`<span class="small mono" style="max-height:90px;overflow:auto">${esc(r.prodColumns.join(", "))}</span>`:""}`:""}
+    ${r.invTables&&r.invTables.length?`<span class="small"><b>${S.lang==="es"?"Tablas de inventario":"Inventory tables"}:</b> <span class="mono">${esc(r.invTables.join(", "))}</span></span>`:""}
+    ${r.prodColumns&&r.prodColumns.length?`<details><summary class="small">${S.lang==="es"?"Columnas de productos":"Product columns"}</summary><span class="small mono">${esc(r.prodColumns.join(", "))}</span></details>`:""}
     <span class="small muted">${t("saShot")}</span></div>`;
   return `<section class="card"><h3>${t("saT")}</h3><span class="small muted">${t("saH")}</span>
     <div class="btns"><button class="btn primary" data-act="saTest" ${S.saBusy?"disabled":""}>${t("saTest")}</button></div>
