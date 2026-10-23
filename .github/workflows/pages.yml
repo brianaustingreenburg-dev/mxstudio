@@ -53,8 +53,8 @@ jobs:
             curl -s -o /dev/null -m 25 -w "home HTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/" || echo "curl failed"
             curl -s -m 25 -w "\napi HTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/api/inventario?k=checkdeploy_0123456789abcdef&since=0" | head -c 400 || echo "curl failed"
             echo "--- vercel probe"
-            sleep 60
-            curl -s -m 25 -w "\nHTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/api/probe" | head -c 600 || echo "curl failed"
+            for i in $(seq 1 24); do c=$(curl -s -o /dev/null -m 20 -w "%{http_code}" "https://mxstudio-brian.vercel.app/api/probe2"); [ "$c" = "200" ] && break; sleep 15; done
+            for u in probe probe2; do echo "[$u]"; curl -s -m 25 -w "\nHTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/api/$u" | head -c 600 || echo "curl failed"; done
             echo "--- secrets present"
             echo "NETLIFY_AUTH_TOKEN=$HAS_NETLIFY VERCEL_TOKEN=$HAS_VERCEL"
           } > out/_diag/service.txt
