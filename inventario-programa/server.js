@@ -10,12 +10,19 @@ const crypto = require("crypto");
 const { spawn, exec } = require("child_process");
 const https = require("https");
 
-const VERSION = "1.5.4";
+const VERSION = "1.5.5";
 const IS_PKG = !!process.pkg;
 const HOME = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const PUBLIC = path.join(__dirname, "public");
 const DATA_FILE = path.join(HOME, "inventario-datos.json");
 const CONFIG_FILE = path.join(HOME, "inventario-config.json");
+// Windows: a click inside the black window ("Seleccionar") pauses the whole program. Turn that mode off.
+if (process.platform === "win32" && process.stdin.isTTY) {
+  try {
+    const ps = `$s='[DllImport(\\"kernel32.dll\\")]public static extern IntPtr GetStdHandle(int h);[DllImport(\\"kernel32.dll\\")]public static extern bool GetConsoleMode(IntPtr h,out uint m);[DllImport(\\"kernel32.dll\\")]public static extern bool SetConsoleMode(IntPtr h,uint m);';$k=Add-Type -MemberDefinition $s -Name K -Namespace W -PassThru;$h=$k::GetStdHandle(-10);$m=0;[void]$k::GetConsoleMode($h,[ref]$m);[void]$k::SetConsoleMode($h,(($m -band (-bnot 0x40)) -bor 0x80))`;
+    spawn("powershell.exe", ["-NoProfile", "-NonInteractive", "-Command", ps], { stdio: "inherit", windowsHide: false }).on("error", () => {});
+  } catch (_) {}
+}
 let serverBound = false;   // true once this copy owns the ports; a second copy does nothing and closes
 const MOCK_TYPER = process.platform !== "win32" || process.env.PDC_MOCK_TYPER === "1";
 
@@ -34,7 +41,7 @@ const DEFAULT_CONFIG = {
   autoSendTime: "",
   cloud: { enabled: true, url: "", appUrl: "https://go.myjefetech.app/inventario/", key: "", pullSec: 15 },
   tunnel: { enabled: true, relay: "https://ntfy.sh", overrideUrl: "" },
-  eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, probeCode: "", writeVerified: false, hasBalances: false, joinCol: "", joinTable: "", joinKey: "", joinCode: "", joinName: "", everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
+  eleventaDb: { enabled: false, path: "", host: "127.0.0.1", port: 3050, user: "SYSDBA", password: "masterkey", table: "", idCol: "", codeCol: "", qtyCol: "", nameCol: "", lastId: 0, probeCode: "", writeVerified: false, hasBalances: false, writeTarget: "", bal: null, hist: null, balMigrated: false, reconcileMin: 5, joinCol: "", joinTable: "", joinKey: "", joinCode: "", joinName: "", everySec: 30, prodTable: "", prodCodeCol: "", stockCol: "", lastBackupDay: "" },
   scanner: { enabled: false, channel: "", pageUrl: "https://go.myjefetech.app/escaner/", relay: "https://ntfy.sh", pressEnter: true, maxAgeSec: 20 },
   openBrowser: true,
   autoUpdate: true,
@@ -412,7 +419,7 @@ function cloudReq(method, bodyObj, query) {
 }
 const cloudPost = body => cloudReq("POST", body);
 let cloudChainP = Promise.resolve();
-function cloudPull() { if (!serverBound) return Promise.resolve(); const run = cloudChainP.then(async () => { await cloudAck(); await syncSales(); await cloudPullRaw(); await writeCounts(); await cloudAck(); }).catch(() => {}); cloudChainP = run; return run; }
+function cloudPull() { if (!serverBound) return Promise.resolve(); const run = cloudChainP.then(async () => { await cloudAck(); await syncSales(); await reconcileFromEleventa(); await cloudPullRaw(); await writeCounts(); await cloudAck(); }).catch(() => {}); cloudChainP = run; return run; }
 async function cloudPullRaw() {
   if (!config.cloud.enabled) return;
   if (job.state === "typing" || job.state === "countdown") return;   // keep the list steady while typing
@@ -532,12 +539,46 @@ async function eleventaDiagnose() {
       } else report.writeError = "Encontré la tabla de productos pero no su columna de existencia.";
     } else report.writeError = "No encontré la tabla de productos.";
     // Eleventa MultiCaja keeps stock per warehouse; until we confirm where, phone counts are not written
-    E.hasBalances = report.tables.some(n => /^INVENTARIO_BALANCES$/i.test(n)); saveConfig();
+    E.hasBalances = report.tables.some(n => /^INVENTARIO_BALANCES$/i.test(n));
+    if (E.hasBalances && pt) {
+      try { const b = await detectBalances(report); report.balances = b; if (b.ok) { E.bal = b; E.writeTarget = "balances"; E.writeVerified = true; } else report.balError = b.error; }
+      catch (e) { report.balError = e.message || String(e); }
+    }
+    saveConfig();
     report.writePaused = E.hasBalances && !E.writeVerified;
     try { report.deep = await deepProbe(report); } catch (e) { report.deepError = e.message || String(e); }
   } catch (e) { report.error = e.message || String(e); }
   salesState.report = report; version++; broadcast();
   return report;
+}
+// Eleventa MultiCaja: stock lives in INVENTARIO_BALANCES (per warehouse); movements in INVENTARIO_HISTORIAL
+async function detectBalances(report) {
+  const db = report.db, colsOf = async t => (await fbQuery(db, "SELECT TRIM(RDB$FIELD_NAME) AS C FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME = ? ORDER BY RDB$FIELD_POSITION", [t])).map(r => String(r.C).trim());
+  const bc = await colsOf("INVENTARIO_BALANCES"), pc = report.prodColumns || [];
+  const pick = (cols, ...names) => names.map(n => cols.find(c => c.toUpperCase() === n)).find(Boolean) || "";
+  const b = { table: "INVENTARIO_BALANCES", prodCol: pick(bc, "PRODUCTO_ID", "ID_PRODUCTO"), qtyCol: pick(bc, "CANTIDAD_ACTUAL", "CANTIDAD", "EXISTENCIA") || bc.find(c => /CANTIDAD|EXISTEN/i.test(c)) || "", almCol: pick(bc, "ALMACEN_ID", "ID_ALMACEN"),
+    prodIdCol: pick(pc, "ID", "PRODUCTO_ID"), costCol: pick(pc, "PCOSTO", "PRECIO_COSTO"), usesCol: pick(pc, "USA_INVENTARIO"), ok: false, error: "" };
+  if (!b.prodCol || !b.qtyCol || !b.prodIdCol) { b.error = "No reconocí las columnas de INVENTARIO_BALANCES: " + bc.join(", "); return b; }
+  b.almacenId = null;
+  if (b.almCol) {
+    let alms = [];
+    try { alms = (await fbQuery(db, `SELECT "ID" AS ID FROM "ALMACENES" ORDER BY "ID"`)).map(r => Number(r.ID)); } catch (_) {}
+    if (alms.length === 1) b.almacenId = alms[0];
+    else { const top = await fbQuery(db, `SELECT FIRST 1 "${b.almCol}" AS A, COUNT(*) AS N FROM "${b.table}" GROUP BY "${b.almCol}" ORDER BY 2 DESC`); b.almacenId = top.length ? Number(top[0].A) : (alms[0] ?? 1); }
+  }
+  // movement history (best effort): columns + how its ID is made
+  const hist = { ok: false };
+  if (report.tables.some(n => /^INVENTARIO_HISTORIAL$/i.test(n))) {
+    const hc = await colsOf("INVENTARIO_HISTORIAL");
+    hist.cols = hc;
+    const gens = (await fbQuery(db, "SELECT TRIM(RDB$GENERATOR_NAME) AS G FROM RDB$GENERATORS WHERE COALESCE(RDB$SYSTEM_FLAG,0) = 0")).map(r => String(r.G).trim());
+    hist.gen = gens.find(g => /INVENTARIO_HISTORIAL/i.test(g) && /ID|GEN|SEQ/i.test(g)) || gens.find(g => /INVENTARIO_HISTORIAL/i.test(g)) || "";
+    const trg = await fbQuery(db, "SELECT COUNT(*) AS N FROM RDB$TRIGGERS WHERE RDB$RELATION_NAME = 'INVENTARIO_HISTORIAL' AND RDB$TRIGGER_TYPE = 1 AND COALESCE(RDB$TRIGGER_INACTIVE,0) = 0");
+    hist.trigger = Number((trg[0] || {}).N) > 0;
+    hist.ok = hc.includes("PRODUCTO_ID") && hc.includes("CANTIDAD") && (hist.gen || hist.trigger || !hc.includes("ID"));
+  }
+  b.hist = hist; b.ok = true;
+  return b;
 }
 // Shows every inventory table's rows for one product, to see where Eleventa keeps the stock it displays.
 async function deepProbe(report) {
@@ -623,6 +664,60 @@ function ackedEleQty(code, eleQty) {   // what Eleventa holds once the confirmat
   for (const a of cloud.acks) if (a.code === code) q = (a.delta !== undefined) ? (q ?? 0) + a.delta : a.qty;
   return q;
 }
+// Records the change in Eleventa's own movement history (shows in "Reporte de Movimientos"). Never blocks the write.
+async function logEleventaMove(conn, B, pid, old, nw, cost, who) {
+  const H = B.hist; if (!H || !H.ok || old === nw) return;
+  try {
+    const cols = ["PRODUCTO_ID", "CANTIDAD"], vals = [pid, Math.abs(nw - old)], marks = ["?", "?"];
+    const add = (c, v) => { if (H.cols.includes(c)) { cols.push(c); vals.push(v); marks.push("?"); } };
+    add("CANTIDAD_ANTERIOR", old); add("DESCRIPCION", ("Ajuste desde la app" + (who ? " · " + who : "") + ` (${old} → ${nw})`).slice(0, 60));
+    add("COSTO_UNITARIO", cost); add("COSTO_DESPUES", cost); if (B.almCol) add("ALMACEN_ID", B.almacenId); add("VENTA_POR_KIT", "f");
+    if (H.cols.includes("CUANDO_FUE")) { cols.push("CUANDO_FUE"); marks.push("CURRENT_TIMESTAMP"); }
+    if (H.cols.includes("ID") && H.gen) { cols.unshift("ID"); marks.unshift(`GEN_ID("${H.gen}", 1)`); }
+    await fbq(conn, `INSERT INTO "INVENTARIO_HISTORIAL" (${cols.map(c => `"${c}"`).join(", ")}) VALUES (${marks.join(", ")})`, vals);
+  } catch (e) { console.log("! No pude anotar el movimiento en Eleventa (el conteo sí se guardó):", e.message); }
+}
+// Eleventa -> app: anything changed in Eleventa itself (receipts, returns, adjustments, new products) shows in the app.
+const reconState = { lastRun: 0, lastCount: 0, error: "" };
+async function reconcileFromEleventa(force) {
+  const E = config.eleventaDb;
+  if (!E.enabled || !E.path || !E.prodTable || !E.prodCodeCol || writeState.running) return;
+  if (E.hasBalances && E.writeTarget !== "balances") return;
+  if (!force && Date.now() - reconState.lastRun < (E.reconcileMin || 5) * 60000) return;
+  let conn = null;
+  try {
+    conn = await fbAttach();
+    if (E.table && E.idCol) { const m = await fbq(conn, `SELECT MAX("${E.idCol}") AS M FROM "${E.table}"`); if (m.length && Number(m[0].M) > Number(E.lastId || 0)) return; }   // a sale not read yet: next step
+    let rows;
+    if (E.writeTarget === "balances" && E.bal) {
+      const B = E.bal, almW = B.almCol ? ` AND b."${B.almCol}" = ${Number(B.almacenId)}` : "";
+      rows = await fbq(conn, `SELECT p."${E.prodCodeCol}" AS CODE, p."DESCRIPCION" AS NAME, b."${B.qtyCol}" AS Q FROM "${E.prodTable}" p JOIN "${B.table}" b ON b."${B.prodCol}" = p."${B.prodIdCol}"${almW}`);
+    } else if (E.stockCol) rows = await fbq(conn, `SELECT "${E.prodCodeCol}" AS CODE, "DESCRIPCION" AS NAME, "${E.stockCol}" AS Q FROM "${E.prodTable}"`);
+    else return;
+    try { conn.detach(); } catch (_) {} conn = null;
+    const ele = new Map(); for (const r of rows) { const c = String(r.CODE ?? "").trim(); if (c) ele.set(c, { q: Math.max(0, Math.round(Number(r.Q) || 0)), name: r.NAME != null ? String(r.NAME).trim() : "" }); }
+    const full = await cloudReq("GET", null, `?k=${encodeURIComponent(config.cloud.key)}&since=0`);
+    const app = new Map((full.products || []).map(p => [p.code, p]));
+    // counts written today to the wrong place (PRODUCTOS.DINVENTARIO): send them again to the real stock
+    if (E.writeTarget === "balances" && !E.balMigrated) {
+      const items = [];
+      for (const w of (db.eleWrites || [])) { const e = ele.get(w.code), a = app.get(w.code); if (e && a && a.qty !== e.q && !items.some(i => i.code === w.code)) items.push({ id: "m" + crypto.randomBytes(6).toString("hex"), code: w.code, qty: e.q }); }
+      if (items.length) { await cloudPost({ t: "ack", items }); for (const i of items) { const a = app.get(i.code); if (a) a.eleQty = i.qty; } console.log(`> ${items.length} conteo(s) del teléfono se pasan otra vez al lugar correcto de Eleventa`); }
+      E.balMigrated = true; saveConfig();
+    }
+    const imp = [];
+    for (const [code, e] of ele) {
+      const a = app.get(code);
+      if (!a) { if (e.q > 0) imp.push({ code, name: e.name || code, qty: e.q }); continue; }
+      const pending = a.eleQty != null && a.qty !== a.eleQty;
+      if (!pending && a.eleQty !== e.q) imp.push({ code, qty: e.q });
+    }
+    for (let i = 0; i < imp.length; i += 1500) await cloudPost({ t: "import", rows: imp.slice(i, i + 1500) });
+    reconState.lastRun = Date.now(); reconState.lastCount = imp.length; reconState.error = "";
+    if (imp.length) { console.log(`> Eleventa → app: ${imp.length} producto(s) actualizados`); logIt("recon", `Eleventa → app: ${imp.length}`, "Eleventa"); }
+  } catch (e) { reconState.error = e.message || String(e); console.log("! No pude leer la existencia de Eleventa:", reconState.error); }
+  finally { try { conn && conn.detach(); } catch (_) {} }
+}
 async function writeCounts() {
   const E = config.eleventaDb;
   if (!E.enabled || !config.cloud.enabled || !E.path || !E.prodTable || !E.stockCol || writeState.running) return;
@@ -644,11 +739,24 @@ async function writeCounts() {
       if (m.length && Number(m[0].M) > Number(E.lastId || 0)) { writeState.running = false; try { conn.detach(); } catch (_) {} conn = null; return; }
     }
     for (const t of todo) {
-      const rows = await fbq(conn, `SELECT "${E.stockCol}" AS Q FROM "${E.prodTable}" WHERE "${E.prodCodeCol}" = ?`, [t.code]);
-      if (!rows.length) { missing.push(t.code); continue; }
-      const old = Number(rows[0].Q) || 0;
-      const nw = t.qty;
-      await fbq(conn, `UPDATE "${E.prodTable}" SET "${E.stockCol}" = ? WHERE "${E.prodCodeCol}" = ?`, [nw, t.code]);
+      let old, nw = t.qty;
+      if (E.writeTarget === "balances" && E.bal) {
+        const B = E.bal, almW = B.almCol ? ` AND b."${B.almCol}" = ${Number(B.almacenId)}` : "";
+        const rows = await fbq(conn, `SELECT p."${B.prodIdCol}" AS PID${B.costCol ? `, p."${B.costCol}" AS COST` : ""}, b."${B.qtyCol}" AS Q FROM "${E.prodTable}" p LEFT JOIN "${B.table}" b ON b."${B.prodCol}" = p."${B.prodIdCol}"${almW} WHERE p."${E.prodCodeCol}" = ?`, [t.code]);
+        if (!rows.length) { missing.push(t.code); continue; }
+        const pid = rows[0].PID, cost = Number(rows[0].COST) || 0;
+        old = rows[0].Q == null ? null : Number(rows[0].Q);
+        if (old === null) await fbq(conn, `INSERT INTO "${B.table}" ("${B.prodCol}", "${B.qtyCol}"${B.almCol ? `, "${B.almCol}"` : ""}) VALUES (?, ?${B.almCol ? ", ?" : ""})`, B.almCol ? [pid, nw, B.almacenId] : [pid, nw]);
+        else await fbq(conn, `UPDATE "${B.table}" SET "${B.qtyCol}" = ? WHERE "${B.prodCol}" = ?${B.almCol ? ` AND "${B.almCol}" = ?` : ""}`, B.almCol ? [nw, pid, B.almacenId] : [nw, pid]);
+        if (E.stockCol) await fbq(conn, `UPDATE "${E.prodTable}" SET "${E.stockCol}" = ? WHERE "${B.prodIdCol}" = ?`, [nw, pid]);
+        old = old ?? 0;
+        await logEleventaMove(conn, B, pid, old, nw, cost, t.who);
+      } else {
+        const rows = await fbq(conn, `SELECT "${E.stockCol}" AS Q FROM "${E.prodTable}" WHERE "${E.prodCodeCol}" = ?`, [t.code]);
+        if (!rows.length) { missing.push(t.code); continue; }
+        old = Number(rows[0].Q) || 0;
+        await fbq(conn, `UPDATE "${E.prodTable}" SET "${E.stockCol}" = ? WHERE "${E.prodCodeCol}" = ?`, [nw, t.code]);
+      }
       cloud.acks.push({ id: "w" + crypto.randomBytes(6).toString("hex"), code: t.code, qty: t.qty }); saveAcks();
       cloud.pending = cloud.pending.filter(p => p.code !== t.code);
       const rec = { ts: nowISO(), code: t.code, name: t.name, old, new: nw, who: t.who };
@@ -801,7 +909,7 @@ server.on("error", e => {
 function programStatus() {
   const E = config.eleventaDb, r = salesState.report || {};
   return { version: VERSION, now: nowISO(), latest: updState.latest, updateError: updState.error,
-    eleventa: { on: !!E.enabled, ok: !!(E.table && E.idCol), salesTable: E.table || "", stock: E.prodTable && E.stockCol ? E.prodTable + "." + E.stockCol : "", error: E.enabled ? (salesState.error || "") : (r.error || ""),
+    eleventa: { on: !!E.enabled, ok: !!(E.table && E.idCol), target: E.writeTarget === "balances" ? "INVENTARIO_BALANCES" : (E.stockCol ? E.prodTable + "." + E.stockCol : ""), recon: reconState.lastRun ? new Date(reconState.lastRun).toISOString() : null, reconCount: reconState.lastCount, salesTable: E.table || "", stock: E.prodTable && E.stockCol ? E.prodTable + "." + E.stockCol : "", error: E.enabled ? (salesState.error || "") : (r.error || ""),
       lastRead: salesState.lastRun, lastCount: salesState.lastCount },
     writes: { lastRun: writeState.lastRun, lastCount: writeState.lastCount, error: writeState.error, notFound: writeState.notFound.slice(0, 20), recent: writeState.recent.slice(0, 6).map(r => ({ name: r.name || r.code, old: r.old, new: r.new, ts: r.ts, who: r.who })) } };
 }
