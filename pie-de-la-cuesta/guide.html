@@ -77,14 +77,9 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
 
   <section class="card" id="before">
     <span class="tag">Antes de ir · Before you go</span>
-    <h2>Revisa el servicio en línea<span class="en">Check the online service</span></h2>
-    <p class="sub">Los teléfonos y la computadora se comunican por internet. Revísalo primero: tarda 10 segundos.
-      <span class="en">The phones and the computer talk over the internet. Check it first. It takes 10 seconds.</span></p>
-    <a class="btn" href="https://mxstudio-partners.netlify.app/api/inventario?k=checkdeploy_0123456789abcdef&amp;since=0">Abrir enlace de prueba<span class="en">Open the check link</span></a>
-    <div class="note ok"><b>Funciona:</b> ves una línea corta que empieza con <code>{"rev":0</code>.
-      <span class="en"><b>Working:</b> you see a short line that starts with <code>{"rev":0</code>.</span></div>
-    <div class="note bad"><b>Página de error:</b> no hagas el Paso 2 todavía. Manda una captura a MX Studio. Los teléfonos sí funcionan solos (Paso 1).
-      <span class="en"><b>Error page:</b> don't do Step 2 yet. Send a screenshot to MX Studio. The phones still work on their own (Step 1).</span></div>
+    <h2>Lo que necesitas<span class="en">What you need</span></h2>
+    <p class="sub">No hay que configurar nada en internet. La computadora de la tienda es el centro: los teléfonos se conectan a ella desde cualquier lugar, gratis.
+      <span class="en">Nothing to set up online. The store computer is the hub: phones connect to it from anywhere, for free.</span></p>
     <h3 style="margin-top:16px">Qué llevar<span class="en">What to bring</span></h3>
     <ul class="plain">
       <li>El teléfono del dueño y de los empleados que van a contar.<span class="en">The owner's phone and any worker phones that will count.</span></li>
@@ -209,7 +204,8 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
         <span class="en">Open Chrome or Edge on that computer and go to <code>http://localhost:8080/pc</code>. The program's black window must stay open: closing it closes the program.</span></p></div></details>
     <details class="fix"><summary><span>El teléfono no se conecta después de escanear el QR<span class="en">Phone doesn't connect after scanning the QR</span></span></summary><div class="body">
       <ul class="plain">
-        <li>Abre el <a href="#before">enlace de prueba</a>. Si sale error, el servicio en línea no está funcionando: manda captura a MX Studio.<span class="en">Open the <a href="#before">check link</a>. If it shows an error, the online service is down: send a screenshot to MX Studio.</span></li>
+        <li>En el programa, en «Teléfonos de la tienda», debe decir «Los teléfonos pueden conectarse desde cualquier lugar». Si dice «Preparando…», espera un minuto (la primera vez descarga la conexión gratuita).<span class="en">In the program, under «Teléfonos de la tienda», it should say «Los teléfonos pueden conectarse desde cualquier lugar». If it says «Preparando…», wait a minute (the first time it downloads the free connection).</span></li>
+        <li>Si el antivirus o Windows pregunta por <code>cloudflared.exe</code>, permítelo: es la conexión gratuita de Cloudflare para los teléfonos.<span class="en">If the antivirus or Windows asks about <code>cloudflared.exe</code>, allow it: it's Cloudflare's free connection for the phones.</span></li>
         <li>Revisa que la computadora tenga internet.<span class="en">Make sure the computer has internet.</span></li>
         <li>Escanea el QR otra vez con la cámara normal del teléfono.<span class="en">Scan the QR again with the phone's normal camera.</span></li>
       </ul></div></details>
