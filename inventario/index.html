@@ -779,8 +779,8 @@ const clock = ms => new Date(ms).toLocaleTimeString(S.lang==="es"?"es-MX":"en-US
 async function salesLoad(force){
   if (!syncOn() || S.salesBusy) return; if (!force && Date.now()-S.salesAt<10000) return;
   S.salesBusy=true;
-  try{ const r=await fetch(`${SYNC.pair.u}?k=${encodeURIComponent(SYNC.pair.k)}&sales=1&from=${S.arr||0}`,{cache:"no-store"}); if (!r.ok) throw new Error(r.status);
-    S.sales=await r.json(); S.salesErr=false; }catch(_){ S.salesErr=true; }
+  try{ const r=await fetch(`${await apiUrl()}?k=${encodeURIComponent(SYNC.pair.k)}&sales=1&from=${S.arr||0}`,{cache:"no-store"}); if (!r.ok) throw new Error(r.status);
+    S.sales=await r.json(); S.salesErr=false; }catch(_){ S.salesErr=true; linkFailed(); }
   S.salesAt=Date.now(); S.salesBusy=false; if (S.view==="ventas" && !S.pad && !S.newp) render();
 }
 setInterval(()=>{ if (!document.hidden && S.view==="ventas") salesLoad(); }, 5000);
@@ -874,7 +874,7 @@ document.addEventListener("click", e=>{
     tick(){ S.setup.done[v]=!S.setup.done[v]; save(); },
     untickAll(){ S.setup.done={}; save(); },
     reset(){ if (!S.resetArm){ S.resetArm=true; setTimeout(()=>{ S.resetArm=false; if (S.view==="set") render(); },4000); return; }
-      S.resetArm=false; if (syncOn()) fetch(SYNC.pair.u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({k:SYNC.pair.k,t:"reset"})}).then(()=>{SYNC.rev=0; syncPull();}).catch(()=>{}); S.products={}; S.log=[]; S.lastImp=null; S.lastExp=null; S.pending=0; S.setup={prog:"eleventa",done:{}}; save(); toast(S.lang==="es"?"Inventario borrado":"Inventory erased"); }
+      S.resetArm=false; if (syncOn()) apiUrl().then(u=>fetch(u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({k:SYNC.pair.k,t:"reset"})})).then(()=>{SYNC.rev=0; syncPull();}).catch(()=>{}); S.products={}; S.log=[]; S.lastImp=null; S.lastExp=null; S.pending=0; S.setup={prog:"eleventa",done:{}}; save(); toast(S.lang==="es"?"Inventario borrado":"Inventory erased"); }
   };
   if (H[a]){ const r=H[a](); if (r!=="skip") render(); }
 });
@@ -917,10 +917,29 @@ const PAIR_KEY="pdc_live_pair", QUEUE_KEY="pdc_live_queue";
 const SYNC={ pair:null, rev:0, queue:[], online:false, busy:false, timer:null };
 try{ SYNC.pair=JSON.parse(localStorage.getItem(PAIR_KEY)||"null"); SYNC.queue=JSON.parse(localStorage.getItem(QUEUE_KEY)||"[]"); }catch(_){}
 (function(){ const h=new URLSearchParams(location.hash.slice(1)); const k=h.get("k"), u=h.get("u");
-  if (k && /^[A-Za-z0-9_-]{20,64}$/.test(k) && u && /^(https:\/\/|http:\/\/localhost)/.test(u)){
-    const prev=SYNC.pair; SYNC.pair={k, u, n:h.get("n")||"", who:(prev&&prev.who)||""}; SYNC.rev=0; SYNC.fresh=true;
+  const r=h.get("r")||"https://ntfy.sh";
+  if (k && /^[A-Za-z0-9_-]{20,64}$/.test(k) && u && (u==="auto" || /^(https:\/\/|http:\/\/localhost)/.test(u)) && /^(https:\/\/|http:\/\/localhost)/.test(r)){
+    const prev=SYNC.pair; SYNC.pair={k, u, r, n:h.get("n")||"", who:(prev&&prev.who)||""}; SYNC.base=null; try{ localStorage.removeItem("pdc_live_base"); }catch(_){} SYNC.rev=0; SYNC.fresh=true;
     try{ localStorage.setItem(PAIR_KEY, JSON.stringify(SYNC.pair)); }catch(_){}
     history.replaceState(null,"",location.pathname); } })();
+if (SYNC.pair && /netlify\.app/i.test(SYNC.pair.u||"")){ SYNC.pair.u="auto"; SYNC.pair.r="https://ntfy.sh"; try{ localStorage.setItem(PAIR_KEY, JSON.stringify(SYNC.pair)); }catch(_){} }
+try{ SYNC.base=localStorage.getItem("pdc_live_base")||null; }catch(_){}
+SYNC.baseAt=0;
+async function storeTopic(k){ const h=await crypto.subtle.digest("SHA-256", new TextEncoder().encode("mxinv-topic:"+k)); return "mxinv-"+[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,24); }
+// where the store computer answers right now
+async function apiUrl(){
+  const P=SYNC.pair; if (P.u!=="auto") return P.u;
+  if (SYNC.base) return SYNC.base+"/api/inventario";
+  if (Date.now()-SYNC.baseAt<15000) throw new Error("no link yet");
+  SYNC.baseAt=Date.now();
+  const r=await fetch(`${P.r||"https://ntfy.sh"}/${await storeTopic(P.k)}/json?poll=1&since=all`,{cache:"no-store"});
+  if (!r.ok) throw new Error("relay "+r.status);
+  let last=null; for (const line of (await r.text()).split("\n")){ try{ const m=JSON.parse(line); if (m.event==="message" && /^https?:\/\/[^\s]+$/.test((m.message||"").trim())) last=m.message.trim(); }catch(_){} }
+  if (!last) throw new Error("store computer not announced");
+  SYNC.base=last.replace(/\/+$/,""); try{ localStorage.setItem("pdc_live_base", SYNC.base); }catch(_){}
+  return SYNC.base+"/api/inventario";
+}
+function linkFailed(){ if (SYNC.pair && SYNC.pair.u==="auto"){ SYNC.base=null; try{ localStorage.removeItem("pdc_live_base"); }catch(_){} } }
 const syncOn=()=>!!(SYNC.pair&&SYNC.pair.k);
 function saveQueue(){ try{ localStorage.setItem(QUEUE_KEY, JSON.stringify(SYNC.queue)); }catch(_){} }
 function syncOp(op){ if (!syncOn()) return; op.opId=uid("o"); op.who=(SYNC.pair.who||""); op.ts=new Date().toISOString(); SYNC.queue.push(op); saveQueue(); syncFlush(); }
@@ -946,22 +965,22 @@ function mergeRemote(list, full){
 async function syncFlush(){
   if (!syncOn() || SYNC.busy || !SYNC.queue.length) return;
   SYNC.busy=true; const batch=SYNC.queue.slice(0,200);
-  try{ const r=await fetch(SYNC.pair.u, {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({k:SYNC.pair.k, ops:batch})});
+  try{ const r=await fetch(await apiUrl(), {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({k:SYNC.pair.k, ops:batch})});
     if (!r.ok) throw new Error("http "+r.status);
     SYNC.queue=SYNC.queue.slice(batch.length); saveQueue(); SYNC.online=true;
-  }catch(_){ SYNC.online=false; }
+  }catch(_){ SYNC.online=false; linkFailed(); }
   finally{ SYNC.busy=false; }
   if (SYNC.online && SYNC.queue.length) return syncFlush();
   syncPull();
 }
 async function syncPull(){
   if (!syncOn()) return;
-  try{ const r=await fetch(`${SYNC.pair.u}?k=${encodeURIComponent(SYNC.pair.k)}&since=${SYNC.rev}`, {cache:"no-store"});
+  try{ const r=await fetch(`${await apiUrl()}?k=${encodeURIComponent(SYNC.pair.k)}&since=${SYNC.rev}`, {cache:"no-store"});
     if (!r.ok) throw new Error("http "+r.status);
     const j=await r.json(); SYNC.online=true; if (j.full) SYNC.cloudCount=j.products.length;
     if ((j.full && j.products.length) || (!j.full && j.products.length)){ mergeRemote(j.products, j.full); save(); }
     SYNC.rev=j.rev||SYNC.rev;
-  }catch(_){ SYNC.online=false; }
+  }catch(_){ SYNC.online=false; linkFailed(); }
   const ae=document.activeElement; if (!S.pad && !S.newp && !(ae && (ae.tagName==="INPUT"||ae.tagName==="SELECT"||ae.tagName==="TEXTAREA"))) render(); else updateHeader();
 }
 function updateHeader(){ const h=document.getElementById("top"); if (h) h.innerHTML=header(); }
@@ -970,7 +989,7 @@ async function storeLoadCloud(){
   if (!SYNC.online || SYNC.cloudCount===undefined || SYNC.cloudCount>=50) { if (SYNC.online) try{ localStorage.setItem(flag,"1"); }catch(_){} return; }
   const rows=Object.values(SEED.products).map(p=>({code:p.barcode, name:p.name, cat:p.cat, qty:p.s1}));
   if (!rows.length) return;
-  try{ const r=await fetch(SYNC.pair.u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({k:SYNC.pair.k,t:"import",rows})});
+  try{ const r=await fetch(await apiUrl(),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({k:SYNC.pair.k,t:"import",rows})});
     if (r.ok){ try{ localStorage.setItem(flag,"1"); }catch(_){} SYNC.rev=0; await syncPull(); } }catch(_){}
 }
 async function syncJoin(){
@@ -997,4 +1016,4 @@ render();
 syncStart();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792721588";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792722614";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>

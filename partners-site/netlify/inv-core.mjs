@@ -24,7 +24,7 @@ const clean = (v, n) => String(v ?? "").replace(/[\u0000-\u001f]/g, " ").trim().
 const num = v => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.max(0, Math.min(1e7, n)) : 0; };
 // Register sales are kept per day (Mexico City time) so phones can see what sold today / since the owner arrived.
 const DAY_FMT = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Mexico_City", year: "numeric", month: "2-digit", day: "2-digit" });
-const dayOf = ms => DAY_FMT.format(new Date(ms));
+const dayOf = ms => { const o = {}; for (const x of DAY_FMT.formatToParts(new Date(ms))) o[x.type] = x.value; return `${o.year}-${o.month}-${o.day}`; };
 function addSale(doc, code, n) {
   const now = Date.now(), d = dayOf(now);
   doc.sales = doc.sales || {};

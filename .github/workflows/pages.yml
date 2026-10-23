@@ -31,12 +31,33 @@ jobs:
           cp -R jefetech-app out/app
           cp -R escaner out/escaner
           cp -R inventario out/inventario
+          rm -rf out/inventario-programa
           cp -R pie-de-la-cuesta out/pie-de-la-cuesta
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects
           touch out/.nojekyll
           printf '<!doctype html><meta charset=utf-8><title>MX Studio</title><meta name=robots content=noindex><p>MX Studio ✝️</p>\n' > out/index.html
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test the store program's phone link (real internet)
+        continue-on-error: true
+        run: |
+          mkdir -p out/_diag /tmp/prog && cp -r inventario-programa/. /tmp/prog/ && cd /tmp/prog
+          npm install --omit=dev --no-audit --no-fund >/dev/null 2>&1 || true
+          echo '{"port":8080,"openBrowser":false}' > inventario-config.json
+          (PDC_MOCK_TYPER=1 node server.js > run.log 2>&1 &)
+          K=""; for i in $(seq 1 20); do sleep 3; K=$(node -e 'try{console.log(require("./inventario-config.json").cloud.key)}catch(e){}'); [ -n "$K" ] && break; done
+          T=$(node -e 'const c=require("crypto");console.log("mxinv-"+c.createHash("sha256").update("mxinv-topic:"+process.argv[1]).digest("hex").slice(0,24))' "$K")
+          U=""; for i in $(seq 1 30); do sleep 5; U=$(curl -s -m 15 "https://ntfy.sh/$T/json?poll=1&since=all" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{let u="";for(const l of s.split("\n")){try{const m=JSON.parse(l);if(m.event==="message"&&/^https:/.test(m.message))u=m.message}catch(e){}}console.log(u)})'); [ -n "$U" ] && break; done
+          {
+            echo "checked: $(date -u +%FT%TZ)"
+            echo "announced link: ${U:-NONE}"
+            if [ -n "$U" ]; then for i in 1 2 3 4 5 6; do r=$(curl -s -m 20 -H "origin: https://go.myjefetech.app" -D /tmp/h.txt "$U/api/inventario?k=$K&pending=1"); echo "try $i: $r"; if echo "$r" | grep -q '"rev"'; then grep -i "access-control-allow-origin" /tmp/h.txt; break; fi; sleep 10; done; fi
+            echo "--- program log"; tail -15 run.log
+          } > "$GITHUB_WORKSPACE/out/_diag/link.txt" 2>&1
+          cat "$GITHUB_WORKSPACE/out/_diag/link.txt"
       - name: Check the shared inventory service
         env:
           HAS_NETLIFY: ${{ secrets.NETLIFY_AUTH_TOKEN != '' }}

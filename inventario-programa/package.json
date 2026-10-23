@@ -1,0 +1,19 @@
+{
+  "name": "mxstudio-inventario",
+  "version": "1.4.0",
+  "description": "MX Studio \u00b7 Inventario para tiendas (Eleventa)",
+  "main": "server.js",
+  "bin": "server.js",
+  "pkg": {
+    "assets": [
+      "public/**/*"
+    ],
+    "targets": [
+      "node20-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "dependencies": {
+    "node-firebird": "2.19.0"
+  }
+}

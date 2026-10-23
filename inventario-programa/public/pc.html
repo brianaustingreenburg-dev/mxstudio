@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inventario · Computadora de la tienda</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/base.css">
+<style>
+body{margin:0}[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px;display:flex;flex-direction:column;gap:16px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.cols{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:960px){.cols{grid-template-columns:1.05fr .95fr}}
+.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.qr{background:#fff;border-radius:12px;padding:10px;border:1px solid var(--line);display:inline-block;line-height:0}
+.qr svg{width:180px;height:180px}
+.connect{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.big-num{font-family:var(--f-display);font-weight:800;font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.send-head{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.overlay{position:fixed;inset:0;background:rgba(10,14,28,.6);z-index:90;display:grid;place-items:center;padding:16px}
+.overlay .box{background:var(--surface);border-radius:20px;padding:28px;max-width:520px;width:100%;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
+.count{font-family:var(--f-display);font-weight:800;font-size:5rem;line-height:1;color:var(--accent)}
+.tok{display:flex;flex-wrap:wrap;gap:6px}
+.tok button{font-family:var(--f-mono);font-size:.8rem;border:1px solid var(--line);background:var(--sunk);border-radius:8px;padding:4px 8px}
+td .mono{font-size:.8rem}
+.arrow{color:var(--muted);padding:0 4px}
+</style>
+</head><body>
+<div class="wrap" id="root"></div>
+<div id="ov" hidden></div>
+<div id="toast" class="toast" hidden></div>
+<script src="/libs/xlsx.full.min.js"></script>
+<script src="/libs/qrcode.js"></script>
+<script src="/core.js"></script>
+<script>
+"use strict";
+const T={
+ es:{title:"Computadora de la tienda", phones:"Conectar teléfonos", phonesH:"Con el teléfono en el Wi-Fi de la tienda, escanea el código o abre la dirección.", noLan:"No encuentro la red Wi-Fi. Conecta esta computadora al Wi-Fi o al módem de la tienda.",
+  send:"Pasar a Eleventa", sendH:"Cambios contados en los teléfonos que todavía no están en Eleventa.", nothing:"No hay nada pendiente. Todo está igual que en Eleventa.",
+  sendBtn:"Pasar a Eleventa", testBtn:"Probar con Bloc de notas", clearBtn:"Ya los pasé a mano", clearSure:"Toca otra vez para confirmar",
+  product:"Producto", code:"Código", now:"Eleventa → Nuevo", who:"Contó", when:"Cuándo",
+  cdTitle:"Haz clic en la pantalla de inventario de Eleventa", cdTitleTest:"Abre el Bloc de notas y haz clic adentro", cdSub:"Empiezo a escribir en", typing:"Escribiendo en Eleventa…", typingTest:"Escribiendo la prueba…",
+  doneT:"Listo", doneS:"productos pasados a Eleventa.", doneTest:"Prueba terminada. Revisa el Bloc de notas: debe decir el código y la cantidad.",
+  pausedT:"Me detuve", pausedS:"Eleventa no estaba al frente. Ventana activa:", pausedH:"Abre la pantalla de inventario de Eleventa y vuelve a tocar Pasar a Eleventa. Lo que ya pasó no se repite.",
+  errorT:"Algo falló", errorS:"Revisa la ventana negra del programa para ver el detalle.", close:"Cerrar",
+  imp:"Importar de Eleventa", impSteps:["En Eleventa abre <span class='kbd'>F3 Productos</span> → <b>Catálogo</b> → <b>Exportar</b> y guarda el Excel.","Toca <b>Elegir archivo</b> y escoge ese Excel."],
+  choose:"Elegir archivo", sample:"Cargar productos de ejemplo", sampleSure:"Toca otra vez: borra la lista actual",
+  found:"productos en el archivo", nNew:"nuevos", nUpd:"ya existen", doImp:"Importar", cancel:"Cancelar", impBad:"No encontré las columnas de Eleventa en ese archivo.", impDone:"Importado",
+  backup:"Respaldo", expX:"Exportar Excel para Eleventa", expJ:"Descargar respaldo completo", backupH:"Por si quieres pasar todo a Eleventa con Productos → Importar.",
+  cfg:"Ajustes del tecleo", cfgH:"Cómo escribe el programa en la pantalla de inventario de Eleventa. Pruébalo primero con el Bloc de notas.",
+  wTitle:"Nombre de la ventana", wTitleH:"Solo escribe si la ventana al frente contiene este texto.", tpl:"Qué escribe por producto", tplH:"Toca para agregar:",
+  keyD:"Pausa entre teclas (ms)", rowD:"Pausa entre productos (ms)", cdS:"Segundos para hacer clic", auto:"Pasar solo a esta hora (opcional)", autoH:"Formato 21:30. Vacío = apagado. Deja abierta la pantalla de inventario.",
+  pin:"PIN del dueño", store:"Nombre de la tienda", saveCfg:"Guardar ajustes", savedCfg:"Ajustes guardados",
+  steps:"Pasos para conectar", stepsAlt:"Steps to connect",
+  list:"Inventario", search:"Buscar…", recent:"Actividad", lastImp:"Última importación", lastSend:"Último paso a Eleventa", mock:"Modo prueba: el tecleo se guarda en tecleado-prueba.txt",
+  disconnected:"El programa está cerrado. Ábrelo otra vez en esta computadora.",
+  apT:"Teléfonos de la tienda", apH:"Escanea este código con cada teléfono. Se abre la app de inventario conectada a esta tienda: todo lo que cuenten llega aquí.", apOk:"Conectado con la app", apNo:"Sin conexión con la app", apOpen:"Abrir la app en esta computadora",
+  lnOn:"Los teléfonos pueden conectarse desde cualquier lugar", lnWait:"Preparando la conexión para los teléfonos…", lnDl:"Descargando la conexión gratuita (solo la primera vez)…", lnErr:"Sin conexión para los teléfonos", lnKeep:"Deja este programa abierto: los teléfonos se conectan a esta computadora.",
+  wrStock:"Existencias de Eleventa", wrOk:"Los conteos del teléfono se escriben aquí", wrNo:"No encontré dónde guarda Eleventa la existencia. Mándale una captura a MX Studio.", wrLast:"Últimos conteos que entraron a Eleventa", wrMissing:"Estos códigos no existen en Eleventa (dalos de alta en Eleventa con el mismo código)", wrBackup:"Antes del primer cambio de cada día se guarda una copia de Eleventa en", wrErr:"No pude escribir en Eleventa",
+  saT:"Eleventa ↔ app (automático)", saH:"Las ventas de la caja bajan solas en la app, y lo que cuentan en los teléfonos entra solo a la existencia de Eleventa. Nadie tiene que tocar esta computadora.",
+  saTest:"Probar conexión con Eleventa", saTesting:"Buscando la base de datos de Eleventa…", saOn:"Sincronizar con Eleventa automáticamente (ventas y conteos)", saLast:"Última lectura", saSent:"ventas pasadas", saOkT:"Conexión con Eleventa: OK", saFailT:"No pude leer las ventas", saDb:"Base de datos", saTable:"Tabla de ventas", saCols:"Columnas", saSample:"Últimas ventas que leí", saShot:"Mándale una captura de esta pantalla a MX Studio.", saPath:"Ruta del archivo .FDB (opcional)", saPass:"Contraseña de la base (opcional)", saNeedTest:"Primero toca «Probar conexión con Eleventa».",
+  scT:"Escáner de caja", scH:"Escanea este código con el teléfono de la caja. Cada producto que escanee entra solo a la venta en Eleventa.", scOn:"Encendido", scOff:"Apagado", scConn:"Conectado", scNo:"Sin internet: los códigos esperan en el teléfono", scEnter:"Presionar Enter después del código", scTest:"Probar (5 s)", scTestH:"Toca Probar y en 5 segundos haz clic en la venta de Eleventa (o en el Bloc de notas).", scNew:"Nuevo código QR", scNewSure:"Toca otra vez: los teléfonos conectados tendrán que escanear de nuevo", scNone:"Todavía no hay escaneos.",
+  st:{typed:"✓ En Eleventa", blocked:"Eleventa no estaba al frente", old:"Llegó tarde: no se escribió", off:"Escáner apagado", error:"Error"}},
+ en:{title:"Store computer", phones:"Connect phones", phonesH:"With the phone on the store Wi-Fi, scan the code or open the address.", noLan:"I can't find the Wi-Fi network. Connect this computer to the store Wi-Fi or router.",
+  send:"Send to Eleventa", sendH:"Changes counted on the phones that aren't in Eleventa yet.", nothing:"Nothing pending. Everything matches Eleventa.",
+  sendBtn:"Send to Eleventa", testBtn:"Test with Notepad", clearBtn:"I entered them by hand", clearSure:"Tap again to confirm",
+  product:"Product", code:"Code", now:"Eleventa → New", who:"Counted by", when:"When",
+  cdTitle:"Click on Eleventa's inventory screen", cdTitleTest:"Open Notepad and click inside it", cdSub:"I start typing in", typing:"Typing into Eleventa…", typingTest:"Typing the test…",
+  doneT:"Done", doneS:"products sent to Eleventa.", doneTest:"Test finished. Check Notepad: it should show the code and the quantity.",
+  pausedT:"I stopped", pausedS:"Eleventa wasn't in front. Active window:", pausedH:"Open Eleventa's inventory screen and tap Send to Eleventa again. What was already sent won't repeat.",
+  errorT:"Something failed", errorS:"Check the program's black window for details.", close:"Close",
+  imp:"Import from Eleventa", impSteps:["In Eleventa open <span class='kbd'>F3 Productos</span> → <b>Catálogo</b> → <b>Exportar</b> and save the Excel.","Tap <b>Choose file</b> and pick that Excel."],
+  choose:"Choose file", sample:"Load sample products", sampleSure:"Tap again: it replaces the current list",
+  found:"products in the file", nNew:"new", nUpd:"already exist", doImp:"Import", cancel:"Cancel", impBad:"I couldn't find Eleventa's columns in that file.", impDone:"Imported",
+  backup:"Backup", expX:"Export Excel for Eleventa", expJ:"Download full backup", backupH:"In case you want to load everything into Eleventa with Productos → Importar.",
+  cfg:"Typing settings", cfgH:"How the program types into Eleventa's inventory screen. Test it with Notepad first.",
+  wTitle:"Window name", wTitleH:"It only types if the window in front contains this text.", tpl:"What it types per product", tplH:"Tap to add:",
+  keyD:"Pause between keys (ms)", rowD:"Pause between products (ms)", cdS:"Seconds to click", auto:"Send automatically at (optional)", autoH:"Format 21:30. Empty = off. Leave the inventory screen open.",
+  pin:"Owner PIN", store:"Store name", saveCfg:"Save settings", savedCfg:"Settings saved",
+  steps:"Steps to connect", stepsAlt:"Pasos para conectar",
+  list:"Inventory", search:"Search…", recent:"Activity", lastImp:"Last import", lastSend:"Last send to Eleventa", mock:"Test mode: typing is saved to tecleado-prueba.txt",
+  disconnected:"The program is closed. Open it again on this computer.",
+  apT:"Store phones", apH:"Scan this code with each phone. It opens the inventory app connected to this store: everything they count arrives here.", apOk:"Connected to the app", apNo:"Not connected to the app", apOpen:"Open the app on this computer",
+  lnOn:"Phones can connect from anywhere", lnWait:"Preparing the connection for the phones…", lnDl:"Downloading the free connection (first time only)…", lnErr:"No connection for the phones", lnKeep:"Keep this program open: the phones connect to this computer.",
+  wrStock:"Eleventa stock", wrOk:"Phone counts are written here", wrNo:"I couldn't find where Eleventa keeps the stock. Send a screenshot to MX Studio.", wrLast:"Latest counts that went into Eleventa", wrMissing:"These codes don't exist in Eleventa (add them in Eleventa with the same code)", wrBackup:"Before the first change each day, a copy of Eleventa is saved in", wrErr:"I couldn't write to Eleventa",
+  saT:"Eleventa ↔ app (automatic)", saH:"Register sales come off the app on their own, and what the phones count goes straight into Eleventa's stock. Nobody has to touch this computer.",
+  saTest:"Test connection with Eleventa", saTesting:"Looking for Eleventa's database…", saOn:"Sync with Eleventa automatically (sales and counts)", saLast:"Last read", saSent:"sales sent", saOkT:"Connection with Eleventa: OK", saFailT:"I couldn't read the sales", saDb:"Database", saTable:"Sales table", saCols:"Columns", saSample:"Latest sales I read", saShot:"Send a screenshot of this screen to MX Studio.", saPath:"Path to the .FDB file (optional)", saPass:"Database password (optional)", saNeedTest:"First tap «Test connection with Eleventa».",
+  scT:"Register scanner", scH:"Scan this code with the register phone. Every product it scans goes straight into the Eleventa sale.", scOn:"On", scOff:"Off", scConn:"Connected", scNo:"No internet: codes wait on the phone", scEnter:"Press Enter after the code", scTest:"Test (5 s)", scTestH:"Tap Test and within 5 seconds click on the Eleventa sale (or Notepad).", scNew:"New QR code", scNewSure:"Tap again: connected phones will need to scan again", scNone:"No scans yet.",
+  st:{typed:"✓ In Eleventa", blocked:"Eleventa wasn't in front", old:"Arrived late: not typed", off:"Scanner off", error:"Error"}}
+};
+const S={lang:lsGet("pdc_lang","es"), d:null, imp:null, q:"", sampleArm:false, clearArm:false, newArm:false, ovShown:false, cfgDraft:null};
+const t=k=>T[S.lang][k]??T.es[k]??k;
+async function load(){ try{ S.d=await API.get("/api/state"); }catch(e){ S.d=null; } render(); }
+function qrSVG(text){ try{ const q=qrcode(0,"M"); q.addData(text); q.make(); return q.createSvgTag({cellSize:6, margin:2, scalable:true}); }catch(e){ return ""; } }
+function render(){
+  const ae=document.activeElement, fid=ae&&ae.id, s0=ae&&ae.selectionStart, s1=ae&&ae.selectionEnd;
+  document.documentElement.lang=S.lang;
+  if (!S.d){ $("#root").innerHTML=`<div class="banner warn">${t("disconnected")}</div>`; return; }
+  const d=S.d, addr=(d.addresses||[])[0], pend=d.pending||[], E=S.cfgDraft||d.eleventa||{};
+  const ps=Object.entries(d.products).map(([id,p])=>({id,...p})).filter(p=>!S.q||p.name.toLowerCase().includes(S.q.toLowerCase())||String(p.code).includes(S.q)).sort((a,b)=>a.name.localeCompare(b.name));
+  $("#root").innerHTML=`
+  <div class="topbar"><div class="brand"><div class="tile" aria-hidden="true"></div><div><b>${esc(d.storeName)}</b><span>${t("title")} · MX Studio</span></div></div>
+    <div class="chips"><span class="chip">${t("lastImp")}: ${ago(d.lastImport,S.lang)}</span><span class="chip">${t("lastSend")}: ${ago(d.lastSend,S.lang)}</span>
+    <div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">ES</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">EN</button></div></div></div>
+  ${d.mock?`<div class="banner info small">${t("mock")}</div>`:""}
+  <div class="cols"><div class="col">
+    ${d.scanner&&d.scanner.enabled?scannerCard(d):""}
+    <section class="card"><div class="send-head"><div><h2>${t("send")}</h2><span class="small muted">${t("sendH")}</span></div><span class="big-num">${pend.length}</span></div>
+      ${pend.length?`<div class="tablewrap"><table><thead><tr><th>${t("product")}</th><th class="r">${t("now")}</th><th>${t("who")}</th></tr></thead><tbody>
+        ${pend.slice(0,60).map(x=>`<tr><td><b>${esc(x.name)}</b><br><span class="mono muted">${esc(x.code)}</span></td><td class="r num">${x.eleQty==null?"—":x.eleQty}<span class="arrow">→</span><b>${x.qty}</b></td><td class="small">${esc(x.who)}<br><span class="muted">${ago(x.at,S.lang)}</span></td></tr>`).join("")}
+        </tbody></table></div>`:`<p class="muted">${t("nothing")}</p>`}
+      <button class="btn primary big" data-act="send" ${pend.length?"":"disabled"}>${t("sendBtn")} · ${pend.length}</button>
+      <div class="btns"><button class="btn" data-act="test">${t("testBtn")}</button>${pend.length?`<button class="btn ghost" data-act="clear">${S.clearArm?t("clearSure"):t("clearBtn")}</button>`:""}</div>
+    </section>
+    ${appCard(d)}
+    ${salesCard(d)}
+    ${d.cloud&&d.cloud.enabled?"":`<section class="card"><h3>${t("list")} · ${Object.keys(d.products).length}</h3><input class="f" id="q" type="search" placeholder="${t("search")}" value="${esc(S.q)}">
+      <div class="tablewrap"><table><thead><tr><th>${t("product")}</th><th class="r">Qty</th><th class="r">$</th><th>${t("who")}</th></tr></thead><tbody>
+      ${ps.slice(0,200).map(p=>`<tr><td>${p.dirty?'<span class="dot-pend"></span>':""}${esc(p.name)}<br><span class="mono muted">${esc(p.code)}</span></td><td class="r"><span class="pill ${level(p)==="out"?"p-bad":level(p)==="low"?"p-warn":"p-ok"}">${p.qty||0}</span></td><td class="r num">${money(p.price)}</td><td class="small muted">${esc(p.countedBy||"")}</td></tr>`).join("")}
+      </tbody></table></div></section>`}
+  </div><div class="col">
+    <section class="card"><h3>${t("imp")}</h3><ol class="steps" style="list-style:decimal;padding-left:20px;margin:0;display:flex;flex-direction:column;gap:6px">${T[S.lang].impSteps.map(x=>`<li>${x}</li>`).join("")}</ol>
+      <div class="btns"><label class="btn primary filebtn">${t("choose")}<input id="fileEle" type="file" accept=".xls,.xlsx,.csv"></label></div>
+      ${S.imp?(()=>{ const codes=new Set(Object.values(d.products).map(p=>String(p.code))); const nNew=S.imp.rows.filter(r=>!codes.has(r.code)).length;
+        return `<div class="card result"><b>${esc(S.imp.name)}</b><div class="chips"><span class="chip">${S.imp.rows.length} ${t("found")}</span><span class="chip">${nNew} ${t("nNew")}</span><span class="chip">${S.imp.rows.length-nNew} ${t("nUpd")}</span></div>
+        <div class="btns"><button class="btn primary" data-act="doImp">${t("doImp")}</button><button class="btn" data-act="impCancel">${t("cancel")}</button></div></div>`; })():""}
+    </section>
+    <section class="card"><h3>${t("steps")}</h3><span class="chk-alt">${t("stepsAlt")}</span>${checklistHTML(d.setup||{done:{}}, S.lang)}</section>
+    <section class="card"><h3>${t("cfg")}</h3><span class="small muted">${t("cfgH")}</span>
+      <label class="field"><span class="label">${t("wTitle")}</span><input class="f" id="c_title" value="${esc(E.windowTitle)}"><span class="small muted">${t("wTitleH")}</span></label>
+      <label class="field"><span class="label">${t("tpl")}</span><input class="f mono" id="c_tpl" value="${esc(E.template)}"></label>
+      <div class="tok"><span class="small muted">${t("tplH")}</span>${["{code}","{qty}","{delta}","{ENTER}","{TAB}","{WAIT}","{F10}","{ESC}"].map(x=>`<button data-act="tok" data-v="${x}">${x}</button>`).join("")}</div>
+      <div class="fields"><label class="field"><span class="label">${t("keyD")}</span><input class="f" id="c_kd" inputmode="numeric" value="${esc(E.keyDelayMs)}"></label>
+        <label class="field"><span class="label">${t("rowD")}</span><input class="f" id="c_rd" inputmode="numeric" value="${esc(E.rowDelayMs)}"></label>
+        <label class="field"><span class="label">${t("cdS")}</span><input class="f" id="c_cd" inputmode="numeric" value="${esc(E.countdownSec)}"></label>
+        <label class="field"><span class="label">${t("auto")}</span><input class="f" id="c_auto" placeholder="21:30" value="${esc(S.cfgDraft?S.cfgDraft.auto:d.autoSendTime||"")}"></label>
+        <label class="field"><span class="label">${t("pin")}</span><input class="f" id="c_pin" inputmode="numeric" placeholder="••••"></label>
+        <label class="field"><span class="label">${t("store")}</span><input class="f" id="c_store" value="${esc(d.storeName)}"></label></div>
+      <span class="small muted">${t("autoH")}</span>
+      <button class="btn primary" data-act="saveCfg">${t("saveCfg")}</button></section>
+    <section class="card"><h3>${t("backup")}</h3><span class="small muted">${t("backupH")}</span><div class="btns"><button class="btn" data-act="expX">${t("expX")}</button><a class="btn" href="/api/admin/backup">${t("expJ")}</a></div></section>
+    <section class="card"><h3>${t("recent")}</h3><div class="list">${(d.log||[]).slice(0,15).map(l=>`<div class="item"><div class="grow small">${esc(l.text)}</div><span class="small muted">${esc(l.who||"")} · ${ago(l.ts,S.lang)}</span></div>`).join("")||`<p class="muted">—</p>`}</div></section>
+  </div></div>`;
+  renderJob();
+  if (fid){ const el=document.getElementById(fid); if (el){ el.focus(); try{ if(s0!=null) el.setSelectionRange(s0,s1); }catch(e){} } }
+}
+function appCard(d){
+  const c=d.cloud||{}; if (!c.enabled) return "";
+  return `<section class="card"><div class="send-head"><div><h2>${t("apT")}</h2><span class="small muted">${t("apH")}</span></div></div>
+    <div class="connect">${c.pairUrl?`<div class="qr">${qrSVG(c.pairUrl)}</div>`:""}
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0;flex:1">
+        ${(()=>{ const l=c.link||{}; const ok=l.state==="on"&&l.published; return `<span class="chip ${ok?"":"off"}" style="align-self:flex-start"><span class="dot"></span>${ok?t("lnOn"):l.state==="downloading"?t("lnDl"):l.state==="error"?t("lnErr"):t("lnWait")}</span>${l.error?`<span class="small" style="color:var(--warn)">${esc(l.error)}</span>`:""}<span class="small muted">${t("lnKeep")}</span>`; })()}
+        ${c.pairUrl?`<a class="btn" href="${esc(c.pairUrl)}" target="_blank" rel="noopener" style="align-self:flex-start">${t("apOpen")}</a>`:""}
+      </div></div></section>`;
+}
+function salesCard(d){
+  const sa=d.sales||{}; const r=sa.report;
+  let rep="";
+  if (S.saBusy) rep=`<p class="muted">${t("saTesting")}</p>`;
+  else if (r) rep=`<div class="card result" style="gap:8px"><b style="color:${r.ok?"var(--ok)":"var(--bad)"}">${r.ok?"✓ "+t("saOkT"):"✕ "+t("saFailT")}</b>
+    ${r.error?`<span class="small">${esc(r.error)}</span>`:""}
+    ${r.db?`<span class="small"><b>${t("saDb")}:</b> <span class="mono">${esc(r.db)}</span></span>`:(r.files&&r.files.length?`<span class="small mono">${r.files.map(esc).join("<br>")}</span>`:"")}
+    ${r.salesTable?`<span class="small"><b>${t("saTable")}:</b> <span class="mono">${esc(r.salesTable)}</span></span><span class="small"><b>${t("saCols")}:</b> <span class="mono">${esc((r.columns||[]).join(", "))}</span></span>`:""}
+    ${!r.salesTable&&r.tables&&r.tables.length?`<span class="small mono" style="max-height:120px;overflow:auto">${esc(r.tables.join(", "))}</span>`:""}
+    ${r.sample&&r.sample.length?`<span class="label">${t("saSample")}</span><div class="list">${r.sample.map(x=>`<div class="item"><span class="mono small">${esc(x.code)}</span><div class="grow small">${esc(x.name||"")}</div><b class="num">${esc(x.qty)}</b></div>`).join("")}</div>`:""}
+    ${r.prodTable?`<span class="small"><b>${t("wrStock")}:</b> <span class="mono">${esc(r.prodTable)}.${esc(r.stockCol||"?")}</span> ${r.writeOk?`<span style="color:var(--ok)">✓ ${t("wrOk")}</span>`:""}</span>`:""}
+    ${r.writeOk&&r.stockSample&&r.stockSample.length?`<span class="small mono">${r.stockSample.map(x=>esc(x.code)+" = "+esc(x.qty)).join(" · ")}</span>`:""}
+    ${!r.writeOk&&r.db?`<span class="small" style="color:var(--bad)">✕ ${esc(r.writeError||t("wrNo"))}</span>${r.prodColumns?`<span class="small mono" style="max-height:90px;overflow:auto">${esc(r.prodColumns.join(", "))}</span>`:""}`:""}
+    <span class="small muted">${t("saShot")}</span></div>`;
+  return `<section class="card"><h3>${t("saT")}</h3><span class="small muted">${t("saH")}</span>
+    <div class="btns"><button class="btn primary" data-act="saTest" ${S.saBusy?"disabled":""}>${t("saTest")}</button></div>
+    ${rep}
+    <label class="small" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="saOn" ${sa.enabled?"checked":""} ${sa.ready?"":"disabled"}> ${t("saOn")}</label>
+    ${!sa.ready?`<span class="small muted">${t("saNeedTest")}</span>`:""}
+    ${sa.lastRun?`<span class="small muted">${t("saLast")}: ${ago(sa.lastRun,S.lang)} · ${sa.lastCount||0} ${t("saSent")}</span>`:""}
+    ${sa.error?`<span class="small" style="color:var(--bad)">${esc(sa.error)}</span>`:""}
+    ${(()=>{ const w=sa.write||{}; let h="";
+      if (w.error) h+=`<span class="small" style="color:var(--bad)">${t("wrErr")}: ${esc(w.error)}</span>`;
+      if (w.recent&&w.recent.length) h+=`<span class="label">${t("wrLast")}</span><div class="list">${w.recent.map(x=>`<div class="item"><div class="grow small"><b>${esc(x.name||x.code)}</b> <span class="muted">${esc(x.who||"")} · ${ago(x.ts,S.lang)}</span></div><b class="num">${esc(x.old)} → ${esc(x.new)}</b></div>`).join("")}</div>`;
+      if (w.notFound&&w.notFound.length) h+=`<span class="small" style="color:var(--warn)">${t("wrMissing")}: <span class="mono">${w.notFound.map(esc).join(", ")}</span></span>`;
+      if (sa.enabled&&w.ready&&w.backupDir) h+=`<span class="small muted">${t("wrBackup")} <span class="mono">${esc(w.backupDir)}</span></span>`;
+      return h; })()}
+    <details><summary class="small">${S.lang==="es"?"Opciones avanzadas":"Advanced options"}</summary><div class="fields" style="margin-top:8px">
+      <label class="field"><span class="label">${t("saPath")}</span><input class="f mono" id="saPath" placeholder="C:\\\\...\\\\PDVDATA.FDB"></label>
+      <label class="field"><span class="label">${t("saPass")}</span><input class="f" id="saPass" type="password" placeholder="masterkey"></label></div>
+      <button class="btn" data-act="saSave" style="margin-top:8px">${t("saveCfg")}</button></details>
+  </section>`;
+}
+function scannerCard(d){
+  const sc=d.scanner||{}; const rec=sc.recent||[];
+  return `<section class="card"><div class="send-head"><div><h2>${t("scT")}</h2><span class="small muted">${t("scH")}</span></div>
+    <div class="seg"><button data-act="scOn" data-v="1" aria-pressed="${!!sc.enabled}">${t("scOn")}</button><button data-act="scOn" data-v="0" aria-pressed="${!sc.enabled}">${t("scOff")}</button></div></div>
+    <div class="connect">${sc.pairUrl?`<div class="qr">${qrSVG(sc.pairUrl)}</div>`:""}
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0;flex:1">
+        <span class="chip ${sc.connected?"":"off"}" style="align-self:flex-start"><span class="dot"></span>${sc.connected?t("scConn"):t("scNo")}</span>
+        <label class="small" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="scEnter" ${sc.pressEnter?"checked":""}> ${t("scEnter")}</label>
+        <div class="btns"><button class="btn" data-act="scTest">${t("scTest")}</button><button class="btn ghost" data-act="scNew">${S.newArm?t("scNewSure"):t("scNew")}</button></div>
+        <span class="small muted">${t("scTestH")}</span>
+      </div></div>
+    <div class="list">${rec.length?rec.slice(0,8).map(r=>`<div class="item"><span class="mono" style="font-weight:600">${esc(r.code)}</span><div class="grow small">${esc(prodName(d,r.code))}</div><span class="pill ${r.status==="typed"?"p-ok":r.status==="blocked"||r.status==="old"?"p-warn":"p-bad"}" title="${esc(r.extra||"")}">${esc(T[S.lang].st[r.status]||r.status)}</span><span class="small muted">${ago(r.ts,S.lang)}</span></div>`).join(""):`<p class="muted">${t("scNone")}</p>`}</div>
+  </section>`;
+}
+function prodName(d,code){ const p=Object.values(d.products||{}).find(x=>String(x.code)===String(code)); return p?p.name:""; }
+let cdTimer=null;
+function renderJob(){
+  const j=S.d&&S.d.job, ov=$("#ov"); if (!j || j.state==="idle"){ ov.hidden=true; clearInterval(cdTimer); return; }
+  let box="";
+  if (j.state==="countdown"){ const left=Math.max(0,Math.ceil((j.at-Date.now())/1000));
+    box=`<div class="count">${left}</div><h2>${j.test?t("cdTitleTest"):t("cdTitle")}</h2><span class="muted">${t("cdSub")} ${left} s</span>`;
+    clearInterval(cdTimer); cdTimer=setInterval(()=>{ if (S.d.job.state==="countdown") renderJob(); else clearInterval(cdTimer); }, 300); }
+  else if (j.state==="typing") box=`<h2>${j.test?t("typingTest"):t("typing")}</h2><div class="prog" style="width:100%"><i style="width:${Math.round(j.done/Math.max(1,j.total)*100)}%"></i></div><b>${j.done} / ${j.total}</b>`;
+  else if (j.state==="done") box=`<h2 style="color:var(--ok)">✓ ${t("doneT")}</h2><p>${j.test?t("doneTest"):`${j.done} ${t("doneS")}`}</p><button class="btn primary" data-act="jobClose">${t("close")}</button>`;
+  else if (j.state==="paused") box=`<h2 style="color:var(--warn)">${t("pausedT")}</h2><p>${t("pausedS")} <b>${esc(j.message||"—")}</b></p><p class="small muted">${t("pausedH")}</p><b>${j.done} / ${j.total}</b><button class="btn primary" data-act="jobClose">${t("close")}</button>`;
+  else box=`<h2 style="color:var(--bad)">${t("errorT")}</h2><p>${t("errorS")}</p><button class="btn primary" data-act="jobClose">${t("close")}</button>`;
+  ov.className="overlay"; ov.hidden=false; ov.innerHTML=`<div class="box">${box}</div>`;
+}
+function draftCfg(){ return { windowTitle:$("#c_title").value, template:$("#c_tpl").value, keyDelayMs:$("#c_kd").value, rowDelayMs:$("#c_rd").value, countdownSec:$("#c_cd").value, auto:$("#c_auto").value }; }
+document.addEventListener("input", e=>{ if (e.target.id==="q"){ S.q=e.target.value; render(); } else if (e.target.id&&e.target.id.startsWith("c_")&&e.target.id!=="c_pin"&&e.target.id!=="c_store") S.cfgDraft=draftCfg(); });
+document.addEventListener("click", async e=>{
+  const b=e.target.closest("[data-act]"); if (!b||b.tagName==="INPUT") return; const a=b.dataset.act, v=b.dataset.v;
+  try{
+  if (a==="lang"){ S.lang=v; lsSet("pdc_lang",v); render(); }
+  else if (a==="saTest"){ S.saBusy=true; render(); try{ await API.post("/api/admin/eleventa-test",{}); }finally{ S.saBusy=false; await load(); } }
+  else if (a==="saSave"){ await API.post("/api/admin/sales",{path:$("#saPath").value, password:$("#saPass").value}); toast(t("savedCfg")); await load(); }
+  else if (a==="scOn"){ await API.post("/api/admin/scanner",{enabled:v==="1"}); await load(); }
+  else if (a==="scTest"){ await API.post("/api/admin/scan-test",{code:"7501000524457", delaySec:5}); toast(t("scTestH")); }
+  else if (a==="scNew"){ if (!S.newArm){ S.newArm=true; setTimeout(()=>{S.newArm=false; render();},4000); render(); return; } S.newArm=false; await API.post("/api/admin/scanner",{newChannel:true}); await load(); }
+  else if (a==="send"||a==="test"){ const r=await API.post("/api/admin/send",{test:a==="test"}); if (!r.ok) toast(r.error); await load(); }
+  else if (a==="jobClose"){ await API.post("/api/admin/job-reset"); await load(); }
+  else if (a==="clear"){ if (!S.clearArm){ S.clearArm=true; setTimeout(()=>{S.clearArm=false; render();},4000); render(); return; } S.clearArm=false; await API.post("/api/admin/clear-pending"); await load(); }
+  else if (a==="sample"){ if (!S.sampleArm){ S.sampleArm=true; setTimeout(()=>{S.sampleArm=false; render();},4000); render(); return; } S.sampleArm=false; await API.post("/api/admin/sample"); await load(); }
+  else if (a==="doImp"){ const r=await API.post("/api/admin/import",{rows:S.imp.rows}); S.imp=null; toast(`${t("impDone")}: ${r.nNew} ${t("nNew")}, ${r.nUpd} ${t("nUpd")}`); await load(); }
+  else if (a==="impCancel"){ S.imp=null; render(); }
+  else if (a==="tok"){ const el=$("#c_tpl"); const p=el.selectionStart??el.value.length; el.value=el.value.slice(0,p)+v+el.value.slice(el.selectionEnd??p); S.cfgDraft=draftCfg(); el.focus(); }
+  else if (a==="saveCfg"){ const D=draftCfg(), pin=$("#c_pin").value.trim();
+    if (pin && !/^\d{4,8}$/.test(pin)){ toast(S.lang==="es"?"El PIN debe ser de 4 a 8 números":"PIN must be 4 to 8 digits"); return; }
+    await API.post("/api/admin/config",{eleventa:{windowTitle:D.windowTitle, template:D.template, keyDelayMs:D.keyDelayMs, rowDelayMs:D.rowDelayMs, countdownSec:D.countdownSec}, autoSendTime:D.auto, ownerPin:pin||undefined, storeName:$("#c_store").value});
+    S.cfgDraft=null; toast(t("savedCfg")); await load(); }
+  else if (a==="expX"){ const head=["Código","Descripción","Precio Costo","Precio Venta","Departamento","Cantidad en inventario","Mínimo","Tipo de venta"];
+    const rows=Object.values(S.d.products).sort((x,y)=>x.name.localeCompare(y.name)).map(p=>[String(p.code||""),p.name,p.cost||0,p.price||0,p.dept||CATS.es[p.cat]||"",p.qty||0,p.min||0,"Unidad"]);
+    const ws=XLSX.utils.aoa_to_sheet([head,...rows]); ws["!cols"]=[{wch:16},{wch:34},{wch:12},{wch:12},{wch:14},{wch:12},{wch:9},{wch:12}]; const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"Productos");
+    XLSX.writeFile(wb,`eleventa-inventario-${new Date().toISOString().slice(0,10)}.xlsx`); }
+  else if (a==="tick"){ await API.post("/api/setup",{step:v, done:!(S.d.setup.done||{})[v]}); await load(); }
+  else if (a==="prog"){ await API.post("/api/setup",{prog:v}); await load(); }
+  else if (a==="untickAll"){ await API.post("/api/setup",{reset:true}); await load(); }
+  }catch(err){ toast((err.body&&err.body.error)||err.message); }
+});
+document.addEventListener("change", async e=>{ if (e.target.id==="saOn"){ try{ await API.post("/api/admin/sales",{enabled:e.target.checked}); await load(); }catch(_){} return; } if (e.target.id==="scEnter"){ try{ await API.post("/api/admin/scanner",{pressEnter:e.target.checked}); }catch(_){} return; } });
+document.addEventListener("change", async e=>{ const el=e.target; if (el.id!=="fileEle"||!el.files||!el.files[0]) return; const f=el.files[0]; el.value="";
+  try{ const rows=await readExcel(f); if (!rows){ toast(t("impBad")); return; } S.imp={name:f.name, rows}; render(); }catch(_){ toast(t("impBad")); } });
+live(()=>load(), ok=>{ if (!ok){ S.d=null; render(); } });
+load();
+</script>
+</body></html>
