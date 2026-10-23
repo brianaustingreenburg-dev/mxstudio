@@ -116,8 +116,8 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
   <section class="card" id="computer">
     <span class="tag">Paso 2 · Computadora de Eleventa / Eleventa computer</span>
     <h2>Conecta con Eleventa<span class="en">Connect to Eleventa</span></h2>
-    <p class="sub">Solo una vez. Después, las ventas de la caja aparecen solas en la app y los conteos del teléfono pueden pasar a Eleventa.
-      <span class="en">Only once. After this, register sales show up in the app on their own, and phone counts can be sent into Eleventa.</span></p>
+    <p class="sub">Solo una vez. Después todo se sincroniza solo: las ventas de la caja bajan en la app y los conteos del teléfono entran solos a Eleventa en segundos.
+      <span class="en">Only once. After this everything syncs by itself: register sales come off the app, and phone counts go straight into Eleventa within seconds.</span></p>
     <ol class="steps">
       <li><b>Escoge la computadora correcta<span class="en">Pick the right computer</span></b>
         <p>Si hay dos cajas, usa la <b>principal</b>: donde está la base de datos de Eleventa. La otra caja normalmente se conecta a esa. El paso 5 te dice si escogiste bien.
@@ -132,15 +132,15 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
       <li><b>Conecta cada teléfono<span class="en">Connect each phone</span></b>
         <p>En «Teléfonos de la tienda» hay un código QR. Escanéalo con la cámara de cada teléfono. La app se abre y arriba dice en verde <b>«Conectado con la tienda»</b>.
           <span class="en">Under «Teléfonos de la tienda» there's a QR code. Scan it with each phone's camera. The app opens and shows a green <b>«Conectado con la tienda»</b> at the top.</span></p></li>
-      <li><b>Prueba Eleventa y activa las ventas<span class="en">Test Eleventa and turn on sales</span></b>
-        <p>Toca «Probar conexión con Eleventa». Si sale OK, activa «Pasar ventas a la app automáticamente». Toma captura de esa pantalla y mándala a MX Studio.
-          <span class="en">Click «Probar conexión con Eleventa». If it says OK, turn on «Pasar ventas a la app automáticamente». Screenshot that screen and send it to MX Studio.</span></p></li>
-      <li><b>Prueba el tecleo (opcional, recomendado)<span class="en">Test the typing (optional, recommended)</span></b>
-        <p>Toca «Probar con Bloc de notas». El programa escribe un código y una cantidad de prueba en el Bloc de notas. Si aparecen, el tecleo funciona.
-          <span class="en">Click «Probar con Bloc de notas». The program types a test code and amount into Notepad. If they appear, typing works.</span></p></li>
+      <li><b>Prueba Eleventa y activa la sincronización<span class="en">Test Eleventa and turn on sync</span></b>
+        <p>Toca «Probar conexión con Eleventa». Si sale OK, activa «Sincronizar con Eleventa automáticamente (ventas y conteos)». Toma captura de esa pantalla y mándala a MX Studio.
+          <span class="en">Click «Probar conexión con Eleventa». If it says OK, turn on «Sincronizar con Eleventa automáticamente (ventas y conteos)». Screenshot that screen and send it to MX Studio.</span></p></li>
+      <li><b>Revisa con un producto<span class="en">Check with one product</span></b>
+        <p>Cuenta un producto en el teléfono. En unos segundos, búscalo en Eleventa: debe mostrar la misma existencia. En el programa aparece en «Últimos conteos que entraron a Eleventa».
+          <span class="en">Count one product on the phone. Within a few seconds, look it up in Eleventa: it should show the same stock. The program lists it under «Últimos conteos que entraron a Eleventa».</span></p></li>
     </ol>
-    <div class="note warn">Deja el programa abierto mientras la tienda esté abierta. Si la computadora se reinicia, ábrelo otra vez.
-      <span class="en">Leave the program open while the store is open. If the computer restarts, open it again.</span></div>
+    <div class="note warn">Deja el programa abierto mientras la tienda esté abierta. Si la computadora se reinicia, ábrelo otra vez. Antes del primer cambio de cada día, el programa guarda una copia de seguridad de Eleventa.
+      <span class="en">Leave the program open while the store is open. If the computer restarts, open it again. Before the first change each day, the program saves a backup copy of Eleventa.</span></div>
   </section>
 
   <section class="card" id="daily">
@@ -156,9 +156,9 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
       <li><b>Recibir mercancía<span class="en">Receive a delivery</span></b>
         <p>Escanea cada producto, toca «+ Sumar», pon cuántos llegaron y Guardar.
           <span class="en">Scan each product, tap «+ Sumar», enter how many came in, then Guardar.</span></p></li>
-      <li><b>Pasar conteos a Eleventa<span class="en">Send counts into Eleventa</span></b>
-        <p>En la computadora, abre la pantalla de inventario de Eleventa y toca «Pasar a Eleventa» en el programa. No toques el mouse ni el teclado mientras escribe. Hazlo cuando esa caja no esté vendiendo.
-          <span class="en">On the computer, open Eleventa's inventory screen and click «Pasar a Eleventa» in the program. Don't touch the mouse or keyboard while it types. Do it when that register isn't selling.</span></p></li>
+      <li><b>Todo entra solo a Eleventa<span class="en">Everything goes into Eleventa by itself</span></b>
+        <p>Cada conteo y cada mercancía recibida en el teléfono cambia la existencia de Eleventa en segundos. La caja puede seguir vendiendo; no hay que tocar la computadora.
+          <span class="en">Every count and delivery entered on the phone changes Eleventa's stock within seconds. The register keeps selling; nobody touches the computer.</span></p></li>
     </ol>
     <div class="note ok">No necesitas estar en el Wi-Fi de la tienda. Puedes ver las ventas desde cualquier lugar con internet.
       <span class="en">No need to be on the store Wi-Fi. You can check sales from anywhere with internet.</span></div>
@@ -223,19 +223,23 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
     <details class="fix"><summary><span>Ventas no muestra nada<span class="en">Ventas shows no sales</span></span></summary><div class="body">
       <ul class="plain">
         <li>La computadora de Eleventa debe estar prendida, con internet y el programa abierto.<span class="en">The Eleventa computer must be on, with internet and the program open.</span></li>
-        <li>En el programa, «Pasar ventas a la app automáticamente» debe estar activado.<span class="en">In the program, «Pasar ventas a la app automáticamente» must be on.</span></li>
+        <li>En el programa, «Sincronizar con Eleventa automáticamente» debe estar activado.<span class="en">In the program, «Sincronizar con Eleventa automáticamente» must be on.</span></li>
         <li>«Desde que llegué» solo cuenta ventas después de tocar «Llegué». Revisa «Hoy» para todo el día.<span class="en">«Desde que llegué» only counts sales after tapping «Llegué». Check «Hoy» for the whole day.</span></li>
         <li>Las ventas nuevas tardan hasta un minuto en aparecer.<span class="en">New sales take up to about a minute to show up.</span></li>
       </ul></div></details>
     <details class="fix"><summary><span>El dinero en Ventas no coincide con la caja<span class="en">Money in Ventas doesn't match the register</span></span></summary><div class="body">
       <p>La app calcula el dinero como piezas × el precio de la lista de Eleventa con que se cargó. Descuentos, cambios de precio y productos a granel no coinciden exacto. El corte de caja de Eleventa es el total oficial.
         <span class="en">The app estimates money as pieces × the price from the Eleventa list it was loaded with. Discounts, price changes and products sold by weight won't match exactly. Eleventa's cash report is the official total.</span></p></div></details>
-    <details class="fix"><summary><span>«Pasar a Eleventa» escribió en el lugar o número equivocado<span class="en">«Pasar a Eleventa» typed in the wrong place or wrong numbers</span></span></summary><div class="body">
+    <details class="fix"><summary><span>Un conteo no cambió en Eleventa<span class="en">A count didn't change in Eleventa</span></span></summary><div class="body">
       <ul class="plain">
-        <li>La pantalla de inventario de Eleventa debe estar abierta y al frente antes de tocar el botón. El programa se detiene si Eleventa no está al frente.<span class="en">Eleventa's inventory screen must be open and in front before clicking. The program stops if Eleventa isn't in front.</span></li>
-        <li>No toques el mouse ni el teclado mientras escribe.<span class="en">Don't touch the mouse or keyboard while it types.</span></li>
-        <li>Prueba primero con un producto. Si los números caen en el lugar equivocado, toma foto de la pantalla de inventario de Eleventa y mándala a MX Studio para ajustar el tecleo.<span class="en">Try one product first. If numbers land in the wrong field, photograph Eleventa's inventory screen and send it to MX Studio so the typing can be adjusted.</span></li>
+        <li>Espera unos 20 segundos: si la caja acaba de vender, primero lee esa venta y luego escribe.<span class="en">Wait about 20 seconds: if the register just sold something, it reads that sale first, then writes.</span></li>
+        <li>Revisa que la computadora esté prendida, con internet, el programa abierto y «Sincronizar con Eleventa automáticamente» activado.<span class="en">Check the computer is on, with internet, the program open and «Sincronizar con Eleventa automáticamente» on.</span></li>
+        <li>Si el programa dice «Estos códigos no existen en Eleventa», ese producto no está dado de alta en Eleventa con ese código. Dalo de alta en Eleventa con el mismo código y entra solo.<span class="en">If the program says «Estos códigos no existen en Eleventa», that product isn't in Eleventa with that code. Add it in Eleventa with the same code and it goes in by itself.</span></li>
+        <li>Si dice «No pude escribir en Eleventa», toma captura y mándala a MX Studio.<span class="en">If it says «No pude escribir en Eleventa», screenshot it and send it to MX Studio.</span></li>
       </ul></div></details>
+    <details class="fix"><summary><span>Eleventa muestra un número raro después de un conteo<span class="en">Eleventa shows a strange number after a count</span></span></summary><div class="body">
+      <p>En el programa, «Últimos conteos que entraron a Eleventa» muestra cada cambio (antes → después) y quién contó. Corrige el número contando otra vez en el teléfono. Hay una copia de seguridad diaria de Eleventa en la carpeta <code>respaldos-eleventa</code>, junto al programa.
+        <span class="en">In the program, «Últimos conteos que entraron a Eleventa» shows each change (before → after) and who counted. Fix it by counting again on the phone. A daily backup of Eleventa is in the <code>respaldos-eleventa</code> folder next to the program.</span></p></div></details>
     <details class="fix"><summary><span>Las devoluciones o ventas canceladas no aparecen<span class="en">Returns or cancelled sales don't show</span></span></summary><div class="body">
       <p>Todavía no. Un producto devuelto no se suma de nuevo en la app. Si hace falta, vuelve a contar ese producto en el teléfono.
         <span class="en">Not supported yet. A returned item isn't added back in the app. Recount that product on the phone if needed.</span></p></div></details>

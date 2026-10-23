@@ -140,12 +140,17 @@ export async function handle(req, store) {
     if (t === "ack") {      // the store computer typed these quantities into Eleventa
       const items = Array.isArray(body.items) ? body.items.slice(0, MAX_PRODUCTS) : [];
       const { doc } = await mutate(store, key, (doc, rev) => {
-        for (const it of items) { const p = doc.products[clean(it.code, 40)]; if (p) { p.eleQty = num(it.qty); p.rev = rev; } }
+        for (const it of items) { if (it.id) { const id = clean(it.id, 40); if (doc.ops.includes(id)) continue; doc.ops.push(id); }
+          const p = doc.products[clean(it.code, 40)]; if (!p) continue;
+          // "delta": the store computer added this change to Eleventa's own stock, so register sales in between are kept
+          if (it.delta !== undefined && it.delta !== null) { const d = Math.round(Number(it.delta)) || 0; p.eleQty = Math.max(0, (p.eleQty ?? 0) + d); }
+          else p.eleQty = num(it.qty);
+          p.rev = rev; }
       });
       return json({ ok: true, rev: doc.rev });
     }
     if (t === "reset") {
-      const { doc } = await mutate(store, key, (doc, rev) => { for (const p of Object.values(doc.products)) { p.del = true; p.rev = rev; } doc.sales = {}; });
+      const { doc } = await mutate(store, key, (doc, rev) => { for (const p of Object.values(doc.products)) { p.del = true; p.rev = rev; } doc.sales = {}; doc.ops = []; });
       return json({ ok: true, rev: doc.rev });
     }
   } catch (e) {
