@@ -1,6 +1,6 @@
 {
   "name": "mxstudio-inventario",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "MX Studio \u00b7 Inventario para tiendas (Eleventa)",
   "main": "server.js",
   "bin": "server.js",

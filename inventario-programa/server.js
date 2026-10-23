@@ -10,12 +10,13 @@ const crypto = require("crypto");
 const { spawn, exec } = require("child_process");
 const https = require("https");
 
-const VERSION = "1.5.3";
+const VERSION = "1.5.4";
 const IS_PKG = !!process.pkg;
 const HOME = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const PUBLIC = path.join(__dirname, "public");
 const DATA_FILE = path.join(HOME, "inventario-datos.json");
 const CONFIG_FILE = path.join(HOME, "inventario-config.json");
+let serverBound = false;   // true once this copy owns the ports; a second copy does nothing and closes
 const MOCK_TYPER = process.platform !== "win32" || process.env.PDC_MOCK_TYPER === "1";
 
 /* ---------------- config ---------------- */
@@ -386,12 +387,12 @@ setInterval(async () => {
   try {
     const r = await fetchUrl(`${tunnel.url}/api/inventario?k=${encodeURIComponent(config.cloud.key)}&pending=1`, { timeout: 20000 });
     if (r.status !== 200) throw new Error("http " + r.status);
-    tunnel.fails = 0; if (Date.now() - tunnel.publishedAt > 3 * 3600e3) publishAddress();
+    tunnel.fails = 0; if (Date.now() - tunnel.publishedAt > 15 * 60e3) publishAddress();
   } catch (_) { if (++tunnel.fails >= 3) { console.log("! La conexión no responde, la abro otra vez"); tunnel.fails = 0; startTunnel(); } }
 }, 4 * 60000);
 const stopTunnel = () => { try { tunnel.proc && tunnel.proc.kill(); } catch (_) {} };
 process.on("exit", stopTunnel); process.on("SIGINT", () => { stopTunnel(); process.exit(0); }); process.on("SIGTERM", () => { stopTunnel(); process.exit(0); });
-if (process.platform === "win32") exec("taskkill /IM cloudflared.exe /F", () => setTimeout(startTunnel, 1500)); else setTimeout(startTunnel, 500);
+function bootTunnel() { if (process.platform === "win32") exec("taskkill /IM cloudflared.exe /F", () => setTimeout(startTunnel, 1500)); else setTimeout(startTunnel, 500); }
 
 /* ---------------- shared app inventory (phones on go.myjefetech.app) ---------------- */
 const cloud = { ok: false, pending: [], acks: Array.isArray(db.cloudAcks) ? db.cloudAcks : [], lastPull: null, error: "", total: 0 };
@@ -411,7 +412,7 @@ function cloudReq(method, bodyObj, query) {
 }
 const cloudPost = body => cloudReq("POST", body);
 let cloudChainP = Promise.resolve();
-function cloudPull() { const run = cloudChainP.then(async () => { await cloudAck(); await syncSales(); await cloudPullRaw(); await writeCounts(); await cloudAck(); }).catch(() => {}); cloudChainP = run; return run; }
+function cloudPull() { if (!serverBound) return Promise.resolve(); const run = cloudChainP.then(async () => { await cloudAck(); await syncSales(); await cloudPullRaw(); await writeCounts(); await cloudAck(); }).catch(() => {}); cloudChainP = run; return run; }
 async function cloudPullRaw() {
   if (!config.cloud.enabled) return;
   if (job.state === "typing" || job.state === "countdown") return;   // keep the list steady while typing
@@ -809,6 +810,7 @@ const vnum = v => String(v || "0").split(".").map(n => parseInt(n, 10) || 0);
 const newer = (a, b) => { const x = vnum(a), y = vnum(b); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); } return false; };
 const updState = { checkedAt: null, latest: "", error: "", updating: false };
 async function checkUpdate() {
+  if (!serverBound) return;
   if (!config.autoUpdate || !IS_PKG || (process.platform !== "win32" && !process.env.PDC_UPDATE_TEST) || updState.updating) return;
   if (job.state === "typing" || job.state === "countdown" || writeState.running) return;
   try {
@@ -851,6 +853,7 @@ function ensureAutoStart() {
 ensureAutoStart();
 // Eleventa: test and turn on sync by itself the first time, and again after every update (detection fixes apply remotely)
 async function autoSetupEleventa() {
+  if (!serverBound) return;
   const E = config.eleventaDb, firstTime = !E.autoDone, upgraded = config.lastVersion !== VERSION;
   if (!firstTime && !upgraded && E.table && E.prodTable) return;
   const r = await eleventaDiagnose();
@@ -859,9 +862,11 @@ async function autoSetupEleventa() {
   E.autoDone = true; config.lastVersion = VERSION; saveConfig(); version++; broadcast();
   if (E.enabled) cloudPull();
 }
-setTimeout(() => { autoSetupEleventa().catch(e => console.log("! Eleventa:", e.message)); }, 8000);
+// Eleventa setup starts once this copy owns the ports (see server.listen)
 
 server.listen(config.port, "0.0.0.0", () => {
+  serverBound = true; bootTunnel(); setTimeout(cloudPull, 1500);
+  setTimeout(() => { autoSetupEleventa().catch(e => console.log("! Eleventa:", e.message)); }, 8000);
   const addrs = lanAddresses();
   console.log("\n  MX Studio · Inventario " + VERSION);
   console.log("  " + config.storeName + "\n");
