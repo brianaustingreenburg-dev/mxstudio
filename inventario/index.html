@@ -958,8 +958,8 @@ async function syncPull(){
   if (!syncOn()) return;
   try{ const r=await fetch(`${SYNC.pair.u}?k=${encodeURIComponent(SYNC.pair.k)}&since=${SYNC.rev}`, {cache:"no-store"});
     if (!r.ok) throw new Error("http "+r.status);
-    const j=await r.json(); SYNC.online=true;
-    if (j.full || j.products.length){ mergeRemote(j.products, j.full); save(); }
+    const j=await r.json(); SYNC.online=true; if (j.full) SYNC.cloudCount=j.products.length;
+    if ((j.full && j.products.length) || (!j.full && j.products.length)){ mergeRemote(j.products, j.full); save(); }
     SYNC.rev=j.rev||SYNC.rev;
   }catch(_){ SYNC.online=false; }
   const ae=document.activeElement; if (!S.pad && !S.newp && !(ae && (ae.tagName==="INPUT"||ae.tagName==="SELECT"||ae.tagName==="TEXTAREA"))) render(); else updateHeader();
@@ -967,7 +967,7 @@ async function syncPull(){
 function updateHeader(){ const h=document.getElementById("top"); if (h) h.innerHTML=header(); }
 async function storeLoadCloud(){
   const flag="pdc_store_cloud_"+SYNC.pair.k; try{ if (localStorage.getItem(flag)) return; }catch(_){}
-  if (!SYNC.online || Object.keys(S.products).length>=50) { if (SYNC.online) try{ localStorage.setItem(flag,"1"); }catch(_){} return; }
+  if (!SYNC.online || SYNC.cloudCount===undefined || SYNC.cloudCount>=50) { if (SYNC.online) try{ localStorage.setItem(flag,"1"); }catch(_){} return; }
   const rows=Object.values(SEED.products).map(p=>({code:p.barcode, name:p.name, cat:p.cat, qty:p.s1}));
   if (!rows.length) return;
   try{ const r=await fetch(SYNC.pair.u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({k:SYNC.pair.k,t:"import",rows})});
@@ -976,7 +976,7 @@ async function storeLoadCloud(){
 async function syncJoin(){
   // first time on this phone: take the store's list, then send what this phone counted itself
   let mine=[];
-  if (SYNC.fresh){ SYNC.fresh=false; mine=Object.values(S.products).filter(p=>p.code && !(p.seed && (p.s1||0)===(p.q0||0))); S.products={}; save(); }
+  if (SYNC.fresh){ SYNC.fresh=false; mine=Object.values(S.products).filter(p=>p.code && !(p.seed && (p.s1||0)===(p.q0||0))); }
   await syncFlush(); if (!SYNC.queue.length) await syncPull();
   await storeLoadCloud();
   if (mine.length){ for (const p of mine) SYNC.queue.push({t:"upsert", code:p.code, name:p.name, cat:p.cat, qty:p.s1||0, opId:uid("o"), who:SYNC.pair.who||"", ts:new Date().toISOString()}); saveQueue(); await syncFlush(); }
@@ -989,6 +989,7 @@ document.addEventListener("change", e=>{ if (e.target.id==="syWho" && SYNC.pair)
 load(); (function storeLoadLocal(){ try{ if (localStorage.getItem("pdc_store_loaded_v1")) return; localStorage.setItem("pdc_store_loaded_v1","1"); }catch(_){ return; }
   if (syncOn()) return; const have=new Set(Object.values(S.products).map(p=>String(p.code)));
   for (const [id,p] of Object.entries(seedProducts())) if (!have.has(String(p.code))) S.products[id]=p; save(); })();
+if (!Object.keys(S.products).length && Object.keys(SEED.products).length) { S.products=seedProducts(); save(); }
 S.scanStore=S.expStore=(S.store==="all"?"1":S.store);
 try{ const x=JSON.parse(sessionStorage.getItem("pdc_inv_view")||"null"); if (x){ sessionStorage.removeItem("pdc_inv_view"); S.view=x.view||S.view; setTimeout(()=>{ scrollTo(0,x.y||0); toast(t("refreshed")); },50); } }catch(e){}
 (function(){var last=0;addEventListener("scroll",function(){var t=document.getElementById("top");if(!t)return;var y=scrollY;if(innerWidth>=900||document.body.classList.contains("padopen")){t.classList.remove("hidebar");last=y;return;}if(y>last+4&&y>90)t.classList.add("hidebar");else if(y<last-4||y<90)t.classList.remove("hidebar");last=y;},{passive:true});})();
@@ -996,4 +997,4 @@ render();
 syncStart();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792633205";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792721588";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
