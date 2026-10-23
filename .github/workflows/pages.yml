@@ -37,6 +37,25 @@ jobs:
           rm -f out/brian/_redirects
           touch out/.nojekyll
           printf '<!doctype html><meta charset=utf-8><title>MX Studio</title><meta name=robots content=noindex><p>MX Studio ✝️</p>\n' > out/index.html
+      - name: Check the shared inventory service
+        env:
+          HAS_NETLIFY: ${{ secrets.NETLIFY_AUTH_TOKEN != '' }}
+          HAS_VERCEL: ${{ secrets.VERCEL_TOKEN != '' }}
+        run: |
+          mkdir -p out/_diag
+          {
+            echo "checked: $(date -u +%FT%TZ)"
+            echo "--- netlify api"
+            curl -s -m 25 -w "\nHTTP %{http_code}\n" "https://mxstudio-partners.netlify.app/api/inventario?k=checkdeploy_0123456789abcdef&since=0" | head -c 600 || echo "curl failed"
+            echo "--- netlify home"
+            curl -s -o /dev/null -m 25 -w "HTTP %{http_code}\n" "https://mxstudio-partners.netlify.app/" || echo "curl failed"
+            echo "--- vercel"
+            curl -s -o /dev/null -m 25 -w "home HTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/" || echo "curl failed"
+            curl -s -m 25 -w "\napi HTTP %{http_code}\n" "https://mxstudio-brian.vercel.app/api/inventario?k=checkdeploy_0123456789abcdef&since=0" | head -c 400 || echo "curl failed"
+            echo "--- secrets present"
+            echo "NETLIFY_AUTH_TOKEN=$HAS_NETLIFY VERCEL_TOKEN=$HAS_VERCEL"
+          } > out/_diag/service.txt
+          cat out/_diag/service.txt
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
