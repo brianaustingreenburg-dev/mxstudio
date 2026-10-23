@@ -254,7 +254,7 @@ body.padopen{overflow:hidden}
 .filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .prev td,.prev th{font-size:.85rem;padding:6px 8px}
 .diff-up{color:var(--ok);font-weight:700} .diff-down{color:var(--bad);font-weight:700} .diff-new{color:var(--accent);font-weight:700}
-.shqr{display:flex;flex-direction:column;gap:10px;align-items:stretch}.shqrbox{background:#fff;border-radius:14px;padding:12px;max-width:300px;width:100%;align-self:center}.shqrbox svg{display:block}
+.linkcard{display:flex;flex-direction:column;gap:10px;align-items:stretch;padding:16px}.shqrbox{background:#fff;border-radius:14px;padding:12px;max-width:320px;width:100%;align-self:center}.shqrbox svg{display:block}
 </style><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px)}</style></head><body>
 
 <div class="app" id="app">
@@ -280,7 +280,7 @@ const SEED = {"products":{"c7501101525025":{"name":"12 Huevos Bachoco","brand":"
 const STORE_NAME = "Mercado Pie de la Cuesta";
 
 const T = {
- es:{shBtn:"Conectar una computadora", shH:"En la computadora abre go.myjefetech.app/inventario, toca «Conectar con la tienda» y apunta la cámara de la computadora a este código.", shLink:"O mandar enlace", shHide:"Listo", shCopied:"Enlace copiado. Pégalo en tu computadora.", npAgain:"Volver a conectar (escanear QR)", npQr:"Código QR de la computadora", npCancel:"Cancelar", npBtn:"Conectar con la tienda", npScan:"Apunta la cámara al código QR del programa en la computadora de la tienda.", npDone:"¡Conectado con la tienda!", npT:"Este teléfono no está conectado a la tienda", npH:"Toca el botón y escanea el código QR del programa en la computadora de la tienda. Solo una vez.", pcT:"Computadora de la tienda", pcVer:"Programa", pcEle:"Eleventa", pcEleOk:"conectado · ventas y conteos se sincronizan solos", pcEleOff:"sincronización apagada", pcEleBad:"no conectado", pcSale:"Última lectura de ventas", pcWrite:"Último conteo que entró a Eleventa", pcMissing:"No existen en Eleventa", pcNo:"No pude ver la computadora de la tienda. ¿Está prendida con el programa abierto?", pcUpd:"Se actualiza sola", pcRecent:"Últimos conteos que entraron a Eleventa", ventas:"Ventas", vT:"Ventas de la caja", vSince:"Desde que llegué", vToday:"Hoy", vArrive:"Llegué · empezar a contar ventas", vArrivedAt:"Llegaste a las", vReArrive:"Llegué ahora", vReSure:"Toca otra vez para empezar desde ahora", vPieces:"Piezas vendidas", vMoney:"Dinero", vLast:"Última venta", vNone:"Todavía no hay ventas", vNoneSince:"Todavía no hay ventas desde las", vNeed:"Para ver las ventas, conecta este teléfono con la computadora de la caja: escanea el código QR que aparece en el programa.", vHow:"Las ventas llegan de Eleventa cada minuto. La computadora de la caja debe estar prendida con el programa abierto.", vErr:"No pude cargar las ventas. Revisa el internet.", vLoading:"Cargando ventas…", vEach:"c/u", vNoPrice:"sin precio",
+ es:{shBtn:"Conectar una computadora", shLink:"O mandar enlace a la computadora", shCopied:"Enlace copiado. Pégalo en tu computadora.", lkScan:"En la computadora abre go.myjefetech.app/inventario y toca «Conectar con mi teléfono». Apunta este teléfono al código QR de la pantalla.", lkSent:"¡Computadora conectada!", lkBad:"No se pudo conectar. Intenta otra vez.", lkNeed:"Primero conecta este teléfono con la tienda.", lkMac:"Conectar con mi teléfono", lkMacH:"En tu teléfono abre Inventario → Ajustes → «Conectar una computadora» y apunta la cámara a este código.", lkWait:"Esperando al teléfono…", npAgain:"Volver a conectar (escanear QR)", npQr:"Código QR de la computadora", npCancel:"Cancelar", npBtn:"Conectar con la tienda", npScan:"Apunta la cámara al código QR del programa en la computadora de la tienda.", npDone:"¡Conectado con la tienda!", npT:"Este teléfono no está conectado a la tienda", npH:"Toca el botón y escanea el código QR del programa en la computadora de la tienda. Solo una vez.", pcT:"Computadora de la tienda", pcVer:"Programa", pcEle:"Eleventa", pcEleOk:"conectado · ventas y conteos se sincronizan solos", pcEleOff:"sincronización apagada", pcEleBad:"no conectado", pcSale:"Última lectura de ventas", pcWrite:"Último conteo que entró a Eleventa", pcMissing:"No existen en Eleventa", pcNo:"No pude ver la computadora de la tienda. ¿Está prendida con el programa abierto?", pcUpd:"Se actualiza sola", pcRecent:"Últimos conteos que entraron a Eleventa", ventas:"Ventas", vT:"Ventas de la caja", vSince:"Desde que llegué", vToday:"Hoy", vArrive:"Llegué · empezar a contar ventas", vArrivedAt:"Llegaste a las", vReArrive:"Llegué ahora", vReSure:"Toca otra vez para empezar desde ahora", vPieces:"Piezas vendidas", vMoney:"Dinero", vLast:"Última venta", vNone:"Todavía no hay ventas", vNoneSince:"Todavía no hay ventas desde las", vNeed:"Para ver las ventas, conecta este teléfono con la computadora de la caja: escanea el código QR que aparece en el programa.", vHow:"Las ventas llegan de Eleventa cada minuto. La computadora de la caja debe estar prendida con el programa abierto.", vErr:"No pude cargar las ventas. Revisa el internet.", vLoading:"Cargando ventas…", vEach:"c/u", vNoPrice:"sin precio",
  tag:"Inventario", inv:"Inventario", scan:"Escanear", ele:"Eleventa", setup:"Pasos", set:"Ajustes",
   t1:"Tienda 1", t2:"Tienda 2", both:"Ambas", online:"En línea", offline:"Sin conexión", waiting:"en espera", refresh:"Actualizar", refreshed:"Actualizado",
   pullR:"Jala para actualizar", releaseR:"Suelta para actualizar",
@@ -308,7 +308,7 @@ const T = {
   lang:"Idioma", offlineMode:"Simular sin conexión", offlineH:"Apaga la conexión para ver que los cambios se guardan en el teléfono y se envían al volver.",
   reset:"Borrar todo el inventario", resetH:"Deja la app vacía, sin productos.", emptyT:"Todavía no hay productos", emptyS:"Escanea cada producto del estante y se agrega a tu lista.", emptyBtn:"Escanear el primer producto", newT:"Producto nuevo", newCode:"Código", newHint:"Escribe el nombre y cuántos hay. El precio es opcional.", added:"Agregado a la lista", resetConfirm:"Toca otra vez para confirmar", demoNote:"Los datos se guardan en este teléfono.",
   cats:{bebidas:"Bebidas",botanas:"Botanas",dulces:"Dulces",panaderia:"Pan",lacteos:"Lácteos",despensa:"Despensa",frescos:"Frescos",limpieza:"Limpieza",cuidado:"Cuidado personal",otros:"Otros"}, ago:"hace"},
- en:{shBtn:"Connect a computer", shH:"On the computer open go.myjefetech.app/inventario, tap «Conectar con la tienda» and point the computer's camera at this code.", shLink:"Or send a link", shHide:"Done", shCopied:"Link copied. Paste it on your computer.", npAgain:"Reconnect (scan QR)", npQr:"Computer QR code", npCancel:"Cancel", npBtn:"Connect to the store", npScan:"Point the camera at the QR code in the program on the store computer.", npDone:"Connected to the store!", npT:"This phone is not connected to the store", npH:"Tap the button and scan the QR code in the program on the store computer. Only once.", pcT:"Store computer", pcVer:"Program", pcEle:"Eleventa", pcEleOk:"connected · sales and counts sync by themselves", pcEleOff:"sync turned off", pcEleBad:"not connected", pcSale:"Last sales read", pcWrite:"Last count that went into Eleventa", pcMissing:"Not in Eleventa", pcNo:"I couldn't reach the store computer. Is it on with the program open?", pcUpd:"Updates itself", pcRecent:"Latest counts that went into Eleventa", ventas:"Sales", vT:"Register sales", vSince:"Since I arrived", vToday:"Today", vArrive:"I'm here · start counting sales", vArrivedAt:"You arrived at", vReArrive:"I just arrived", vReSure:"Tap again to start from now", vPieces:"Pieces sold", vMoney:"Money", vLast:"Last sale", vNone:"No sales yet", vNoneSince:"No sales yet since", vNeed:"To see sales, connect this phone to the register computer: scan the QR code shown in the program.", vHow:"Sales come from Eleventa every minute. The register computer must be on with the program open.", vErr:"Couldn't load sales. Check the internet.", vLoading:"Loading sales…", vEach:"each", vNoPrice:"no price",
+ en:{shBtn:"Connect a computer", shLink:"Or send a link to the computer", shCopied:"Link copied. Paste it on your computer.", lkScan:"On the computer open go.myjefetech.app/inventario and tap «Conectar con mi teléfono». Point this phone at the QR code on the screen.", lkSent:"Computer connected!", lkBad:"Could not connect. Try again.", lkNeed:"Connect this phone to the store first.", lkMac:"Connect with my phone", lkMacH:"On your phone open Inventario → Settings → «Conectar una computadora» and point the camera at this code.", lkWait:"Waiting for the phone…", npAgain:"Reconnect (scan QR)", npQr:"Computer QR code", npCancel:"Cancel", npBtn:"Connect to the store", npScan:"Point the camera at the QR code in the program on the store computer.", npDone:"Connected to the store!", npT:"This phone is not connected to the store", npH:"Tap the button and scan the QR code in the program on the store computer. Only once.", pcT:"Store computer", pcVer:"Program", pcEle:"Eleventa", pcEleOk:"connected · sales and counts sync by themselves", pcEleOff:"sync turned off", pcEleBad:"not connected", pcSale:"Last sales read", pcWrite:"Last count that went into Eleventa", pcMissing:"Not in Eleventa", pcNo:"I couldn't reach the store computer. Is it on with the program open?", pcUpd:"Updates itself", pcRecent:"Latest counts that went into Eleventa", ventas:"Sales", vT:"Register sales", vSince:"Since I arrived", vToday:"Today", vArrive:"I'm here · start counting sales", vArrivedAt:"You arrived at", vReArrive:"I just arrived", vReSure:"Tap again to start from now", vPieces:"Pieces sold", vMoney:"Money", vLast:"Last sale", vNone:"No sales yet", vNoneSince:"No sales yet since", vNeed:"To see sales, connect this phone to the register computer: scan the QR code shown in the program.", vHow:"Sales come from Eleventa every minute. The register computer must be on with the program open.", vErr:"Couldn't load sales. Check the internet.", vLoading:"Loading sales…", vEach:"each", vNoPrice:"no price",
  tag:"Inventory", inv:"Inventory", scan:"Scan", ele:"Eleventa", setup:"Setup", set:"Settings",
   t1:"Store 1", t2:"Store 2", both:"Both", online:"Online", offline:"Offline", waiting:"waiting", refresh:"Refresh", refreshed:"Up to date",
   pullR:"Pull to refresh", releaseR:"Release to refresh",
@@ -355,9 +355,50 @@ const prodList = () => Object.entries(S.products).map(([id,p]) => ({id, ...p}));
 const initials = n => String(n).replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase() || "•";
 const uid = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
 const timeAgo = iso => { if (!iso) return t("never"); const m=Math.round((Date.now()-new Date(iso))/60000); if (m<1) return S.lang==="es"?"ahora":"now"; const u = m<60 ? m+" min" : m<1440 ? Math.round(m/60)+" h" : Math.round(m/1440)+(S.lang==="es"?" d":" d"); return S.lang==="es" ? "hace "+u : u+" ago"; };
-let toastTimer; function pairLink(){ const P=SYNC.pair; if (!P) return "";
+let toastTimer; const LINK_R = (()=>{ try{ return localStorage.getItem("pdc_link_relay")||"https://ntfy.sh"; }catch(_){ return "https://ntfy.sh"; } })();
+const b64u = b => btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const ub64u = s => { s=s.replace(/-/g,"+").replace(/_/g,"/"); s+="=".repeat((4-s.length%4)%4); return Uint8Array.from(atob(s), c=>c.charCodeAt(0)); };
+const linkKey = sec => crypto.subtle.importKey("raw", ub64u(sec), "AES-GCM", false, ["encrypt","decrypt"]);
+function pairLink(){ const P=SYNC.pair; if (!P) return "";
   return "https://go.myjefetech.app/inventario/#"+new URLSearchParams({k:P.k, u:P.u, r:P.r||"https://ntfy.sh", n:P.n||""}).toString(); }
-function pairQrSvg(){ try{ const el=new ZXing.BrowserQRCodeSvgWriter().write(pairLink(), 260, 260); el.setAttribute("viewBox","0 0 260 260"); el.setAttribute("width","100%"); el.removeAttribute("height"); return el.outerHTML; }catch(e){ return `<span class="small">${esc(String(e.message||e))}</span>`; } }
+function qrSvg(text){ try{ const el=new ZXing.BrowserQRCodeSvgWriter().write(text, 280, 280); el.setAttribute("viewBox","0 0 280 280"); el.setAttribute("width","100%"); el.removeAttribute("height"); return el.outerHTML; }catch(e){ return `<span class="small">${esc(String(e.message||e))}</span>`; } }
+// computer: show a one-time QR and wait for a phone to send the store connection
+function linkStart(){
+  const id=[...crypto.getRandomValues(new Uint8Array(16))].map(b=>b.toString(16).padStart(2,"0")).join("");
+  const sec=b64u(crypto.getRandomValues(new Uint8Array(32)));
+  S.link={id, sec, qr:qrSvg("mxlink:"+id+"."+sec), t0:Date.now()}; S.view="inv"; render(); linkPoll(id);
+}
+function linkCard(){ return `<div class="card linkcard"><h3 style="margin:0">📱 ${t("lkMac")}</h3><div class="shqrbox">${S.link.qr}</div><span>${t("lkMacH")}</span><span class="small muted">${t("lkWait")}</span><button class="btn" data-act="linkStop" style="align-self:flex-start">${t("npCancel")}</button></div>`; }
+async function linkPoll(id){
+  while (S.link && S.link.id===id && Date.now()-S.link.t0 < 15*60*1000){
+    try{
+      const r=await fetch(`${LINK_R}/mxlink-${id}/json?poll=1&since=all`, {cache:"no-store"});
+      const lines=(await r.text()).split("\n").filter(Boolean);
+      for (const l of lines){ let m; try{ m=JSON.parse(l); }catch(_){ continue; }
+        if (m.event && m.event!=="message") continue;
+        const [iv,ct]=String(m.message||"").split(".");
+        try{
+          const pt=await crypto.subtle.decrypt({name:"AES-GCM", iv:ub64u(iv)}, await linkKey(S.link.sec), ub64u(ct));
+          if (applyPair(new URLSearchParams(JSON.parse(new TextDecoder().decode(pt))))){ S.link=null; toast(t("npDone")); syncStart(); S.view="inv"; render(); return; }
+        }catch(_){}
+      }
+    }catch(_){}
+    await new Promise(r=>setTimeout(r,2000));
+  }
+}
+// phone: send this store connection to the computer whose QR was scanned
+async function linkSend(code){
+  const m=code.match(/^mxlink:([a-f0-9]{32})\.([A-Za-z0-9_-]{43})$/); const P=SYNC.pair;
+  if (!m || !P || S.linkBusy) return; S.linkBusy=true;
+  try{
+    const iv=crypto.getRandomValues(new Uint8Array(12));
+    const ct=await crypto.subtle.encrypt({name:"AES-GCM", iv}, await linkKey(m[2]), new TextEncoder().encode(JSON.stringify({k:P.k, u:P.u, r:P.r||"https://ntfy.sh", n:P.n||""})));
+    const r=await fetch(`${LINK_R}/mxlink-${m[1]}`, {method:"POST", body:b64u(iv)+"."+b64u(ct)});
+    if (!r.ok) throw new Error("HTTP "+r.status);
+    beep(true); camFlash(t("lkSent"), true); toast(t("lkSent")); S.pairMode=false; S.linkPc=false; setTimeout(()=>{ S.view="set"; render(); }, 900);
+  }catch(e){ beep(false); camFlash(t("lkBad"), false); }
+  finally{ setTimeout(()=>{ S.linkBusy=false; }, 3000); }
+}
 function toast(m){ const el=$("#toast"); el.textContent=m; el.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.hidden=true, 2600); }
 
 /* ---------- storage (this phone) ---------- */
@@ -393,8 +434,8 @@ function render(){
   $("#sideNav").innerHTML = NAV.map(v=>`<button data-nav="${v}" ${S.view===v?'aria-current="page"':""}>${I[v]}<span>${t(v)}</span></button>`).join("");
   $("#tabbar").innerHTML = NAV.map(v=>`<button data-nav="${v}" class="${v==="scan"?"scan":""}" ${S.view===v?'aria-current="page"':""}><span class="ic">${I[v]}</span><span style="color:${v==="scan"&&S.view!=="scan"?"var(--muted)":"inherit"}">${t(v)}</span></button>`).join("");
   $("#top").innerHTML = header();
-  if (S.view!=="scan") S.pairMode=false;
-  $("#main").innerHTML = (syncOn()||S.view==="scan"?"":`<div class="npbanner"><b>${t("npT")}</b><span>${t("npH")}</span><button class="btn primary" data-act="pairScan" style="margin-top:6px;align-self:flex-start">${I.scan} ${t("npBtn")}</button></div>`) + ({inv:viewInv, ventas:viewVentas, scan:viewScan, ele:viewEle, setup:viewSetup, set:viewSet}[S.view]||viewInv)();
+  if (S.view!=="scan"){ S.pairMode=false; S.linkPc=false; }
+  $("#main").innerHTML = (S.link&&!syncOn()?linkCard():"") + (syncOn()||S.view==="scan"||S.link?"":`<div class="npbanner"><b>${t("npT")}</b><span>${t("npH")}</span><div class="btns" style="margin-top:6px"><button class="btn primary" data-act="linkStart">📱 ${t("lkMac")}</button><button class="btn" data-act="pairScan">${I.scan} ${t("npBtn")}</button></div></div>`) + ({inv:viewInv, ventas:viewVentas, scan:viewScan, ele:viewEle, setup:viewSetup, set:viewSet}[S.view]||viewInv)();
   $("#padHost").innerHTML = padHTML() + newHTML(); document.body.classList.toggle("padopen", !!(S.pad||S.newp));
   afterRender();
   if (fid){ const el=document.getElementById(fid); if (el){ el.focus(); try{ if(s0!=null) el.setSelectionRange(s0,s1); }catch(e){} } }
@@ -551,9 +592,9 @@ function padSave(){
 /* ---------- scan ---------- */
 function viewScanPair(){ return S.pairMode?`<div class="npbanner"><b>${t("npBtn")}</b><span>${t("npScan")}</span></div>`:""; }
 function viewScan(){
-  if (S.pairMode) return `<h2>🔗 ${t("npBtn")}</h2>
+  if (S.pairMode) return `<h2>${S.linkPc?"💻 "+t("shBtn"):"🔗 "+t("npBtn")}</h2>
   <div class="card" style="padding:12px;gap:10px">
-    <span>${t("npScan")}</span>
+    <span>${t(S.linkPc?"lkScan":"npScan")}</span>
     <div id="camSlot"></div>
     <button class="btn" data-act="pairCancel" style="align-self:flex-start">${t("npCancel")}</button>
   </div>`;
@@ -625,6 +666,7 @@ function camFlash(txt, ok){ const f=CAM.el.querySelector(".cam-flash"); f.textCo
   const fr=CAM.el.querySelector(".cam-frame"); fr.classList.add(ok?"hit":"miss"); setTimeout(()=>fr.classList.remove("hit","miss"),400); }
 function camHit(code){
   code=String(code||"").trim();
+  if (/^mxlink:/.test(code)){ if (S.pairMode && S.linkPc) linkSend(code); return; }   // a computer asking to connect
   if (/[#?&]k=/.test(code) && /[#?&]u=/.test(code)){   // the store computer's QR code
     const q=code.slice(code.indexOf("#")>=0?code.indexOf("#")+1:code.indexOf("?")+1);
     if (applyPair(new URLSearchParams(q))){ beep(true); S.pairMode=false; camFlash(t("npDone"), true); toast(t("npDone")); syncStart(); setTimeout(()=>{ S.view="inv"; render(); }, 900); }
@@ -868,10 +910,10 @@ function viewSet(){
      <span class="small muted">${t("syShared")}</span>
      ${pcStatusHTML()}
      <label class="field"><span class="label">${t("syWho")}</span><input class="f" id="syWho" value="${esc(P.who||"")}" placeholder="Ej. Lalo" autocomplete="name"><span class="small muted">${t("syWhoH")}</span></label>
-     <div>${S.shQr?`<div class="shqr"><div class="shqrbox">${pairQrSvg()}</div><span class="small">${t("shH")}</span><div class="btns"><button class="btn" data-act="pairShare">📤 ${t("shLink")}</button><button class="btn primary" data-act="pairQr">${t("shHide")}</button></div></div>`:`<button class="btn primary" data-act="pairQr">💻 ${t("shBtn")}</button>`}</div>
+     <div class="btns"><button class="btn primary" data-act="linkPc">💻 ${t("shBtn")}</button><button class="btn ghost" data-act="pairShare">📤 ${t("shLink")}</button></div>
      <div><button class="btn" data-act="pairScan">🔗 ${t("npAgain")}</button></div>
      <div><button class="btn ghost" data-act="syDisc" style="color:var(--bad)">${S.discArm?t("syDiscSure"):t("syDisc")}</button></div>`
-   :`<span class="small muted">${t("syLocal")}</span><span class="small">${t("syHow")}</span><button class="btn primary" data-act="pairScan" style="align-self:flex-start">${I.scan} ${t("npBtn")}</button>`}
+   :`<span class="small muted">${t("syLocal")}</span><span class="small">${t("syHow")}</span><div class="btns"><button class="btn primary" data-act="linkStart">📱 ${t("lkMac")}</button><button class="btn" data-act="pairScan">${I.scan} ${t("npBtn")}</button></div>`}
   </section>
   <section class="card">
    <div class="field"><span class="label">${t("lang")}</span><div class="seg"><button data-act="lang" data-v="es" aria-pressed="${S.lang==="es"}">Español</button><button data-act="lang" data-v="en" aria-pressed="${S.lang==="en"}">English</button></div></div>
@@ -905,12 +947,14 @@ document.addEventListener("click", e=>{
       const p=S.products[P.id]; if (p){ logIt("adj", `${p.name} · ${t("deleted")}`, "1"); if (p.code) syncOp({t:"delete", code:p.code}); delete S.products[P.id]; } S.pad=null; changed(); toast(t("deleted")); },
     syDisc(){ if (!S.discArm){ S.discArm=true; setTimeout(()=>{ S.discArm=false; if (S.view==="set") render(); },4000); return; }
       S.discArm=false; clearInterval(SYNC.timer); SYNC.pair=null; SYNC.queue=[]; saveQueue(); try{ localStorage.removeItem(PAIR_KEY); }catch(_){} },
-    pairQr(){ S.shQr=!S.shQr; },
+    pairScan(){ S.pairMode=true; S.view="scan"; S.scan=null; },
+    linkPc(){ if (!SYNC.pair){ toast(t("lkNeed")); return; } S.pairMode=true; S.linkPc=true; S.view="scan"; S.scan=null; },
+    linkStart(){ linkStart(); },
+    linkStop(){ S.link=null; },
     async pairShare(){ const url=pairLink(); if (!url) return;
       try{ if (navigator.share){ await navigator.share({title:"Inventario · "+(SYNC.pair.n||STORE_NAME), url}); return; } }catch(e){ if (e&&e.name==="AbortError") return; }
       try{ await navigator.clipboard.writeText(url); toast(t("shCopied")); }catch(_){ prompt(t("shLink"), url); } },
-    pairScan(){ S.pairMode=true; S.view="scan"; S.scan=null; },
-    pairCancel(){ S.pairMode=false; S.view=syncOn()?"inv":"inv"; },
+    pairCancel(){ S.linkPc=false; S.pairMode=false; S.view=syncOn()?"inv":"inv"; },
     pickCat(){ if (S.newp){ S.newp.catPicked=true; setPickedCat(v); } return "skip"; },
     newClose(){ if (e.target.closest("[data-stop]") && !e.target.closest('button[data-act="newClose"]')) return "skip"; S.newp=null; },
     newSave(){ const n=$("#nw_name").value.trim(); if (!n){ $("#nw_name").focus(); return "skip"; }
@@ -1077,4 +1121,4 @@ render();
 syncStart();
 if ("serviceWorker" in navigator && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-<script>(function(){var B="1792798489";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
+<script>(function(){var B="1792799482";if(location.protocol!=="https:")return;fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(v){v=(v||"").trim();if(v&&v!==B&&sessionStorage.getItem("inv_reloaded")!==v){sessionStorage.setItem("inv_reloaded",v);var done=function(){location.reload()};if(window.caches){caches.keys().then(function(k){return Promise.all(k.map(function(x){return caches.delete(x)}))}).then(done,done)}else done()}}).catch(function(){})})();</script></body></html>
