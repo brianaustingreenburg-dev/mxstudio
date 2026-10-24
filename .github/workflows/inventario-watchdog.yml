@@ -1,0 +1,94 @@
+# Inventario watchdog: every 15 minutes, checks the inventory app (Mercado Pie de la Cuesta).
+# On failure it opens (or updates) one GitHub issue labeled "inventario-watchdog", assigned to the owner.
+# When everything passes again, it closes that issue. The hourly AI support task reads these issues and fixes the cause.
+name: Inventario watchdog
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: inventario-watchdog
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check the live app and download page
+        id: live
+        continue-on-error: true
+        run: |
+          fail=0; out=""
+          check() { # name url
+            code=$(curl -s -o /dev/null -m 25 -w "%{http_code}" "$2?t=$(date +%s)") || code=000
+            if [ "$code" != "200" ]; then out="$out\n- $1 returned HTTP $code ($2)"; fail=1; fi
+          }
+          check "Phone app" "https://go.myjefetech.app/inventario/"
+          check "Download page" "https://go.myjefetech.app/pie-de-la-cuesta/"
+          check "Program version file" "https://go.myjefetech.app/pie-de-la-cuesta/version.json"
+          # live app version must match the repo, unless main changed in the last 20 minutes (publish still running)
+          age=$(( $(date +%s) - $(git log -1 --format=%ct) ))
+          live=$(curl -s -m 25 "https://go.myjefetech.app/inventario/version.txt?t=$(date +%s)" | tr -d '[:space:]')
+          repo=$(tr -d '[:space:]' < inventario/version.txt)
+          if [ "$age" -gt 1200 ] && [ "$live" != "$repo" ]; then out="$out\n- Live app version is '$live' but the repo has '$repo' (last publish may have failed)"; fail=1; fi
+          printf "%b\n" "$out" > /tmp/live.txt; cat /tmp/live.txt
+          exit $fail
+
+      - name: Test the phone-to-store link services (test copy of the store program)
+        id: link
+        continue-on-error: true
+        run: |
+          cp -r inventario-programa /tmp/prog && cd /tmp/prog
+          npm install --omit=dev --no-audit --no-fund >/dev/null 2>&1 || true
+          attempt() {
+            pkill -f "node server.js" 2>/dev/null; pkill cloudflared 2>/dev/null; sleep 1
+            rm -f inventario-config.json; echo '{"port":8080,"openBrowser":false}' > inventario-config.json
+            (PDC_MOCK_TYPER=1 node server.js > run.log 2>&1 &)
+            K=""; for i in $(seq 1 20); do sleep 3; K=$(node -e 'try{console.log(require("./inventario-config.json").cloud.key)}catch(e){}'); [ -n "$K" ] && break; done
+            [ -z "$K" ] && { echo "program did not start"; return 1; }
+            T=$(node -e 'const c=require("crypto");console.log("mxinv-"+c.createHash("sha256").update("mxinv-topic:"+process.argv[1]).digest("hex").slice(0,24))' "$K")
+            U=""; for i in $(seq 1 24); do sleep 5; U=$(curl -s -m 15 "https://ntfy.sh/$T/json?poll=1&since=all" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{let u="";for(const l of s.split("\n")){try{const m=JSON.parse(l);if(m.event==="message"&&/^https:/.test(m.message))u=m.message}catch(e){}}console.log(u)})'); [ -n "$U" ] && break; done
+            [ -z "$U" ] && { echo "no link was announced on ntfy.sh"; return 1; }
+            for i in 1 2 3 4 5 6; do r=$(curl -s -m 20 -H "origin: https://go.myjefetech.app" "$U/api/inventario?k=$K&pending=1"); echo "$r" | grep -q '"rev"' && { echo "ok: $U"; return 0; }; sleep 10; done
+            echo "link $U was announced but did not answer"; return 1
+          }
+          if attempt > /tmp/link1.txt 2>&1; then cat /tmp/link1.txt; exit 0; fi
+          echo "first attempt failed, retrying"; cat /tmp/link1.txt
+          if attempt > /tmp/link2.txt 2>&1; then cat /tmp/link2.txt; exit 0; fi
+          { echo "- Phone-to-store link test failed twice: $(tail -1 /tmp/link2.txt)"; echo; echo '```'; tail -15 run.log; echo '```'; } > /tmp/link.txt
+          cat /tmp/link.txt; exit 1
+
+      - name: Open, update or close the alert issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LIVE: ${{ steps.live.outcome }}
+          LINK: ${{ steps.link.outcome }}
+        run: |
+          gh label create inventario-watchdog --color D93F0B --description "Automatic inventory app alert" 2>/dev/null || true
+          open=$(gh issue list --label inventario-watchdog --state open --json number --jq '.[0].number')
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          if [ "$LIVE" = "success" ] && [ "$LINK" = "success" ]; then
+            [ -n "$open" ] && gh issue close "$open" --comment "✅ All inventory checks pass again ($(date -u +%FT%TZ)). [Run]($run_url)"
+            exit 0
+          fi
+          { echo "Inventory app check failed at $(date -u +%FT%TZ) UTC."; echo
+            [ "$LIVE" != "success" ] && cat /tmp/live.txt
+            [ "$LINK" != "success" ] && cat /tmp/link.txt
+            echo; echo "[Workflow run]($run_url)"; } > /tmp/body.md
+          if [ -n "$open" ]; then
+            # add a note at most every 2 hours so a long outage doesn't flood your inbox
+            last=$(gh issue view "$open" --json updatedAt --jq '.updatedAt')
+            if [ $(( $(date +%s) - $(date -d "$last" +%s) )) -gt 7200 ]; then gh issue comment "$open" --body-file /tmp/body.md; else echo "issue #$open already open, updated recently"; fi
+          else
+            gh issue create --title "⚠️ Inventario: check failing" --label inventario-watchdog --assignee "$GITHUB_REPOSITORY_OWNER" --body-file /tmp/body.md \
+              || gh issue create --title "⚠️ Inventario: check failing" --label inventario-watchdog --body-file /tmp/body.md
+          fi
