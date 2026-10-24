@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0c0f">
+<title>MX Studio Package Finder ✝️</title>
+<meta name="description" content="Tell us your trade and crew size. See the JefeTech package your business needs, with real prices.">
+<meta property="og:title" content="Tell us your trade. We'll tell you exactly what your crew needs.">
+<meta property="og:description" content="Real JefeTech prices and packages from MX Studio. Three quick questions, instant recommendation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one phone-first column. Hero → 3 quick questions → the recommendation "ticket" → every package → guarantee, referral, contact. JefeTech brand: near-black, JefeTech green, launch yellow. */
+:root{
+  --bg:#0b0c0f;
+  --panel:#12151a;
+  --panel-2:#171b21;
+  --line:#23302a;
+  --fg:#f1efe9;
+  --muted:#9aa3ad;
+  --green:#00e676;
+  --green-ink:#04210f;
+  --yellow:#ffc83d;
+  --yellow-ink:#2a1d00;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:18px;padding-block:0 calc(56px + env(safe-area-inset-bottom,0px))}
+a{color:var(--green)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;border-radius:8px}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;letter-spacing:.2em;font-size:14px;color:#cfd6dd}
+.cross{width:14px;height:22px;position:relative;flex:none}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--green);border-radius:2px}
+.cross::before{left:5px;top:0;width:4px;height:22px}
+.cross::after{left:0;top:6px;width:14px;height:4px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{background:none;border:0;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--green);color:var(--green-ink)}
+
+/* hero */
+.hero{padding-block:34px 30px;background:radial-gradient(120% 90% at 100% 0%,rgba(0,230,118,.16),transparent 60%)}
+.eyebrow{font-family:var(--display);font-weight:700;letter-spacing:.18em;font-size:12px;text-transform:uppercase;color:var(--yellow)}
+h1{font-family:var(--display);font-weight:900;font-stretch:88%;font-size:clamp(40px,11vw,68px);line-height:.98;letter-spacing:-.02em;margin:.35em 0 .4em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--green)}
+.lede{color:#c3cad2;font-size:18px;max-width:34em;margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.pill{border:1px solid rgba(0,230,118,.4);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+/* questions */
+h2{font-family:var(--display);font-weight:800;font-stretch:92%;font-size:clamp(26px,6.5vw,36px);line-height:1.1;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px}
+section{padding-block:34px 0}
+.q{margin-bottom:26px}
+.qlabel{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;gap:10px;align-items:baseline}
+.qlabel b{color:var(--green);font-weight:800}
+.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(min-width:560px){.chips.trades{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.chips.size,.chips.country{grid-template-columns:repeat(3,minmax(0,1fr))}
+.chips.country{grid-template-columns:repeat(5,minmax(0,1fr))}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:left;cursor:pointer;font-weight:600;font-size:15px;line-height:1.25;min-width:0;transition:border-color .15s,background .15s}
+.chip small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:3px}
+.chip[aria-pressed="true"]{border-color:var(--green);background:rgba(0,230,118,.1);box-shadow:inset 0 0 0 1px var(--green)}
+.chips.country .chip{text-align:center;padding:10px 4px;font-size:14px}
+.toggles{display:grid;gap:8px}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;text-align:left;width:100%}
+.tog span{min-width:0}
+.tog small{display:block;color:var(--muted);font-size:13px}
+.sw{flex:none;width:44px;height:26px;border-radius:99px;background:#2a3038;position:relative;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#dfe4e8;transition:transform .15s}
+.tog[aria-pressed="true"] .sw{background:var(--green)}
+.tog[aria-pressed="true"] .sw::after{transform:translateX(18px);background:#fff}
+
+/* result ticket */
+.ticket{margin-top:6px;border-radius:20px;background:var(--panel-2);border:1px solid rgba(0,230,118,.45);overflow:hidden}
+.ticket-top{padding:22px 20px 18px;background:linear-gradient(160deg,rgba(0,230,118,.18),transparent 70%)}
+.badge{display:inline-block;background:var(--yellow);color:var(--yellow-ink);font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:12px;padding:5px 10px;border-radius:6px;text-transform:uppercase}
+.pname{font-family:var(--display);font-weight:900;font-stretch:90%;font-size:30px;line-height:1.05;margin:12px 0 4px}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.price .big{font-family:var(--display);font-weight:900;font-size:clamp(48px,14vw,68px);line-height:1;letter-spacing:-.02em}
+.price .per{font-family:var(--display);font-weight:700;font-size:20px;color:#c3cad2}
+.local{color:var(--muted);font-size:14px;margin-top:6px}
+.why{margin:14px 0 0;color:#d6dbe0}
+.perf{border-top:1px dashed #33403a;padding:18px 20px;display:grid;gap:16px}
+.perf h3{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:700}
+ul.check{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+ul.check li{padding-left:26px;position:relative}
+ul.check li::before{content:"";position:absolute;left:2px;top:7px;width:12px;height:7px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;padding:0 20px 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;padding:14px 18px;font-weight:700;text-decoration:none;font-size:16px;flex:1 1 200px;text-align:center}
+.btn.primary{background:var(--green);color:var(--green-ink)}
+.btn.ghost{border:1px solid var(--line);color:var(--fg);background:var(--panel)}
+.also{padding:14px 20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.also b{color:var(--fg)}
+
+/* all packages */
+.grid{display:grid;gap:12px}
+@media(min-width:620px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card.wide{grid-column:1/-1}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.hit{border-color:var(--green)}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h3{font-family:var(--display);font-weight:800;font-size:20px;margin:0}
+.card .amt{font-family:var(--display);font-weight:900;font-size:26px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.card .amt small{font-size:14px;color:var(--muted);font-weight:700}
+.card p{margin:0;color:#c3cad2;font-size:15px}
+.fit{font-size:13px;color:var(--muted)}
+.fit b{color:var(--yellow);font-weight:700}
+.tag{align-self:flex-start;font-size:12px;font-weight:700;color:var(--green-ink);background:var(--green);border-radius:6px;padding:3px 8px}
+.card a.more{font-weight:700;font-size:14px;text-decoration:none;margin-top:auto}
+.extras{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px}
+.extra{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
+.extra b{display:block;font-family:var(--display);font-size:22px;font-variant-numeric:tabular-nums}
+.extra span{color:var(--muted);font-size:14px}
+
+/* guarantee / referral / contact */
+.promise{display:grid;gap:12px}
+@media(min-width:620px){.promise{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.box{border-radius:16px;padding:18px;border:1px solid var(--line);background:var(--panel)}
+.box h3{font-family:var(--display);font-weight:800;font-size:20px;margin:0 0 6px}
+.box p{margin:0;color:#c3cad2;font-size:15px}
+.ref{background:linear-gradient(135deg,rgba(255,200,61,.14),rgba(0,230,118,.08));border-color:rgba(255,200,61,.4)}
+.chain{display:flex;gap:6px;margin:12px 0}
+.chain div{flex:1;background:rgba(0,0,0,.3);border-radius:10px;padding:10px 6px;text-align:center;min-width:0}
+.chain b{display:block;font-family:var(--display);font-size:26px;color:var(--yellow);font-weight:900}
+.chain span{font-size:12px;color:var(--muted)}
+.contact{display:grid;gap:8px}
+.cline{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.cline div{min-width:0}
+.cline small{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.cline .v{font-weight:700;user-select:all;overflow-wrap:anywhere}
+.copy{flex:none;background:none;border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;color:var(--green)}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="hero">
+  <div class="wrap" style="padding-block:0">
+    <div class="bar">
+      <div class="brand"><span class="cross" aria-hidden="true"></span>MX STUDIO</div>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="l-en" data-lang="en" aria-pressed="true">EN</button>
+        <button id="l-es" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+    <div class="eyebrow" data-t="eyebrow">JefeTech · by MX Studio</div>
+    <h1 data-t="h1" data-html>Tell us your trade. We'll tell you <em>exactly</em> what your crew needs.</h1>
+    <p class="lede" data-t="lede">Real prices, real packages, no sales runaround. Answer three quick questions and see your recommended JefeTech package right now.</p>
+    <div class="pills">
+      <span class="pill" data-t="p1">No setup fees</span>
+      <span class="pill" data-t="p2">No hidden fees</span>
+      <span class="pill" data-t="p3">Unlimited users</span>
+      <span class="pill" data-t="p4">English &amp; Spanish</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="finder">
+    <h2 data-t="qTitle">What kind of business do you run?</h2>
+    <p class="sub" data-t="qSub">Tap your answers. Your recommendation updates instantly.</p>
+
+    <div class="q">
+      <div class="qlabel"><b>1</b><span data-t="q1">Your trade</span></div>
+      <div class="chips trades" id="trades"></div>
+    </div>
+    <div class="q">
+      <div class="qlabel"><b>2</b><span data-t="q2">Your crew</span></div>
+      <div class="chips size" id="sizes"></div>
+    </div>
+    <div class="q">
+      <div class="qlabel"><b>3</b><span data-t="q3">Where you work</span></div>
+      <div class="chips country" id="countries"></div>
+    </div>
+    <div class="q">
+      <div class="qlabel"><b>+</b><span data-t="q4">Nice to have</span></div>
+      <div class="toggles">
+        <button class="tog" id="t-ai" aria-pressed="false"><span><span data-t="aiT">AI assistant for the crew</span><small data-t="aiS">Anyone on the crew can ask it anything. Set up after you sign up.</small></span><i class="sw" aria-hidden="true"></i></button>
+        <button class="tog" id="t-brand" aria-pressed="false"><span><span data-t="brT">The app under my company's name</span><small data-t="brS">Your logo, your colors, your own web address.</small></span><i class="sw" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="ticket" id="ticket" aria-live="polite"></div>
+  </section>
+
+  <section id="all">
+    <h2 data-t="allTitle">Everything we offer</h2>
+    <p class="sub" data-t="allSub">One app for jobs, crews, safety and payroll. Pick how you want to pay for it.</p>
+    <div class="grid" id="cards"></div>
+    <div class="extras" id="extras"></div>
+  </section>
+
+  <section>
+    <h2 data-t="trustTitle">Our promise</h2>
+    <p class="sub" data-t="trustSub">Plain terms, written down.</p>
+    <div class="promise">
+      <div class="box"><h3 data-t="gT">Lifetime money-back guarantee</h3><p data-t="gP">Not happy, ever? Cancel and we refund your most recent month. Available every month you're subscribed. One guarantee refund per business every 12 months. Terms apply.</p></div>
+      <div class="box"><h3 data-t="lT">Your price is locked for life</h3><p data-t="lP">$137 a month stays $137 as long as your subscription stays active. If the price ever goes up for new customers, you keep yours.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="box ref">
+      <div class="eyebrow" data-t="rE">Referral program</div>
+      <h3 style="font-size:26px;margin-top:8px" data-t="rT">Get paid on sales you don't make.</h3>
+      <p data-t="rP">Bring in a new Partner and earn on every sale in their chain, three levels deep, for as long as they keep selling.</p>
+      <div class="chain">
+        <div><b>7%</b><span data-t="r1">your referral</span></div>
+        <div><b>+3%</b><span data-t="r2">their referral</span></div>
+        <div><b>+3%</b><span data-t="r3">one more level</span></div>
+      </div>
+      <a class="btn ghost" id="refLink" href="https://go.myjefetech.app/referral.html" target="_blank" rel="noopener" data-t="rBtn">See the referral program</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-t="cTitle">Talk to Brian</h2>
+    <p class="sub" data-t="cSub">Questions before you sign up? Call, text or WhatsApp.</p>
+    <div class="contact">
+      <div class="cline"><div><small data-t="cPhone">Phone &amp; WhatsApp</small><span class="v">+1 (408) 422-3505</span></div><button class="copy" data-copy="+1 (408) 422-3505" data-t="copy">Copy</button></div>
+      <div class="cline"><div><small data-t="cEmail">Email</small><span class="v">brian@myjefetech.app</span></div><button class="copy" data-copy="brian@myjefetech.app" data-t="copy">Copy</button></div>
+      <a class="btn primary" id="waAll" href="https://wa.me/14084223505" target="_blank" rel="noopener" data-t="waBtn">Message Brian on WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>✝️ MX Studio · Acapulco, México</span>
+    <a href="https://myjefetech.app" target="_blank" rel="noopener">myjefetech.app</a>
+  </footer>
+</main>
+
+<script>
+(function(){
+const CHECKOUT="https://go.myjefetech.app/checkout.html";
+const WA="https://wa.me/14084223505";
+let lang="en";
+try{lang=localStorage.getItem("mxpf-lang")||"en"}catch(e){}
+
+const S={
+ en:{eyebrow:"JefeTech · by MX Studio",h1:"Tell us your trade. We'll tell you <em>exactly</em> what your crew needs.",lede:"Real prices, real packages, no sales runaround. Answer three quick questions and see your recommended JefeTech package right now.",p1:"No setup fees",p2:"No hidden fees",p3:"Unlimited users",p4:"English & Spanish",qTitle:"What kind of business do you run?",qSub:"Tap your answers. Your recommendation updates instantly.",q1:"Your trade",q2:"Your crew",q3:"Where you work",q4:"Nice to have",aiT:"AI assistant for the crew",aiS:"Anyone on the crew can ask it anything. Set up after you sign up.",brT:"The app under my company's name",brS:"Your logo, your colors, your own web address.",allTitle:"Everything we offer",allSub:"One app for jobs, crews, safety and payroll. Pick how you want to pay for it.",trustTitle:"Our promise",trustSub:"Plain terms, written down.",gT:"Lifetime money-back guarantee",gP:"Not happy, ever? Cancel and we refund your most recent month. Available every month you're subscribed. One guarantee refund per business every 12 months. Terms apply.",lT:"Your price is locked for life",lP:"$137 a month stays $137 as long as your subscription stays active. If the price ever goes up for new customers, you keep yours.",rE:"Referral program",rT:"Get paid on sales you don't make.",rP:"Bring in a new Partner and earn on every sale in their chain, three levels deep, for as long as they keep selling.",r1:"your referral",r2:"their referral",r3:"one more level",rBtn:"See the referral program",cTitle:"Talk to Brian",cSub:"Questions before you sign up? Call, text or WhatsApp.",cPhone:"Phone & WhatsApp",cEmail:"Email",copy:"Copy",copied:"Copied",waBtn:"Message Brian on WhatsApp",
+  rec:"Recommended for you",forTrade:"Built for your",crewGets:"What your crew gets",why:"Why this one",also:"Also a fit:",start:"Start now",ask:"Ask Brian first",mo:"/mo",yr:"/yr",once:"one time",charged:"Charged in USD",approx:"about",payg:"pay as you go",bestFit:"Best fit",thisIs:"This is you if",pick:"Choose",
+  sizes:[["Owner + 1–4","8–15 jobs a month"],["5–15 people","2+ crews, 15+ jobs"],["16+ people","several crews"]]},
+ es:{eyebrow:"JefeTech · de MX Studio",h1:"Díganos su oficio. Le decimos <em>exactamente</em> lo que necesita su cuadrilla.",lede:"Precios reales, paquetes reales, sin rodeos. Conteste tres preguntas rápidas y vea su paquete JefeTech recomendado al instante.",p1:"Sin costo de instalación",p2:"Sin cargos ocultos",p3:"Usuarios ilimitados",p4:"Inglés y español",qTitle:"¿Qué tipo de negocio tiene?",qSub:"Toque sus respuestas. La recomendación se actualiza al instante.",q1:"Su oficio",q2:"Su cuadrilla",q3:"Dónde trabaja",q4:"Extras",aiT:"Asistente de IA para la cuadrilla",aiS:"Cualquiera del equipo le puede preguntar lo que sea. Se configura después de inscribirse.",brT:"La app con el nombre de mi empresa",brS:"Su logo, sus colores, su propia dirección web.",allTitle:"Todo lo que ofrecemos",allSub:"Una app para trabajos, cuadrillas, seguridad y nómina. Usted elige cómo pagarla.",trustTitle:"Nuestra promesa",trustSub:"Términos claros, por escrito.",gT:"Garantía de devolución de por vida",gP:"¿No está contento, cuando sea? Cancele y le devolvemos su último mes. Disponible cada mes que esté suscrito. Un reembolso de garantía por negocio cada 12 meses. Aplican términos.",lT:"Precio congelado de por vida",lP:"$137 al mes se quedan en $137 mientras su suscripción siga activa. Si el precio sube para clientes nuevos, usted conserva el suyo.",rE:"Programa de referidos",rT:"Gane con ventas que usted no hace.",rP:"Traiga a un nuevo Socio y gane en cada venta de su cadena, tres niveles, mientras sigan vendiendo.",r1:"su referido",r2:"el referido de él",r3:"un nivel más",rBtn:"Ver el programa de referidos",cTitle:"Hable con Brian",cSub:"¿Preguntas antes de inscribirse? Llame, mande texto o WhatsApp.",cPhone:"Teléfono y WhatsApp",cEmail:"Correo",copy:"Copiar",copied:"Copiado",waBtn:"Escribirle a Brian por WhatsApp",
+  rec:"Recomendado para usted",forTrade:"Hecho para",crewGets:"Lo que recibe su cuadrilla",why:"Por qué este",also:"También le sirve:",start:"Empezar ahora",ask:"Preguntarle a Brian",mo:"/mes",yr:"/año",once:"pago único",charged:"Se cobra en USD",approx:"aprox.",payg:"pago por uso",bestFit:"Ideal",thisIs:"Es para usted si",pick:"Elegir",
+  sizes:[["Dueño + 1–4","8–15 trabajos al mes"],["5–15 personas","2+ cuadrillas, 15+ trabajos"],["16+ personas","varias cuadrillas"]]}
+};
+
+const TRADES=[
+ {id:"roof",en:"Roofing",es:"Techos",f:{en:["Measure roofs from satellite for the estimate, no ladder","Quotes with your own material prices","Every roof job and crew in one list"],es:["Mida techos por satélite para el presupuesto, sin escalera","Cotizaciones con sus propios precios de material","Cada trabajo de techo y cuadrilla en una lista"]}},
+ {id:"solar",en:"Solar",es:"Solar",f:{en:["Solar payback calculator in your local currency","Satellite roof measure for panel layouts","Net-metering paperwork tracker (Philippines)"],es:["Calculadora de retorno solar en su moneda","Medición de techo por satélite para paneles","Seguimiento de trámites de medición neta (Filipinas)"]}},
+ {id:"gc",en:"General contractor",es:"Contratista general",f:{en:["Every job, crew and schedule in one place","Safety checklist for your country","Payroll export at the end of the week"],es:["Cada obra, cuadrilla y horario en un lugar","Checklist de seguridad de su país","Exportación de nómina al final de la semana"]}},
+ {id:"remodel",en:"Remodeling",es:"Remodelación",f:{en:["Quotes from your phone with your own prices","Jobs tab to track each remodel start to finish","Works offline inside the house"],es:["Cotice desde el celular con sus precios","Pestaña de trabajos para cada remodelación","Funciona sin señal dentro de la casa"]}},
+ {id:"land",en:"Landscaping",es:"Jardinería",f:{en:["Jobs split by crew for the day","Crew hours ready for payroll","Works offline on any property"],es:["Trabajos repartidos por cuadrilla del día","Horas de la cuadrilla listas para nómina","Funciona sin señal en cualquier propiedad"]}},
+ {id:"hvac",en:"HVAC",es:"Aire acondicionado",f:{en:["Each service call assigned to the right tech","Safety checklist on every job","Quotes and payroll in the same app"],es:["Cada servicio asignado al técnico correcto","Checklist de seguridad en cada trabajo","Cotizaciones y nómina en la misma app"]}},
+ {id:"plumb",en:"Plumbing & electrical",es:"Plomería y electricidad",f:{en:["Call-before-you-dig reminder built in","Each job and tech in one list","Safety checklist for your country"],es:["Recordatorio de llamar antes de excavar","Cada trabajo y técnico en una lista","Checklist de seguridad de su país"]}},
+ {id:"paint",en:"Painting",es:"Pintura",f:{en:["Quotes with your own paint and labor prices","Crew schedule by job","Payroll export for the whole crew"],es:["Cotizaciones con sus precios de pintura y mano de obra","Horario de la cuadrilla por trabajo","Exportación de nómina de todo el equipo"]}}
+];
+
+const COUNTRIES=[
+ {id:"us",en:"USA",es:"EE. UU.",flag:"🇺🇸",safety:"OSHA",local:null,tier:"us"},
+ {id:"ca",en:"Canada",es:"Canadá",flag:"🇨🇦",safety:"OHS",local:"194 CAD",tier:"us"},
+ {id:"mx",en:"Mexico",es:"México",flag:"🇲🇽",safety:"NOM-031-STPS",local:"2,430 MXN",tier:"mx"},
+ {id:"au",en:"Australia",es:"Australia",flag:"🇦🇺",safety:"WHS",local:"195 AUD",tier:"us"},
+ {id:"ph",en:"Philippines",es:"Filipinas",flag:"🇵🇭",safety:"DOLE OSH",local:"8,540 PHP",tier:"mx"}
+];
+
+const PK={
+ payg:{en:"Pay As You Go",es:"Pago por uso",price:97,unit:"payg",
+   d:{en:"Everything the app does, for the owner and a small crew.",es:"Todo lo que hace la app, para el dueño y una cuadrilla chica."},
+   fit:{en:"owner + 1–4 workers, about 8–15 jobs a month",es:"dueño + 1–4 trabajadores, unos 8–15 trabajos al mes"}},
+ paygai:{en:"Pay As You Go + AI",es:"Pago por uso + IA",price:117,unit:"payg",
+   d:{en:"Pay As You Go plus an AI assistant your whole crew can ask anything.",es:"Pago por uso más un asistente de IA que toda la cuadrilla puede consultar."},
+   fit:{en:"a small crew that wants answers without calling the boss",es:"una cuadrilla chica que quiere respuestas sin llamar al jefe"}},
+ monthly:{en:"Monthly",es:"Mensual",price:137,unit:"mo",
+   d:{en:"The full app for the whole company. Over $300 worth of tools, price locked for life.",es:"La app completa para toda la empresa. Más de $300 en herramientas, precio congelado de por vida."},
+   fit:{en:"5+ people, 2+ crews, 15+ jobs a month",es:"5+ personas, 2+ cuadrillas, 15+ trabajos al mes"}},
+ yearly:{en:"Yearly",es:"Anual",price:1344,unit:"yr",
+   d:{en:"Same as Monthly, paid once a year. Works out to $112 a month. Save $300.",es:"Igual que Mensual, pagado una vez al año. Sale en $112 al mes. Ahorra $300."},
+   fit:{en:"an established company that knows it's staying",es:"una empresa establecida que sabe que se queda"}},
+ custom:{en:"Custom App",es:"App Personalizada",unit:"once",
+   d:{en:"JefeTech under your company's name, logo and colors, on your own web address. All features, 1 year of updates, Spanish/country setup, a live training for your crew and 1 year of priority WhatsApp support.",es:"JefeTech con el nombre, logo y colores de su empresa, en su propia dirección web. Todas las funciones, 1 año de actualizaciones, configuración en español y de su país, capacitación en vivo para su cuadrilla y 1 año de soporte prioritario por WhatsApp."},
+   fit:{en:"a company that wants its own branded app",es:"una empresa que quiere su propia app con su marca"}}
+};
+
+const st={trade:"roof",size:1,country:"us",ai:false,brand:false};
+const L=()=>S[lang];
+const nm=o=>o[lang]||o.en;
+const fmt=n=>"$"+n.toLocaleString("en-US");
+function customPrice(){const c=COUNTRIES.find(x=>x.id===st.country);return c.tier==="mx"?{now:1247,reg:2497}:{now:2497,reg:4997}}
+function ck(extra){const p=new URLSearchParams(extra||{});p.set("ref","finder");if(lang==="es")p.set("lang","es");return CHECKOUT+"?"+p.toString()}
+function wa(text){return WA+"?text="+encodeURIComponent(text)}
+
+function pick(){
+  if(st.brand) return {k:"custom",alt:st.size===0?"monthly":"yearly"};
+  if(st.size===0) return {k:st.ai?"paygai":"payg",alt:"monthly"};
+  if(st.size===1) return {k:"monthly",alt:"yearly",addAI:st.ai};
+  return {k:"yearly",alt:"custom",addAI:st.ai};
+}
+function whyText(r){
+  const t=nm(TRADES.find(x=>x.id===st.trade)).toLowerCase(), es=lang==="es";
+  const size=L().sizes[st.size][0];
+  if(r.k==="custom") return es?`Quiere que su cliente vea su marca, no la nuestra. Una sola compra, y la app es de su empresa de ${t}.`:`You want customers to see your brand, not ours. One purchase and the app carries your ${t} company's name.`;
+  if(r.k==="payg"||r.k==="paygai") return es?`Con ${size.toLowerCase()} no necesita pagar por una empresa grande. Empiece chico y suba cuando crezca.`:`With ${size.toLowerCase()} you don't need to pay for a big-company plan. Start small and move up when you grow.`;
+  if(r.k==="monthly") return es?`Con ${size.toLowerCase()} ya tiene más de una cuadrilla que coordinar. Mensual le da todo, para todos, a un solo precio.`:`At ${size.toLowerCase()} you're running more than one crew. Monthly gives everyone everything at one price.`;
+  return es?`Con ${size.toLowerCase()} va a usar la app todo el año. Pague el año y ahórrese $300.`:`At ${size.toLowerCase()} you'll use this all year. Pay for the year and keep $300.`;
+}
+function priceBlock(k){
+  const p=PK[k], l=L();
+  if(k==="custom"){const c=customPrice();return {big:fmt(c.now),per:l.once,note:(lang==="es"?"Precio Fundador 30 (primeras 30 empresas). Normal ":"Founder 30 price (first 30 companies). Regular ")+fmt(c.reg)+"."};}
+  const per=p.unit==="mo"?l.mo:p.unit==="yr"?l.yr:l.payg;
+  const c=COUNTRIES.find(x=>x.id===st.country);
+  let note=l.charged+".";
+  if(k==="monthly"&&c.local) note=l.approx+" "+c.local+" · "+l.charged+".";
+  if(k==="yearly") note=(lang==="es"?"$112 al mes · ahorra $300 · ":"$112 a month · save $300 · ")+l.charged+".";
+  return {big:fmt(p.price),per,note};
+}
+function ctaHref(k){
+  const t=nm(TRADES.find(x=>x.id===st.trade)), c=nm(COUNTRIES.find(x=>x.id===st.country));
+  if(k==="monthly") return ck();
+  if(k==="yearly") return ck({plan:"year"});
+  if(k==="custom") return ck({tab:"custom"});
+  const plan=nm(PK[k]);
+  return wa(lang==="es"?`Hola Brian, quiero el paquete ${plan} de JefeTech. Mi negocio: ${t}, ${c}.`:`Hi Brian, I'd like the JefeTech ${plan} package. My business: ${t}, ${c}.`);
+}
+
+function renderChips(){
+  const l=L();
+  document.getElementById("trades").innerHTML=TRADES.map(t=>`<button class="chip" id="tr-${t.id}" data-k="trade" data-v="${t.id}" aria-pressed="${st.trade===t.id}">${nm(t)}</button>`).join("");
+  document.getElementById("sizes").innerHTML=l.sizes.map((s,i)=>`<button class="chip" id="sz-${i}" data-k="size" data-v="${i}" aria-pressed="${st.size===i}">${s[0]}<small>${s[1]}</small></button>`).join("");
+  document.getElementById("countries").innerHTML=COUNTRIES.map(c=>`<button class="chip" id="co-${c.id}" data-k="country" data-v="${c.id}" aria-pressed="${st.country===c.id}" title="${nm(c)}">${c.flag}<small>${c.id.toUpperCase()}</small></button>`).join("");
+  document.getElementById("t-ai").setAttribute("aria-pressed",st.ai);
+  document.getElementById("t-brand").setAttribute("aria-pressed",st.brand);
+}
+
+function renderTicket(){
+  const l=L(), r=pick(), p=PK[r.k], pb=priceBlock(r.k);
+  const trade=TRADES.find(x=>x.id===st.trade), c=COUNTRIES.find(x=>x.id===st.country);
+  const es=lang==="es";
+  const common=es?[`Usuarios ilimitados, un solo precio para toda la cuadrilla`,`Checklist de seguridad ${c.safety}`,`Funciona sin señal en la obra`,`App en inglés y español`]
+                 :[`Unlimited users, one price for the whole crew`,`${c.safety} safety checklist`,`Works offline on the job site`,`App in English and Spanish`];
+  if(r.k==="paygai"||r.addAI||r.k==="custom"&&st.ai) common.push(es?"Asistente de IA que toda la cuadrilla puede consultar, se configura después de inscribirse":"An AI assistant your whole crew can ask anything, set up after you sign up");
+  const aiNote=r.addAI?`<div class="local" style="margin-top:8px">${es?"+ Asistente de IA":"+ AI add-on"} <b style="color:var(--fg)">$20${l.mo}</b></div>`:"";
+  const alt=PK[r.alt], altP=priceBlock(r.alt);
+  const tradeFeats=(trade.f[lang]||trade.f.en).slice();
+  if(r.k==="custom") tradeFeats.unshift(es?"Su nombre, logo y colores en su propia dirección web":"Your name, logo and colors on your own web address");
+  document.getElementById("ticket").innerHTML=`
+   <div class="ticket-top">
+     <span class="badge">${l.rec}</span>
+     <div class="pname">${nm(p)}</div>
+     <div class="price"><span class="big">${pb.big}</span><span class="per">${pb.per}</span></div>
+     <div class="local">${pb.note}</div>${aiNote}
+     <p class="why">${whyText(r)}</p>
+   </div>
+   <div class="perf">
+     <div><h3>${l.forTrade} ${nm(trade).toLowerCase()}</h3><ul class="check">${tradeFeats.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+     <div><h3>${l.crewGets}</h3><ul class="check">${common.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+   </div>
+   <div class="cta">
+     <a class="btn primary" href="${ctaHref(r.k)}" target="_blank" rel="noopener">${l.start}</a>
+     <a class="btn ghost" href="${wa((es?"Hola Brian, tengo preguntas sobre JefeTech. Mi negocio: ":"Hi Brian, I have questions about JefeTech. My business: ")+nm(trade)+", "+nm(c)+". "+(es?"Me recomendaron: ":"Recommended: ")+nm(p)+".")}" target="_blank" rel="noopener">${l.ask}</a>
+   </div>
+   <div class="also">${l.also} <b>${nm(alt)}</b> · ${altP.big}${altP.per.startsWith("/")?altP.per:" "+altP.per}</div>`;
+  document.querySelectorAll(".card").forEach(el=>el.classList.toggle("hit",el.dataset.k===r.k));
+}
+
+function renderCards(){
+  const l=L(), es=lang==="es", r=pick();
+  const order=["payg","paygai","monthly","yearly","custom"];
+  document.getElementById("cards").innerHTML=order.map(k=>{
+    const p=PK[k], pb=priceBlock(k);
+    const per=pb.per.startsWith("/")?`<small>${pb.per}</small>`:`<small> ${pb.per}</small>`;
+    return `<div class="card${k==="custom"?" wide":""}${k===r.k?" hit":""}" data-k="${k}">
+      ${k==="monthly"?`<span class="tag">${es?"El más elegido":"Most chosen"}</span>`:""}
+      <div class="row"><h3>${nm(p)}</h3><span class="amt">${pb.big}${per}</span></div>
+      <p>${nm(p.d)}</p>
+      <div class="fit"><b>${l.thisIs}:</b> ${nm(p.fit)}</div>
+      <a class="more" href="${ctaHref(k)}" target="_blank" rel="noopener">${l.pick} ${nm(p)} →</a>
+    </div>`}).join("");
+  document.getElementById("extras").innerHTML=`
+    <div class="extra"><b>$20${l.mo}</b><span>${es?"Asistente de IA, se suma a cualquier plan":"AI add-on for any plan"}</span></div>
+    <div class="extra"><b>$97</b><span>${es?"Recarga de créditos":"Credit top-up"}</span></div>
+    <div class="extra" style="grid-column:1/-1"><b>$497${l.yr}</b><span>${es?"Actualizaciones opcionales de la App Personalizada después del primer año. La app personalizada también lleva una cuota anual de hosting e IA según su uso.":"Optional Custom App updates after year one. Custom Apps also carry a yearly hosting & AI fee set to your usage."}</span></div>`;
+}
+
+function applyStatic(){
+  const l=L();
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-t]").forEach(el=>{const v=l[el.dataset.t];if(v==null)return;if(el.hasAttribute("data-html"))el.innerHTML=v;else el.textContent=v});
+  document.getElementById("l-en").setAttribute("aria-pressed",lang==="en");
+  document.getElementById("l-es").setAttribute("aria-pressed",lang==="es");
+  document.getElementById("refLink").href="https://go.myjefetech.app/referral.html"+(lang==="es"?"?lang=es":"");
+}
+function all(){applyStatic();renderChips();renderCards();renderTicket()}
+
+document.addEventListener("click",e=>{
+  const ch=e.target.closest(".chip");
+  if(ch){const k=ch.dataset.k;st[k]=k==="size"?+ch.dataset.v:ch.dataset.v;renderChips();renderCards();renderTicket();return}
+  const lg=e.target.closest("[data-lang]");
+  if(lg){lang=lg.dataset.lang;try{localStorage.setItem("mxpf-lang",lang)}catch(_){}all();return}
+  if(e.target.closest("#t-ai")){st.ai=!st.ai;renderChips();renderCards();renderTicket();return}
+  if(e.target.closest("#t-brand")){st.brand=!st.brand;renderChips();renderCards();renderTicket();return}
+  const cp=e.target.closest(".copy");
+  if(cp){const txt=cp.dataset.copy;const done=()=>{cp.textContent=L().copied;setTimeout(()=>cp.textContent=L().copy,1500)};
+    try{navigator.clipboard.writeText(txt).then(done).catch(()=>selectIt(cp))}catch(_){selectIt(cp)}}
+});
+function selectIt(btn){const v=btn.parentElement.querySelector(".v");const r=document.createRange();r.selectNodeContents(v);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+all();
+})();
+</script>
+
+</body>
+</html>

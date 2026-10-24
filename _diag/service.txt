@@ -1,0 +1,33 @@
+checked: 2026-10-24T05:10:17Z
+--- netlify api
+Not Found - Request ID: 01M5P526SNN2R21RCK3MGMDVFY
+
+Build and deploy your own site for free: https://netlify.new/?utm_campaign=loops&utm_content=site-not-found-text&utm_medium=owned&utm_source=default-page
+
+HTTP 404
+--- netlify home
+HTTP 404
+--- vercel
+home HTTP 200
+The page could not be found
+
+NOT_FOUND
+
+cle1::fxnk7-1792818617622-b348fc0512c2
+
+api HTTP 404
+--- live app version (before this publish)
+server: GitHub.com
+last-modified: Fri, 23 Oct 2026 23:53:02 GMT
+age: 0
+date: Sat, 24 Oct 2026 05:10:17 GMT
+x-served-by: cache-dfw-kdfw8210122-DFW
+x-cache: MISS
+1792799482
+brianaustingreenburg-dev.github.io.
+185.199.110.153
+185.199.108.153
+185.199.109.153
+185.199.111.153
+--- secrets present
+NETLIFY_AUTH_TOKEN=false VERCEL_TOKEN=false

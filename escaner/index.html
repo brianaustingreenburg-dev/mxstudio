@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0E1424">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Escáner">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Escáner de caja · MX Studio</title>
+<style>
+/* Layout: full-screen camera viewfinder with a scan window; bottom sheet holds status, last scans and manual entry. Single dark theme so the camera reads clearly. */
+:root{--bg:#0E1424;--panel:#161E33;--line:#2A3552;--ink:#EEF2FA;--muted:#9AA6C2;--accent:#7C9DFF;--ok:#4ADE80;--warn:#F5B547;--bad:#F87171;--gold:#E4B77C;
+  --f:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--f);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px}
+header b{font-size:1rem;display:block}
+header span{font-size:.78rem;color:var(--muted)}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--muted);font:700 .8rem var(--f);padding:6px 11px;border-radius:999px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.view{position:relative;flex:1;min-height:260px;background:#000;overflow:hidden}
+video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.frame{position:absolute;left:8%;right:8%;top:50%;height:32%;transform:translateY(-50%);border:3px solid rgba(255,255,255,.85);border-radius:16px;box-shadow:0 0 0 2000px rgba(0,0,0,.35);transition:border-color .15s}
+.frame.hit{border-color:var(--ok)}
+.frame::after{content:"";position:absolute;left:6%;right:6%;top:50%;height:2px;background:rgba(248,113,113,.9)}
+.paused{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.6);font-weight:700;font-size:1.1rem;text-align:center;padding:16px}
+.flash{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:var(--ok);color:#06210F;font-weight:800;padding:8px 14px;border-radius:999px;font-size:1rem;white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis}
+.tools{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:8px}
+.tools button{width:46px;height:46px;border-radius:50%;border:0;background:rgba(14,20,36,.75);color:#fff;font-size:1.2rem}
+.tools button[aria-pressed="true"]{background:var(--gold);color:#1B1300}
+.sheet{background:var(--panel);border-top:1px solid var(--line);padding:12px 16px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;max-height:44vh;overflow-y:auto}
+.status{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--ok);flex:none}
+.status.off .dot{background:var(--bad)} .status.wait .dot{background:var(--warn)}
+.row{display:flex;gap:8px}
+input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px;font:600 1rem ui-monospace,Menlo,Consolas,monospace}
+input:focus{outline:2px solid var(--accent);border-color:transparent}
+.btn{border:0;border-radius:12px;padding:12px 16px;font:700 1rem var(--f);background:var(--accent);color:#0B1020}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.big{width:100%;padding:15px}
+.list{display:flex;flex-direction:column}
+.item{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:.9rem}
+.item:first-child{border-top:0}
+.item code{font:600 .95rem ui-monospace,Menlo,Consolas,monospace}
+.item .st{font-size:.78rem;font-weight:700;white-space:nowrap}
+.st.ok{color:var(--ok)} .st.q{color:var(--warn)} .st.bad{color:var(--bad)}
+.muted{color:var(--muted);font-size:.85rem}
+.pair{flex:1;display:flex;flex-direction:column;gap:14px;justify-content:center;padding:24px 16px;max-width:460px;margin:0 auto;width:100%}
+.pair h1{font-size:1.5rem;margin:0}
+.alt{color:var(--muted);font-style:italic;font-size:.88rem}
+ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div><b id="store">Escáner de caja</b><span id="sub">MX Studio</span></div>
+  <div class="seg"><button data-lang="es" aria-pressed="true">ES</button><button data-lang="en" aria-pressed="false">EN</button></div>
+</header>
+
+<section id="pairView" class="pair" hidden>
+  <h1 data-t="pairT"></h1><span class="alt" data-t="pairAlt"></span>
+  <ol><li data-t="p1"></li><li data-t="p2"></li><li data-t="p3"></li></ol>
+  <span class="muted" data-t="pairNote"></span>
+</section>
+
+<section id="scanView" hidden style="display:flex;flex-direction:column;flex:1;min-height:0">
+  <div class="view" id="view">
+    <video id="video" playsinline muted autoplay></video>
+    <div class="frame" id="frame"></div>
+    <div class="tools"><button id="torch" aria-pressed="false" aria-label="Luz" hidden>💡</button><button id="pause" aria-pressed="false" aria-label="Pausa">⏸</button></div>
+    <div class="paused" id="pausedMsg" hidden></div>
+    <div class="flash" id="flash" hidden></div>
+  </div>
+  <div class="sheet">
+    <div class="status wait" id="status"><span class="dot"></span><span id="statusTxt"></span></div>
+    <div class="row"><input id="manual" inputmode="numeric" autocomplete="off" placeholder="7501000…"><button class="btn" id="send" data-t="send"></button></div>
+    <div class="list" id="list"></div>
+    <button class="btn ghost" id="unpair" data-t="unpair"></button>
+  </div>
+</section>
+
+<script src="zxing.min.js"></script>
+<script>
+"use strict";
+const RELAY = "https://ntfy.sh";
+const T = {
+ es:{pairT:"Conecta este teléfono a la caja", pairAlt:"Connect this phone to the register", p1:"En la computadora de la tienda abre el programa de MX Studio.", p2:"Busca la tarjeta «Escáner de caja».", p3:"Escanea ese código QR con la cámara de este teléfono.",
+  pairNote:"Solo se hace una vez. El teléfono se queda conectado.", send:"Enviar", unpair:"Desconectar este teléfono", unpairSure:"Toca otra vez para desconectar",
+  ready:"Listo. Apunta al código de barras.", sending:"Enviando…", sent:"En la caja", queued:"Esperando internet", noNet:"Sin internet: guardo los códigos y los mando al volver",
+  camNo:"No pude abrir la cámara. Permite el acceso a la cámara en el navegador, o escribe el código abajo.", camStart:"Abriendo la cámara…", paused:"Pausado. Toca ▶ para seguir.", repeat:"Ya escaneado: espera un segundo para repetir"},
+ en:{pairT:"Connect this phone to the register", pairAlt:"Conecta este teléfono a la caja", p1:"On the store computer open the MX Studio program.", p2:"Find the «Escáner de caja» card.", p3:"Scan that QR code with this phone's camera.",
+  pairNote:"You only do this once. The phone stays connected.", send:"Send", unpair:"Disconnect this phone", unpairSure:"Tap again to disconnect",
+  ready:"Ready. Point at the barcode.", sending:"Sending…", sent:"At the register", queued:"Waiting for internet", noNet:"No internet: I'm saving the codes and will send them when it's back",
+  camNo:"I couldn't open the camera. Allow camera access in the browser, or type the code below.", camStart:"Opening the camera…", paused:"Paused. Tap ▶ to continue.", repeat:"Already scanned: wait a second to repeat"}
+};
+const ls = { get(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } }, set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} } };
+let lang = ls.get("mxs_lang", (navigator.language||"es").startsWith("en")?"en":"es");
+const $ = id => document.getElementById(id);
+const t = k => T[lang][k];
+
+/* pairing: the computer's QR opens this page as …/escaner/#c=CHANNEL&n=STORE */
+(function(){ const h=new URLSearchParams(location.hash.slice(1)); const c=h.get("c"), n=h.get("n");
+  if (c && /^[A-Za-z0-9_-]{16,64}$/.test(c)){ ls.set("mxs_pair",{c, n:n||""}); history.replaceState(null,"",location.pathname); } })();
+let pair = ls.get("mxs_pair", null);
+let queue = ls.get("mxs_queue", []), recent = [], lastCode="", lastAt=0, paused=false, statusKey="camStart", statusCls="wait";
+
+function applyLang(){ document.documentElement.lang=lang; document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===lang));
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t(el.dataset.t)); setStatus(statusKey, statusCls); renderList(); if (paused) $("pausedMsg").textContent=t("paused"); }
+document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{ lang=b.dataset.lang; ls.set("mxs_lang",lang); applyLang(); }));
+function setStatus(k, cls){ statusKey=k; statusCls=cls; $("status").className="status "+cls; $("statusTxt").textContent = t(k) + (queue.length?` · ${queue.length}`:""); }
+
+/* sound + vibration */
+let ac=null;
+function beep(ok=true){ try{ ac = ac || new (window.AudioContext||window.webkitAudioContext)(); const o=ac.createOscillator(), g=ac.createGain(); o.frequency.value = ok?1760:440; o.type="square"; g.gain.value=.06; o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + (ok?.09:.25)); }catch(e){} try{ navigator.vibrate && navigator.vibrate(ok?60:[60,60,60]); }catch(e){} }
+
+/* sending */
+async function post(item){
+  const r = await fetch(RELAY + "/" + pair.c, { method:"POST", body: "MXS1|" + item.code + "|" + item.id });
+  if (!r.ok) throw new Error("http " + r.status);
+}
+let flushing=false;
+async function flush(){
+  if (flushing || !queue.length || !pair) return; flushing=true;
+  try{ while (queue.length){ const it=queue[0];
+      if (Date.now()-it.at > 10*60*1000){ queue.shift(); mark(it.id,"bad"); continue; }   // too old to add to a sale
+      await post(it); queue.shift(); ls.set("mxs_queue",queue); mark(it.id,"ok"); }
+    setStatus("ready","");
+  }catch(e){ setStatus("noNet","off"); }
+  finally{ flushing=false; ls.set("mxs_queue",queue); }
+}
+setInterval(flush, 4000); addEventListener("online", flush);
+function mark(id, st){ const r=recent.find(x=>x.id===id); if (r){ r.st=st; renderList(); } }
+function renderList(){ $("list").innerHTML = recent.slice(0,8).map(r=>`<div class="item"><code>${r.code.replace(/[<>&]/g,"")}</code><span class="st ${r.st==="ok"?"ok":r.st==="bad"?"bad":"q"}">${r.st==="ok"?"✓ "+t("sent"):r.st==="bad"?"✕":t("queued")}</span></div>`).join(""); }
+
+function handle(code, manual){
+  code = String(code||"").trim(); if (!/^[A-Za-z0-9.\-]{3,40}$/.test(code)) return;
+  const now=Date.now();
+  // same code still in front of the camera: ignore until it has been out of view for a moment
+  if (!manual && code===lastCode && now-lastAt < 1200){ lastAt=now; return; }
+  if (!manual){ lastCode=code; lastAt=now; }
+  const it={ id: now.toString(36)+Math.random().toString(36).slice(2,6), code, at: now };
+  queue.push(it); ls.set("mxs_queue",queue); recent.unshift({id:it.id, code, st:"q"}); recent=recent.slice(0,20);
+  beep(true); const f=$("frame"); f.classList.add("hit"); setTimeout(()=>f.classList.remove("hit"),350);
+  const fl=$("flash"); fl.textContent="✓ "+code; fl.hidden=false; clearTimeout(fl._t); fl._t=setTimeout(()=>fl.hidden=true,1100);
+  renderList(); flush();
+}
+
+/* live camera */
+let stream=null, detector=null, zx=null, running=false;
+async function startCam(){
+  setStatus("camStart","wait");
+  try{
+    stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:{ideal:"environment"}, width:{ideal:1280}, height:{ideal:720} }, audio:false });
+    const v=$("video"); v.srcObject=stream; await v.play();
+    const track=stream.getVideoTracks()[0]; try{ const caps=track.getCapabilities&&track.getCapabilities(); if (caps&&caps.torch) $("torch").hidden=false; }catch(e){}
+    if ("BarcodeDetector" in window){ try{ const f=await BarcodeDetector.getSupportedFormats(); detector=new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e","code_128","code_39","itf"].filter(x=>f.includes(x))}); }catch(e){ detector=null; } }
+    running=true; setStatus(queue.length?"queued":"ready", queue.length?"wait":""); loop();
+  }catch(e){ setStatus("camNo","off"); }
+}
+const canvas=document.createElement("canvas"), ctx=canvas.getContext("2d",{willReadFrequently:true});
+async function loop(){
+  if (!running) return;
+  const v=$("video");
+  if (!paused && v.readyState>=2){
+    try{
+      if (detector){ const r=await detector.detect(v); if (r&&r[0]) handle(r[0].rawValue); }
+      else if (window.ZXing){
+        const w=v.videoWidth, h=v.videoHeight; const cw=Math.min(960,w), ch=Math.round(h*cw/w);
+        const cropH=Math.round(ch*0.45), y0=Math.round((ch-cropH)/2); canvas.width=cw; canvas.height=cropH;
+        ctx.drawImage(v, 0, Math.round(y0*h/ch), w, Math.round(cropH*h/ch), 0, 0, cw, cropH);
+        if (!zx){ zx=new ZXing.MultiFormatReader(); const hints=new Map(); hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS,[ZXing.BarcodeFormat.EAN_13,ZXing.BarcodeFormat.EAN_8,ZXing.BarcodeFormat.UPC_A,ZXing.BarcodeFormat.UPC_E,ZXing.BarcodeFormat.CODE_128,ZXing.BarcodeFormat.CODE_39,ZXing.BarcodeFormat.ITF]); hints.set(ZXing.DecodeHintType.TRY_HARDER,true); zx.setHints(hints); }
+        try{ const res=zx.decode(new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(new ZXing.HTMLCanvasElementLuminanceSource(canvas)))); handle(res.getText()); }catch(_){}
+      }
+    }catch(e){}
+  }
+  setTimeout(()=>requestAnimationFrame(loop), detector?60:110);
+}
+$("pause").addEventListener("click",()=>{ paused=!paused; $("pause").setAttribute("aria-pressed",paused); $("pause").textContent=paused?"▶":"⏸"; $("pausedMsg").hidden=!paused; $("pausedMsg").textContent=t("paused"); });
+$("torch").addEventListener("click",async()=>{ const tr=stream&&stream.getVideoTracks()[0]; if(!tr) return; const on=$("torch").getAttribute("aria-pressed")!=="true"; try{ await tr.applyConstraints({advanced:[{torch:on}]}); $("torch").setAttribute("aria-pressed",on); }catch(e){} });
+$("send").addEventListener("click",()=>{ const i=$("manual"); handle(i.value,true); i.value=""; i.focus(); });
+$("manual").addEventListener("keydown",e=>{ if (e.key==="Enter"){ e.preventDefault(); $("send").click(); } });
+let unpairArm=false;
+$("unpair").addEventListener("click",()=>{ if(!unpairArm){ unpairArm=true; $("unpair").textContent=t("unpairSure"); setTimeout(()=>{unpairArm=false; $("unpair").textContent=t("unpair");},4000); return; }
+  ls.set("mxs_pair",null); location.reload(); });
+document.addEventListener("visibilitychange",()=>{ if (document.hidden){ running=false; if (stream) stream.getTracks().forEach(x=>x.stop()); stream=null; } else if (pair){ startCam(); } });
+
+if (pair){ $("scanView").hidden=false; $("store").textContent = pair.n || "Escáner de caja"; $("sub").textContent = lang==="es"?"Escáner de caja · MX Studio":"Register scanner · MX Studio"; applyLang(); startCam(); flush(); }
+else { $("pairView").hidden=false; applyLang(); }
+</script>
+</body>
+</html>

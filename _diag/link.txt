@@ -1,0 +1,19 @@
+checked: 2026-10-24T05:10:16Z
+announced link: https://disciplines-jimmy-casio-dns.trycloudflare.com
+try 1: {"rev":0,"pending":[]}
+access-control-allow-origin: *
+--- program log
+
+  MX Studio · Inventario 1.5.5
+  Mercado Pie de la Cuesta
+
+  Esta computadora:      http://localhost:8080/pc
+  Teléfonos (Wi-Fi):     http://10.1.1.76:8080
+
+  Deja esta ventana abierta mientras usan la app. / Keep this window open.
+
+  (Modo prueba: el tecleo se guarda en tecleado-prueba.txt)
+
+> Conectado con la app de la tienda
+> Los teléfonos se conectan por: https://disciplines-jimmy-casio-dns.trycloudflare.com
+! Eleventa: No encontré la base de datos de Eleventa (archivo .FDB) en esta computadora.
