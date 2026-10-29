@@ -1,0 +1,104 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Menú Tres Marías</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Slab:wght@700;800&family=Nunito+Sans:wght@400;600;800&display=swap">
+<style>
+/* Layout: sea-blue header band, WiFi ticket, then a single menu column priced like a beach palapa board */
+:root{
+  --sand:#fbf5ec; --card:#ffffff; --navy:#1f3a6b; --sea:#2f8fd0; --orange:#e8692c;
+  --ink:#1d2433; --muted:#5f6b7d; --line:#eadfce; --soft:#fff1e3;
+  --display:"Roboto Slab",Georgia,serif; --script:"Kaushan Script","Brush Script MT",cursive;
+  --body:"Nunito Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --sand:#0f1724; --card:#172235; --navy:#9cc3ff; --sea:#4aa8e8; --orange:#ff8a4c;
+  --ink:#eef2f8; --muted:#a3afc2; --line:#26344c; --soft:#22304a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --sand:#0f1724; --card:#172235; --navy:#9cc3ff; --sea:#4aa8e8; --orange:#ff8a4c;
+  --ink:#eef2f8; --muted:#a3afc2; --line:#26344c; --soft:#22304a; color-scheme:dark}
+body{background:var(--sand);color:var(--ink);font:16px/1.5 var(--body)}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:linear-gradient(180deg,#2a6fc0,#5cc0e3);color:#fff;text-align:center}
+header .wrap{padding-block:28px 34px}
+.hi{font-family:var(--script);color:#ffd0a6;font-size:1.6rem;margin:0}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,11vw,3.6rem);margin:0;letter-spacing:.02em;line-height:1.05}
+.sub{margin:6px 0 0;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+.tag{font-family:var(--script);font-size:1.3rem;color:#ffe2c4;margin:6px 0 0}
+main.wrap{display:flex;flex-direction:column;gap:22px;padding-block:22px 40px}
+.season{background:var(--orange);color:#fff;border-radius:14px;padding:14px 16px;text-align:center}
+.season b{display:block;font-family:var(--display);font-size:1.25rem;letter-spacing:.04em}
+.season span{font-size:.92rem}
+.wifi{background:var(--card);border:2px dashed var(--sea);border-radius:14px;padding:16px;display:grid;gap:10px}
+.wifi h2{margin:0;font-family:var(--display);color:var(--navy);font-size:1.2rem}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.lbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.val{font-weight:800;font-size:1.1rem;word-break:break-all}
+button{font:800 .9rem var(--body);background:var(--navy);color:var(--sand);border:0;border-radius:999px;padding:9px 16px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.hint{font-size:.85rem;color:var(--muted);margin:0}
+section h2{font-family:var(--display);color:var(--navy);font-size:1.35rem;margin:0 0 6px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dotted var(--line)}
+li div{min-width:0}
+.name{font-weight:800}
+.desc{display:block;color:var(--muted);font-size:.88rem}
+.price{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.price s{display:block;color:var(--muted);font-size:.8rem}
+.price strong{color:var(--orange);font-size:1.05rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem}
+</style>
+
+<header><div class="wrap">
+  <p class="hi">Bienvenidos</p>
+  <h1>TRES MARÍAS</h1>
+  <p class="sub">Restaurant · Bar · Alberca y Playa</p>
+  <p class="tag">“Cocina con tradición” · desde 1968</p>
+</div></header>
+
+<main class="wrap">
+  <div class="season"><b>PRECIOS DE TEMPORADA BAJA</b><span>Válidos de lunes a viernes · Alberca y playa incluidas con tu consumo</span></div>
+
+  <div class="wifi">
+    <h2>WiFi gratis para clientes</h2>
+    <div class="row"><div><div class="lbl">Red</div><div class="val">TresMarias_Clientes</div></div></div>
+    <div class="row">
+      <div><div class="lbl">Contraseña</div><div class="val" id="pwd">Playa1968</div></div>
+      <button id="copy" type="button">Copiar contraseña</button>
+    </div>
+    <p class="hint">Abre Ajustes › WiFi, elige la red y pega la contraseña.</p>
+  </div>
+
+  <section><h2>Del mar</h2><ul>
+    <li><div><span class="name">Pescado a la talla</span><span class="desc">Huachinango por kilo, al estilo Guerrero</span></div><div class="price"><s>$520</s><strong>$420</strong></div></li>
+    <li><div><span class="name">Camarones al mojo de ajo</span><span class="desc">Con arroz y ensalada</span></div><div class="price"><s>$260</s><strong>$210</strong></div></li>
+    <li><div><span class="name">Camarones a la diabla</span><span class="desc">Salsa picante de chile guajillo</span></div><div class="price"><s>$260</s><strong>$210</strong></div></li>
+    <li><div><span class="name">Filete empanizado</span><span class="desc">Con papas y ensalada</span></div><div class="price"><s>$190</s><strong>$150</strong></div></li>
+  </ul></section>
+
+  <section><h2>Cocteles y ceviches</h2><ul>
+    <li><div><span class="name">Ceviche de pescado</span><span class="desc">Estilo Acapulco, con tostadas</span></div><div class="price"><s>$180</s><strong>$140</strong></div></li>
+    <li><div><span class="name">Coctel de camarón</span><span class="desc">Grande</span></div><div class="price"><s>$210</s><strong>$170</strong></div></li>
+    <li><div><span class="name">Campechana</span><span class="desc">Camarón, pulpo y ostión</span></div><div class="price"><s>$240</s><strong>$195</strong></div></li>
+  </ul></section>
+
+  <section><h2>Bebidas</h2><ul>
+    <li><div><span class="name">Cerveza nacional</span></div><div class="price"><s>$45</s><strong>$35</strong></div></li>
+    <li><div><span class="name">Coco frío</span></div><div class="price"><s>$60</s><strong>$45</strong></div></li>
+    <li><div><span class="name">Margarita</span></div><div class="price"><s>$110</s><strong>$85</strong></div></li>
+    <li><div><span class="name">Agua fresca (jarra)</span></div><div class="price"><s>$90</s><strong>$70</strong></div></li>
+  </ul></section>
+
+  <footer>Playa Pie de la Cuesta · Acapulco, Guerrero<br>Precios en pesos mexicanos (MXN), IVA incluido.</footer>
+</main>
+
+<script>
+document.getElementById('copy').addEventListener('click',e=>{
+  const b=e.currentTarget, t=document.getElementById('pwd').textContent;
+  const done=()=>{b.textContent='Copiada ✓';setTimeout(()=>b.textContent='Copiar contraseña',2000)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('pwd'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Mantén presionado para copiar'};
+  try{navigator.clipboard.writeText(t).then(done,sel)}catch(_){sel()}
+});
+</script>
+
+</body></html>
