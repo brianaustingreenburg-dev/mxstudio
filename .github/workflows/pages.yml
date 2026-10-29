@@ -33,6 +33,8 @@ jobs:
           cp -R inventario out/inventario
           rm -rf out/inventario-programa
           cp -R pie-de-la-cuesta out/pie-de-la-cuesta
+          cp -R mansion-sunset out/mansion-sunset
+          cp -R portfolio out/portfolio
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects
