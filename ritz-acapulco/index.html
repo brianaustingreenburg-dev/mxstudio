@@ -3,54 +3,70 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f2233">
+<meta name="theme-color" content="#0d3446">
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2233'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='19' fill='%23d8b47a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 <title>Ritz Acapulco · Guest App (Demo)</title>
 <meta name="description" content="Demo guest app concept by JefeTech: activities, shows, dining, pools and excursions.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-latin-600-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-latin-600-italic.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format('woff2')}
   :root{
-    --ivory:#f7f3ec; --paper:#fffdf9; --sand:#ece4d6; --line:#e2d8c6;
-    --navy:#0f2233; --ink:#1d2a36; --muted:#6b7480; --gold:#b48a4f; --gold-2:#d8b47a;
+    --ivory:#f6efe4; --paper:#fffcf7; --sand:#efe3d0; --line:#e6d8c2; --coral:#d46a4c;
+    --navy:#0d3446; --ink:#1d2a36; --muted:#6b7480; --gold:#b98a52; --gold-2:#dcb886;
     --sea:#1f6f78; --ok:#2e7d5b; --closed:#a2503f;
     --serif:"Cormorant Garamond", Georgia, "DejaVu Serif", serif;
     --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{background:var(--ivory)}
+  h1,h2,h3,h4,h5,.what,.n,.t{font-variant-numeric:lining-nums}
   body{font-family:var(--sans);color:var(--ink);min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .wrap{max-width:560px;margin:0 auto}
 
   /* demo ribbon */
-  .demo{background:var(--navy);color:#cdd6df;font-size:11.5px;letter-spacing:.06em;text-align:center;padding:7px 12px}
+  .demo{background:#082230;color:#cdd6df;font-size:11.5px;letter-spacing:.06em;text-align:center;padding:7px 12px}
   .demo b{color:var(--gold-2);font-weight:600}
 
   /* hero */
-  .hero{position:relative;height:280px;overflow:hidden;color:#fff}
-  .hero svg{position:absolute;inset:0;width:100%;height:100%}
-  .hero .top{position:absolute;top:14px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center}
-  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.32em;text-transform:uppercase;opacity:.95}
+  .hero{position:relative;height:310px;overflow:hidden;color:#fff;background:
+      radial-gradient(120% 80% at 50% 118%, rgba(212,106,76,.50), transparent 60%),
+      radial-gradient(80% 60% at 0% 0%, rgba(43,120,140,.40), transparent 65%),
+      linear-gradient(175deg,#0d3446 0%,#0a2633 100%)}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .8s}
+  .hero.photo .hero-bg{opacity:1}
+  .hero.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,38,51,.55) 0%,rgba(10,38,51,.05) 40%,rgba(10,38,51,.75) 100%)}
+  .hero.photo .pattern{display:none}
+  .hero .pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+  .hero .top{position:absolute;z-index:2;top:16px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center}
+  .crest{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-2);font-weight:600}
   .sw{position:relative;display:grid;grid-template-columns:1fr 1fr;width:96px;height:36px;border-radius:999px;background:rgba(15,34,51,.45);border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(6px);font-size:13px;font-weight:700;letter-spacing:.06em}
   .sw .knob{position:absolute;top:3px;left:3px;width:44px;height:28px;border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.4,1.4,.6,1)}
   .sw[aria-checked="true"] .knob{transform:translateX(46px)}
   .sw span{position:relative;z-index:1;display:grid;place-items:center;color:#fff;transition:color .25s}
   .sw[aria-checked="false"] .es,.sw[aria-checked="true"] .en{color:var(--navy)}
-  .hero .title{position:absolute;left:20px;right:20px;bottom:46px}
-  .hero .hello{font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
-  .hero h1{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1;margin-top:6px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
-  .hero .sub{margin-top:6px;font-size:13.5px;opacity:.92}
-  .stars{color:var(--gold-2);letter-spacing:3px;font-size:12px}
+  .hero .title{position:absolute;z-index:2;left:20px;right:20px;bottom:54px;text-align:center}
+  .hero .hello{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#e9dcc6;opacity:.9}
+  .hero h1{margin-top:10px;line-height:1}
+  .hero h1 .w1{display:block;font-family:var(--serif);font-style:italic;font-weight:500;font-size:66px;letter-spacing:.01em;color:#fbf6ee}
+  .hero h1 .w2{display:block;margin-top:6px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.62em;padding-left:.62em;color:var(--gold-2)}
+  .hair{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto 0;width:180px}
+  .hair i{flex:1;height:1px;background:rgba(220,184,134,.6)} .hair b{font-size:9px;color:var(--gold-2);font-weight:400}
+  .hero .sub{margin-top:12px;font-family:var(--serif);font-style:italic;font-size:17px;color:#efe6d6}
 
   main{padding:0 16px}
   .sec{display:none;animation:fade .35s ease}
   .sec.on{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  h2{font-family:var(--serif);font-weight:600;font-size:30px;color:var(--navy);margin:26px 0 4px}
+  h2{font-family:var(--serif);font-weight:600;font-size:36px;line-height:1.05;color:var(--navy);margin:28px 0 6px}
   .kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
   .lead{color:var(--muted);font-size:14px;line-height:1.5;margin-bottom:14px}
   .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);margin:26px 0 0}
@@ -59,7 +75,7 @@
   .now{margin-top:-26px;position:relative;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:0 10px 30px rgba(15,34,51,.10);display:grid;grid-template-columns:1fr 1px 1fr;gap:14px}
   .now .div{background:var(--line)}
   .now .lab{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
-  .now .what{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy);margin-top:4px;line-height:1.15}
+  .now .what{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--navy);margin-top:4px;line-height:1.15}
   .now .where{font-size:12.5px;color:var(--muted);margin-top:3px}
 
   /* days + chips */
@@ -67,7 +83,7 @@
   .days::-webkit-scrollbar{display:none}
   .day{flex:none;width:52px;padding:9px 0;border:1px solid var(--line);border-radius:14px;text-align:center;background:var(--paper)}
   .day .d{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-  .day .n{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--navy);line-height:1.1}
+  .day .n{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--navy);line-height:1.1}
   .day.on{background:var(--navy);border-color:var(--navy)}
   .day.on .d{color:var(--gold-2)} .day.on .n{color:#fff}
   .chips{display:flex;gap:8px;overflow-x:auto;margin:14px 0 6px;scrollbar-width:none}
@@ -76,35 +92,33 @@
   .chip.on{background:var(--gold);border-color:var(--gold);color:#fff}
 
   /* show card */
-  .show{margin-top:16px;border-radius:20px;overflow:hidden;background:var(--navy);color:#fff;position:relative}
-  .show .art{height:120px;background:
-     radial-gradient(120px 80px at 20% 120%,rgba(216,180,122,.55),transparent 70%),
-     radial-gradient(160px 90px at 85% 130%,rgba(31,111,120,.8),transparent 70%),
-     linear-gradient(180deg,#152f45,#0f2233);position:relative}
-  .show .art::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 34px,rgba(255,255,255,.04) 34px 36px)}
+  .show{margin-top:16px;border-radius:20px;overflow:hidden;color:#fff;position:relative;background:radial-gradient(260px 160px at 0% 100%,rgba(212,106,76,.45),transparent 70%),radial-gradient(260px 180px at 100% 0%,rgba(43,120,140,.55),transparent 70%),linear-gradient(170deg,#123f54,#0d3446)}
+  .show .art{height:54px;position:relative}
   .show .badge{position:absolute;top:14px;left:16px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);font-weight:700;z-index:1}
-  .show .body{padding:4px 18px 18px;margin-top:-46px;position:relative;z-index:1}
-  .show h3{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.05}
+  .show .body{padding:0 20px 20px;position:relative;z-index:1}
+  .show h3{font-family:var(--serif);font-size:36px;font-weight:600;line-height:1.05}
   .show p{font-size:13.5px;color:#c7d0d9;margin-top:6px;line-height:1.45}
   .show .meta{display:flex;gap:14px;margin-top:12px;font-size:13px;color:#fff}
   .show .meta span{display:flex;align-items:center;gap:6px}
+  .show .meta svg{width:15px;height:15px;color:var(--gold-2)}
+  .show .meta{border-top:1px solid rgba(220,184,134,.3);padding-top:12px;margin-top:14px}
 
   /* timeline */
   .tl{margin-top:8px}
   .ev{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
   .ev:last-child{border-bottom:0}
-  .ev .t{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--navy)}
+  .ev .t{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--navy)}
   .ev .n{font-weight:600;font-size:15px}
   .ev .p{font-size:12.5px;color:var(--muted);margin-top:2px}
   .tag{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--sand);color:var(--ink);white-space:nowrap}
-  .tag.live{background:var(--ok);color:#fff}
+  .tag.live{background:var(--coral);color:#fff}
   .ev.past{opacity:.45}
   .empty{padding:24px 0;color:var(--muted);font-size:14px;text-align:center}
 
   /* cards */
   .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-top:12px}
   .card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .card h4{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--navy);line-height:1.1}
+  .card h4{font-family:var(--serif);font-size:27px;font-weight:600;color:var(--navy);line-height:1.1}
   .card .type{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
   .card p{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:8px}
   .hours{margin-top:10px;display:grid;gap:4px}
@@ -121,7 +135,7 @@
   .tile{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px}
   .tile .ic{width:38px;height:38px;border-radius:11px;background:var(--sand);display:grid;place-items:center;color:var(--navy)}
   .tile .ic svg{width:22px;height:22px}
-  .tile h5{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--navy);margin-top:10px;line-height:1.1}
+  .tile h5{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--navy);margin-top:10px;line-height:1.1}
   .tile p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.4}
 
   .exc{display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:start}
@@ -161,44 +175,28 @@
 <div class="demo" id="demo"></div>
 
 <div class="wrap">
-  <header class="hero">
-    <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#16324a"/><stop offset=".45" stop-color="#7a5a6e"/>
-          <stop offset=".75" stop-color="#e09a6a"/><stop offset="1" stop-color="#f3c98b"/>
-        </linearGradient>
-        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#2a6e7a"/><stop offset="1" stop-color="#0f2233"/>
-        </linearGradient>
-        <radialGradient id="sun" cx=".5" cy=".5" r=".5">
-          <stop offset="0" stop-color="#fff3d6"/><stop offset=".6" stop-color="#ffd58e"/><stop offset="1" stop-color="#ffd58e" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <rect width="400" height="250" fill="url(#sky)"/>
-      <circle cx="270" cy="150" r="60" fill="url(#sun)"/>
-      <circle cx="270" cy="150" r="24" fill="#fff1d0"/>
-      <path d="M0 150 C40 128 70 132 105 140 C140 120 175 118 205 138 C230 150 250 152 280 146 C320 128 360 126 400 140 L400 165 L0 165Z" fill="#3b3a52" opacity=".85"/>
-      <rect y="160" width="400" height="90" fill="url(#sea)"/>
-      <g stroke="#ffe2b0" stroke-linecap="round" opacity=".7">
-        <path d="M245 172h50" stroke-width="2"/><path d="M232 182h76" stroke-width="1.6"/>
-        <path d="M250 193h40" stroke-width="1.4"/><path d="M226 205h88" stroke-width="1"/>
+  <header class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <svg class="pattern" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#dcb886" stroke-width=".6">
+        <path d="M-10 214c40-12 80-12 120 0s80 12 120 0 80-12 120 0 80 12 120 0"/>
+        <path d="M-10 228c40-12 80-12 120 0s80 12 120 0 80-12 120 0 80 12 120 0" opacity=".8"/>
+        <path d="M-10 242c40-12 80-12 120 0s80 12 120 0 80-12 120 0 80 12 120 0" opacity=".6"/>
+        <path d="M-10 256c40-12 80-12 120 0s80 12 120 0 80-12 120 0 80 12 120 0" opacity=".45"/>
+        <path d="M-10 270c40-12 80-12 120 0s80 12 120 0 80-12 120 0 80 12 120 0" opacity=".3"/>
+        <path d="M150 300V150a50 50 0 0 1 100 0v150" opacity=".55"/>
+        <path d="M160 300V150a40 40 0 0 1 80 0v150" opacity=".3"/>
       </g>
-      <g fill="#0b1824">
-        <path d="M44 250 C46 210 52 182 64 160 L67 162 C57 184 52 212 52 250Z"/>
-        <path d="M65 160c-14-6-30-4-42 6 14-3 28-2 40 2zM65 160c-6-14-18-22-34-22 12 6 22 14 30 24zM65 160c8-12 22-18 38-16-14 4-26 10-34 18zM65 160c14-4 28 2 38 14-12-6-24-9-36-10zM65 160c2-14 10-24 22-30-8 9-14 19-18 31z"/>
-      </g>
-      <rect width="400" height="250" fill="url(#sea)" opacity="0" />
-      <rect y="170" width="400" height="80" fill="#0f2233" opacity=".35"/>
     </svg>
     <div class="top">
-      <div class="crest">Ritz · Acapulco</div>
+      <div class="crest" id="crest"></div>
       <button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button>
     </div>
     <div class="title">
       <div class="hello" id="hello"></div>
-      <h1>Ritz Acapulco</h1>
-      <div class="sub"><span class="stars">★★★★★</span>&nbsp; <span id="tagline"></span></div>
+      <h1><span class="w1">Ritz</span><span class="w2">ACAPULCO</span></h1>
+      <div class="hair"><i></i><b>✦</b><i></i></div>
+      <div class="sub" id="tagline"></div>
     </div>
   </header>
 
@@ -267,7 +265,7 @@
 const T = {
   es:{
     demo:'<b>DEMO</b> · Concepto de app para huéspedes por JefeTech · No es la app oficial del hotel',
-    tagline:'Todo incluido · Playa Condesa',
+    tagline:'Todo incluido frente a la bahía', crest:'Playa Condesa',
     morning:'Buenos días', afternoon:'Buenas tardes', evening:'Buenas noches',
     now:'Ahora', next:'Después', nothingNow:'Tiempo libre', nothingNext:'Mañana',
     schedule:'Programa del día', tonight:'Show de esta noche', theater:'Teatro del hotel',
@@ -290,7 +288,7 @@ const T = {
   },
   en:{
     demo:'<b>DEMO</b> · Guest app concept by JefeTech · Not the hotel\'s official app',
-    tagline:'All-inclusive · Playa Condesa',
+    tagline:'All-inclusive on the bay', crest:'Playa Condesa',
     morning:'Good morning', afternoon:'Good afternoon', evening:'Good evening',
     now:'Now', next:'Next', nothingNow:'Free time', nothingNext:'Tomorrow',
     schedule:'Today\'s program', tonight:'Tonight\'s show', theater:'Hotel theater',
@@ -393,14 +391,14 @@ const RELAX = [
 ];
 
 const EXPLORE = [
-  {i:'cliff',c:'#7a4b3a',n:{es:'Clavadistas de La Quebrada',en:'La Quebrada Cliff Divers'},d:{es:'El clásico de Acapulco: clavados de 35 m al atardecer o de noche.',en:'Acapulco\'s classic: 35 m cliff dives at sunset or after dark.'},pr:'$'},
-  {i:'boat',c:'#1f6f78',n:{es:'Paseo en yate por la bahía',en:'Bay cruise by yacht'},d:{es:'Recorrido por la bahía con música, bebidas y vista a las mansiones.',en:'Cruise the bay with music, drinks and views of the mansions.'},pr:'$$'},
-  {i:'mask',c:'#2a7f9e',n:{es:'Snorkel en Isla La Roqueta',en:'Snorkeling at La Roqueta Island'},d:{es:'Lancha con fondo de cristal, Virgen de los Mares y arrecife.',en:'Glass-bottom boat, the underwater Virgin statue and reef.'},pr:'$$'},
-  {i:'fish',c:'#0f2233',n:{es:'Pesca deportiva',en:'Sport fishing'},d:{es:'Medio día o día completo en busca de pez vela y dorado.',en:'Half or full day chasing sailfish and mahi-mahi.'},pr:'$$$'},
-  {i:'sunset',c:'#c27a4a',n:{es:'Atardecer en Pie de la Cuesta',en:'Sunset at Pie de la Cuesta'},d:{es:'Laguna de Coyuca, paseo en lancha y el atardecer más famoso.',en:'Coyuca Lagoon, a boat ride and the most famous sunset.'},pr:'$$'},
-  {i:'fort',c:'#6b5a3e',n:{es:'Fuerte de San Diego',en:'Fort San Diego'},d:{es:'Museo Histórico de Acapulco en una fortaleza del siglo XVII.',en:'Acapulco History Museum in a 17th-century fortress.'},pr:'$'},
-  {i:'golf',c:'#2e7d5b',n:{es:'Golf',en:'Golf'},d:{es:'Campos cercanos con vista al Pacífico. Transporte disponible.',en:'Nearby courses with Pacific views. Transport available.'},pr:'$$$'},
-  {i:'horse',c:'#8a6a45',n:{es:'Cabalgata en la playa',en:'Horseback riding on the beach'},d:{es:'Paseo a caballo al atardecer en playas abiertas.',en:'Sunset horseback ride on open beaches.'},pr:'$$'},
+  {i:'cliff',c:'#b85a3c',n:{es:'Clavadistas de La Quebrada',en:'La Quebrada Cliff Divers'},d:{es:'El clásico de Acapulco: clavados de 35 m al atardecer o de noche.',en:'Acapulco\'s classic: 35 m cliff dives at sunset or after dark.'},pr:'$'},
+  {i:'boat',c:'#0d3446',n:{es:'Paseo en yate por la bahía',en:'Bay cruise by yacht'},d:{es:'Recorrido por la bahía con música, bebidas y vista a las mansiones.',en:'Cruise the bay with music, drinks and views of the mansions.'},pr:'$$'},
+  {i:'mask',c:'#2b788c',n:{es:'Snorkel en Isla La Roqueta',en:'Snorkeling at La Roqueta Island'},d:{es:'Lancha con fondo de cristal, Virgen de los Mares y arrecife.',en:'Glass-bottom boat, the underwater Virgin statue and reef.'},pr:'$$'},
+  {i:'fish',c:'#16495e',n:{es:'Pesca deportiva',en:'Sport fishing'},d:{es:'Medio día o día completo en busca de pez vela y dorado.',en:'Half or full day chasing sailfish and mahi-mahi.'},pr:'$$$'},
+  {i:'sunset',c:'#d46a4c',n:{es:'Atardecer en Pie de la Cuesta',en:'Sunset at Pie de la Cuesta'},d:{es:'Laguna de Coyuca, paseo en lancha y el atardecer más famoso.',en:'Coyuca Lagoon, a boat ride and the most famous sunset.'},pr:'$$'},
+  {i:'fort',c:'#8a6a45',n:{es:'Fuerte de San Diego',en:'Fort San Diego'},d:{es:'Museo Histórico de Acapulco en una fortaleza del siglo XVII.',en:'Acapulco History Museum in a 17th-century fortress.'},pr:'$'},
+  {i:'golf',c:'#4f7a5a',n:{es:'Golf',en:'Golf'},d:{es:'Campos cercanos con vista al Pacífico. Transporte disponible.',en:'Nearby courses with Pacific views. Transport available.'},pr:'$$$'},
+  {i:'horse',c:'#a07850',n:{es:'Cabalgata en la playa',en:'Horseback riding on the beach'},d:{es:'Paseo a caballo al atardecer en playas abiertas.',en:'Sunset horseback ride on open beaches.'},pr:'$$'},
 ];
 
 const INFO = [
@@ -430,7 +428,7 @@ function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('on'
 /* ---------- render ---------- */
 function render(){
   const t = T[lang]; document.documentElement.lang = lang;
-  $('demo').innerHTML = t.demo; $('tagline').textContent = t.tagline;
+  $('demo').innerHTML = t.demo; $('tagline').textContent = t.tagline; $('crest').textContent = t.crest;
   $('langSw').setAttribute('aria-checked', lang==='en' ? 'true' : 'false');
   const n = nowMx(), h = n.getHours();
   $('hello').textContent = h<12 ? t.morning : h<19 ? t.afternoon : t.evening;
@@ -474,7 +472,7 @@ function renderToday(){
   const sh = SHOWS[selDay][lang];
   $('show').innerHTML = `<div class="art"><div class="badge">${t.tonight}</div></div>
     <div class="body"><h3>${sh[0]}</h3><p>${sh[1]}</p>
-    <div class="meta"><span>🕘 21:00</span><span>📍 ${t.theater}</span></div></div>`;
+    <div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>21:00</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${t.theater}</span></div></div>`;
 
   $('chips').innerHTML = Object.entries(t.filters).map(([k,v])=>`<button class="chip ${filter===k?'on':''}" data-f="${k}">${v}</button>`).join('');
 
@@ -515,7 +513,7 @@ function renderExplore(){
 }
 
 function renderInfo(){
-  const t=T[lang]; $('h-info').textContent=t.info; $('call').textContent='📞 '+t.call;
+  const t=T[lang]; $('h-info').textContent=t.info; $('call').textContent=t.call;
   $('info').innerHTML = INFO.map(([k,v,x])=>`<div class="li"><span>${L(k)}</span><span><b>${L(v)}</b>${x==='copy'?`<button class="copy" data-copy="${v}">${t.copied==='Copiado'?'Copiar':'Copy'}</button>`:''}</span></div>`).join('');
   $('h-fb').textContent=t.fb; $('p-fb').textContent=t.pFb; $('fbtext').placeholder=t.fbPh; $('fbsend').textContent=t.send;
   $('rate').innerHTML = [1,2,3,4,5].map(i=>`<button data-s="${i}" class="${i<=stars?'on':''}" aria-label="${i}">★</button>`).join('');
@@ -535,6 +533,7 @@ document.addEventListener('click', e=>{
 });
 const hashTab = (location.hash||'').slice(1); if(['today','dine','relax','explore','info'].includes(hashTab)) tab=hashTab;
 render();
+(()=>{ const im=new Image(); im.onload=()=>{ $('heroBg').style.backgroundImage='url(hero.jpg)'; $('hero').classList.add('photo'); }; im.src='hero.jpg'; })();
 setInterval(()=>{ if(tab==='today') renderToday(); if(tab==='dine') renderDine(); }, 60000);
 </script>
 </body>
