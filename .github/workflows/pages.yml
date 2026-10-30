@@ -36,6 +36,7 @@ jobs:
           cp -R mansion-sunset out/mansion-sunset
           cp -R tres-marias out/tres-marias
           cp -R portfolio out/portfolio
+          cp -R portafolio out/portafolio
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects

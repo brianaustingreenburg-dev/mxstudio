@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mx Studio</title>
+<meta name="theme-color" content="#0B1315">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mx Studio">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<style>
+@font-face{font-family:"Archivo";src:url("fonts/archivo.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:block}
+@font-face{font-family:"Instrument Sans";src:url("fonts/inst-400.woff2") format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"Instrument Sans";src:url("fonts/inst-600.woff2") format("woff2");font-weight:600;font-display:block}
+@font-face{font-family:"JetBrains Mono";src:url("fonts/mono.woff2") format("woff2");font-weight:400;font-display:block}
+@font-face{font-family:"Kaushan Script";src:url("fonts/kaushan.woff2") format("woff2");font-display:block}
+@font-face{font-family:"Roboto Slab";src:url("fonts/slab.woff2") format("woff2");font-weight:800;font-display:block}
+/* Layout: a full-screen swipe deck on a Pacific-night ground. One slide per screen, a fixed top bar with the ES/EN switch, dots and arrows at the bottom. */
+:root{
+  --night:#0B1315; --deep:#121D20; --line:#2A3A3E; --ink:#EEF3F1; --muted:#9DB0AE; --accent:#FF7A93; --accent-ink:#1A0B10;
+  --display:"Archivo","Arial Narrow",sans-serif; --body:"Instrument Sans",system-ui,-apple-system,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px); --sl:env(safe-area-inset-left,0px); --sr:env(safe-area-inset-right,0px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;background:var(--night);color:var(--ink);font-family:var(--body);overflow:hidden;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(var(--st) + 12px) max(20px,var(--sr)) 10px max(20px,var(--sl));background:linear-gradient(var(--night) 60%,rgba(11,19,21,0))}
+.mark{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:.02em}
+.mark b{color:var(--accent);font-weight:900}
+.lang{position:relative;display:grid;grid-template-columns:1fr 1fr;width:92px;height:36px;border-radius:999px;border:1px solid var(--accent);padding:2px;background:none;cursor:pointer;font:600 12px/1 var(--mono);letter-spacing:.12em;color:var(--accent)}
+.lang .k{position:absolute;top:2px;left:2px;width:43px;height:30px;border-radius:999px;background:var(--accent);transition:transform .3s cubic-bezier(.6,0,.2,1)}
+.lang[aria-checked="true"] .k{transform:translateX(43px)}
+.lang span{position:relative;display:grid;place-items:center;height:30px;line-height:30px;transition:color .3s}
+.lang[aria-checked="false"] .es,.lang[aria-checked="true"] .en{color:var(--accent-ink)}
+
+.deck{position:fixed;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.s{flex:0 0 100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;
+   padding:calc(var(--st) + 64px) max(22px,var(--sr)) calc(var(--sb) + 78px) max(22px,var(--sl));display:flex;justify-content:center}
+.in{width:100%;max-width:560px;height:100%;display:flex;flex-direction:column;gap:14px;min-height:0}
+
+.cover .in{justify-content:space-between}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+.kick b{color:var(--accent);font-weight:400}
+h1{margin:0;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(52px,16vw,112px);line-height:.84;letter-spacing:-.025em;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--accent);display:block}
+.lede{margin:0;font-size:clamp(18px,5vw,23px);line-height:1.38;text-wrap:balance}
+.list{border-top:1px solid var(--line)}
+.list div{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:17px}
+.list i{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400;text-align:right}
+
+.pic{position:relative;flex:1 1 40%;min-height:150px;max-height:330px;border-radius:10px;overflow:hidden;background:var(--deep)}
+.pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.plate{position:absolute;left:12px;top:12px;background:#F6F5F1;border-radius:6px;padding:8px 10px;width:min(42%,170px)}
+.plate img{display:block;width:100%;height:auto}
+.beach{position:absolute;inset:0;background:linear-gradient(180deg,#2a6fc0 0%,#5cc0e3 64%,#F2DDB6 64.2%,#EBCF9E 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff;text-align:center;padding:0 12px 20%}
+.beach .hi{font-family:"Kaushan Script",cursive;color:#ffd0a6;font-size:clamp(18px,5vw,28px)}
+.beach .nm{font-family:"Roboto Slab",Georgia,serif;font-weight:800;font-size:clamp(34px,11vw,64px);line-height:1}
+.beach .sb{font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:clamp(8px,2.2vw,11px)}
+.where{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h2{margin:-6px 0 0;font-family:var(--display);font-stretch:118%;font-weight:800;font-size:clamp(34px,10vw,52px);line-height:.98;letter-spacing:-.015em}
+.kind{margin:-6px 0 0;font-size:15px;color:var(--accent);font-weight:600}
+.d{margin:0;font-size:15.5px;line-height:1.45;color:#D6DFDD}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips span{font-family:var(--mono);font-size:10.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.url{margin-top:auto;display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:12px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.url span:last-child{color:var(--ink);text-align:right;overflow-wrap:anywhere}
+.end .in{justify-content:center;gap:20px}
+.end h3{margin:0;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(46px,14vw,88px);line-height:.88;text-transform:uppercase}
+.end h3 em{font-style:normal;color:var(--accent)}
+.end p{margin:0;font-size:17px;line-height:1.45;color:var(--muted);max-width:30ch}
+.end .url{margin-top:24px}
+
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px max(18px,var(--sr)) calc(var(--sb) + 14px) max(18px,var(--sl));background:linear-gradient(rgba(11,19,21,0),var(--night) 40%)}
+.arrow{width:48px;height:48px;border-radius:999px;border:1px solid var(--line);background:var(--deep);display:grid;place-items:center;cursor:pointer}
+.arrow svg{width:20px;height:20px}
+.arrow:disabled{opacity:.3}
+.dots{display:flex;gap:8px}
+.dots button{width:9px;height:9px;padding:0;border-radius:999px;border:0;background:var(--line);cursor:pointer;transition:width .25s,background .25s}
+.dots button[aria-current="true"]{width:26px;background:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.deck{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="mark">Mx <b>Studio</b></div>
+  <button class="lang" id="lang" role="switch" aria-checked="false" aria-label="Español / English"><span class="k"></span><span class="es">ES</span><span class="en">EN</span></button>
+</header>
+
+<main class="deck" id="deck">
+
+  <section class="s cover" aria-roledescription="slide">
+    <div class="in">
+      <div class="kick"><span data-t="portfolio"></span><b>Acapulco, Guerrero</b></div>
+      <h1>Mx<em>Studio</em></h1>
+      <p class="lede" data-t="lede"></p>
+      <div class="list">
+        <div>Mansión Sunset<i data-t="ms_short"></i></div>
+        <div>Tres Marías<i data-t="tm_short"></i></div>
+        <div>Kailúa Fresh<i data-t="kf_short"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" aria-roledescription="slide">
+    <div class="in">
+      <div class="pic"><img src="mansion.jpg" alt="Mansión Sunset" style="object-position:86% 50%"></div>
+      <div class="where">Pie de la Cuesta · Acapulco</div>
+      <h2>Mansión Sunset</h2>
+      <p class="kind" data-t="ms_kind"></p>
+      <p class="d" data-t="ms_d"></p>
+      <div class="chips"><span data-t="c_menu"></span><span data-t="c_table"></span><span>ES / EN</span></div>
+      <div class="url"><span data-t="live"></span><span>go.myjefetech.app/mansion-sunset</span></div>
+    </div>
+  </section>
+
+  <section class="s" aria-roledescription="slide">
+    <div class="in">
+      <div class="pic"><div class="beach"><div class="hi">Bienvenidos</div><div class="nm">TRES MARÍAS</div><div class="sb">Restaurant · Bar · Alberca y Playa</div></div></div>
+      <div class="where">Playa Pie de la Cuesta · Acapulco</div>
+      <h2>Tres Marías</h2>
+      <p class="kind" data-t="tm_kind"></p>
+      <p class="d" data-t="tm_d"></p>
+      <div class="chips"><span data-t="c_menu"></span><span data-t="c_card"></span><span data-t="c_wifi"></span></div>
+      <div class="url"><span data-t="live"></span><span>go.myjefetech.app/tres-marias</span></div>
+    </div>
+  </section>
+
+  <section class="s" aria-roledescription="slide">
+    <div class="in">
+      <div class="pic"><img src="kailua.jpg" alt="Kailúa Fresh" style="object-position:50% 45%"><div class="plate"><img src="kailua-logo.png" alt=""></div></div>
+      <div class="where">Acapulco</div>
+      <h2>Kailúa Fresh</h2>
+      <p class="kind" data-t="kf_kind"></p>
+      <p class="d" data-t="kf_d"></p>
+      <div class="chips"><span data-t="c_menu"></span><span data-t="c_card"></span><span>ES / EN</span></div>
+      <div class="url"><span data-t="live"></span><span>brianaustingreenburg-dev.github.io/kailua-fresh</span></div>
+    </div>
+  </section>
+
+  <section class="s end" aria-roledescription="slide">
+    <div class="in">
+      <h3 data-h="end"></h3>
+      <p data-t="end_p"></p>
+      <div class="url"><span>Brian Austin</span><span>go.myjefetech.app/portafolio</span></div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="nav" aria-label="Slides">
+  <button class="arrow" id="prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div class="dots" id="dots"></div>
+  <button class="arrow" id="next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</nav>
+
+<script>
+const T={
+ es:{portfolio:"Portafolio",lede:"Menús digitales, impresos y web para restaurantes y lugares de la costa de Acapulco.",
+  ms_short:"Hotel · Restaurante",tm_short:"Restaurante · Playa",kf_short:"Cafetería",
+  ms_kind:"Hotel, restaurante y jardín de eventos",
+  ms_d:"Menú digital bilingüe en el azul marino y dorado del lugar, más un menú de mesa impreso que coincide línea por línea.",
+  tm_kind:"Restaurante, bar, alberca y playa desde 1968",
+  tm_d:"Menú para el celular con precios de palapa, ofertas de temporada baja, ticket de Wi‑Fi para clientes y tarjeta de mesa a juego.",
+  kf_kind:"Coffee kitchen",
+  kf_d:"Menú rápido para pedir en barra: secciones con fotos, barra de categorías fija y sabores para lattes y frappés.",
+  c_menu:"Menú digital",c_table:"Menú de mesa",c_card:"Tarjeta de mesa",c_wifi:"Ticket Wi‑Fi",live:"Menú en vivo",
+  end:"Tu negocio,<br><em>sigue.</em>",end_p:"Menús, tarjetas de mesa y web para restaurantes, hoteles y cafés, de Pie de la Cuesta a la Costera.",
+  prev:"Anterior",next:"Siguiente",go:"Ir a la diapositiva"},
+ en:{portfolio:"Portfolio",lede:"Digital menus, print and web for restaurants and venues on the Acapulco coast.",
+  ms_short:"Hotel · Restaurant",tm_short:"Restaurant · Beach",kf_short:"Coffee kitchen",
+  ms_kind:"Hotel, restaurant and event garden",
+  ms_d:"A bilingual digital menu in the venue's navy and gold, and a printed table menu that matches it line for line.",
+  tm_kind:"Restaurant, bar, pool and beach since 1968",
+  tm_d:"A phone menu priced like a palapa board, with low-season deals, a Wi‑Fi ticket for guests and a matching table card.",
+  kf_kind:"Coffee kitchen",
+  kf_d:"A fast order-at-the-counter menu with photo-led sections, a sticky category rail and flavor chips for lattes and frappés.",
+  c_menu:"Digital menu",c_table:"Table menu",c_card:"Table card",c_wifi:"Wi‑Fi ticket",live:"Live menu",
+  end:"Your business,<br><em>next.</em>",end_p:"Menus, table cards and web for restaurants, hotels and cafés from Pie de la Cuesta to the Costera.",
+  prev:"Previous",next:"Next",go:"Go to slide"}
+};
+const deck=document.getElementById("deck"),slides=[...deck.children],dots=document.getElementById("dots"),sw=document.getElementById("lang");
+let L="es"; try{const s=localStorage.getItem("mx-lang");if(s==="en"||s==="es")L=s}catch(e){}
+slides.forEach((_,i)=>{const b=document.createElement("button");b.type="button";b.addEventListener("click",()=>go(i));dots.appendChild(b)});
+function setLang(l){L=l;const t=T[l];document.documentElement.lang=l;sw.setAttribute("aria-checked",l==="en");
+  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t[e.dataset.t]);
+  document.querySelectorAll("[data-h]").forEach(e=>e.innerHTML=t[e.dataset.h]);
+  document.getElementById("prev").setAttribute("aria-label",t.prev);document.getElementById("next").setAttribute("aria-label",t.next);
+  [...dots.children].forEach((b,i)=>b.setAttribute("aria-label",t.go+" "+(i+1)));}
+sw.addEventListener("click",()=>{setLang(L==="es"?"en":"es");try{localStorage.setItem("mx-lang",L)}catch(e){}});
+let cur=0;
+function idx(){return Math.round(deck.scrollLeft/deck.clientWidth)}
+function mark(){cur=idx();[...dots.children].forEach((b,i)=>b.setAttribute("aria-current",i===cur));
+  document.getElementById("prev").disabled=cur===0;document.getElementById("next").disabled=cur===slides.length-1}
+function go(i){i=Math.max(0,Math.min(slides.length-1,i));deck.scrollTo({left:i*deck.clientWidth,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"})}
+deck.addEventListener("scroll",()=>requestAnimationFrame(mark),{passive:true});
+document.getElementById("prev").addEventListener("click",()=>go(cur-1));
+document.getElementById("next").addEventListener("click",()=>go(cur+1));
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur+1);if(e.key==="ArrowLeft")go(cur-1)});
+addEventListener("resize",()=>deck.scrollTo({left:cur*deck.clientWidth}));
+setLang(L);mark();
+if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>
