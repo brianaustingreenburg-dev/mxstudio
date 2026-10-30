@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2233">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2233'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='19' fill='%23d8b47a' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<title>Ritz Acapulco · Guest App (Demo)</title>
+<meta name="description" content="Demo guest app concept by JefeTech: activities, shows, dining, pools and excursions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#f7f3ec; --paper:#fffdf9; --sand:#ece4d6; --line:#e2d8c6;
+    --navy:#0f2233; --ink:#1d2a36; --muted:#6b7480; --gold:#b48a4f; --gold-2:#d8b47a;
+    --sea:#1f6f78; --ok:#2e7d5b; --closed:#a2503f;
+    --serif:"Cormorant Garamond", Georgia, "DejaVu Serif", serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ivory)}
+  body{font-family:var(--sans);color:var(--ink);min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:560px;margin:0 auto}
+
+  /* demo ribbon */
+  .demo{background:var(--navy);color:#cdd6df;font-size:11.5px;letter-spacing:.06em;text-align:center;padding:7px 12px}
+  .demo b{color:var(--gold-2);font-weight:600}
+
+  /* hero */
+  .hero{position:relative;height:280px;overflow:hidden;color:#fff}
+  .hero svg{position:absolute;inset:0;width:100%;height:100%}
+  .hero .top{position:absolute;top:14px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center}
+  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.32em;text-transform:uppercase;opacity:.95}
+  .lang{display:flex;border:1px solid rgba(255,255,255,.55);border-radius:999px;overflow:hidden;font-size:12px;font-weight:600}
+  .lang button{padding:5px 11px;color:#fff}
+  .lang button.on{background:#fff;color:var(--navy)}
+  .hero .title{position:absolute;left:20px;right:20px;bottom:46px}
+  .hero .hello{font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1;margin-top:6px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
+  .hero .sub{margin-top:6px;font-size:13.5px;opacity:.92}
+  .stars{color:var(--gold-2);letter-spacing:3px;font-size:12px}
+
+  main{padding:0 16px}
+  .sec{display:none;animation:fade .35s ease}
+  .sec.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h2{font-family:var(--serif);font-weight:600;font-size:30px;color:var(--navy);margin:26px 0 4px}
+  .kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .lead{color:var(--muted);font-size:14px;line-height:1.5;margin-bottom:14px}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);margin:26px 0 0}
+
+  /* now/next */
+  .now{margin-top:-26px;position:relative;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:0 10px 30px rgba(15,34,51,.10);display:grid;grid-template-columns:1fr 1px 1fr;gap:14px}
+  .now .div{background:var(--line)}
+  .now .lab{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .now .what{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy);margin-top:4px;line-height:1.15}
+  .now .where{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+  /* days + chips */
+  .days{display:flex;gap:8px;overflow-x:auto;padding:4px 0 2px;scrollbar-width:none}
+  .days::-webkit-scrollbar{display:none}
+  .day{flex:none;width:52px;padding:9px 0;border:1px solid var(--line);border-radius:14px;text-align:center;background:var(--paper)}
+  .day .d{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .day .n{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--navy);line-height:1.1}
+  .day.on{background:var(--navy);border-color:var(--navy)}
+  .day.on .d{color:var(--gold-2)} .day.on .n{color:#fff}
+  .chips{display:flex;gap:8px;overflow-x:auto;margin:14px 0 6px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:13px;font-weight:500;color:var(--ink)}
+  .chip.on{background:var(--gold);border-color:var(--gold);color:#fff}
+
+  /* show card */
+  .show{margin-top:16px;border-radius:20px;overflow:hidden;background:var(--navy);color:#fff;position:relative}
+  .show .art{height:120px;background:
+     radial-gradient(120px 80px at 20% 120%,rgba(216,180,122,.55),transparent 70%),
+     radial-gradient(160px 90px at 85% 130%,rgba(31,111,120,.8),transparent 70%),
+     linear-gradient(180deg,#152f45,#0f2233);position:relative}
+  .show .art::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 34px,rgba(255,255,255,.04) 34px 36px)}
+  .show .badge{position:absolute;top:14px;left:16px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);font-weight:700;z-index:1}
+  .show .body{padding:4px 18px 18px;margin-top:-46px;position:relative;z-index:1}
+  .show h3{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.05}
+  .show p{font-size:13.5px;color:#c7d0d9;margin-top:6px;line-height:1.45}
+  .show .meta{display:flex;gap:14px;margin-top:12px;font-size:13px;color:#fff}
+  .show .meta span{display:flex;align-items:center;gap:6px}
+
+  /* timeline */
+  .tl{margin-top:8px}
+  .ev{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+  .ev:last-child{border-bottom:0}
+  .ev .t{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--navy)}
+  .ev .n{font-weight:600;font-size:15px}
+  .ev .p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .tag{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--sand);color:var(--ink);white-space:nowrap}
+  .tag.live{background:var(--ok);color:#fff}
+  .ev.past{opacity:.45}
+  .empty{padding:24px 0;color:var(--muted);font-size:14px;text-align:center}
+
+  /* cards */
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-top:12px}
+  .card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card h4{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--navy);line-height:1.1}
+  .card .type{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+  .card p{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:8px}
+  .hours{margin-top:10px;display:grid;gap:4px}
+  .hours div{display:flex;justify-content:space-between;font-size:13.5px;border-top:1px dashed var(--line);padding-top:6px}
+  .hours div span:last-child{font-weight:600;color:var(--ink)}
+  .status{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
+  .status.open{background:#e3f1ea;color:var(--ok)}
+  .status.closed{background:#f4e6e2;color:var(--closed)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;padding:11px 16px;border-radius:12px;background:var(--navy);color:#fff;font-weight:600;font-size:14px;width:100%;text-decoration:none}
+  .btn.gold{background:var(--gold)}
+  .btn.ghost{background:transparent;border:1px solid var(--navy);color:var(--navy)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .tile{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .tile .ic{width:38px;height:38px;border-radius:11px;background:var(--sand);display:grid;place-items:center;color:var(--navy)}
+  .tile .ic svg{width:22px;height:22px}
+  .tile h5{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--navy);margin-top:10px;line-height:1.1}
+  .tile p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+  .exc{display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:start}
+  .exc .pic{width:62px;height:62px;border-radius:14px;display:grid;place-items:center;color:#fff}
+  .exc .pic svg{width:30px;height:30px}
+  .exc .price{font-size:12px;color:var(--gold);font-weight:700;margin-top:4px;letter-spacing:.04em}
+
+  .info{background:var(--paper);border:1px solid var(--line);border-radius:18px;margin-top:12px;overflow:hidden}
+  .info .li{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14.5px}
+  .info .li:last-child{border-bottom:0}
+  .info .li span:first-child{color:var(--muted)}
+  .info .li b{font-weight:600}
+  .copy{font-size:12px;font-weight:600;color:var(--gold);margin-left:10px}
+
+  .rate{display:flex;gap:10px;justify-content:center;margin:12px 0 4px}
+  .rate button{font-size:34px;color:var(--line);transition:transform .15s}
+  .rate button.on{color:var(--gold)}
+  .rate button:active{transform:scale(1.2)}
+  textarea{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:14px;background:#fff;min-height:84px;resize:vertical}
+
+  .foot{text-align:center;font-size:11.5px;color:var(--muted);padding:30px 10px 10px;line-height:1.6}
+  .foot b{color:var(--navy)}
+
+  /* bottom nav */
+  nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,253,249,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:10}
+  nav .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+  nav button{padding:10px 0 9px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--muted)}
+  nav button svg{width:23px;height:23px}
+  nav button.on{color:var(--navy)}
+  nav button.on svg{color:var(--gold)}
+
+  .toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,20px);opacity:0;background:var(--navy);color:#fff;padding:12px 16px;border-radius:12px;font-size:13.5px;max-width:88%;text-align:center;transition:.25s;z-index:20;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="demo" id="demo"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#16324a"/><stop offset=".45" stop-color="#7a5a6e"/>
+          <stop offset=".75" stop-color="#e09a6a"/><stop offset="1" stop-color="#f3c98b"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a6e7a"/><stop offset="1" stop-color="#0f2233"/>
+        </linearGradient>
+        <radialGradient id="sun" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff3d6"/><stop offset=".6" stop-color="#ffd58e"/><stop offset="1" stop-color="#ffd58e" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="250" fill="url(#sky)"/>
+      <circle cx="270" cy="150" r="60" fill="url(#sun)"/>
+      <circle cx="270" cy="150" r="24" fill="#fff1d0"/>
+      <path d="M0 150 C40 128 70 132 105 140 C140 120 175 118 205 138 C230 150 250 152 280 146 C320 128 360 126 400 140 L400 165 L0 165Z" fill="#3b3a52" opacity=".85"/>
+      <rect y="160" width="400" height="90" fill="url(#sea)"/>
+      <g stroke="#ffe2b0" stroke-linecap="round" opacity=".7">
+        <path d="M245 172h50" stroke-width="2"/><path d="M232 182h76" stroke-width="1.6"/>
+        <path d="M250 193h40" stroke-width="1.4"/><path d="M226 205h88" stroke-width="1"/>
+      </g>
+      <g fill="#0b1824">
+        <path d="M44 250 C46 210 52 182 64 160 L67 162 C57 184 52 212 52 250Z"/>
+        <path d="M65 160c-14-6-30-4-42 6 14-3 28-2 40 2zM65 160c-6-14-18-22-34-22 12 6 22 14 30 24zM65 160c8-12 22-18 38-16-14 4-26 10-34 18zM65 160c14-4 28 2 38 14-12-6-24-9-36-10zM65 160c2-14 10-24 22-30-8 9-14 19-18 31z"/>
+      </g>
+      <rect width="400" height="250" fill="url(#sea)" opacity="0" />
+      <rect y="170" width="400" height="80" fill="#0f2233" opacity=".35"/>
+    </svg>
+    <div class="top">
+      <div class="crest">Ritz · Acapulco</div>
+      <div class="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div>
+    </div>
+    <div class="title">
+      <div class="hello" id="hello"></div>
+      <h1>Ritz Acapulco</h1>
+      <div class="sub"><span class="stars">★★★★★</span>&nbsp; <span id="tagline"></span></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- TODAY -->
+    <section class="sec" id="s-today">
+      <div class="now">
+        <div><div class="lab" id="l-now"></div><div class="what" id="now-what"></div><div class="where" id="now-where"></div></div>
+        <div class="div"></div>
+        <div><div class="lab" id="l-next"></div><div class="what" id="next-what"></div><div class="where" id="next-where"></div></div>
+      </div>
+
+      <h2 id="h-schedule"></h2>
+      <div class="days" id="days"></div>
+      <div class="show" id="show"></div>
+      <div class="chips" id="chips"></div>
+      <div class="tl" id="tl"></div>
+      <div class="rule"></div>
+    </section>
+
+    <!-- DINE -->
+    <section class="sec" id="s-dine">
+      <h2 id="h-dine"></h2>
+      <p class="lead" id="p-dine"></p>
+      <div id="dine"></div>
+    </section>
+
+    <!-- RELAX -->
+    <section class="sec" id="s-relax">
+      <h2 id="h-relax"></h2>
+      <p class="lead" id="p-relax"></p>
+      <div class="grid2" id="relax"></div>
+      <div class="card" id="kids"></div>
+    </section>
+
+    <!-- EXPLORE -->
+    <section class="sec" id="s-explore">
+      <h2 id="h-explore"></h2>
+      <p class="lead" id="p-explore"></p>
+      <div id="explore"></div>
+    </section>
+
+    <!-- INFO -->
+    <section class="sec" id="s-info">
+      <h2 id="h-info"></h2>
+      <div class="info" id="info"></div>
+      <a class="btn" id="call" href="tel:+527444693500"></a>
+      <h2 id="h-fb" style="font-size:26px"></h2>
+      <div class="card">
+        <p id="p-fb" style="margin-top:0"></p>
+        <div class="rate" id="rate"></div>
+        <textarea id="fbtext"></textarea>
+        <button class="btn gold" id="fbsend"></button>
+      </div>
+    </section>
+
+    <div class="foot" id="foot"></div>
+  </main>
+</div>
+
+<nav><div class="in" id="nav"></div></nav>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- content ---------- */
+const T = {
+  es:{
+    demo:'<b>DEMO</b> · Concepto de app para huéspedes por JefeTech · No es la app oficial del hotel',
+    tagline:'Todo incluido · Playa Condesa',
+    morning:'Buenos días', afternoon:'Buenas tardes', evening:'Buenas noches',
+    now:'Ahora', next:'Después', nothingNow:'Tiempo libre', nothingNext:'Mañana',
+    schedule:'Programa del día', tonight:'Show de esta noche', theater:'Teatro del hotel',
+    filters:{all:'Todo',pool:'Alberca',fit:'Fitness',kids:'Niños',fun:'Juegos',night:'Noche'},
+    live:'En curso', empty:'No hay actividades en esta categoría.',
+    nav:['Hoy','Comer','Relax','Explorar','Info'],
+    dine:'Restaurantes y bares', pDine:'Todo incluido: alimentos y bebidas nacionales en los horarios indicados.',
+    open:'Abierto', closed:'Cerrado', reserve:'Reservar mesa',
+    relax:'Albercas, playa y bienestar', pRelax:'Tu día de descanso frente a la bahía de Acapulco.',
+    explore:'Experiencias en Acapulco', pExplore:'Reserva con concierge por WhatsApp. Precios de referencia por persona.',
+    request:'Solicitar por WhatsApp',
+    info:'Información del hotel', call:'Llamar a recepción',
+    fb:'¿Cómo va tu estancia?', pFb:'Tu opinión llega directo al gerente. Gracias por ayudarnos a mejorar.',
+    fbPh:'Cuéntanos qué te gustó o qué podemos mejorar (opcional)', send:'Enviar opinión',
+    thanks:'¡Gracias! Tu opinión fue enviada.', pick:'Elige de 1 a 5 estrellas',
+    demoAct:'Demo: en la versión real, esto abre WhatsApp con el concierge del hotel.',
+    copied:'Copiado',
+    foot:'Concepto creado por <b>JefeTech</b> · myjefetech.app<br>Horarios de ejemplo: el hotel confirma el programa real.',
+    days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
+  },
+  en:{
+    demo:'<b>DEMO</b> · Guest app concept by JefeTech · Not the hotel\'s official app',
+    tagline:'All-inclusive · Playa Condesa',
+    morning:'Good morning', afternoon:'Good afternoon', evening:'Good evening',
+    now:'Now', next:'Next', nothingNow:'Free time', nothingNext:'Tomorrow',
+    schedule:'Today\'s program', tonight:'Tonight\'s show', theater:'Hotel theater',
+    filters:{all:'All',pool:'Pool',fit:'Fitness',kids:'Kids',fun:'Games',night:'Night'},
+    live:'Live now', empty:'No activities in this category.',
+    nav:['Today','Dine','Relax','Explore','Info'],
+    dine:'Restaurants & bars', pDine:'All-inclusive: food and domestic drinks during the hours shown.',
+    open:'Open', closed:'Closed', reserve:'Book a table',
+    relax:'Pools, beach & wellness', pRelax:'Your day of rest facing Acapulco Bay.',
+    explore:'Acapulco experiences', pExplore:'Book with the concierge on WhatsApp. Guide prices per person.',
+    request:'Request on WhatsApp',
+    info:'Hotel information', call:'Call the front desk',
+    fb:'How is your stay?', pFb:'Your feedback goes straight to the manager. Thank you for helping us improve.',
+    fbPh:'Tell us what you loved or what we can do better (optional)', send:'Send feedback',
+    thanks:'Thank you! Your feedback was sent.', pick:'Choose 1 to 5 stars',
+    demoAct:'Demo: in the live version, this opens WhatsApp with the hotel concierge.',
+    copied:'Copied',
+    foot:'Concept built by <b>JefeTech</b> · myjefetech.app<br>Sample times: the hotel confirms the real program.',
+    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+  }
+};
+
+/* sample daily program: [start, end, cat, {es,en}, {es,en} place] */
+const P = (s,e,c,es,en,pes,pen,days)=>({s,e,c,n:{es,en},p:{es:pes,en:pen},days});
+const PROGRAM = [
+  P('07:00','07:45','fit','Yoga al amanecer','Sunrise yoga','Playa','Beach'),
+  P('08:00','08:30','fit','Caminata en la playa','Beach walk','Punto de encuentro: lobby','Meet in the lobby'),
+  P('10:00','17:00','kids','Kids\' Club abierto (4–12 años)','Kids\' Club open (ages 4–12)','Kids\' Club','Kids\' Club'),
+  P('10:30','11:15','pool','Aqua aerobics','Aqua aerobics','Alberca familiar','Family pool'),
+  P('11:30','12:15','fit','Clase de baile: salsa y bachata','Dance class: salsa & bachata','Terraza de la alberca','Pool deck'),
+  P('12:30','13:15','pool','Waterpolo','Water polo','Alberca familiar','Family pool'),
+  P('13:30','14:30','fun','Torneo de ping-pong','Ping-pong tournament','Salón de juegos','Game room'),
+  P('15:00','16:00','fun','Bingo junto a la alberca','Poolside bingo','Terraza de la alberca','Pool deck'),
+  P('16:00','17:00','kids','Manualidades y pintacaritas','Crafts & face painting','Kids\' Club','Kids\' Club'),
+  P('17:00','17:45','fit','Aerobics en la playa','Beach aerobics','Playa','Beach'),
+  P('18:30','20:30','night','Atardecer con música en vivo','Sunset live music','Bar Margaritas','Bar Margaritas',[5,6,0]),
+  P('20:00','20:45','kids','Mini disco','Kids\' mini disco','Teatro','Theater'),
+  P('21:00','22:00','night','Show de la noche','Nightly show','Teatro','Theater'),
+  P('22:00','23:30','night','Banda en vivo','Live band','Lobby bar','Lobby bar'),
+  P('22:30','00:00','night','Karaoke','Karaoke','Bar','Bar'),
+];
+
+/* sample show per weekday (0=Sun) */
+const SHOWS = [
+  {es:['Talento de Huéspedes','Sube al escenario: canto, baile y premios para los mejores.'],en:['Guest Talent Night','Take the stage: singing, dancing and prizes for the best.']},
+  {es:['Noche Mexicana','Mariachi, folclor y tequila: lo mejor de México en una noche.'],en:['Mexican Night','Mariachi, folk dance and tequila: the best of Mexico in one night.']},
+  {es:['Noche de los 80s','Los éxitos que todos cantan. Ven vestido de época.'],en:['80s Night','The hits everyone sings. Dress the part.']},
+  {es:['Fiesta Pirata','Un show familiar lleno de aventura en la bahía.'],en:['Pirate Party','A family show full of adventure on the bay.']},
+  {es:['Broadway en Acapulco','Los grandes musicales en el escenario del hotel.'],en:['Broadway in Acapulco','Great musicals on the hotel stage.']},
+  {es:['Fiesta Mexicana con Mariachi','Mariachi en vivo y bailes típicos de Guerrero.'],en:['Fiesta with Mariachi','Live mariachi and traditional dances from Guerrero.']},
+  {es:['Fiesta Blanca en la Playa','Viste de blanco: DJ, luces y fiesta frente al mar.'],en:['White Beach Party','Dress in white: DJ, lights and a party by the sea.']},
+];
+
+const DINING = [
+  {n:'Villalinda',t:{es:'Restaurante principal · Buffet',en:'Main restaurant · Buffet'},
+   d:{es:'Cocina mexicana e internacional con vista al mar. Estaciones en vivo y noches temáticas.',en:'Mexican and international cuisine with an ocean view. Live stations and themed nights.'},
+   h:[['07:00','11:00',{es:'Desayuno',en:'Breakfast'}],['13:00','16:00',{es:'Comida',en:'Lunch'}],['19:00','22:30',{es:'Cena',en:'Dinner'}]]},
+  {n:'La Fiesta',t:{es:'Restaurante a la carta',en:'À la carte restaurant'},
+   d:{es:'Cena a la carta con sabores de México. Se recomienda reservar.',en:'À la carte dinner with Mexican flavors. Reservations recommended.'},
+   h:[['19:00','22:00',{es:'Cena',en:'Dinner'}]],reserve:true},
+  {n:'Bar Margaritas',t:{es:'Bar · Música en vivo fines de semana',en:'Bar · Live music on weekends'},
+   d:{es:'Margaritas, cocteles y la mejor vista del atardecer.',en:'Margaritas, cocktails and the best sunset view.'},
+   h:[['11:00','24:00',{es:'Todos los días',en:'Daily'}]]},
+  {n:'Pool Bar',t:{es:'Bar en la alberca',en:'Swim-up & pool bar'},
+   d:{es:'Bebidas frías sin salir del sol.',en:'Cold drinks without leaving the sun.'},
+   h:[['10:00','18:00',{es:'Todos los días',en:'Daily'}]]},
+  {n:'Snack Bar',t:{es:'Snacks junto a la alberca',en:'Poolside snacks'},
+   d:{es:'Tacos, hamburguesas, fruta y botanas entre comidas.',en:'Tacos, burgers, fruit and snacks between meals.'},
+   h:[['11:00','18:00',{es:'Todos los días',en:'Daily'}]]},
+  {n:'Lobby Bar',t:{es:'Bar · Banda en vivo por la noche',en:'Bar · Live band at night'},
+   d:{es:'El punto de encuentro de la noche después del show.',en:'The evening meeting point after the show.'},
+   h:[['18:00','24:00',{es:'Todos los días',en:'Daily'}]]},
+];
+
+const ICON = {
+  pool:'<path d="M2 18c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0M2 14c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0M8 12V5a2 2 0 0 1 4 0M16 12V5a2 2 0 0 0-4 0M8 8h8"/>',
+  adult:'<path d="M8 22h8M12 15v7M5 3h14l-7 10z"/><path d="M8 7h8"/>',
+  kid:'<circle cx="12" cy="6" r="3"/><path d="M12 9v7M8 12l4-2 4 2M9 21l3-5 3 5"/>',
+  beach:'<path d="M3 21h18M12 21V9"/><path d="M4 9a8 8 0 0 1 16 0z"/>',
+  gym:'<path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>',
+  spa:'<path d="M12 21c-5 0-8-3.5-8-8 4 0 8 3 8 8zM12 21c5 0 8-3.5 8-8-4 0-8 3-8 8zM12 21V11M12 11c0-3 1.5-5.5 4-7-1 3-1.5 5-4 7zM12 11C12 8 10.5 5.5 8 4c1 3 1.5 5 4 7z"/>',
+  boat:'<path d="M3 17l2 4h14l2-4zM12 3v14M12 3l7 11H12z"/>',
+  fish:'<path d="M2 12c3-4 7-6 11-6 4 0 7 3 9 6-2 3-5 6-9 6-4 0-8-2-11-6z"/><path d="M2 12l-0 0M17 11h.01"/>',
+  mask:'<path d="M3 9h18v5a3 3 0 0 1-3 3h-2l-2-2h-4l-2 2H6a3 3 0 0 1-3-3z"/><path d="M21 9V5"/>',
+  cliff:'<path d="M3 21V9l5-6 3 6v12M14 21c0-4 2-6 4-6s3 2 3 6M11 7l3 3"/>',
+  golf:'<path d="M10 21V3l8 4-8 4"/><path d="M6 21h10"/>',
+  horse:'<path d="M5 21v-6l2-5 4-1 4-5 2 1-1 4 3 2v2l-3-1-1 3v6"/>',
+  fort:'<path d="M3 21h18M5 21V10h14v11M5 10V6h3v2h2V6h4v2h2V6h3v4M10 21v-5h4v5"/>',
+  sunset:'<path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 4v4M4.9 9.9l2.1 2.1M19.1 9.9 17 12"/>'
+};
+const svg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
+
+const RELAX = [
+  {i:'pool',n:{es:'Alberca familiar',en:'Family pool'},d:{es:'Actividades todo el día · 9:00–19:00',en:'Activities all day · 9:00–19:00'}},
+  {i:'adult',n:{es:'Alberca solo adultos',en:'Adults-only pool'},d:{es:'Tranquilidad para mayores de 18',en:'Quiet time for guests 18+'}},
+  {i:'kid',n:{es:'Alberca infantil',en:'Kids\' pool'},d:{es:'Poco profunda, junto al Kids\' Club',en:'Shallow, next to the Kids\' Club'}},
+  {i:'beach',n:{es:'Playa Condesa',en:'Condesa Beach'},d:{es:'Zona exclusiva con camastros y sombrillas',en:'Private area with loungers & umbrellas'}},
+  {i:'gym',n:{es:'Gimnasio',en:'Fitness center'},d:{es:'6:00–22:00',en:'6:00–22:00'}},
+  {i:'spa',n:{es:'Sauna y salón de belleza',en:'Sauna & beauty salon'},d:{es:'Cita en recepción',en:'Book at the front desk'}},
+];
+
+const EXPLORE = [
+  {i:'cliff',c:'#7a4b3a',n:{es:'Clavadistas de La Quebrada',en:'La Quebrada Cliff Divers'},d:{es:'El clásico de Acapulco: clavados de 35 m al atardecer o de noche.',en:'Acapulco\'s classic: 35 m cliff dives at sunset or after dark.'},pr:'$'},
+  {i:'boat',c:'#1f6f78',n:{es:'Paseo en yate por la bahía',en:'Bay cruise by yacht'},d:{es:'Recorrido por la bahía con música, bebidas y vista a las mansiones.',en:'Cruise the bay with music, drinks and views of the mansions.'},pr:'$$'},
+  {i:'mask',c:'#2a7f9e',n:{es:'Snorkel en Isla La Roqueta',en:'Snorkeling at La Roqueta Island'},d:{es:'Lancha con fondo de cristal, Virgen de los Mares y arrecife.',en:'Glass-bottom boat, the underwater Virgin statue and reef.'},pr:'$$'},
+  {i:'fish',c:'#0f2233',n:{es:'Pesca deportiva',en:'Sport fishing'},d:{es:'Medio día o día completo en busca de pez vela y dorado.',en:'Half or full day chasing sailfish and mahi-mahi.'},pr:'$$$'},
+  {i:'sunset',c:'#c27a4a',n:{es:'Atardecer en Pie de la Cuesta',en:'Sunset at Pie de la Cuesta'},d:{es:'Laguna de Coyuca, paseo en lancha y el atardecer más famoso.',en:'Coyuca Lagoon, a boat ride and the most famous sunset.'},pr:'$$'},
+  {i:'fort',c:'#6b5a3e',n:{es:'Fuerte de San Diego',en:'Fort San Diego'},d:{es:'Museo Histórico de Acapulco en una fortaleza del siglo XVII.',en:'Acapulco History Museum in a 17th-century fortress.'},pr:'$'},
+  {i:'golf',c:'#2e7d5b',n:{es:'Golf',en:'Golf'},d:{es:'Campos cercanos con vista al Pacífico. Transporte disponible.',en:'Nearby courses with Pacific views. Transport available.'},pr:'$$$'},
+  {i:'horse',c:'#8a6a45',n:{es:'Cabalgata en la playa',en:'Horseback riding on the beach'},d:{es:'Paseo a caballo al atardecer en playas abiertas.',en:'Sunset horseback ride on open beaches.'},pr:'$$'},
+];
+
+const INFO = [
+  [{es:'Wi-Fi',en:'Wi-Fi'},'Ritz-Guest',{es:'Gratis en todo el hotel',en:'Free throughout the hotel'}],
+  [{es:'Contraseña Wi-Fi',en:'Wi-Fi password'},'acapulco2026','copy'],
+  [{es:'Check-in',en:'Check-in'},'15:00'],
+  [{es:'Check-out',en:'Check-out'},'12:00'],
+  [{es:'Bebidas incluidas',en:'Drinks included'},'10:00 – 24:00'],
+  [{es:'Toallas de alberca',en:'Pool towels'},{es:'Con tu pulsera',en:'With your wristband'}],
+  [{es:'Recepción',en:'Front desk'},{es:'24 horas',en:'24 hours'}],
+  [{es:'Dirección',en:'Address'},'Av. Costera M. Alemán 159'],
+];
+
+/* ---------- state ---------- */
+const store = { get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
+let lang = store.get('ritz-lang') || ((navigator.language||'es').startsWith('en') ? 'en' : 'es');
+let tab = 'today', filter = 'all', stars = 0;
+const nowMx = () => { const s = new Date().toLocaleString('en-US',{timeZone:'America/Mexico_City'}); return new Date(s); };
+let selDay = nowMx().getDay();
+const L = o => (o && typeof o === 'object' && 'es' in o) ? o[lang] : o;
+const mins = t => { const [h,m] = t.split(':').map(Number); return h*60+m; };
+const endMins = (s,e) => { let x = mins(e); if (x <= mins(s)) x += 1440; return x; };
+const $ = id => document.getElementById(id);
+
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600); }
+
+/* ---------- render ---------- */
+function render(){
+  const t = T[lang]; document.documentElement.lang = lang;
+  $('demo').innerHTML = t.demo; $('tagline').textContent = t.tagline;
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
+  const n = nowMx(), h = n.getHours();
+  $('hello').textContent = h<12 ? t.morning : h<19 ? t.afternoon : t.evening;
+
+  // nav
+  const tabs = ['today','dine','relax','explore','info'];
+  const navIc = [
+    '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+    '<path d="M5 3v8a3 3 0 0 0 3 3v7M8 3v6M11 3v8a3 3 0 0 1-3 3M17 21V3c-2 1-3 3-3 6v5h3"/>',
+    ICON.beach, '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+    '<circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v5h1"/>'
+  ];
+  $('nav').innerHTML = tabs.map((k,i)=>`<button data-t="${k}" class="${tab===k?'on':''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${navIc[i]}</svg>${t.nav[i]}</button>`).join('');
+  tabs.forEach(k=>$('s-'+k).classList.toggle('on',tab===k));
+
+  renderToday(); renderDine(); renderRelax(); renderExplore(); renderInfo();
+  $('foot').innerHTML = t.foot;
+}
+
+function programFor(day){ return PROGRAM.filter(e=>!e.days || e.days.includes(day)); }
+
+function renderToday(){
+  const t = T[lang], n = nowMx(), today = n.getDay(), cur = n.getHours()*60+n.getMinutes();
+  // now / next (always for today)
+  const list = programFor(today);
+  const nowE = list.filter(e=>cur>=mins(e.s) && cur<endMins(e.s,e.e)).sort((a,b)=>mins(b.s)-mins(a.s))[0];
+  const nextE = list.find(e=>mins(e.s)>cur);
+  $('l-now').textContent = t.now; $('l-next').textContent = t.next;
+  $('now-what').textContent = nowE ? L(nowE.n) : t.nothingNow;
+  $('now-where').textContent = nowE ? `${L(nowE.p)} · ${nowE.s}` : '—';
+  $('next-what').textContent = nextE ? L(nextE.n) : t.nothingNext;
+  $('next-where').textContent = nextE ? `${L(nextE.p)} · ${nextE.s}` : `${L(list[0].n)} · ${list[0].s}`;
+
+  $('h-schedule').textContent = t.schedule;
+  // days strip: today + 6
+  let d = '';
+  for(let i=0;i<7;i++){ const dt = new Date(n); dt.setDate(n.getDate()+i); const wd = dt.getDay();
+    d += `<button class="day ${wd===selDay?'on':''}" data-d="${wd}"><div class="d">${t.days[wd]}</div><div class="n">${dt.getDate()}</div></button>`; }
+  $('days').innerHTML = d;
+
+  const sh = SHOWS[selDay][lang];
+  $('show').innerHTML = `<div class="art"><div class="badge">${t.tonight}</div></div>
+    <div class="body"><h3>${sh[0]}</h3><p>${sh[1]}</p>
+    <div class="meta"><span>🕘 21:00</span><span>📍 ${t.theater}</span></div></div>`;
+
+  $('chips').innerHTML = Object.entries(t.filters).map(([k,v])=>`<button class="chip ${filter===k?'on':''}" data-f="${k}">${v}</button>`).join('');
+
+  const isToday = selDay===today;
+  const evs = programFor(selDay).filter(e=>filter==='all'||e.c===filter);
+  $('tl').innerHTML = evs.length ? evs.map(e=>{
+    const on = isToday && cur>=mins(e.s) && cur<endMins(e.s,e.e);
+    const past = isToday && cur>=endMins(e.s,e.e);
+    const name = e.n.en==='Nightly show' ? `${L(e.n)}: ${sh[0]}` : L(e.n);
+    return `<div class="ev ${past?'past':''}"><div class="t">${e.s}</div><div><div class="n">${name}</div><div class="p">${L(e.p)} · ${e.s}–${e.e}</div></div><span class="tag ${on?'live':''}">${on?t.live:t.filters[e.c]}</span></div>`;
+  }).join('') : `<div class="empty">${t.empty}</div>`;
+}
+
+function isOpen(h){ const n=nowMx(), cur=n.getHours()*60+n.getMinutes();
+  return h.some(([s,e])=>{ const a=mins(s), b=endMins(s,e); return (cur>=a&&cur<b)||(cur+1440>=a&&cur+1440<b); }); }
+
+function renderDine(){
+  const t=T[lang]; $('h-dine').textContent=t.dine; $('p-dine').textContent=t.pDine;
+  $('dine').innerHTML = DINING.map((r,i)=>{ const o=isOpen(r.h);
+    return `<div class="card"><div class="row"><div><h4>${r.n}</h4><div class="type">${L(r.t)}</div></div><span class="status ${o?'open':'closed'}">${o?t.open:t.closed}</span></div>
+    <p>${L(r.d)}</p><div class="hours">${r.h.map(([s,e,l])=>`<div><span>${L(l)}</span><span>${s} – ${e==='24:00'?'00:00':e}</span></div>`).join('')}</div>
+    ${r.reserve?`<button class="btn ghost" data-demo="1">${t.reserve}</button>`:''}</div>`; }).join('');
+}
+
+function renderRelax(){
+  const t=T[lang]; $('h-relax').textContent=t.relax; $('p-relax').textContent=t.pRelax;
+  $('relax').innerHTML = RELAX.map(r=>`<div class="tile"><div class="ic">${svg(r.i)}</div><h5>${L(r.n)}</h5><p>${L(r.d)}</p></div>`).join('');
+  $('kids').innerHTML = lang==='es'
+    ? `<div class="row"><div><h4>Kids' Club</h4><div class="type">4–12 años · 10:00–17:00</div></div></div><p>Juegos, manualidades, pintacaritas, búsqueda del tesoro y mini disco a las 20:00. Los papás descansan, los niños se divierten.</p>`
+    : `<div class="row"><div><h4>Kids' Club</h4><div class="type">Ages 4–12 · 10:00–17:00</div></div></div><p>Games, crafts, face painting, treasure hunts and a mini disco at 8 PM. Parents relax, kids have fun.</p>`;
+}
+
+function renderExplore(){
+  const t=T[lang]; $('h-explore').textContent=t.explore; $('p-explore').textContent=t.pExplore;
+  $('explore').innerHTML = EXPLORE.map(x=>`<div class="card"><div class="exc"><div class="pic" style="background:${x.c}">${svg(x.i)}</div>
+    <div><h4>${L(x.n)}</h4><div class="price">${x.pr}</div><p>${L(x.d)}</p></div></div>
+    <button class="btn" data-demo="1">${t.request}</button></div>`).join('');
+}
+
+function renderInfo(){
+  const t=T[lang]; $('h-info').textContent=t.info; $('call').textContent='📞 '+t.call;
+  $('info').innerHTML = INFO.map(([k,v,x])=>`<div class="li"><span>${L(k)}</span><span><b>${L(v)}</b>${x==='copy'?`<button class="copy" data-copy="${v}">${t.copied==='Copiado'?'Copiar':'Copy'}</button>`:''}</span></div>`).join('');
+  $('h-fb').textContent=t.fb; $('p-fb').textContent=t.pFb; $('fbtext').placeholder=t.fbPh; $('fbsend').textContent=t.send;
+  $('rate').innerHTML = [1,2,3,4,5].map(i=>`<button data-s="${i}" class="${i<=stars?'on':''}" aria-label="${i}">★</button>`).join('');
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  if(b.dataset.l){ lang=b.dataset.l; store.set('ritz-lang',lang); render(); }
+  else if(b.dataset.t){ tab=b.dataset.t; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+  else if(b.dataset.d){ selDay=+b.dataset.d; renderToday(); }
+  else if(b.dataset.f){ filter=b.dataset.f; renderToday(); }
+  else if(b.dataset.demo){ toast(T[lang].demoAct); }
+  else if(b.dataset.s){ stars=+b.dataset.s; renderInfo(); }
+  else if(b.dataset.copy){ try{navigator.clipboard.writeText(b.dataset.copy)}catch(_){} toast(T[lang].copied+': '+b.dataset.copy); }
+  else if(b.id==='fbsend'){ if(!stars){ toast(T[lang].pick); return; } stars=0; $('fbtext').value=''; renderInfo(); toast(T[lang].thanks); }
+});
+const hashTab = (location.hash||'').slice(1); if(['today','dine','relax','explore','info'].includes(hashTab)) tab=hashTab;
+render();
+setInterval(()=>{ if(tab==='today') renderToday(); if(tab==='dine') renderDine(); }, 60000);
+</script>
+</body>
+</html>
