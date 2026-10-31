@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Precios · MX Studio ✝️</title>
+<meta name="description" content="Tu app bilingüe con menú, ubicación y WhatsApp para reservas y para llevar. $1,999 instalación + $290/mes.">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="MX Precios">
+<style>
+:root{--bg:#000;--s1:#110e0f;--s2:#1b1617;--line:rgba(232,196,140,.18);--line2:rgba(232,196,140,.38);--gold:#e8c48c;--gold2:#d9a35f;--sun:#e0703a;--text:#f6ece0;--muted:#b9aaa0;--green:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;font-size:17px;padding-bottom:calc(150px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+button{font:inherit;color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 0 6px}
+.brand{font-weight:800;letter-spacing:.22em;font-size:12px;color:var(--gold)}
+.lang{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;position:relative}
+.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:8px 15px;border-radius:999px;color:var(--muted);position:relative;z-index:1}
+.lang button[aria-pressed=true]{color:#1a0f0a}
+.lang .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s}
+.lang.en .knob{transform:translateX(100%)}
+.hero{text-align:center;padding:8px 0 4px;position:relative}
+.glow{position:absolute;left:50%;top:10px;width:300px;height:300px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(224,112,58,.38),transparent 70%);z-index:-1}
+.logo{width:120px;height:120px;display:block;margin:4px auto 10px;filter:drop-shadow(0 0 20px rgba(224,112,58,.5))}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.28em;color:var(--sun)}
+h1{font-size:30px;font-weight:800;line-height:1.1;margin:8px 0 6px}
+h1 span{color:var(--gold)}
+.sub{color:var(--muted);font-size:15px}
+.plan{margin-top:20px;border-radius:24px;padding:20px 18px;background:radial-gradient(120% 90% at 50% 0%,rgba(224,112,58,.22),transparent 70%),var(--s1);border:1px solid var(--line2)}
+.pname{font-size:13px;font-weight:800;letter-spacing:.18em;color:var(--sun);text-transform:uppercase}
+.ptitle{font-size:22px;font-weight:800;margin-top:4px}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.pbox{background:#000;border:1px solid var(--line);border-radius:18px;padding:14px 10px;text-align:center}
+.pbox b{display:block;font-size:30px;font-weight:800;color:var(--green);line-height:1.05}
+.pbox span{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:4px}
+.feats{list-style:none;display:grid;gap:10px}
+.feats li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
+.feats i{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:18px}
+.inc{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:6px}
+.inc span{font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:99px;background:rgba(37,211,102,.12);color:#7fe9aa;border:1px solid rgba(37,211,102,.3)}
+.tax{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.sec{margin:30px 0 10px}
+.sec small{font-size:11px;font-weight:800;letter-spacing:.28em;color:var(--sun);text-transform:uppercase}
+.sec h2{font-size:22px;font-weight:800;margin-top:4px}
+.sec p{color:var(--muted);font-size:14px;margin-top:3px}
+.x{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;align-items:center;width:100%;background:var(--s1);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin-bottom:9px;transition:border-color .15s,background .15s}
+.x .ic{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--s2);font-size:20px}
+.x .t{flex:1;min-width:0}
+.x .t b{display:block;font-size:15.5px}
+.x .t small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.x .pr{text-align:right;flex:0 0 auto}
+.x .pr b{display:block;font-size:16px;color:var(--gold)}
+.x .pr small{display:block;color:var(--muted);font-size:12px}
+.x .ck{flex:0 0 28px;height:28px;border-radius:9px;border:2px solid var(--line2);display:grid;place-items:center;font-weight:900;font-size:16px;color:transparent}
+.x[aria-pressed=true]{border-color:var(--green);background:rgba(37,211,102,.07)}
+.x[aria-pressed=true] .ck{background:var(--green);border-color:var(--green);color:#05301a}
+.hotel{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:16px;display:flex;gap:12px;align-items:center}
+.hotel i{font-style:normal;font-size:26px}
+.hotel b{display:block;font-size:16px}
+.hotel span{color:var(--muted);font-size:13.5px}
+.faq details{background:var(--s1);border:1px solid var(--line);border-radius:16px;margin-bottom:8px}
+.faq summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--gold);font-size:20px;line-height:1}
+.faq details[open] summary:after{content:"−"}
+.faq p{padding:0 16px 14px;color:var(--muted);font-size:14px}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:26px 0 0}
+.foot b{color:var(--gold)}
+.total{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(10,8,9,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line2);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.total .in{max-width:560px;margin:0 auto}
+.trow{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:10px}
+.trow small{display:block;font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
+.trow b{font-size:22px;font-weight:800}
+.trow .r{text-align:right}
+.trow .r b{color:var(--green)}
+.cta{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:15px;border-radius:16px;background:var(--green);color:#05301a;font-weight:800;font-size:16px}
+.cta svg{width:22px;height:22px}
+.off{display:none;text-align:center;font-size:12px;font-weight:700;color:#1a0f0a;background:var(--gold);padding:6px;border-radius:10px;margin-top:10px}
+body.is-off .off{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">MX STUDIO ✝</div>
+    <div class="lang" id="lang"><span class="knob"></span><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
+  </header>
+  <section class="hero">
+    <div class="glow"></div>
+    <img class="logo" src="../logo.png" alt="MX Studio">
+    <div class="kicker" data-t="kicker"></div>
+    <h1><span data-t="h1a"></span><br><span data-t="h1b"></span></h1>
+    <p class="sub" data-t="sub"></p>
+    <div class="off" data-t="off"></div>
+  </section>
+
+  <section class="plan">
+    <div class="pname" data-t="pname"></div>
+    <div class="ptitle" data-t="ptitle"></div>
+    <div class="prices">
+      <div class="pbox"><b>$1,999</b><span data-t="once"></span></div>
+      <div class="pbox"><b>$290</b><span data-t="month"></span></div>
+    </div>
+    <ul class="feats" id="feats"></ul>
+    <div class="inc" id="inc"></div>
+    <div class="tax" data-t="tax"></div>
+  </section>
+
+  <div class="sec"><small data-t="xK"></small><h2 data-t="xH"></h2><p data-t="xP"></p></div>
+  <div id="extras"></div>
+
+  <div class="sec"><small data-t="hK"></small><h2 data-t="hH"></h2></div>
+  <div class="hotel"><i>🏨</i><div><b data-t="hT"></b><span data-t="hS"></span></div></div>
+
+  <div class="sec"><small data-t="fK"></small><h2 data-t="fH"></h2></div>
+  <div class="faq" id="faq"></div>
+
+  <footer class="foot"><b>MX Studio ✝</b> · Acapulco, Guerrero<br>WhatsApp +52 744 193 0502</footer>
+</div>
+
+<div class="total"><div class="in">
+  <div class="trow"><div><small data-t="today"></small><b id="tToday">$1,999</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$290</b></div></div>
+  <button class="cta" id="cta"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg><span data-t="cta"></span></button>
+</div></div>
+
+<script>
+const PHONE="527441930502";
+const BASE={once:1999,month:290};
+const X=[
+ {k:"mesa",ic:"🍽️",once:990,month:100,es:["QR por mesa + llamar al mesero","Cada mesa con su QR; el cliente llama al mesero desde su teléfono"],en:["Table QR + call-the-waiter","Every table gets its own QR; guests call the waiter from their phone"]},
+ {k:"resenas",ic:"⭐",once:490,month:0,es:["Botón y QR de reseñas Google","Más reseñas de 5 estrellas en Google"],en:["Google review button + QR","More 5-star reviews on Google"]},
+ {k:"pago",ic:"💳",once:490,month:0,es:["Pago con tarjeta","Botón de pago con Mercado Pago en tu app"],en:["Card payments","Mercado Pago pay button in your app"]},
+ {k:"lealtad",ic:"☕",once:990,month:100,es:["Tarjeta de lealtad digital","Sellos en el teléfono: ¡el 10º es gratis!"],en:["Digital loyalty card","Stamps on the phone: the 10th is free!"]},
+ {k:"dash",ic:"📊",once:990,month:150,es:["Dashboard","Ve cuántos visitan tu app y qué piden"],en:["Dashboard","See how many people visit your app and what they order"]},
+ {k:"inv",ic:"📦",once:1990,month:290,es:["Escáner de inventario","Cuenta tu inventario con la cámara del teléfono"],en:["Inventory scanner","Count your stock with your phone's camera"]},
+ {k:"print",ic:"🖨️",once:490,month:0,es:["Diseño de tarjetas QR impresas","Tarjetas bilingües listas para imprimir"],en:["Printed QR card design","Bilingual cards ready to print"]}
+];
+const T={
+ es:{kicker:"Precios · Acapulco",h1a:"Tu app bilingüe",h1b:"por $290 al mes",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
+  pname:"App MX Studio",ptitle:"Todo lo que tu negocio necesita",once:"instalación · una vez",month:"al mes",
+  feats:[["📍","Ubicación y cómo llegar"],["📖","Menú con fotos y precios"],["💬","Reservas y para llevar por WhatsApp"],["🌎","Español e inglés, con un botón"]],
+  inc:["Cambios ilimitados","Soporte 7 días","Hosting incluido","Tu propio dominio","Sin contrato"],tax:"Precios en pesos mexicanos (MXN) + IVA",
+  xK:"Opcional",xH:"Agrega a tu app",xP:"Toca para ver tu total. Puedes agregarlos cuando quieras.",
+  hK:"Negocios grandes",hH:"Hoteles y resorts",hT:"Cotización a tu medida",hS:"Guía del huésped, servicio a cuarto y más. Escríbenos por WhatsApp.",
+  fK:"Preguntas",fH:"Lo que nos preguntan",
+  faq:[["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas mes a mes y puedes cancelar cuando quieras."],["¿Cómo pago?","Instalación una vez, y la mensualidad con tarjeta (cobro automático), transferencia o efectivo."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
+  today:"HOY",monthly:"AL MES",cta:"Lo quiero · Enviar por WhatsApp",per:"/mes",
+  msg:(lines,o,m)=>`Hola MX Studio, me interesa la app:\n• App MX Studio ($1,999 + $290/mes)${lines}\nTotal hoy: ${o} · Al mes: ${m} (+ IVA)`},
+ en:{kicker:"Prices · Acapulco",h1a:"Your bilingual app",h1b:"for $290 a month",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
+  pname:"MX Studio app",ptitle:"Everything your business needs",once:"setup · one time",month:"per month",
+  feats:[["📍","Location and directions"],["📖","Menu with photos and prices"],["💬","WhatsApp reservations and carry-out"],["🌎","Spanish and English, one tap"]],
+  inc:["Unlimited updates","7-day support","Hosting included","Your own domain","No contract"],tax:"Prices in Mexican pesos (MXN) + IVA (tax)",
+  xK:"Optional",xH:"Add to your app",xP:"Tap to see your total. Add them anytime.",
+  hK:"Bigger businesses",hH:"Hotels & resorts",hT:"Custom quote",hS:"Guest guide, room service and more. Message us on WhatsApp.",
+  fK:"Questions",fH:"What people ask us",
+  faq:[["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay month to month and can cancel anytime."],["How do I pay?","Setup once, and the monthly fee by card (automatic), bank transfer or cash."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
+  today:"TODAY",monthly:"PER MONTH",cta:"I want it · Send on WhatsApp",per:"/mo",
+  msg:(lines,o,m)=>`Hi MX Studio, I'm interested in the app:\n• MX Studio app ($1,999 + $290/mo)${lines}\nTotal today: ${o} · Monthly: ${m} (+ IVA)`}
+};
+const $=id=>document.getElementById(id);
+let lang="es",sel={};
+try{lang=localStorage.getItem("mx-precios-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
+const fmt=n=>"$"+n.toLocaleString("en-US");
+function totals(){let o=BASE.once,m=BASE.month;X.forEach(x=>{if(sel[x.k]){o+=x.once;m+=x.month}});return{o,m}}
+function render(){
+ const u=T[lang];document.documentElement.lang=lang;
+ document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
+ $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("feats").innerHTML=u.feats.map(f=>`<li><i>${f[0]}</i>${f[1]}</li>`).join("");
+ $("inc").innerHTML=u.inc.map(s=>`<span>✓ ${s}</span>`).join("");
+ $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.month?"+"+fmt(x.month)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
+ $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
+ const t=totals();$("tToday").textContent=fmt(t.o);$("tMonth").textContent=fmt(t.m)+u.per;
+ document.title=(lang==="es"?"Precios":"Prices")+" · MX Studio ✝️";
+}
+$("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
+$("extras").onclick=e=>{const b=e.target.closest(".x");if(!b)return;sel[b.dataset.k]=!sel[b.dataset.k];render()};
+$("cta").onclick=()=>{const u=T[lang],t=totals();
+ const lines=X.filter(x=>sel[x.k]).map(x=>`\n• ${x[lang][0]} (+${fmt(x.once)}${x.month?" +"+fmt(x.month)+u.per:""})`).join("");
+ open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg(lines,fmt(t.o),fmt(t.m)+u.per))}`,"_blank")};
+const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
+render();
+if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>
