@@ -1,5 +1,5 @@
 # Every push to main republishes all pages to GitHub Pages:
-#   /brian/  /mexico/  /us/  /partners/  /escaner/  /inventario/  /demo-dashboard.html
+#   /acapulco/  /brian/  /mexico/  /us/  /partners/  /escaner/  /inventario/  /demo-dashboard.html
 name: Publish pages
 on:
   push:
@@ -38,6 +38,8 @@ jobs:
           cp -R portfolio out/portfolio
           cp -R portafolio out/portafolio
           cp -R ritz-acapulco out/ritz-acapulco
+          cp -R acapulco out/acapulco
+          rm -f out/acapulco/vercel.json out/acapulco/_headers
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects

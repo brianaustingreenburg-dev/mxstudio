@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mariscos La Bahía · Demo MX Studio ✝️</title>
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="../manifest.json">
 <meta name="theme-color" content="#faf6f0">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -135,7 +135,7 @@ $("review").onclick=()=>toast(T[lang].tReview);
 $("togo").onclick=()=>{const u=T[lang];const lines=MENU.filter(m=>cart[m.id]).map(m=>`• ${cart[m.id]} × ${m[lang][0]}`).join("\n");
  const msg=lines?u.waMsg(lines,total()):u.waEmpty;open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(msg)}`,"_blank")};
 render();
-if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}))}
+if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
 </script>
 </body>
 </html>
