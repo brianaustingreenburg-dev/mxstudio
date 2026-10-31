@@ -8,6 +8,7 @@ One folder = one website. Push to `main` and Netlify updates every site by itsel
 | `daniel` | mxstudio-daniel | https://mxstudio-daniel.netlify.app |
 | `cristian` | mxstudio-cristian | https://mxstudio-cristian.netlify.app |
 | `family-first` | deluxe-tartufo-364c6c | https://myfamilyfirst.app |
+| `jefetech-app/acapulco` | (part of JefeTech) | https://myjefetech.app/acapulco/ — QR card page: restaurantes, cafés, hoteles, resorts, clubs |
 | `partners-site` | mxstudio-partners | https://mxstudio-partners.netlify.app (live sync, later) |
 
 New Partner = new folder + new Netlify project linked to this repo with that folder as the base directory.

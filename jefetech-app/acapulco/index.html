@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MX Studio ✝️ · Acapulco</title>
+<meta name="description" content="Apps, dashboards y códigos QR para restaurantes, cafés, hoteles, resorts y clubs en Acapulco. Soporte 7 días.">
+<meta name="theme-color" content="#1d1426">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MX Studio">
+<meta property="og:title" content="MX Studio · Acapulco">
+<meta property="og:description" content="Apps, dashboards y códigos QR para tu negocio. Soporte 7 días.">
+<meta property="og:image" content="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1d1426; --bg2:#2a1a33; --card:rgba(255,255,255,.055); --line:rgba(232,196,140,.18);
+  --gold:#e8c48c; --gold2:#d9a35f; --sun:#e0703a; --text:#f6ece0; --muted:#c9b8ad; --wa:#25d366;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);
+  background:var(--bg);
+  background-image:radial-gradient(120% 60% at 50% 0%,#3a2240 0%,transparent 60%),
+    linear-gradient(180deg,#1d1426 0%,#2a1a33 55%,#5a2a2a 100%);
+  background-attachment:fixed;min-height:100vh;line-height:1.45;
+  padding-bottom:calc(96px + env(safe-area-inset-bottom));
+}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 0 6px}
+.brand{font-weight:800;letter-spacing:.22em;font-size:13px;color:var(--gold)}
+.lang{display:flex;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:999px;padding:3px;position:relative}
+.lang button{all:unset;cursor:pointer;font-weight:700;font-size:12px;letter-spacing:.06em;padding:7px 13px;border-radius:999px;color:var(--muted);position:relative;z-index:1;transition:color .2s}
+.lang button[aria-pressed=true]{color:#24151f}
+.lang .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s ease}
+.lang.en .knob{transform:translateX(100%)}
+/* hero */
+.hero{text-align:center;padding:14px 0 6px}
+.logo{width:min(62vw,240px);aspect-ratio:1;display:block;margin:0 auto 14px;filter:drop-shadow(0 10px 40px rgba(224,112,58,.45))}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--sun);text-transform:uppercase}
+h1{font-size:clamp(26px,7.5vw,34px);font-weight:800;line-height:1.12;margin:8px 0 6px}
+.sub{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 6px}
+.perk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 6px;text-align:center}
+.perk b{display:block;font-size:13px;color:var(--gold)}
+.perk span{font-size:11px;color:var(--muted)}
+/* tabs */
+.tabs{position:sticky;top:0;z-index:5;margin:18px -16px 0;padding:10px 16px;background:rgba(29,20,38,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{all:unset;cursor:pointer;flex:0 0 auto;display:flex;align-items:center;gap:7px;font-weight:700;font-size:14px;padding:10px 15px;border-radius:999px;border:1px solid var(--line);color:var(--text);background:var(--card);white-space:nowrap}
+.tab[aria-selected=true]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#24151f;border-color:transparent}
+.tab svg{width:17px;height:17px}
+/* panel */
+.panel{padding-top:14px;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ptitle{font-size:22px;font-weight:800}
+.pintro{color:var(--muted);font-size:14.5px;margin:4px 0 14px}
+.block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.bhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bicon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(224,112,58,.16);color:var(--gold)}
+.bicon svg{width:19px;height:19px}
+.bhead h3{font-size:16px;font-weight:800}
+.bhead small{display:block;font-size:11px;font-weight:600;color:var(--sun);letter-spacing:.14em;text-transform:uppercase}
+.block ul{list-style:none;display:grid;gap:9px}
+.block li{display:flex;gap:10px;font-size:14.5px}
+.block li:before{content:"";flex:0 0 7px;height:7px;margin-top:8px;border-radius:50%;background:var(--gold2)}
+.quote{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:15px;border-radius:16px;font-weight:800;font-size:15px;color:#24151f;background:linear-gradient(135deg,var(--gold),var(--gold2));margin:4px 0 6px;text-align:center}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:22px 0 8px}
+.foot b{color:var(--gold)}
+/* sticky whatsapp */
+.wa{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));width:min(528px,calc(100% - 32px));display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 18px;border-radius:18px;background:var(--wa);color:#08321a;font-weight:800;font-size:16px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.45);z-index:10}
+.wa svg{width:22px;height:22px}
+.wa small{display:block;font-size:11.5px;font-weight:700;opacity:.8}
+.offline{display:none;text-align:center;font-size:12px;color:#24151f;background:var(--gold);padding:6px;border-radius:10px;margin-top:10px}
+body.is-off .offline{display:block}
+@media (min-width:600px){.tabs{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">MX STUDIO ✝</div>
+    <div class="lang" id="lang" role="group" aria-label="Idioma / Language">
+      <span class="knob"></span>
+      <button type="button" data-l="es" aria-pressed="true">ES</button>
+      <button type="button" data-l="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img class="logo" src="logo.png" alt="MX Studio">
+    <div class="kicker" data-t="kicker"></div>
+    <h1 data-t="h1"></h1>
+    <p class="sub" data-t="sub"></p>
+    <div class="perks">
+      <div class="perk"><b data-t="p1"></b><span data-t="p1s"></span></div>
+      <div class="perk"><b data-t="p2"></b><span data-t="p2s"></span></div>
+      <div class="perk"><b data-t="p3"></b><span data-t="p3s"></span></div>
+    </div>
+    <div class="offline" data-t="offline"></div>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <main id="panel"></main>
+
+  <footer class="foot">
+    <div><b>MX Studio</b> · Acapulco, Guerrero</div>
+    <div>WhatsApp +52 744 193 0502</div>
+  </footer>
+</div>
+
+<a class="wa" id="wa" href="#" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+  <span><span data-t="wa"></span><small data-t="wa2"></small></span>
+</a>
+
+<script>
+const PHONE="527441930502";
+const IC={
+ rest:'<path d="M7 2v9a2 2 0 0 1-2 2v9M3 2v6a4 4 0 0 0 4 4M11 2v6a4 4 0 0 1-4 4M17 22V2c-2 1-3 4-3 8h3"/>',
+ cafe:'<path d="M3 8h13v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6V8Zm13 1h2a3 3 0 0 1 0 6h-2M7 2v3M11 2v3"/>',
+ hotel:'<path d="M3 21V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16M3 21h18M8 7h2M14 7h2M8 11h2M14 11h2M10 21v-5h4v5"/>',
+ resort:'<path d="M12 22V10M12 10c-3-4-7-4-9-2 3 0 6 1 9 2Zm0 0c3-4 7-4 9-2-3 0-6 1-9 2Zm0 0c-1-4-4-7-7-7M12 10c1-4 4-7 7-7M3 22h18"/>',
+ club:'<path d="M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>',
+ app:'<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/>',
+ dash:'<path d="M3 3v18h18M7 15l4-4 3 3 5-6"/>',
+ qr:'<path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/>',
+ help:'<path d="M3 12a9 9 0 1 1 18 0v5a2 2 0 0 1-2 2h-2v-6h4M3 13h4v6H5a2 2 0 0 1-2-2v-5"/>'
+};
+const svg=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+
+const UI={
+ es:{kicker:"Acapulco · Tecnología para tu negocio",h1:"Apps, dashboards y códigos QR",sub:"Para restaurantes, cafés, hoteles, resorts y clubs. Elige tu tipo de negocio y mira lo que construimos para ti.",
+  p1:"7 días",p1s:"soporte",p2:"Cambios",p2s:"ilimitados",p3:"Sin internet",p3s:"funciona offline",
+  wa:"Pedir cotización por WhatsApp",wa2:"+52 744 193 0502 · Respuesta rápida",offline:"Sin conexión: estás viendo la versión guardada.",
+  apps:"App",dash:"Dashboard",qr:"Códigos QR",sup:"Incluido",appsK:"Para tus clientes",dashK:"Para ti",qrK:"En tu negocio",supK:"Siempre",
+  quote:"Cotizar para mi",support:["Soporte técnico 7 días por WhatsApp, en español e inglés","Nosotros instalamos todo y capacitamos a tu equipo","Cambios ilimitados (menú, precios, fotos)","Funciona aunque se caiga el internet"],
+  msg:"Hola MX Studio, me interesa una cotización para mi"},
+ en:{kicker:"Acapulco · Tech for your business",h1:"Apps, dashboards & QR codes",sub:"For restaurants, cafés, hotels, resorts and clubs. Pick your type of business and see what we build for you.",
+  p1:"7 days",p1s:"support",p2:"Unlimited",p2s:"updates",p3:"Offline",p3s:"works without internet",
+  wa:"Get a quote on WhatsApp",wa2:"+52 744 193 0502 · Fast reply",offline:"Offline: you're viewing the saved version.",
+  apps:"App",dash:"Dashboard",qr:"QR codes",sup:"Included",appsK:"For your customers",dashK:"For you",qrK:"Around your business",supK:"Always",
+  quote:"Get a quote for my",support:["7-day tech support on WhatsApp, in Spanish and English","We set everything up and train your staff","Unlimited updates (menu, prices, photos)","Keeps working when the internet drops"],
+  msg:"Hi MX Studio, I'd like a quote for my"}
+};
+
+const BIZ=[
+ {id:"rest",ic:"rest",
+  es:{name:"Restaurantes",one:"restaurante",intro:"Menú digital, pedidos y reseñas, todo desde el QR de la mesa.",
+   apps:["Menú digital en español e inglés, con fotos","Pedidos y reservaciones por WhatsApp","Especial del día y pesca del día","Botón para dejar reseña en Google"],
+   dash:["Platillos más vendidos y horas pico","Reseñas y comentarios nuevos","Escáner de inventario: bebidas, cerveza e ingredientes","Alertas cuando algo se está acabando"],
+   qr:["QR en cada mesa con el menú","QR de WiFi para clientes","QR de reseñas en la cuenta","Tarjeta 5×7 lista para imprimir"]},
+  en:{name:"Restaurants",one:"restaurant",intro:"Digital menu, orders and reviews, all from the table QR.",
+   apps:["Digital menu in Spanish and English, with photos","Orders and reservations on WhatsApp","Daily special and catch of the day","One-tap Google review button"],
+   dash:["Best-selling dishes and busy hours","New reviews and feedback","Inventory scanner: drinks, beer and ingredients","Low-stock alerts"],
+   qr:["Table QR that opens the menu","Guest WiFi QR","Review QR on the bill","Print-ready 5×7 card"]}},
+ {id:"cafe",ic:"cafe",
+  es:{name:"Cafés",one:"café",intro:"Menú, lealtad y pedidos para llevar sin filas.",
+   apps:["Menú digital con fotos y precios","Tarjeta de lealtad digital (sellos)","Pedidos para llevar por WhatsApp","Promociones de la semana"],
+   dash:["Ventas por hora y por producto","Clientes frecuentes y sellos","Escáner de inventario: café, leche, panes","Lista de compras automática"],
+   qr:["QR en el mostrador con el menú","QR de WiFi en las mesas","QR de la tarjeta de lealtad","Tarjeta 5×7 lista para imprimir"]},
+  en:{name:"Cafés",one:"café",intro:"Menu, loyalty and to-go orders without the line.",
+   apps:["Digital menu with photos and prices","Digital loyalty card (stamps)","To-go orders on WhatsApp","Weekly promotions"],
+   dash:["Sales by hour and by product","Regulars and loyalty stamps","Inventory scanner: coffee, milk, pastries","Automatic reorder list"],
+   qr:["Counter QR that opens the menu","WiFi QR on the tables","Loyalty card QR","Print-ready 5×7 card"]}},
+ {id:"hotel",ic:"hotel",
+  es:{name:"Hoteles",one:"hotel",intro:"Una guía digital para cada huésped, en su idioma.",
+   apps:["Guía del huésped: WiFi, horarios y check-out","Servicio a cuarto y solicitudes por WhatsApp","Tours y recomendaciones de Acapulco","Reseñas al terminar la estancia"],
+   dash:["Solicitudes de huéspedes en tiempo real","Calificaciones y comentarios","Escáner de inventario: minibar, blancos, amenidades","Reportes por día y por habitación"],
+   qr:["QR en cada habitación","QR en recepción y lobby","QR de WiFi para huéspedes","Tarjeta 5×7 lista para imprimir"]},
+  en:{name:"Hotels",one:"hotel",intro:"A digital guide for every guest, in their language.",
+   apps:["Guest guide: WiFi, hours and check-out","Room service and requests on WhatsApp","Acapulco tours and local tips","Reviews at the end of the stay"],
+   dash:["Live guest requests","Ratings and feedback","Inventory scanner: minibar, linens, amenities","Daily and per-room reports"],
+   qr:["QR in every room","Front desk and lobby QR","Guest WiFi QR","Print-ready 5×7 card"]}},
+ {id:"resort",ic:"resort",
+  es:{name:"Resorts",one:"resort",intro:"Concierge digital para alberca, spa, restaurantes y actividades.",
+   apps:["Concierge digital con mapa del resort","Reservas de spa, restaurantes y actividades","Menú de alberca y palapas","Avisos y eventos del día"],
+   dash:["Reservas por área y por horario","Pedidos de alberca y bar","Escáner de inventario: bar, amenidades, toallas","Calificaciones de huéspedes"],
+   qr:["QR en camastros y palapas","QR de accesos y pulseras","QR en habitaciones y lobby","Tarjeta 5×7 lista para imprimir"]},
+  en:{name:"Resorts",one:"resort",intro:"Digital concierge for pool, spa, restaurants and activities.",
+   apps:["Digital concierge with a resort map","Spa, restaurant and activity bookings","Pool and palapa menu","Daily announcements and events"],
+   dash:["Bookings by area and time","Pool and bar orders","Inventory scanner: bar, amenities, towels","Guest ratings"],
+   qr:["QR on loungers and palapas","Access and wristband QR","Room and lobby QR","Print-ready 5×7 card"]}},
+ {id:"club",ic:"club",
+  es:{name:"Clubs",one:"club",intro:"Lista VIP, mesas y bebidas, con control de cada botella.",
+   apps:["Reservación de mesas y lista VIP","Eventos, DJs y cartelera","Carta de bebidas y botellas","Pedidos a mesa por WhatsApp"],
+   dash:["Aforo y reservaciones de la noche","Botellas y bebidas más vendidas","Escáner de inventario de licor (menos pérdidas)","Reporte de cierre por noche"],
+   qr:["QR de acceso y cover","QR de la carta en cada mesa","QR de eventos para redes","Tarjeta 5×7 lista para imprimir"]},
+  en:{name:"Clubs",one:"club",intro:"VIP list, tables and drinks, with every bottle tracked.",
+   apps:["Table booking and VIP list","Events, DJs and lineup","Drink and bottle menu","Table orders on WhatsApp"],
+   dash:["Tonight's capacity and bookings","Top-selling bottles and drinks","Liquor inventory scanner (less loss)","Nightly closing report"],
+   qr:["Entry and cover QR","Drink menu QR on every table","Event QR for social media","Print-ready 5×7 card"]}}
+];
+
+let lang="es",cur="rest";
+try{lang=localStorage.getItem("mx-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en");cur=localStorage.getItem("mx-tab")||cur}catch(e){}
+try{const h=location.hash.slice(1);if(BIZ.some(b=>b.id===h))cur=h}catch(e){}
+
+const waLink=txt=>`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(txt)}`;
+const list=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+const block=(icon,k,t,items)=>`<div class="block"><div class="bhead"><div class="bicon">${svg(IC[icon])}</div><div><small>${k}</small><h3>${t}</h3></div></div>${list(items)}</div>`;
+
+function render(){
+ const u=UI[lang];
+ document.documentElement.lang=lang;
+ document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
+ const L=document.getElementById("lang");L.classList.toggle("en",lang==="en");
+ L.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ document.getElementById("tabs").innerHTML=BIZ.map(b=>`<button class="tab" role="tab" aria-selected="${b.id===cur}" data-id="${b.id}">${svg(IC[b.ic])}${b[lang].name}</button>`).join("");
+ const b=BIZ.find(x=>x.id===cur),d=b[lang];
+ const msg=`${u.msg} ${d.one}.`;
+ document.getElementById("panel").innerHTML=`<section class="panel" role="tabpanel">
+  <h2 class="ptitle">${d.name}</h2><p class="pintro">${d.intro}</p>
+  ${block("app",u.appsK,u.apps,d.apps)}
+  ${block("dash",u.dashK,u.dash,d.dash)}
+  ${block("qr",u.qrK,u.qr,d.qr)}
+  ${block("help",u.supK,u.sup,u.support)}
+  <a class="quote" href="${waLink(msg)}" target="_blank" rel="noopener">${u.quote} ${d.one} →</a>
+ </section>`;
+ document.getElementById("wa").href=waLink(msg);
+ document.title=`MX Studio ✝️ · ${d.name}`;
+}
+document.getElementById("lang").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-lang",lang)}catch(_){}render()});
+document.getElementById("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;cur=b.dataset.id;try{localStorage.setItem("mx-tab",cur);history.replaceState(null,"","#"+cur)}catch(_){}render();b.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})});
+const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);
+addEventListener("online",net);addEventListener("offline",net);net();
+render();
+if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>
