@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rutas ✝ MX Studio</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Rutas">
+<style>
+:root{--bg:#000;--s1:#121012;--s2:#1c1719;--line:rgba(232,196,140,.2);--gold:#e8c48c;--gold2:#d9a35f;--sun:#e0703a;--text:#f6ece0;--muted:#b9aaa0;--green:#25d366;--fs:19px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.35;padding-bottom:calc(30px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+button,textarea{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:5;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:calc(10px + env(safe-area-inset-top)) 14px 10px;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:8px}
+.brand{font-weight:800;font-size:1.05em;flex:1}
+.brand small{display:block;font-size:.6em;font-weight:700;letter-spacing:.14em;color:var(--sun)}
+.ib{all:unset;cursor:pointer;min-width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:.85em;background:var(--s2);border:1px solid var(--line);color:var(--gold)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.tab{all:unset;cursor:pointer;text-align:center;padding:10px 4px;border-radius:14px;background:var(--s1);border:1px solid var(--line);font-weight:800;font-size:.9em;line-height:1.1}
+.tab small{display:block;font-size:.62em;font-weight:700;color:var(--muted);margin-top:2px}
+.tab[aria-pressed=true]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border-color:transparent}
+.tab[aria-pressed=true] small{color:#3a2615}
+.filters{display:flex;gap:6px;margin-top:8px}
+.f{all:unset;cursor:pointer;flex:1;text-align:center;padding:8px 4px;border-radius:12px;font-weight:700;font-size:.75em;color:var(--muted);border:1px solid var(--line)}
+.f[aria-pressed=true]{color:var(--text);background:var(--s2);border-color:var(--gold2)}
+.wrap{padding:14px}
+.head h1{font-size:1.45em;line-height:1.1}
+.head h1 span{color:var(--gold)}
+.head p{color:var(--muted);font-size:.8em;margin-top:4px}
+.prog{height:10px;border-radius:99px;background:var(--s2);margin:12px 0 4px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--green));transition:width .3s}
+.progt{font-size:.75em;font-weight:700;color:var(--muted)}
+.info{margin:12px 0;background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:.8em}
+.info b{color:var(--gold)}
+.promo{display:block;width:100%;all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;margin:0 0 14px;border-radius:16px;padding:12px 14px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-weight:800;font-size:.85em}
+.promo span{display:block;font-weight:700;font-size:.8em;opacity:.8;margin-top:2px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px}
+.card.done{border-color:rgba(37,211,102,.45)}
+.ch{display:flex;gap:12px;align-items:flex-start}
+.n{flex:0 0 40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#1a0f0a;background:linear-gradient(135deg,var(--gold),var(--gold2))}
+.card.done .n{background:var(--green)}
+.nm{font-weight:800;font-size:1.15em;line-height:1.15}
+.tag{display:inline-block;font-weight:800;font-size:.62em;letter-spacing:.06em;padding:3px 9px;border-radius:99px;color:#0b0b0b;margin-top:6px}
+.ad{color:var(--muted);font-size:.78em;margin-top:6px}
+.pi{color:var(--gold);font-weight:700;font-size:.9em;margin-top:8px}
+.pr{margin-top:10px;padding:10px 12px;border-radius:14px;background:var(--s2)}
+.pr .free{display:inline-block;font-size:.62em;font-weight:800;padding:3px 9px;border-radius:99px;background:var(--green);color:#05301a;margin-bottom:6px}
+.pr .pl{font-weight:800;font-size:.85em}
+.pr .now{font-weight:800;font-size:1.25em;color:var(--green)}
+.pr s{color:#7d7069;font-size:.8em;margin-left:6px}
+.pr .mo{font-size:.75em;color:var(--muted);font-weight:600}
+.pr .bs{font-size:.72em;color:var(--muted);margin-top:4px}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.a{all:unset;cursor:pointer;text-align:center;padding:12px 4px;border-radius:14px;border:1.5px solid var(--line);font-weight:800;font-size:.78em;line-height:1.15}
+.a b{display:block;font-size:1.4em;margin-bottom:2px}
+.a small{display:block;font-weight:600;font-size:.8em;color:var(--muted)}
+.a.on.v{background:var(--green);border-color:var(--green);color:#05301a}
+.a.on.i{background:var(--gold);border-color:var(--gold);color:#1a0f0a}
+.a.on.f{background:var(--sun);border-color:var(--sun);color:#1a0a05}
+.a.on small{color:inherit;opacity:.75}
+textarea{width:100%;margin-top:10px;min-height:64px;resize:vertical;background:#0a0809;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:.85em}
+textarea::placeholder{color:#6d625c}
+.go{all:unset;cursor:pointer;display:block;text-align:center;margin-top:8px;padding:10px;border-radius:12px;font-weight:700;font-size:.75em;color:var(--muted);border:1px dashed var(--line)}
+.empty{text-align:center;color:var(--muted);padding:30px 10px;font-size:.9em}
+.share{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:6px;padding:15px;border-radius:16px;font-weight:800;background:var(--green);color:#05301a}
+.foot{text-align:center;color:#6d625c;font-size:.65em;margin-top:16px}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end;z-index:20}
+.sheet.on{display:flex}
+.sheet .box{width:100%;max-height:85vh;overflow:auto;background:var(--s1);border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.sheet h2{font-size:1.15em}
+.sheet p{color:var(--muted);font-size:.78em;margin:4px 0 10px}
+.pl-row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.pl-row b{font-size:.9em}
+.pl-row .r{text-align:right;font-size:.85em}
+.pl-row .r strong{color:var(--green);font-size:1.15em}
+.pl-row .r s{color:#7d7069}
+.pl-row .r small{display:block;color:var(--muted)}
+.close{all:unset;cursor:pointer;display:block;text-align:center;margin-top:14px;padding:14px;border-radius:14px;background:var(--s2);font-weight:800}
+.off{display:none;font-size:.6em;font-weight:800;color:#1a0f0a;background:var(--gold);padding:3px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+body.is-off .off{display:inline-block}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--s2);border:1px solid var(--gold2);padding:12px 16px;border-radius:14px;font-weight:700;font-size:.8em;transition:.25s;z-index:30;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="bar">
+    <div class="brand"><small>MX STUDIO ✝ · ACAPULCO</small>Mis rutas<span class="off">SIN INTERNET · OFFLINE</span></div>
+    <button class="ib" id="smaller" aria-label="Letra más chica">A−</button>
+    <button class="ib" id="bigger" aria-label="Letra más grande">A+</button>
+    <button class="ib" id="prices" aria-label="Precios">$</button>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="filters" id="filters">
+    <button class="f" data-f="all" aria-pressed="true">Todos · All</button>
+    <button class="f" data-f="todo">Pendientes · To do</button>
+    <button class="f" data-f="fu">Volver · Follow up</button>
+  </div>
+</header>
+<main class="wrap" id="main"></main>
+<div class="sheet" id="sheet"><div class="box" id="sheetBox"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const DATA={"routes": [{"num": 1, "title": "Costera / Zona Dorada", "span": "Hornos → Costa Azul", "desc": "Restaurantes, cafés y hoteles juntos. La ruta más fácil para empezar.", "bring": "Tarjeta 5×7 · tarjeta de pedidos · demo Mesa 5", "stops": [{"id": "ChIJ8evJ_wNYyoURIz6v-NiJBks", "t": "R", "n": "Buzos Costera", "a": "Av costera Miguel Alemán S/n Hornos sin numero, Horn…", "p": "Demo Mesa + para llevar", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJNQzHMrJZyoURBAEBxbTqFF0", "t": "C", "n": "Jumil Café y Cocina", "a": "Av Costera Miguel Alemán 256-Loc 4 A, Hornos", "p": "Tarjeta de lealtad", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJg2bQAQz4yoURaTXdYfMznSc", "t": "R", "n": "El Amigo Miguel", "a": "Av Costera Miguel Alemán s/n, Hornos", "p": "Llamar al mesero + menú bilingüe", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJ9bdq2cJZyoUROql7HyHo9q0", "t": "R", "n": "Punto 55", "a": "Av Costera Miguel Alemán 1632-Int. B4, Fracc Magalla…", "p": "Menú digital + reseñas", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJGyBFq_FZyoUR7MF4w1_MDvw", "t": "C", "n": "Emilia Café", "a": "Israel local 4, Fracc Magallanes", "p": "Lealtad + pedidos para llevar", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJL9LcMERZyoURJ05rswgt_uo", "t": "R", "n": "Café al Mar", "a": "Plaza Marbella, Av Costera Miguel Alemán SN-Local 28", "p": "Menú bilingüe para turistas", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJwVpUcP9ZyoUR6IrqA2KOq8I", "t": "R", "n": "Terraza Buffet", "a": "Av Costera Miguel Alemán no. 8 - 9-8 - 9, Deportivo", "p": "Escáner de inventario", "plan": "Pro con inventario", "reg": "$24,900", "now": "$19,900", "mo": "+ $1,490/mes", "basic": true}, {"id": "ChIJtVtTr9VZyoURq3ZNNNPUPd4", "t": "C", "n": "Narciso", "a": "Av Costera Miguel Alemán 58, Fracc Costa Azul", "p": "Lealtad + promociones", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJQ3My9VtZyoURz-ev_wnsUFM", "t": "H", "n": "Holiday Inn Acapulco Amarea", "a": "Av Costera Miguel Alemán 2310, Costa Azul", "p": "Pedir gerente general · demo Habitación", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJoVnu1shZyoURlDJNcxglehg", "t": "H", "n": "El Tropicano Hotel", "a": "Av Costera Miguel Alemán 20, Costa Azul", "p": "Tarjetas de habitación", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}]}, {"num": 2, "title": "Condesa y Escénica", "span": "Condesa → Las Brisas", "desc": "Clubs, beach clubs y hoteles con vista. Ir en la tarde para encontrar al gerente.", "bring": "Tarjeta 5×7 · demo Habitación 214 · tarjetas de habitación", "stops": [{"id": "ChIJBUM_9CZYyoURKXx7twWZVZc", "t": "X", "n": "Kassandra Beach House", "a": "Centro Comercial Marbella, Av Costera Miguel Alemán …", "p": "Pedir desde el camastro", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": false}, {"id": "ChIJjVPy3SxYyoURpodjVz_dd_4", "t": "X", "n": "Baby Lobster", "a": "Av Costera Miguel Alemán 109, La Condesa", "p": "Lista VIP + mesas", "plan": "App Club + inventario", "reg": "$24,900", "now": "$19,900", "mo": "+ $1,490/mes", "basic": false}, {"id": "ChIJH8pmGSZYyoURXdmiblARx4g", "t": "R", "n": "Antigua Acapulco", "a": "Costera Miguel Alemán, Fracc. Condesa", "p": "Menú digital + reseñas", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJOUiqK8lZyoURuoG2BSbDq1I", "t": "X", "n": "Baby'O Acapulco", "a": "Av Costera Miguel Alemán 22, Costa Azul", "p": "Escáner de licor (menos pérdidas)", "plan": "App Club + inventario", "reg": "$24,900", "now": "$19,900", "mo": "+ $1,490/mes", "basic": false}, {"id": "ChIJh1bn4rJZyoUR0n5Iewv9J8I", "t": "X", "n": "Ronin 22 Acapulco", "a": "Escénica 22, Guitarron", "p": "QR de acceso + eventos", "plan": "App Club + inventario", "reg": "$24,900", "now": "$19,900", "mo": "+ $1,490/mes", "basic": false}, {"id": "ChIJD-Rfyy5YyoURmIzQMntfhPY", "t": "H", "n": "Park Royal Beach Acapulco", "a": "Costera Guitarrón 110, Guitarron", "p": "Servicio a cuarto + cargo a habitación", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJK1Z_9KxZyoUROEfBjFDkHG0", "t": "H", "n": "Casa Tolteca", "a": "V. Galernos 10, club residencial", "p": "Guía digital del huésped", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJo2dfcVJYyoURk98t8basMT4", "t": "H", "n": "Hotel Las Brisas Acapulco", "a": "Escénica 5255, Las Brisas", "p": "Tarjetas de habitación", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}]}, {"num": 3, "title": "Diamante y Barra Vieja", "span": "Brisas del Marqués → Barra Vieja", "desc": "Resorts grandes y mariscos de playa. En resorts, pedir cita con marketing o sistemas.", "bring": "Tarjeta 5×7 · tarjetas de habitación · tarjeta de pedidos", "stops": [{"id": "ChIJ9xWDEf9YyoUROGmrQEJyET8", "t": "H", "n": "Hotel Encanto Acapulco", "a": "Jacques Cousteau 51, Brisas del Marqués", "p": "Guía digital del huésped", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJ5w1uJ3FZyoURf-CFcpbDXFk", "t": "R", "n": "Don Camarón", "a": "Blvrd Cabo Marqués 1007, Punta Diamante", "p": "Demo Mesa + para llevar", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJ90RioRRZyoURuDzaTeeDAB4", "t": "R", "n": "La Casa del Mar", "a": "Miguel Alemán, Puerto Marqués", "p": "Menú bilingüe", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJK64VFypZyoURCCmNC6TYDe4", "t": "R", "n": "Celeste Beach House", "a": "P.º del Club 7, Brisas del Marqués", "p": "Reservas + menú de playa", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJXzith0JZyoURHnbbVsCQkbE", "t": "R", "n": "Mary de Revolcadero", "a": "Revolcadero s/n, El Pueblito del Revolcadero", "p": "Pedidos por WhatsApp", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJtXeAU_tbyoURy6L1mx-b7NI", "t": "S", "n": "Princess Mundo Imperial", "a": "Avenida Costera de las Palmas S/N, Playa Revolcadero…", "p": "Concierge app · pedir cita", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJq33OiN5byoURK2j5pUK-bVI", "t": "R", "n": "Mariscos El Sirenito", "a": "Cam. Viejo 1, Granjas del Marqués", "p": "Para llevar + reseñas", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJE131tLFdyoUR7Gdhjip_m1U", "t": "S", "n": "Vidanta Acapulco", "a": "Av. Costera de las Palmas 1121 Fracc, Playa Diamante", "p": "Cadena grande · pedir cita", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJmXUMq-1byoURVctfJj-Ug_o", "t": "R", "n": "Paititi del Mar", "a": "Ignacio Zaragoza 6, La Poza", "p": "Menú digital", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJhQISnfRbyoURFwlJMY3GMzM", "t": "C", "n": "Café Acapulco Caféba", "a": "Blvd. de las Naciones 70, La Poza", "p": "Lealtad", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJse_lCA1CyoURquY__eQuxs8", "t": "R", "n": "Zabesu Barra Vieja", "a": "Carretera Acapulco - Barra Vieja No. 229, San Andrés", "p": "Dueño · tarjeta de pedidos", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJiXL73f1ByoURoV7dE3m8bK4", "t": "R", "n": "Cira La Morena 1", "a": "Domicilio Conocido s /n Barra Vieja", "p": "Pedidos por WhatsApp", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}]}, {"num": 4, "title": "Centro, Caleta y Pie de la Cuesta", "span": "Caleta → Zócalo → Pie de la Cuesta", "desc": "Hoteles clásicos, cafés del Zócalo y restaurantes de playa.", "bring": "Tarjeta 5×7 · demo Mesa 5 · tarjetas de habitación", "stops": [{"id": "ChIJN_2WQt73yoURjFhj-a8KVPY", "t": "H", "n": "La Jolla Hotel", "a": "Av Costera Miguel Alemán 506, Las Playas", "p": "Guía del huésped + WiFi QR", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJqQGa3In3yoURz_r0e4m4HMk", "t": "R", "n": "Mariscos Catamarán", "a": "Av Costera Miguel Alemán 215, Las Playas", "p": "Demo Mesa", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJJ7aBRAj3yoUR-qOyeJCWbgY", "t": "H", "n": "Hotel Las Palmas Acapulco", "a": "Av, Costa Grande 322", "p": "Tarjetas de habitación", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJwYDGQOX3yoURD274NMODhT0", "t": "H", "n": "Hotel Torre Eiffel", "a": "Inalámbrica 110, Las Playas", "p": "Guía del huésped", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJMxLFXuX3yoURVdXG66gEd7M", "t": "H", "n": "Hotel Mirador Acapulco", "a": "La Quebrada 74, Centro", "p": "Muchos turistas · bilingüe", "plan": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año", "basic": false}, {"id": "ChIJM6skj473yoURWOm66cxVA6Y", "t": "C", "n": "The Cauldron Wizard's Coffee", "a": "Av. Hidalgo 20, Zona Urbana 49", "p": "Lealtad + menú con fotos", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJe_coruT3yoURaK1Jlg2pi-E", "t": "R", "n": "La Casa de los Abuelos", "a": "Plaza Álvarez 6, Centro", "p": "Menú digital", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJRXoRjfz3yoUROrUuJ4Hteq8", "t": "C", "n": "Café Wadi", "a": "Francisco Javier Mina s/n, Centro", "p": "Lealtad + venta de café", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJwQ-2gKH5yoURKK1zsIVGnis", "t": "R", "n": "Restaurant El Tío Markos", "a": "AV FZA AEREA LT 21 PLAYA PIE CUESTA MN 56, PLAYAS", "p": "Para llevar + reseñas", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJVTrolOH5yoUR5XxmuOGnk2A", "t": "R", "n": "ALTAMAR restaurante y jardín", "a": "avenida fuerza aérea, Playa Pie de la Cuesta", "p": "Eventos + reservas", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJYd4reRb5yoUR5lRJfpbSzOw", "t": "R", "n": "Tres Marías Restaurante", "a": "Pie de La Cuesta - Barra de Coyuca 109, Pie de la Cu…", "p": "Ya tienes app tres-marias", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}, {"id": "ChIJr_Sxzxv5yoURXWekKSUWH7I", "t": "R", "n": "La Choza de la Freed", "a": "Av fuerza aérea militar 403 Av Fuerza aerea militar,…", "p": "Dueño · tarjeta de pedidos", "plan": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes", "basic": true}]}], "types": {"R": {"es": "Restaurante", "c": "#d98b5f"}, "C": {"es": "Café", "c": "#c9a26b"}, "H": {"es": "Hotel", "c": "#5fa3c9"}, "X": {"es": "Club / Bar", "c": "#b07cd9"}, "S": {"es": "Resort", "c": "#5fc99a"}}, "plans": [{"n": "Menú QR", "reg": "$4,900", "now": "$3,900", "mo": "+ $490/mes"}, {"n": "App Restaurante / Café", "reg": "$14,900", "now": "$11,900", "mo": "+ $990/mes"}, {"n": "Pro con inventario", "reg": "$24,900", "now": "$19,900", "mo": "+ $1,490/mes"}, {"n": "App Club + inventario", "reg": "$24,900", "now": "$19,900", "mo": "+ $1,490/mes"}, {"n": "Hotel / Resort", "reg": "desde $99,000", "now": "desde $79,000", "mo": "+ $49,000/año"}]};
+const $=id=>document.getElementById(id);
+const KEY="mx-rutas-v1";
+let st={route:1,filter:"all",fs:19,marks:{}};
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s)st=Object.assign(st,s)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mk=id=>st.marks[id]||(st.marks[id]={v:0,i:0,f:0,note:""});
+function toast(t){const el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("on"),2200)}
+function applyFs(){document.documentElement.style.setProperty("--fs",st.fs+"px")}
+function renderTabs(){
+ $("tabs").innerHTML=DATA.routes.map(r=>{const done=r.stops.filter(s=>(st.marks[s.id]||{}).v).length;
+  return `<button class="tab" data-r="${r.num}" aria-pressed="${r.num===st.route}">Ruta ${r.num}<small>${done}/${r.stops.length}</small></button>`}).join("");
+ $("filters").querySelectorAll(".f").forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===st.filter));
+}
+function render(){
+ renderTabs();
+ const r=DATA.routes.find(x=>x.num===st.route);
+ const done=r.stops.filter(s=>(st.marks[s.id]||{}).v).length;
+ let list=r.stops.map((s,i)=>({s,i}));
+ if(st.filter==="todo")list=list.filter(o=>!(st.marks[o.s.id]||{}).v);
+ if(st.filter==="fu")list=list.filter(o=>(st.marks[o.s.id]||{}).f);
+ const cards=list.map(({s,i})=>{const m=st.marks[s.id]||{};const ty=DATA.types[s.t];
+  return `<div class="card ${m.v?"done":""}" data-id="${s.id}">
+   <div class="ch"><div class="n">${m.v?"✓":i+1}</div><div style="flex:1;min-width:0">
+    <div class="nm">${esc(s.n)}</div><span class="tag" style="background:${ty.c}">${ty.es.toUpperCase()}</span>
+    <div class="ad">${esc(s.a)}</div><div class="pi">→ ${esc(s.p)}</div></div></div>
+   <div class="pr"><span class="free">AÑO 1 GRATIS · YEAR 1 FREE</span>
+    <div class="pl">${esc(s.plan)}</div>
+    <div><span class="now">${s.now}</span><s>${s.reg}</s></div>
+    <div class="mo">${s.mo} desde año 2 · + IVA</div>
+    ${s.basic?`<div class="bs">Básico: Menú QR $3,900 · luego $490/mes</div>`:""}</div>
+   <div class="acts">
+    <button class="a v ${m.v?"on":""}" data-k="v"><b>✓</b>Visité<small>Visited</small></button>
+    <button class="a i ${m.i?"on":""}" data-k="i"><b>★</b>Le gustó<small>Interested</small></button>
+    <button class="a f ${m.f?"on":""}" data-k="f"><b>↻</b>Volver<small>Follow up</small></button>
+   </div>
+   <textarea data-note placeholder="Notas: nombre del dueño, cuándo volver…">${esc(m.note||"")}</textarea>
+   <button class="go" data-go="${s.id}">📍 Cómo llegar (necesita internet) · Directions</button>
+  </div>`}).join("");
+ $("main").innerHTML=`<div class="head"><h1>Ruta ${r.num} · <span>${esc(r.title)}</span></h1><p>${esc(r.span)} · ${r.stops.length} visitas</p></div>
+  <div class="prog"><i style="width:${Math.round(done/r.stops.length*100)}%"></i></div><div class="progt">${done} de ${r.stops.length} visitados · visited</div>
+  <div class="info">${esc(r.desc)}<br><b>Cuándo:</b> lun–jue, 3:30–6 pm · <b>Pide:</b> dueño o gerente<br><b>Lleva:</b> ${esc(r.bring)}</div>
+  <button class="promo" id="promoBtn">−20% instalación hasta 15 dic · Año 1 soporte GRATIS<span>Toca para ver todos los precios · Tap for all prices</span></button>
+  ${cards||`<div class="empty">Nada aquí todavía · Nothing here yet</div>`}
+  <button class="share" id="share">📤 Enviar resumen del día · Send today's summary</button>
+  <div class="foot">Tus marcas se guardan solo en este teléfono · Your marks stay on this phone</div>`;
+}
+function showPrices(){
+ $("sheetBox").innerHTML=`<h2>Precios de temporada</h2><p>MXN + IVA · −20% instalación hasta 15 dic · Año 1: soporte, cambios y hosting gratis · Plan desde año 2</p>
+ ${DATA.plans.map(p=>`<div class="pl-row"><b>${esc(p.n)}</b><div class="r"><strong>${p.now}</strong> <s>${p.reg}</s><small>${p.mo} desde año 2</small></div></div>`).join("")}
+ <button class="close" id="closeSheet">Cerrar · Close</button>`;
+ $("sheet").classList.add("on");
+}
+function summary(){
+ const lines=["MX Studio ✝ · Resumen de rutas · "+new Date().toLocaleDateString("es-MX")];
+ DATA.routes.forEach(r=>{const items=r.stops.filter(s=>{const m=st.marks[s.id];return m&&(m.v||m.i||m.f||m.note)});
+  if(!items.length)return;lines.push("","Ruta "+r.num+" · "+r.title);
+  items.forEach(s=>{const m=st.marks[s.id];const f=[m.v?"✓ visité":"",m.i?"★ le gustó":"",m.f?"↻ volver":""].filter(Boolean).join(", ");
+   lines.push("• "+s.n+(f?" — "+f:"")+(m.note?"\n   "+m.note:""))})});
+ return lines.length>1?lines.join("\n"):"Sin visitas marcadas todavía.";
+}
+$("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;st.route=+b.dataset.r;save();render();scrollTo({top:0})};
+$("filters").onclick=e=>{const b=e.target.closest(".f");if(!b)return;st.filter=b.dataset.f;save();render()};
+$("bigger").onclick=()=>{st.fs=Math.min(28,st.fs+2);applyFs();save()};
+$("smaller").onclick=()=>{st.fs=Math.max(15,st.fs-2);applyFs();save()};
+$("prices").onclick=showPrices;
+$("sheet").onclick=e=>{if(e.target.id==="sheet"||e.target.id==="closeSheet")$("sheet").classList.remove("on")};
+$("main").addEventListener("click",async e=>{
+ if(e.target.closest("#promoBtn"))return showPrices();
+ const go=e.target.closest("[data-go]");if(go){if(!navigator.onLine){toast("Sin internet: usa el número de la lista · No signal");return}
+  const s=DATA.routes.flatMap(r=>r.stops).find(x=>x.id===go.dataset.go);open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(s.n+" Acapulco")+"&query_place_id="+s.id,"_blank");return}
+ if(e.target.closest("#share")){const t=summary();
+  try{if(navigator.share){await navigator.share({text:t});return}}catch(_){return}
+  try{await navigator.clipboard.writeText(t);toast("Resumen copiado · Copied")}catch(_){toast("No se pudo copiar")};return}
+ const a=e.target.closest(".a");if(!a)return;const id=a.closest(".card").dataset.id,m=mk(id);m[a.dataset.k]=m[a.dataset.k]?0:1;
+ if(a.dataset.k!=="v"&&m[a.dataset.k])m.v=1;save();
+ const y=scrollY;render();scrollTo({top:y});
+});
+$("main").addEventListener("input",e=>{if(!e.target.matches("[data-note]"))return;const id=e.target.closest(".card").dataset.id;mk(id).note=e.target.value;save()});
+const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
+applyFs();render();
+if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>
