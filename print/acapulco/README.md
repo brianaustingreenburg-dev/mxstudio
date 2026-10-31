@@ -17,3 +17,5 @@ All QR codes were scan-tested before saving (Oct 30, 2026).
 **Oct 30, 2026:** QR codes moved from myjefetech.app/acapulco to **mxstudio-acapulco.netlify.app** (the JefeTech domain was opening the contractor app). Re-tested all 21 QR codes.
 
 **Oct 30, 2026 (later):** final address is **go.myjefetech.app/acapulco** (published by GitHub Pages with the other apps). All 21 QR codes re-tested.
+
+| `MX-Studio-Lock-Screen-iPhone.png` / `-Android.png` | Brian's lock screen wallpaper | Left QR → https://go.myjefetech.app/acapulco/ · Right QR → WhatsApp +52 744 193 0502 |
