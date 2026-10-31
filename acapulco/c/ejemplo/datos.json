@@ -1,0 +1,120 @@
+{
+ "slug": "ejemplo",
+ "name": "Mariscos La Bahía",
+ "tagline": {
+  "es": "Mariscos frescos frente a la bahía · Ejemplo",
+  "en": "Fresh seafood on the bay · Sample"
+ },
+ "color": "#b5642f",
+ "logo": "",
+ "cover": "",
+ "whatsapp": "527441930502",
+ "phone": "527441930502",
+ "address": "Av. Costera Miguel Alemán, Acapulco (ejemplo)",
+ "map": "",
+ "hours": {
+  "es": "Lun–Dom · 1:00–10:00 pm",
+  "en": "Mon–Sun · 1:00–10:00 pm"
+ },
+ "reservations": true,
+ "carryout": true,
+ "delivery": true,
+ "menu": [
+  {
+   "cat": {
+    "es": "Ceviches",
+    "en": "Ceviches"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Limón, cebolla morada, cilantro",
+      "en": "Lime, red onion, cilantro"
+     },
+     "price": "180",
+     "img": ""
+    },
+    {
+     "name": {
+      "es": "Aguachile de camarón",
+      "en": "Shrimp aguachile"
+     },
+     "desc": {
+      "es": "Verde o negro",
+      "en": "Green or black"
+     },
+     "price": "220",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Rojo y verde, para 2",
+      "en": "Red & green, for 2"
+     },
+     "price": "420",
+     "img": ""
+    },
+    {
+     "name": {
+      "es": "Tacos de pescado",
+      "en": "Fish tacos"
+     },
+     "desc": {
+      "es": "Tres tacos estilo Baja",
+      "en": "Three Baja-style tacos"
+     },
+     "price": "150",
+     "img": ""
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Coconut water"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "70",
+     "img": ""
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón o mango",
+      "en": "Lime or mango"
+     },
+     "price": "120",
+     "img": ""
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Crear app · MX Studio ✝️</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Crear app">
+<style>
+:root{--bg:#000;--s1:#121012;--s2:#1c1719;--line:rgba(232,196,140,.2);--gold:#e8c48c;--gold2:#d9a35f;--sun:#e0703a;--text:#f6ece0;--muted:#b9aaa0;--green:#25d366;--red:#ff6b5b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.35;padding-bottom:calc(90px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+button,input,textarea,select{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:calc(10px + env(safe-area-inset-top)) 14px 8px;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:8px}
+.brand{flex:1;font-weight:800;font-size:18px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{display:block;font-size:10px;letter-spacing:.18em;color:var(--sun)}
+.lang{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:7px 12px;border-radius:999px;color:var(--muted)}
+.lang button[aria-pressed=true]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px}
+.tab{all:unset;cursor:pointer;text-align:center;padding:8px 2px;border-radius:12px;font-weight:800;font-size:11.5px;color:var(--muted);line-height:1.15}
+.tab i{display:block;font-style:normal;font-size:19px;margin-bottom:1px}
+.tab[aria-pressed=true]{background:var(--s2);color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold2)}
+.wrap{max-width:620px;margin:0 auto;padding:14px}
+h2{font-size:22px;margin:4px 0 4px}
+.hint{color:var(--muted);font-size:14px;margin-bottom:12px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:10px 0 5px}
+label:first-child{margin-top:0}
+input[type=text],input[type=tel],input[type=url],input[type=number],textarea,select{width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:#0a0809;font-size:16px}
+textarea{min-height:70px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.sw:last-child{border-bottom:none}
+.sw b{font-size:15.5px}
+.sw small{display:block;color:var(--muted);font-size:12.5px;font-weight:500}
+.tog{all:unset;cursor:pointer;width:54px;height:32px;border-radius:99px;background:#3a3133;position:relative;flex:0 0 auto;transition:background .2s}
+.tog:after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:transform .2s}
+.tog[aria-pressed=true]{background:var(--green)}
+.tog[aria-pressed=true]:after{transform:translateX(22px)}
+.colors{display:flex;gap:8px;flex-wrap:wrap}
+.colors button{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;border:3px solid transparent}
+.colors button.on{border-color:#fff}
+.colors input{width:38px;height:38px;border:none;background:none;padding:0}
+.img{display:flex;gap:12px;align-items:center}
+.img .th{width:72px;height:72px;border-radius:14px;background:var(--s2) center/cover no-repeat;border:1px dashed var(--line);flex:0 0 auto;display:grid;place-items:center;color:var(--muted);font-size:24px}
+.img .th.wide{width:120px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-block;text-align:center;padding:12px 14px;border-radius:13px;font-weight:800;font-size:14.5px;background:var(--s2);border:1px solid var(--line)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border:none}
+.btn.green{background:var(--green);color:#05301a;border:none}
+.btn.red{color:var(--red)}
+.btn.full{display:block;width:100%}
+.btn.sm{padding:8px 10px;font-size:13px}
+.cat{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:12px;margin-bottom:14px}
+.cath{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.cath .num{font-weight:800;color:var(--gold);font-size:13px;letter-spacing:.1em}
+.item{background:#0a0809;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;overflow:hidden}
+.ih{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:10px;align-items:center;width:100%;padding:10px}
+.ih .th{width:44px;height:44px;border-radius:10px;background:var(--s2) center/cover no-repeat;flex:0 0 auto;display:grid;place-items:center;font-size:18px;color:var(--muted)}
+.ih b{flex:1;min-width:0;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ih span{font-weight:800;color:var(--gold)}
+.ib{padding:0 10px 12px}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.quick textarea{min-height:90px;font-size:14px}
+.preview{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#fff;height:72vh}
+.preview iframe{width:100%;height:100%;border:0}
+.status{padding:12px;border-radius:12px;background:var(--s2);font-size:14px;margin-top:10px;white-space:pre-line}
+.status.ok{background:rgba(37,211,102,.12);color:#8ff0b6}
+.status.err{background:rgba(255,107,91,.12);color:#ffb0a6}
+.qr{background:#fff;border-radius:16px;padding:12px;width:240px;margin:12px auto;display:block}
+.qr canvas,.qr img{width:100%;display:block}
+.link{word-break:break-all;font-weight:700;color:var(--gold)}
+.list .li{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.list .li b{flex:1;min-width:0}
+.list .li small{display:block;color:var(--muted);font-weight:500;font-size:12.5px}
+.os{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 10px}
+.os button{all:unset;cursor:pointer;text-align:center;padding:11px;border-radius:12px;border:1px solid var(--line);font-weight:800}
+.os button.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border-color:transparent}
+ol.steps{padding-left:22px;display:grid;gap:7px;font-size:15px}
+ol.steps li::marker{color:var(--gold);font-weight:800}
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:9;background:rgba(10,8,9,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+.foot .in{max-width:620px;margin:0 auto;display:flex;gap:8px}
+.foot .btn{flex:1}
+.saved{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+.toast{position:fixed;left:50%;top:calc(110px + env(safe-area-inset-top));transform:translate(-50%,-10px);opacity:0;background:var(--s2);border:1px solid var(--gold2);padding:11px 15px;border-radius:13px;font-weight:700;font-size:14px;transition:.25s;z-index:30;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="bar">
+    <div class="brand"><small>MX STUDIO ✝</small><span id="curName"></span></div>
+    <div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+<main class="wrap" id="main"></main>
+<div class="foot"><div class="in" id="foot"></div></div>
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" async></script>
+<script>
+const OWNER="brianaustingreenburg-dev",REPO="mxstudio",BRANCH="main",SITE="https://go.myjefetech.app/acapulco/c/";
+const COLORS=["#b5642f","#1f5e7a","#2d7a5f","#4a2a6a","#b03a48","#c48a1a","#1d1715","#d2691e"];
+const L={
+ es:{tabs:[["🏪","Negocio"],["📖","Menú"],["👀","Vista"],["🚀","Publicar"],["⚙️","Ajustes"]],
+  newApp:"Nueva app",myApps:"Mis apps",bizH:"Datos del negocio",bizHint:"Solo llena lo que tengas. Todo se guarda solo en este teléfono.",
+  name:"Nombre del negocio",slug:"Dirección web (se crea sola)",tagEs:"Frase corta (español)",tagEn:"Frase corta (inglés, opcional)",color:"Color",logo:"Logo",cover:"Foto de portada",pick:"Elegir foto",remove:"Quitar",
+  contactH:"Contacto",wa:"WhatsApp del negocio (10 dígitos)",phone:"Teléfono para llamar (opcional)",addr:"Dirección",map:"Link de Google Maps (opcional)",hEs:"Horario (español)",hEn:"Horario (inglés, opcional)",
+  optsH:"Botones de la app",res:"Reservas",resS:"Reservar mesa por WhatsApp",carry:"Para llevar",carryS:"Carrito con el menú → pedido por WhatsApp",deliv:"A domicilio",delivS:"Opción de entrega a domicilio",
+  menuH:"Menú",menuHint:"Agrega categorías y platillos. Toca un platillo para editarlo.",cat:"CATEGORÍA",catEs:"Nombre (español)",catEn:"Nombre (inglés)",
+  addItem:"+ Platillo",addCat:"+ Agregar categoría",delCat:"Borrar categoría",itEs:"Nombre (español)",itEn:"Nombre (inglés)",dEs:"Descripción (español)",dEn:"Descripción (inglés)",price:"Precio ($)",photo:"Foto",
+  up:"↑ Subir",down:"↓ Bajar",del:"Borrar",quickH:"Agregar rápido",quickHint:"Un platillo por línea: Nombre | Name in English | Precio",quickBtn:"Agregar estos platillos",newItem:"Platillo nuevo",
+  prevH:"Vista previa",prevHint:"Así la verán los clientes. Prueba los botones.",refresh:"Actualizar vista",
+  pubH:"Publicar",pubHint:"Sube la app a internet. Tarda unos 5–10 minutos en aparecer.",pubBtn:"🚀 Publicar app",needKey:"Primero conecta GitHub en Ajustes (una sola vez).",needName:"Falta el nombre del negocio.",needWa:"Falta el WhatsApp (10 dígitos).",needMenu:"Agrega al menos un platillo.",
+  pubbing:"Publicando…",pubOk:"¡Publicada! Estará en línea en unos 5–10 minutos.",pubErr:"No se pudo publicar: ",link:"Link de la app",dlQr:"Descargar QR",copy:"Copiar link",open:"Abrir app",copied:"Link copiado",
+  setH:"Ajustes",keyH:"Conectar GitHub (una vez)",keyHint:"Esto permite publicar apps desde tu teléfono.",key:"Clave de GitHub (token)",save:"Guardar",test:"Probar",keyOk:"✓ Conectado a GitHub",keyBad:"✗ La clave no funciona: ",keySaved:"Clave guardada en este teléfono",
+  keySteps:["En tu computadora o teléfono, entra a <b>github.com</b> con tu cuenta.","Abre <b>github.com/settings/personal-access-tokens/new</b>.","Nombre: <b>Crear app MX Studio</b>. Vencimiento: 1 año.","Repository access → <b>Only select repositories</b> → <b>mxstudio</b>.","Permissions → Repository → <b>Contents: Read and write</b>.","Toca <b>Generate token</b>, cópialo y pégalo aquí."],
+  instH:"Instalar esta app en tu teléfono",instHint:"Ábrela desde tu pantalla de inicio, también sin internet.",
+  ios:["Abre esta página en <b>Safari</b>.","Toca <b>Compartir</b> (cuadro con flecha ↑).","Elige <b>Agregar a inicio</b> → <b>Agregar</b>.","Ábrela una vez desde el ícono con WiFi."],
+  and:["Abre esta página en <b>Chrome</b>.","Toca el menú <b>⋮</b> (arriba a la derecha).","Elige <b>Instalar app</b> o <b>Agregar a pantalla principal</b>.","Ábrela una vez desde el ícono con WiFi."],
+  appsH:"Mis apps",appsHint:"Borradores en este teléfono y apps publicadas.",drafts:"Borradores",published:"Publicadas",edit:"Editar",none:"Ninguna todavía",loadPub:"Cargar apps publicadas",loading:"Cargando…",
+  delDraft:"Borrar borrador",confirmDel:"¿Borrar este borrador del teléfono?",autosave:"Guardado automático en este teléfono",untitled:"Sin nombre",exists:"Ya existe una app con esta dirección. Al publicar se va a actualizar.",
+  offline:"Sin internet: puedes editar, pero para publicar necesitas señal."},
+ en:{tabs:[["🏪","Business"],["📖","Menu"],["👀","Preview"],["🚀","Publish"],["⚙️","Setup"]],
+  newApp:"New app",myApps:"My apps",bizH:"Business info",bizHint:"Fill in what you have. Everything saves on this phone automatically.",
+  name:"Business name",slug:"Web address (made for you)",tagEs:"Short line (Spanish)",tagEn:"Short line (English, optional)",color:"Color",logo:"Logo",cover:"Cover photo",pick:"Choose photo",remove:"Remove",
+  contactH:"Contact",wa:"Business WhatsApp (10 digits)",phone:"Phone to call (optional)",addr:"Address",map:"Google Maps link (optional)",hEs:"Hours (Spanish)",hEn:"Hours (English, optional)",
+  optsH:"App buttons",res:"Reservations",resS:"Book a table on WhatsApp",carry:"Carry-out",carryS:"Cart from the menu → order on WhatsApp",deliv:"Delivery",delivS:"Home delivery option",
+  menuH:"Menu",menuHint:"Add categories and dishes. Tap a dish to edit it.",cat:"CATEGORY",catEs:"Name (Spanish)",catEn:"Name (English)",
+  addItem:"+ Dish",addCat:"+ Add category",delCat:"Delete category",itEs:"Name (Spanish)",itEn:"Name (English)",dEs:"Description (Spanish)",dEn:"Description (English)",price:"Price ($)",photo:"Photo",
+  up:"↑ Up",down:"↓ Down",del:"Delete",quickH:"Quick add",quickHint:"One dish per line: Nombre | English name | Price",quickBtn:"Add these dishes",newItem:"New dish",
+  prevH:"Preview",prevHint:"This is what customers will see. Try the buttons.",refresh:"Refresh preview",
+  pubH:"Publish",pubHint:"Puts the app online. It takes about 5–10 minutes to appear.",pubBtn:"🚀 Publish app",needKey:"First connect GitHub in Setup (one time).",needName:"The business name is missing.",needWa:"The WhatsApp number is missing (10 digits).",needMenu:"Add at least one dish.",
+  pubbing:"Publishing…",pubOk:"Published! It'll be online in about 5–10 minutes.",pubErr:"Couldn't publish: ",link:"App link",dlQr:"Download QR",copy:"Copy link",open:"Open app",copied:"Link copied",
+  setH:"Setup",keyH:"Connect GitHub (one time)",keyHint:"This lets you publish apps from your phone.",key:"GitHub key (token)",save:"Save",test:"Test",keyOk:"✓ Connected to GitHub",keyBad:"✗ The key doesn't work: ",keySaved:"Key saved on this phone",
+  keySteps:["On your computer or phone, sign in at <b>github.com</b>.","Open <b>github.com/settings/personal-access-tokens/new</b>.","Name: <b>Crear app MX Studio</b>. Expiration: 1 year.","Repository access → <b>Only select repositories</b> → <b>mxstudio</b>.","Permissions → Repository → <b>Contents: Read and write</b>.","Tap <b>Generate token</b>, copy it and paste it here."],
+  instH:"Install this app on your phone",instHint:"Open it from your home screen, even offline.",
+  ios:["Open this page in <b>Safari</b>.","Tap <b>Share</b> (square with ↑ arrow).","Choose <b>Add to Home Screen</b> → <b>Add</b>.","Open it once from the icon while on WiFi."],
+  and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>.","Open it once from the icon while on WiFi."],
+  appsH:"My apps",appsHint:"Drafts on this phone and published apps.",drafts:"Drafts",published:"Published",edit:"Edit",none:"None yet",loadPub:"Load published apps",loading:"Loading…",
+  delDraft:"Delete draft",confirmDel:"Delete this draft from the phone?",autosave:"Autosaved on this phone",untitled:"Untitled",exists:"An app with this address already exists. Publishing will update it.",
+  offline:"Offline: you can edit, but you need signal to publish."}
+};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let lang="es",tab=0,os=/android/i.test(navigator.userAgent)?"and":"ios",open1=null,lastPub=null,pubList=null;
+try{lang=localStorage.getItem("crear-lang")||"es"}catch(e){}
+const T=()=>L[lang];
+function toast(t){const el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("on"),2500)}
+/* ---------- storage (IndexedDB for drafts with photos) ---------- */
+const db=new Promise((res,rej)=>{const r=indexedDB.open("mx-crear",1);r.onupgradeneeded=()=>r.result.createObjectStore("drafts");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const idb=(mode,fn)=>db.then(d=>new Promise((res,rej)=>{const t=d.transaction("drafts",mode),s=t.objectStore("drafts");const q=fn(s);t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)}));
+const putDraft=d=>idb("readwrite",s=>s.put(d,d.id));
+const getDraft=id=>idb("readonly",s=>s.get(id));
+const allDrafts=()=>idb("readonly",s=>s.getAll());
+const delDraft=id=>idb("readwrite",s=>s.delete(id));
+const blank=()=>({id:"d"+Date.now(),slug:"",name:"",tagline:{es:"",en:""},color:COLORS[0],logo:"",cover:"",whatsapp:"",phone:"",address:"",map:"",hours:{es:"",en:""},reservations:true,carryout:true,delivery:false,
+ menu:[{cat:{es:"Platillos",en:"Dishes"},items:[]}],updated:Date.now(),publishedSlug:""});
+let D=null;
+let saveT=null;const save=()=>{if(!D)return;D.updated=Date.now();clearTimeout(saveT);saveT=setTimeout(()=>putDraft(D).catch(()=>toast("⚠️ No se pudo guardar")),300)};
+const slugify=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40);
+const getKey=()=>{try{return localStorage.getItem("crear-gh")||""}catch(e){return ""}};
+/* ---------- images ---------- */
+function readImg(file,max){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.82))};im.onerror=rej;im.src=fr.result};fr.onerror=rej;fr.readAsDataURL(file)})}
+function pickImg(max){return new Promise(res=>{const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=async()=>{if(!i.files[0])return res(null);try{res(await readImg(i.files[0],max))}catch(e){toast("⚠️ Foto no válida");res(null)}};i.click()})}
+const imgSrc=v=>!v?"":v.startsWith("data:")?v:(D.publishedSlug?"../c/"+D.publishedSlug+"/"+v:v);
+/* ---------- render ---------- */
+function renderTop(){
+ $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("tabs").innerHTML=T().tabs.map((t,i)=>`<button class="tab" data-tab="${i}" aria-pressed="${i===tab}"><i>${t[0]}</i>${t[1]}</button>`).join("");
+ $("curName").textContent=D?(D.name||T().untitled):T().myApps;
+}
+function field(lbl,path,type="text",ph=""){const v=path.split(".").reduce((o,k)=>o&&o[k],D);return `<label>${lbl}</label><input type="${type}" data-p="${path}" value="${esc(v||"")}" placeholder="${esc(ph)}">`}
+function area(lbl,path){const v=path.split(".").reduce((o,k)=>o&&o[k],D);return `<label>${lbl}</label><textarea data-p="${path}">${esc(v||"")}</textarea>`}
+function tog(lbl,sub,key){return `<div class="sw"><div><b>${lbl}</b><small>${sub}</small></div><button class="tog" data-tog="${key}" aria-pressed="${!!D[key]}"></button></div>`}
+function imgPick(lbl,key,wide){const v=D[key];return `<label>${lbl}</label><div class="img"><div class="th ${wide?"wide":""}" style="${v?`background-image:url('${imgSrc(v)}')`:""}">${v?"":"📷"}</div><div class="row" style="margin:0"><button class="btn sm" data-img="${key}">${T().pick}</button>${v?`<button class="btn sm red" data-rmimg="${key}">${T().remove}</button>`:""}</div></div>`}
+function pBiz(){const t=T();
+ return `<h2>${t.bizH}</h2><p class="hint">${t.bizHint}</p>
+ <div class="card">${field(t.name,"name","text","Mariscos La Bahía")}<label>${t.slug}</label><input type="text" data-p="slug" value="${esc(D.slug)}" placeholder="mariscos-la-bahia"><div class="hint" style="margin:6px 0 0;font-size:12.5px">${SITE}<b>${esc(D.slug||"…")}</b>/</div>
+ ${field(t.tagEs,"tagline.es","text","Mariscos frescos frente a la bahía")}${field(t.tagEn,"tagline.en","text","Fresh seafood on the bay")}
+ <label>${t.color}</label><div class="colors">${COLORS.map(c=>`<button data-color="${c}" class="${D.color===c?"on":""}" style="background:${c}"></button>`).join("")}<input type="color" data-p="color" value="${esc(D.color)}"></div>
+ ${imgPick(t.logo,"logo")}${imgPick(t.cover,"cover",1)}</div>
+ <h2>${t.contactH}</h2><div class="card">${field(t.wa,"whatsapp","tel","744 123 4567")}${field(t.phone,"phone","tel","")}${field(t.addr,"address","text","Av. Costera Miguel Alemán 123")}${field(t.map,"map","url","https://maps.app.goo.gl/…")}
+ <div class="two"><div>${field(t.hEs,"hours.es","text","Lun–Dom 1–10 pm")}</div><div>${field(t.hEn,"hours.en","text","Mon–Sun 1–10 pm")}</div></div></div>
+ <h2>${t.optsH}</h2><div class="card">${tog(t.res,t.resS,"reservations")}${tog(t.carry,t.carryS,"carryout")}${tog(t.deliv,t.delivS,"delivery")}</div>
+ <p class="saved">💾 ${t.autosave}</p>`}
+function pMenu(){const t=T();
+ return `<h2>${t.menuH}</h2><p class="hint">${t.menuHint}</p>`+D.menu.map((c,ci)=>`<div class="cat"><div class="cath"><span class="num">${t.cat} ${ci+1}</span></div>
+  <div class="two"><div>${field(t.catEs,`menu.${ci}.cat.es`)}</div><div>${field(t.catEn,`menu.${ci}.cat.en`)}</div></div>
+  <div style="margin-top:10px">${c.items.map((it,ii)=>{const k=ci+"-"+ii,isO=open1===k;
+   return `<div class="item"><button class="ih" data-open="${k}"><div class="th" style="${it.img?`background-image:url('${imgSrc(it.img)}')`:""}">${it.img?"":"🍽️"}</div><b>${esc(it.name.es||t.newItem)}</b><span>${it.price?"$"+esc(it.price):""}</span></button>
+   ${isO?`<div class="ib"><div class="two"><div>${field(t.itEs,`menu.${ci}.items.${ii}.name.es`)}</div><div>${field(t.itEn,`menu.${ci}.items.${ii}.name.en`)}</div></div>
+   <div class="two"><div>${field(t.dEs,`menu.${ci}.items.${ii}.desc.es`)}</div><div>${field(t.dEn,`menu.${ci}.items.${ii}.desc.en`)}</div></div>
+   ${field(t.price,`menu.${ci}.items.${ii}.price`,"number","180")}
+   <label>${t.photo}</label><div class="row" style="margin-top:0"><button class="btn sm" data-iimg="${k}">${t.pick}</button>${it.img?`<button class="btn sm red" data-irm="${k}">${t.remove}</button>`:""}</div>
+   <div class="row"><button class="btn sm" data-mv="${k}|-1">${t.up}</button><button class="btn sm" data-mv="${k}|1">${t.down}</button><button class="btn sm red" data-idel="${k}">${t.del}</button></div></div>`:""}</div>`}).join("")}</div>
+  <div class="row"><button class="btn gold sm" data-additem="${ci}">${t.addItem}</button>${D.menu.length>1?`<button class="btn sm red" data-delcat="${ci}">${t.delCat}</button>`:""}</div>
+  <details class="quick" style="margin-top:10px"><summary style="cursor:pointer;color:var(--muted);font-weight:700;font-size:14px">⚡ ${t.quickH}</summary><p class="hint" style="margin:6px 0">${t.quickHint}</p><textarea id="q${ci}" placeholder="Ceviche de pescado | Fish ceviche | 180&#10;Tacos de pescado | Fish tacos | 150"></textarea><button class="btn sm" style="margin-top:6px" data-quick="${ci}">${t.quickBtn}</button></details>
+ </div>`).join("")+`<button class="btn full" data-addcat="1">${t.addCat}</button><p class="saved">💾 ${t.autosave}</p>`}
+function pPrev(){const t=T();return `<h2>${t.prevH}</h2><p class="hint">${t.prevHint}</p><div class="preview"><iframe id="pf" title="preview"></iframe></div>`}
+function pPub(){const t=T();const key=getKey();const exists=pubList&&D.slug&&pubList.includes(D.slug);
+ return `<h2>${t.pubH}</h2><p class="hint">${t.pubHint}</p>
+ ${!navigator.onLine?`<div class="status err">${t.offline}</div>`:""}
+ ${!key?`<div class="status err">${t.needKey}</div>`:""}
+ <div class="card"><div class="hint" style="margin:0">${t.link}</div><div class="link">${SITE}${esc(D.slug||"…")}/</div>${exists?`<div class="status">${t.exists}</div>`:""}</div>
+ <button class="btn gold full" data-publish="1" ${!key?"disabled":""}>${t.pubBtn}</button><div id="pubStatus"></div>
+ ${lastPub&&lastPub.slug===D.slug?pubResult():""}`}
+function pubResult(){const t=T(),u=SITE+D.slug+"/";
+ return `<div class="card" style="margin-top:12px;text-align:center"><div class="status ok" style="margin:0 0 8px">${t.pubOk}</div><div class="link">${u}</div><div class="qr" id="qrBox"></div>
+ <div class="row" style="justify-content:center"><button class="btn sm" data-dlqr="1">${t.dlQr}</button><button class="btn sm" data-copy="${u}">${t.copy}</button><a class="btn sm" href="${u}" target="_blank" rel="noopener">${t.open}</a></div></div>`}
+function pSet(){const t=T(),key=getKey();
+ return `<h2>${t.appsH}</h2><p class="hint">${t.appsHint}</p><div class="card list" id="appList">${t.loading}</div>
+ <div class="row" style="margin:-4px 0 14px"><button class="btn gold sm" data-new="1">＋ ${t.newApp}</button><button class="btn sm" data-loadpub="1">${t.loadPub}</button></div>
+ <h2>${t.instH}</h2><p class="hint">${t.instHint}</p><div class="card"><div class="os"><button data-os="ios" class="${os==="ios"?"on":""}">iPhone</button><button data-os="and" class="${os==="and"?"on":""}">Android</button></div><ol class="steps">${t[os].map(s=>`<li>${s}</li>`).join("")}</ol></div>
+ <h2>${t.keyH}</h2><p class="hint">${t.keyHint}</p><div class="card"><ol class="steps">${t.keySteps.map(s=>`<li>${s}</li>`).join("")}</ol>
+ <label>${t.key}</label><input type="text" id="ghKey" value="${esc(key)}" placeholder="github_pat_…" autocomplete="off" autocapitalize="off" spellcheck="false">
+ <div class="row"><button class="btn gold sm" data-savekey="1">${t.save}</button><button class="btn sm" data-testkey="1">${t.test}</button></div><div id="keyStatus"></div></div>`}
+async function fillApps(){const t=T();const el=$("appList");if(!el)return;const ds=(await allDrafts()).sort((a,b)=>b.updated-a.updated);
+ let h=`<div class="hint" style="margin:0 0 4px;font-weight:800">${t.drafts}</div>`+(ds.length?ds.map(d=>`<div class="li"><b>${esc(d.name||t.untitled)}<small>${d.publishedSlug?"🌐 "+esc(d.publishedSlug):"📝"} · ${new Date(d.updated).toLocaleDateString()}</small></b><button class="btn sm" data-edit="${d.id}">${t.edit}</button><button class="btn sm red" data-deld="${d.id}">✕</button></div>`).join(""):`<div class="hint">${t.none}</div>`);
+ if(pubList)h+=`<div class="hint" style="margin:12px 0 4px;font-weight:800">${t.published}</div>`+(pubList.length?pubList.map(s=>`<div class="li"><b>${esc(s)}<small>${SITE}${esc(s)}/</small></b><button class="btn sm" data-editpub="${esc(s)}">${t.edit}</button></div>`).join(""):`<div class="hint">${t.none}</div>`);
+ el.innerHTML=h}
+function renderFoot(){const t=T();$("foot").innerHTML=tab<2?`<button class="btn" data-tab="${tab===0?1:0}">${tab===0?"📖 "+t.tabs[1][1]:"🏪 "+t.tabs[0][1]}</button><button class="btn gold" data-tab="2">👀 ${t.tabs[2][1]}</button>`:tab===2?`<button class="btn" data-tab="1">📖 ${t.tabs[1][1]}</button><button class="btn gold" data-tab="3">🚀 ${t.tabs[3][1]}</button>`:`<button class="btn" data-tab="0">🏪 ${t.tabs[0][1]}</button><button class="btn" data-tab="2">👀 ${t.tabs[2][1]}</button>`}
+function render(){renderTop();if(!D&&tab!==4)tab=4;
+ $("main").innerHTML=[pBiz,pMenu,pPrev,pPub,pSet][tab]();renderFoot();
+ if(tab===2)loadPreview();if(tab===4)fillApps();if(tab===3&&lastPub&&lastPub.slug===D.slug)drawQR()}
+/* ---------- build app from template ---------- */
+let TPL=null;
+async function template(){if(TPL)return TPL;const r=await fetch("../app/plantilla.html",{cache:"no-cache"});if(!r.ok)throw new Error("plantilla "+r.status);TPL=await r.text();return TPL}
+function appData(d,forPub){const o={slug:d.slug,name:d.name.trim(),tagline:d.tagline,color:d.color,logo:d.logo,cover:d.cover,whatsapp:waNum(d.whatsapp),phone:waNum(d.phone||d.whatsapp),address:d.address,map:d.map,hours:d.hours,
+ reservations:d.reservations,carryout:d.carryout,delivery:d.delivery,menu:d.menu.map(c=>({cat:c.cat,items:c.items.map(it=>({name:it.name,desc:it.desc,price:String(it.price||"").replace(/[^0-9.]/g,""),img:it.img}))})).filter(c=>c.items.length)};return o}
+function waNum(v){let n=String(v||"").replace(/\D/g,"");if(n.length===10)n="52"+n;if(n.length===12&&n.startsWith("52"))return n;if(n.startsWith("521")&&n.length===13)return "52"+n.slice(3);return n}
+const escA=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function fill(tpl,d,preview){const icon=d.logo||"../../icon-192.png";let out=tpl.replace("/*__DATA__*/null",JSON.stringify(d).replace(/</g,"\\u003c"));
+ const m={"__TITLE__":d.name,"__DESC__":(d.tagline&&d.tagline.es)||d.name,"__COLOR__":d.color,"__ICON__":icon,"__SHORT__":d.name.slice(0,14)};
+ for(const k in m)out=out.split(k).join(escA(m[k]));
+ if(preview)out=out.replace("<head>",`<head><script>window.__PREVIEW__=true;try{Object.defineProperty(window,"localStorage",{value:{getItem:()=>null,setItem:()=>{}}})}catch(e){}<\/script>${d.slug&&D.publishedSlug?`<base href="${location.origin}/acapulco/c/${D.publishedSlug}/">`:""}`);
+ return out}
+async function loadPreview(){try{const tpl=await template();const d=appData(D);if(!d.menu.length)d.menu=[{cat:{es:"Menú",en:"Menu"},items:[]}];if(!d.name)d.name=T().untitled;$("pf").srcdoc=fill(tpl,d,true)}catch(e){$("pf").srcdoc=`<p style="font-family:sans-serif;padding:20px">${esc(T().offline)}<br>${esc(e.message)}</p>`}}
+/* ---------- GitHub publish (one commit) ---------- */
+async function gh(path,opt={}){const r=await fetch("https://api.github.com/repos/"+OWNER+"/"+REPO+path,Object.assign({},opt,{headers:Object.assign({"Authorization":"Bearer "+getKey(),"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},opt.body?{"Content-Type":"application/json"}:{})}));
+ if(!r.ok){let m=r.status+"";try{m+=" "+(await r.json()).message}catch(e){}throw new Error(m)}return r.status===204?null:r.json()}
+const b64u=s=>btoa(unescape(encodeURIComponent(s)));
+async function sha8(s){const h=await crypto.subtle.digest("SHA-1",new TextEncoder().encode(s));return Array.from(new Uint8Array(h)).slice(0,5).map(b=>b.toString(16).padStart(2,"0")).join("")}
+async function publish(){const t=T(),st=$("pubStatus");const say=(m,c)=>st.innerHTML=`<div class="status ${c||""}">${m}</div>`;
+ if(!D.name.trim())return say(t.needName,"err");if(waNum(D.whatsapp).length<12)return say(t.needWa,"err");if(!D.menu.some(c=>c.items.length))return say(t.needMenu,"err");
+ if(!D.slug)D.slug=slugify(D.name);const slug=D.slug,base="acapulco/c/"+slug+"/";
+ try{say(t.pubbing);
+  const tpl=await template();const d=appData(D,true);const files=[];
+  const conv=async v=>{if(!v||!v.startsWith("data:"))return v;const b=v.split(",")[1];const p="img/"+(await sha8(b))+".jpg";files.push({path:base+p,b64:b});return p};
+  d.logo=await conv(d.logo);d.cover=await conv(d.cover);
+  for(const c of d.menu)for(const it of c.items)it.img=await conv(it.img);
+  files.push({path:base+"index.html",b64:b64u(fill(tpl,d,false))});
+  const icon=d.logo||"../../icon-192.png";
+  files.push({path:base+"manifest.json",b64:b64u(JSON.stringify({name:d.name,short_name:d.name.slice(0,14),start_url:"./",scope:"./",display:"standalone",background_color:"#faf6f0",theme_color:d.color,icons:[{src:icon,sizes:"192x192",type:"image/png"},{src:icon,sizes:"512x512",type:"image/png"}]}))});
+  files.push({path:base+"datos.json",b64:b64u(JSON.stringify(d,null,1))});
+  const ref=await gh("/git/ref/heads/"+BRANCH);const head=ref.object.sha;const com=await gh("/git/commits/"+head);
+  const tree=[];let i=0;for(const f of files){i++;say(`${t.pubbing} ${i}/${files.length}`);const bl=await gh("/git/blobs",{method:"POST",body:JSON.stringify({content:f.b64,encoding:"base64"})});tree.push({path:f.path,mode:"100644",type:"blob",sha:bl.sha})}
+  const nt=await gh("/git/trees",{method:"POST",body:JSON.stringify({base_tree:com.tree.sha,tree})});
+  const nc=await gh("/git/commits",{method:"POST",body:JSON.stringify({message:"App "+d.name+" ✝️ (Crear app)",tree:nt.sha,parents:[head]})});
+  await gh("/git/refs/heads/"+BRANCH,{method:"PATCH",body:JSON.stringify({sha:nc.sha})});
+  // keep the draft's photos as their online paths (smaller draft, same app)
+  D.logo=d.logo;D.cover=d.cover;
+  const flat=d.menu.flatMap(c=>c.items);let k=0;
+  D.menu.forEach(c=>c.items.forEach(it=>{const f=flat[k++];if(f)it.img=f.img}));
+  D.publishedSlug=slug;save();lastPub={slug};if(pubList&&!pubList.includes(slug))pubList.push(slug);st.innerHTML="";render();
+ }catch(e){say(t.pubErr+e.message,"err")}}
+function drawQR(){const box=$("qrBox");if(!box)return;const u=SITE+D.slug+"/";
+ if(!window.qrcode){box.innerHTML=`<div style="color:#000;font-size:13px">QR…</div>`;setTimeout(drawQR,500);return}
+ const q=qrcode(0,"M");q.addData(u);q.make();const n=q.getModuleCount(),s=10,m=4,c=document.createElement("canvas");c.width=c.height=(n+m*2)*s;const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.fillStyle="#000";
+ for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))x.fillRect((k+m)*s,(r+m)*s,s,s);box.innerHTML="";box.appendChild(c)}
+/* ---------- events ---------- */
+function setPath(p,v){const ks=p.split(".");let o=D;for(let i=0;i<ks.length-1;i++)o=o[ks[i]];o[ks[ks.length-1]]=v}
+document.addEventListener("input",e=>{const p=e.target.dataset.p;if(!p||!D)return;let v=e.target.value;
+ if(p==="slug"){v=slugify(v);}
+ setPath(p,v);if(p==="name"&&!D.publishedSlug){D.slug=slugify(v);const s=document.querySelector('[data-p="slug"]');if(s)s.value=D.slug;const h=s&&s.nextElementSibling;if(h)h.innerHTML=SITE+"<b>"+esc(D.slug||"…")+"</b>/";$("curName").textContent=D.name||T().untitled}
+ if(p==="color")document.querySelectorAll("[data-color]").forEach(b=>b.classList.toggle("on",b.dataset.color===v));
+ save()});
+document.addEventListener("click",async e=>{const g=s=>e.target.closest(s);let el;
+ if(el=g("#lang button")){lang=el.dataset.l;try{localStorage.setItem("crear-lang",lang)}catch(_){}render();return}
+ if(el=g("[data-tab]")){if(!D&&+el.dataset.tab!==4){toast(T().newApp+" ↓");tab=4}else tab=+el.dataset.tab;render();scrollTo({top:0});return}
+ if(el=g("[data-os]")){os=el.dataset.os;render();return}
+ if(el=g("[data-tog]")){D[el.dataset.tog]=!D[el.dataset.tog];el.setAttribute("aria-pressed",D[el.dataset.tog]);save();return}
+ if(el=g("[data-color]")){D.color=el.dataset.color;save();render();return}
+ if(el=g("[data-img]")){const k=el.dataset.img;const v=await pickImg(k==="cover"?1400:600);if(v){D[k]=v;save();render()}return}
+ if(el=g("[data-rmimg]")){D[el.dataset.rmimg]="";save();render();return}
+ if(el=g("[data-open]")){open1=open1===el.dataset.open?null:el.dataset.open;render();return}
+ if(el=g("[data-additem]")){const ci=+el.dataset.additem;D.menu[ci].items.push({name:{es:"",en:""},desc:{es:"",en:""},price:"",img:""});open1=ci+"-"+(D.menu[ci].items.length-1);save();render();return}
+ if(el=g("[data-addcat]")){D.menu.push({cat:{es:"",en:""},items:[]});save();render();return}
+ if(el=g("[data-delcat]")){const ci=+el.dataset.delcat;if(confirm(T().delCat+"?")){D.menu.splice(ci,1);save();render()}return}
+ if(el=g("[data-idel]")){const[ci,ii]=el.dataset.idel.split("-").map(Number);D.menu[ci].items.splice(ii,1);open1=null;save();render();return}
+ if(el=g("[data-mv]")){const[k,dir]=el.dataset.mv.split("|");const[ci,ii]=k.split("-").map(Number);const a=D.menu[ci].items,j=ii+(+dir);if(j<0||j>=a.length)return;[a[ii],a[j]]=[a[j],a[ii]];open1=ci+"-"+j;save();render();return}
+ if(el=g("[data-iimg]")){const[ci,ii]=el.dataset.iimg.split("-").map(Number);const v=await pickImg(900);if(v){D.menu[ci].items[ii].img=v;save();render()}return}
+ if(el=g("[data-irm]")){const[ci,ii]=el.dataset.irm.split("-").map(Number);D.menu[ci].items[ii].img="";save();render();return}
+ if(el=g("[data-quick]")){const ci=+el.dataset.quick,ta=$("q"+ci);const lines=ta.value.split("\n").map(s=>s.trim()).filter(Boolean);
+  lines.forEach(l=>{const p=l.split("|").map(s=>s.trim());let es=p[0]||"",en="",pr="";if(p.length>=3){en=p[1];pr=p[2]}else if(p.length===2){if(/^\$?\d/.test(p[1]))pr=p[1];else en=p[1]}else{const m=es.match(/^(.*?)[\s\-–:]+\$?\s*(\d[\d.,]*)$/);if(m){es=m[1];pr=m[2]}}
+   D.menu[ci].items.push({name:{es,en},desc:{es:"",en:""},price:pr.replace(/[^0-9.]/g,""),img:""})});save();render();toast("+"+lines.length);return}
+ if(g("[data-publish]")){publish();return}
+ if(g("[data-dlqr]")){const c=document.querySelector("#qrBox canvas");if(!c)return;const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="QR-"+D.slug+".png";a.click();return}
+ if(el=g("[data-copy]")){try{await navigator.clipboard.writeText(el.dataset.copy);toast(T().copied)}catch(_){toast(el.dataset.copy)}return}
+ if(g("[data-new]")){D=blank();await putDraft(D);lastPub=null;open1=null;tab=0;render();return}
+ if(el=g("[data-edit]")){D=await getDraft(el.dataset.edit);lastPub=null;open1=null;tab=0;render();return}
+ if(el=g("[data-deld]")){if(confirm(T().confirmDel)){await delDraft(el.dataset.deld);if(D&&D.id===el.dataset.deld)D=null;render()}return}
+ if(g("[data-loadpub]")){$("appList").innerHTML=T().loading;try{const r=await gh("/contents/acapulco/c?ref="+BRANCH);pubList=r.filter(x=>x.type==="dir").map(x=>x.name).sort()}catch(err){toast(T().keyBad+err.message);pubList=null}fillApps();return}
+ if(el=g("[data-editpub]")){const s=el.dataset.editpub;try{const r=await fetch("../c/"+s+"/datos.json",{cache:"no-cache"});if(!r.ok)throw new Error(r.status);const d=await r.json();
+  const ds=await allDrafts();const ex=ds.find(x=>x.publishedSlug===s);
+  D=Object.assign(blank(),d,{id:ex?ex.id:"d"+Date.now(),publishedSlug:s,slug:s,whatsapp:String(d.whatsapp||"").replace(/^52/,""),phone:String(d.phone||"").replace(/^52/,"")});
+  D.menu.forEach(c=>c.items.forEach(it=>{it.desc=it.desc||{es:"",en:""};it.name=it.name||{es:"",en:""}}));await putDraft(D);lastPub=null;tab=0;render()}catch(err){toast("⚠️ "+err.message)}return}
+ if(g("[data-savekey]")){try{localStorage.setItem("crear-gh",$("ghKey").value.trim())}catch(_){}toast(T().keySaved);return}
+ if(g("[data-testkey]")){try{localStorage.setItem("crear-gh",$("ghKey").value.trim())}catch(_){}const ks=$("keyStatus");ks.innerHTML=`<div class="status">${T().loading}</div>`;
+  try{const r=await gh("");ks.innerHTML=`<div class="status ok">${T().keyOk} · ${esc(r.full_name)}</div>`}catch(err){ks.innerHTML=`<div class="status err">${T().keyBad}${esc(err.message)}</div>`}return}
+});
+(async()=>{try{const ds=(await allDrafts()).sort((a,b)=>b.updated-a.updated);D=ds[0]||null}catch(e){D=null}if(!D){D=blank();try{await putDraft(D)}catch(e){}}render()})();
+if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>

@@ -23,7 +23,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero{position:relative;min-height:230px;background:var(--c);color:#fff;display:flex;align-items:flex-end;overflow:hidden}
 .hero img.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.05) 35%,rgba(0,0,0,.72))}
-.hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:18px}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:44px}
 .topbar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:0;right:0}
 .topbar .wrap{display:flex;justify-content:flex-end;padding:0 16px}
 .lang{display:flex;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:3px}
@@ -59,7 +59,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(250,246,240,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
 .bar .wrap{padding:0;display:flex;gap:8px}
-.btn{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font-weight:800;font-size:15px;padding:14px 10px;border-radius:15px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font-weight:800;font-size:14px;padding:14px 8px;border-radius:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .b-wa{background:var(--wa);color:#063117}
 .b-c{background:var(--c);color:#fff}
 .sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:20}
@@ -77,6 +77,16 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .acts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:14px}
 .btn.g{background:#f0e6da;color:var(--ink)}
 .empty{color:var(--muted);text-align:center;padding:30px}
+.inst{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:22px}
+.inst h3{font-size:17px;font-weight:800}
+.inst p{color:var(--muted);font-size:13.5px;margin-top:2px}
+.os{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0 10px}
+.os button{all:unset;cursor:pointer;text-align:center;padding:10px;border-radius:12px;border:1.5px solid var(--line);font-weight:800;font-size:14px}
+.os button.on{background:var(--c);border-color:var(--c);color:#fff}
+.steps{list-style:none;counter-reset:s;display:grid;gap:8px}
+.steps li{counter-increment:s;display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
+.steps li:before{content:counter(s);flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f0e6da;color:var(--ink)}
+.ibtn{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;padding:13px;border-radius:14px;background:var(--c);color:#fff;font-weight:800}
 </style>
 </head>
 <body>
@@ -87,6 +97,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
   <div class="info" id="info"></div>
   <nav class="cats" id="cats"></nav>
   <main id="menu"></main>
+  <section class="inst" id="inst"></section>
   <p class="foot">App por MX Studio ✝ · Acapulco</p>
 </div>
 <div class="bar"><div class="wrap" id="bar"></div></div>
@@ -99,20 +110,28 @@ const U={
   rT:"Reservar mesa",people:"Personas",date:"Fecha",rtime:"Hora",rsend:"Enviar reserva por WhatsApp",today:"Hoy",
   mOrder:(n,ls,t,how,extra,notes)=>`Hola ${D.name}, quiero un pedido ${how}:\n${ls}\nTotal: ${t}\nNombre: ${n}${extra}${notes?"\nNotas: "+notes:""}`,
   mRes:(p,d,t,n)=>`Hola ${D.name}, quiero reservar una mesa para ${p} personas el ${d} a las ${t}.\nNombre: ${n}`,
-  howP:"para llevar",howD:"a domicilio",pickT:"\nHora para recoger: ",delA:"\nDirección: "},
+  howP:"para llevar",howD:"a domicilio",pickT:"\nHora para recoger: ",delA:"\nDirección: ",
+  iT:"📲 Guarda esta app en tu teléfono",iP:"Ábrela desde tu pantalla de inicio, incluso sin internet.",iBtn:"Instalar ahora",
+  ios:["Abre esta página en <b>Safari</b>.","Toca el botón <b>Compartir</b> (cuadro con flecha ↑).","Elige <b>Agregar a inicio</b> y toca <b>Agregar</b>."],
+  and:["Abre esta página en <b>Chrome</b>.","Toca el menú <b>⋮</b> (arriba a la derecha).","Elige <b>Instalar app</b> o <b>Agregar a pantalla principal</b>."]},
  en:{res:"Reserve",go:"Directions",call:"Call",hours:"Hours",addr:"Address",menu:"Menu",order:"Carry-out",cart:"Your order",empty:"Add dishes from the menu with the + button",
   name:"Your name",time:"Pickup time",pick:"Pickup",deliv:"Delivery",address:"Delivery address",notes:"Notes (optional)",send:"Send order on WhatsApp",cancel:"Close",total:"Total",
   rT:"Reserve a table",people:"People",date:"Date",rtime:"Time",rsend:"Send reservation on WhatsApp",today:"Today",
   mOrder:(n,ls,t,how,extra,notes)=>`Hi ${D.name}, I'd like to order ${how}:\n${ls}\nTotal: ${t}\nName: ${n}${extra}${notes?"\nNotes: "+notes:""}`,
   mRes:(p,d,t,n)=>`Hi ${D.name}, I'd like to reserve a table for ${p} people on ${d} at ${t}.\nName: ${n}`,
-  howP:"for pickup",howD:"for delivery",pickT:"\nPickup time: ",delA:"\nAddress: "}
+  howP:"for pickup",howD:"for delivery",pickT:"\nPickup time: ",delA:"\nAddress: ",
+  iT:"📲 Save this app to your phone",iP:"Open it from your home screen, even offline.",iBtn:"Install now",
+  ios:["Open this page in <b>Safari</b>.","Tap the <b>Share</b> button (square with ↑ arrow).","Choose <b>Add to Home Screen</b>, then tap <b>Add</b>."],
+  and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>."]}
 };
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tx=o=>!o?"":typeof o==="string"?o:(lang==="en"&&o.en?o.en:(o.es||o.en||""));
 const money=n=>"$"+Number(n||0).toLocaleString("en-US");
 const KEY="app-"+(D.slug||"x");
-let lang="es",cart={},how="p";
+let lang="es",cart={},how="p",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
+const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;os="and";if(typeof render==="function")render()});
 try{lang=localStorage.getItem(KEY+"-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
 const items=()=>D.menu.flatMap((c,ci)=>c.items.map((it,ii)=>Object.assign({id:ci+"-"+ii},it)));
 const wa=t=>`https://api.whatsapp.com/send?phone=${D.whatsapp}&text=${encodeURIComponent(t)}`;
@@ -142,6 +161,9 @@ function render(){
  if(D.reservations)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
  if(!bb.length)bb.push(`<a class="btn b-wa" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener">💬 WhatsApp</a>`);
  $("bar").innerHTML=bb.join("");
+ $("inst").style.display=standalone?"none":"";
+ $("inst").innerHTML=`<h3>${u.iT}</h3><p>${u.iP}</p><div class="os"><button data-os="ios" class="${os==="ios"?"on":""}">iPhone</button><button data-os="and" class="${os==="and"?"on":""}">Android</button></div>
+  <ol class="steps">${u[os].map(s=>`<li><span>${s}</span></li>`).join("")}</ol>${os==="and"&&deferred?`<button class="ibtn" data-inst="1">${u.iBtn}</button>`:""}`;
  document.title=D.name;
 }
 function openCart(){
@@ -164,6 +186,8 @@ function openRes(){
 }
 document.addEventListener("click",e=>{
  const l=e.target.closest("#lang button");if(l){lang=l.dataset.l;try{localStorage.setItem(KEY+"-lang",lang)}catch(_){}render();return}
+ const o=e.target.closest("[data-os]");if(o){os=o.dataset.os;render();return}
+ if(e.target.closest("[data-inst]")&&deferred){deferred.prompt();deferred=null;render();return}
  const c=e.target.closest(".cat");if(c){const el=$("c"+c.dataset.c);if(el)el.scrollIntoView({behavior:"smooth"});return}
  const a=e.target.closest("[data-a]");
  if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="cart")return openCart();cart[k]=(cart[k]||0)+1;render();return}
