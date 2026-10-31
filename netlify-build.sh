@@ -11,6 +11,7 @@ case "$SITE_NAME" in
   mxstudio-daniel)   src=daniel ;;
   mxstudio-cristian) src=cristian ;;
   mxstudio-partners) src=partners-site/public ;;
+  mxstudio-acapulco) src=acapulco; only_site=1 ;;
   deluxe-tartufo-364c6c|family-first) src=family-first; only_site=1 ;;
   *) echo "Unknown site: $SITE_NAME ($URL). Add it to netlify-build.sh"; exit 1 ;;
 esac
