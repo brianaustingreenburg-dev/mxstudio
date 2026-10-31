@@ -1,5 +1,5 @@
 import qrcode
-BASE="https://mxstudio-acapulco.netlify.app"
+BASE="https://go.myjefetech.app/acapulco"
 def qr_svg(url,fill):
     q=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,border=0);q.add_data(url);q.make(fit=True)
     m=q.get_matrix();n=len(m)
