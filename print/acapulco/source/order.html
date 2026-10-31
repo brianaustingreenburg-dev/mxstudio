@@ -1,0 +1,62 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:M;font-weight:500;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(node_modules/@fontsource/montserrat/files/montserrat-latin-800-normal.woff2)}
+@page{size:3.75in 2.25in;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:M,sans-serif}
+.side{width:3.75in;height:2.25in;position:relative;overflow:hidden;page-break-after:always;background:#000;color:#f6ece0}
+.safe{position:absolute;inset:.25in}
+/* front */
+.front .safe{display:flex;align-items:center;gap:.18in}
+.left{flex:1;display:flex;flex-direction:column;gap:.06in}
+.av{width:.42in;height:.42in;border-radius:.1in;background:#b5642f;display:grid;place-items:center;font-weight:800;font-size:12pt;color:#fff}
+.name{font-weight:800;font-size:12.5pt;line-height:1.05}
+.tag{font-weight:700;font-size:6.5pt;letter-spacing:.2em;color:#e0703a;text-transform:uppercase}
+.big{font-weight:800;font-size:9.5pt;color:#e8c48c;margin-top:.02in}
+.chips{display:flex;flex-direction:column;align-items:flex-start;gap:.035in;margin-top:.03in}
+.chip{white-space:nowrap;font-weight:700;font-size:5.2pt;padding:.025in .07in;border-radius:1in;background:#25d366;color:#05301a}
+.chip.g{background:#d98b5f;color:#1a0f0a}
+.qr{background:#fff;border-radius:.1in;padding:.07in;border:.03in solid #d9a35f;text-align:center}
+.qr img{width:1.1in;height:1.1in;display:block}
+.qr span{display:block;font-weight:800;font-size:6pt;color:#000;margin-top:.04in;letter-spacing:.06em}
+/* back */
+.back .safe{display:flex;flex-direction:column;justify-content:space-between}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.07in}
+.st{border:1px solid rgba(232,196,140,.3);border-radius:.08in;padding:.06in .04in;text-align:center}
+.st b{display:grid;place-items:center;width:.2in;height:.2in;border-radius:50%;margin:0 auto .03in;background:linear-gradient(135deg,#e8c48c,#d9a35f);color:#1a0f0a;font-size:7pt}
+.st span{font-weight:700;font-size:6.5pt}
+.st small{display:block;font-weight:500;font-size:5.3pt;color:#b9aaa0}
+.pay{text-align:center}
+.pay .k{font-weight:700;font-size:5.8pt;letter-spacing:.22em;color:#e0703a}
+.pay .v{font-weight:700;font-size:7.5pt;margin-top:.02in}
+.pay .v2{font-weight:500;font-size:6.2pt;color:#b9aaa0;margin-top:.01in}
+.bot{display:flex;justify-content:space-between;align-items:flex-end}
+.bot .wa{font-weight:800;font-size:8.5pt}
+.bot .h{font-weight:500;font-size:6pt;color:#b9aaa0}
+.bot .mx{font-weight:700;font-size:5pt;letter-spacing:.14em;color:#7d7069;text-align:right}
+</style></head><body>
+<section class="side front"><div class="safe">
+ <div class="left">
+  <div class="av">LB</div>
+  <div class="name">Mariscos<br>La Bahía</div>
+  <div class="tag">Mariscos · Seafood</div>
+  <div class="big">Pide por WhatsApp<br><span style="font-size:7pt;color:#b9aaa0;font-weight:600">Order on WhatsApp</span></div>
+  <div class="chips"><span class="chip">Llevar · Pickup</span><span class="chip g">Domicilio · Delivery</span></div>
+ </div>
+ <div class="qr"><img src="qr-order.svg"><span>ESCANEA Y PIDE<br>SCAN TO ORDER</span></div>
+</div></section>
+<section class="side back"><div class="safe">
+ <div class="steps">
+  <div class="st"><b>1</b><span>Escanea</span><small>Scan</small></div>
+  <div class="st"><b>2</b><span>Pide</span><small>Order</small></div>
+  <div class="st"><b>3</b><span>Recibe</span><small>Pickup / delivery</small></div>
+ </div>
+ <div class="pay"><div class="k">ACEPTAMOS · WE ACCEPT</div><div class="v">💳 Tarjeta · 🏦 Transferencia · 💵 Efectivo</div><div class="v2">Card · Bank transfer · Cash</div></div>
+ <div class="bot">
+  <div><div class="wa">+52 744 193 0502</div><div class="h">Lun – Dom · Mon – Sun · 1:00 – 9:00 pm</div></div>
+  <div class="mx">EJEMPLO · SAMPLE<br>MX STUDIO ✝</div>
+ </div>
+</div></section>
+</body></html>
