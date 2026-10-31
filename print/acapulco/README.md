@@ -19,3 +19,10 @@ All QR codes were scan-tested before saving (Oct 30, 2026).
 **Oct 30, 2026 (later):** final address is **go.myjefetech.app/acapulco** (published by GitHub Pages with the other apps). All 21 QR codes re-tested.
 
 | `MX-Studio-Lock-Screen-iPhone.png` / `-Android.png` | Brian's lock screen wallpaper | Left QR → https://go.myjefetech.app/acapulco/ · Right QR → WhatsApp +52 744 193 0502 |
+
+## Save money: more cards per sheet (Oct 31, 2026)
+| File | Sheet | Cards | How to print |
+|---|---|---|---|
+| `MX-Studio-Card-2-por-hoja-CARTA-Letter.pdf` | Letter / Carta 11×8.5 (landscape) | 2 | Doble cara, **voltear por el lado corto** (flip on short edge), 100% size, cut on marks to 5×7 |
+| `MX-Studio-Card-4-por-hoja-TABLOIDE-Tabloid.pdf` | Tabloid / Tabloide 11×17 | 4 | Doble cara, **voltear por el lado largo** (flip on long edge), 100% size, cut on marks to 5×7 |
+Paper: cartulina couché mate 250–300 g. Print one test sheet first and check the back lines up.
