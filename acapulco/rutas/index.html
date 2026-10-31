@@ -125,19 +125,19 @@ const I={
  es:{title:"Mis rutas",off:"SIN INTERNET",fAll:"Todos",fTodo:"Pendientes",fFu:"Volver",route:"Ruta",visits:"visitas",of:"de",visited:"visitados",
   when:"Cuándo:",whenV:"lun–jue, 3:30–6 pm",ask:"Pide:",askV:"dueño o gerente",bring:"Lleva:",
   promo:"$1,999 instalación · $290/mes · cambios ilimitados",promoS:"Toca para ver todos los precios",
-  free:"CAMBIOS ILIMITADOS",openP:"📱 Mostrar precios al cliente",scanP:"O que el dueño escanee para verlo en su teléfono",xS:"Extras sugeridos:",xT:"Extras para su app",xP:"Se agregan cuando el cliente quiera · MXN + IVA",once:"pago único",setup:"instalación",fromY2:"desde año 2 · + IVA",basic:"Básico: Menú QR $3,900 · luego $490/mes",
+  free:"CAMBIOS ILIMITADOS",openP:"📱 Mostrar precios al cliente",scanP:"O que el dueño escanee para verlo en su teléfono",xS:"Extras sugeridos:",xT:"Extras para su app",xP:"Se agregan cuando el cliente quiera · precios finales en MXN",once:"pago único",setup:"instalación",basic:"Básico: Menú QR $3,900 · luego $490/mes",
   v:"Visité",i:"Le gustó",f:"Volver",note:"Notas: nombre del dueño, cuándo volver…",go:"📍 Cómo llegar (necesita internet)",
   empty:"Nada aquí todavía",share:"📤 Enviar resumen del día",foot:"Tus marcas se guardan solo en este teléfono",
-  pT:"Precios",pS:"MXN + IVA · Sin contrato · Incluye soporte 7 días, cambios ilimitados, hosting y dominio propio",y2:"desde año 2",close:"Cerrar",
+  pT:"Precios",pS:"Precios finales en MXN · Sin contrato · Incluye soporte 7 días, cambios ilimitados, hosting y dominio propio",y2:"desde año 2",close:"Cerrar",
   noNet:"Sin internet: abre el mapa cuando tengas señal",copied:"Resumen copiado",noCopy:"No se pudo copiar",
   sumT:"MX Studio ✝ · Resumen de rutas",sv:"✓ visité",si:"★ le gustó",sf:"↻ volver",none:"Sin visitas marcadas todavía.",locale:"es-MX"},
  en:{title:"My routes",off:"OFFLINE",fAll:"All",fTodo:"To do",fFu:"Follow up",route:"Route",visits:"stops",of:"of",visited:"visited",
   when:"When:",whenV:"Mon–Thu, 3:30–6 pm",ask:"Ask for:",askV:"owner or manager",bring:"Bring:",
   promo:"$1,999 setup · $290/mo · unlimited updates",promoS:"Tap to see all prices",
-  free:"UNLIMITED UPDATES",openP:"📱 Show prices to the owner",scanP:"Or let the owner scan it to see it on their phone",xS:"Suggested extras:",xT:"Add-ons for their app",xP:"Added whenever the client wants · MXN + IVA (tax)",once:"one-time",setup:"setup",fromY2:"from year 2 · + IVA (tax)",basic:"Basic: QR Menu $3,900 · then $490/mo",
+  free:"UNLIMITED UPDATES",openP:"📱 Show prices to the owner",scanP:"Or let the owner scan it to see it on their phone",xS:"Suggested extras:",xT:"Add-ons for their app",xP:"Added whenever the client wants · final prices in MXN",once:"one-time",setup:"setup",basic:"Basic: QR Menu $3,900 · then $490/mo",
   v:"Visited",i:"Interested",f:"Follow up",note:"Notes: owner's name, when to come back…",go:"📍 Directions (needs internet)",
   empty:"Nothing here yet",share:"📤 Send today's summary",foot:"Your marks are saved only on this phone",
-  pT:"Prices",pS:"MXN + IVA (tax) · No contract · Includes 7-day support, unlimited updates, hosting and own domain",y2:"from year 2",close:"Close",
+  pT:"Prices",pS:"Final prices in MXN · No contract · Includes 7-day support, unlimited updates, hosting and own domain",y2:"from year 2",close:"Close",
   noNet:"No signal: open the map when you're back online",copied:"Summary copied",noCopy:"Couldn't copy",
   sumT:"MX Studio ✝ · Route summary",sv:"✓ visited",si:"★ interested",sf:"↻ follow up",none:"No visits marked yet.",locale:"en-US"}};
 let st={route:1,filter:"all",fs:19,marks:{},lang:"es"};
@@ -169,7 +169,7 @@ function render(){
    <div class="pr">${s.feat?`<span class="free">${t.free}</span>`:""}
     <div class="pl">${esc(F(s,"plan"))}</div>
     <div><span class="now">${F(s,"now")}</span>${s.feat?` <span class="mo">${t.setup}</span>`:""}</div>
-    <div class="mo">${F(s,"mo")} · + IVA</div>
+    <div class="mo">${F(s,"mo")}</div>
     ${s.feat?`<div class="bs">${esc(F(s,"feat"))}</div>`:""}
     ${s.x.length?`<div class="xs"><b>${t.xS}</b>${s.x.map(k=>{const a=DATA.addons.find(z=>z.k===k);return `<span>${esc(F(a,"n"))} <i>${a.p}${a.m?" "+F(a,"m"):""}</i></span>`}).join("")}</div>`:""}</div>
    <div class="acts">
