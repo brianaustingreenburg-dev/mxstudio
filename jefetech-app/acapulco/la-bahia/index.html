@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mariscos La Bahía · Demo MX Studio ✝️</title>
+<meta name="theme-color" content="#faf6f0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf6f0;--card:#fff;--line:#eee3d6;--ink:#1b1412;--muted:#7b6a62;--brand:#b5642f;--brand2:#8a4a20;--wa:#25d366;--gold:#e0a43a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Montserrat,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.4;padding-bottom:calc(150px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px}
+.demo{background:#000;color:#e8c48c;text-align:center;font-size:11px;font-weight:700;letter-spacing:.08em;padding:7px calc(10px + env(safe-area-inset-right)) 7px;padding-top:calc(7px + env(safe-area-inset-top))}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 0 6px}
+.lang{display:flex;background:#f0e4d4;border-radius:99px;padding:3px}
+.lang button{all:unset;cursor:pointer;font-weight:700;font-size:12px;padding:6px 12px;border-radius:99px;color:var(--muted)}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.table{font-weight:800;font-size:13px;background:var(--ink);color:#fff;padding:7px 12px;border-radius:99px}
+.head{display:flex;gap:12px;align-items:center;margin:8px 0 6px}
+.av{width:54px;height:54px;border-radius:16px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:19px}
+h1{font-size:22px;font-weight:800}
+.rate{display:flex;align-items:center;gap:2px;color:var(--gold);font-weight:700;font-size:12px}
+.rate svg{width:13px;height:13px}
+.sub{color:var(--muted);font-size:13.5px;margin:6px 0 14px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 6px;padding:0 16px 4px}
+.chips::-webkit-scrollbar{display:none}
+.chip{all:unset;cursor:pointer;white-space:nowrap;font-weight:700;font-size:13px;padding:8px 14px;border-radius:99px;background:#f0e4d4;color:#6a3d1a}
+.chip[aria-pressed=true]{background:var(--brand);color:#fff}
+.sec{font-size:11px;font-weight:800;letter-spacing:.18em;color:var(--brand);text-transform:uppercase;margin:18px 0 6px}
+.item{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:8px}
+.emo{width:52px;height:52px;border-radius:14px;background:#f6ece0;display:grid;place-items:center;font-size:26px;flex:0 0 auto}
+.info{flex:1;min-width:0}
+.info b{display:block;font-size:14.5px}
+.info small{display:block;color:var(--muted);font-size:12px}
+.info .p{font-weight:800;color:var(--brand);font-size:13.5px;margin-top:3px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{all:unset;cursor:pointer;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:18px;background:var(--ink);color:#fff}
+.qty button.m{background:#f0e4d4;color:var(--ink)}
+.qty span{min-width:14px;text-align:center;font-weight:800}
+.review{display:block;text-align:center;font-weight:800;font-size:14px;padding:13px;border-radius:14px;background:#f0e4d4;color:#6a3d1a;margin-top:18px;cursor:pointer;border:none;width:100%}
+.foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:22px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(250,246,240,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(12px + env(safe-area-inset-bottom))}
+.bar .in{max-width:520px;margin:0 auto;display:grid;gap:8px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;font-weight:800;font-size:14px;padding:13px 10px;border-radius:14px}
+.b-dark{background:var(--ink);color:#fff}
+.b-brand{background:var(--brand);color:#fff}
+.b-wa{background:var(--wa);color:#063117}
+.b-brand[disabled]{opacity:.45;pointer-events:none}
+.toast{position:fixed;left:50%;top:calc(46px + env(safe-area-inset-top));transform:translate(-50%,-20px);opacity:0;background:var(--ink);color:#fff;font-weight:700;font-size:13.5px;padding:12px 16px;border-radius:14px;transition:.25s;z-index:20;max-width:calc(100% - 32px);text-align:center;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="demo" data-t="demo"></div>
+<div class="wrap">
+  <div class="top">
+    <span class="table" id="tbl"></span>
+    <div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
+  </div>
+  <div class="head"><div class="av">LB</div><div><h1>Mariscos La Bahía</h1><div class="rate" id="rate"></div></div></div>
+  <p class="sub" data-t="sub"></p>
+  <div class="chips" id="chips"></div>
+  <div id="menu"></div>
+  <button class="review" id="review" data-t="review"></button>
+  <p class="foot" data-t="foot"></p>
+</div>
+<div class="bar"><div class="in">
+  <button class="btn b-brand" id="send"></button>
+  <div class="row2">
+    <button class="btn b-dark" id="call" data-t="call"></button>
+    <button class="btn b-wa" id="togo" data-t="togo"></button>
+  </div>
+</div></div>
+<div class="toast" id="toast"></div>
+<script>
+const PHONE="527441930502";
+const STAR='<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>';
+document.getElementById("rate").innerHTML=STAR.repeat(5)+" 4.9";
+const T={
+ es:{demo:"DEMO · MX STUDIO ✝ · Así se vería la app de tu restaurante",sub:"Mariscos frescos frente a la bahía. Pide desde tu mesa o para llevar.",
+  table:n=>`Mesa ${n}`,noTable:"Para llevar",review:"★ Dejar reseña en Google",foot:"Ejemplo de muestra creado por MX Studio ✝ · Acapulco",
+  call:"🙋 Llamar al mesero",togo:"🛵 Para llevar",send:(n,t)=>n?`Enviar pedido a cocina · ${n} · $${t}`:"Elige tus platillos",
+  tCall:n=>`Listo. Tu mesero viene a la Mesa ${n}.`,tCallNo:"Escanea el QR de tu mesa para llamar al mesero.",
+  tSend:n=>`Pedido de la Mesa ${n} enviado a cocina.`,tReview:"Aquí se abre la página de reseñas de Google del restaurante.",
+  waMsg:(lines,t)=>`Hola Mariscos La Bahía, quiero hacer un pedido para llevar o a domicilio:\n${lines}\nTotal: $${t}`,waEmpty:"Hola Mariscos La Bahía, quiero hacer un pedido para llevar o a domicilio.",
+  cats:["Todo","Ceviches","Del mar","Bebidas"]},
+ en:{demo:"DEMO · MX STUDIO ✝ · What your restaurant's app would look like",sub:"Fresh seafood on the bay. Order from your table or to go.",
+  table:n=>`Table ${n}`,noTable:"To go",review:"★ Leave a Google review",foot:"Sample example built by MX Studio ✝ · Acapulco",
+  call:"🙋 Call the waiter",togo:"🛵 To go",send:(n,t)=>n?`Send order to kitchen · ${n} · $${t}`:"Pick your dishes",
+  tCall:n=>`Done. Your waiter is coming to Table ${n}.`,tCallNo:"Scan your table's QR to call the waiter.",
+  tSend:n=>`Table ${n}'s order was sent to the kitchen.`,tReview:"This opens the restaurant's Google review page.",
+  waMsg:(lines,t)=>`Hi Mariscos La Bahía, I'd like to order for pickup or delivery:\n${lines}\nTotal: $${t}`,waEmpty:"Hi Mariscos La Bahía, I'd like to order for pickup or delivery.",
+  cats:["All","Ceviches","From the sea","Drinks"]}
+};
+const MENU=[
+ {id:1,c:1,e:"🍋",p:180,es:["Ceviche de pescado","Limón, cebolla morada, cilantro"],en:["Fish ceviche","Lime, red onion, cilantro"]},
+ {id:2,c:1,e:"🦐",p:220,es:["Aguachile de camarón","Verde o negro, picante"],en:["Shrimp aguachile","Green or black, spicy"]},
+ {id:3,c:2,e:"🐟",p:420,es:["Pescado a la talla","Rojo y verde, para 2"],en:["Pescado a la talla","Red & green, for 2"]},
+ {id:4,c:2,e:"🧄",p:260,es:["Camarones al mojo","Arroz y ensalada"],en:["Garlic shrimp","Rice and salad"]},
+ {id:5,c:2,e:"🌮",p:150,es:["Tacos de pescado","Tres tacos, estilo Baja"],en:["Fish tacos","Three tacos, Baja style"]},
+ {id:6,c:3,e:"🍺",p:55,es:["Cerveza Corona","Bien fría"],en:["Corona beer","Ice cold"]},
+ {id:7,c:3,e:"🥥",p:70,es:["Agua de coco","Natural"],en:["Coconut water","Fresh"]},
+ {id:8,c:3,e:"🍹",p:120,es:["Margarita","Limón o mango"],en:["Margarita","Lime or mango"]}
+];
+const $=id=>document.getElementById(id);
+let lang="es",cat=0,cart={};
+try{lang=localStorage.getItem("lb-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
+const mesa=(new URLSearchParams(location.search).get("mesa")||"").replace(/[^0-9A-Za-z]/g,"").slice(0,4);
+const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const total=()=>MENU.reduce((s,m)=>s+(cart[m.id]||0)*m.p,0);
+function toast(t){const el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("on"),2800)}
+function render(){
+ const u=T[lang];document.documentElement.lang=lang;
+ document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
+ $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("tbl").textContent=mesa?u.table(mesa):u.noTable;
+ $("chips").innerHTML=u.cats.map((c,i)=>`<button class="chip" data-c="${i}" aria-pressed="${i===cat}">${c}</button>`).join("");
+ $("menu").innerHTML=MENU.filter(m=>!cat||m.c===cat).map(m=>`<div class="item"><div class="emo">${m.e}</div><div class="info"><b>${m[lang][0]}</b><small>${m[lang][1]}</small><div class="p">$${m.p}</div></div>
+  <div class="qty">${cart[m.id]?`<button class="m" data-d="${m.id}">−</button><span>${cart[m.id]}</span>`:""}<button data-a="${m.id}">+</button></div></div>`).join("");
+ const n=count();$("send").textContent=u.send(n,total());$("send").disabled=!n;
+ $("send").style.display=mesa?"":"none";
+}
+$("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("lb-lang",lang)}catch(_){}render()};
+$("chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;cat=+b.dataset.c;render()};
+$("menu").onclick=e=>{const a=e.target.closest("[data-a]"),d=e.target.closest("[data-d]");
+ if(a)cart[a.dataset.a]=(cart[a.dataset.a]||0)+1;if(d){cart[d.dataset.d]--;if(!cart[d.dataset.d])delete cart[d.dataset.d]}render()};
+$("call").onclick=()=>toast(mesa?T[lang].tCall(mesa):T[lang].tCallNo);
+$("send").onclick=()=>{if(!count())return;toast(T[lang].tSend(mesa));cart={};render()};
+$("review").onclick=()=>toast(T[lang].tReview);
+$("togo").onclick=()=>{const u=T[lang];const lines=MENU.filter(m=>cart[m.id]).map(m=>`• ${cart[m.id]} × ${m[lang][0]}`).join("\n");
+ const msg=lines?u.waMsg(lines,total()):u.waEmpty;open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(msg)}`,"_blank")};
+render();
+</script>
+</body>
+</html>
