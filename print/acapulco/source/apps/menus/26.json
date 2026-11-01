@@ -1,7 +1,7 @@
 {
  "name": "La Choza de la Freed",
  "kind": "mar",
- "source": "sample",
+ "source": "partial",
  "sources": [
   "https://www.facebook.com/lachozadelafreed/",
   "https://www.instagram.com/lachozadelafreed/"
@@ -28,6 +28,17 @@
     "en": "Snacks"
    },
    "items": [
+    {
+     "name": {
+      "es": "Camarones al chingadazo",
+      "en": "Camarones al chingadazo"
+     },
+     "desc": {
+      "es": "La especialidad de la casa, picosos",
+      "en": "House specialty, spicy"
+     },
+     "price": "260"
+    },
     {
      "name": {
       "es": "Tostada de ceviche",

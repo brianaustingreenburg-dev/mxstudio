@@ -82,6 +82,8 @@ button,textarea{font:inherit;color:inherit}
 .a.on small{color:inherit;opacity:.75}
 textarea{width:100%;margin-top:10px;min-height:64px;resize:vertical;background:#0a0809;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:.85em}
 textarea::placeholder{color:#6d625c}
+.ah{margin:0 0 2px}.an{font-weight:800;color:var(--gold)}.as{font-size:.85em;opacity:.8;margin:6px 0 4px}.al{display:block;font-weight:700;font-size:.82em;margin:10px 0 4px;opacity:.85}.ai{width:100%;box-sizing:border-box;padding:12px;border-radius:12px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:inherit;font:inherit;font-size:16px}.aops{margin-top:10px}.aopt{display:flex;gap:10px;align-items:center;padding:8px 0;font-weight:700}.aopt input{width:22px;height:22px;accent-color:#d9a35f}
+.appBtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.appBtns a,.appBtns button{all:unset;box-sizing:border-box;text-align:center;padding:12px 6px;border-radius:12px;font-weight:800;font-size:.85em;cursor:pointer;background:rgba(255,255,255,.08);border:1.5px solid rgba(217,163,95,.45)}
 .demoBtn{display:block;text-align:center;margin-top:10px;padding:14px;border-radius:14px;font-weight:800;font-size:.9em;text-decoration:none;color:#1a0f0a;background:linear-gradient(135deg,var(--gold),var(--gold2));box-shadow:0 6px 20px rgba(217,163,95,.25)}
 .go{all:unset;cursor:pointer;display:block;text-align:center;margin-top:8px;padding:10px;border-radius:12px;font-weight:700;font-size:.75em;color:var(--muted);border:1px dashed var(--line)}
 .empty{text-align:center;color:var(--muted);padding:30px 10px;font-size:.9em}
@@ -137,7 +139,7 @@ const I={
  es:{title:"Mis rutas",off:"SIN INTERNET",fAll:"Todos",fTodo:"Pendientes",fFu:"Volver",route:"Ruta",visits:"visitas",of:"de",visited:"visitados",
   when:"Cuándo:",whenV:"lun–jue, 3:30–6 pm",ask:"Pide:",askV:"dueño o gerente",bring:"Lleva:",
   
-  openP:"📱 Mostrar precios al cliente",demoB:"✨ Ver su app demo",scanP:"O que el dueño escanee para verlo en su teléfono",
+  openP:"📱 Mostrar precios al cliente",demoB:"✨ Ver su app demo",appB:"📱 Abrir su app",actB:"⚙️ Activar",cardB:"🖨️ Tarjeta 5×7",actT:"Activar app",actS:"Escribe los datos del dueño y toca Publicar. La app se actualiza en 1–2 minutos.",aWa:"WhatsApp del negocio (10 dígitos) — llegan pedidos y reservas",aWn:"WiFi: nombre exacto",aWp:"WiFi: contraseña exacta",aOw:"Lista para el mesero",aOc:"Para llevar por WhatsApp",aOr:"Reservar por WhatsApp",aPub:"Publicar",aKey:"Tu llave de GitHub (solo una vez, se guarda en este teléfono)",aKeyH:"Es la misma llave del builder. Si no la tienes, créala en github.com → Settings → Developer settings → Fine-grained tokens, solo repo mxstudio, permiso Contents: Read and write.",aNeedWa:"Para pedidos o reservas por WhatsApp falta el número",aOk:"✓ Publicado · listo en 1–2 min",aErr:"No se pudo publicar: ",aOff:"Necesitas internet para publicar",aLoad:"Cargando…",aSee:"Ver app",scanP:"O que el dueño escanee para verlo en su teléfono",
   v:"Visité",i:"Le gustó",f:"Volver",note:"Notas: nombre del dueño, cuándo volver…",go:"📍 Cómo llegar (necesita internet)",
   empty:"Nada aquí todavía",share:"📤 Enviar resumen del día",foot:"Tus marcas se guardan solo en este teléfono",
   close:"Cerrar",
@@ -146,7 +148,7 @@ const I={
  en:{title:"My routes",off:"OFFLINE",fAll:"All",fTodo:"To do",fFu:"Follow up",route:"Route",visits:"stops",of:"of",visited:"visited",
   when:"When:",whenV:"Mon–Thu, 3:30–6 pm",ask:"Ask for:",askV:"owner or manager",bring:"Bring:",
   
-  openP:"📱 Show prices to the owner",demoB:"✨ Show their demo app",scanP:"Or let the owner scan it to see it on their phone",
+  openP:"📱 Show prices to the owner",demoB:"✨ Show their demo app",appB:"📱 Open their app",actB:"⚙️ Activate",cardB:"🖨️ 5×7 card",actT:"Activate app",actS:"Enter the owner's details and tap Publish. The app updates in 1–2 minutes.",aWa:"Business WhatsApp (10 digits) — orders and reservations arrive here",aWn:"WiFi: exact name",aWp:"WiFi: exact password",aOw:"List for the waiter",aOc:"Carry-out by WhatsApp",aOr:"Reserve by WhatsApp",aPub:"Publish",aKey:"Your GitHub key (one time, saved on this phone)",aKeyH:"Same key as the builder. If you don't have one: github.com → Settings → Developer settings → Fine-grained tokens, only the mxstudio repo, Contents: Read and write.",aNeedWa:"WhatsApp orders or reservations need the number",aOk:"✓ Published · live in 1–2 min",aErr:"Couldn't publish: ",aOff:"You need internet to publish",aLoad:"Loading…",aSee:"Open app",scanP:"Or let the owner scan it to see it on their phone",
   v:"Visited",i:"Interested",f:"Follow up",note:"Notes: owner's name, when to come back…",go:"📍 Directions (needs internet)",
   empty:"Nothing here yet",share:"📤 Send today's summary",foot:"Your marks are saved only on this phone",
   close:"Close",
@@ -185,7 +187,7 @@ function render(){
     <button class="a f ${m.f?"on":""}" data-k="f"><b>↻</b>${t.f}</button>
    </div>
    <textarea data-note placeholder="${t.note}">${esc(m.note||"")}</textarea>
-   ${s.demo?`<a class="demoBtn" href="../demo/?id=${s.demo}">${t.demoB}</a>`:""}
+   ${APPS[s.demo]?`<a class="demoBtn" href="../c/${APPS[s.demo]}/">${t.appB}</a><div class="appBtns"><button data-act="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.actB}</button><a href="../c/${APPS[s.demo]}/tarjeta-5x7.pdf" target="_blank">${t.cardB}</a></div>`:(s.demo?`<a class="demoBtn" href="../demo/?id=${s.demo}">${t.demoB}</a>`:"")}
    <button class="go" data-go="${s.id}">${t.go}</button>
   </div>`}).join("");
  const t=L();
@@ -195,6 +197,37 @@ function render(){
   ${cards||`<div class="empty">${t.empty}</div>`}
   <button class="share" id="share">${t.share}</button>
   <div class="foot">${t.foot}</div>`;
+}
+
+const APPS={"v-NiJBks": "buzos-costera", "BxbTqFF0": "jumil-cafe", "dYfMznSc": "el-amigo-miguel", "7HyHo9q0": "punto-55", "4w1_MDvw": "emilia-cafe", "rswgt_uo": "cafe-al-mar", "iblARx4g": "antigua-acapulco", "qA2KOq8I": "terraza-buffet", "NNNPUPd4": "narciso", "FcpbDXFk": "don-camaron", "aTeeDAB4": "la-casa-del-mar", "NC6TYDe4": "celeste-beach-house", "bVsCQkbE": "mary-de-revolcadero", "5pUK-bVI": "mariscos-el-sirenito", "fJj-Ug_o": "paititi-del-mar", "JMY3GMzM": "cafe-acapulco-cafeba", "__eQuxs8": "zabesu-barra-vieja", "dE3m8bK4": "cira-la-morena", "0e4m4HMk": "mariscos-catamaran", "66cxVA6Y": "the-cauldron", "Jlg2pi-E": "casa-de-los-abuelos", "uJ4Hteq8": "cafe-wadi", "zsIVGnis": "el-tio-markos", "muOGnk2A": "altamar", "JfpbSzOw": "tres-marias", "kKSUWH7I": "la-choza-de-la-freed"};const GH={o:"brianaustingreenburg-dev",r:"mxstudio",b:"main"};
+let actSlug=null;
+async function openAct(slug,name){const t=L();actSlug=slug;let c={};
+ $("sheetBox").innerHTML=`<p style="text-align:center">${t.aLoad}</p>`;$("sheet").classList.add("on");
+ try{const r=await fetch("../c/"+slug+"/config.json?t="+Date.now(),{cache:"no-store"});if(r.ok)c=await r.json()}catch(_){}
+ let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}
+ const w=c.wifi||{},ck=(id,k,l,def)=>`<label class="aopt"><input type="checkbox" id="${id}" ${(c[k]??def)?"checked":""}><span>${l}</span></label>`;
+ $("sheetBox").innerHTML=`<h3 class="ah">⚙️ ${t.actT}</h3><div class="an">${esc(name)}</div><p class="as">${t.actS}</p>
+  <label class="al">${t.aWa}</label><input class="ai" id="aW" type="tel" value="${esc(String(c.whatsapp||"").replace(/^52/,""))}" placeholder="744 123 4567">
+  <label class="al">${t.aWn}</label><input class="ai" id="aN" value="${esc(w.name||"")}" placeholder="Infinitum_A1B2">
+  <label class="al">${t.aWp}</label><input class="ai" id="aP" value="${esc(w.pass||"")}">
+  <div class="aops">${ck("ow","waiter",t.aOw,true)}${ck("oc","carryout",t.aOc,false)}${ck("or","reservations",t.aOr,false)}</div>
+  ${key?"":`<label class="al">${t.aKey}</label><input class="ai" id="aK" type="password" autocomplete="off"><p class="as" style="font-size:.78em">${t.aKeyH}</p>`}
+  <button class="share" id="aPub" style="margin-top:12px">${t.aPub}</button>
+  <a class="close" style="display:block;text-align:center;text-decoration:none;margin-top:8px" href="../c/${slug}/">${t.aSee} →</a>
+  <button class="close" id="closeSheet">${t.close}</button>`;
+}
+async function publishAct(){const t=L();if(!navigator.onLine){toast(t.aOff);return}
+ const kI=$("aK");if(kI&&kI.value.trim()){try{localStorage.setItem("crear-gh",kI.value.trim())}catch(_){}}
+ let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}if(!key){kI&&kI.focus();return}
+ const wa=($("aW").value||"").replace(/\D/g,""),cfg={whatsapp:wa?(wa.length===10?"52"+wa:wa):"",wifi:$("aN").value.trim()?{name:$("aN").value.trim(),pass:$("aP").value}:null,waiter:$("ow").checked,carryout:$("oc").checked,reservations:$("or").checked,updated:new Date().toISOString()};
+ if((cfg.carryout||cfg.reservations)&&wa.length<10){toast(t.aNeedWa);$("aW").focus();return}
+ const btn=$("aPub");btn.disabled=true;btn.textContent="…";
+ const path="acapulco/c/"+actSlug+"/config.json",api=`https://api.github.com/repos/${GH.o}/${GH.r}/contents/${path}`,h={Authorization:"Bearer "+key,Accept:"application/vnd.github+json"};
+ try{let sha;const g=await fetch(api+"?ref="+GH.b,{headers:h,cache:"no-store"});if(g.ok)sha=(await g.json()).sha;else if(g.status===401||g.status===403)throw new Error("llave / key "+g.status);
+  const body=JSON.stringify({message:"Activar "+actSlug+" ✝️",branch:GH.b,content:btoa(unescape(encodeURIComponent(JSON.stringify(cfg,null,1)))),...(sha?{sha}:{})});
+  const p=await fetch(api,{method:"PUT",headers:h,body});if(!p.ok){const j=await p.json().catch(()=>({}));if(p.status===401)try{localStorage.removeItem("crear-gh")}catch(_){};throw new Error(p.status+" "+(j.message||""))}
+  toast(t.aOk);$("sheet").classList.remove("on");
+ }catch(err){btn.disabled=false;btn.textContent=t.aPub;toast(t.aErr+err.message)}
 }
 function showPrices(){
  const t=L();$("sheetBox").innerHTML=`<a class="share" style="display:block;text-decoration:none;margin:0 0 6px" href="../precios/">${t.openP}</a>
@@ -216,8 +249,9 @@ $("bigger").onclick=()=>{st.fs=Math.min(28,st.fs+2);applyFs();save()};
 $("smaller").onclick=()=>{st.fs=Math.max(15,st.fs-2);applyFs();save()};
 $("prices").onclick=showPrices;
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;st.lang=b.dataset.l;save();applyLang();render()};
-$("sheet").onclick=e=>{if(e.target.id==="sheet"||e.target.id==="closeSheet")$("sheet").classList.remove("on")};
+$("sheet").onclick=e=>{if(e.target.id==="aPub"){publishAct();return}if(e.target.id==="sheet"||e.target.id==="closeSheet")$("sheet").classList.remove("on")};
 $("main").addEventListener("click",async e=>{
+ const ac=e.target.closest("[data-act]");if(ac){openAct(ac.dataset.act,ac.dataset.nm);return}
  const go=e.target.closest("[data-go]");if(go){if(!navigator.onLine){toast(L().noNet);return}
   const s=DATA.routes.flatMap(r=>r.stops).find(x=>x.id===go.dataset.go);open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(s.n+" Acapulco")+"&query_place_id="+s.id,"_blank");return}
  if(e.target.closest("#share")){const t=summary();

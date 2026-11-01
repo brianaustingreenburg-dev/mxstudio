@@ -172,7 +172,7 @@ function render(){
  const q=[];
  if(D.reservations)q.push(`<button class="q" data-a="res"><i>📅</i>${u.res}</button>`);
  q.push(`<a class="q" href="${esc(mapUrl())}" target="_blank" rel="noopener"><i>📍</i>${u.go}</a>`);
- q.push(`<a class="q" href="tel:+${esc(D.phone||D.whatsapp)}"><i>📞</i>${u.call}</a>`);
+ if(D.phone||D.whatsapp)q.push(`<a class="q" href="tel:+${esc(String(D.phone||D.whatsapp).replace(/\D/g,""))}"><i>📞</i>${u.call}</a>`);
  if(!D.reservations&&D.carryout)q.unshift(`<a class="q" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener"><i>💬</i>WhatsApp</a>`);
  if(D.wifi&&D.wifi.name)q.unshift(`<button class="q" data-a="wifi"><i>📶</i>${u.wifi}</button>`);
  const qs=q.slice(0,4);$("quick").style.gridTemplateColumns=`repeat(${qs.length},1fr)`;$("quick").innerHTML=qs.join("");
@@ -277,6 +277,11 @@ document.addEventListener("click",e=>{
  if(x.dataset.x==="rsend"){const dt=$("rD").value?new Date($("rD").value+"T12:00").toLocaleDateString(lang==="es"?"es-MX":"en-US",{weekday:"long",day:"numeric",month:"long"}):"";
   open(wa(u.mRes($("rP").value,dt,$("rT").value,$("rN").value)),"_blank");}
 });
+// live settings (WhatsApp, WiFi, options) set from Rutas → config.json
+const CFGK=["whatsapp","phone","wifi","carryout","reservations","waiter","delivery"];
+function applyCfg(c){if(!c||typeof c!=="object")return;CFGK.forEach(k=>{if(c[k]!==undefined&&c[k]!==null&&c[k]!=="")D[k]=c[k]})}
+if(!D.demo){try{applyCfg(JSON.parse(localStorage.getItem(KEY+"-cfg")||"null"))}catch(_){}
+ fetch("config.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(c){applyCfg(c);try{localStorage.setItem(KEY+"-cfg",JSON.stringify(c))}catch(_){}render()}}).catch(()=>{})}
 render();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){navigator.serviceWorker.register("../../sw.js").catch(()=>{})}
 </script>

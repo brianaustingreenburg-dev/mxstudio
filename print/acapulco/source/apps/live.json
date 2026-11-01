@@ -1,0 +1,236 @@
+{
+ "1": {
+  "slug": "buzos-costera",
+  "phone": "+52 744 347 0527",
+  "hours": {
+   "es": "Lun–Jue 11:00–19:30 · Vie–Dom 11:00–20:00",
+   "en": "Mon–Thu 11am–7:30pm · Fri–Sun 11am–8pm"
+  },
+  "address": "Av. Costera Miguel Alemán s/n, Hornos"
+ },
+ "2": {
+  "slug": "jumil-cafe",
+  "phone": "",
+  "hours": {
+   "es": "Mié–Lun 8:30–14:00 · Mar cerrado",
+   "en": "Wed–Mon 8:30am–2pm · Closed Tue"
+  },
+  "address": "Av. Costera Miguel Alemán 256, Loc. 4A, Hornos"
+ },
+ "3": {
+  "slug": "el-amigo-miguel",
+  "phone": "+52 744 486 2868",
+  "hours": {
+   "es": "Lun–Dom 9:00–20:30",
+   "en": "Mon–Sun 9am–8:30pm"
+  },
+  "address": "Av. Costera Miguel Alemán s/n, Hornos"
+ },
+ "4": {
+  "slug": "punto-55",
+  "phone": "+52 55 7992 9944",
+  "hours": {
+   "es": "Lun–Jue 9:00–21:30 · Vie–Dom 9:00–22:00",
+   "en": "Mon–Thu 9am–9:30pm · Fri–Sun 9am–10pm"
+  },
+  "address": "Av. Costera Miguel Alemán 1632, Int. B4, Fracc. Magallanes"
+ },
+ "5": {
+  "slug": "emilia-cafe",
+  "phone": "+52 744 170 6945",
+  "hours": {
+   "es": "Mar–Dom 9:00–21:00 · Lun cerrado",
+   "en": "Tue–Sun 9am–9pm · Closed Mon"
+  },
+  "address": "Israel, Local 4, Fracc. Magallanes"
+ },
+ "6": {
+  "slug": "cafe-al-mar",
+  "phone": "+52 744 175 8196",
+  "hours": {
+   "es": "Lun–Dom 18:00–24:00",
+   "en": "Mon–Sun 6pm–midnight"
+  },
+  "address": "Plaza Marbella, Av. Costera Miguel Alemán, Local 28"
+ },
+ "7": {
+  "slug": "antigua-acapulco",
+  "phone": "+52 744 484 3484",
+  "hours": {
+   "es": "Lun–Jue y Dom 15:00–23:00 · Vie–Sáb 15:00–24:00",
+   "en": "Sun–Thu 3–11pm · Fri–Sat 3pm–midnight"
+  },
+  "address": "Costera Miguel Alemán, Fracc. Condesa"
+ },
+ "8": {
+  "slug": "terraza-buffet",
+  "phone": "+52 744 112 8597",
+  "hours": {
+   "es": "Lun–Dom 9:00–18:00",
+   "en": "Mon–Sun 9am–6pm"
+  },
+  "address": "Av. Costera Miguel Alemán 8–9, Deportivo"
+ },
+ "9": {
+  "slug": "narciso",
+  "phone": "+52 744 424 5102",
+  "hours": {
+   "es": "Lun–Sáb 8:30–20:00 · Dom 8:30–15:00",
+   "en": "Mon–Sat 8:30am–8pm · Sun 8:30am–3pm"
+  },
+  "address": "Av. Costera Miguel Alemán 58, Fracc. Costa Azul"
+ },
+ "10": {
+  "slug": "don-camaron",
+  "phone": "+52 744 433 7703",
+  "hours": {
+   "es": "Lun–Dom 9:30–18:30",
+   "en": "Mon–Sun 9:30am–6:30pm"
+  },
+  "address": "Blvd. Cabo Marqués 1007, Punta Diamante (Playa Majahua)"
+ },
+ "11": {
+  "slug": "la-casa-del-mar",
+  "phone": "",
+  "hours": {
+   "es": "Jue–Mar 7:00–18:00 · Mié cerrado",
+   "en": "Thu–Tue 7am–6pm · Closed Wed"
+  },
+  "address": "Miguel Alemán, Puerto Marqués"
+ },
+ "12": {
+  "slug": "celeste-beach-house",
+  "phone": "+52 744 466 0658",
+  "hours": {
+   "es": "Lun–Dom 10:00–19:00",
+   "en": "Mon–Sun 10am–7pm"
+  },
+  "address": "Paseo del Club 7, Brisas del Marqués"
+ },
+ "13": {
+  "slug": "mary-de-revolcadero",
+  "phone": "+52 744 909 6942",
+  "hours": {
+   "es": "Vie–Mar 9:00–19:00 · Mié–Jue cerrado",
+   "en": "Fri–Tue 9am–7pm · Closed Wed–Thu"
+  },
+  "address": "Revolcadero s/n, El Pueblito del Revolcadero"
+ },
+ "14": {
+  "slug": "mariscos-el-sirenito",
+  "phone": "+52 744 443 2488",
+  "hours": {
+   "es": "Lun–Dom 11:00–20:00",
+   "en": "Mon–Sun 11am–8pm"
+  },
+  "address": "Camino Viejo 1, Granjas del Marqués"
+ },
+ "15": {
+  "slug": "paititi-del-mar",
+  "phone": "+52 744 480 0031",
+  "hours": {
+   "es": "Lun–Dom 9:00–21:00",
+   "en": "Mon–Sun 9am–9pm"
+  },
+  "address": "Ignacio Zaragoza 6, La Poza"
+ },
+ "16": {
+  "slug": "cafe-acapulco-cafeba",
+  "phone": "+52 744 330 1646",
+  "hours": {
+   "es": "Lun–Dom 8:00–22:00",
+   "en": "Mon–Sun 8am–10pm"
+  },
+  "address": "Blvd. de las Naciones 70, La Poza"
+ },
+ "17": {
+  "slug": "zabesu-barra-vieja",
+  "phone": "+52 744 444 6394",
+  "hours": {
+   "es": "Lun–Dom 10:00–19:00",
+   "en": "Mon–Sun 10am–7pm"
+  },
+  "address": "Carretera Acapulco–Barra Vieja 229, San Andrés"
+ },
+ "18": {
+  "slug": "cira-la-morena",
+  "phone": "+52 744 444 6655",
+  "hours": {
+   "es": "Lun–Dom 10:00–19:00",
+   "en": "Mon–Sun 10am–7pm"
+  },
+  "address": "Domicilio conocido, Barra Vieja"
+ },
+ "19": {
+  "slug": "mariscos-catamaran",
+  "phone": "+52 744 319 0550",
+  "hours": {
+   "es": "Lun–Dom 8:30–22:30",
+   "en": "Mon–Sun 8:30am–10:30pm"
+  },
+  "address": "Av. Costera Miguel Alemán 215, Las Playas"
+ },
+ "20": {
+  "slug": "the-cauldron",
+  "phone": "",
+  "hours": {
+   "es": "Lun–Dom 12:00–20:00",
+   "en": "Mon–Sun 12–8pm"
+  },
+  "address": "Av. Hidalgo 20, Centro"
+ },
+ "21": {
+  "slug": "casa-de-los-abuelos",
+  "phone": "+52 744 688 6675",
+  "hours": {
+   "es": "Lun–Dom 7:00–23:00",
+   "en": "Mon–Sun 7am–11pm"
+  },
+  "address": "Plaza Álvarez 6, Centro (Zócalo)"
+ },
+ "22": {
+  "slug": "cafe-wadi",
+  "phone": "+52 744 483 7555",
+  "hours": {
+   "es": "Lun–Sáb 8:00–18:00 · Dom cerrado",
+   "en": "Mon–Sat 8am–6pm · Closed Sun"
+  },
+  "address": "Francisco Javier Mina s/n, Centro"
+ },
+ "23": {
+  "slug": "el-tio-markos",
+  "phone": "+52 744 192 3992",
+  "hours": {
+   "es": "Mié–Lun 9:00–18:00 · Mar cerrado",
+   "en": "Wed–Mon 9am–6pm · Closed Tue"
+  },
+  "address": "Av. Fuerza Aérea, Lote 21, Playa Pie de la Cuesta"
+ },
+ "24": {
+  "slug": "altamar",
+  "phone": "+52 56 1064 0146",
+  "hours": {
+   "es": "Mié–Lun 10:00–18:30 · Mar cerrado",
+   "en": "Wed–Mon 10am–6:30pm · Closed Tue"
+  },
+  "address": "Av. Fuerza Aérea, Playa Pie de la Cuesta"
+ },
+ "25": {
+  "slug": "tres-marias",
+  "phone": "+52 744 460 0011",
+  "hours": {
+   "es": "Lun–Dom 10:30–19:00 · Sáb hasta 20:00",
+   "en": "Mon–Sun 10:30am–7pm · Sat until 8pm"
+  },
+  "address": "Pie de la Cuesta – Barra de Coyuca 109, Pie de la Cuesta"
+ },
+ "26": {
+  "slug": "la-choza-de-la-freed",
+  "phone": "+52 744 449 1356",
+  "hours": {
+   "es": "Lun–Dom 11:00–18:00",
+   "en": "Mon–Sun 11am–6pm"
+  },
+  "address": "Av. Fuerza Aérea Militar 403, Pie de la Cuesta"
+ }
+}

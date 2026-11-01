@@ -19,6 +19,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Buzos Costera",
@@ -257,6 +258,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": false,
   "wifi": {
    "name": "WiFi Jumil Café y Cocina",
@@ -487,6 +489,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi El Amigo Miguel",
@@ -729,6 +732,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Punto 55",
@@ -983,6 +987,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": false,
   "wifi": {
    "name": "WiFi Emilia Café",
@@ -1213,6 +1218,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Café al Mar",
@@ -1443,6 +1449,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Antigua Acapulco",
@@ -1673,6 +1680,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Terraza Buffet",
@@ -1903,6 +1911,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": false,
   "wifi": {
    "name": "WiFi Narciso",
@@ -2121,6 +2130,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Don Camarón",
@@ -2351,6 +2361,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi La Casa del Mar",
@@ -2581,6 +2592,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Celeste Beach House",
@@ -2799,6 +2811,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Mary de Revolcadero",
@@ -2811,6 +2824,42 @@
      "en": "Cold bar"
     },
     "items": [
+     {
+      "name": {
+       "es": "Pescadillas",
+       "en": "Pescadillas"
+      },
+      "desc": {
+       "es": "Tres, de pescado",
+       "en": "Three, fish filled"
+      },
+      "price": "120",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camarones a la mantequilla con epazote",
+       "en": "Shrimp in epazote butter"
+      },
+      "desc": {
+       "es": "Con salsa verde, arroz y ensalada",
+       "en": "With green salsa, rice and salad"
+      },
+      "price": "260",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Huachinango a las brasas",
+       "en": "Red snapper over coals"
+      },
+      "desc": {
+       "es": "En salsa roja, para compartir (2–3)",
+       "en": "In red sauce, to share (2–3)"
+      },
+      "price": "420",
+      "img": ""
+     },
      {
       "name": {
        "es": "Tostadas de ceviche",
@@ -3017,6 +3066,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Mariscos El Sirenito",
@@ -3259,6 +3309,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Paititi del Mar",
@@ -3489,6 +3540,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": false,
   "wifi": {
    "name": "WiFi Café Acapulco Caféba",
@@ -3501,6 +3553,18 @@
      "en": "Hot coffee"
     },
     "items": [
+     {
+      "name": {
+       "es": "Frappé de chilate",
+       "en": "Chilate frappé"
+      },
+      "desc": {
+       "es": "Bebida tradicional guerrerense de cacao y arroz",
+       "en": "Traditional Guerrero cacao-rice drink"
+      },
+      "price": "75",
+      "img": ""
+     },
      {
       "name": {
        "es": "Americano",
@@ -3695,6 +3759,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Zabesu Barra Vieja",
@@ -3707,6 +3772,42 @@
      "en": "Cocktails & ceviches"
     },
     "items": [
+     {
+      "name": {
+       "es": "Quesadillas de pescado",
+       "en": "Fish quesadillas"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "140",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pulpo enamorado",
+       "en": "Pulpo enamorado"
+      },
+      "desc": {
+       "es": "Pulpo en salsa cremosa de ajo y chile",
+       "en": "Octopus in creamy garlic-chile sauce"
+      },
+      "price": "280",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camarones al coco",
+       "en": "Coconut shrimp"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "260",
+      "img": ""
+     },
      {
       "name": {
        "es": "Coctel campechano",
@@ -3889,6 +3990,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Cira La Morena 1",
@@ -4095,6 +4197,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Mariscos Catamarán",
@@ -4301,6 +4404,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": false,
   "wifi": {
    "name": "WiFi The Cauldron Wizard's ",
@@ -4507,6 +4611,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi La Casa de los Abuelos",
@@ -4749,6 +4854,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": false,
   "wifi": {
    "name": "WiFi Café Wadi",
@@ -4967,6 +5073,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Restaurant El Tío Mark",
@@ -5205,6 +5312,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi ALTAMAR restaurante y ",
@@ -5411,6 +5519,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi Tres Marías Restaurant",
@@ -5641,6 +5750,7 @@
   },
   "reservations": true,
   "carryout": true,
+  "waiter": true,
   "delivery": true,
   "wifi": {
    "name": "WiFi La Choza de la Freed",
@@ -5653,6 +5763,18 @@
      "en": "Snacks"
     },
     "items": [
+     {
+      "name": {
+       "es": "Camarones al chingadazo",
+       "en": "Camarones al chingadazo"
+      },
+      "desc": {
+       "es": "La especialidad de la casa, picosos",
+       "en": "House specialty, spicy"
+      },
+      "price": "260",
+      "img": ""
+     },
      {
       "name": {
        "es": "Tostada de ceviche",

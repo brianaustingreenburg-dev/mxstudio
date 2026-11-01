@@ -1,7 +1,7 @@
 {
  "name": "Mary de Revolcadero",
  "kind": "mar",
- "source": "sample",
+ "source": "partial",
  "sources": [],
  "tagline": {
   "es": "Enramada de mariscos frente al Revolcadero",
@@ -25,6 +25,39 @@
     "en": "Cold bar"
    },
    "items": [
+    {
+     "name": {
+      "es": "Pescadillas",
+      "en": "Pescadillas"
+     },
+     "desc": {
+      "es": "Tres, de pescado",
+      "en": "Three, fish filled"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Camarones a la mantequilla con epazote",
+      "en": "Shrimp in epazote butter"
+     },
+     "desc": {
+      "es": "Con salsa verde, arroz y ensalada",
+      "en": "With green salsa, rice and salad"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Huachinango a las brasas",
+      "en": "Red snapper over coals"
+     },
+     "desc": {
+      "es": "En salsa roja, para compartir (2–3)",
+      "en": "In red sauce, to share (2–3)"
+     },
+     "price": "420"
+    },
     {
      "name": {
       "es": "Tostadas de ceviche",

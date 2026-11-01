@@ -35,6 +35,7 @@ html,body{width:5.25in;font-family:M,sans-serif;-webkit-print-color-adjust:exact
 .b .story h3{font-weight:800;font-size:8pt;letter-spacing:1.2pt;text-transform:uppercase;opacity:.85;margin:0 0 3pt}
 .b .story p{font-weight:500;margin-bottom:8pt}
 .b .story p.en{opacity:.9}
+.b .hl{display:flex;gap:9pt;align-items:baseline;padding:4.5pt 0;border-bottom:.6pt solid rgba(255,255,255,.25)}.b .hl b{font-weight:800;font-size:1.05em}.b .hl i{font-style:normal;opacity:.82;font-size:.88em;display:block}.b .hl span{font-weight:800;opacity:.6;min-width:1.2em}
 .b .inf{font-size:8pt;font-weight:500;line-height:1.45}
 .b .inf b{font-weight:800}
 .b .ft{margin-top:8pt;font-weight:700;font-size:7pt;letter-spacing:.5pt;opacity:.85;text-align:center}
@@ -51,12 +52,9 @@ html,body{width:5.25in;font-family:M,sans-serif;-webkit-print-color-adjust:exact
  <div class="cr">✝</div>
  <h2>{{NAME}}</h2><div class="tg">{{TAG_ES}}</div>
  <hr>
- <div class="story" id="st">
-  <h3>Nuestra historia</h3><p>{{STORY_ES}}</p>
-  <h3>Our story</h3><p class="en">{{STORY_EN}}</p>
- </div>
+ <div class="story" id="st">{{BACK}}</div>
  <hr>
- <div class="inf"><b>Dirección · Address:</b> {{ADDR}}<br><b>Horario:</b> {{HRS}}<br><b>Hours:</b> {{HRS_EN}}</div>
+ <div class="inf"><b>Dirección · Address:</b> {{ADDR}}{{PHONE}}<br><b>Horario:</b> {{HRS}}<br><b>Hours:</b> {{HRS_EN}}</div>
  <div class="ft">Escanea el código al frente · Scan the code on the front</div>
 </div></div>
 <script>
