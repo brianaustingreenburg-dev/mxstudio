@@ -1,0 +1,211 @@
+{
+ "name": "Don Camarón",
+ "kind": "mar",
+ "source": "partial",
+ "sources": [
+  "https://pos.do/en/acapulco/restaurant/don-camaron-3"
+ ],
+ "tagline": {
+  "es": "Mariscos a pie de playa en Majahua",
+  "en": "Beachfront seafood at Majahua"
+ },
+ "hours": {
+  "es": "Lun–Dom 9:30–18:30",
+  "en": "Mon–Sun 9:30am–6:30pm"
+ },
+ "specialty": "Beach seafood on Playa Majahua, famous for coconut shrimp and baked plantain.",
+ "signature": [
+  "Camarones al coco",
+  "Piña rellena de mariscos",
+  "Charola de mariscada",
+  "Aguachile de camarón"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Plátano macho horneado",
+      "en": "Baked plantain"
+     },
+     "desc": {
+      "es": "Plátano al horno con crema y queso",
+      "en": "Baked plantain with cream and cheese"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Empanadas de camarón",
+      "en": "Shrimp empanadas"
+     },
+     "desc": {
+      "es": "Tres empanadas crujientes de camarón",
+      "en": "Three crispy shrimp empanadas"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Sopes de la tía",
+      "en": "Auntie's sopes"
+     },
+     "desc": {
+      "es": "Sopes caseros con frijol y salsa",
+      "en": "Homemade sopes with beans and salsa"
+     },
+     "price": "130"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Fríos",
+    "en": "Cold bar"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Aguachile de camarón",
+      "en": "Shrimp aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón y chile verde",
+      "en": "Raw shrimp in lime and green chile"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Campechana",
+      "en": "Campechana"
+     },
+     "desc": {
+      "es": "Coctel de camarón, pulpo y ostión",
+      "en": "Shrimp, octopus and oyster cocktail"
+     },
+     "price": "350"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctelera con aguacate",
+      "en": "Shrimp in cocktail sauce with avocado"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Camarón empanizado en coco, salsa de mango",
+      "en": "Coconut-crusted shrimp, mango sauce"
+     },
+     "price": "400"
+    },
+    {
+     "name": {
+      "es": "Piña rellena de mariscos",
+      "en": "Seafood-stuffed pineapple"
+     },
+     "desc": {
+      "es": "Camarón, pescado y pulpo gratinados",
+      "en": "Shrimp, fish and octopus au gratin"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pulpo al ajo",
+      "en": "Garlic octopus"
+     },
+     "desc": {
+      "es": "Pulpo salteado al mojo de ajo",
+      "en": "Octopus sautéed in garlic butter"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Mojarra al mojo de ajo",
+      "en": "Garlic mojarra"
+     },
+     "desc": {
+      "es": "Mojarra frita entera bañada en ajo",
+      "en": "Whole fried mojarra in garlic"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Filete Don Camarón",
+      "en": "Filete Don Camarón"
+     },
+     "desc": {
+      "es": "Filete de la casa relleno de mariscos",
+      "en": "House fish fillet stuffed with seafood"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Charola de mariscada",
+      "en": "Seafood platter"
+     },
+     "desc": {
+      "es": "Charola para compartir con lo mejor del mar",
+      "en": "Sharing platter of mixed seafood"
+     },
+     "price": "950"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tierra",
+    "en": "Land"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Milanesa de res",
+      "en": "Breaded steak"
+     },
+     "desc": {
+      "es": "Con papas a la francesa y ensalada",
+      "en": "With fries and salad"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Cordon bleu de pollo",
+      "en": "Chicken cordon bleu"
+     },
+     "desc": {
+      "es": "Pollo relleno de jamón y queso",
+      "en": "Chicken stuffed with ham and cheese"
+     },
+     "price": "150"
+    }
+   ]
+  }
+ ]
+}

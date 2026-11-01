@@ -1,0 +1,187 @@
+{
+ "name": "The Cauldron Wizard's Coffee",
+ "kind": "cafe",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Café mágico para magos y curiosos en el Centro",
+  "en": "A magical café for wizards and the curious downtown"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Café temático de magia con pociones, lattes del hechicero y postres encantados.",
+ "signature": [
+  "Latte del Hechicero",
+  "Poción de Frutos Rojos",
+  "Frappé Encantado",
+  "Pastel de Caldero"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Pociones calientes",
+    "en": "Hot potions"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Latte del Caldero",
+      "en": "Cauldron latte"
+     },
+     "desc": {
+      "es": "Espresso, leche y canela especiada",
+      "en": "Espresso, milk and spiced cinnamon"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Chocolate Mágico",
+      "en": "Mágico hot chocolate"
+     },
+     "desc": {
+      "es": "Chocolate oaxaqueño con malvaviscos",
+      "en": "Oaxacan chocolate with marshmallows"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Americano del Mago",
+      "en": "Wizard's Americano"
+     },
+     "desc": {
+      "es": "Café de altura de Guerrero",
+      "en": "High-altitude Guerrero coffee"
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pociones frías",
+    "en": "Cold potions"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Latte del Hechicero",
+      "en": "Sorcerer's Latte"
+     },
+     "desc": {
+      "es": "Sin alcohol, caramelo y espuma dulce",
+      "en": "Alcohol-free, caramel and sweet foam"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Poción de Frutos Rojos",
+      "en": "Red berry potion"
+     },
+     "desc": {
+      "es": "Soda de kiwi que cambia de color",
+      "en": "Color-changing kiwi soda"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Frappé Encantado",
+      "en": "Encantado frappé"
+     },
+     "desc": {
+      "es": "Vainilla, galleta y chispas plateadas",
+      "en": "Vanilla, cookie and silver sprinkles"
+     },
+     "price": "90"
+    },
+    {
+     "name": {
+      "es": "Jugo de Manzana Especiado",
+      "en": "Spiced apple juice"
+     },
+     "desc": {
+      "es": "Manzana, canela y especias",
+      "en": "Apple, cinnamon and spices"
+     },
+     "price": "70"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres encantados",
+    "en": "Enchanted desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pastel de Caldero",
+      "en": "Cauldron cake"
+     },
+     "desc": {
+      "es": "Chocolate con centro fundido",
+      "en": "Chocolate with molten center"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Estrellas de Chocolate",
+      "en": "Chocolate stars"
+     },
+     "desc": {
+      "es": "Bombones de chocolate, pieza",
+      "en": "Chocolate bonbons, each"
+     },
+     "price": "35"
+    },
+    {
+     "name": {
+      "es": "Pay de Manzana del Bosque",
+      "en": "Forest apple pie"
+     },
+     "desc": {
+      "es": "Rebanada con crema batida",
+      "en": "Slice with whipped cream"
+     },
+     "price": "75"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bocados del Gran Comedor",
+    "en": "Great Hall bites"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Croissant de jamón y queso",
+      "en": "Ham and cheese croissant"
+     },
+     "desc": {
+      "es": "Horneado y gratinado",
+      "en": "Baked and gratinéed"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Panini del Hechicero",
+      "en": "Sorcerer's panini"
+     },
+     "desc": {
+      "es": "Pollo, pesto y queso manchego",
+      "en": "Chicken, pesto and manchego"
+     },
+     "price": "110"
+    }
+   ]
+  }
+ ]
+}

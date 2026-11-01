@@ -1,0 +1,224 @@
+{
+ "name": "Mariscos El Sirenito",
+ "kind": "mar",
+ "source": "partial",
+ "sources": [
+  "https://pos.do/en/acapulco/restaurant/el-sirenito",
+  "https://wanderlog.com/place/details/1176241",
+  "https://m.facebook.com/MariscosElSirenito"
+ ],
+ "tagline": {
+  "es": "Mariscos de barrio, porciones generosas",
+  "en": "Neighborhood seafood, generous portions"
+ },
+ "hours": {
+  "es": "Lun–Dom 11:00–20:00",
+  "en": "Mon–Sun 11am–8pm"
+ },
+ "specialty": "Beloved local marisquería for grilled octopus, Pescado Sirenito and sweet-tuna tostadas.",
+ "signature": [
+  "Pulpo a las brasas",
+  "Pescado Sirenito",
+  "Tostadas de atún dulce",
+  "Camarones endiablados"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Tostadas y fríos",
+    "en": "Tostadas & cold bar"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostadas de atún dulce",
+      "en": "Sweet tuna tostadas"
+     },
+     "desc": {
+      "es": "Atún marinado dulce, aguacate y cebolla",
+      "en": "Sweet-marinated tuna, avocado, onion"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Tostada de pulpo",
+      "en": "Octopus tostada"
+     },
+     "desc": {
+      "es": "Pulpo picado con salsa de la casa",
+      "en": "Chopped octopus with house salsa"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Aguachile de camarón y callo",
+      "en": "Shrimp & scallop aguachile"
+     },
+     "desc": {
+      "es": "Camarón y callo en limón y chile",
+      "en": "Shrimp and scallop in lime and chile"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctelera",
+      "en": "Shrimp in cocktail sauce"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos",
+    "en": "Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Taco de camarón estilo Baja",
+      "en": "Baja-style shrimp taco"
+     },
+     "desc": {
+      "es": "Camarón capeado crujiente y verduras",
+      "en": "Crispy battered shrimp and veggies"
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Taco gobernador",
+      "en": "Taco gobernador"
+     },
+     "desc": {
+      "es": "Camarón con queso fundido",
+      "en": "Shrimp with melted cheese"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Taco de pulpo",
+      "en": "Octopus taco"
+     },
+     "desc": {
+      "es": "Pulpo con salsa especial",
+      "en": "Octopus with special salsa"
+     },
+     "price": "75"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Charcoal-grilled octopus"
+     },
+     "desc": {
+      "es": "Pulpo asado con papas y ensalada",
+      "en": "Grilled octopus with potatoes and salad"
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Pescado Sirenito",
+      "en": "Pescado Sirenito"
+     },
+     "desc": {
+      "es": "Filete de la casa en salsa especial",
+      "en": "House fish fillet in special sauce"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Camarones endiablados",
+      "en": "Deviled shrimp"
+     },
+     "desc": {
+      "es": "Camarón en salsa de chiles picosa",
+      "en": "Shrimp in spicy chile sauce"
+     },
+     "price": "270"
+    },
+    {
+     "name": {
+      "es": "Caldo de camarón con hueva",
+      "en": "Shrimp broth with roe"
+     },
+     "desc": {
+      "es": "Caldo de guajillo con hueva de pescado",
+      "en": "Guajillo broth with fish roe"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Huachinango a la talla",
+      "en": "Huachinango a la talla"
+     },
+     "desc": {
+      "es": "Huachinango adobado a las brasas, kilo",
+      "en": "Adobo-grilled red snapper, per kilo"
+     },
+     "price": "520"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y bebidas",
+    "en": "Desserts & drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pan de elote con helado",
+      "en": "Corn bread with ice cream"
+     },
+     "desc": {
+      "es": "Pan de elote casero tibio",
+      "en": "Warm homemade corn bread"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan napolitano"
+     },
+     "desc": {
+      "es": "Flan cremoso con caramelo",
+      "en": "Creamy flan with caramel"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Coconut water"
+     },
+     "desc": {
+      "es": "Coco natural",
+      "en": "Fresh coconut"
+     },
+     "price": "45"
+    }
+   ]
+  }
+ ]
+}

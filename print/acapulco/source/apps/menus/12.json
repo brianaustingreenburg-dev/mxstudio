@@ -1,0 +1,203 @@
+{
+ "name": "Celeste Beach House",
+ "kind": "res",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/celeste-beach-house",
+  "https://www.tripadvisor.com/Restaurant_Review-g150787-d19903842-Reviews-Celeste_Beach_House-Acapulco_Pacific_Coast.html",
+  "https://wanderlog.com/place/details/9752465/celeste-beach-house",
+  "https://www.facebook.com/celestebeachhouse/"
+ ],
+ "tagline": {
+  "es": "Club de playa familiar con albercas en Diamante",
+  "en": "Family beach club with pools in Diamante"
+ },
+ "hours": {
+  "es": "Lun–Dom 10:00–19:00",
+  "en": "Mon–Sun 10am–7pm"
+ },
+ "specialty": "Family, pet-friendly beach club with pools and palapas; ceviche Acapulqueño and paella.",
+ "signature": [
+  "Paella de mariscos",
+  "Ceviche Acapulqueño",
+  "Pesca del día a la parrilla",
+  "Michelada"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Para compartir",
+    "en": "To share"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche Acapulqueño",
+      "en": "Ceviche Acapulqueño"
+     },
+     "desc": {
+      "es": "Pescado en limón con salsa cóctel y aceituna",
+      "en": "Lime-cured fish, cocktail sauce, olives"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Nachos Celeste",
+      "en": "Celeste nachos"
+     },
+     "desc": {
+      "es": "Totopos, queso fundido y salsa picante",
+      "en": "Chips, melted cheese and spicy salsa"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Aguacate, cebolla, cilantro y totopos",
+      "en": "Avocado, onion, cilantro and chips"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Tostadas de atún",
+      "en": "Tuna tostadas"
+     },
+     "desc": {
+      "es": "Atún fresco, aguacate y chipotle",
+      "en": "Fresh tuna, avocado and chipotle"
+     },
+     "price": "250"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Paella de mariscos",
+      "en": "Seafood paella"
+     },
+     "desc": {
+      "es": "Para dos, con camarón, mejillón y calamar",
+      "en": "For two, with shrimp, mussels and squid"
+     },
+     "price": "690"
+    },
+    {
+     "name": {
+      "es": "Pesca del día a la parrilla",
+      "en": "Grilled catch of the day"
+     },
+     "desc": {
+      "es": "Filete a la parrilla con verduras",
+      "en": "Grilled fillet with vegetables"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Tacos de camarón",
+      "en": "Shrimp tacos"
+     },
+     "desc": {
+      "es": "Camarón capeado, col y aderezo",
+      "en": "Battered shrimp, slaw and dressing"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa Beach House",
+      "en": "Beach House burger"
+     },
+     "desc": {
+      "es": "Res, queso, papas a la francesa",
+      "en": "Beef, cheese, French fries"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, salsas y chile",
+      "en": "Beer with lime, sauces and chile"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita de mango",
+      "en": "Mango margarita"
+     },
+     "desc": {
+      "es": "Tequila, mango y limón",
+      "en": "Tequila, mango and lime"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Ron, piña y coco",
+      "en": "Rum, pineapple and coconut"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Coconut water"
+     },
+     "desc": {
+      "es": "Coco natural",
+      "en": "Fresh coconut"
+     },
+     "price": "80"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Paletas artesanales",
+      "en": "Artisan ice pops"
+     },
+     "desc": {
+      "es": "Sabores de fruta de temporada",
+      "en": "Seasonal fruit flavors"
+     },
+     "price": "60"
+    }
+   ]
+  }
+ ]
+}

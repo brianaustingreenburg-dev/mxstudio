@@ -1,0 +1,187 @@
+{
+ "name": "ALTAMAR restaurante y jardín",
+ "kind": "mar",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Jardín, laguna y mariscos al atardecer",
+  "en": "Garden, lagoon and seafood at sunset"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Garden restaurant in Pie de la Cuesta for relaxed seafood meals, drinks and gatherings.",
+ "signature": [
+  "Pescado a la talla",
+  "Aguachile verde",
+  "Tostada de pulpo",
+  "Coco loco"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Para compartir",
+    "en": "To share"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Guacamole con totopos",
+      "en": "Guacamole with chips"
+     },
+     "desc": {
+      "es": "Aguacate, cebolla, cilantro y chile",
+      "en": "Avocado, onion, cilantro and chile"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón, chile y pepino",
+      "en": "Raw shrimp in lime, chile and cucumber"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Tostada de pulpo",
+      "en": "Octopus tostada"
+     },
+     "desc": {
+      "es": "Pulpo, aguacate y salsa macha",
+      "en": "Octopus, avocado and salsa macha"
+     },
+     "price": "120"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Huachinango a las brasas, por kilo",
+      "en": "Grilled red snapper, per kg"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Empanizados con coco y salsa de mango",
+      "en": "Coconut-crusted with mango sauce"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Grilled octopus"
+     },
+     "desc": {
+      "es": "Con papas cambray y mojo de ajo",
+      "en": "With baby potatoes and garlic mojo"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Filete Altamar",
+      "en": "Altamar fillet"
+     },
+     "desc": {
+      "es": "Pescado gratinado con camarón",
+      "en": "Fish fillet au gratin with shrimp"
+     },
+     "price": "250"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "De la tierra",
+    "en": "From the land"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Arrachera",
+      "en": "Arrachera"
+     },
+     "desc": {
+      "es": "Con guacamole, frijoles y tortillas",
+      "en": "With guacamole, beans and tortillas"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Tacos de pollo",
+      "en": "Chicken tacos"
+     },
+     "desc": {
+      "es": "Pollo asado con cebolla y salsa",
+      "en": "Grilled chicken with onion and salsa"
+     },
+     "price": "150"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco loco",
+      "en": "Coco loco"
+     },
+     "desc": {
+      "es": "Coco con ron, tequila y vodka",
+      "en": "Coconut with rum, tequila and vodka"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Tequila, limón y sal",
+      "en": "Tequila, lime and salt"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Agua fresca",
+      "en": "Agua fresca"
+     },
+     "desc": {
+      "es": "Jamaica, horchata o limón",
+      "en": "Hibiscus, horchata or lime"
+     },
+     "price": "45"
+    }
+   ]
+  }
+ ]
+}

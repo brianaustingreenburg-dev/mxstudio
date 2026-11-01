@@ -1,0 +1,190 @@
+{
+ "name": "La Choza de la Freed",
+ "kind": "mar",
+ "source": "sample",
+ "sources": [
+  "https://www.facebook.com/lachozadelafreed/",
+  "https://www.instagram.com/lachozadelafreed/"
+ ],
+ "tagline": {
+  "es": "Enramada de playa: mariscos, hamaca y atardecer",
+  "en": "Beach enramada: seafood, hammocks and sunset"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Casual beachfront enramada (aka Enramada Juanita) serving fresh seafood and cold drinks.",
+ "signature": [
+  "Pescado a la talla",
+  "Camarones al mojo de ajo",
+  "Tostada de ceviche",
+  "Coco loco"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Botanas",
+    "en": "Snacks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostada de ceviche",
+      "en": "Ceviche tostada"
+     },
+     "desc": {
+      "es": "Ceviche de pescado con aguacate",
+      "en": "Fish ceviche with avocado"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Pescadillas",
+      "en": "Pescadillas"
+     },
+     "desc": {
+      "es": "Orden de 4, con salsa y repollo",
+      "en": "Order of 4, with salsa and cabbage"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Quesadillas de camarón",
+      "en": "Shrimp quesadillas"
+     },
+     "desc": {
+      "es": "Tortilla de maíz con queso y camarón",
+      "en": "Corn tortilla with cheese and shrimp"
+     },
+     "price": "130"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles",
+    "en": "Cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón, aguacate y salsa coctelera",
+      "en": "Shrimp, avocado and cocktail sauce"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Vuelve a la vida",
+      "en": "Vuelve a la vida"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, ostión y caracol",
+      "en": "Shrimp, octopus, oyster and conch"
+     },
+     "price": "220"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Pescado entero adobado a las brasas, kg",
+      "en": "Whole adobo fish over coals, per kg"
+     },
+     "price": "400"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con arroz, ensalada y tortillas",
+      "en": "With rice, salad and tortillas"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Filete empapelado",
+      "en": "Foil-baked fillet"
+     },
+     "desc": {
+      "es": "Pescado con verduras y mantequilla",
+      "en": "Fish with vegetables and butter"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried mojarra"
+     },
+     "desc": {
+      "es": "Mojarra entera dorada",
+      "en": "Whole crispy tilapia"
+     },
+     "price": "190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco loco",
+      "en": "Coco loco"
+     },
+     "desc": {
+      "es": "Coco natural con ron y tequila",
+      "en": "Fresh coconut with rum and tequila"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza preparada con limón y salsas",
+      "en": "Beer with lime and sauces"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Cerveza",
+      "en": "Beer"
+     },
+     "desc": {
+      "es": "Corona o Victoria bien fría",
+      "en": "Ice-cold Corona or Victoria"
+     },
+     "price": "40"
+    }
+   ]
+  }
+ ]
+}

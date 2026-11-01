@@ -1,0 +1,212 @@
+{
+ "name": "Tres Marías Restaurante",
+ "kind": "mar",
+ "source": "partial",
+ "sources": [
+  "https://www.zonaturistica.com/restaurantes/guerrero/pie-de-la-cuesta/tres-marias",
+  "https://www.elfinanciero.com.mx/food-and-drink/2024/02/17/asi-es-el-restaurante-tres-marias-en-acapulco-favorito-de-sasha-montenegro-y-jose-lopez-portillo/"
+ ],
+ "tagline": {
+  "es": "Mariscos familiares junto a la Laguna de Coyuca",
+  "en": "Family seafood by Coyuca Lagoon"
+ },
+ "hours": {
+  "es": "Lun–Dom 9:00–19:00",
+  "en": "Mon–Sun 9am–7pm"
+ },
+ "specialty": "Decades-old family seafood spot famous for pulpo enamorado, pescado a la talla and coco loco.",
+ "signature": [
+  "Pulpo enamorado",
+  "Camarones estilo Tres Marías",
+  "Pescado a la talla",
+  "Coco loco"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Para compartir",
+    "en": "To share"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescadillas",
+      "en": "Pescadillas"
+     },
+     "desc": {
+      "es": "Tortillas fritas rellenas de pescado",
+      "en": "Fried tortillas stuffed with fish"
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Sopes",
+      "en": "Sopes"
+     },
+     "desc": {
+      "es": "Sopes de mariscos con salsa verde",
+      "en": "Seafood sopes with green salsa"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Con totopos recién hechos",
+      "en": "With freshly made chips"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Ceviche",
+      "en": "Ceviche"
+     },
+     "desc": {
+      "es": "Pescado en limón estilo Acapulco",
+      "en": "Lime-cured fish, Acapulco style"
+     },
+     "price": "180"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Especialidades",
+    "en": "Specialties"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo enamorado",
+      "en": "Pulpo enamorado"
+     },
+     "desc": {
+      "es": "Pulpo en salsa especial de la casa",
+      "en": "Octopus in the house special sauce"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Camarones estilo Tres Marías",
+      "en": "Tres Marías-style shrimp"
+     },
+     "desc": {
+      "es": "Receta de la casa con ensalada",
+      "en": "House recipe served with salad"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Pescado entero al comal de barro, por kilo",
+      "en": "Whole fish on a clay grill, per kg"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Langosta",
+      "en": "Lobster"
+     },
+     "desc": {
+      "es": "Al mojo de ajo o a la mantequilla",
+      "en": "Garlic or butter style"
+     },
+     "price": "750"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al ajillo",
+      "en": "Camarones al ajillo"
+     },
+     "desc": {
+      "es": "Con guajillo y ajo, ensalada y papas",
+      "en": "With guajillo and garlic, salad and fries"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Filete a la diabla",
+      "en": "Fish fillet a la diabla"
+     },
+     "desc": {
+      "es": "En salsa picante, con ensalada",
+      "en": "In spicy sauce, with salad"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried mojarra"
+     },
+     "desc": {
+      "es": "Mojarra entera dorada con ensalada",
+      "en": "Whole crispy tilapia with salad"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Tacos de camarón",
+      "en": "Shrimp tacos"
+     },
+     "desc": {
+      "es": "En tortilla hecha a mano",
+      "en": "On handmade tortillas"
+     },
+     "price": "170"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco loco",
+      "en": "Coco loco"
+     },
+     "desc": {
+      "es": "Coco con ron, ginebra y tequila",
+      "en": "Coconut with rum, gin and tequila"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Coconut water"
+     },
+     "desc": {
+      "es": "Coco natural de la costa",
+      "en": "Fresh coastal coconut"
+     },
+     "price": "60"
+    }
+   ]
+  }
+ ]
+}

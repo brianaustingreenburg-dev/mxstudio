@@ -1,0 +1,222 @@
+{
+ "name": "Restaurant El Tío Markos",
+ "kind": "mar",
+ "source": "partial",
+ "sources": [
+  "https://www.tripadvisor.com/Restaurant_Review-g150787-d27763836-Reviews-Restaurant_El_Tio_Markos_Official-Acapulco_Pacific_Coast.html",
+  "https://steemit.com/food/@lily-da-vine/adventures-around-acapulco-part-12-restaurant-el-tio-markos-in-pie-de-la-cuesta",
+  "https://www.facebook.com/p/Restaurant-El-t%C3%ADo-Markos-Official-100047484352790/",
+  "https://restaurantguru.com/El-tio-markos-Acapulco"
+ ],
+ "tagline": {
+  "es": "Mariscos frente al mar, hamacas y música en vivo",
+  "en": "Beachfront seafood, hammocks and live music"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Beachfront enramada in Pie de la Cuesta: pescadillas, shrimp tacos and sunsets with live music.",
+ "signature": [
+  "Pescado a la talla",
+  "Pescadillas",
+  "Tacos de camarón",
+  "Coctel de camarón"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huevos a la mexicana",
+      "en": "Huevos a la mexicana"
+     },
+     "desc": {
+      "es": "Con jitomate, cebolla, chile y frijoles",
+      "en": "With tomato, onion, chile and beans"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Huevos rancheros",
+      "en": "Huevos rancheros"
+     },
+     "desc": {
+      "es": "Sobre tortilla con salsa roja",
+      "en": "On tortilla with red salsa"
+     },
+     "price": "110"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescadillas",
+      "en": "Pescadillas"
+     },
+     "desc": {
+      "es": "Quesadillas fritas rellenas de pescado",
+      "en": "Fried tortillas stuffed with fish"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Tacos de camarón",
+      "en": "Shrimp tacos"
+     },
+     "desc": {
+      "es": "Camarón con queso gratinado",
+      "en": "Shrimp with melted cheese"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Ensalada de la casa",
+      "en": "House salad"
+     },
+     "desc": {
+      "es": "Con aderezo especial de la casa",
+      "en": "With the house special dressing"
+     },
+     "price": "90"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles y ceviches",
+    "en": "Cocktails & ceviches"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Estilo Acapulco con aguacate",
+      "en": "Acapulco style with avocado"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Pescado curado en limón, estilo guerrerense",
+      "en": "Lime-cured fish, Guerrero style"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Campechana",
+      "en": "Campechana"
+     },
+     "desc": {
+      "es": "Camarón y pulpo en salsa coctelera",
+      "en": "Shrimp and octopus in cocktail sauce"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Pescado entero a las brasas, por kilo",
+      "en": "Whole fish grilled over coals, per kg"
+     },
+     "price": "420"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con arroz, ensalada y tortillas",
+      "en": "With rice, salad and tortillas"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Filete empanizado",
+      "en": "Breaded fish fillet"
+     },
+     "desc": {
+      "es": "Con papas y ensalada",
+      "en": "With fries and salad"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Camarones a la diabla"
+     },
+     "desc": {
+      "es": "En salsa picante de chiles secos",
+      "en": "In spicy dried-chile sauce"
+     },
+     "price": "230"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Fresh coconut"
+     },
+     "desc": {
+      "es": "Coco natural recién abierto",
+      "en": "Freshly cracked coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "80"
+    }
+   ]
+  }
+ ]
+}

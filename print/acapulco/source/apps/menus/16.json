@@ -1,0 +1,22 @@
+{"name":"Café Acapulco Caféba","kind":"cafe","source":"sample","sources":[],
+"tagline":{"es":"Café de especialidad y desayunos en La Poza","en":"Specialty coffee and breakfast in La Poza"},
+"hours":{"es":"","en":""},
+"specialty":"Café guerrerense de altura, bebidas frías y desayunos sencillos.",
+"signature":["Café de olla","Frappé de cajeta","Chilaquiles verdes","Concha rellena"],
+"menu":[
+{"cat":{"es":"Café caliente","en":"Hot coffee"},"items":[
+{"name":{"es":"Americano","en":"Americano"},"desc":{"es":"Café de Atoyac, tostado medio","en":"Atoyac coffee, medium roast"},"price":"45"},
+{"name":{"es":"Capuchino","en":"Cappuccino"},"desc":{"es":"Espresso doble con leche espumada","en":"Double espresso with foamed milk"},"price":"60"},
+{"name":{"es":"Café de olla","en":"Café de olla"},"desc":{"es":"Con piloncillo y canela","en":"With piloncillo and cinnamon"},"price":"50"},
+{"name":{"es":"Latte de vainilla","en":"Vanilla latte"},"desc":{"es":"Espresso, leche y vainilla","en":"Espresso, milk and vanilla"},"price":"70"}]},
+{"cat":{"es":"Bebidas frías","en":"Cold drinks"},"items":[
+{"name":{"es":"Frappé de cajeta","en":"Cajeta frappé"},"desc":{"es":"Café frappé con cajeta y crema","en":"Frappé with cajeta and cream"},"price":"85"},
+{"name":{"es":"Cold brew","en":"Cold brew"},"desc":{"es":"Extracción en frío 16 horas","en":"16-hour cold extraction"},"price":"65"},
+{"name":{"es":"Chai helado","en":"Iced chai"},"desc":{"es":"Té chai especiado con leche","en":"Spiced chai with milk"},"price":"70"}]},
+{"cat":{"es":"Desayunos","en":"Breakfast"},"items":[
+{"name":{"es":"Chilaquiles verdes","en":"Green chilaquiles"},"desc":{"es":"Con pollo, crema y queso","en":"With chicken, cream and cheese"},"price":"120"},
+{"name":{"es":"Molletes","en":"Molletes"},"desc":{"es":"Bolillo con frijol, queso y pico de gallo","en":"Bolillo, beans, cheese, pico de gallo"},"price":"90"},
+{"name":{"es":"Sándwich de jamón y queso","en":"Ham and cheese sandwich"},"desc":{"es":"Pan de caja tostado","en":"Toasted sandwich bread"},"price":"85"}]},
+{"cat":{"es":"Panadería","en":"Bakery"},"items":[
+{"name":{"es":"Concha rellena","en":"Filled concha"},"desc":{"es":"Rellena de nata","en":"Filled with cream"},"price":"40"},
+{"name":{"es":"Pay de queso","en":"Cheesecake"},"desc":{"es":"Rebanada casera","en":"Homemade slice"},"price":"65"}]}]}

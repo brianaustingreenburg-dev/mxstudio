@@ -1,0 +1,212 @@
+{
+ "name": "La Casa del Mar",
+ "kind": "mar",
+ "source": "partial",
+ "sources": [
+  "https://wanderlog.com/place/details/15093114/restaurante-la-casa-del-mar",
+  "https://gastroranking.mx/r/restaurante-la-casa-del-mar_114660/"
+ ],
+ "tagline": {
+  "es": "Desayuno, comida y paseo en lancha en Puerto Marqués",
+  "en": "Breakfast, lunch and boat ride in Puerto Marqués"
+ },
+ "hours": {
+  "es": "Jue–Mar 7:00–18:00 (miércoles cerrado)",
+  "en": "Thu–Tue 7am–6pm (closed Wed)"
+ },
+ "specialty": "Bayside enramada in Puerto Marqués with beach-day packages and fried mojarra.",
+ "signature": [
+  "Mojarra frita",
+  "Chilaquiles con pollo",
+  "Pescado a la talla",
+  "Coctel de camarón"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Paquetes de playa",
+    "en": "Beach packages"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Paquete Básico",
+      "en": "Basic package"
+     },
+     "desc": {
+      "es": "Desayuno y comida con bebida",
+      "en": "Breakfast and lunch with a drink"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Paquete Bahía",
+      "en": "Bay package"
+     },
+     "desc": {
+      "es": "Desayuno, comida y paseo en lancha",
+      "en": "Breakfast, lunch and boat ride"
+     },
+     "price": "500"
+    },
+    {
+     "name": {
+      "es": "Paquete Completo",
+      "en": "Full package"
+     },
+     "desc": {
+      "es": "Incluye lancha y banana",
+      "en": "Includes boat ride and banana boat"
+     },
+     "price": "550"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles con pollo",
+      "en": "Chilaquiles with chicken"
+     },
+     "desc": {
+      "es": "Con frijoles y bolillo",
+      "en": "With beans and bolillo"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles con huevo",
+      "en": "Chilaquiles with eggs"
+     },
+     "desc": {
+      "es": "Salsa roja o verde, frijoles",
+      "en": "Red or green salsa, beans"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Huevos a la mexicana",
+      "en": "Mexican-style eggs"
+     },
+     "desc": {
+      "es": "Jitomate, cebolla y chile serrano",
+      "en": "Tomato, onion and serrano chile"
+     },
+     "price": "100"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried mojarra"
+     },
+     "desc": {
+      "es": "Entera, con arroz, ensalada y tortillas",
+      "en": "Whole, with rice, salad and tortillas"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Mojarra al mojo de ajo",
+      "en": "Garlic mojarra"
+     },
+     "desc": {
+      "es": "Mojarra frita bañada en ajo",
+      "en": "Fried mojarra in garlic butter"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Filete empanizado",
+      "en": "Breaded fish fillet"
+     },
+     "desc": {
+      "es": "Con arroz, frijoles y verduras",
+      "en": "With rice, beans and vegetables"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Pescado adobado a las brasas, por kilo",
+      "en": "Adobo-grilled whole fish, per kilo"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctelera",
+      "en": "Shrimp in cocktail sauce"
+     },
+     "price": "200"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tierra y bebidas",
+    "en": "Land & drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Milanesa de res",
+      "en": "Beef milanesa"
+     },
+     "desc": {
+      "es": "Con arroz, frijoles y tortillas",
+      "en": "With rice, beans and tortillas"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Naranjada",
+      "en": "Orangeade"
+     },
+     "desc": {
+      "es": "Naranja natural recién exprimida",
+      "en": "Freshly squeezed orange"
+     },
+     "price": "45"
+    },
+    {
+     "name": {
+      "es": "Café de olla",
+      "en": "Café de olla"
+     },
+     "desc": {
+      "es": "Con canela y piloncillo",
+      "en": "With cinnamon and piloncillo"
+     },
+     "price": "35"
+    }
+   ]
+  }
+ ]
+}

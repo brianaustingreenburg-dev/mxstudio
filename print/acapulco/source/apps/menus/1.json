@@ -1,0 +1,26 @@
+{"name":"Buzos Costera","kind":"mar","source":"partial","sources":["https://wanderlog.com/place/details/10041362/buzos-costera-restaurante-de-mariscos-en-acapulco","https://www.realacapulco.com/en/restaurant/buzos","https://www.rappi.com.mx/restaurantes/1923682033-los-buzos-acapulco"],
+"tagline":{"es":"Mariscos estilo Guerrero frente a la bahía","en":"Guerrero-style seafood on the bay"},
+"hours":{"es":"Lun–Jue 9:00–19:30 · Vie–Dom 9:00–20:00","en":"Mon–Thu 9am–7:30pm · Fri–Sun 9am–8pm"},
+"specialty":"Beachfront Costera seafood: molcajete de mariscos, shrimp broth and bacon-wrapped shrimp.",
+"signature":["Molcajete de Mariscos","Camarones Arropados","Filete Buzos en Salsa de Mango","Coctel de Camarón"],
+"menu":[
+{"cat":{"es":"Cocteles y Caldos","en":"Cocktails & Broths"},"items":[
+{"name":{"es":"Coctel de Camarón","en":"Shrimp Cocktail"},"desc":{"es":"Camarón en salsa coctelera con aguacate","en":"Shrimp in cocktail sauce with avocado"},"price":"260"},
+{"name":{"es":"Caldo de Camarón","en":"Caldo de Camarón (Shrimp Broth)"},"desc":{"es":"Caldo picosito de camarón tradicional","en":"Traditional spicy shrimp broth"},"price":"220"},
+{"name":{"es":"Ceviche Acapulqueño","en":"Acapulco-style Ceviche"},"desc":{"es":"Pescado en limón con salsa de tomate","en":"Lime-cured fish in tomato sauce"},"price":"190"},
+{"name":{"es":"Guacamole","en":"Guacamole"},"desc":{"es":"Aguacate fresco con totopos","en":"Fresh avocado with tortilla chips"},"price":"140"}]},
+{"cat":{"es":"Especialidades de la Casa","en":"House Specialties"},"items":[
+{"name":{"es":"Molcajete de Mariscos","en":"Seafood Molcajete"},"desc":{"es":"Pulpo, camarón y pescado en salsa caliente","en":"Octopus, shrimp and fish in sizzling sauce"},"price":"480"},
+{"name":{"es":"Camarones Arropados","en":"Bacon-wrapped Shrimp"},"desc":{"es":"Camarón envuelto en tocino con arroz","en":"Shrimp wrapped in bacon, with rice"},"price":"390"},
+{"name":{"es":"Filete Buzos en Salsa de Mango","en":"Buzos Fillet in Mango Sauce"},"desc":{"es":"Filete relleno de mariscos, salsa de mango","en":"Seafood-stuffed fillet, mango sauce"},"price":"360"},
+{"name":{"es":"Filete de Pescado con Mariscos","en":"Fish Fillet with Seafood"},"desc":{"es":"Filete bañado en salsa de mariscos","en":"Fillet topped with seafood sauce"},"price":"340"}]},
+{"cat":{"es":"Tacos del Mar","en":"Seafood Tacos"},"items":[
+{"name":{"es":"Tacos Gobernador","en":"Tacos Gobernador"},"desc":{"es":"Camarón con queso fundido en tortilla","en":"Shrimp with melted cheese in tortilla"},"price":"210"},
+{"name":{"es":"Tacos de Pescado","en":"Fish Tacos"},"desc":{"es":"Tres tacos de pescado capeado","en":"Three battered fish tacos"},"price":"190"}]},
+{"cat":{"es":"De la Parrilla","en":"From the Grill"},"items":[
+{"name":{"es":"Arrachera","en":"Arrachera (Skirt Steak)"},"desc":{"es":"Arrachera asada con guacamole y frijoles","en":"Grilled skirt steak, guacamole, beans"},"price":"350"}]},
+{"cat":{"es":"Bebidas","en":"Drinks"},"items":[
+{"name":{"es":"Agua de Pepino con Limón","en":"Cucumber-Lime Agua Fresca"},"desc":{"es":"Agua fresca natural, jarra individual","en":"Fresh natural agua fresca"},"price":"60"},
+{"name":{"es":"Margarita de Tamarindo","en":"Tamarind Margarita"},"desc":{"es":"Tequila, tamarindo y escarchado de chile","en":"Tequila, tamarind, chile-salt rim"},"price":"150"},
+{"name":{"es":"Michelada","en":"Michelada"},"desc":{"es":"Cerveza preparada con limón y salsas","en":"Beer with lime, spices and sauces"},"price":"110"}]}
+]}

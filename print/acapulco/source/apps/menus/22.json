@@ -1,0 +1,201 @@
+{
+ "name": "Café Wadi",
+ "kind": "cafe",
+ "source": "partial",
+ "sources": [
+  "https://wanderlog.com/place/details/1513965/café-wadi",
+  "https://theculturetrip.com/north-america/mexico/acapulco/articles/top-5-the-best-coffee-in-acapulco"
+ ],
+ "tagline": {
+  "es": "Café guerrerense tostado con piloncillo",
+  "en": "Guerrero coffee roasted with piloncillo"
+ },
+ "hours": {
+  "es": "Lun–Sáb 8:00–18:00",
+  "en": "Mon–Sat 8am–6pm"
+ },
+ "specialty": "Downtown roaster famous for piloncillo-roasted Guerrero coffee and its cajeta frappé.",
+ "signature": [
+  "Frappé de cajeta",
+  "Café de olla",
+  "Espresso tostado con piloncillo",
+  "Concha"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Café caliente",
+    "en": "Hot coffee"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Espresso tostado con piloncillo",
+      "en": "Piloncillo-roast espresso"
+     },
+     "desc": {
+      "es": "Grano de Guerrero tostado con piloncillo",
+      "en": "Guerrero beans roasted with piloncillo"
+     },
+     "price": "35"
+    },
+    {
+     "name": {
+      "es": "Americano",
+      "en": "Americano"
+     },
+     "desc": {
+      "es": "Café de la casa, recién molido",
+      "en": "House coffee, freshly ground"
+     },
+     "price": "35"
+    },
+    {
+     "name": {
+      "es": "Capuchino",
+      "en": "Cappuccino"
+     },
+     "desc": {
+      "es": "Espresso con leche espumada",
+      "en": "Espresso with steamed milk"
+     },
+     "price": "50"
+    },
+    {
+     "name": {
+      "es": "Café de olla",
+      "en": "Café de olla"
+     },
+     "desc": {
+      "es": "Con canela y piloncillo",
+      "en": "With cinnamon and piloncillo"
+     },
+     "price": "40"
+    },
+    {
+     "name": {
+      "es": "Lechero",
+      "en": "Café lechero"
+     },
+     "desc": {
+      "es": "Café con leche caliente al estilo porteño",
+      "en": "Coffee with hot milk, port style"
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas frías",
+    "en": "Cold drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frappé de cajeta",
+      "en": "Cajeta frappé"
+     },
+     "desc": {
+      "es": "El favorito: café helado con cajeta",
+      "en": "House favorite: iced coffee with cajeta"
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Café helado",
+      "en": "Iced coffee"
+     },
+     "desc": {
+      "es": "Espresso sobre hielo con leche",
+      "en": "Espresso over ice with milk"
+     },
+     "price": "50"
+    },
+    {
+     "name": {
+      "es": "Frappé de moka",
+      "en": "Mocha frappé"
+     },
+     "desc": {
+      "es": "Café, chocolate y hielo frappé",
+      "en": "Coffee, chocolate and blended ice"
+     },
+     "price": "65"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Panadería",
+    "en": "Bakery"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Concha",
+      "en": "Concha"
+     },
+     "desc": {
+      "es": "Pan dulce recién horneado",
+      "en": "Freshly baked sweet bread"
+     },
+     "price": "18"
+    },
+    {
+     "name": {
+      "es": "Cuernito",
+      "en": "Croissant"
+     },
+     "desc": {
+      "es": "Hojaldrado, recién horneado",
+      "en": "Flaky and freshly baked"
+     },
+     "price": "22"
+    },
+    {
+     "name": {
+      "es": "Pastel del día",
+      "en": "Cake of the day"
+     },
+     "desc": {
+      "es": "Rebanada de pastel casero",
+      "en": "Slice of homemade cake"
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Para llevar",
+    "en": "To go"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Café en grano 250 g",
+      "en": "Whole beans 250 g"
+     },
+     "desc": {
+      "es": "Mezcla guerrerense tostada en casa",
+      "en": "House-roasted Guerrero blend"
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Café molido 500 g",
+      "en": "Ground coffee 500 g"
+     },
+     "desc": {
+      "es": "Molido a tu gusto",
+      "en": "Ground to your preference"
+     },
+     "price": "240"
+    }
+   ]
+  }
+ ]
+}

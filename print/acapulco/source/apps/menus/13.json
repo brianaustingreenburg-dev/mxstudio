@@ -1,0 +1,198 @@
+{
+ "name": "Mary de Revolcadero",
+ "kind": "mar",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Enramada de mariscos frente al Revolcadero",
+  "en": "Seafood enramada on Revolcadero beach"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Family-run beach enramada serving pescado a la talla and fresh cocktails by the surf.",
+ "signature": [
+  "Pescado a la talla",
+  "Camarones a la diabla",
+  "Coctel campechano",
+  "Tostadas de ceviche"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Fríos",
+    "en": "Cold bar"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostadas de ceviche",
+      "en": "Ceviche tostadas"
+     },
+     "desc": {
+      "es": "Ceviche de pescado estilo Acapulco",
+      "en": "Acapulco-style fish ceviche"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Coctel campechano",
+      "en": "Coctel campechano"
+     },
+     "desc": {
+      "es": "Camarón, pulpo y ostión en su jugo",
+      "en": "Shrimp, octopus and oyster in broth"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón en limón, chile y pepino",
+      "en": "Shrimp in lime, chile and cucumber"
+     },
+     "price": "240"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Huachinango en adobo rojo y verde, por kilo",
+      "en": "Red snapper in red and green adobo, per kilo"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Camarones a la diabla"
+     },
+     "desc": {
+      "es": "Camarón en salsa de chile picante",
+      "en": "Shrimp in spicy chile sauce"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Camarón salteado en ajo y mantequilla",
+      "en": "Shrimp sautéed in garlic butter"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Filete empapelado",
+      "en": "Fish en papillote"
+     },
+     "desc": {
+      "es": "Filete al vapor con verduras",
+      "en": "Steamed fillet with vegetables"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Pulpo encebollado",
+      "en": "Octopus with onions"
+     },
+     "desc": {
+      "es": "Pulpo guisado con cebolla y chile",
+      "en": "Octopus stewed with onion and chile"
+     },
+     "price": "290"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Caldos y tacos",
+    "en": "Soups & tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Caldo de camarón",
+      "en": "Shrimp broth"
+     },
+     "desc": {
+      "es": "Caldo picosito de camarón",
+      "en": "Spicy shrimp broth"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Tacos de pescado",
+      "en": "Fish tacos"
+     },
+     "desc": {
+      "es": "Tres tacos de pescado capeado",
+      "en": "Three battered fish tacos"
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Quesadillas de camarón",
+      "en": "Shrimp quesadillas"
+     },
+     "desc": {
+      "es": "Tortilla de maíz, queso y camarón",
+      "en": "Corn tortilla, cheese and shrimp"
+     },
+     "price": "140"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Chilled coconut"
+     },
+     "desc": {
+      "es": "Coco natural con o sin ginebra",
+      "en": "Fresh coconut, with or without gin"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza preparada con limón y sal",
+      "en": "Beer with lime and salt"
+     },
+     "price": "80"
+    }
+   ]
+  }
+ ]
+}

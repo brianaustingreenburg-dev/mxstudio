@@ -1,0 +1,68 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:M;font-weight:500;src:url({{F5}})}
+@font-face{font-family:M;font-weight:700;src:url({{F7}})}
+@font-face{font-family:M;font-weight:800;src:url({{F8}})}
+@page{size:5.25in 7.25in;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:5.25in;font-family:M,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+:root{--c:{{COLOR}}}
+.side{width:5.25in;height:7.25in;position:relative;overflow:hidden;page-break-after:always;break-after:page}
+/* front */
+.f{background:#fbf7f1}
+.f .ph{position:absolute;left:0;top:0;width:100%;height:3.05in;background:url({{COVER}}) center/cover}
+.f .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72))}
+.f .nm{position:absolute;left:.42in;right:.42in;top:1.95in;color:#fff;z-index:2}
+.f .nm h1{font-weight:800;font-size:27pt;line-height:1.02;letter-spacing:-.3pt;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.f .nm p{font-weight:500;font-size:9pt;margin-top:4pt;opacity:.95}
+.f .band{position:absolute;left:0;right:0;top:3.05in;height:.09in;background:var(--c)}
+.f .qrw{position:absolute;left:50%;top:3.42in;transform:translateX(-50%);width:2.2in;height:2.2in;padding:.13in;background:#fff;border:3pt solid var(--c);border-radius:.16in}
+.f .qrw svg{width:100%;height:100%;display:block}
+.f .qrw svg path{fill:#141414}
+.f .sc{position:absolute;left:.3in;right:.3in;top:5.78in;text-align:center}
+.f .sc b{display:block;font-weight:800;font-size:15pt;color:var(--c);letter-spacing:.5pt}
+.f .sc span{display:block;font-weight:700;font-size:9pt;color:#3a302b;margin-top:3pt}
+.f .sc i{display:block;font-style:normal;font-weight:500;font-size:8pt;color:#7a6d66;margin-top:1pt}
+.f .ft{position:absolute;left:0;right:0;bottom:.33in;text-align:center;font-weight:700;font-size:6.5pt;color:#9a8c84;letter-spacing:.6pt}
+/* back */
+.b{background:var(--c);color:#fff}
+.b::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 8%,rgba(255,255,255,.16),transparent 45%),linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.25))}
+.b .in{position:absolute;left:.42in;right:.42in;top:.42in;bottom:.42in;display:flex;flex-direction:column}
+.b .cr{font-size:11pt;opacity:.9}
+.b h2{font-weight:800;font-size:21pt;line-height:1.05;margin-top:3pt}
+.b .tg{font-weight:500;font-size:8.5pt;opacity:.9;margin-top:3pt}
+.b hr{border:0;border-top:1pt solid rgba(255,255,255,.45);margin:9pt 0}
+.b .story{flex:1;overflow:hidden;font-size:9.2pt;line-height:1.42}
+.b .story h3{font-weight:800;font-size:8pt;letter-spacing:1.2pt;text-transform:uppercase;opacity:.85;margin:0 0 3pt}
+.b .story p{font-weight:500;margin-bottom:8pt}
+.b .story p.en{opacity:.9}
+.b .inf{font-size:8pt;font-weight:500;line-height:1.45}
+.b .inf b{font-weight:800}
+.b .ft{margin-top:8pt;font-weight:700;font-size:7pt;letter-spacing:.5pt;opacity:.85;text-align:center}
+</style></head><body>
+<div class="side f">
+ <div class="ph"></div>
+ <div class="nm"><h1>{{NAME}}</h1><p>{{TAG_ES}} · {{TAG_EN}}</p></div>
+ <div class="band"></div>
+ <div class="qrw">{{QR}}</div>
+ <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div>
+ <div class="ft">{{URL}} · APP POR MX STUDIO ✝</div>
+</div>
+<div class="side b"><div class="in">
+ <div class="cr">✝</div>
+ <h2>{{NAME}}</h2><div class="tg">{{TAG_ES}}</div>
+ <hr>
+ <div class="story" id="st">
+  <h3>Nuestra historia</h3><p>{{STORY_ES}}</p>
+  <h3>Our story</h3><p class="en">{{STORY_EN}}</p>
+ </div>
+ <hr>
+ <div class="inf"><b>Dirección · Address:</b> {{ADDR}}<br><b>Horario:</b> {{HRS}}<br><b>Hours:</b> {{HRS_EN}}</div>
+ <div class="ft">Escanea el código al frente · Scan the code on the front</div>
+</div></div>
+<script>
+// fit the story: shrink text until it fits
+const s=document.getElementById("st");let f=11.5;s.style.fontSize=f+"pt";
+document.fonts.ready.then(()=>{while(s.scrollHeight>s.clientHeight+1&&f>7){f-=.2;s.style.fontSize=f+"pt"}
+ document.querySelectorAll(".inf").forEach(i=>{i.innerHTML=i.innerHTML.replace(/<b>Horario:<\/b>\s*<br>/,"").replace(/<b>Hours:<\/b>\s*$/,"")})});
+</script>
+</body></html>

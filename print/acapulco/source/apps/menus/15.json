@@ -1,0 +1,24 @@
+{"name":"Paititi del Mar","kind":"mar","source":"partial","sources":["https://wanderlog.com/place/details/1235663/paititi-del-mar-restaurante--relax","https://pos.do/ca/acapulco-de-juarez/restaurant/paititi-del-mar"],
+"tagline":{"es":"Mariscos peruano-mexicanos en un jardín relajado","en":"Peruvian-Mexican seafood in a laid-back garden"},
+"hours":{"es":"Lun–Dom 9:00–21:00","en":"Mon–Sun 9am–9pm"},
+"specialty":"Ceviches con leche de tigre, pulpo enchilado y tostadas toreadas en un patio jardín.",
+"signature":["Ceviche de robalo en leche de tigre","Pulpo a las brasas enchilado","Aguachile bugambilia","Tostada toreada"],
+"menu":[
+{"cat":{"es":"Ceviches y aguachiles","en":"Ceviches & aguachiles"},"items":[
+{"name":{"es":"Ceviche de robalo en leche de tigre","en":"Snook ceviche in leche de tigre"},"desc":{"es":"Robalo fresco curado en leche de tigre","en":"Fresh snook cured in tiger's milk"},"price":"220"},
+{"name":{"es":"Ceviche tropical","en":"Tropical ceviche"},"desc":{"es":"Pescado con piña y coco","en":"Fish with pineapple and coconut"},"price":"210"},
+{"name":{"es":"Aguachile bugambilia","en":"Bougainvillea aguachile"},"desc":{"es":"Camarón en salsa roja de jamaica y chile","en":"Shrimp in hibiscus-chile red sauce"},"price":"240"},
+{"name":{"es":"Leche de tigre","en":"Leche de tigre"},"desc":{"es":"Shot cítrico con trocitos de pescado","en":"Citrus shot with bits of fish"},"price":"120"}]},
+{"cat":{"es":"Tostadas y tacos","en":"Tostadas & tacos"},"items":[
+{"name":{"es":"Tostada toreada","en":"Tostada toreada"},"desc":{"es":"Atún con chiles toreados y mayo","en":"Tuna with blistered chiles and mayo"},"price":"130"},
+{"name":{"es":"Tostada de atún","en":"Tuna tostada"},"desc":{"es":"Atún fresco, aguacate y salsa macha","en":"Fresh tuna, avocado and salsa macha"},"price":"125"},
+{"name":{"es":"Tacos de pulpo","en":"Octopus tacos"},"desc":{"es":"Pulpo a la brasa en tortilla de maíz","en":"Grilled octopus on corn tortilla"},"price":"160"},
+{"name":{"es":"Gamba Burger","en":"Gamba Burger"},"desc":{"es":"Hamburguesa de camarón con chipotle","en":"Shrimp burger with chipotle"},"price":"195"}]},
+{"cat":{"es":"Platos fuertes","en":"Mains"},"items":[
+{"name":{"es":"Pulpo a las brasas enchilado","en":"Chile-rubbed grilled octopus"},"desc":{"es":"También al ajo o al pesto","en":"Also with garlic or pesto"},"price":"340"},
+{"name":{"es":"Robalo a la menta","en":"Snook with mint"},"desc":{"es":"Filete de robalo con salsa de menta","en":"Snook fillet with mint sauce"},"price":"310"},
+{"name":{"es":"Salmón a las alcaparras","en":"Caper salmon"},"desc":{"es":"Salmón a la plancha, mantequilla y alcaparras","en":"Seared salmon, butter and capers"},"price":"330"},
+{"name":{"es":"Caldo costeño","en":"Caldo costeño"},"desc":{"es":"Sopa picante de mariscos","en":"Spicy seafood soup"},"price":"230"}]},
+{"cat":{"es":"Bebidas","en":"Drinks"},"items":[
+{"name":{"es":"Agua fresca del día","en":"Agua fresca of the day"},"desc":{"es":"Fruta natural de temporada","en":"Fresh seasonal fruit"},"price":"50"},
+{"name":{"es":"Jugo natural","en":"Fresh juice"},"desc":{"es":"Naranja, piña o verde","en":"Orange, pineapple or green"},"price":"60"}]}]}

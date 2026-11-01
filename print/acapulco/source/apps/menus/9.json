@@ -1,0 +1,201 @@
+{
+ "name": "Narciso",
+ "kind": "cafe",
+ "source": "sample",
+ "sources": [
+  "https://www.facebook.com/narciso.aca/",
+  "https://www.instagram.com/narciso.aca/"
+ ],
+ "tagline": {
+  "es": "Café de especialidad y brunch en Costa Azul",
+  "en": "Specialty coffee and brunch in Costa Azul"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Specialty coffee, iced lattes and all-day brunch on the Costera.",
+ "signature": [
+  "Latte de lavanda",
+  "Chilaquiles Narciso",
+  "Toast de aguacate",
+  "Hotcakes de frutos rojos"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Café",
+    "en": "Coffee"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Espresso",
+      "en": "Espresso"
+     },
+     "desc": {
+      "es": "Grano de Guerrero, extracción doble",
+      "en": "Guerrero beans, double shot"
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Latte de lavanda",
+      "en": "Lavender latte"
+     },
+     "desc": {
+      "es": "Leche vaporizada con jarabe de lavanda",
+      "en": "Steamed milk with lavender syrup"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Cold brew",
+      "en": "Cold brew"
+     },
+     "desc": {
+      "es": "Infusión en frío 18 horas",
+      "en": "18-hour cold steep"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Frappé de cajeta",
+      "en": "Cajeta frappé"
+     },
+     "desc": {
+      "es": "Café helado con cajeta y crema",
+      "en": "Iced coffee with cajeta and cream"
+     },
+     "price": "90"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas frías",
+    "en": "Cold drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Matcha latte frío",
+      "en": "Iced matcha latte"
+     },
+     "desc": {
+      "es": "Matcha ceremonial con leche",
+      "en": "Ceremonial matcha with milk"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Limonada de maracuyá",
+      "en": "Passion fruit lemonade"
+     },
+     "desc": {
+      "es": "Limón fresco, maracuyá y hierbabuena",
+      "en": "Fresh lime, passion fruit and mint"
+     },
+     "price": "70"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Brunch",
+    "en": "Brunch"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles Narciso",
+      "en": "Chilaquiles Narciso"
+     },
+     "desc": {
+      "es": "Salsa verde, huevo, crema y queso",
+      "en": "Green salsa, egg, cream and cheese"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Toast de aguacate",
+      "en": "Avocado toast"
+     },
+     "desc": {
+      "es": "Pan de masa madre, aguacate y huevo pochado",
+      "en": "Sourdough, avocado and poached egg"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Hotcakes de frutos rojos",
+      "en": "Berry hotcakes"
+     },
+     "desc": {
+      "es": "Tres hotcakes con frutos rojos y miel",
+      "en": "Three hotcakes with berries and honey"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Bowl de frutas",
+      "en": "Fruit bowl"
+     },
+     "desc": {
+      "es": "Fruta de temporada, yogurt y granola",
+      "en": "Seasonal fruit, yogurt and granola"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Bagel de salmón",
+      "en": "Salmon bagel"
+     },
+     "desc": {
+      "es": "Salmón ahumado, queso crema y alcaparras",
+      "en": "Smoked salmon, cream cheese, capers"
+     },
+     "price": "185"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Panadería",
+    "en": "Bakery"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Croissant de almendra",
+      "en": "Almond croissant"
+     },
+     "desc": {
+      "es": "Hojaldre relleno de crema de almendra",
+      "en": "Pastry filled with almond cream"
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Roll de canela",
+      "en": "Cinnamon roll"
+     },
+     "desc": {
+      "es": "Glaseado de queso crema",
+      "en": "Cream cheese glaze"
+     },
+     "price": "60"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,215 @@
+{
+ "name": "Terraza Buffet",
+ "kind": "res",
+ "source": "partial",
+ "sources": [
+  "https://www.tripadvisor.com/Restaurant_Review-g150787-d21512154-Reviews-Terraza_Buffet-Acapulco_Pacific_Coast.html",
+  "https://www.tripadvisor.com/LocationPhotoDirectLink-g150787-d21512154-i486141804-Terraza_Buffet-Acapulco_Pacific_Coast.html",
+  "https://www.tripadvisor.com/LocationPhotoDirectLink-g150787-d21512154-i476427512-Terraza_Buffet-Acapulco_Pacific_Coast.html",
+  "https://www.facebook.com/p/Terraza-Buffet-61555523919406/",
+  "https://terrazabuffet.com/"
+ ],
+ "tagline": {
+  "es": "Buffet libre frente a la Costera",
+  "en": "All-you-can-eat buffet on the Costera"
+ },
+ "hours": {
+  "es": "Lun–Dom 8:00–22:00",
+  "en": "Mon–Sun 8am–10pm"
+ },
+ "specialty": "All-you-can-eat seafood and Mexican buffet: paella, ceviches, mixiotes and desserts.",
+ "signature": [
+  "Paella",
+  "Ceviche sinaloense",
+  "Piña rellena de mariscos",
+  "Pasta Alfredo con camarones"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Buffet",
+    "en": "Buffet"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Buffet adulto",
+      "en": "Adult buffet"
+     },
+     "desc": {
+      "es": "Acceso libre a todas las estaciones",
+      "en": "Unlimited access to every station"
+     },
+     "price": "369"
+    },
+    {
+     "name": {
+      "es": "Buffet niño",
+      "en": "Kids buffet"
+     },
+     "desc": {
+      "es": "Menores de 1.30 m",
+      "en": "Children under 1.30 m"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Desayuno buffet",
+      "en": "Breakfast buffet"
+     },
+     "desc": {
+      "es": "Chilaquiles, huevos, fruta y pan dulce",
+      "en": "Chilaquiles, eggs, fruit and pastries"
+     },
+     "price": "249"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche sinaloense",
+      "en": "Ceviche sinaloense"
+     },
+     "desc": {
+      "es": "Camarón, pepino, cebolla morada y limón",
+      "en": "Shrimp, cucumber, red onion and lime"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Piña rellena de mariscos",
+      "en": "Seafood-stuffed pineapple"
+     },
+     "desc": {
+      "es": "Piña gratinada con mariscos al estilo caribeño",
+      "en": "Gratinated pineapple with Caribbean-style seafood"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Mixiotes de mariscos",
+      "en": "Seafood mixiotes"
+     },
+     "desc": {
+      "es": "Mariscos al vapor en hoja con chile",
+      "en": "Steamed seafood parcel with chile"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Tacos de pescado",
+      "en": "Fish tacos"
+     },
+     "desc": {
+      "es": "Pescado capeado con col y chipotle",
+      "en": "Battered fish with slaw and chipotle"
+     },
+     "price": "0"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Paella",
+      "en": "Paella"
+     },
+     "desc": {
+      "es": "Arroz con mariscos, pollo y chorizo",
+      "en": "Rice with seafood, chicken and chorizo"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Pasta Alfredo con camarones",
+      "en": "Shrimp Alfredo pasta"
+     },
+     "desc": {
+      "es": "Pasta en salsa cremosa con camarón",
+      "en": "Pasta in creamy sauce with shrimp"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Yakimeshi de mariscos",
+      "en": "Seafood yakimeshi"
+     },
+     "desc": {
+      "es": "Arroz frito con mariscos y verduras",
+      "en": "Fried rice with seafood and vegetables"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Mole de pollo",
+      "en": "Chicken mole"
+     },
+     "desc": {
+      "es": "Pollo en mole poblano con ajonjolí",
+      "en": "Chicken in mole poblano with sesame"
+     },
+     "price": "0"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Arroz con leche",
+      "en": "Rice pudding"
+     },
+     "desc": {
+      "es": "Con canela, receta casera",
+      "en": "With cinnamon, homemade"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Pastel imposible",
+      "en": "Chocoflan"
+     },
+     "desc": {
+      "es": "Chocolate y flan en una rebanada",
+      "en": "Chocolate cake and flan in one slice"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Duraznos en almíbar",
+      "en": "Peaches in syrup"
+     },
+     "desc": {
+      "es": "Clásico postre de buffet",
+      "en": "Classic buffet dessert"
+     },
+     "price": "0"
+    }
+   ]
+  }
+ ]
+}
