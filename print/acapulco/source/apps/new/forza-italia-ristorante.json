@@ -1,0 +1,292 @@
+{
+ "name": "Forza Italia Ristorante",
+ "slug": "forza-italia-ristorante",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJraYHkTr4yoURtZZLDOtPMqg",
+ "lat": 16.8563559,
+ "lng": -99.8613566,
+ "address": "Av. Costera Miguel Alemán 82, Club Deportivo",
+ "phone": "+52 744 484 8877",
+ "hours": {
+  "es": "Mié–Lun 14:00–22:00 · Mar cerrado",
+  "en": "Wed–Mon 2pm–10pm · Tue closed"
+ },
+ "rating": 4.4,
+ "reviews": 708,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "italian",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/restaurant/forza-italia"
+ ],
+ "tagline": {
+  "es": "Pasta hecha a mano y pizzas gigantes en plena Costera",
+  "en": "Handmade pasta and giant pizzas right on the Costera"
+ },
+ "specialty": "Northern Italian handmade pastas, oversized pizzas and a signature tiramisu",
+ "signature": [
+  "Fettuccine Frutti di Mare",
+  "Lasagna della Casa",
+  "Pizza Forza",
+  "Tiramisú"
+ ],
+ "photo_notes": {
+  "cover": "Lively open-air sidewalk trattoria on the Costera at night with checkered tablecloths, wine glasses and a glowing pizza oven inside.",
+  "s1": "Fettuccine loaded with shrimp, mussels and clams in tomato sauce.",
+  "s2": "Tall slice of baked lasagna with bubbling mozzarella and ragù.",
+  "s3": "Large rustic pizza with salami, mushrooms and basil on a wooden peel.",
+  "s4": "Square of tiramisu dusted with cocoa on a white plate."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Antipasti",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pan de Ajo con Mantequilla",
+      "en": "Garlic Butter Bread"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Carpaccio di Manzo",
+      "en": "Beef Carpaccio"
+     },
+     "desc": {
+      "es": "Arúgula y parmesano",
+      "en": "Arugula and parmesan"
+     },
+     "price": "225"
+    },
+    {
+     "name": {
+      "es": "Ensalada Caprese",
+      "en": "Caprese Salad"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Mejillones al Vino Blanco",
+      "en": "Mussels in White Wine"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas hechas a mano",
+    "en": "Handmade Pastas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Fettuccine Frutti di Mare",
+      "en": "Fettuccine Frutti di Mare"
+     },
+     "desc": {
+      "es": "Camarón, mejillón, almeja",
+      "en": "Shrimp, mussels, clams"
+     },
+     "price": "295"
+    },
+    {
+     "name": {
+      "es": "Lasagna della Casa",
+      "en": "House Lasagna"
+     },
+     "desc": {
+      "es": "Ragù y bechamel",
+      "en": "Ragù and béchamel"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Ravioli de Espinaca y Ricotta",
+      "en": "Spinach & Ricotta Ravioli"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Spaghetti Carbonara",
+      "en": "Spaghetti Carbonara"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Penne Arrabbiata",
+      "en": "Penne Arrabbiata"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "195"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas",
+    "en": "Pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pizza Margherita",
+      "en": "Margherita Pizza"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Pizza Forza",
+      "en": "Forza Pizza"
+     },
+     "desc": {
+      "es": "Salami, champiñón, pimiento",
+      "en": "Salami, mushroom, pepper"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Pizza Quattro Formaggi",
+      "en": "Four Cheese Pizza"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Pizza Prosciutto e Rucola",
+      "en": "Prosciutto & Arugula Pizza"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "320"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Secondi",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Filete de Pescado al Limone",
+      "en": "Fish Fillet al Limone"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Pollo alla Parmigiana",
+      "en": "Chicken Parmigiana"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "265"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Dolci e bevande",
+    "en": "Desserts & Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tiramisú",
+      "en": "Tiramisu"
+     },
+     "desc": {
+      "es": "Receta de la casa",
+      "en": "House recipe"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Panna Cotta",
+      "en": "Panna Cotta"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Clericot",
+      "en": "Clericot"
+     },
+     "desc": {
+      "es": "Jarra",
+      "en": "Pitcher"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    }
+   ]
+  }
+ ]
+}

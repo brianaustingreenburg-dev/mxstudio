@@ -1,0 +1,325 @@
+{
+ "name": "Amalfi Acapulco",
+ "slug": "amalfi-acapulco",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJCX6gBvVZyoUR_LHFnvlBN9M",
+ "lat": 16.8282386,
+ "lng": -99.8616993,
+ "address": "Carretera Escénica 1007, Fracc. Marina Brisas",
+ "phone": "+52 744 352 1998",
+ "hours": {
+  "es": "Lun–Jue 9:00–18:00 · Vie–Dom 9:00–23:00",
+  "en": "Mon–Thu 9am–6pm · Fri–Sun 9am–11pm"
+ },
+ "rating": 4.4,
+ "reviews": 275,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mediterranean & italian",
+ "source": "real",
+ "sources": [
+  "https://www.opentable.com/r/amalfi-acapulco-acapulco-de-juarez"
+ ],
+ "tagline": {
+  "es": "Desayunos y pizzas mediterráneas con vista a la bahía",
+  "en": "Mediterranean breakfasts and pizzas with a bay view"
+ },
+ "specialty": "Bay-view Mediterranean brunch, seafood pastas and stone-baked pizzas on the Escénica",
+ "signature": [
+  "Pasta Frutti di Mare",
+  "Smoked Salmon Toast",
+  "Napolitana",
+  "Carpaccio de Res"
+ ],
+ "photo_notes": {
+  "cover": "Bright elegant terrace with white linen tables, potted olive trees and a sweeping daytime view over Acapulco Bay from the hillside.",
+  "s1": "Linguine with jumbo shrimp, clams and octopus in seafood sauce, basil oil and parmesan.",
+  "s2": "Smoked salmon on toasted artisan bread with arugula, cherry tomato and balsamic drizzle.",
+  "s3": "Thin-crust pizza with serrano ham, spinach, mozzarella and shaved parmesan.",
+  "s4": "Paper-thin beef carpaccio with arugula, capers and parmesan shavings."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Bowl de Frutas",
+      "en": "Fruit Bowl"
+     },
+     "desc": {
+      "es": "Yogur griego, granola, miel",
+      "en": "Greek yogurt, granola, honey"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Avocado Toast",
+      "en": "Avocado Toast"
+     },
+     "desc": {
+      "es": "Pan artesanal, espinaca, arúgula",
+      "en": "Artisan bread, spinach, arugula"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Smoked Salmon Toast",
+      "en": "Smoked Salmon Toast"
+     },
+     "desc": {
+      "es": "Arúgula, cherry, reducción balsámica",
+      "en": "Arugula, cherry tomato, balsamic"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "French Toast",
+      "en": "French Toast"
+     },
+     "desc": {
+      "es": "Frutos del bosque, salsa de chilate",
+      "en": "Forest berries, chilate sauce"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles",
+      "en": "Chilaquiles"
+     },
+     "desc": {
+      "es": "Rojos o verdes, aguacate",
+      "en": "Red or green, avocado"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Huevos Benedictinos",
+      "en": "Eggs Benedict"
+     },
+     "desc": {
+      "es": "Holandesa, jamón serrano, parmesano",
+      "en": "Hollandaise, serrano ham, parmesan"
+     },
+     "price": "290"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ensalada Amalfi",
+      "en": "Amalfi Salad"
+     },
+     "desc": {
+      "es": "Fresas, nuez, higos, vinagreta de durazno",
+      "en": "Strawberries, walnuts, figs, peach dressing"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Carpaccio de Res",
+      "en": "Beef Carpaccio"
+     },
+     "desc": {
+      "es": "Filete, parmesano, alcaparras",
+      "en": "Filet, parmesan, capers"
+     },
+     "price": "315"
+    },
+    {
+     "name": {
+      "es": "Trilogía de Tacos",
+      "en": "Taco Trilogy"
+     },
+     "desc": {
+      "es": "Asada, pescado y cochinita",
+      "en": "Carne asada, fish and pibil pork"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Almeja Santa",
+      "en": "Almeja Santa"
+     },
+     "desc": {
+      "es": "Almeja reina con camarón",
+      "en": "Queen clam with shrimp"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas y pizzas",
+    "en": "Pastas & Pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pasta Frutti di Mare",
+      "en": "Pasta Frutti di Mare"
+     },
+     "desc": {
+      "es": "Camarón U10, almejas, pulpo",
+      "en": "U10 shrimp, clams, octopus"
+     },
+     "price": "430"
+    },
+    {
+     "name": {
+      "es": "Pasta Alfredo",
+      "en": "Pasta Alfredo"
+     },
+     "desc": {
+      "es": "Parmesano y aceite de trufa",
+      "en": "Parmesan and truffle oil"
+     },
+     "price": "360"
+    },
+    {
+     "name": {
+      "es": "Napolitana",
+      "en": "Napolitana"
+     },
+     "desc": {
+      "es": "Jamón serrano, espinaca, mozzarella",
+      "en": "Serrano ham, spinach, mozzarella"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Margherita",
+      "en": "Margherita"
+     },
+     "desc": {
+      "es": "Pesto, aceite de oliva, cherry",
+      "en": "Pesto, olive oil, cherry tomato"
+     },
+     "price": "300"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Carnes y pescados",
+    "en": "Meat & Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Rib Eye",
+      "en": "Rib Eye"
+     },
+     "desc": {
+      "es": "Black Angus, sal ahumada",
+      "en": "Black Angus, smoked salt"
+     },
+     "price": "540"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa Amalfi",
+      "en": "Amalfi Burger"
+     },
+     "desc": {
+      "es": "Brioche, tocino, dip de jalapeño",
+      "en": "Brioche, bacon, jalapeño dip"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Salmón a la Parrilla",
+      "en": "Grilled Salmon"
+     },
+     "desc": {
+      "es": "Vegetales asados",
+      "en": "Grilled vegetables"
+     },
+     "price": "360"
+    },
+    {
+     "name": {
+      "es": "Robalo",
+      "en": "Sea Bass"
+     },
+     "desc": {
+      "es": "Mantequilla de limón, aceitunas",
+      "en": "Lemon butter, olives"
+     },
+     "price": "300"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Jugo Amalfi",
+      "en": "Amalfi Juice"
+     },
+     "desc": {
+      "es": "Kiwi, pepino y limón",
+      "en": "Kiwi, cucumber, lime"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Mimosa",
+      "en": "Mimosa"
+     },
+     "desc": {
+      "es": "Naranja, maracuyá o frutos rojos",
+      "en": "Orange, passion fruit or berries"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Aperol Spritz",
+      "en": "Aperol Spritz"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Capuchino",
+      "en": "Cappuccino"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "90"
+    }
+   ]
+  }
+ ]
+}

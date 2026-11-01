@@ -1,0 +1,249 @@
+{
+ "name": "Tomasa Pescado a la Talla",
+ "slug": "tomasa-pescado-a-la-talla",
+ "area": "Pie de la Cuesta / Afueras",
+ "place_id": "ChIJcUBEhP1ByoURV9Vk8W0yrJU",
+ "lat": 16.6879293,
+ "lng": -99.6262463,
+ "address": "Av. El Pescador, Barra Vieja",
+ "phone": "",
+ "hours": {
+  "es": "Lun–Dom 11:00–19:00",
+  "en": "Mon–Sun 11am–7pm"
+ },
+ "rating": 4.3,
+ "reviews": 573,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Especialistas en pescado a la talla",
+  "en": "Pescado a la talla specialists"
+ },
+ "specialty": "Pescado a la talla over mangrove charcoal, Barra Vieja style",
+ "signature": [
+  "Pescado a la talla (kg)",
+  "Pulpo a las brasas",
+  "Tamales de cazón",
+  "Michelada"
+ ],
+ "photo_notes": {
+  "cover": "Beachside enramada with a smoking charcoal grill holding butterflied snappers, palm roof and the surf of Barra Vieja behind",
+  "s1": "whole red snapper butterflied and grilled a la talla, half red adobo half green adobo, on a wooden board with rice, tortillas and lime",
+  "s2": "charred octopus tentacles on a wooden board with garlic butter and grilled lime",
+  "s3": "two tamales de cazón opened on banana leaves with red salsa",
+  "s4": "big michelada with chile-salt rim, chamoy and lime"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas y cocteles",
+    "en": "Starters & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopes de camarón",
+      "en": "Shrimp sopes"
+     },
+     "desc": {
+      "es": "Masa a mano con camarón, salsa y queso",
+      "en": "Handmade masa with shrimp, salsa and cheese"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Tamales de cazón",
+      "en": "Dogfish tamales"
+     },
+     "desc": {
+      "es": "Receta costeña tradicional",
+      "en": "Traditional coastal recipe"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Pescado curtido en limón con pico de gallo",
+      "en": "Lime-cured fish with pico de gallo"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctel con aguacate",
+      "en": "Shrimp in cocktail sauce with avocado"
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla (kg)",
+      "en": "Grilled fish a la talla (kg)"
+     },
+     "desc": {
+      "es": "Huachinango al carbón con adobo rojo y verde",
+      "en": "Charcoal snapper, red and green adobo"
+     },
+     "price": "530"
+    },
+    {
+     "name": {
+      "es": "Huachinango frito (kg)",
+      "en": "Fried whole snapper (kg)"
+     },
+     "desc": {
+      "es": "Entero, dorado, con ensalada y arroz",
+      "en": "Whole, golden fried, with salad and rice"
+     },
+     "price": "515"
+    },
+    {
+     "name": {
+      "es": "Filete empapelado",
+      "en": "Fish fillet en papillote"
+     },
+     "desc": {
+      "es": "Al vapor con verduras y especias",
+      "en": "Steamed with vegetables and herbs"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Filete al mojo de ajo",
+      "en": "Garlic fish fillet"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Mariscos",
+    "en": "Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Charcoal-grilled octopus"
+     },
+     "desc": {
+      "es": "Con mantequilla de ajo y chile",
+      "en": "With garlic-chile butter"
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con ajo dorado y mantequilla",
+      "en": "With golden garlic and butter"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Deviled shrimp"
+     },
+     "desc": {
+      "es": "En salsa picante de chiles secos",
+      "en": "In spicy dried-chile sauce"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Caldo de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, almeja y pescado",
+      "en": "Shrimp, octopus, clams and fish"
+     },
+     "price": "265"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Con chamoy y escarchado",
+      "en": "With chamoy and chile rim"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Fresh coconut"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Natural, servida en piña",
+      "en": "Fresh, served in a pineapple"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    }
+   ]
+  }
+ ]
+}

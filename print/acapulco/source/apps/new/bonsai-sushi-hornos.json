@@ -1,0 +1,257 @@
+{
+ "name": "Bonsai Sushi",
+ "slug": "bonsai-sushi-hornos",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJv5YK3gNYyoURF5WHHiuDQXw",
+ "lat": 16.8569364,
+ "lng": -99.8958241,
+ "address": "Av. Capitán Malaspina 26, Hornos",
+ "phone": "+52 744 486 5544",
+ "hours": {
+  "es": "Lun–Dom 12:00–20:00",
+  "en": "Mon–Sun 12pm–8pm"
+ },
+ "rating": 4.5,
+ "reviews": 240,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "sushi",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Sushi hecho al momento a una cuadra de la playa",
+  "en": "Made-to-order sushi a block from the beach"
+ },
+ "specialty": "Small Japanese spot in Hornos where every roll is made to order, strong on shrimp rolls.",
+ "signature": [
+  "Bonsai Roll",
+  "Sashimi de Atún",
+  "Yakimeshi Especial",
+  "Camarones Tempura"
+ ],
+ "photo_notes": {
+  "cover": "a small modern Japanese restaurant with a light-wood sushi bar, paper lanterns, a bonsai tree and minimalist tables",
+  "s1": "a sliced signature sushi roll topped with spicy crab, avocado and eel sauce on a long plate",
+  "s2": "fresh red tuna sashimi slices with daikon and wasabi on a dark plate",
+  "s3": "special fried rice with shrimp, beef, vegetables and egg in a bowl",
+  "s4": "crispy tempura shrimp with dipping sauce on a bamboo tray"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Gyozas (5)",
+      "en": "Gyoza (5)"
+     },
+     "desc": {
+      "es": "Rellenas de cerdo",
+      "en": "Pork-filled"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Camarones Tempura",
+      "en": "Tempura Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Edamames",
+      "en": "Edamame"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos",
+    "en": "Rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "California Roll",
+      "en": "California Roll"
+     },
+     "desc": {
+      "es": "Camarón, pepino y aguacate",
+      "en": "Shrimp, cucumber, avocado"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Philadelphia Roll",
+      "en": "Philadelphia Roll"
+     },
+     "desc": {
+      "es": "Salmón y queso crema",
+      "en": "Salmon and cream cheese"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Bonsai Roll",
+      "en": "Bonsai Roll"
+     },
+     "desc": {
+      "es": "Especial de la casa con cangrejo picante",
+      "en": "House special, spicy crab"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Mar y Tierra Roll",
+      "en": "Surf and Turf Roll"
+     },
+     "desc": {
+      "es": "Camarón y res",
+      "en": "Shrimp and beef"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Acapulco Roll",
+      "en": "Acapulco Roll"
+     },
+     "desc": {
+      "es": "Empanizado, camarón y plátano",
+      "en": "Breaded, shrimp and plantain"
+     },
+     "price": "180"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Sashimi y Nigiri",
+    "en": "Sashimi & Nigiri"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sashimi de Atún",
+      "en": "Tuna Sashimi"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Sashimi de Salmón",
+      "en": "Salmon Sashimi"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Nigiri de Camarón (2)",
+      "en": "Shrimp Nigiri (2)"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "80"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Calientes",
+    "en": "Hot Dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Yakimeshi Especial",
+      "en": "Special Fried Rice"
+     },
+     "desc": {
+      "es": "Camarón, res y pollo",
+      "en": "Shrimp, beef and chicken"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Teppanyaki de Camarón",
+      "en": "Shrimp Teppanyaki"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Ramen de Cerdo",
+      "en": "Pork Ramen"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "175"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Té Verde",
+      "en": "Green Tea"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "45"
+    },
+    {
+     "name": {
+      "es": "Limonada de Pepino",
+      "en": "Cucumber Lemonade"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "60"
+    }
+   ]
+  }
+ ]
+}

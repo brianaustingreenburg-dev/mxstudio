@@ -1,0 +1,259 @@
+{
+ "name": "La Trainera - La Joya",
+ "slug": "la-trainera-la-joya",
+ "area": "Diamante",
+ "place_id": "ChIJ-zh0E2FZyoURv5sOZ8AFqFE",
+ "lat": 16.799122,
+ "lng": -99.8161088,
+ "address": "Blvd. de las Naciones 37, local 13, Plaza La Joya",
+ "phone": "+52 744 466 3868",
+ "hours": {
+  "es": "Lun–Dom 13:00–20:00",
+  "en": "Mon–Sun 1pm–8pm"
+ },
+ "rating": 4.5,
+ "reviews": 638,
+ "price_level": 3,
+ "kind": "mar",
+ "cuisine": "seafood & raw bar",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923542550-la-trainera-acapulco"
+ ],
+ "tagline": {
+  "es": "Marisco fresquísimo, barra estilo japonés",
+  "en": "Ultra-fresh seafood, Japanese-style bar"
+ },
+ "specialty": "Premium fresh seafood market-restaurant with sashimis, aguachiles and jumbo shrimp.",
+ "signature": [
+  "Sashimi Mixto",
+  "Aguachile De Camaron Rojo",
+  "Camaron U12 Al Gusto",
+  "Tataki de Atún"
+ ],
+ "photo_notes": {
+  "cover": "Clean modern seafood bar with a Japanese-style counter, ice display of fresh fish and shellfish, light wood and white tiles.",
+  "s1": "Mixed sashimi of salmon, tuna and white fish fanned on a ceramic plate with wasabi and ponzu.",
+  "s2": "Red aguachile shrimp in chile de árbol sauce with cucumber slices and red onion in a stone bowl.",
+  "s3": "Jumbo U12 shrimp grilled with garlic butter, lime halves, on a black platter.",
+  "s4": "Seared tuna tataki cubes with black pepper crust and oriental sauce, sesame seeds."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Caldo de Camarón",
+      "en": "Shrimp broth"
+     },
+     "desc": {
+      "es": "Consomé de camarón 250 ml",
+      "en": "Shrimp consommé 250 ml"
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Aguachile De Camaron Rojo",
+      "en": "Red shrimp aguachile"
+     },
+     "desc": {
+      "es": "Chile de árbol, pepino y cebolla morada",
+      "en": "Chile de árbol, cucumber, red onion"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Tataki de Atún",
+      "en": "Tuna tataki"
+     },
+     "desc": {
+      "es": "Atún aleta amarilla en costra de pimienta",
+      "en": "Yellowfin tuna, black pepper crust"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Ostiones en su Concha",
+      "en": "Oysters on the half shell"
+     },
+     "desc": {
+      "es": "Media docena, limón y salsas",
+      "en": "Half dozen, lime and sauces"
+     },
+     "price": "290"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Sashimis y Tiraditos",
+    "en": "Sashimi & Tiraditos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sashimi Mixto",
+      "en": "Mixed sashimi"
+     },
+     "desc": {
+      "es": "Salmón, atún y pescado blanco",
+      "en": "Salmon, tuna and white fish"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Sashimi Caracol",
+      "en": "Conch sashimi"
+     },
+     "desc": {
+      "es": "Cebolla morada, habanero y limón",
+      "en": "Red onion, habanero and lime"
+     },
+     "price": "468"
+    },
+    {
+     "name": {
+      "es": "Tiradito Robalo",
+      "en": "Snook tiradito"
+     },
+     "desc": {
+      "es": "Pepino, serrano y salsa oriental",
+      "en": "Cucumber, serrano, oriental sauce"
+     },
+     "price": "354"
+    },
+    {
+     "name": {
+      "es": "Sashimi Robalo",
+      "en": "Snook sashimi"
+     },
+     "desc": {
+      "es": "Con salsa oriental y wasabi",
+      "en": "With oriental sauce and wasabi"
+     },
+     "price": "468"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tostadas y Tacos",
+    "en": "Tostadas & Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostada Marlín",
+      "en": "Smoked marlin tostada"
+     },
+     "desc": {
+      "es": "Marlín ahumado, frijol y cebolla curtida",
+      "en": "Smoked marlin, beans, pickled onion"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Tostada Caramelo",
+      "en": "Caramelo tuna tostada"
+     },
+     "desc": {
+      "es": "Atún fresco en salsa dulce de la casa",
+      "en": "Fresh tuna in sweet house sauce"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Tacos de Pescado al Pastor",
+      "en": "Fish al pastor tacos"
+     },
+     "desc": {
+      "es": "4 tacos con piña, cebolla y cilantro",
+      "en": "4 tacos with pineapple and onion"
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del Mar",
+    "en": "From the Sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camaron U12 Al Gusto",
+      "en": "U12 jumbo shrimp your way"
+     },
+     "desc": {
+      "es": "Talla, mojo de ajo, ajillo o diabla",
+      "en": "Talla, garlic mojo, ajillo or diabla"
+     },
+     "price": "577"
+    },
+    {
+     "name": {
+      "es": "Pescado Zarandeado",
+      "en": "Zarandeado fish"
+     },
+     "desc": {
+      "es": "Pescado entero a las brasas, por kilo",
+      "en": "Whole ember-grilled fish, per kilo"
+     },
+     "price": "650"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Complementos y Postres",
+    "en": "Sides & Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Totopos Trainera",
+      "en": "Trainera tortilla chips"
+     },
+     "desc": {
+      "es": "Porción individual",
+      "en": "Individual portion"
+     },
+     "price": "35"
+    },
+    {
+     "name": {
+      "es": "Salsa Mayo-Chipotle",
+      "en": "Chipotle mayo sauce"
+     },
+     "desc": {
+      "es": "Salsa de la casa 250 ml",
+      "en": "House sauce 250 ml"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Paletas Heladas De Crema",
+      "en": "Cream ice pops"
+     },
+     "desc": {
+      "es": "Coco, pistache, mamey, cajeta y más",
+      "en": "Coconut, pistachio, mamey and more"
+     },
+     "price": "54"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,251 @@
+{
+ "name": "La Granja",
+ "slug": "la-granja-diamante",
+ "area": "Diamante",
+ "place_id": "ChIJpyaoO0FbyoURGv0QdMd33ro",
+ "lat": 16.7884206,
+ "lng": -99.7983985,
+ "address": "Blvd. de las Naciones 1221, Playa Diamante",
+ "phone": "+52 744 466 0259",
+ "hours": {
+  "es": "Lun–Mar y Jue–Dom 9:00–17:00 · Mié cerrado",
+  "en": "Mon–Tue & Thu–Sun 9am–5pm · Wed closed"
+ },
+ "rating": 4.0,
+ "reviews": 2723,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican regional & exotic",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/node/148"
+ ],
+ "tagline": {
+  "es": "Cocina de rancho y platillos atrevidos",
+  "en": "Ranch cooking and daring dishes"
+ },
+ "specialty": "Rustic ranch-style restaurant with garden play area, famous for venison, wild boar and huauzontle dishes.",
+ "signature": [
+  "Venado en Adobo",
+  "Jabalí en Salsa de Tamarindo",
+  "Chilaquiles con Cecina",
+  "Huevos al Albañil"
+ ],
+ "photo_notes": {
+  "cover": "Rustic ranch restaurant with wooden tables under a big palapa, garden lawn, clay pots and country decor.",
+  "s1": "Venison pieces in dark red adobo with rice and handmade tortillas on a clay plate.",
+  "s2": "Wild boar stew glazed in tamarind sauce, served in a terracotta bowl.",
+  "s3": "Green chilaquiles topped with grilled cecina, crema, onion and fresh cheese.",
+  "s4": "Scrambled eggs in green salsa in a clay cazuela with refried beans."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles con Cecina",
+      "en": "Chilaquiles with cecina"
+     },
+     "desc": {
+      "es": "Verdes o rojos con cecina asada",
+      "en": "Green or red, grilled cured beef"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Huevos al Albañil",
+      "en": "Bricklayer eggs"
+     },
+     "desc": {
+      "es": "Revueltos en salsa verde",
+      "en": "Scrambled in green salsa"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Omelette de Moringa",
+      "en": "Moringa omelet"
+     },
+     "desc": {
+      "es": "Con queso panela",
+      "en": "With panela cheese"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Tortita de Huauzontle",
+      "en": "Huauzontle fritter"
+     },
+     "desc": {
+      "es": "En caldillo de jitomate",
+      "en": "In tomato broth"
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Exóticos",
+    "en": "Exotic"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Venado en Adobo",
+      "en": "Venison in adobo"
+     },
+     "desc": {
+      "es": "Con arroz y tortillas hechas a mano",
+      "en": "Rice and handmade tortillas"
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Jabalí en Salsa de Tamarindo",
+      "en": "Wild boar in tamarind sauce"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Tacos de Alacrán",
+      "en": "Scorpion tacos"
+     },
+     "desc": {
+      "es": "Para los valientes",
+      "en": "For the brave"
+     },
+     "price": "225"
+    },
+    {
+     "name": {
+      "es": "Lengua en Salsa Verde",
+      "en": "Beef tongue in green salsa"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "265"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del Rancho",
+    "en": "From the Ranch"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Cecina de Yecapixtla",
+      "en": "Yecapixtla cecina"
+     },
+     "desc": {
+      "es": "Con nopal, queso y frijoles",
+      "en": "With cactus, cheese and beans"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Mole Pipián",
+      "en": "Mole pipián"
+     },
+     "desc": {
+      "es": "Pollo en salsa de pepita",
+      "en": "Chicken in pumpkin seed sauce"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Pescado a la Talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Filete en adobo a las brasas",
+      "en": "Fillet in adobo, ember-grilled"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Carne Asada a la Tampiqueña",
+      "en": "Carne asada tampiqueña"
+     },
+     "desc": {
+      "es": "Con enchilada y guacamole",
+      "en": "With enchilada and guacamole"
+     },
+     "price": "295"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua Fresca de Temporada",
+      "en": "Seasonal agua fresca"
+     },
+     "desc": {
+      "es": "Jarra de 1 litro",
+      "en": "1-liter pitcher"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Café de Olla",
+      "en": "Café de olla"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Jugo Verde",
+      "en": "Green juice"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

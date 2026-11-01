@@ -1,0 +1,238 @@
+{
+ "name": "Restaurante La Fogata",
+ "slug": "la-fogata-acapulco",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJJSnjDfVXyoUREkC-73XLj_A",
+ "lat": 16.8543316,
+ "lng": -99.9006117,
+ "address": "Calle Tadeo Redondo 5, Centro",
+ "phone": "+52 744 482 3395",
+ "hours": {
+  "es": "Mié–Lun 11:30–22:00 · Mar cerrado",
+  "en": "Wed–Mon 11:30am–10pm · Tue closed"
+ },
+ "rating": 4.4,
+ "reviews": 2280,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican grill",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "El pollo al carbón de Acapulco desde hace 50 años",
+  "en": "Acapulco's charcoal chicken for 50+ years"
+ },
+ "specialty": "Old-school charcoal-grilled chicken and steaks with legendary green salsa.",
+ "signature": [
+  "Pollo al Carbón",
+  "Queso Fundido con Chorizo y Champiñones",
+  "Frijoles de la Olla con Tocino",
+  "Arrachera"
+ ],
+ "photo_notes": {
+  "cover": "a classic open-air Mexican grill restaurant with no walls, ceiling fans, rustic wooden tables and chickens roasting over glowing charcoal",
+  "s1": "a whole charcoal-grilled chicken with charred golden skin, grilled onions, tortillas and green salsa",
+  "s2": "bubbling queso fundido with chorizo and mushrooms in a cast-iron skillet with flour tortillas",
+  "s3": "a clay pot of frijoles de la olla with crispy bacon and cilantro",
+  "s4": "sliced grilled skirt steak with grilled spring onions, nopal and guacamole"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Queso Fundido con Chorizo y Champiñones",
+      "en": "Queso Fundido, Chorizo & Mushroom"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Frijoles de la Olla con Tocino",
+      "en": "Pot Beans with Bacon"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Chorizo Asado",
+      "en": "Grilled Chorizo"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "120"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del Carbón",
+    "en": "From the Charcoal"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pollo al Carbón",
+      "en": "Charcoal Chicken"
+     },
+     "desc": {
+      "es": "Entero, con tortillas y salsa verde",
+      "en": "Whole, tortillas and green salsa"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Medio Pollo al Carbón",
+      "en": "Half Charcoal Chicken"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Arrachera",
+      "en": "Skirt Steak"
+     },
+     "desc": {
+      "es": "Con cebollitas y guacamole",
+      "en": "With spring onions, guacamole"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Costillas de Cerdo",
+      "en": "Pork Ribs"
+     },
+     "desc": {
+      "es": "Asadas al carbón",
+      "en": "Charcoal-grilled"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Puntas de Filete",
+      "en": "Beef Tips"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos",
+    "en": "Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de Pollo al Carbón",
+      "en": "Charcoal Chicken Tacos"
+     },
+     "desc": {
+      "es": "Orden de 3",
+      "en": "Order of 3"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Tacos de Arrachera",
+      "en": "Skirt Steak Tacos"
+     },
+     "desc": {
+      "es": "Orden de 3",
+      "en": "Order of 3"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Alambre Fogata",
+      "en": "Fogata Alambre"
+     },
+     "desc": {
+      "es": "Res, tocino, pimiento y queso",
+      "en": "Beef, bacon, peppers, cheese"
+     },
+     "price": "190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas y Postres",
+    "en": "Drinks & Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de Horchata",
+      "en": "Horchata"
+     },
+     "desc": {
+      "es": "Jarra 1 l",
+      "en": "1 L pitcher"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Cerveza",
+      "en": "Beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "45"
+    },
+    {
+     "name": {
+      "es": "Flan Casero",
+      "en": "Homemade Flan"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "60"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,252 @@
+{
+ "name": "Gloria del Mar",
+ "slug": "gloria-del-mar-barra-vieja",
+ "area": "Pie de la Cuesta / Afueras",
+ "place_id": "ChIJnw5H5v1ByoURavNYpSbeX7s",
+ "lat": 16.6889459,
+ "lng": -99.627709,
+ "address": "Av. El Pescador s/n, Barra Vieja",
+ "phone": "+52 744 267 0737",
+ "hours": {
+  "es": "Lun–Dom 9:00–20:00",
+  "en": "Mon–Sun 9am–8pm"
+ },
+ "rating": 4.2,
+ "reviews": 554,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "partial",
+ "sources": [
+  "https://www.foodyas.com/MX/Acapulco/1438838296361403/Restaurante-Gloria-del-Mar",
+  "https://www.youtube.com/watch?v=QgCMbm-D2pc"
+ ],
+ "tagline": {
+  "es": "Desde 1971, cuna del huachinango a la talla",
+  "en": "Since 1971, birthplace of red snapper a la talla"
+ },
+ "specialty": "The original huachinango a la talla created by founder Gloria Suazo",
+ "signature": [
+  "Huachinango a la talla (kg)",
+  "Pulpo a las brasas",
+  "Camarones al coco",
+  "Piña colada"
+ ],
+ "photo_notes": {
+  "cover": "Historic family palapa restaurant on Barra Vieja beach, long wooden tables under palm thatch, charcoal grill and Pacific waves",
+  "s1": "whole red snapper grilled a la talla with red and green adobo on a palm leaf, rice and handmade tortillas",
+  "s2": "charred octopus tentacles on a wooden board with garlic butter and grilled lime",
+  "s3": "golden coconut-crusted shrimp served with mango dipping sauce in a halved coconut shell",
+  "s4": "frosty piña colada served inside a hollowed pineapple with a cherry"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas y cocteles",
+    "en": "Starters & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopes de camarón",
+      "en": "Shrimp sopes"
+     },
+     "desc": {
+      "es": "Masa a mano con camarón, salsa y queso",
+      "en": "Handmade masa with shrimp, salsa and cheese"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Pescado curtido en limón con pico de gallo",
+      "en": "Lime-cured fish with pico de gallo"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Campechana",
+      "en": "Seafood campechana"
+     },
+     "desc": {
+      "es": "Camarón, pulpo y ostión en coctel",
+      "en": "Shrimp, octopus and oyster cocktail"
+     },
+     "price": "305"
+    },
+    {
+     "name": {
+      "es": "Quesadillas a mano",
+      "en": "Handmade quesadillas"
+     },
+     "desc": {
+      "es": "Tortilla de comal con queso",
+      "en": "Griddle tortillas with melted cheese"
+     },
+     "price": "125"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango a la talla (kg)",
+      "en": "Red snapper a la talla (kg)"
+     },
+     "desc": {
+      "es": "Receta original de 1971",
+      "en": "Original 1971 recipe"
+     },
+     "price": "610"
+    },
+    {
+     "name": {
+      "es": "Huachinango frito (kg)",
+      "en": "Fried whole snapper (kg)"
+     },
+     "desc": {
+      "es": "Entero, dorado, con ensalada y arroz",
+      "en": "Whole, golden fried, with salad and rice"
+     },
+     "price": "565"
+    },
+    {
+     "name": {
+      "es": "Filete al mojo de ajo",
+      "en": "Garlic fish fillet"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "275"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Mariscos",
+    "en": "Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Charcoal-grilled octopus"
+     },
+     "desc": {
+      "es": "Con mantequilla de ajo y chile",
+      "en": "With garlic-chile butter"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Empanizados con coco y salsa de mango",
+      "en": "Coconut-crusted with mango sauce"
+     },
+     "price": "335"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con ajo dorado y mantequilla",
+      "en": "With golden garlic and butter"
+     },
+     "price": "315"
+    },
+    {
+     "name": {
+      "es": "Langosta al mojo de ajo",
+      "en": "Garlic lobster"
+     },
+     "desc": {
+      "es": "Pieza entera, según tamaño",
+      "en": "Whole lobster, size varies"
+     },
+     "price": "1000"
+    },
+    {
+     "name": {
+      "es": "Caldo de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, almeja y pescado",
+      "en": "Shrimp, octopus, clams and fish"
+     },
+     "price": "295"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Natural, servida en piña",
+      "en": "Fresh, served in a pineapple"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Fresh coconut"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, mango o tamarindo",
+      "en": "Lime, mango or tamarind"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    }
+   ]
+  }
+ ]
+}

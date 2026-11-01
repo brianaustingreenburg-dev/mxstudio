@@ -1,0 +1,281 @@
+{
+ "name": "Mesón de los Ángeles",
+ "slug": "meson-de-los-angeles",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJcRpUPG_3yoUR9HELBO3yJMM",
+ "lat": 16.8335809,
+ "lng": -99.9163958,
+ "address": "Av. Adolfo López Mateos 147, Las Playas",
+ "phone": "+52 744 536 5255",
+ "hours": {
+  "es": "Lun–Dom 8:30–18:00",
+  "en": "Mon–Sun 8:30am–6pm"
+ },
+ "rating": 4.6,
+ "reviews": 689,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "brunch & mexican",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923821786-meson-de-los-angeles-acapulco"
+ ],
+ "tagline": {
+  "es": "Desayunos junto a la alberca y pan de la casa",
+  "en": "Poolside breakfasts and house-baked bread"
+ },
+ "specialty": "Garden-and-pool brunch house with its own bakery, fresh juices and coastal dishes.",
+ "signature": [
+  "APORREADILLO COSTEÑO",
+  "PULPO AL CHIMICHURRI",
+  "HOTCAKES DE ZANAHORIA",
+  "JARRA DE CLERICOT"
+ ],
+ "photo_notes": {
+  "cover": "a leafy hillside restaurant terrace around a turquoise swimming pool with white tablecloths, potted palms and morning sunlight",
+  "s1": "Guerrero aporreadillo of scrambled eggs with dried beef in red chile sauce and refried beans",
+  "s2": "grilled octopus with bright green chimichurri on sweet potato purée",
+  "s3": "a stack of three carrot pancakes with cream cheese frosting and walnuts",
+  "s4": "a glass pitcher of red wine clericot with chopped fruit and ice on a poolside table"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Del Gallinero",
+    "en": "Eggs"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "APORREADILLO COSTEÑO",
+      "en": "Coastal Aporreadillo"
+     },
+     "desc": {
+      "es": "Huevo con cecina en salsa roja",
+      "en": "Eggs with cecina in red sauce"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "HUEVOS \"PATRÓN\"",
+      "en": "Patrón Eggs"
+     },
+     "desc": {
+      "es": "Sobre tortilla, con frijol y tocino",
+      "en": "On tortilla, beans and bacon"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "OMELETTE DE LA CASA",
+      "en": "House Omelette"
+     },
+     "desc": {
+      "es": "Queso, jamón y plátano",
+      "en": "Cheese, ham and plantain"
+     },
+     "price": "229"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Dulce y Entradas",
+    "en": "Sweet & Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "HOTCAKES DE ZANAHORIA",
+      "en": "Carrot Pancakes"
+     },
+     "desc": {
+      "es": "Con betún de queso crema",
+      "en": "With cream cheese frosting"
+     },
+     "price": "169"
+    },
+    {
+     "name": {
+      "es": "PAN FRANCÉS",
+      "en": "French Toast"
+     },
+     "desc": {
+      "es": "Con frutos rojos",
+      "en": "With red berries"
+     },
+     "price": "169"
+    },
+    {
+     "name": {
+      "es": "CROSTINI DE PERA",
+      "en": "Pear Crostini"
+     },
+     "desc": {
+      "es": "Pera, queso de cabra y serrano",
+      "en": "Pear, goat cheese, serrano ham"
+     },
+     "price": "159"
+    },
+    {
+     "name": {
+      "es": "SASHIMI DE ATÚN",
+      "en": "Tuna Sashimi"
+     },
+     "desc": {
+      "es": "Con mango y aguacate",
+      "en": "With mango and avocado"
+     },
+     "price": "269"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos Fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "SUIZAS",
+      "en": "Enchiladas Suizas"
+     },
+     "desc": {
+      "es": "Pollo en salsa verde cremosa",
+      "en": "Chicken, creamy green sauce"
+     },
+     "price": "239"
+    },
+    {
+     "name": {
+      "es": "TAMPIQUEÑA MESON",
+      "en": "Mesón Tampiqueña"
+     },
+     "desc": {
+      "es": "Arrachera con enmolada y guacamole",
+      "en": "Skirt steak, enmolada, guacamole"
+     },
+     "price": "329"
+    },
+    {
+     "name": {
+      "es": "TACOS DE BIRRIA TATEMADA",
+      "en": "Charred Birria Tacos"
+     },
+     "desc": {
+      "es": "Con consomé",
+      "en": "With consommé"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "NEW YORK",
+      "en": "New York Steak"
+     },
+     "desc": {
+      "es": "Con papas al parmesano",
+      "en": "With parmesan fries"
+     },
+     "price": "369"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados y Mariscos",
+    "en": "Fish & Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "PULPO AL CHIMICHURRI",
+      "en": "Octopus Chimichurri"
+     },
+     "desc": {
+      "es": "Sobre puré de camote",
+      "en": "On sweet potato purée"
+     },
+     "price": "369"
+    },
+    {
+     "name": {
+      "es": "SALMÓN SELLADO",
+      "en": "Seared Salmon"
+     },
+     "desc": {
+      "es": "Finas hierbas y puré de camote",
+      "en": "Herbs, sweet potato purée"
+     },
+     "price": "339"
+    },
+    {
+     "name": {
+      "es": "CAMARONES AL COCO",
+      "en": "Coconut Shrimp"
+     },
+     "desc": {
+      "es": "Vinagreta de piña picante",
+      "en": "Spicy pineapple vinaigrette"
+     },
+     "price": "309"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "CALETA",
+      "en": "Caleta Juice"
+     },
+     "desc": {
+      "es": "Piña, naranja, espinaca y limón",
+      "en": "Pineapple, orange, spinach, lime"
+     },
+     "price": "109"
+    },
+    {
+     "name": {
+      "es": "LIMONADA MESÓN",
+      "en": "Mesón Lemonade"
+     },
+     "desc": {
+      "es": "Cremosa con hierbabuena",
+      "en": "Creamy, with mint"
+     },
+     "price": "109"
+    },
+    {
+     "name": {
+      "es": "JARRA DE CLERICOT",
+      "en": "Clericot Pitcher"
+     },
+     "desc": {
+      "es": "Vino con fruta",
+      "en": "Wine with fruit"
+     },
+     "price": "499"
+    },
+    {
+     "name": {
+      "es": "CARAJILLO",
+      "en": "Carajillo"
+     },
+     "desc": {
+      "es": "Licor 43 y espresso",
+      "en": "Licor 43 and espresso"
+     },
+     "price": "139"
+    }
+   ]
+  }
+ ]
+}

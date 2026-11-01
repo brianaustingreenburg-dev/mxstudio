@@ -1,0 +1,246 @@
+{
+ "name": "La Casa del Marisco",
+ "slug": "la-casa-del-marisco-magallanes",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJAcJ1PPVXyoUR0GfZuGkgOnU",
+ "lat": 16.8638819,
+ "lng": -99.8808872,
+ "address": "Tercera Cristóbal Colón 83, Magallanes",
+ "phone": "",
+ "hours": {
+  "es": "Lun–Dom 10:30–19:00",
+  "en": "Mon–Sun 10:30am–7pm"
+ },
+ "rating": 4.5,
+ "reviews": 202,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Marisquería familiar escondida en Magallanes",
+  "en": "Family seafood house tucked into Magallanes"
+ },
+ "specialty": "Family-owned neighborhood marisquería known for crispy fried fish and generous portions.",
+ "signature": [
+  "Mojarra Frita",
+  "Camarones al Mojo de Ajo",
+  "Caldo de Mariscos",
+  "Coctel Vuelve a la Vida"
+ ],
+ "photo_notes": {
+  "cover": "a cozy family-run seafood restaurant on a quiet tropical side street with ceiling fans, colorful tablecloths and plants",
+  "s1": "a whole crispy fried mojarra with lime, rice, salad and tortillas",
+  "s2": "shrimp in golden fried garlic with white rice",
+  "s3": "a steaming bowl of red seafood soup with shrimp, octopus and fish",
+  "s4": "a tall glass of vuelve a la vida seafood cocktail with avocado and saltines"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Tostada de Ceviche",
+      "en": "Ceviche Tostada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Empanadas de Camarón (3)",
+      "en": "Shrimp Empanadas (3)"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles",
+    "en": "Cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel de Camarón",
+      "en": "Shrimp Cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Coctel Vuelve a la Vida",
+      "en": "Vuelve a la Vida Cocktail"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, ostión y caracol",
+      "en": "Shrimp, octopus, oyster, conch"
+     },
+     "price": "250"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Pescado",
+      "en": "Fish Ceviche"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "170"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados y Mariscos",
+    "en": "Fish & Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Mojarra Frita",
+      "en": "Fried Mojarra"
+     },
+     "desc": {
+      "es": "Crujiente, con arroz y ensalada",
+      "en": "Crispy, rice and salad"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Filete Empanizado",
+      "en": "Breaded Fish Fillet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Camarones al Mojo de Ajo",
+      "en": "Garlic Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Camarones a la Diabla",
+      "en": "Shrimp a la Diabla"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Pulpo Encebollado",
+      "en": "Octopus with Onions"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Caldos",
+    "en": "Soups"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Caldo de Mariscos",
+      "en": "Seafood Soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Caldo de Camarón",
+      "en": "Shrimp Broth"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "200"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de Jamaica",
+      "en": "Hibiscus Water"
+     },
+     "desc": {
+      "es": "Jarra",
+      "en": "Pitcher"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Cerveza",
+      "en": "Beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "40"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,249 @@
+{
+ "name": "Las Palmerass Barra Vieja",
+ "slug": "las-palmerass-barra-vieja",
+ "area": "Pie de la Cuesta / Afueras",
+ "place_id": "ChIJvw2y_2pByoURwuMylNEt0Os",
+ "lat": 16.6899781,
+ "lng": -99.6317161,
+ "address": "Vicente Guerrero s/n, San Andrés Playa Encantada",
+ "phone": "+52 744 585 0816",
+ "hours": {
+  "es": "Lun–Dom 10:30–19:00",
+  "en": "Mon–Sun 10:30am–7pm"
+ },
+ "rating": 4.3,
+ "reviews": 584,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "El huachinango a la talla que se volvió viral",
+  "en": "The viral grilled red snapper"
+ },
+ "specialty": "Huachinango a la talla with rice, sopecitos and handmade tortillas; two pools",
+ "signature": [
+  "Pescado a la talla (kg)",
+  "Sopes de camarón",
+  "Camarones a la diabla",
+  "Coco frío"
+ ],
+ "photo_notes": {
+  "cover": "Palapa restaurant among tall palm trees with two clean pools and the open beach of Barra Vieja, hammocks swaying in the breeze",
+  "s1": "whole red snapper butterflied and grilled a la talla, half red adobo half green adobo, on a wooden board with rice, tortillas and lime",
+  "s2": "three thick handmade masa sopes topped with sautéed shrimp, crema, crumbled cheese and green salsa on a clay plate",
+  "s3": "shrimp in glossy red spicy diabla sauce with white rice",
+  "s4": "fresh green coconut with a straw, chilled, on a beach table"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas y cocteles",
+    "en": "Starters & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopes de camarón",
+      "en": "Shrimp sopes"
+     },
+     "desc": {
+      "es": "Masa a mano con camarón, salsa y queso",
+      "en": "Handmade masa with shrimp, salsa and cheese"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Quesadillas a mano",
+      "en": "Handmade quesadillas"
+     },
+     "desc": {
+      "es": "Tortilla de comal con queso",
+      "en": "Griddle tortillas with melted cheese"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Pescado curtido en limón con pico de gallo",
+      "en": "Lime-cured fish with pico de gallo"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctel con aguacate",
+      "en": "Shrimp in cocktail sauce with avocado"
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla (kg)",
+      "en": "Grilled fish a la talla (kg)"
+     },
+     "desc": {
+      "es": "Huachinango al carbón con adobo rojo y verde",
+      "en": "Charcoal snapper, red and green adobo"
+     },
+     "price": "530"
+    },
+    {
+     "name": {
+      "es": "Huachinango frito (kg)",
+      "en": "Fried whole snapper (kg)"
+     },
+     "desc": {
+      "es": "Entero, dorado, con ensalada y arroz",
+      "en": "Whole, golden fried, with salad and rice"
+     },
+     "price": "515"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried tilapia"
+     },
+     "desc": {
+      "es": "Entera, con arroz y ensalada",
+      "en": "Whole, with rice and salad"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Filete al mojo de ajo",
+      "en": "Garlic fish fillet"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Camarones",
+    "en": "Shrimp"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con ajo dorado y mantequilla",
+      "en": "With golden garlic and butter"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Deviled shrimp"
+     },
+     "desc": {
+      "es": "En salsa picante de chiles secos",
+      "en": "In spicy dried-chile sauce"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Camarones empanizados",
+      "en": "Breaded shrimp"
+     },
+     "desc": {
+      "es": "Con papas y ensalada",
+      "en": "With fries and salad"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Caldo de camarón",
+      "en": "Shrimp broth"
+     },
+     "desc": {
+      "es": "Caldo rojo picosito con camarón",
+      "en": "Spicy red broth with shrimp"
+     },
+     "price": "230"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Fresh coconut"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Con chamoy y escarchado",
+      "en": "With chamoy and chile rim"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Agua de jamaica (jarra)",
+      "en": "Hibiscus water (pitcher)"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Limonada natural",
+      "en": "Fresh lemonade"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "50"
+    }
+   ]
+  }
+ ]
+}

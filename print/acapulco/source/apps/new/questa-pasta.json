@@ -1,0 +1,281 @@
+{
+ "name": "Questa Pasta",
+ "slug": "questa-pasta",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJHwPl3c5ZyoUR8jI7CxYEyv0",
+ "lat": 16.8474867,
+ "lng": -99.8491647,
+ "address": "Plaza Pabellón Costera, Av. Costera Miguel Alemán 3124, Costa Azul",
+ "phone": "+52 744 585 6817",
+ "hours": {
+  "es": "Dom–Jue 8:00–23:00 · Vie–Sáb 8:00–24:00",
+  "en": "Sun–Thu 8am–11pm · Fri–Sat 8am–12am"
+ },
+ "rating": 4.6,
+ "reviews": 1072,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "italian trattoria",
+ "source": "partial",
+ "sources": [
+  "https://wanderlog.com/place/details/2806367/questa-pasta"
+ ],
+ "tagline": {
+  "es": "Trattoria con horno de leña y saxofón en vivo",
+  "en": "Wood-oven trattoria with live saxophone nights"
+ },
+ "specialty": "Trattoria with wood-fired pizzas, shrimp fettuccine, lasagna and ravioli plus live music",
+ "signature": [
+  "Fettuccine al Camarón",
+  "Lasagna Bolognese",
+  "Pizza Diavola",
+  "Ravioli de Ricotta"
+ ],
+ "photo_notes": {
+  "cover": "Warm trattoria patio with string lights, wooden tables, green plants and a glowing wood-fired pizza oven.",
+  "s1": "Fettuccine with sautéed shrimp in creamy garlic sauce and parsley.",
+  "s2": "Square of layered lasagna with meat sauce and melted cheese.",
+  "s3": "Blistered wood-fired pizza with spicy salami and fresh basil.",
+  "s4": "Plump ricotta ravioli in tomato-basil sauce with parmesan."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frittata Italiana",
+      "en": "Italian Frittata"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles",
+      "en": "Chilaquiles"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Hot Cakes",
+      "en": "Pancakes"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "130"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Antipasti",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Bruschetta Pomodoro",
+      "en": "Tomato Bruschetta"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Ensalada César",
+      "en": "Caesar Salad"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Calamares Fritos",
+      "en": "Fried Calamari"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "195"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas",
+    "en": "Pastas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Fettuccine al Camarón",
+      "en": "Shrimp Fettuccine"
+     },
+     "desc": {
+      "es": "Salsa cremosa al ajo",
+      "en": "Creamy garlic sauce"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Lasagna Bolognese",
+      "en": "Lasagna Bolognese"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "225"
+    },
+    {
+     "name": {
+      "es": "Ravioli de Ricotta",
+      "en": "Ricotta Ravioli"
+     },
+     "desc": {
+      "es": "Pomodoro y albahaca",
+      "en": "Tomato and basil"
+     },
+     "price": "215"
+    },
+    {
+     "name": {
+      "es": "Spaghetti alla Carbonara",
+      "en": "Spaghetti Carbonara"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "205"
+    },
+    {
+     "name": {
+      "es": "Penne al Pesto",
+      "en": "Penne al Pesto"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "195"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas al horno de leña",
+    "en": "Wood-Fired Pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pizza Margherita",
+      "en": "Margherita Pizza"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "205"
+    },
+    {
+     "name": {
+      "es": "Pizza Diavola",
+      "en": "Diavola Pizza"
+     },
+     "desc": {
+      "es": "Salami picante",
+      "en": "Spicy salami"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Pizza Questa",
+      "en": "Questa Pizza"
+     },
+     "desc": {
+      "es": "Prosciutto, arúgula y parmesano",
+      "en": "Prosciutto, arugula, parmesan"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Pizza Hawaiana",
+      "en": "Hawaiian Pizza"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "225"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tiramisú",
+      "en": "Tiramisu"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Cannoli",
+      "en": "Cannoli"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Affogato",
+      "en": "Affogato"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "90"
+    }
+   ]
+  }
+ ]
+}

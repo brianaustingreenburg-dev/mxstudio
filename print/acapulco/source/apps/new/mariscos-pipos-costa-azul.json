@@ -1,0 +1,282 @@
+{
+ "name": "Mariscos Pipo's Costa Azul",
+ "slug": "mariscos-pipos-costa-azul",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJV2WX9OT3yoURfbrFXnsEhBw",
+ "lat": 16.8458745,
+ "lng": -99.8486356,
+ "address": "Horacio Nelson 2 esq. Costera, Costa Azul",
+ "phone": "+52 744 484 2475",
+ "hours": {
+  "es": "Lun–Vie 12:00–20:00 · Sáb–Dom 11:30–20:00",
+  "en": "Mon–Fri 12pm–8pm · Sat–Sun 11:30am–8pm"
+ },
+ "rating": 4.2,
+ "reviews": 1287,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/restaurant/mariscos-pipos",
+  "https://www.zonaturistica.com/restaurantes/guerrero/acapulco/pipos"
+ ],
+ "tagline": {
+  "es": "Tradición marisquera desde 1948, cuna del ceviche acapulqueño",
+  "en": "A seafood tradition since 1948, home of Acapulco ceviche"
+ },
+ "specialty": "Classic Acapulco seafood house since 1948 — ceviche, Veracruz-style snapper and seafood platters",
+ "signature": [
+  "Ceviche Acapulqueño",
+  "Huachinango a la Veracruzana",
+  "Charola de Mariscos Pipo's",
+  "Quesadillas de Cazón"
+ ],
+ "photo_notes": {
+  "cover": "Classic maritime-themed seafood restaurant with fishing nets, shells and rustic wooden furniture, bright and airy near the Costera.",
+  "s1": "Acapulco-style fish ceviche with tomato, onion, cilantro in a tall glass with saltines.",
+  "s2": "Whole red snapper in Veracruz sauce with tomatoes, olives and peppers.",
+  "s3": "Large platter of crab, prawns, clams and lobster on ice with lime.",
+  "s4": "Golden fried quesadillas filled with shredded baby shark and salsa."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Cócteles y ceviches",
+    "en": "Cocktails & Ceviches"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche Acapulqueño",
+      "en": "Acapulco Ceviche"
+     },
+     "desc": {
+      "es": "Pescado al limón, jitomate y clamato",
+      "en": "Lime fish, tomato and clamato"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Camarón",
+      "en": "Shrimp Ceviche"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "215"
+    },
+    {
+     "name": {
+      "es": "Coctel de Camarón",
+      "en": "Shrimp Cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Vuelve a la Vida",
+      "en": "Vuelve a la Vida"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, ostión y caracol",
+      "en": "Shrimp, octopus, oyster, snail"
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Quesadillas de Cazón",
+      "en": "Baby Shark Quesadillas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Pulpo al Ajillo",
+      "en": "Garlic Octopus"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "295"
+    },
+    {
+     "name": {
+      "es": "Almejas Gratinadas",
+      "en": "Baked Clams au Gratin"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Sopa de Mariscos",
+      "en": "Seafood Soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "230"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango a la Veracruzana",
+      "en": "Red Snapper Veracruz"
+     },
+     "desc": {
+      "es": "Jitomate, aceitunas y chiles güeros",
+      "en": "Tomato, olives and peppers"
+     },
+     "price": "420"
+    },
+    {
+     "name": {
+      "es": "Filete al Mojo de Ajo",
+      "en": "Garlic Butter Fish Fillet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "255"
+    },
+    {
+     "name": {
+      "es": "Pescado a la Talla",
+      "en": "Pescado a la Talla"
+     },
+     "desc": {
+      "es": "Adobo rojo y verde a la brasa",
+      "en": "Red and green adobo, grilled"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Filete Empanizado",
+      "en": "Breaded Fish Fillet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "245"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Mariscos",
+    "en": "Shellfish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al Coco",
+      "en": "Coconut Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "315"
+    },
+    {
+     "name": {
+      "es": "Camarones a la Diabla",
+      "en": "Shrimp a la Diabla"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "295"
+    },
+    {
+     "name": {
+      "es": "Langosta al Mojo de Ajo",
+      "en": "Garlic Butter Lobster"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "790"
+    },
+    {
+     "name": {
+      "es": "Charola de Mariscos Pipo's",
+      "en": "Pipo's Seafood Platter"
+     },
+     "desc": {
+      "es": "Jaiba, langostinos, almejas y langosta",
+      "en": "Crab, prawns, clams and lobster"
+     },
+     "price": "1150"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de Jamaica",
+      "en": "Hibiscus Water"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    }
+   ]
+  }
+ ]
+}

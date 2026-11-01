@@ -1,0 +1,229 @@
+{
+ "name": "Meztizza Restaurante",
+ "slug": "meztizza-restaurante",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJmcty1Tb3yoURjuKZmMuZGkU",
+ "lat": 16.8452622,
+ "lng": -99.9111804,
+ "address": "La Pinzona 195, Las Playas",
+ "phone": "+52 744 531 2736",
+ "hours": {
+  "es": "Mar–Jue y Dom 14:00–23:00 · Vie–Sáb 14:00–0:30 · Lun cerrado",
+  "en": "Tue–Thu & Sun 2pm–11pm · Fri–Sat 2pm–12:30am · Mon closed"
+ },
+ "rating": 3.8,
+ "reviews": 625,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican fusion",
+ "source": "sample",
+ "sources": [
+  "https://www.aaa.com/tripcanvas/restaurant/meztizza-restaurante-AA71561"
+ ],
+ "tagline": {
+  "es": "Cocina mestiza con vista a la vieja Acapulco",
+  "en": "Mestizo cooking over old Acapulco"
+ },
+ "specialty": "Hillside terrace in old Acapulco pairing contemporary Mexican plates with mezcal cocktails.",
+ "signature": [
+  "Pulpo Mestizo",
+  "Tacos de Rib Eye",
+  "Tostada de Atún Fresco",
+  "Mezcalita de Tamarindo"
+ ],
+ "photo_notes": {
+  "cover": "a stylish hillside terrace restaurant in old Acapulco with warm Edison bulbs, wooden furniture, tropical plants and a sunset view over the bay",
+  "s1": "charred octopus tentacle with dark chile adobo, potatoes and microgreens on a slate plate",
+  "s2": "three rib eye tacos on handmade corn tortillas with grilled onion and salsa",
+  "s3": "a fresh tuna tostada with avocado, chipotle mayo and crispy leeks",
+  "s4": "a tamarind mezcal cocktail with chile-salt rim and orange slice"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Para Empezar",
+    "en": "To Start"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostada de Atún Fresco",
+      "en": "Fresh Tuna Tostada"
+     },
+     "desc": {
+      "es": "Aguacate y mayonesa de chipotle",
+      "en": "Avocado, chipotle mayo"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Guacamole Mestizo",
+      "en": "Mestizo Guacamole"
+     },
+     "desc": {
+      "es": "Con chapulines y queso",
+      "en": "With grasshoppers and cheese"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Aguachile Negro",
+      "en": "Black Aguachile"
+     },
+     "desc": {
+      "es": "Camarón con chiles tatemados",
+      "en": "Shrimp, charred chiles"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Queso Fundido con Chistorra",
+      "en": "Queso Fundido with Chistorra"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "170"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo Mestizo",
+      "en": "Mestizo Octopus"
+     },
+     "desc": {
+      "es": "Pulpo al carbón en adobo",
+      "en": "Charcoal octopus in adobo"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pesca del Día a la Talla",
+      "en": "Catch of the Day a la Talla"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Rib Eye",
+      "en": "Rib Eye"
+     },
+     "desc": {
+      "es": "400 g con guarniciones",
+      "en": "400 g with sides"
+     },
+     "price": "590"
+    },
+    {
+     "name": {
+      "es": "Pollo en Mole Negro",
+      "en": "Chicken in Black Mole"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos",
+    "en": "Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de Rib Eye",
+      "en": "Rib Eye Tacos"
+     },
+     "desc": {
+      "es": "Orden de 3",
+      "en": "Order of 3"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Tacos de Camarón Capeado",
+      "en": "Battered Shrimp Tacos"
+     },
+     "desc": {
+      "es": "Orden de 3",
+      "en": "Order of 3"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Tacos de Pescado Gobernador",
+      "en": "Gobernador Fish Tacos"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "200"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Mixología y Postres",
+    "en": "Mixology & Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Mezcalita de Tamarindo",
+      "en": "Tamarind Mezcalita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Margarita de Jamaica",
+      "en": "Hibiscus Margarita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Pastel de Elote",
+      "en": "Sweet Corn Cake"
+     },
+     "desc": {
+      "es": "Con helado de vainilla",
+      "en": "With vanilla ice cream"
+     },
+     "price": "110"
+    }
+   ]
+  }
+ ]
+}

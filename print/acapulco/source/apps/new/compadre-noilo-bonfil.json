@@ -1,0 +1,249 @@
+{
+ "name": "Restaurant Bar Compadre Noilo",
+ "slug": "compadre-noilo-bonfil",
+ "area": "Pie de la Cuesta / Afueras",
+ "place_id": "ChIJgyvKffFcyoURXkc-kAGw_C8",
+ "lat": 16.7450982,
+ "lng": -99.7598597,
+ "address": "Costera Benito Juárez s/n, Alfredo V. Bonfil",
+ "phone": "+52 744 444 5009",
+ "hours": {
+  "es": "Lun–Dom 10:00–18:30",
+  "en": "Mon–Sun 10am–6:30pm"
+ },
+ "rating": 4.3,
+ "reviews": 489,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Mariscos y cerveza fría en playa Bonfil",
+  "en": "Seafood and cold beer on Bonfil beach"
+ },
+ "specialty": "Seafood towers, aguachile and whole fried fish on Playa Bonfil",
+ "signature": [
+  "Aguachile verde",
+  "Molcajete de mariscos",
+  "Huachinango frito (kg)",
+  "Michelada"
+ ],
+ "photo_notes": {
+  "cover": "Relaxed beach bar-restaurant on Playa Bonfil with palm-thatch umbrellas, hammocks and wide golden sand",
+  "s1": "green aguachile with butterflied raw shrimp, cucumber, red onion in a black molcajete",
+  "s2": "sizzling volcanic-stone molcajete filled with shrimp, octopus, fish and cheese in red salsa",
+  "s3": "whole golden fried red snapper on a platter with rice, lettuce and lime wedges",
+  "s4": "big michelada with chile-salt rim, chamoy and lime"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas y cocteles",
+    "en": "Starters & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón y chile serrano",
+      "en": "Raw shrimp in lime and serrano chile"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Ceviche acapulqueño",
+      "en": "Acapulco-style ceviche"
+     },
+     "desc": {
+      "es": "Estilo puerto, con salsa de tomate",
+      "en": "Port style, with tomato sauce"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctel con aguacate",
+      "en": "Shrimp in cocktail sauce with avocado"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Tostadas de atún",
+      "en": "Tuna tostadas"
+     },
+     "desc": {
+      "es": "Atún fresco, aguacate y chipotle",
+      "en": "Fresh tuna, avocado and chipotle mayo"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango frito (kg)",
+      "en": "Fried whole snapper (kg)"
+     },
+     "desc": {
+      "es": "Entero, dorado, con ensalada y arroz",
+      "en": "Whole, golden fried, with salad and rice"
+     },
+     "price": "515"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla (kg)",
+      "en": "Grilled fish a la talla (kg)"
+     },
+     "desc": {
+      "es": "Huachinango al carbón con adobo rojo y verde",
+      "en": "Charcoal snapper, red and green adobo"
+     },
+     "price": "530"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried tilapia"
+     },
+     "desc": {
+      "es": "Entera, con arroz y ensalada",
+      "en": "Whole, with rice and salad"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Mariscos",
+    "en": "Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Molcajete de mariscos",
+      "en": "Seafood molcajete"
+     },
+     "desc": {
+      "es": "Mariscos en salsa caliente de chiles",
+      "en": "Seafood bubbling in chile salsa"
+     },
+     "price": "560"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con ajo dorado y mantequilla",
+      "en": "With golden garlic and butter"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Camarones empanizados",
+      "en": "Breaded shrimp"
+     },
+     "desc": {
+      "es": "Con papas y ensalada",
+      "en": "With fries and salad"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Tacos de pescado",
+      "en": "Fish tacos"
+     },
+     "desc": {
+      "es": "Orden de tres, capeados",
+      "en": "Three battered fish tacos"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Caldo de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, almeja y pescado",
+      "en": "Shrimp, octopus, clams and fish"
+     },
+     "price": "265"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Con chamoy y escarchado",
+      "en": "With chamoy and chile rim"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, mango o tamarindo",
+      "en": "Lime, mango or tamarind"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Fresh coconut"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    }
+   ]
+  }
+ ]
+}

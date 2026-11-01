@@ -1,0 +1,238 @@
+{
+ "name": "Bocana Beach Papagayo",
+ "slug": "bocana-beach-papagayo",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJy74fdx5YyoUR11TTli3N3U0",
+ "lat": 16.8592929,
+ "lng": -99.8861465,
+ "address": "Av. Costera Miguel Alemán s/n, Playa Papagayo, Hornos",
+ "phone": "+52 744 486 3334",
+ "hours": {
+  "es": "Lun–Dom 8:00–20:00",
+  "en": "Mon–Sun 8am–8pm"
+ },
+ "rating": 4.3,
+ "reviews": 2392,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Club de playa y mariscos frente a la gran bandera",
+  "en": "Beach club and seafood by the giant flag"
+ },
+ "specialty": "Family-run beach spot on Papagayo with fresh seafood, cold beer, showers and loungers.",
+ "signature": [
+  "Camarones Envueltos en Tocino",
+  "Pescado a la Talla",
+  "Aguachile Verde",
+  "Coco Loco"
+ ],
+ "photo_notes": {
+  "cover": "a relaxed beach restaurant with thatched umbrellas and loungers on wide golden sand, gentle surf and palm trees under a bright sky",
+  "s1": "bacon-wrapped shrimp stuffed with cheese on a plate with rice and salad",
+  "s2": "a whole butterflied fish grilled a la talla with red chile adobo on a wooden board with lime",
+  "s3": "shrimp aguachile in vivid green chile-lime sauce with cucumber and red onion in a stone bowl",
+  "s4": "a fresh green coconut cocktail with straw and pineapple on a beach table"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles Rojos o Verdes",
+      "en": "Red or Green Chilaquiles"
+     },
+     "desc": {
+      "es": "Con huevo o pollo",
+      "en": "With egg or chicken"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Huevos a la Mexicana",
+      "en": "Mexican-Style Eggs"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Molletes",
+      "en": "Molletes"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "110"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles y Aguachiles",
+    "en": "Cocktails & Aguachiles"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel de Camarón",
+      "en": "Shrimp Cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Aguachile Verde",
+      "en": "Green Aguachile"
+     },
+     "desc": {
+      "es": "Camarón en limón y chile",
+      "en": "Shrimp in lime and chile"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Ceviche Acapulqueño",
+      "en": "Acapulco Ceviche"
+     },
+     "desc": {
+      "es": "Pescado con salsa de tomate",
+      "en": "Fish in tomato-based sauce"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Tostada de Marlin",
+      "en": "Smoked Marlin Tostada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "90"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos del Mar",
+    "en": "Seafood Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la Talla",
+      "en": "Fish a la Talla"
+     },
+     "desc": {
+      "es": "Por kilo, con tortillas",
+      "en": "Per kg, with tortillas"
+     },
+     "price": "600"
+    },
+    {
+     "name": {
+      "es": "Camarones Envueltos en Tocino",
+      "en": "Bacon-Wrapped Shrimp"
+     },
+     "desc": {
+      "es": "Rellenos de queso",
+      "en": "Cheese-stuffed"
+     },
+     "price": "330"
+    },
+    {
+     "name": {
+      "es": "Camarones al Coco",
+      "en": "Coconut Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Filete al Mojo de Ajo",
+      "en": "Garlic Fish Fillet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Pulpo a las Brasas",
+      "en": "Charred Octopus"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "340"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coco Loco",
+      "en": "Coco Loco"
+     },
+     "desc": {
+      "es": "Coco con ron y piña",
+      "en": "Coconut with rum and pineapple"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Piña Colada",
+      "en": "Piña Colada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Cubeta de Cerveza",
+      "en": "Beer Bucket"
+     },
+     "desc": {
+      "es": "6 cervezas",
+      "en": "6 beers"
+     },
+     "price": "300"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,251 @@
+{
+ "name": "Mariscos El Plebe Alegre",
+ "slug": "mariscos-el-plebe-alegre",
+ "area": "Diamante",
+ "place_id": "ChIJlbmoBB5byoURKBE1XU5Xlz8",
+ "lat": 16.7924776,
+ "lng": -99.8054522,
+ "address": "Blvd. de las Naciones 65, int. 36, Granjas del Marqués",
+ "phone": "+52 744 365 0327",
+ "hours": {
+  "es": "Lun–Dom 11:00–20:00",
+  "en": "Mon–Sun 11am–8pm"
+ },
+ "rating": 4.4,
+ "reviews": 1714,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "sinaloa-style seafood",
+ "source": "sample",
+ "sources": [
+  "https://wanderlog.com/place/details/3473104/el-plebe-alegre"
+ ],
+ "tagline": {
+  "es": "Mariscos estilo Sinaloa con mucho ambiente",
+  "en": "Sinaloa-style seafood with big vibes"
+ },
+ "specialty": "Sinaloa-style mariscos: coconut shrimp, aguachiles and the famous Torre Pirata seafood tower.",
+ "signature": [
+  "Torre Pirata",
+  "Camarones al Coco",
+  "Aguachile Negro",
+  "Tostada de Atún"
+ ],
+ "photo_notes": {
+  "cover": "Lively Sinaloa-style seafood restaurant with blue and white decor, nautical touches, busy tables and buckets of beer.",
+  "s1": "Tall stacked seafood tower of shrimp, octopus, tuna, cucumber and avocado, dark sauce dripping.",
+  "s2": "Crispy coconut-crusted shrimp with sweet chili-mango dip.",
+  "s3": "Shrimp in black aguachile sauce with cucumber and red onion in a molcajete.",
+  "s4": "Tuna tostada with sesame, avocado slices and chipotle mayo drizzle."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Crudos",
+    "en": "Raw Bar"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Aguachile Verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón, pepino y cebolla morada",
+      "en": "Shrimp, cucumber, red onion"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Aguachile Negro",
+      "en": "Black aguachile"
+     },
+     "desc": {
+      "es": "Salsa negra de la casa",
+      "en": "House black sauce"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Torre Pirata",
+      "en": "Pirate tower"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, atún y aguacate",
+      "en": "Shrimp, octopus, tuna, avocado"
+     },
+     "price": "395"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Estilo Sinaloa",
+      "en": "Sinaloa style"
+     },
+     "price": "185"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tostadas y Tacos",
+    "en": "Tostadas & Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostada de Atún",
+      "en": "Tuna tostada"
+     },
+     "desc": {
+      "es": "Atún, aguacate y mayo chipotle",
+      "en": "Tuna, avocado, chipotle mayo"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Tostada de Ceviche",
+      "en": "Ceviche tostada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Tacos Gobernador",
+      "en": "Gobernador tacos"
+     },
+     "desc": {
+      "es": "Camarón y queso gratinado",
+      "en": "Shrimp and melted cheese"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Tacos de Marlín",
+      "en": "Marlin tacos"
+     },
+     "desc": {
+      "es": "Marlín ahumado guisado",
+      "en": "Stewed smoked marlin"
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Calientes",
+    "en": "Hot Plates"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al Coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Con salsa de mango",
+      "en": "With mango dip"
+     },
+     "price": "295"
+    },
+    {
+     "name": {
+      "es": "Camarones a la Diabla",
+      "en": "Shrimp a la diabla"
+     },
+     "desc": {
+      "es": "Salsa picante, arroz y ensalada",
+      "en": "Spicy sauce, rice and salad"
+     },
+     "price": "285"
+    },
+    {
+     "name": {
+      "es": "Pulpo Zarandeado",
+      "en": "Zarandeado octopus"
+     },
+     "desc": {
+      "es": "A las brasas",
+      "en": "Ember-grilled"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Filete Relleno",
+      "en": "Stuffed fish fillet"
+     },
+     "desc": {
+      "es": "Relleno de mariscos gratinado",
+      "en": "Seafood-stuffed gratin"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Caldo de Camarón",
+      "en": "Shrimp soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Michelada con Camarón",
+      "en": "Shrimp michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Mezcalita de Maracuyá",
+      "en": "Passion fruit mezcalita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Agua de Horchata 1 L",
+      "en": "Horchata 1 L"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

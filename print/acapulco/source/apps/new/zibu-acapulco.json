@@ -1,0 +1,296 @@
+{
+ "name": "Zibu Acapulco",
+ "slug": "zibu-acapulco",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJmcyi8adZyoURJ9d5LEqt99Q",
+ "lat": 16.8172331,
+ "lng": -99.8440206,
+ "address": "Carretera Escénica s/n, Fracc. Glomar",
+ "phone": "+52 744 449 6202",
+ "hours": {
+  "es": "Lun–Dom 17:00–24:00",
+  "en": "Mon–Sun 5pm–12am"
+ },
+ "rating": 4.7,
+ "reviews": 4143,
+ "price_level": 4,
+ "kind": "res",
+ "cuisine": "thai-mexican fusion",
+ "source": "real",
+ "sources": [
+  "https://www.elfinanciero.com.mx/food-and-drink/2025/07/02/como-es-zibu-acapulco-restaurante-del-primo-hermano-de-roberto-alazuelos-y-cuanto-cuesta-comer-ahi/",
+  "https://www.opentable.com.mx/zibu?lang=en"
+ ],
+ "tagline": {
+  "es": "Cocina Mextai bajo la palapa, con la bahía a tus pies",
+  "en": "Mextai cuisine under the palapa, the bay at your feet"
+ },
+ "specialty": "Thai-Mexican fusion with grilled octopus, curries and lobster on a cliffside terrace",
+ "signature": [
+  "Pulpo a las brasas",
+  "Cola de Langosta Sipadan",
+  "Salmón al Curry Rojo",
+  "Banderillas de Camarón en Caña Dulce"
+ ],
+ "photo_notes": {
+  "cover": "Open-air cliffside terrace with tall thatched palapa, warm string lights over candlelit tables and a dusk view of Acapulco Bay through tropical plants.",
+  "s1": "Charred grilled octopus tentacle with glossy chile-garlic sauce on a dark stone plate.",
+  "s2": "Grilled lobster tail split open with golden garlic butter, lime and herbs.",
+  "s3": "Salmon fillet over mashed potatoes in a bright red coconut curry sauce.",
+  "s4": "Shrimp skewered on sugarcane sticks with sweet-and-sour sauce and microgreens."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ola de Aguacate",
+      "en": "Avocado Wave"
+     },
+     "desc": {
+      "es": "Aguacate con toque tailandés",
+      "en": "Avocado with a Thai twist"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Tataki de Atún",
+      "en": "Tuna Tataki"
+     },
+     "desc": {
+      "es": "Costra de chiles secos, guacamole y yuzu",
+      "en": "Dried-chile crust, guacamole, yuzu"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Banderillas de Camarón en Caña Dulce",
+      "en": "Shrimp on Sugarcane Skewers"
+     },
+     "desc": {
+      "es": "Salsa agridulce estilo Mextai",
+      "en": "Mextai sweet-and-sour sauce"
+     },
+     "price": "400"
+    },
+    {
+     "name": {
+      "es": "Tacos de Short Rib",
+      "en": "Short Rib Tacos"
+     },
+     "desc": {
+      "es": "3 piezas",
+      "en": "3 pieces"
+     },
+     "price": "520"
+    },
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Charcoal-Grilled Octopus"
+     },
+     "desc": {
+      "es": "Horno Josper, salsa de chile y ajo",
+      "en": "Josper oven, chile-garlic sauce"
+     },
+     "price": "740"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Ensaladas y sopas",
+    "en": "Salads & Soups"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ensalada de queso de cabra",
+      "en": "Goat Cheese Salad"
+     },
+     "desc": {
+      "es": "Nuez caramelizada, aderezo cítrico",
+      "en": "Candied walnuts, citrus dressing"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Ensalada Thai con camarón tempura",
+      "en": "Thai Salad with Tempura Shrimp"
+     },
+     "desc": {
+      "es": "Vinagreta de chile serrano",
+      "en": "Serrano chile vinaigrette"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Ensalada de pulpo a las brasas",
+      "en": "Grilled Octopus Salad"
+     },
+     "desc": {
+      "es": "Aguacate, cebolla morada, limón",
+      "en": "Avocado, red onion, lemon"
+     },
+     "price": "490"
+    },
+    {
+     "name": {
+      "es": "Sopa Tom Yam",
+      "en": "Tom Yam Soup"
+     },
+     "desc": {
+      "es": "Camarón, hongos, té limón y chile",
+      "en": "Shrimp, mushrooms, lemongrass, chile"
+     },
+     "price": "350"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Main Courses"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Kari Gai",
+      "en": "Kari Gai"
+     },
+     "desc": {
+      "es": "Curry verde de pollo con leche de coco",
+      "en": "Green chicken curry with coconut milk"
+     },
+     "price": "420"
+    },
+    {
+     "name": {
+      "es": "Salmón al Curry Rojo",
+      "en": "Red Curry Salmon"
+     },
+     "desc": {
+      "es": "Sobre puré de papa",
+      "en": "Over mashed potatoes"
+     },
+     "price": "500"
+    },
+    {
+     "name": {
+      "es": "Pescado Tai",
+      "en": "Tai Fish"
+     },
+     "desc": {
+      "es": "Huachinango, mango y nuez de la India",
+      "en": "Red snapper, mango, cashew"
+     },
+     "price": "600"
+    },
+    {
+     "name": {
+      "es": "Camarones Sol y Sombra",
+      "en": "Sun & Shade Shrimp"
+     },
+     "desc": {
+      "es": "Salsas de mango-jengibre y chipotle",
+      "en": "Mango-ginger and chipotle sauces"
+     },
+     "price": "650"
+    },
+    {
+     "name": {
+      "es": "Pad Thai de Camarón",
+      "en": "Shrimp Pad Thai"
+     },
+     "desc": {
+      "es": "Fideo de arroz, tamarindo, chile piquín",
+      "en": "Rice noodles, tamarind, piquín chile"
+     },
+     "price": "540"
+    },
+    {
+     "name": {
+      "es": "Filete Mignon",
+      "en": "Filet Mignon"
+     },
+     "desc": {
+      "es": "Hongos silvestres y nopal asado",
+      "en": "Wild mushrooms, grilled cactus"
+     },
+     "price": "1100"
+    },
+    {
+     "name": {
+      "es": "Short Rib",
+      "en": "Short Rib"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "1550"
+    },
+    {
+     "name": {
+      "es": "Cola de Langosta Sipadan",
+      "en": "Sipadan Lobster Tail"
+     },
+     "desc": {
+      "es": "A la parrilla con mantequilla de ajo",
+      "en": "Grilled, garlic butter"
+     },
+     "price": "1700"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Selva Mextai",
+      "en": "Mextai Jungle"
+     },
+     "desc": {
+      "es": "Crujiente, cajeta y helado de coco",
+      "en": "Crisp layers, dulce de leche, coconut"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Soufflé de chocolate con salsa irlandesa",
+      "en": "Chocolate Soufflé, Irish Cream"
+     },
+     "desc": {
+      "es": "Pedir con 20 min de anticipación",
+      "en": "Order 20 minutes ahead"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Molcajete de chocolate horneado",
+      "en": "Baked Chocolate Molcajete"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "300"
+    }
+   ]
+  }
+ ]
+}

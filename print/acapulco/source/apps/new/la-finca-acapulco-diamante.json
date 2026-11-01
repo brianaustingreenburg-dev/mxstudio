@@ -1,0 +1,282 @@
+{
+ "name": "La Finca Acapulco Diamante",
+ "slug": "la-finca-acapulco-diamante",
+ "area": "Diamante",
+ "place_id": "ChIJvzld7u5byoURZHL-7c4F9vU",
+ "lat": 16.7788639,
+ "lng": -99.7825317,
+ "address": "Blvd. de las Naciones 1300, La Poza",
+ "phone": "+52 744 433 4362",
+ "hours": {
+  "es": "Lun–Dom 8:00–22:00",
+  "en": "Mon–Sun 8am–10pm"
+ },
+ "rating": 4.5,
+ "reviews": 3596,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican & seafood",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/node/123",
+  "https://www.realacapulco.com/en/node/192"
+ ],
+ "tagline": {
+  "es": "Cocina mexicana con salsa al molcajete",
+  "en": "Mexican kitchen with tableside molcajete salsa"
+ },
+ "specialty": "Big hacienda-style Mexican restaurant famous for zarandeado snapper and tableside molcajete salsa.",
+ "signature": [
+  "Huachinango Zarandeado",
+  "Camarones Colorados",
+  "Molcajete Diamante",
+  "Plátanos Flameados"
+ ],
+ "photo_notes": {
+  "cover": "Spacious hacienda-style restaurant with terracotta, wooden beams, colorful papel picado and lush tropical plants.",
+  "s1": "Whole butterflied red snapper grilled zarandeado style with red adobo char, lime and onion.",
+  "s2": "Large shrimp in a glossy red chile sauce, served with rice and avocado.",
+  "s3": "Steaming volcanic stone molcajete filled with grilled meats, shrimp, nopal and melted cheese.",
+  "s4": "Flaming plantains with caramel and a scoop of vanilla ice cream."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles Divorciados con Huevo",
+      "en": "Divorced chilaquiles with egg"
+     },
+     "desc": {
+      "es": "Salsa verde y roja",
+      "en": "Green and red salsa"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Huevos Rancheros",
+      "en": "Huevos rancheros"
+     },
+     "desc": {
+      "es": "Sobre tortilla con salsa ranchera",
+      "en": "On tortilla with ranchera salsa"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Enchiladas de Mole",
+      "en": "Mole enchiladas"
+     },
+     "desc": {
+      "es": "Pollo bañado en mole",
+      "en": "Chicken in mole sauce"
+     },
+     "price": "185"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Salsa al Molcajete",
+      "en": "Tableside molcajete salsa"
+     },
+     "desc": {
+      "es": "Preparada en tu mesa",
+      "en": "Made at your table"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Con totopos",
+      "en": "With tortilla chips"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Estilo Acapulco",
+      "en": "Acapulco style"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Pozole Verde",
+      "en": "Green pozole"
+     },
+     "desc": {
+      "es": "Estilo Guerrero con botana",
+      "en": "Guerrero style with garnishes"
+     },
+     "price": "175"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del Mar",
+    "en": "Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango Zarandeado",
+      "en": "Zarandeado red snapper"
+     },
+     "desc": {
+      "es": "Pescado entero a las brasas",
+      "en": "Whole ember-grilled fish"
+     },
+     "price": "420"
+    },
+    {
+     "name": {
+      "es": "Camarones Colorados",
+      "en": "Red chile shrimp"
+     },
+     "desc": {
+      "es": "En salsa de chile rojo",
+      "en": "In red chile sauce"
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Camarones al Coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Con salsa de mango",
+      "en": "With mango sauce"
+     },
+     "price": "325"
+    },
+    {
+     "name": {
+      "es": "Combo Diamante de Camarón",
+      "en": "Diamond shrimp combo"
+     },
+     "desc": {
+      "es": "Camarón en tres preparaciones",
+      "en": "Shrimp three ways"
+     },
+     "price": "395"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Carnes",
+    "en": "Meats"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Molcajete Diamante",
+      "en": "Diamante molcajete"
+     },
+     "desc": {
+      "es": "Arrachera, pollo, camarón, nopal y queso",
+      "en": "Steak, chicken, shrimp, cactus, cheese"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Fajitas de Pollo",
+      "en": "Chicken fajitas"
+     },
+     "desc": {
+      "es": "Con pimientos y tortillas",
+      "en": "With peppers and tortillas"
+     },
+     "price": "255"
+    },
+    {
+     "name": {
+      "es": "Arrachera a la Parrilla",
+      "en": "Grilled skirt steak"
+     },
+     "desc": {
+      "es": "Con guacamole y frijoles",
+      "en": "With guacamole and beans"
+     },
+     "price": "345"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y Bebidas",
+    "en": "Desserts & Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Plátanos Flameados",
+      "en": "Flaming plantains"
+     },
+     "desc": {
+      "es": "Con helado de vainilla",
+      "en": "With vanilla ice cream"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Flan de la Casa",
+      "en": "House flan"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Margarita de Tamarindo",
+      "en": "Tamarind margarita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Agua de Jamaica 1 L",
+      "en": "Hibiscus water 1 L"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

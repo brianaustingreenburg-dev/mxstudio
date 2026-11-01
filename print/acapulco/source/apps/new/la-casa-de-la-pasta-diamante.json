@@ -1,0 +1,251 @@
+{
+ "name": "La Casa de la Pasta",
+ "slug": "la-casa-de-la-pasta-diamante",
+ "area": "Diamante",
+ "place_id": "ChIJx4BFRmFZyoURoX923SwhjYM",
+ "lat": 16.7997885,
+ "lng": -99.8172247,
+ "address": "Blvd. de las Naciones 504-36, Plaza Villas Palma Diamante",
+ "phone": "+52 744 466 2683",
+ "hours": {
+  "es": "Lun–Sáb 15:00–21:30 · Dom 14:30–20:30",
+  "en": "Mon–Sat 3pm–9:30pm · Sun 2:30pm–8:30pm"
+ },
+ "rating": 4.5,
+ "reviews": 947,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "italian",
+ "source": "sample",
+ "sources": [
+  "https://hablabiendeaca.com/zonas/zonadiamante/restaurantes/la-casa-de-la-pasta"
+ ],
+ "tagline": {
+  "es": "Pasta hecha en casa, como en familia",
+  "en": "Homemade pasta, family-style"
+ },
+ "specialty": "Family-run trattoria with homemade pasta, paninis on house-baked bread and tiramisu.",
+ "signature": [
+  "Fettuccine Bolognese",
+  "Ravioli de Ricotta y Espinaca",
+  "Panini Caprese",
+  "Tiramisú de la Casa"
+ ],
+ "photo_notes": {
+  "cover": "Cozy family trattoria with an outdoor terrace, checkered tablecloths, string lights and a wall of handwritten notes.",
+  "s1": "Fresh fettuccine ribbons with rich meat bolognese and grated parmesan.",
+  "s2": "Plump ricotta and spinach ravioli in butter-sage sauce.",
+  "s3": "Pressed panini on house-baked bread with mozzarella, tomato and basil.",
+  "s4": "Square of tiramisu dusted with cocoa on a white plate."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pan de la Casa con Ajo",
+      "en": "House garlic bread"
+     },
+     "desc": {
+      "es": "Horneado diario",
+      "en": "Baked daily"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Bruschetta",
+      "en": "Bruschetta"
+     },
+     "desc": {
+      "es": "Tomate, albahaca y aceite de oliva",
+      "en": "Tomato, basil and olive oil"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Ensalada Caprese",
+      "en": "Caprese salad"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "155"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas de la Casa",
+    "en": "House Pastas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Fettuccine Bolognese",
+      "en": "Fettuccine bolognese"
+     },
+     "desc": {
+      "es": "Salsa de carne de cocción lenta",
+      "en": "Slow-cooked meat sauce"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Fettuccine Alfredo",
+      "en": "Fettuccine Alfredo"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Ravioli de Ricotta y Espinaca",
+      "en": "Ricotta & spinach ravioli"
+     },
+     "desc": {
+      "es": "En mantequilla y salvia",
+      "en": "In butter and sage"
+     },
+     "price": "215"
+    },
+    {
+     "name": {
+      "es": "Lasaña de Carne",
+      "en": "Meat lasagna"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Spaghetti Frutti di Mare",
+      "en": "Seafood spaghetti"
+     },
+     "desc": {
+      "es": "Camarón, pulpo y mejillón",
+      "en": "Shrimp, octopus and mussels"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Penne Arrabbiata",
+      "en": "Penne arrabbiata"
+     },
+     "desc": {
+      "es": "Salsa de tomate picante",
+      "en": "Spicy tomato sauce"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Gnocchi al Pesto",
+      "en": "Gnocchi with pesto"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "195"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Paninis",
+    "en": "Paninis"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Panini Caprese",
+      "en": "Caprese panini"
+     },
+     "desc": {
+      "es": "Mozzarella, tomate y albahaca",
+      "en": "Mozzarella, tomato and basil"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Panini de Prosciutto",
+      "en": "Prosciutto panini"
+     },
+     "desc": {
+      "es": "Con arúgula y queso",
+      "en": "With arugula and cheese"
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y Bebidas",
+    "en": "Desserts & Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tiramisú de la Casa",
+      "en": "House tiramisu"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Flan Napolitano",
+      "en": "Neapolitan flan"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Copa de Vino Tinto",
+      "en": "Glass of red wine"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Limonada de Albahaca",
+      "en": "Basil lemonade"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "60"
+    }
+   ]
+  }
+ ]
+}

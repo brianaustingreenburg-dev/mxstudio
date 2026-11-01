@@ -1,0 +1,262 @@
+{
+ "name": "La Casa de Tere",
+ "slug": "la-casa-de-tere",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJ6egofyRZyoURd3ti9c9tvW4",
+ "lat": 16.8503577,
+ "lng": -99.8495255,
+ "address": "Capitán Vasco de Gama 320, Costa Azul",
+ "phone": "+52 744 485 7735",
+ "hours": {
+  "es": "Mar–Dom 8:30–17:30 · Jue hasta 18:30 · Lun cerrado",
+  "en": "Tue–Sun 8:30am–5:30pm · Thu to 6:30pm · Mon closed"
+ },
+ "rating": 4.3,
+ "reviews": 1109,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican home cooking",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/node/146"
+ ],
+ "tagline": {
+  "es": "Recetas de familia y pozole verde del jueves desde 1990",
+  "en": "Family recipes and Thursday green pozole since 1990"
+ },
+ "specialty": "Family-style Guerrero cooking since 1990 — Thursday pozole verde, mole and chiles rellenos",
+ "signature": [
+  "Pozole Verde",
+  "Chile Relleno de Camarón",
+  "Mole Rojo con Pollo",
+  "Caldo Tlalpeño"
+ ],
+ "photo_notes": {
+  "cover": "Relaxed open-air garden dining area beside a pool with colorful papel picado, wooden chairs and a stone fountain.",
+  "s1": "Clay bowl of green pozole with chicharrón, avocado, oregano and tostadas on the side.",
+  "s2": "Poblano chile stuffed with shrimp in tomato broth on a talavera plate.",
+  "s3": "Chicken leg covered in dark red mole with sesame seeds and rice.",
+  "s4": "Smoky chipotle chicken soup with chickpeas, avocado and lime."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles de la Casa",
+      "en": "House Chilaquiles"
+     },
+     "desc": {
+      "es": "Rojos o verdes, crema y queso",
+      "en": "Red or green, cream and cheese"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Huevos Rancheros",
+      "en": "Huevos Rancheros"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Enfrijoladas",
+      "en": "Enfrijoladas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Tamales Oaxaqueños",
+      "en": "Oaxacan Tamales"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Jugo de Naranja",
+      "en": "Fresh Orange Juice"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Café de Olla",
+      "en": "Café de Olla"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Caldos y pozole",
+    "en": "Soups & Pozole"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pozole Verde",
+      "en": "Green Pozole"
+     },
+     "desc": {
+      "es": "Sólo jueves, estilo Guerrero",
+      "en": "Thursdays only, Guerrero style"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Caldo Tlalpeño",
+      "en": "Caldo Tlalpeño"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Menudo",
+      "en": "Menudo"
+     },
+     "desc": {
+      "es": "Con tortillas hechas a mano",
+      "en": "With handmade tortillas"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Sopa de Tortilla",
+      "en": "Tortilla Soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "115"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Main Dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chile Relleno de Camarón",
+      "en": "Shrimp-Stuffed Chile"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "215"
+    },
+    {
+     "name": {
+      "es": "Mole Rojo con Pollo",
+      "en": "Chicken in Red Mole"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Pechuga en Salsa de Chipotle",
+      "en": "Chicken Breast in Chipotle"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Cecina con Enchiladas",
+      "en": "Cecina with Enchiladas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Enchiladas Suizas",
+      "en": "Enchiladas Suizas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "160"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan Napolitano",
+      "en": "Flan Napolitano"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Arroz con Leche",
+      "en": "Rice Pudding"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "65"
+    }
+   ]
+  }
+ ]
+}

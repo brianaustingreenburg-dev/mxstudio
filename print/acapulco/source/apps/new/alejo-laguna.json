@@ -1,0 +1,314 @@
+{
+ "name": "Restaurant Bar Alejo Laguna",
+ "slug": "alejo-laguna",
+ "area": "Pie de la Cuesta / Afueras",
+ "place_id": "ChIJzzCFtQ9CyoURFB1jYAUTEH4",
+ "lat": 16.6962771,
+ "lng": -99.6479343,
+ "address": "Blvd. Barra Vieja Km 31, San Andrés Playa Encantada",
+ "phone": "+52 744 444 6560",
+ "hours": {
+  "es": "Lun–Dom 10:30–19:00",
+  "en": "Mon–Sun 10:30am–7pm"
+ },
+ "rating": 4.4,
+ "reviews": 1735,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [
+  "https://wanderlog.com/place/details/1176277"
+ ],
+ "tagline": {
+  "es": "Pescado a la talla entre el mar y la laguna",
+  "en": "Grilled snapper between the sea and the lagoon"
+ },
+ "specialty": "Pescado a la talla served poolside with lagoon and ocean views",
+ "signature": [
+  "Pescado a la talla (kg)",
+  "Molcajete de mariscos",
+  "Camarones al coco",
+  "Piña colada"
+ ],
+ "photo_notes": {
+  "cover": "Large open-air palapa restaurant with palm-thatched roof, turquoise pool with loungers and the Pacific beach behind, golden afternoon light",
+  "s1": "whole red snapper butterflied and grilled a la talla, half red adobo half green adobo, on a wooden board with rice, tortillas and lime",
+  "s2": "sizzling volcanic-stone molcajete filled with shrimp, octopus, fish and cheese in red salsa",
+  "s3": "golden coconut-crusted shrimp served with mango dipping sauce in a halved coconut shell",
+  "s4": "frosty piña colada served inside a hollowed pineapple with a cherry"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas y cocteles",
+    "en": "Starters & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopes de camarón",
+      "en": "Shrimp sopes"
+     },
+     "desc": {
+      "es": "Masa a mano con camarón, salsa y queso",
+      "en": "Handmade masa with shrimp, salsa and cheese"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Pescado curtido en limón con pico de gallo",
+      "en": "Lime-cured fish with pico de gallo"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Coctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Camarón en salsa coctel con aguacate",
+      "en": "Shrimp in cocktail sauce with avocado"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón y chile serrano",
+      "en": "Raw shrimp in lime and serrano chile"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Guacamole con totopos",
+      "en": "Guacamole with chips"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "160"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla (kg)",
+      "en": "Grilled fish a la talla (kg)"
+     },
+     "desc": {
+      "es": "Huachinango al carbón con adobo rojo y verde",
+      "en": "Charcoal snapper, red and green adobo"
+     },
+     "price": "645"
+    },
+    {
+     "name": {
+      "es": "Huachinango frito (kg)",
+      "en": "Fried whole snapper (kg)"
+     },
+     "desc": {
+      "es": "Entero, dorado, con ensalada y arroz",
+      "en": "Whole, golden fried, with salad and rice"
+     },
+     "price": "620"
+    },
+    {
+     "name": {
+      "es": "Filete al mojo de ajo",
+      "en": "Garlic fish fillet"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Filete empapelado",
+      "en": "Fish fillet en papillote"
+     },
+     "desc": {
+      "es": "Al vapor con verduras y especias",
+      "en": "Steamed with vegetables and herbs"
+     },
+     "price": "320"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Camarones",
+    "en": "Shrimp"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con ajo dorado y mantequilla",
+      "en": "With golden garlic and butter"
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Deviled shrimp"
+     },
+     "desc": {
+      "es": "En salsa picante de chiles secos",
+      "en": "In spicy dried-chile sauce"
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Empanizados con coco y salsa de mango",
+      "en": "Coconut-crusted with mango sauce"
+     },
+     "price": "370"
+    },
+    {
+     "name": {
+      "es": "Brochetas de camarón",
+      "en": "Shrimp skewers"
+     },
+     "desc": {
+      "es": "Con pimiento, cebolla y piña",
+      "en": "With pepper, onion and pineapple"
+     },
+     "price": "370"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Mariscos",
+    "en": "Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Molcajete de mariscos",
+      "en": "Seafood molcajete"
+     },
+     "desc": {
+      "es": "Mariscos en salsa caliente de chiles",
+      "en": "Seafood bubbling in chile salsa"
+     },
+     "price": "680"
+    },
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Charcoal-grilled octopus"
+     },
+     "desc": {
+      "es": "Con mantequilla de ajo y chile",
+      "en": "With garlic-chile butter"
+     },
+     "price": "415"
+    },
+    {
+     "name": {
+      "es": "Caldo de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, almeja y pescado",
+      "en": "Shrimp, octopus, clams and fish"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Mariscada para dos",
+      "en": "Seafood platter for two"
+     },
+     "desc": {
+      "es": "Pescado, camarón, pulpo y langostino",
+      "en": "Fish, shrimp, octopus and prawns"
+     },
+     "price": "1125"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Natural, servida en piña",
+      "en": "Fresh, served in a pineapple"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, mango o tamarindo",
+      "en": "Lime, mango or tamarind"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Coco frío",
+      "en": "Fresh coconut"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Con chamoy y escarchado",
+      "en": "With chamoy and chile rim"
+     },
+     "price": "125"
+    }
+   ]
+  }
+ ]
+}

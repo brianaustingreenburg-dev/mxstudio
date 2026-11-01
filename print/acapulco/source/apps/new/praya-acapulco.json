@@ -1,0 +1,326 @@
+{
+ "name": "Praya",
+ "slug": "praya-acapulco",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJc8ExvbNZyoURvReuZfyGY9A",
+ "lat": 16.8314205,
+ "lng": -99.8544823,
+ "address": "Carretera Escénica 28, Brisas Guitarrón",
+ "phone": "+52 744 461 3183",
+ "hours": {
+  "es": "Lun–Jue 18:00–24:00 · Vie 18:00–1:00 · Sáb–Dom 14:00–1:00",
+  "en": "Mon–Thu 6pm–12am · Fri 6pm–1am · Sat–Sun 2pm–1am"
+ },
+ "rating": 4.7,
+ "reviews": 1676,
+ "price_level": 4,
+ "kind": "res",
+ "cuisine": "mediterranean steakhouse",
+ "source": "partial",
+ "sources": [
+  "https://opentable.ie/r/praya-acapulco-de-juarez",
+  "https://www.elfinanciero.com.mx/food-and-drink/2026/04/23/con-vista-a-la-bahia-de-acapulco-asi-es-praya-restaurante-visitado-por-luisa-maria-alcalde/"
+ ],
+ "tagline": {
+  "es": "Fuego, mar y pasta en rueda de parmesano sobre la bahía",
+  "en": "Fire, sea and wheel-tossed pasta above the bay"
+ },
+ "specialty": "Mediterranean steakhouse with Josper-grilled seafood, prime cuts and tableside parmesan-wheel pasta",
+ "signature": [
+  "Pasta Alfredo alla Ruota",
+  "Pulpo a las Brasas",
+  "Esferas de Wagyu",
+  "Tomahawk"
+ ],
+ "photo_notes": {
+  "cover": "Elegant hillside dining room in warm wood and dim amber light, tables around a central planter, open edge overlooking the night-lit bay.",
+  "s1": "Fettuccine being tossed inside a giant hollowed parmesan wheel at the table.",
+  "s2": "Charred octopus tentacles on a wooden board with herb oil and lemon.",
+  "s3": "Golden wagyu croquette spheres on a slate with dots of sauce.",
+  "s4": "Sliced tomahawk steak with bone, flaky salt and grilled vegetables."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Esferas de Wagyu",
+      "en": "Wagyu Spheres"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Camaron Roca",
+      "en": "Rock Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Fondue de Quesos",
+      "en": "Cheese Fondue"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "360"
+    },
+    {
+     "name": {
+      "es": "Carpaccio de Pulpo",
+      "en": "Octopus Carpaccio"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Ostión con pulpo y camarón horneados al josper",
+      "en": "Josper-Baked Oyster, Octopus & Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "440"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Raw bar y tacos",
+    "en": "Raw Bar & Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sashimi de Atún Fresco",
+      "en": "Fresh Tuna Sashimi"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Robalo",
+      "en": "Sea Bass Ceviche"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Tacos de Rib Eye Caramelo",
+      "en": "Caramel Rib Eye Tacos"
+     },
+     "desc": {
+      "es": "3 piezas",
+      "en": "3 pieces"
+     },
+     "price": "370"
+    },
+    {
+     "name": {
+      "es": "Tacos de Pulpo",
+      "en": "Octopus Tacos"
+     },
+     "desc": {
+      "es": "3 piezas",
+      "en": "3 pieces"
+     },
+     "price": "350"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas y risottos",
+    "en": "Pastas & Risottos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pasta Alfredo alla Ruota",
+      "en": "Alfredo in the Parmesan Wheel"
+     },
+     "desc": {
+      "es": "Preparada en la mesa",
+      "en": "Prepared tableside"
+     },
+     "price": "490"
+    },
+    {
+     "name": {
+      "es": "Frutti di Mare",
+      "en": "Frutti di Mare"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Ravioles de Short Rib",
+      "en": "Short Rib Ravioli"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "460"
+    },
+    {
+     "name": {
+      "es": "Risotto de Hongos",
+      "en": "Mushroom Risotto"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "420"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar y carnes",
+    "en": "Sea & Meat"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo a las Brasas",
+      "en": "Charcoal-Grilled Octopus"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "690"
+    },
+    {
+     "name": {
+      "es": "Branzino",
+      "en": "Branzino"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "780"
+    },
+    {
+     "name": {
+      "es": "Salmón al Grill",
+      "en": "Grilled Salmon"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "670"
+    },
+    {
+     "name": {
+      "es": "Ribeye (400gr)",
+      "en": "Ribeye (400 g)"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "1250"
+    },
+    {
+     "name": {
+      "es": "Short Rib",
+      "en": "Short Rib"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "980"
+    },
+    {
+     "name": {
+      "es": "Tomahawk",
+      "en": "Tomahawk"
+     },
+     "desc": {
+      "es": "Para compartir",
+      "en": "For sharing"
+     },
+     "price": "3600"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Complementos",
+    "en": "Sides"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Puré de Papa con Jalapeño",
+      "en": "Jalapeño Mashed Potatoes"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Elotes a las Brasas",
+      "en": "Fire-Roasted Corn"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Papas Trufadas",
+      "en": "Truffle Fries"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "180"
+    }
+   ]
+  }
+ ]
+}

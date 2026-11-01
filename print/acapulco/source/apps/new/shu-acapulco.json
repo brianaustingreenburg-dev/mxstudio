@@ -1,0 +1,304 @@
+{
+ "name": "Shu",
+ "slug": "shu-acapulco",
+ "area": "Diamante",
+ "place_id": "ChIJvzL6TXhcyoURIZ8oZb9XvtY",
+ "lat": 16.7716793,
+ "lng": -99.7755158,
+ "address": "Blvd. de las Naciones 1813, La Isla Shopping Village",
+ "phone": "+52 744 462 2001",
+ "hours": {
+  "es": "Lun–Jue y Dom 14:00–23:00 · Vie–Sáb 14:00–24:00",
+  "en": "Mon–Thu & Sun 2pm–11pm · Fri–Sat 2pm–12am"
+ },
+ "rating": 4.5,
+ "reviews": 913,
+ "price_level": 4,
+ "kind": "res",
+ "cuisine": "japanese teppanyaki",
+ "source": "partial",
+ "sources": [
+  "https://www.opentable.com.mx/r/shu-acapulco?lang=en",
+  "https://www.realacapulco.com/en/shu"
+ ],
+ "tagline": {
+  "es": "Teppanyaki y sushi de alto nivel",
+  "en": "High-end teppanyaki and sushi"
+ },
+ "specialty": "Glamorous Japanese fusion with live teppanyaki grills, prime ribeye, lobster and creative rolls.",
+ "signature": [
+  "Ribeye Prime importado 300 g",
+  "Langosta Teppanyaki",
+  "Dragon roll",
+  "Nidos de Atún con Foie Gras"
+ ],
+ "photo_notes": {
+  "cover": "Sleek modern Japanese restaurant with dark wood, glowing teppanyaki grills, chef flames, and moody amber lighting.",
+  "s1": "Thick prime ribeye sliced on a teppanyaki griddle with garlic chips and soy glaze.",
+  "s2": "Lobster tail seared on the teppan with butter, bean sprouts and lemon.",
+  "s3": "Dragon roll topped with thin avocado slices and eel sauce on a long slate plate.",
+  "s4": "Tuna tartare nests crowned with seared foie gras, microgreens and dark sauce."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Fríos",
+    "en": "Cold Dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ensalada de Atún Cítrico",
+      "en": "Citrus tuna salad"
+     },
+     "desc": {
+      "es": "Atún fresco con aderezo cítrico",
+      "en": "Fresh tuna, citrus dressing"
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Carpaccio Suzuki",
+      "en": "Suzuki carpaccio"
+     },
+     "desc": {
+      "es": "Robalo en láminas finas",
+      "en": "Thinly sliced sea bass"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Maguro No Tataki",
+      "en": "Maguro tataki"
+     },
+     "desc": {
+      "es": "Atún sellado con ponzu",
+      "en": "Seared tuna with ponzu"
+     },
+     "price": "395"
+    },
+    {
+     "name": {
+      "es": "Sashimi de Hamachi",
+      "en": "Hamachi sashimi"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "465"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Calientes",
+    "en": "Hot Dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Edamame",
+      "en": "Edamame"
+     },
+     "desc": {
+      "es": "Con sal de mar",
+      "en": "With sea salt"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Camarón Pirikara",
+      "en": "Pirikara shrimp"
+     },
+     "desc": {
+      "es": "Camarón en salsa picante",
+      "en": "Shrimp in spicy sauce"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Tempura de Camarón",
+      "en": "Shrimp tempura"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "335"
+    },
+    {
+     "name": {
+      "es": "Nidos de Atún con Foie Gras",
+      "en": "Tuna nests with foie gras"
+     },
+     "desc": {
+      "es": "Especialidad Shu",
+      "en": "Shu specialty"
+     },
+     "price": "520"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos",
+    "en": "Rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Dragon roll",
+      "en": "Dragon roll"
+     },
+     "desc": {
+      "es": "Forrado de aguacate y anguila",
+      "en": "Topped with avocado and eel"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Spicy Tuna",
+      "en": "Spicy tuna roll"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Super Crunch Maki",
+      "en": "Super crunch maki"
+     },
+     "desc": {
+      "es": "Rollo crujiente empanizado",
+      "en": "Crispy panko roll"
+     },
+     "price": "330"
+    },
+    {
+     "name": {
+      "es": "Niguiri sushi especial",
+      "en": "Special nigiri selection"
+     },
+     "desc": {
+      "es": "Selección del chef",
+      "en": "Chef's selection"
+     },
+     "price": "480"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Teppanyaki",
+    "en": "Teppanyaki"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ribeye Prime importado 300 g",
+      "en": "Imported prime ribeye 300 g"
+     },
+     "desc": {
+      "es": "A la plancha con ajo y soya",
+      "en": "Griddled with garlic soy"
+     },
+     "price": "1150"
+    },
+    {
+     "name": {
+      "es": "Ribeye Japonés Kobe Wagyu 250 g",
+      "en": "Japanese Kobe wagyu ribeye 250 g"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "3200"
+    },
+    {
+     "name": {
+      "es": "Langosta Teppanyaki",
+      "en": "Lobster teppanyaki"
+     },
+     "desc": {
+      "es": "En salsa Suntory",
+      "en": "In Suntory sauce"
+     },
+     "price": "1350"
+    },
+    {
+     "name": {
+      "es": "Callo de hacha",
+      "en": "Scallops"
+     },
+     "desc": {
+      "es": "Callo de hacha a la plancha",
+      "en": "Griddled scallops"
+     },
+     "price": "690"
+    },
+    {
+     "name": {
+      "es": "Robalo",
+      "en": "Sea bass"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "520"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Arroz y Sopas",
+    "en": "Rice & Soups"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Yakimeshi Mixto Especial",
+      "en": "Special mixed fried rice"
+     },
+     "desc": {
+      "es": "Carne, camarón y verduras",
+      "en": "Beef, shrimp and vegetables"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Misoshiru",
+      "en": "Miso soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Sopa de Mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Caldo estilo japonés",
+      "en": "Japanese-style broth"
+     },
+     "price": "245"
+    }
+   ]
+  }
+ ]
+}

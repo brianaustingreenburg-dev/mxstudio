@@ -1,0 +1,293 @@
+{
+ "name": "Celeiro Brazza Churrasqueria",
+ "slug": "celeiro-brazza-churrasqueria",
+ "area": "Diamante",
+ "place_id": "ChIJUy8UaI1byoURoic0C_8g894",
+ "lat": 16.7880602,
+ "lng": -99.797847,
+ "address": "Blvd. de las Naciones 1221, Playa Diamante",
+ "phone": "+52 744 433 4226",
+ "hours": {
+  "es": "Lun–Jue y Dom 12:00–23:00 · Vie–Sáb 12:00–24:00",
+  "en": "Mon–Thu & Sun 12pm–11pm · Fri–Sat 12pm–12am"
+ },
+ "rating": 4.5,
+ "reviews": 1629,
+ "price_level": 3,
+ "kind": "res",
+ "cuisine": "brazilian steakhouse",
+ "source": "partial",
+ "sources": [
+  "https://www.opentable.com/r/celeiro-brazza-acapulco",
+  "https://www.realacapulco.com/en/node/137"
+ ],
+ "tagline": {
+  "es": "Rodizio brasileño de más de 27 cortes",
+  "en": "Brazilian rodizio with 27+ cuts"
+ },
+ "specialty": "All-you-can-eat Brazilian churrasco carved tableside plus a 30-dish salad and seafood bar.",
+ "signature": [
+  "Picanha",
+  "Costilla de res al carbón",
+  "Caipirinha",
+  "Crème brûlée"
+ ],
+ "photo_notes": {
+  "cover": "Elegant churrascaria dining room with a gaucho carving meat from a sword skewer at the table, warm wood and soft lights.",
+  "s1": "Juicy picanha on a sword skewer being sliced, crisp fat cap, coarse salt.",
+  "s2": "Charcoal-smoked beef rib, glossy and tender, pulled from the bone on a wooden board.",
+  "s3": "Caipirinha in a short glass with muddled lime and crushed ice.",
+  "s4": "Crème brûlée with a crackled caramel top and fresh berries."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Rodizio",
+    "en": "Rodizio"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Rodizio Completo",
+      "en": "Full rodizio"
+     },
+     "desc": {
+      "es": "Espadas ilimitadas y barra de ensaladas",
+      "en": "Unlimited skewers and salad bar"
+     },
+     "price": "695"
+    },
+    {
+     "name": {
+      "es": "Barra de Ensaladas y Buffet",
+      "en": "Salad bar & buffet only"
+     },
+     "desc": {
+      "es": "Más de 30 platillos",
+      "en": "30+ dishes"
+     },
+     "price": "395"
+    },
+    {
+     "name": {
+      "es": "Rodizio Niños",
+      "en": "Kids' rodizio"
+     },
+     "desc": {
+      "es": "De 5 a 10 años",
+      "en": "Ages 5 to 10"
+     },
+     "price": "350"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Espadas (incluidas en rodizio)",
+    "en": "Skewers (included in rodizio)"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Picanha",
+      "en": "Picanha"
+     },
+     "desc": {
+      "es": "Corte estrella brasileño",
+      "en": "Signature Brazilian cut"
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Costilla de res al carbón",
+      "en": "Charcoal beef rib"
+     },
+     "desc": {
+      "es": "16–18 horas al carbón",
+      "en": "16–18 hours over charcoal"
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Filete con tocino",
+      "en": "Bacon-wrapped filet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Costilla de cordero",
+      "en": "Lamb chops"
+     },
+     "desc": {
+      "es": "Con salsa de menta",
+      "en": "With mint sauce"
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Linguiça calabresa",
+      "en": "Calabresa sausage"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Pulpo",
+      "en": "Octopus"
+     },
+     "desc": {
+      "es": "A la parrilla",
+      "en": "Grilled"
+     },
+     "price": ""
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Barra (incluida en rodizio)",
+    "en": "Buffet Bar (included in rodizio)"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Feshoada",
+      "en": "Feijoada"
+     },
+     "desc": {
+      "es": "Guiso brasileño de frijol negro",
+      "en": "Brazilian black bean stew"
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Paella",
+      "en": "Paella"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Aguachile de camarón",
+      "en": "Shrimp aguachile"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": ""
+    },
+    {
+     "name": {
+      "es": "Palmitos",
+      "en": "Hearts of palm"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": ""
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Caipirinha",
+      "en": "Caipirinha"
+     },
+     "desc": {
+      "es": "Cachaça, limón y azúcar",
+      "en": "Cachaça, lime and sugar"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Cerveza Brasileña",
+      "en": "Brazilian beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Copa de Vino Tinto de la Casa",
+      "en": "House red wine glass"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Crème brûlée",
+      "en": "Crème brûlée"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Crema de papaya",
+      "en": "Papaya cream"
+     },
+     "desc": {
+      "es": "Papaya con helado y licor de cassis",
+      "en": "Papaya, ice cream, cassis liqueur"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Pastel brigadeiros",
+      "en": "Brigadeiro cake"
+     },
+     "desc": {
+      "es": "Chocolate brasileño",
+      "en": "Brazilian chocolate"
+     },
+     "price": "135"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,270 @@
+{
+ "name": "La Jaiba Locca Diamante",
+ "slug": "la-jaiba-locca-diamante",
+ "area": "Diamante",
+ "place_id": "ChIJJSnjDfVXyoURXpMfTUQnFOM",
+ "lat": 16.7755832,
+ "lng": -99.7787665,
+ "address": "Blvd. de las Naciones 1801-A, La Zanja",
+ "phone": "+52 744 462 1582",
+ "hours": {
+  "es": "Lun–Dom 12:00–21:00",
+  "en": "Mon–Sun 12pm–9pm"
+ },
+ "rating": 4.2,
+ "reviews": 1870,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/node/217"
+ ],
+ "tagline": {
+  "es": "Mariscos con sazón loco y salsas de la casa",
+  "en": "Seafood with crazy flavor and house salsas"
+ },
+ "specialty": "Lively open-air seafood house known for camarones al mango, chalupitas de marlín and tamarind margaritas.",
+ "signature": [
+  "Camarones al Mango",
+  "Chalupitas de Marlín",
+  "Ceviche Vuelve a la Vida",
+  "Margarita de Tamarindo"
+ ],
+ "photo_notes": {
+  "cover": "Colorful open-air seafood restaurant with palapa roof, ceiling fans, painted crab murals and busy family tables.",
+  "s1": "Golden shrimp glazed in a bright mango sauce with diced mango and rice.",
+  "s2": "Small crisp corn chalupas topped with smoked marlin, salsa and pickled onion.",
+  "s3": "Tall glass of vuelve a la vida seafood ceviche with octopus, shrimp, avocado and crackers.",
+  "s4": "Tamarind margarita with chile-salt rim and lime wedge, condensation on glass."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Botanas",
+    "en": "Snacks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chalupitas de Marlín",
+      "en": "Marlin chalupitas"
+     },
+     "desc": {
+      "es": "Marlín ahumado sobre tortilla crujiente",
+      "en": "Smoked marlin on crisp tortillas"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Moronga de Mariscos",
+      "en": "Seafood moronga"
+     },
+     "desc": {
+      "es": "Especialidad de la casa",
+      "en": "House specialty"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Tostada de Atún",
+      "en": "Tuna tostada"
+     },
+     "desc": {
+      "es": "Atún fresco con aguacate",
+      "en": "Fresh tuna with avocado"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Mousse de Salmón",
+      "en": "Salmon mousse"
+     },
+     "desc": {
+      "es": "Con galletas saladas",
+      "en": "With crackers"
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles y Ceviches",
+    "en": "Cocktails & Ceviches"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche Vuelve a la Vida",
+      "en": "Vuelve a la vida ceviche"
+     },
+     "desc": {
+      "es": "Pulpo, camarón, ostión y caracol",
+      "en": "Octopus, shrimp, oyster, conch"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Coctel de Camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "225"
+    },
+    {
+     "name": {
+      "es": "Aguachile Verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón y chile",
+      "en": "Raw shrimp in lime and chile"
+     },
+     "price": "235"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos Fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al Mango",
+      "en": "Mango shrimp"
+     },
+     "desc": {
+      "es": "Salsa de mango, arroz y ensalada",
+      "en": "Mango sauce, rice and salad"
+     },
+     "price": "315"
+    },
+    {
+     "name": {
+      "es": "Camarones Jaiba Locca",
+      "en": "Jaiba Locca shrimp"
+     },
+     "desc": {
+      "es": "Salsa picante de la casa",
+      "en": "Spicy house sauce"
+     },
+     "price": "315"
+    },
+    {
+     "name": {
+      "es": "Filete Relleno de Mariscos",
+      "en": "Seafood-stuffed fillet"
+     },
+     "desc": {
+      "es": "Gratinado con queso",
+      "en": "Cheese gratin"
+     },
+     "price": "295"
+    },
+    {
+     "name": {
+      "es": "Pescado a la Talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Entero en adobo, por kilo",
+      "en": "Whole in adobo, per kilo"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Jaiba Rellena",
+      "en": "Stuffed crab"
+     },
+     "desc": {
+      "es": "Gratinada al horno",
+      "en": "Oven gratin"
+     },
+     "price": "185"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos",
+    "en": "Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de Camarón",
+      "en": "Shrimp tacos"
+     },
+     "desc": {
+      "es": "Tres tacos capeados",
+      "en": "Three battered tacos"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Tacos Gobernador",
+      "en": "Gobernador tacos"
+     },
+     "desc": {
+      "es": "Camarón con queso gratinado",
+      "en": "Shrimp with melted cheese"
+     },
+     "price": "195"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Margarita de Tamarindo",
+      "en": "Tamarind margarita"
+     },
+     "desc": {
+      "es": "Escarchada con chile",
+      "en": "Chile-salt rim"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Agua de Coco",
+      "en": "Coconut water"
+     },
+     "desc": {
+      "es": "Coco natural",
+      "en": "Fresh coconut"
+     },
+     "price": "65"
+    }
+   ]
+  }
+ ]
+}

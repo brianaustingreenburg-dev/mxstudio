@@ -1,0 +1,262 @@
+{
+ "name": "Restaurante El Cabrito",
+ "slug": "el-cabrito-acapulco",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJl9Lc3SxYyoURJxIq62TQ8ZE",
+ "lat": 16.8508621,
+ "lng": -99.8529803,
+ "address": "Av. Costera Miguel Alemán 1480, Costa Azul",
+ "phone": "+52 744 484 7711",
+ "hours": {
+  "es": "Lun–Dom 13:00–24:00",
+  "en": "Mon–Sun 1pm–12am"
+ },
+ "rating": 4.5,
+ "reviews": 793,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "northern mexican grill",
+ "source": "partial",
+ "sources": [
+  "https://www.realacapulco.com/en/restaurant/el-cabrito"
+ ],
+ "tagline": {
+  "es": "Cabrito al carbón y cocina norteña desde 1963",
+  "en": "Charcoal-roasted kid goat and northern cooking since 1963"
+ },
+ "specialty": "Family-run since 1963: charcoal-roasted cabrito with charro beans, steaks and tequilas",
+ "signature": [
+  "Cabrito al Carbón",
+  "Frijoles Charros",
+  "Fajitas Mixtas",
+  "Arrachera a la Parrilla"
+ ],
+ "photo_notes": {
+  "cover": "Traditional Mexican open-air terrace with tiled roof, colorful details and a visible charcoal pit roasting meat on spits.",
+  "s1": "Charcoal-roasted kid goat pieces on a clay platter with grilled onions and salsa.",
+  "s2": "Clay pot of charro beans with bacon, chorizo and cilantro.",
+  "s3": "Sizzling cast-iron skillet of beef, chicken and shrimp fajitas with peppers.",
+  "s4": "Grilled marinated skirt steak with guacamole, nopal and tortillas."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Queso Fundido con Chorizo",
+      "en": "Queso Fundido with Chorizo"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Frijoles Charros",
+      "en": "Charro Beans"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Quesadillas de Flor de Calabaza",
+      "en": "Squash Blossom Quesadillas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "125"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Especialidades",
+    "en": "Specialties"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Cabrito al Carbón",
+      "en": "Charcoal-Roasted Kid Goat"
+     },
+     "desc": {
+      "es": "Con frijoles charros y tortillas",
+      "en": "With charro beans and tortillas"
+     },
+     "price": "445"
+    },
+    {
+     "name": {
+      "es": "Arrachera a la Parrilla",
+      "en": "Grilled Skirt Steak"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Fajitas Mixtas",
+      "en": "Mixed Fajitas"
+     },
+     "desc": {
+      "es": "Res, pollo y camarón",
+      "en": "Beef, chicken and shrimp"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Carne Asada a la Tampiqueña",
+      "en": "Carne Asada Tampiqueña"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "325"
+    },
+    {
+     "name": {
+      "es": "Mole Poblano con Pollo",
+      "en": "Chicken Mole Poblano"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "225"
+    },
+    {
+     "name": {
+      "es": "Camarones al Mojo de Ajo",
+      "en": "Garlic Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "315"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos",
+    "en": "Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de Cabrito",
+      "en": "Kid Goat Tacos"
+     },
+     "desc": {
+      "es": "3 piezas",
+      "en": "3 pieces"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Tacos de Arrachera",
+      "en": "Skirt Steak Tacos"
+     },
+     "desc": {
+      "es": "3 piezas",
+      "en": "3 pieces"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Tacos de Camarón",
+      "en": "Shrimp Tacos"
+     },
+     "desc": {
+      "es": "3 piezas",
+      "en": "3 pieces"
+     },
+     "price": "185"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y bebidas",
+    "en": "Desserts & Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan de Cajeta",
+      "en": "Cajeta Flan"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Margarita de la Casa",
+      "en": "House Margarita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Tequila Reposado",
+      "en": "Reposado Tequila"
+     },
+     "desc": {
+      "es": "Caballito",
+      "en": "Single shot"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Agua de Horchata",
+      "en": "Horchata"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    }
+   ]
+  }
+ ]
+}

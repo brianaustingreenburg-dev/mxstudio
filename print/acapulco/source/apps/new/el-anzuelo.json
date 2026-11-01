@@ -1,0 +1,265 @@
+{
+ "name": "El Anzuelo",
+ "slug": "el-anzuelo",
+ "area": "Costera Oeste / Caleta",
+ "place_id": "ChIJxavZHQdYyoURKR4QfnJfBQQ",
+ "lat": 16.8536302,
+ "lng": -99.8995585,
+ "address": "Av. Costera Miguel Alemán 201, Hornos",
+ "phone": "",
+ "hours": {
+  "es": "Mié–Lun 10:00–20:00 · Mar cerrado",
+  "en": "Wed–Mon 10am–8pm · Tue closed"
+ },
+ "rating": 4.3,
+ "reviews": 1234,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Vista a la bahía, música en vivo y mariscos frescos",
+  "en": "Bay views, live music and fresh seafood"
+ },
+ "specialty": "Beachfront seafood with live music, known for its bay view and Thursday pozole.",
+ "signature": [
+  "Pescado a la Talla",
+  "Camarones al Mojo de Ajo",
+  "Coctel Campechano",
+  "Pozole Verde"
+ ],
+ "photo_notes": {
+  "cover": "a seaside restaurant terrace on Hornos beach with blue-and-white tables, palm trees and the curved Acapulco bay at golden hour",
+  "s1": "a butterflied whole red snapper grilled a la talla with red and green adobo, tortillas and lime",
+  "s2": "large shrimp in golden garlic butter with rice and salad",
+  "s3": "a goblet of mixed seafood cocktail with shrimp and octopus, avocado and saltines",
+  "s4": "a clay bowl of green pozole with avocado, chicharrón, radish and oregano"
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Guacamole con Totopos",
+      "en": "Guacamole with Chips"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Pescadillas (3)",
+      "en": "Fish Pescadillas (3)"
+     },
+     "desc": {
+      "es": "Tortilla frita rellena de pescado",
+      "en": "Fried tortillas filled with fish"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Tostadas de Atún",
+      "en": "Tuna Tostadas"
+     },
+     "desc": {
+      "es": "Atún fresco, aguacate y salsa",
+      "en": "Fresh tuna, avocado, salsa"
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles",
+    "en": "Cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel de Camarón",
+      "en": "Shrimp Cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Coctel Campechano",
+      "en": "Mixed Seafood Cocktail"
+     },
+     "desc": {
+      "es": "Camarón y pulpo",
+      "en": "Shrimp and octopus"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Pescado",
+      "en": "Fish Ceviche"
+     },
+     "desc": {
+      "es": "Estilo Acapulco",
+      "en": "Acapulco style"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la Talla",
+      "en": "Grilled Snapper a la Talla"
+     },
+     "desc": {
+      "es": "Adobo rojo y verde, por kilo",
+      "en": "Red and green adobo, per kg"
+     },
+     "price": "650"
+    },
+    {
+     "name": {
+      "es": "Filete Relleno de Mariscos",
+      "en": "Seafood-Stuffed Fillet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Mojarra Frita",
+      "en": "Fried Mojarra"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Camarones y Pulpo",
+    "en": "Shrimp & Octopus"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones al Mojo de Ajo",
+      "en": "Garlic Shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Camarones a la Diabla",
+      "en": "Shrimp a la Diabla"
+     },
+     "desc": {
+      "es": "Salsa picante de chiles",
+      "en": "Spicy chile sauce"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Pulpo Zarandeado",
+      "en": "Grilled Octopus"
+     },
+     "desc": {
+      "es": "Al carbón con salsa de la casa",
+      "en": "Charcoal-grilled, house sauce"
+     },
+     "price": "360"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Jueves de Pozole",
+    "en": "Pozole Thursday"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pozole Verde",
+      "en": "Green Pozole"
+     },
+     "desc": {
+      "es": "Con botana guerrerense",
+      "en": "With Guerrero-style snacks"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Pozole Blanco",
+      "en": "White Pozole"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "180"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Piña Colada",
+      "en": "Piña Colada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "95"
+    }
+   ]
+  }
+ ]
+}

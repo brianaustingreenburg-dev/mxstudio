@@ -1,0 +1,336 @@
+{
+ "name": "Muna Acapulco",
+ "slug": "muna-acapulco",
+ "area": "Costera Dorada / Icacos",
+ "place_id": "ChIJ9SRUerBZyoURBmt-RyAYM1o",
+ "lat": 16.8282292,
+ "lng": -99.8616556,
+ "address": "Carretera Escénica 1007, Fracc. Marina Brisas",
+ "phone": "+52 55 6286 5112",
+ "hours": {
+  "es": "Dom–Mié 17:00–23:00 · Jue–Sáb 17:00–1:00",
+  "en": "Sun–Wed 5pm–11pm · Thu–Sat 5pm–1am"
+ },
+ "rating": 4.5,
+ "reviews": 684,
+ "price_level": 4,
+ "kind": "res",
+ "cuisine": "japanese robata & sushi",
+ "source": "real",
+ "sources": [
+  "https://www.opentable.co.uk/r/muna-acapulco-de-juarez"
+ ],
+ "tagline": {
+  "es": "Robata, sushi y DJ frente a la bahía",
+  "en": "Robata, sushi and DJ sets over the bay"
+ },
+ "specialty": "Modern Japanese robata grill, premium sushi and wagyu with bay views and live DJs",
+ "signature": [
+  "Hamachi Capaddocia",
+  "Black Cod",
+  "Tostadas de Hamachi",
+  "Crispy Rice Rib Eye"
+ ],
+ "photo_notes": {
+  "cover": "Sleek modern Japanese lounge terrace on a hillside at night, dark wood and stone, low warm lighting, robata grill glow and the lit-up bay below.",
+  "s1": "Thin yellowtail slices fanned on a white plate with yuzu soy, jalapeño and microgreens.",
+  "s2": "Glazed miso black cod fillet with crispy chard on a black ceramic plate.",
+  "s3": "Crisp tostadas topped with yellowtail tartare, avocado cream, red onion and nori.",
+  "s4": "Golden crispy rice squares topped with seared rib eye and avocado."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Fríos",
+    "en": "Cold"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Hamachi Capaddocia",
+      "en": "Hamachi Capaddocia"
+     },
+     "desc": {
+      "es": "Hamachi con soya de yuzu",
+      "en": "Yellowtail, yuzu soy"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Salmon Capaddocia",
+      "en": "Salmon Capaddocia"
+     },
+     "desc": {
+      "es": "Ralladura de limón, trufa, sal Maldon",
+      "en": "Lemon zest, truffle oil, Maldon salt"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Tuna Pizza",
+      "en": "Tuna Pizza"
+     },
+     "desc": {
+      "es": "Atún, alioli de anchoa, vegetales",
+      "en": "Tuna, anchovy aioli, vegetables"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Tostadas de Hamachi",
+      "en": "Hamachi Tostadas"
+     },
+     "desc": {
+      "es": "Tartar, cebolla morada, crema de aguacate",
+      "en": "Tartare, red onion, avocado cream"
+     },
+     "price": "370"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Calientes",
+    "en": "Hot"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Wagyu Dumplings",
+      "en": "Wagyu Dumplings"
+     },
+     "desc": {
+      "es": "Soya ahumada y caramelizada",
+      "en": "Smoked caramelized soy"
+     },
+     "price": "250"
+    },
+    {
+     "name": {
+      "es": "Ramen",
+      "en": "Ramen"
+     },
+     "desc": {
+      "es": "Pork belly, caldo de ajo negro",
+      "en": "Pork belly, black garlic broth"
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Black Cod Taquitos",
+      "en": "Black Cod Taquitos"
+     },
+     "desc": {
+      "es": "Wonton crujiente, aguacate, berros",
+      "en": "Crispy wonton, avocado, watercress"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Camaron Roca",
+      "en": "Rock Shrimp"
+     },
+     "desc": {
+      "es": "Lechuga baby, alioli picante",
+      "en": "Baby lettuce, spicy aioli"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Crispy Rice Rib Eye",
+      "en": "Rib Eye Crispy Rice"
+     },
+     "desc": {
+      "es": "Rib eye, aguacate, mantequilla clarificada",
+      "en": "Rib eye, avocado, clarified butter"
+     },
+     "price": "240"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Robata y pescados",
+    "en": "Robata & Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Octopus Skewers",
+      "en": "Octopus Skewers"
+     },
+     "desc": {
+      "es": "Mantequilla de yuzu",
+      "en": "Yuzu butter"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "King Salmon",
+      "en": "King Salmon"
+     },
+     "desc": {
+      "es": "Sal de mar, mayo yuzu kosho",
+      "en": "Sea salt, yuzu kosho mayo"
+     },
+     "price": "440"
+    },
+    {
+     "name": {
+      "es": "Black Cod",
+      "en": "Black Cod"
+     },
+     "desc": {
+      "es": "Miso, acelga crujiente",
+      "en": "Miso, crispy chard"
+     },
+     "price": "650"
+    },
+    {
+     "name": {
+      "es": "Skirt Steak",
+      "en": "Skirt Steak"
+     },
+     "desc": {
+      "es": "Chips de ajo, puré de aguacate",
+      "en": "Garlic chips, avocado purée"
+     },
+     "price": "600"
+    },
+    {
+     "name": {
+      "es": "Wagyu Burger",
+      "en": "Wagyu Burger"
+     },
+     "desc": {
+      "es": "100% wagyu, pepinillos, cheddar",
+      "en": "100% wagyu, pickles, cheddar"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Lamb Chop",
+      "en": "Lamb Chop"
+     },
+     "desc": {
+      "es": "Romero, tomillo, salsa de feta",
+      "en": "Rosemary, thyme, feta sauce"
+     },
+     "price": "760"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos y nigiri",
+    "en": "Rolls & Nigiri"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tuna Trufa Roll",
+      "en": "Truffle Tuna Roll"
+     },
+     "desc": {
+      "es": "Atún picante, tempura, aceite de trufa",
+      "en": "Spicy tuna, tempura flakes, truffle"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Soft Shell Crab Roll",
+      "en": "Soft Shell Crab Roll"
+     },
+     "desc": {
+      "es": "Jaiba suave, aguacate, jalapeño",
+      "en": "Soft shell crab, avocado, jalapeño"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Caterpillar Roll",
+      "en": "Caterpillar Roll"
+     },
+     "desc": {
+      "es": "Anguila, salsa dulce, bonito",
+      "en": "Eel, sweet sauce, bonito flakes"
+     },
+     "price": "270"
+    },
+    {
+     "name": {
+      "es": "Oh-Toro",
+      "en": "Oh-Toro"
+     },
+     "desc": {
+      "es": "Atún aleta azul graso, pieza",
+      "en": "Fatty bluefin tuna, per piece"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Premium y postres",
+    "en": "Premium & Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Signature Pekin Duck",
+      "en": "Signature Peking Duck"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "1900"
+    },
+    {
+     "name": {
+      "es": "Rib Eye 350 g",
+      "en": "Rib Eye 350 g"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "2100"
+    },
+    {
+     "name": {
+      "es": "Passion Fruit Crème Brûlée",
+      "en": "Passion Fruit Crème Brûlée"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Sake Panna Cotta",
+      "en": "Sake Panna Cotta"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "240"
+    }
+   ]
+  }
+ ]
+}

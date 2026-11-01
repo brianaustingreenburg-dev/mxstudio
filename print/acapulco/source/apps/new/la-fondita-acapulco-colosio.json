@@ -1,0 +1,306 @@
+{
+ "name": "La Fondita Acapulco Colosio",
+ "slug": "la-fondita-acapulco-colosio",
+ "area": "Diamante",
+ "place_id": "ChIJKU8VU9RbyoURAvMfme2Y8DE",
+ "lat": 16.799387,
+ "lng": -99.8070132,
+ "address": "Simón Bolívar, Luis Donaldo Colosio 29, Granjas del Marqués",
+ "phone": "+52 744 909 8996",
+ "hours": {
+  "es": "Lun, Mié–Sáb 8:30–17:00 · Dom 8:30–16:00 · Mar cerrado",
+  "en": "Mon, Wed–Sat 8:30am–5pm · Sun 8:30am–4pm · Tue closed"
+ },
+ "rating": 4.5,
+ "reviews": 278,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "mexican brunch",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930068571-la-fondita-acapulco-colosio-la-fond"
+ ],
+ "tagline": {
+  "es": "Desayunos en un jardín escondido",
+  "en": "Breakfast in a hidden garden"
+ },
+ "specialty": "Lush garden brunch spot known for gratin chilaquiles, waffles and hearty Mexican plates.",
+ "signature": [
+  "Chilaquiles Gratinados con Cecina",
+  "Huevos a la Cazuela",
+  "Wafles Naturales con Tocino",
+  "Salmón a la Plancha"
+ ],
+ "photo_notes": {
+  "cover": "Hidden garden café with lush tropical plants, wooden tables under green foliage, dappled morning light.",
+  "s1": "Gratin chilaquiles with melted cheese and thin cecina beef slices, crema, refried beans.",
+  "s2": "Two eggs baked in a clay cazuela with salsa, bacon, chorizo, avocado and fresh cheese.",
+  "s3": "Golden waffles with butter and crispy bacon strips, syrup drizzle.",
+  "s4": "Grilled salmon fillet with sautéed vegetables and soy-orange dressing."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Buenos Días",
+    "en": "Good Morning"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles Gratinados con Cecina",
+      "en": "Gratin chilaquiles with cecina"
+     },
+     "desc": {
+      "es": "Gratinados con cecina",
+      "en": "Cheese-gratin, with cured beef"
+     },
+     "price": "162"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles Naturales con Pollo",
+      "en": "Chilaquiles with chicken"
+     },
+     "desc": {
+      "es": "Con frijoles, queso y crema",
+      "en": "With beans, cheese and crema"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Huevos a la Cazuela",
+      "en": "Eggs in clay pot"
+     },
+     "desc": {
+      "es": "Salsa, tocino, chorizo, aguacate y queso",
+      "en": "Salsa, bacon, chorizo, avocado, cheese"
+     },
+     "price": "122"
+    },
+    {
+     "name": {
+      "es": "Huevos Dosal",
+      "en": "Huevos Dosal"
+     },
+     "desc": {
+      "es": "Salsa roja, tocino, rajas y aguacate",
+      "en": "Red salsa, bacon, poblano, avocado"
+     },
+     "price": "128"
+    },
+    {
+     "name": {
+      "es": "Omelet sin Culpa",
+      "en": "Guilt-free omelet"
+     },
+     "desc": {
+      "es": "Claras, panela, espinaca y champiñón",
+      "en": "Egg whites, panela, spinach, mushroom"
+     },
+     "price": "122"
+    },
+    {
+     "name": {
+      "es": "Burrito Huevón",
+      "en": "Big egg burrito"
+     },
+     "desc": {
+      "es": "Omelet enrollado con dos ingredientes",
+      "en": "Rolled omelet with two fillings"
+     },
+     "price": "149"
+    },
+    {
+     "name": {
+      "es": "Wafles Naturales con Tocino",
+      "en": "Waffles with bacon"
+     },
+     "desc": {
+      "es": "Dos wafles con mantequilla y tocino",
+      "en": "Two waffles, butter and bacon"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Pan Francés",
+      "en": "French toast"
+     },
+     "desc": {
+      "es": "Azúcar, canela y frutos rojos",
+      "en": "Sugar, cinnamon and berries"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Las Suizas",
+      "en": "Swiss enchiladas"
+     },
+     "desc": {
+      "es": "Pollo en salsa suiza gratinada",
+      "en": "Chicken in creamy gratin sauce"
+     },
+     "price": "149"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Para Empezar",
+    "en": "To Start"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de Pescado Estilo Baja",
+      "en": "Baja fish tacos"
+     },
+     "desc": {
+      "es": "Tres tacos, receta de la casa",
+      "en": "Three tacos, house recipe"
+     },
+     "price": "162"
+    },
+    {
+     "name": {
+      "es": "Tacos de Camarón Estilo Baja",
+      "en": "Baja shrimp tacos"
+     },
+     "desc": {
+      "es": "Tres tacos, receta de la casa",
+      "en": "Three tacos, house recipe"
+     },
+     "price": "199"
+    },
+    {
+     "name": {
+      "es": "Sopa de Tortilla",
+      "en": "Tortilla soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "101"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Para Preparar",
+    "en": "Main Plates"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones",
+      "en": "Shrimp"
+     },
+     "desc": {
+      "es": "300 g, preparación a elegir",
+      "en": "300 g, your choice of style"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "Salmón a la Plancha",
+      "en": "Grilled salmon"
+     },
+     "desc": {
+      "es": "Verduras salteadas y aderezo soya-naranja",
+      "en": "Sautéed veg, soy-orange dressing"
+     },
+     "price": "299"
+    },
+    {
+     "name": {
+      "es": "Pulpo",
+      "en": "Octopus"
+     },
+     "desc": {
+      "es": "Preparación a elegir",
+      "en": "Your choice of style"
+     },
+     "price": "312"
+    },
+    {
+     "name": {
+      "es": "Costilla Bbq",
+      "en": "BBQ ribs"
+     },
+     "desc": {
+      "es": "300 g",
+      "en": "300 g"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "Fetuccini con Camarones",
+      "en": "Shrimp fettuccine"
+     },
+     "desc": {
+      "es": "En salsa cremosa",
+      "en": "In creamy sauce"
+     },
+     "price": "189"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Café de Olla 16 Oz",
+      "en": "Café de olla 16 oz"
+     },
+     "desc": {
+      "es": "Café con canela y piloncillo",
+      "en": "Coffee with cinnamon and cane sugar"
+     },
+     "price": "47"
+    },
+    {
+     "name": {
+      "es": "Capuccino 16 Oz",
+      "en": "Cappuccino 16 oz"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "67"
+    },
+    {
+     "name": {
+      "es": "Smoothie de Frutos Rojos 16 Oz",
+      "en": "Berry smoothie 16 oz"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "81"
+    },
+    {
+     "name": {
+      "es": "Jugo de Naranja 16 Oz",
+      "en": "Orange juice 16 oz"
+     },
+     "desc": {
+      "es": "Natural",
+      "en": "Fresh-squeezed"
+     },
+     "price": "47"
+    }
+   ]
+  }
+ ]
+}
