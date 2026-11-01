@@ -84,6 +84,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
 .seg button{all:unset;cursor:pointer;text-align:center;padding:11px;border-radius:12px;border:1.5px solid var(--line);font-weight:700}
 .seg button.on{border-color:var(--c);background:var(--c);color:#fff}
+.wf{background:#f4ede5;border-radius:14px;padding:12px 14px;margin-top:10px}.wf small{display:block;color:#776a63;font-size:12px;font-weight:700}.wf b{font-size:19px;word-break:break-all}.wp{font-family:ui-monospace,Menlo,monospace;letter-spacing:.5px}.wh{font-size:13.5px;color:#5c514b;margin-top:12px;line-height:1.45}
 .acts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:14px}
 .btn.g{background:#f0e6da;color:var(--ink)}
 .empty{color:var(--muted);text-align:center;padding:30px}
@@ -118,7 +119,7 @@ const D=/*__DATA__*/null;
 const U={
  es:{res:"Reservar",go:"Cómo llegar",call:"Llamar",hours:"Horario",addr:"Dirección",menu:"Menú",order:"Para llevar",cart:"Tu pedido",empty:"Agrega platillos del menú con el botón +",
   name:"Tu nombre",time:"Hora para recoger",pick:"Recoger",deliv:"A domicilio",address:"Dirección de entrega",notes:"Notas (opcional)",send:"Enviar pedido por WhatsApp",cancel:"Cerrar",total:"Total",
-  rT:"Reservar mesa",people:"Personas",date:"Fecha",rtime:"Hora",rsend:"Enviar reserva por WhatsApp",today:"Hoy",
+  wifi:"WiFi",wT:"WiFi gratis",wNet:"Red",wPass:"Contraseña",wCopy:"Copiar contraseña",wOk:"✓ Copiada",wOpen:"Abre Ajustes → Wi-Fi, elige la red y pega la contraseña.",wIos:"iPhone: Ajustes → Wi-Fi → toca la red → pega.",wAnd:"Android: Ajustes → Wi-Fi (o baja la barra y mantén Wi-Fi) → toca la red → pega.",wNone:"Sin contraseña",wDemo:"Ejemplo · Aquí aparecerán la red y contraseña reales de tu negocio.",rT:"Reservar mesa",people:"Personas",date:"Fecha",rtime:"Hora",rsend:"Enviar reserva por WhatsApp",today:"Hoy",
   mOrder:(n,ls,t,how,extra,notes)=>`Hola ${D.name}, quiero un pedido ${how}:\n${ls}\nTotal: ${t}\nNombre: ${n}${extra}${notes?"\nNotas: "+notes:""}`,
   mRes:(p,d,t,n)=>`Hola ${D.name}, quiero reservar una mesa para ${p} personas el ${d} a las ${t}.\nNombre: ${n}`,
   howP:"para llevar",howD:"a domicilio",pickT:"\nHora para recoger: ",delA:"\nDirección: ",
@@ -128,7 +129,7 @@ const U={
   and:["Abre esta página en <b>Chrome</b>.","Toca el menú <b>⋮</b> (arriba a la derecha).","Elige <b>Instalar app</b> o <b>Agregar a pantalla principal</b>."]},
  en:{res:"Reserve",go:"Directions",call:"Call",hours:"Hours",addr:"Address",menu:"Menu",order:"Carry-out",cart:"Your order",empty:"Add dishes from the menu with the + button",
   name:"Your name",time:"Pickup time",pick:"Pickup",deliv:"Delivery",address:"Delivery address",notes:"Notes (optional)",send:"Send order on WhatsApp",cancel:"Close",total:"Total",
-  rT:"Reserve a table",people:"People",date:"Date",rtime:"Time",rsend:"Send reservation on WhatsApp",today:"Today",
+  wifi:"WiFi",wT:"Free WiFi",wNet:"Network",wPass:"Password",wCopy:"Copy password",wOk:"✓ Copied",wOpen:"Open Settings → Wi-Fi, pick the network and paste the password.",wIos:"iPhone: Settings → Wi-Fi → tap the network → paste.",wAnd:"Android: Settings → Wi-Fi (or pull down and hold Wi-Fi) → tap the network → paste.",wNone:"No password",wDemo:"Sample · Your business's real network and password will show here.",rT:"Reserve a table",people:"People",date:"Date",rtime:"Time",rsend:"Send reservation on WhatsApp",today:"Today",
   mOrder:(n,ls,t,how,extra,notes)=>`Hi ${D.name}, I'd like to order ${how}:\n${ls}\nTotal: ${t}\nName: ${n}${extra}${notes?"\nNotes: "+notes:""}`,
   mRes:(p,d,t,n)=>`Hi ${D.name}, I'd like to reserve a table for ${p} people on ${d} at ${t}.\nName: ${n}`,
   howP:"for pickup",howD:"for delivery",pickT:"\nPickup time: ",delA:"\nAddress: ",
@@ -160,7 +161,8 @@ function render(){
  q.push(`<a class="q" href="${esc(mapUrl())}" target="_blank" rel="noopener"><i>📍</i>${u.go}</a>`);
  q.push(`<a class="q" href="tel:+${esc(D.phone||D.whatsapp)}"><i>📞</i>${u.call}</a>`);
  if(!D.reservations)q.unshift(`<a class="q" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener"><i>💬</i>WhatsApp</a>`);
- $("quick").innerHTML=q.slice(0,3).join("");
+ if(D.wifi&&D.wifi.name)q.unshift(`<button class="q" data-a="wifi"><i>📶</i>${u.wifi}</button>`);
+ const qs=q.slice(0,4);$("quick").style.gridTemplateColumns=`repeat(${qs.length},1fr)`;$("quick").innerHTML=qs.join("");
  const inf=[];
  if(tx(D.hours))inf.push(`<div><b>🕒</b><span><strong>${u.hours}:</strong> ${esc(tx(D.hours))}</span></div>`);
  if(D.address)inf.push(`<div><b>📍</b><span>${esc(D.address)}</span></div>`);
@@ -196,6 +198,12 @@ function openCart(){
  <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button>${its.length?`<button class="btn b-wa" data-x="send">${u.send}</button>`:""}</div>`;
  $("sheet").classList.add("on");
 }
+function openWifi(){
+ const u=U[lang],w=D.wifi||{};
+ $("box").innerHTML=`<h3>📶 ${u.wT}</h3><div class="wf"><small>${u.wNet}</small><b>${esc(w.name)}</b></div>${w.pass?`<div class="wf"><small>${u.wPass}</small><b class="wp">${esc(w.pass)}</b></div><button class="btn b-wa" data-x="wcopy" style="width:100%;margin-top:10px">📋 ${u.wCopy}</button>`:`<div class="wf"><b>${u.wNone}</b></div>`}
+ ${D.demo?`<p class="wh" style="background:#fff4d6;border-radius:12px;padding:8px 10px;color:#7a5a00">⚠️ ${u.wDemo}</p>`:""}<p class="wh">${os==="and"?u.wAnd:u.wIos}</p><div class="acts" style="grid-template-columns:1fr"><button class="btn g" data-x="close">${u.cancel}</button></div>`;
+ $("sheet").classList.add("on");
+}
 function openRes(){
  const u=U[lang];const d=new Date().toISOString().slice(0,10);
  $("box").innerHTML=`<h3>${u.rT}</h3><div class="two"><div><label>${u.people}</label><select id="rP">${[1,2,3,4,5,6,7,8,10,12,15,20].map(n=>`<option ${n===2?"selected":""}>${n}</option>`).join("")}</select></div><div><label>${u.rtime}</label><input id="rT" type="time" value="20:00"></div></div>
@@ -209,12 +217,15 @@ document.addEventListener("click",e=>{
  if(e.target.closest("[data-inst]")&&deferred){deferred.prompt();deferred=null;render();return}
  const c=e.target.closest(".cat");if(c){const el=$("c"+c.dataset.c);if(el)el.scrollIntoView({behavior:"smooth"});return}
  const a=e.target.closest("[data-a]");
- if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="cart")return openCart();cart[k]=(cart[k]||0)+1;render();return}
+ if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="wifi")return openWifi();if(k==="cart")return openCart();cart[k]=(cart[k]||0)+1;render();return}
  const d=e.target.closest("[data-d]");if(d){cart[d.dataset.d]--;if(!cart[d.dataset.d])delete cart[d.dataset.d];render();return}
  const h=e.target.closest("[data-how]");if(h){how=h.dataset.how;openCart();return}
  if(e.target.id==="sheet")return $("sheet").classList.remove("on");
  const x=e.target.closest("[data-x]");if(!x)return;const u=U[lang];
  if(x.dataset.x==="close")return $("sheet").classList.remove("on");
+ if(x.dataset.x==="wcopy"){const p=(D.wifi||{}).pass||"",ok=()=>{x.textContent=U[lang].wOk};
+  const fb=()=>{const t=document.createElement("textarea");t.value=p;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");ok()}catch(_){}t.remove()};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(p).then(ok,fb);else fb();return}
  if(x.dataset.x==="send"){const its=items().filter(it=>cart[it.id]);const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
   const ls=its.map(it=>`• ${cart[it.id]} × ${tx(it.name)} (${money(cart[it.id]*(+it.price||0))})`).join("\n");
   const n=($("fName")||{}).value||"",del=how==="d"&&D.delivery;
