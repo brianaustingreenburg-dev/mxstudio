@@ -54,7 +54,7 @@
       "es": "Con mayo chipotle",
       "en": "With chipotle mayo"
      },
-     "price": "199"
+     "price": "200"
     },
     {
      "name": {
@@ -106,7 +106,7 @@
       "es": "Camarón al coco con fresa",
       "en": "Coconut shrimp with strawberry"
      },
-     "price": "279"
+     "price": "280"
     },
     {
      "name": {
@@ -117,7 +117,7 @@
       "es": "Camarón empanizado con plátano",
       "en": "Breaded shrimp with plantain"
      },
-     "price": "279"
+     "price": "280"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Camarón tempura con salmón horneado",
       "en": "Tempura shrimp, baked salmon"
      },
-     "price": "279"
+     "price": "280"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Rib eye, guacamole y manchego",
       "en": "Ribeye, guacamole, manchego"
      },
-     "price": "279"
+     "price": "280"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Camarón y rib eye gratinado",
       "en": "Shrimp and ribeye au gratin"
      },
-     "price": "279"
+     "price": "280"
     }
    ]
   },
@@ -169,7 +169,7 @@
       "es": "Atún, aguacate, mango y edamame",
       "en": "Tuna, avocado, mango, edamame"
      },
-     "price": "209"
+     "price": "210"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Fideos, verduras y huevo",
       "en": "Noodles, vegetables, egg"
      },
-     "price": "329"
+     "price": "330"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Camarón, rib eye y pollo",
       "en": "Shrimp, ribeye and chicken"
      },
-     "price": "439"
+     "price": "440"
     },
     {
      "name": {
@@ -202,7 +202,7 @@
       "es": "Arroz frito con proteínas",
       "en": "Fried rice with proteins"
      },
-     "price": "219"
+     "price": "220"
     }
    ]
   },
@@ -221,7 +221,7 @@
       "es": "Gin, limón, romero y tónica",
       "en": "Gin, lime, rosemary, tonic"
      },
-     "price": "219"
+     "price": "220"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Mezcal con jamaica",
       "en": "Mezcal with hibiscus"
      },
-     "price": "219"
+     "price": "220"
     },
     {
      "name": {
@@ -243,7 +243,7 @@
       "es": "Maracuyá, fresa y ginger ale",
       "en": "Passion fruit, strawberry, ginger ale"
      },
-     "price": "109"
+     "price": "110"
     },
     {
      "name": {
@@ -254,7 +254,7 @@
       "es": "Pepino, hierbabuena y tónica",
       "en": "Cucumber, mint and tonic"
      },
-     "price": "109"
+     "price": "110"
     }
    ]
   }

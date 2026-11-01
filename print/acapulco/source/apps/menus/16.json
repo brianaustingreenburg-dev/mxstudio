@@ -59,7 +59,7 @@
       "es": "12 oz",
       "en": "12 oz"
      },
-     "price": "88"
+     "price": "90"
     },
     {
      "name": {
@@ -70,7 +70,7 @@
       "es": "12 oz",
       "en": "12 oz"
      },
-     "price": "94"
+     "price": "95"
     },
     {
      "name": {
@@ -81,7 +81,7 @@
       "es": "12 oz",
       "en": "12 oz"
      },
-     "price": "94"
+     "price": "95"
     },
     {
      "name": {
@@ -92,7 +92,7 @@
       "es": "12 oz",
       "en": "12 oz"
      },
-     "price": "106"
+     "price": "105"
     },
     {
      "name": {
@@ -103,7 +103,7 @@
       "es": "Capuchino con chilate, 12 oz",
       "en": "Cappuccino with chilate, 12 oz"
      },
-     "price": "118"
+     "price": "120"
     },
     {
      "name": {
@@ -133,7 +133,7 @@
       "es": "Cacao y arroz guerrerense, 16 oz",
       "en": "Guerrero cacao-rice drink, 16 oz"
      },
-     "price": "137"
+     "price": "135"
     },
     {
      "name": {
@@ -144,7 +144,7 @@
       "es": "16 oz",
       "en": "16 oz"
      },
-     "price": "146"
+     "price": "145"
     },
     {
      "name": {
@@ -155,7 +155,7 @@
       "es": "Sin café, 16 oz",
       "en": "Coffee-free, 16 oz"
      },
-     "price": "146"
+     "price": "145"
     },
     {
      "name": {
@@ -166,7 +166,7 @@
       "es": "Con café, 16 oz",
       "en": "With coffee, 16 oz"
      },
-     "price": "118"
+     "price": "120"
     },
     {
      "name": {
@@ -177,7 +177,7 @@
       "es": "Café frappé con cajeta",
       "en": "Frappé with cajeta"
      },
-     "price": "118"
+     "price": "120"
     },
     {
      "name": {
@@ -188,7 +188,7 @@
       "es": "Café con licor, 16 oz",
       "en": "Coffee with liqueur, 16 oz"
      },
-     "price": "262"
+     "price": "260"
     }
    ]
   },
@@ -207,7 +207,7 @@
       "es": "12 oz",
       "en": "12 oz"
      },
-     "price": "62"
+     "price": "60"
     },
     {
      "name": {
@@ -218,7 +218,7 @@
       "es": "20 oz",
       "en": "20 oz"
      },
-     "price": "118"
+     "price": "120"
     }
    ]
   },
@@ -248,7 +248,7 @@
       "es": "",
       "en": ""
      },
-     "price": "148"
+     "price": "150"
     },
     {
      "name": {
@@ -259,7 +259,7 @@
       "es": "",
       "en": ""
      },
-     "price": "133"
+     "price": "135"
     },
     {
      "name": {
@@ -270,7 +270,7 @@
       "es": "",
       "en": ""
      },
-     "price": "128"
+     "price": "130"
     },
     {
      "name": {
@@ -281,7 +281,7 @@
       "es": "Pan de temporada",
       "en": "Seasonal sweet bread"
      },
-     "price": "66"
+     "price": "65"
     },
     {
      "name": {
@@ -292,7 +292,7 @@
       "es": "",
       "en": ""
      },
-     "price": "108"
+     "price": "110"
     },
     {
      "name": {
@@ -303,7 +303,7 @@
       "es": "",
       "en": ""
      },
-     "price": "128"
+     "price": "130"
     },
     {
      "name": {
@@ -314,7 +314,7 @@
       "es": "",
       "en": ""
      },
-     "price": "196"
+     "price": "195"
     }
    ]
   }

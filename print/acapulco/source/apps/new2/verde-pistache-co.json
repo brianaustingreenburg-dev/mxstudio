@@ -65,7 +65,7 @@
       "es": "Frijol y ricotta de almendra",
       "en": "Beans and almond ricotta"
      },
-     "price": "148"
+     "price": "150"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Avena y plátano con chocolate artesanal",
       "en": "Oat-banana with artisan chocolate"
      },
-     "price": "147"
+     "price": "145"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Con carne vegetal y queso estilo mozzarella",
       "en": "Plant-based meat and vegan mozzarella"
      },
-     "price": "197"
+     "price": "195"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Cinco tacos de soya al pastor con piña",
       "en": "Five soy al pastor tacos with pineapple"
      },
-     "price": "147"
+     "price": "145"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Seitán, aguacate y queso de nuez",
       "en": "Seitan, avocado and cashew cheese"
      },
-     "price": "154"
+     "price": "155"
     },
     {
      "name": {
@@ -161,7 +161,7 @@
       "es": "Jamón de soya, bechamel y huevo",
       "en": "Soy ham, béchamel and fried egg"
      },
-     "price": "211"
+     "price": "210"
     }
    ]
   },
@@ -191,7 +191,7 @@
       "es": "Espinaca, kale, nopal y piña",
       "en": "Spinach, kale, nopal and pineapple"
      },
-     "price": "98"
+     "price": "100"
     },
     {
      "name": {
@@ -202,7 +202,7 @@
       "es": "Plátano, crema de cacahuate y cacao",
       "en": "Banana, peanut butter and cacao"
      },
-     "price": "132"
+     "price": "130"
     },
     {
      "name": {
@@ -213,7 +213,7 @@
       "es": "Betabel, fresa, ashwagandha y espirulina",
       "en": "Beet, strawberry, ashwagandha, spirulina"
      },
-     "price": "149"
+     "price": "150"
     }
    ]
   },

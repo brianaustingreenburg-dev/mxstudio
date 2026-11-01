@@ -54,7 +54,7 @@
       "es": "Aderezo César casero",
       "en": "House Caesar dressing"
      },
-     "price": "236"
+     "price": "235"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "Cinco camarones y crutones",
       "en": "Five shrimp and croutons"
      },
-     "price": "459"
+     "price": "460"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Mozzarella, pesto y jitomate",
       "en": "Mozzarella, pesto, tomato"
      },
-     "price": "263"
+     "price": "265"
     }
    ]
   },
@@ -95,7 +95,7 @@
       "es": "Con camarones y tocino",
       "en": "With shrimp and bacon"
      },
-     "price": "587"
+     "price": "585"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Con ensalada y pan con ajo",
       "en": "Salad and garlic bread"
      },
-     "price": "421"
+     "price": "420"
     }
    ]
   },
@@ -158,7 +158,7 @@
       "es": "Mariscos salteados al vino blanco",
       "en": "Seafood sautéed in white wine"
      },
-     "price": "566"
+     "price": "565"
     },
     {
      "name": {
@@ -169,7 +169,7 @@
       "es": "Chorizo, panceta, bistec y chile verde",
       "en": "Chorizo, pancetta, steak, green chile"
      },
-     "price": "527"
+     "price": "525"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "",
       "en": ""
      },
-     "price": "434"
+     "price": "435"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Jitomate, albahaca y orégano",
       "en": "Tomato, basil, oregano"
      },
-     "price": "381"
+     "price": "380"
     }
    ]
   },
@@ -210,7 +210,7 @@
       "es": "400 g con mazorca dulce",
       "en": "400 g with sweet corn"
      },
-     "price": "514"
+     "price": "515"
     },
     {
      "name": {
@@ -221,7 +221,7 @@
       "es": "Manchego y papas",
       "en": "Manchego and fries"
      },
-     "price": "329"
+     "price": "330"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Con papas",
       "en": "With fries"
      },
-     "price": "288"
+     "price": "290"
     }
    ]
   }

@@ -1,25 +1,213 @@
-{"name":"Antigua Acapulco","kind":"res","source":"real","sources":["https://guidespot-info.com/pdf/b02c56a06471963bfbecc5b296aaa9fa.pdf","https://restaurantguru.com/Antigua-Acapulco-Acapulco-2","https://carta.menu/restaurants/acapulco-de-juarez/antigua-acapulco"],
-"tagline":{"es":"Alitas, hamburguesas y costillas en la Condesa","en":"Wings, burgers and ribs in La Condesa"},
-"hours":{"es":"","en":""},
-"specialty":"Casual Condesa grill known for buffalo wings, boneless, burgers and rib combos.",
-"signature":["10 Alitas Búfalo","Hamburguesa Arrachera","Combo Costillas","Pasta Antigua"],
-"menu":[
-{"cat":{"es":"Alitas y Entradas","en":"Wings & Starters"},"items":[
-{"name":{"es":"10 Alitas Búfalo","en":"10 Buffalo Wings"},"desc":{"es":"Alitas en salsa búfalo","en":"Wings in buffalo sauce"},"price":"229"},
-{"name":{"es":"20 Boneless","en":"20 Boneless Wings"},"desc":{"es":"Boneless con tu salsa favorita","en":"Boneless in your choice of sauce"},"price":"275"},
-{"name":{"es":"Dedos de Queso","en":"Cheese Sticks"},"desc":{"es":"Queso empanizado con dip","en":"Breaded cheese with dip"},"price":"191"},
-{"name":{"es":"Nachos","en":"Nachos"},"desc":{"es":"Totopos con queso, frijoles y jalapeños","en":"Chips, cheese, beans, jalapeños"},"price":"155"}]},
-{"cat":{"es":"Hamburguesas","en":"Burgers"},"items":[
-{"name":{"es":"Hamburguesa Antigua Clásica","en":"Antigua Classic Burger"},"desc":{"es":"Res, queso, lechuga y jitomate","en":"Beef, cheese, lettuce, tomato"},"price":"179"},
-{"name":{"es":"Hamburguesa Arrachera","en":"Arrachera Burger"},"desc":{"es":"Con arrachera a la parrilla","en":"With grilled skirt steak"},"price":"219"},
-{"name":{"es":"Hamburguesa BBQ Burger","en":"BBQ Burger"},"desc":{"es":"Salsa BBQ, tocino y aros de cebolla","en":"BBQ sauce, bacon, onion rings"},"price":"203"}]},
-{"cat":{"es":"Platos Fuertes","en":"Mains"},"items":[
-{"name":{"es":"Pasta Antigua","en":"Pasta Antigua"},"desc":{"es":"Pasta especial de la casa","en":"House special pasta"},"price":"275"},
-{"name":{"es":"Brochetas Mixtas","en":"Mixed Skewers"},"desc":{"es":"Res, pollo y verduras a la parrilla","en":"Grilled beef, chicken, vegetables"},"price":"263"},
-{"name":{"es":"Quesadillas de Arrachera","en":"Arrachera Quesadillas"},"desc":{"es":"Tortilla de harina, queso y arrachera","en":"Flour tortilla, cheese, skirt steak"},"price":"239"},
-{"name":{"es":"Antigua Salad con Pollo Búfalo","en":"Antigua Salad with Buffalo Chicken"},"desc":{"es":"Mixta con pollo búfalo crujiente","en":"Greens with crispy buffalo chicken"},"price":"215"}]},
-{"cat":{"es":"Combos y Postres","en":"Combos & Desserts"},"items":[
-{"name":{"es":"Combo Costillas","en":"Ribs Combo"},"desc":{"es":"Costillas BBQ con guarniciones","en":"BBQ ribs with sides"},"price":"460"},
-{"name":{"es":"Combo Antigua","en":"Antigua Combo"},"desc":{"es":"Surtido de la casa para compartir","en":"House sampler to share"},"price":"431"},
-{"name":{"es":"Pastel de Chocolate","en":"Chocolate Cake"},"desc":{"es":"Rebanada de pastel de chocolate","en":"Slice of chocolate cake"},"price":"155"}]}
-]}
+{
+ "name": "Antigua Acapulco",
+ "kind": "res",
+ "source": "real",
+ "sources": [
+  "https://guidespot-info.com/pdf/b02c56a06471963bfbecc5b296aaa9fa.pdf",
+  "https://restaurantguru.com/Antigua-Acapulco-Acapulco-2",
+  "https://carta.menu/restaurants/acapulco-de-juarez/antigua-acapulco"
+ ],
+ "tagline": {
+  "es": "Alitas, hamburguesas y costillas en la Condesa",
+  "en": "Wings, burgers and ribs in La Condesa"
+ },
+ "hours": {
+  "es": "",
+  "en": ""
+ },
+ "specialty": "Casual Condesa grill known for buffalo wings, boneless, burgers and rib combos.",
+ "signature": [
+  "10 Alitas Búfalo",
+  "Hamburguesa Arrachera",
+  "Combo Costillas",
+  "Pasta Antigua"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Alitas y Entradas",
+    "en": "Wings & Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "10 Alitas Búfalo",
+      "en": "10 Buffalo Wings"
+     },
+     "desc": {
+      "es": "Alitas en salsa búfalo",
+      "en": "Wings in buffalo sauce"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "20 Boneless",
+      "en": "20 Boneless Wings"
+     },
+     "desc": {
+      "es": "Boneless con tu salsa favorita",
+      "en": "Boneless in your choice of sauce"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Dedos de Queso",
+      "en": "Cheese Sticks"
+     },
+     "desc": {
+      "es": "Queso empanizado con dip",
+      "en": "Breaded cheese with dip"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Nachos",
+      "en": "Nachos"
+     },
+     "desc": {
+      "es": "Totopos con queso, frijoles y jalapeños",
+      "en": "Chips, cheese, beans, jalapeños"
+     },
+     "price": "155"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hamburguesas",
+    "en": "Burgers"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Hamburguesa Antigua Clásica",
+      "en": "Antigua Classic Burger"
+     },
+     "desc": {
+      "es": "Res, queso, lechuga y jitomate",
+      "en": "Beef, cheese, lettuce, tomato"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa Arrachera",
+      "en": "Arrachera Burger"
+     },
+     "desc": {
+      "es": "Con arrachera a la parrilla",
+      "en": "With grilled skirt steak"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa BBQ Burger",
+      "en": "BBQ Burger"
+     },
+     "desc": {
+      "es": "Salsa BBQ, tocino y aros de cebolla",
+      "en": "BBQ sauce, bacon, onion rings"
+     },
+     "price": "205"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos Fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pasta Antigua",
+      "en": "Pasta Antigua"
+     },
+     "desc": {
+      "es": "Pasta especial de la casa",
+      "en": "House special pasta"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Brochetas Mixtas",
+      "en": "Mixed Skewers"
+     },
+     "desc": {
+      "es": "Res, pollo y verduras a la parrilla",
+      "en": "Grilled beef, chicken, vegetables"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Quesadillas de Arrachera",
+      "en": "Arrachera Quesadillas"
+     },
+     "desc": {
+      "es": "Tortilla de harina, queso y arrachera",
+      "en": "Flour tortilla, cheese, skirt steak"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Antigua Salad con Pollo Búfalo",
+      "en": "Antigua Salad with Buffalo Chicken"
+     },
+     "desc": {
+      "es": "Mixta con pollo búfalo crujiente",
+      "en": "Greens with crispy buffalo chicken"
+     },
+     "price": "215"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Combos y Postres",
+    "en": "Combos & Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Combo Costillas",
+      "en": "Ribs Combo"
+     },
+     "desc": {
+      "es": "Costillas BBQ con guarniciones",
+      "en": "BBQ ribs with sides"
+     },
+     "price": "460"
+    },
+    {
+     "name": {
+      "es": "Combo Antigua",
+      "en": "Antigua Combo"
+     },
+     "desc": {
+      "es": "Surtido de la casa para compartir",
+      "en": "House sampler to share"
+     },
+     "price": "430"
+    },
+    {
+     "name": {
+      "es": "Pastel de Chocolate",
+      "en": "Chocolate Cake"
+     },
+     "desc": {
+      "es": "Rebanada de pastel de chocolate",
+      "en": "Slice of chocolate cake"
+     },
+     "price": "155"
+    }
+   ]
+  }
+ ]
+}

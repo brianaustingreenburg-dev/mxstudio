@@ -55,7 +55,7 @@
       "es": "Carnes frías, quesos y aceitunas",
       "en": "Cold cuts, cheeses and olives"
      },
-     "price": "221"
+     "price": "220"
     },
     {
      "name": {
@@ -66,7 +66,7 @@
       "es": "Camarones salteados en ajo y aceite",
       "en": "Shrimp sautéed in garlic and oil"
      },
-     "price": "241"
+     "price": "240"
     },
     {
      "name": {
@@ -77,7 +77,7 @@
       "es": "Calamar empanizado con salsa",
       "en": "Breaded squid with dip"
      },
-     "price": "176"
+     "price": "175"
     },
     {
      "name": {
@@ -88,7 +88,7 @@
       "es": "Pan tostado con jitomate y albahaca",
       "en": "Toast with tomato and basil"
      },
-     "price": "63"
+     "price": "65"
     },
     {
      "name": {
@@ -99,7 +99,7 @@
       "es": "",
       "en": ""
      },
-     "price": "59"
+     "price": "60"
     }
    ]
   },
@@ -118,7 +118,7 @@
       "es": "Jitomate, mozzarella y albahaca",
       "en": "Tomato, mozzarella and basil"
      },
-     "price": "141"
+     "price": "140"
     },
     {
      "name": {
@@ -140,7 +140,7 @@
       "es": "Pizza con mariscos",
       "en": "Pizza topped with seafood"
      },
-     "price": "206"
+     "price": "205"
     },
     {
      "name": {
@@ -151,7 +151,7 @@
       "es": "Tocino, crema y parmesano",
       "en": "Bacon, cream and parmesan"
      },
-     "price": "164"
+     "price": "165"
     }
    ]
   },
@@ -170,7 +170,7 @@
       "es": "En salsa cremosa con salmón",
       "en": "Creamy sauce with salmon"
      },
-     "price": "338"
+     "price": "340"
     },
     {
      "name": {
@@ -181,7 +181,7 @@
       "es": "",
       "en": ""
      },
-     "price": "163"
+     "price": "165"
     },
     {
      "name": {
@@ -192,7 +192,7 @@
       "es": "",
       "en": ""
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -203,7 +203,7 @@
       "es": "Pasta con mariscos en salsa roja",
       "en": "Pasta with seafood in red sauce"
      },
-     "price": "403"
+     "price": "405"
     },
     {
      "name": {
@@ -214,7 +214,7 @@
       "es": "Al horno, gratinada",
       "en": "Oven-baked and gratinated"
      },
-     "price": "198"
+     "price": "200"
     }
    ]
   },
@@ -233,7 +233,7 @@
       "es": "Pollo en salsa de jitomate y hierbas",
       "en": "Chicken in tomato-herb sauce"
      },
-     "price": "247"
+     "price": "245"
     },
     {
      "name": {
@@ -255,7 +255,7 @@
       "es": "",
       "en": ""
      },
-     "price": "429"
+     "price": "430"
     },
     {
      "name": {
@@ -296,7 +296,7 @@
       "es": "",
       "en": ""
      },
-     "price": "89"
+     "price": "90"
     }
    ]
   }

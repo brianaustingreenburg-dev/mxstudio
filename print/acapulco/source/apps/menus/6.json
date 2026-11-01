@@ -41,7 +41,7 @@
       "es": "Tabla de mariscos para dos personas",
       "en": "Seafood board for two"
      },
-     "price": "699"
+     "price": "700"
     },
     {
      "name": {
@@ -52,7 +52,7 @@
       "es": "Pulpo dorado y crujiente",
       "en": "Golden, crispy octopus"
      },
-     "price": "329"
+     "price": "330"
     },
     {
      "name": {
@@ -63,7 +63,7 @@
       "es": "Dos piezas de New York sobre tostada",
       "en": "Two New York steak tostadas"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -74,7 +74,7 @@
       "es": "Crema del día con hierbas frescas",
       "en": "Daily cream soup with fresh herbs"
      },
-     "price": "129"
+     "price": "130"
     },
     {
      "name": {
@@ -85,7 +85,7 @@
       "es": "Jamón serrano, gouda e higo con miel",
       "en": "Serrano ham, gouda, fig and honey"
      },
-     "price": "169"
+     "price": "170"
     },
     {
      "name": {
@@ -96,7 +96,7 @@
       "es": "Frutos rojos, miel y queso de cabra",
       "en": "Berries, honey and goat cheese"
      },
-     "price": "169"
+     "price": "170"
     },
     {
      "name": {
@@ -107,7 +107,7 @@
       "es": "10 tapas surtidas",
       "en": "10 assorted tapas"
      },
-     "price": "499"
+     "price": "500"
     },
     {
      "name": {
@@ -118,7 +118,7 @@
       "es": "Serrano, salami, feta, fruta y nueces",
       "en": "Serrano, salami, feta, fruit, nuts"
      },
-     "price": "379"
+     "price": "380"
     }
    ]
   },
@@ -137,7 +137,7 @@
       "es": "Higo, serrano, parmesano, balsámico",
       "en": "Fig, serrano, parmesan, balsamic"
      },
-     "price": "249"
+     "price": "250"
     },
     {
      "name": {
@@ -148,7 +148,7 @@
       "es": "Lechuga, piña asada y cebolla morada",
       "en": "Lettuce, grilled pineapple, red onion"
      },
-     "price": "249"
+     "price": "250"
     },
     {
      "name": {
@@ -159,7 +159,7 @@
       "es": "Gouda, higos, arúgula y miel",
       "en": "Gouda, figs, arugula, honey"
      },
-     "price": "269"
+     "price": "270"
     },
     {
      "name": {
@@ -170,7 +170,7 @@
       "es": "Gouda y cebolla caramelizada",
       "en": "Gouda and caramelized onion"
      },
-     "price": "349"
+     "price": "350"
     },
     {
      "name": {
@@ -181,7 +181,7 @@
       "es": "",
       "en": ""
      },
-     "price": "259"
+     "price": "260"
     }
    ]
   },
@@ -200,7 +200,7 @@
       "es": "Empanizados en coco, mayonesa ahumada",
       "en": "Coconut-crusted, smoked mayo"
      },
-     "price": "399"
+     "price": "400"
     },
     {
      "name": {
@@ -211,7 +211,7 @@
       "es": "Sobre verduras y pasta",
       "en": "Over vegetables and pasta"
      },
-     "price": "399"
+     "price": "400"
     },
     {
      "name": {
@@ -222,7 +222,7 @@
       "es": "Con papas y ensalada de tomate",
       "en": "With potatoes and tomato salad"
      },
-     "price": "459"
+     "price": "460"
     },
     {
      "name": {
@@ -233,7 +233,7 @@
       "es": "Camarones, aderezo especial y papas",
       "en": "Shrimp, special dressing, fries"
      },
-     "price": "399"
+     "price": "400"
     },
     {
      "name": {
@@ -244,7 +244,7 @@
       "es": "Linguini en salsa de parmesano",
       "en": "Linguine in parmesan cream"
      },
-     "price": "249"
+     "price": "250"
     }
    ]
   },
@@ -263,7 +263,7 @@
       "es": "Sobre crema de vainilla",
       "en": "Over vanilla cream"
      },
-     "price": "139"
+     "price": "140"
     },
     {
      "name": {
@@ -274,7 +274,7 @@
       "es": "Salsa tibia de frutos rojos",
       "en": "Warm berry sauce"
      },
-     "price": "139"
+     "price": "140"
     },
     {
      "name": {
@@ -285,7 +285,7 @@
       "es": "",
       "en": ""
      },
-     "price": "89"
+     "price": "90"
     }
    ]
   }

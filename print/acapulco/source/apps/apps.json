@@ -571,7 +571,7 @@
        "es": "Torre de mariscos frescos",
        "en": "Tower of fresh seafood"
       },
-      "price": "399",
+      "price": "400",
       "img": "img/dYfMznSc/s2.jpg"
      },
      {
@@ -583,7 +583,7 @@
        "es": "Cocido en limón con chile serrano",
        "en": "Lime-cured with serrano chile"
       },
-      "price": "339",
+      "price": "340",
       "img": ""
      },
      {
@@ -595,7 +595,7 @@
        "es": "Caldo tradicional de camarón",
        "en": "Traditional shrimp broth"
       },
-      "price": "239",
+      "price": "240",
       "img": ""
      }
     ]
@@ -639,7 +639,7 @@
        "es": "Relleno de camarón, mango-habanero",
        "en": "Shrimp-stuffed, mango-habanero sauce"
       },
-      "price": "351",
+      "price": "350",
       "img": ""
      },
      {
@@ -651,7 +651,7 @@
        "es": "Camarón envuelto en tocino con arroz",
        "en": "Bacon-wrapped shrimp with rice"
       },
-      "price": "429",
+      "price": "430",
       "img": ""
      },
      {
@@ -663,7 +663,7 @@
        "es": "Pulpo, camarón, pescado, queso y pimiento",
        "en": "Octopus, shrimp, fish, cheese, peppers"
       },
-      "price": "351",
+      "price": "350",
       "img": ""
      }
     ]
@@ -683,7 +683,7 @@
        "es": "Empanizados en coco, aderezo de mango",
        "en": "Coconut-crusted, mango dressing"
       },
-      "price": "377",
+      "price": "375",
       "img": "img/dYfMznSc/s4.jpg"
      },
      {
@@ -695,7 +695,7 @@
        "es": "En salsa picante con arroz",
        "en": "In spicy red sauce with rice"
       },
-      "price": "377",
+      "price": "375",
       "img": ""
      },
      {
@@ -727,7 +727,7 @@
        "es": "Tres de camarón empanizado con queso",
        "en": "Three breaded shrimp tacos, cheese"
       },
-      "price": "208",
+      "price": "210",
       "img": ""
      },
      {
@@ -739,7 +739,7 @@
        "es": "Harina con camarón, frijol y queso",
        "en": "Flour tortilla, shrimp, beans, cheese"
       },
-      "price": "156",
+      "price": "155",
       "img": ""
      },
      {
@@ -751,7 +751,7 @@
        "es": "Con verduras y aguacate",
        "en": "With greens and avocado"
       },
-      "price": "104",
+      "price": "105",
       "img": ""
      }
     ]
@@ -802,7 +802,7 @@
        "es": "Chilaquiles con carne asada a la parrilla",
        "en": "Chilaquiles with grilled carne asada"
       },
-      "price": "329",
+      "price": "330",
       "img": "img/7HyHo9q0/s4.jpg"
      },
      {
@@ -814,7 +814,7 @@
        "es": "Omelette estilo mediterráneo",
        "en": "Mediterranean-style omelette"
       },
-      "price": "269",
+      "price": "270",
       "img": ""
      },
      {
@@ -826,7 +826,7 @@
        "es": "Pan francés de la casa",
        "en": "House French toast"
       },
-      "price": "209",
+      "price": "210",
       "img": ""
      },
      {
@@ -858,7 +858,7 @@
        "es": "Asado, costra dorada y orégano",
        "en": "Grilled, golden crust, oregano"
       },
-      "price": "269",
+      "price": "270",
       "img": "img/7HyHo9q0/s3.jpg"
      },
      {
@@ -870,7 +870,7 @@
        "es": "Con chicharrón premium y totopos",
        "en": "With premium pork rind and chips"
       },
-      "price": "289",
+      "price": "290",
       "img": ""
      },
      {
@@ -882,7 +882,7 @@
        "es": "Arrachera premium, limón y salsas",
        "en": "Premium skirt steak, lime, salsas"
       },
-      "price": "349",
+      "price": "350",
       "img": ""
      },
      {
@@ -894,7 +894,7 @@
        "es": "Con chistorra crujiente y tortillas",
        "en": "Crispy chistorra, flour tortillas"
       },
-      "price": "229",
+      "price": "230",
       "img": ""
      }
     ]
@@ -914,7 +914,7 @@
        "es": "Corte premium para compartir",
        "en": "Premium cut to share"
       },
-      "price": "3499",
+      "price": "3500",
       "img": "img/7HyHo9q0/s1.jpg"
      },
      {
@@ -926,7 +926,7 @@
        "es": "Corte jugoso a la parrilla",
        "en": "Juicy grilled cut"
       },
-      "price": "719",
+      "price": "720",
       "img": ""
      },
      {
@@ -970,7 +970,7 @@
        "es": "La hamburguesa insignia de la casa",
        "en": "The house signature burger"
       },
-      "price": "339",
+      "price": "340",
       "img": "img/7HyHo9q0/s2.jpg"
      },
      {
@@ -982,7 +982,7 @@
        "es": "Salmón al estilo de la casa",
        "en": "House-style salmon"
       },
-      "price": "539",
+      "price": "540",
       "img": ""
      },
      {
@@ -994,7 +994,7 @@
        "es": "Tuétanos asados con tortillas",
        "en": "Roasted marrow with tortillas"
       },
-      "price": "369",
+      "price": "370",
       "img": ""
      },
      {
@@ -1006,7 +1006,7 @@
        "es": "Res, cerdo, chorizo y tocino al disco",
        "en": "Beef, pork, chorizo, bacon on the disc"
       },
-      "price": "379",
+      "price": "380",
       "img": ""
      }
     ]
@@ -1057,7 +1057,7 @@
        "es": "Malvaviscos tostados y perlas de chocolate",
        "en": "Toasted marshmallows, chocolate pearls"
       },
-      "price": "123",
+      "price": "125",
       "img": "img/4w1_MDvw/s3.jpg"
      },
      {
@@ -1069,7 +1069,7 @@
        "es": "Frappé de taro con brulee",
        "en": "Iced taro frappé with brûlée"
       },
-      "price": "104",
+      "price": "105",
       "img": ""
      },
      {
@@ -1081,7 +1081,7 @@
        "es": "Matcha frío, 350 ml",
        "en": "Cold matcha, 350 ml"
       },
-      "price": "93",
+      "price": "95",
       "img": ""
      },
      {
@@ -1093,7 +1093,7 @@
        "es": "Chocolate tradicional, 350 ml",
        "en": "Traditional chocolate, 350 ml"
       },
-      "price": "93",
+      "price": "95",
       "img": ""
      }
     ]
@@ -1113,7 +1113,7 @@
        "es": "Crema de pistache, Nutella y helado",
        "en": "Pistachio cream, Nutella, ice cream"
       },
-      "price": "188",
+      "price": "190",
       "img": "img/4w1_MDvw/s1.jpg"
      },
      {
@@ -1125,7 +1125,7 @@
        "es": "Crema Lotus, helado y galleta",
        "en": "Lotus cream, ice cream, cookie crumble"
       },
-      "price": "169",
+      "price": "170",
       "img": ""
      },
      {
@@ -1137,7 +1137,7 @@
        "es": "Sobre papas con crema de chipotle",
        "en": "Over fries with chipotle cream"
       },
-      "price": "122",
+      "price": "120",
       "img": ""
      },
      {
@@ -1149,7 +1149,7 @@
        "es": "Dos molletes con arrachera y cebolla",
        "en": "Two molletes, steak, pickled onion"
       },
-      "price": "161",
+      "price": "160",
       "img": ""
      }
     ]
@@ -1169,7 +1169,7 @@
        "es": "Lotus, plátano caramelizado y Philadelphia",
        "en": "Lotus, caramelized banana, cream cheese"
       },
-      "price": "151",
+      "price": "150",
       "img": "img/4w1_MDvw/s2.jpg"
      },
      {
@@ -1181,7 +1181,7 @@
        "es": "Frutos rojos con helado de vainilla",
        "en": "Red berries, vanilla ice cream"
       },
-      "price": "132",
+      "price": "130",
       "img": ""
      },
      {
@@ -1193,7 +1193,7 @@
        "es": "Cajeta, nuez y helado de vainilla",
        "en": "Cajeta, walnuts, vanilla ice cream"
       },
-      "price": "139",
+      "price": "140",
       "img": ""
      }
     ]
@@ -1213,7 +1213,7 @@
        "es": "Arrachera, guacamole y papas",
        "en": "Steak, guacamole, with fries"
       },
-      "price": "189",
+      "price": "190",
       "img": ""
      },
      {
@@ -1225,7 +1225,7 @@
        "es": "Brioche, pollo, chipotle y aguacate",
        "en": "Brioche, chicken, chipotle, avocado"
       },
-      "price": "161",
+      "price": "160",
       "img": ""
      },
      {
@@ -1237,7 +1237,7 @@
        "es": "Con Nutella, Ferrero y fresas",
        "en": "With Nutella, Ferrero, strawberries"
       },
-      "price": "113",
+      "price": "115",
       "img": "img/4w1_MDvw/s4.jpg"
      }
     ]
@@ -1288,7 +1288,7 @@
        "es": "Tabla de mariscos para dos personas",
        "en": "Seafood board for two"
       },
-      "price": "699",
+      "price": "700",
       "img": "img/rswgt_uo/s1.jpg"
      },
      {
@@ -1300,7 +1300,7 @@
        "es": "Pulpo dorado y crujiente",
        "en": "Golden, crispy octopus"
       },
-      "price": "329",
+      "price": "330",
       "img": "img/rswgt_uo/s2.jpg"
      },
      {
@@ -1312,7 +1312,7 @@
        "es": "Dos piezas de New York sobre tostada",
        "en": "Two New York steak tostadas"
       },
-      "price": "229",
+      "price": "230",
       "img": "img/rswgt_uo/s4.jpg"
      },
      {
@@ -1324,7 +1324,7 @@
        "es": "Crema del día con hierbas frescas",
        "en": "Daily cream soup with fresh herbs"
       },
-      "price": "129",
+      "price": "130",
       "img": ""
      },
      {
@@ -1336,7 +1336,7 @@
        "es": "Jamón serrano, gouda e higo con miel",
        "en": "Serrano ham, gouda, fig and honey"
       },
-      "price": "169",
+      "price": "170",
       "img": ""
      },
      {
@@ -1348,7 +1348,7 @@
        "es": "Frutos rojos, miel y queso de cabra",
        "en": "Berries, honey and goat cheese"
       },
-      "price": "169",
+      "price": "170",
       "img": ""
      },
      {
@@ -1360,7 +1360,7 @@
        "es": "10 tapas surtidas",
        "en": "10 assorted tapas"
       },
-      "price": "499",
+      "price": "500",
       "img": ""
      },
      {
@@ -1372,7 +1372,7 @@
        "es": "Serrano, salami, feta, fruta y nueces",
        "en": "Serrano, salami, feta, fruit, nuts"
       },
-      "price": "379",
+      "price": "380",
       "img": ""
      }
     ]
@@ -1392,7 +1392,7 @@
        "es": "Higo, serrano, parmesano, balsámico",
        "en": "Fig, serrano, parmesan, balsamic"
       },
-      "price": "249",
+      "price": "250",
       "img": ""
      },
      {
@@ -1404,7 +1404,7 @@
        "es": "Lechuga, piña asada y cebolla morada",
        "en": "Lettuce, grilled pineapple, red onion"
       },
-      "price": "249",
+      "price": "250",
       "img": ""
      },
      {
@@ -1416,7 +1416,7 @@
        "es": "Gouda, higos, arúgula y miel",
        "en": "Gouda, figs, arugula, honey"
       },
-      "price": "269",
+      "price": "270",
       "img": ""
      },
      {
@@ -1428,7 +1428,7 @@
        "es": "Gouda y cebolla caramelizada",
        "en": "Gouda and caramelized onion"
       },
-      "price": "349",
+      "price": "350",
       "img": ""
      },
      {
@@ -1440,7 +1440,7 @@
        "es": "",
        "en": ""
       },
-      "price": "259",
+      "price": "260",
       "img": ""
      }
     ]
@@ -1460,7 +1460,7 @@
        "es": "Empanizados en coco, mayonesa ahumada",
        "en": "Coconut-crusted, smoked mayo"
       },
-      "price": "399",
+      "price": "400",
       "img": "img/rswgt_uo/s3.jpg"
      },
      {
@@ -1472,7 +1472,7 @@
        "es": "Sobre verduras y pasta",
        "en": "Over vegetables and pasta"
       },
-      "price": "399",
+      "price": "400",
       "img": ""
      },
      {
@@ -1484,7 +1484,7 @@
        "es": "Con papas y ensalada de tomate",
        "en": "With potatoes and tomato salad"
       },
-      "price": "459",
+      "price": "460",
       "img": ""
      },
      {
@@ -1496,7 +1496,7 @@
        "es": "Camarones, aderezo especial y papas",
        "en": "Shrimp, special dressing, fries"
       },
-      "price": "399",
+      "price": "400",
       "img": ""
      },
      {
@@ -1508,7 +1508,7 @@
        "es": "Linguini en salsa de parmesano",
        "en": "Linguine in parmesan cream"
       },
-      "price": "249",
+      "price": "250",
       "img": ""
      }
     ]
@@ -1528,7 +1528,7 @@
        "es": "Sobre crema de vainilla",
        "en": "Over vanilla cream"
       },
-      "price": "139",
+      "price": "140",
       "img": ""
      },
      {
@@ -1540,7 +1540,7 @@
        "es": "Salsa tibia de frutos rojos",
        "en": "Warm berry sauce"
       },
-      "price": "139",
+      "price": "140",
       "img": ""
      },
      {
@@ -1552,7 +1552,7 @@
        "es": "",
        "en": ""
       },
-      "price": "89",
+      "price": "90",
       "img": ""
      }
     ]
@@ -1603,7 +1603,7 @@
        "es": "Alitas en salsa búfalo",
        "en": "Wings in buffalo sauce"
       },
-      "price": "229",
+      "price": "230",
       "img": "img/iblARx4g/s1.jpg"
      },
      {
@@ -1627,7 +1627,7 @@
        "es": "Queso empanizado con dip",
        "en": "Breaded cheese with dip"
       },
-      "price": "191",
+      "price": "190",
       "img": ""
      },
      {
@@ -1659,7 +1659,7 @@
        "es": "Res, queso, lechuga y jitomate",
        "en": "Beef, cheese, lettuce, tomato"
       },
-      "price": "179",
+      "price": "180",
       "img": ""
      },
      {
@@ -1671,7 +1671,7 @@
        "es": "Con arrachera a la parrilla",
        "en": "With grilled skirt steak"
       },
-      "price": "219",
+      "price": "220",
       "img": "img/iblARx4g/s2.jpg"
      },
      {
@@ -1683,7 +1683,7 @@
        "es": "Salsa BBQ, tocino y aros de cebolla",
        "en": "BBQ sauce, bacon, onion rings"
       },
-      "price": "203",
+      "price": "205",
       "img": ""
      }
     ]
@@ -1715,7 +1715,7 @@
        "es": "Res, pollo y verduras a la parrilla",
        "en": "Grilled beef, chicken, vegetables"
       },
-      "price": "263",
+      "price": "265",
       "img": ""
      },
      {
@@ -1727,7 +1727,7 @@
        "es": "Tortilla de harina, queso y arrachera",
        "en": "Flour tortilla, cheese, skirt steak"
       },
-      "price": "239",
+      "price": "240",
       "img": ""
      },
      {
@@ -1771,7 +1771,7 @@
        "es": "Surtido de la casa para compartir",
        "en": "House sampler to share"
       },
-      "price": "431",
+      "price": "430",
       "img": ""
      },
      {
@@ -1834,7 +1834,7 @@
        "es": "Acceso libre a todas las estaciones",
        "en": "Unlimited access to every station"
       },
-      "price": "369",
+      "price": "370",
       "img": ""
      },
      {
@@ -1858,7 +1858,7 @@
        "es": "Chilaquiles, huevos, fruta y pan dulce",
        "en": "Chilaquiles, eggs, fruit and pastries"
       },
-      "price": "249",
+      "price": "250",
       "img": ""
      }
     ]
@@ -4250,7 +4250,7 @@
        "es": "12 oz",
        "en": "12 oz"
       },
-      "price": "88",
+      "price": "90",
       "img": ""
      },
      {
@@ -4262,7 +4262,7 @@
        "es": "12 oz",
        "en": "12 oz"
       },
-      "price": "94",
+      "price": "95",
       "img": ""
      },
      {
@@ -4274,7 +4274,7 @@
        "es": "12 oz",
        "en": "12 oz"
       },
-      "price": "94",
+      "price": "95",
       "img": ""
      },
      {
@@ -4286,7 +4286,7 @@
        "es": "12 oz",
        "en": "12 oz"
       },
-      "price": "106",
+      "price": "105",
       "img": ""
      },
      {
@@ -4298,7 +4298,7 @@
        "es": "Capuchino con chilate, 12 oz",
        "en": "Cappuccino with chilate, 12 oz"
       },
-      "price": "118",
+      "price": "120",
       "img": ""
      },
      {
@@ -4330,7 +4330,7 @@
        "es": "Cacao y arroz guerrerense, 16 oz",
        "en": "Guerrero cacao-rice drink, 16 oz"
       },
-      "price": "137",
+      "price": "135",
       "img": ""
      },
      {
@@ -4342,7 +4342,7 @@
        "es": "16 oz",
        "en": "16 oz"
       },
-      "price": "146",
+      "price": "145",
       "img": ""
      },
      {
@@ -4354,7 +4354,7 @@
        "es": "Sin café, 16 oz",
        "en": "Coffee-free, 16 oz"
       },
-      "price": "146",
+      "price": "145",
       "img": ""
      },
      {
@@ -4366,7 +4366,7 @@
        "es": "Con café, 16 oz",
        "en": "With coffee, 16 oz"
       },
-      "price": "118",
+      "price": "120",
       "img": ""
      },
      {
@@ -4378,7 +4378,7 @@
        "es": "Café frappé con cajeta",
        "en": "Frappé with cajeta"
       },
-      "price": "118",
+      "price": "120",
       "img": "img/JMY3GMzM/s2.jpg"
      },
      {
@@ -4390,7 +4390,7 @@
        "es": "Café con licor, 16 oz",
        "en": "Coffee with liqueur, 16 oz"
       },
-      "price": "262",
+      "price": "260",
       "img": ""
      }
     ]
@@ -4410,7 +4410,7 @@
        "es": "12 oz",
        "en": "12 oz"
       },
-      "price": "62",
+      "price": "60",
       "img": ""
      },
      {
@@ -4422,7 +4422,7 @@
        "es": "20 oz",
        "en": "20 oz"
       },
-      "price": "118",
+      "price": "120",
       "img": ""
      }
     ]
@@ -4454,7 +4454,7 @@
        "es": "",
        "en": ""
       },
-      "price": "148",
+      "price": "150",
       "img": ""
      },
      {
@@ -4466,7 +4466,7 @@
        "es": "",
        "en": ""
       },
-      "price": "133",
+      "price": "135",
       "img": ""
      },
      {
@@ -4478,7 +4478,7 @@
        "es": "",
        "en": ""
       },
-      "price": "128",
+      "price": "130",
       "img": ""
      },
      {
@@ -4490,7 +4490,7 @@
        "es": "Pan de temporada",
        "en": "Seasonal sweet bread"
       },
-      "price": "66",
+      "price": "65",
       "img": "img/JMY3GMzM/s4.jpg"
      },
      {
@@ -4502,7 +4502,7 @@
        "es": "",
        "en": ""
       },
-      "price": "108",
+      "price": "110",
       "img": ""
      },
      {
@@ -4514,7 +4514,7 @@
        "es": "",
        "en": ""
       },
-      "price": "128",
+      "price": "130",
       "img": ""
      },
      {
@@ -4526,7 +4526,7 @@
        "es": "",
        "en": ""
       },
-      "price": "196",
+      "price": "195",
       "img": ""
      }
     ]
@@ -5251,7 +5251,7 @@
        "es": "8 pz capeados en salsa dulce picante",
        "en": "8 battered pcs, sweet-spicy sauce"
       },
-      "price": "279",
+      "price": "280",
       "img": ""
      },
      {
@@ -5287,7 +5287,7 @@
        "es": "Alcaparras, aceitunas y queso crema",
        "en": "Capers, olives, cream cheese"
       },
-      "price": "279",
+      "price": "280",
       "img": ""
      },
      {
@@ -5299,7 +5299,7 @@
        "es": "Gratinados con espinaca y queso",
        "en": "Baked with spinach and cheese"
       },
-      "price": "379",
+      "price": "380",
       "img": ""
      },
      {
@@ -5311,7 +5311,7 @@
        "es": "3 pz crujientes sobre bisque",
        "en": "3 crispy pcs on shrimp bisque"
       },
-      "price": "279",
+      "price": "280",
       "img": ""
      }
     ]
@@ -5773,7 +5773,7 @@
        "es": "Rojos o verdes, con crema y queso",
        "en": "Red or green, with cream and cheese"
       },
-      "price": "159",
+      "price": "160",
       "img": "img/Jlg2pi-E/s2.jpg"
      },
      {
@@ -5785,7 +5785,7 @@
        "es": "",
        "en": ""
       },
-      "price": "206",
+      "price": "205",
       "img": ""
      },
      {
@@ -5797,7 +5797,7 @@
        "es": "",
        "en": ""
       },
-      "price": "119",
+      "price": "120",
       "img": ""
      },
      {
@@ -5809,7 +5809,7 @@
        "es": "Orden de 3",
        "en": "Order of 3"
       },
-      "price": "119",
+      "price": "120",
       "img": ""
      },
      {
@@ -5821,7 +5821,7 @@
        "es": "Con fruta y miel",
        "en": "With fruit and syrup"
       },
-      "price": "139",
+      "price": "140",
       "img": "img/Jlg2pi-E/s3.jpg"
      }
     ]
@@ -5841,7 +5841,7 @@
        "es": "Tradicional; promo 2x1 en sucursal",
        "en": "Traditional; in-store 2-for-1 promo"
       },
-      "price": "137",
+      "price": "135",
       "img": "img/Jlg2pi-E/s1.jpg"
      },
      {
@@ -5853,7 +5853,7 @@
        "es": "",
        "en": ""
       },
-      "price": "146",
+      "price": "145",
       "img": ""
      },
      {
@@ -5865,7 +5865,7 @@
        "es": "Con crema, queso y lechuga",
        "en": "With cream, cheese and lettuce"
       },
-      "price": "131",
+      "price": "130",
       "img": ""
      },
      {
@@ -5877,7 +5877,7 @@
        "es": "Cerdo pibil con cebolla morada",
        "en": "Achiote pork, pickled red onion"
       },
-      "price": "106",
+      "price": "105",
       "img": ""
      },
      {
@@ -5889,7 +5889,7 @@
        "es": "",
        "en": ""
       },
-      "price": "56",
+      "price": "55",
       "img": ""
      }
     ]
@@ -5909,7 +5909,7 @@
        "es": "",
        "en": ""
       },
-      "price": "173",
+      "price": "175",
       "img": ""
      },
      {
@@ -5921,7 +5921,7 @@
        "es": "",
        "en": ""
       },
-      "price": "267",
+      "price": "265",
       "img": ""
      },
      {
@@ -5933,7 +5933,7 @@
        "es": "",
        "en": ""
       },
-      "price": "334",
+      "price": "335",
       "img": ""
      },
      {
@@ -5945,7 +5945,7 @@
        "es": "",
        "en": ""
       },
-      "price": "347",
+      "price": "345",
       "img": ""
      }
     ]
@@ -5965,7 +5965,7 @@
        "es": "Churros con helado de vainilla",
        "en": "Churros with vanilla ice cream"
       },
-      "price": "109",
+      "price": "110",
       "img": "img/Jlg2pi-E/s4.jpg"
      },
      {
@@ -5977,7 +5977,7 @@
        "es": "",
        "en": ""
       },
-      "price": "79",
+      "price": "80",
       "img": ""
      },
      {
@@ -6001,7 +6001,7 @@
        "es": "",
        "en": ""
       },
-      "price": "87",
+      "price": "85",
       "img": ""
      }
     ]
@@ -6021,7 +6021,7 @@
        "es": "Fresa o chocolate",
        "en": "Strawberry or chocolate"
       },
-      "price": "106",
+      "price": "105",
       "img": ""
      },
      {
@@ -6033,7 +6033,7 @@
        "es": "",
        "en": ""
       },
-      "price": "79",
+      "price": "80",
       "img": ""
      },
      {
@@ -6045,7 +6045,7 @@
        "es": "",
        "en": ""
       },
-      "price": "72",
+      "price": "70",
       "img": ""
      }
     ]
@@ -6232,7 +6232,7 @@
        "es": "Pan dulce recién horneado",
        "en": "Freshly baked sweet bread"
       },
-      "price": "18",
+      "price": "20",
       "img": "img/uJ4Hteq8/s4.jpg"
      },
      {
@@ -6244,7 +6244,7 @@
        "es": "Hojaldrado, recién horneado",
        "en": "Flaky and freshly baked"
       },
-      "price": "22",
+      "price": "20",
       "img": ""
      }
     ]

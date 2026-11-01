@@ -117,7 +117,7 @@
       "es": "Cebolla morada, habanero y limón",
       "en": "Red onion, habanero and lime"
      },
-     "price": "468"
+     "price": "470"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Pepino, serrano y salsa oriental",
       "en": "Cucumber, serrano, oriental sauce"
      },
-     "price": "354"
+     "price": "355"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Con salsa oriental y wasabi",
       "en": "With oriental sauce and wasabi"
      },
-     "price": "468"
+     "price": "470"
     }
    ]
   },
@@ -199,7 +199,7 @@
       "es": "Talla, mojo de ajo, ajillo o diabla",
       "en": "Talla, garlic mojo, ajillo or diabla"
      },
-     "price": "577"
+     "price": "575"
     },
     {
      "name": {
@@ -251,7 +251,7 @@
       "es": "Coco, pistache, mamey, cajeta y más",
       "en": "Coconut, pistachio, mamey and more"
      },
-     "price": "54"
+     "price": "55"
     }
    ]
   }

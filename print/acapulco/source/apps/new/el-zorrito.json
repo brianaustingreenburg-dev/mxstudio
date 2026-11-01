@@ -55,7 +55,7 @@
       "es": "Con totopos",
       "en": "With tortilla chips"
      },
-     "price": "156"
+     "price": "155"
     },
     {
      "name": {
@@ -66,7 +66,7 @@
       "es": "",
       "en": ""
      },
-     "price": "228"
+     "price": "230"
     },
     {
      "name": {
@@ -77,7 +77,7 @@
       "es": "Sopecitos y taquitos dorados",
       "en": "Little sopes and crispy tacos"
      },
-     "price": "204"
+     "price": "205"
     }
    ]
   },
@@ -118,7 +118,7 @@
       "es": "Con salsa habanera",
       "en": "With habanero salsa"
      },
-     "price": "162"
+     "price": "160"
     }
    ]
   },
@@ -137,7 +137,7 @@
       "es": "Con proteína a elegir y guarniciones",
       "en": "Choice of protein, all the fixings"
      },
-     "price": "228"
+     "price": "230"
     },
     {
      "name": {
@@ -148,7 +148,7 @@
       "es": "",
       "en": ""
      },
-     "price": "258"
+     "price": "260"
     },
     {
      "name": {
@@ -159,7 +159,7 @@
       "es": "",
       "en": ""
      },
-     "price": "228"
+     "price": "230"
     },
     {
      "name": {
@@ -189,7 +189,7 @@
       "es": "Con aguacate",
       "en": "With avocado"
      },
-     "price": "228"
+     "price": "230"
     },
     {
      "name": {
@@ -200,7 +200,7 @@
       "es": "Con piña",
       "en": "With pineapple"
      },
-     "price": "228"
+     "price": "230"
     },
     {
      "name": {
@@ -211,7 +211,7 @@
       "es": "Bistec con chorizo",
       "en": "Steak and chorizo"
      },
-     "price": "228"
+     "price": "230"
     }
    ]
   },
@@ -230,7 +230,7 @@
       "es": "",
       "en": ""
      },
-     "price": "444"
+     "price": "445"
     },
     {
      "name": {
@@ -241,7 +241,7 @@
       "es": "",
       "en": ""
      },
-     "price": "444"
+     "price": "445"
     },
     {
      "name": {
@@ -263,7 +263,7 @@
       "es": "Pescado, camarón y pulpo",
       "en": "Fish, shrimp and octopus"
      },
-     "price": "426"
+     "price": "425"
     }
    ]
   },
@@ -282,7 +282,7 @@
       "es": "",
       "en": ""
      },
-     "price": "138"
+     "price": "140"
     }
    ]
   }

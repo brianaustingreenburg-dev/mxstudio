@@ -65,7 +65,7 @@
       "es": "Salsas gourmet de la casa y ranch",
       "en": "House gourmet sauces and ranch"
      },
-     "price": "381"
+     "price": "380"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Una salsa a elegir y dip ranch",
       "en": "One sauce of choice and ranch dip"
      },
-     "price": "197"
+     "price": "195"
     },
     {
      "name": {
@@ -117,7 +117,7 @@
       "es": "Doble carne, tocino, gouda y BBQ",
       "en": "Double patty, bacon, gouda and BBQ"
      },
-     "price": "396"
+     "price": "395"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Arrachera, tocino, aguacate y aderezo serrano",
       "en": "Skirt steak, bacon, avocado, serrano dressing"
      },
-     "price": "396"
+     "price": "395"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Cheddar, tocino y cebolla caramelizada",
       "en": "Cheddar, bacon and caramelized onion"
      },
-     "price": "304"
+     "price": "305"
     },
     {
      "name": {
@@ -161,7 +161,7 @@
       "es": "Piña caramelizada y queso gouda",
       "en": "Caramelized pineapple and gouda"
      },
-     "price": "304"
+     "price": "305"
     },
     {
      "name": {
@@ -172,7 +172,7 @@
       "es": "Tocino, queso americano y vegetales",
       "en": "Bacon, American cheese and vegetables"
      },
-     "price": "228"
+     "price": "230"
     }
    ]
   },
@@ -213,7 +213,7 @@
       "es": "Arrachera con queso gratinado y salsa verde",
       "en": "Skirt steak, melted cheese, green salsa"
      },
-     "price": "304"
+     "price": "305"
     }
    ]
   },
@@ -232,7 +232,7 @@
       "es": "Seis camarones capeados en salsa roca",
       "en": "Six battered shrimp in rock sauce"
      },
-     "price": "436"
+     "price": "435"
     },
     {
      "name": {
@@ -243,7 +243,7 @@
       "es": "Cheddar, tocino y aderezo California",
       "en": "Cheddar, bacon and California dressing"
      },
-     "price": "243"
+     "price": "245"
     },
     {
      "name": {
@@ -254,7 +254,7 @@
       "es": "Cinco dedos de mozzarella con chipotle",
       "en": "Five mozzarella sticks with chipotle"
      },
-     "price": "228"
+     "price": "230"
     },
     {
      "name": {
@@ -265,7 +265,7 @@
       "es": "Lechugas con 3 boneless y ranch",
       "en": "Greens with 3 boneless and ranch"
      },
-     "price": "258"
+     "price": "260"
     }
    ]
   }

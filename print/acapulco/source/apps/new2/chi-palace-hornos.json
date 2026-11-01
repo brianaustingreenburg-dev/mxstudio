@@ -54,7 +54,7 @@
       "es": "Dos guisados con arroz y té helado",
       "en": "Two dishes with rice and iced tea"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "Dos guisados con arroz y un egg roll",
       "en": "Two dishes with rice plus an egg roll"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -106,7 +106,7 @@
       "es": "Ramen con pollo, res, camarón y verduras",
       "en": "Ramen with chicken, beef, shrimp, vegetables"
      },
-     "price": "199"
+     "price": "200"
     },
     {
      "name": {
@@ -136,7 +136,7 @@
       "es": "Rebozado en salsa dulce picante, con brócoli",
       "en": "Battered, sweet-spicy sauce, with broccoli"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -158,7 +158,7 @@
       "es": "Rebozado en salsa de ajonjolí, con brócoli",
       "en": "Battered in sesame sauce, with broccoli"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -169,7 +169,7 @@
       "es": "Agridulce con pimiento, cebolla y arroz",
       "en": "Sweet and sour with peppers, onion, rice"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Pollo, res, camarón, brócoli y huevo",
       "en": "Chicken, beef, shrimp, broccoli and egg"
      },
-     "price": "289"
+     "price": "290"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Tallarines en salsa oscura con tres carnes",
       "en": "Noodles in dark sauce with three meats"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -246,7 +246,7 @@
       "es": "Brócoli y cebolla con carne de res",
       "en": "Broccoli and onion with beef"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -276,7 +276,7 @@
       "es": "Té especial de la casa",
       "en": "House special iced tea"
      },
-     "price": "99"
+     "price": "100"
     }
    ]
   }

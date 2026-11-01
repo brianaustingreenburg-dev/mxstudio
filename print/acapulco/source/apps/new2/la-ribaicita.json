@@ -95,7 +95,7 @@
       "es": "350 g jugoso",
       "en": "350 g, juicy"
      },
-     "price": "319"
+     "price": "320"
     },
     {
      "name": {
@@ -106,7 +106,7 @@
       "es": "400 g marinada a la parrilla",
       "en": "400 g marinated and grilled"
      },
-     "price": "269"
+     "price": "270"
     },
     {
      "name": {
@@ -117,7 +117,7 @@
       "es": "800 g de costilla marmoleada",
       "en": "800 g marbled beef ribs"
      },
-     "price": "469"
+     "price": "470"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "400 g grueso y jugoso",
       "en": "400 g, thick and juicy"
      },
-     "price": "289"
+     "price": "290"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "400 g con hueso",
       "en": "400 g bone-in"
      },
-     "price": "269"
+     "price": "270"
     }
    ]
   },
@@ -169,7 +169,7 @@
       "es": "Mollejas de res al carbón",
       "en": "Charcoal-grilled beef sweetbreads"
      },
-     "price": "169"
+     "price": "170"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Con limón y salsas",
       "en": "With lime and salsas"
      },
-     "price": "159"
+     "price": "160"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Queso Chihuahua gratinado",
       "en": "Melted Chihuahua cheese"
      },
-     "price": "139"
+     "price": "140"
     },
     {
      "name": {
@@ -202,7 +202,7 @@
       "es": "Dos piezas",
       "en": "Two pieces"
      },
-     "price": "99"
+     "price": "100"
     }
    ]
   },
@@ -232,7 +232,7 @@
       "es": "Arrachera, picaña, rib eye, New York y más",
       "en": "Arrachera, picanha, rib eye, NY and more"
      },
-     "price": "1989"
+     "price": "1990"
     }
    ]
   },
@@ -251,7 +251,7 @@
       "es": "Con chorizo, salchicha y chicharrón",
       "en": "With chorizo, sausage, pork crackling"
      },
-     "price": "119"
+     "price": "120"
     },
     {
      "name": {
@@ -273,7 +273,7 @@
       "es": "Con tocino y crema",
       "en": "With bacon and sour cream"
      },
-     "price": "129"
+     "price": "130"
     },
     {
      "name": {
@@ -284,7 +284,7 @@
       "es": "Lechuga, manzana y nuez",
       "en": "Romaine, apple and walnut"
      },
-     "price": "198"
+     "price": "200"
     },
     {
      "name": {

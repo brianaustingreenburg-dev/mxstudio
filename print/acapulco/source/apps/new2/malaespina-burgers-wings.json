@@ -54,7 +54,7 @@
       "es": "Doble carne, costra de queso, jam de tocino",
       "en": "Double patty, cheese crust, bacon jam"
      },
-     "price": "319"
+     "price": "320"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "160 g premium, queso americano y aros",
       "en": "160 g premium beef, American cheese, rings"
      },
-     "price": "259"
+     "price": "260"
     },
     {
      "name": {
@@ -98,7 +98,7 @@
       "es": "Cerdo deshebrado BBQ con coleslaw",
       "en": "Pulled BBQ pork with coleslaw"
      },
-     "price": "249"
+     "price": "250"
     }
    ]
   },
@@ -117,7 +117,7 @@
       "es": "Alitas grandes con salsa a elegir y ranch",
       "en": "Large wings, sauce of choice and ranch"
      },
-     "price": "329"
+     "price": "330"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Alitas grandes con salsa a elegir",
       "en": "Large wings with sauce of choice"
      },
-     "price": "189"
+     "price": "190"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Salchicha con chili, frijoles y cheddar",
       "en": "Sausage with chili, beans and cheddar"
      },
-     "price": "249"
+     "price": "250"
     },
     {
      "name": {
@@ -202,7 +202,7 @@
       "es": "Relish, Doritos Nacho y cheddar",
       "en": "Relish, nacho chips and cheddar"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -213,7 +213,7 @@
       "es": "Relish de cebolla, tocino y aderezo",
       "en": "Onion relish, bacon and house dressing"
      },
-     "price": "239"
+     "price": "240"
     }
    ]
   },
@@ -243,7 +243,7 @@
       "es": "Malteada de galleta",
       "en": "Cookies and cream milkshake"
      },
-     "price": "139"
+     "price": "140"
     },
     {
      "name": {
@@ -265,7 +265,7 @@
       "es": "Malteada de fresa",
       "en": "Strawberry milkshake"
      },
-     "price": "139"
+     "price": "140"
     }
    ]
   }

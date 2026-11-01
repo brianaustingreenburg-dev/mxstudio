@@ -54,7 +54,7 @@
       "es": "Con huevo o pollo, crema, queso y frijoles",
       "en": "With egg or chicken, cream, cheese, beans"
      },
-     "price": "267"
+     "price": "265"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Arrachera, chilaquiles, huevos y tocino",
       "en": "Skirt steak, chilaquiles, eggs, bacon"
      },
-     "price": "384"
+     "price": "385"
     },
     {
      "name": {
@@ -87,7 +87,7 @@
       "es": "Avena o hot cakes con café o té",
       "en": "Oatmeal or pancakes with coffee or tea"
      },
-     "price": "148"
+     "price": "150"
     }
    ]
   },
@@ -117,7 +117,7 @@
       "es": "Salsa roja o verde con cecina",
       "en": "Red or green salsa with cured beef"
      },
-     "price": "236"
+     "price": "235"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Enchiladas, enfrijoladas o chilaquiles",
       "en": "Enchiladas, enfrijoladas or chilaquiles"
      },
-     "price": "198"
+     "price": "200"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Tres enchiladas bañadas en mole",
       "en": "Three enchiladas topped with mole"
      },
-     "price": "161"
+     "price": "160"
     }
    ]
   },
@@ -169,7 +169,7 @@
       "es": "",
       "en": ""
      },
-     "price": "148"
+     "price": "150"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Claras con verduras y aguacate",
       "en": "Egg whites with veggies and avocado"
      },
-     "price": "136"
+     "price": "135"
     }
    ]
   },
@@ -199,7 +199,7 @@
       "es": "Con huevo, espinaca, tocino y fresa",
       "en": "With egg, spinach, bacon, strawberry"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -210,7 +210,7 @@
       "es": "",
       "en": ""
      },
-     "price": "167"
+     "price": "165"
     },
     {
      "name": {
@@ -221,7 +221,7 @@
       "es": "Con ensalada de espinaca y cajeta",
       "en": "With spinach salad and cajeta"
      },
-     "price": "162"
+     "price": "160"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Tres hot cakes",
       "en": "Three pancakes"
      },
-     "price": "192"
+     "price": "190"
     }
    ]
   },
@@ -251,7 +251,7 @@
       "es": "Mixta con moras, pera, cacahuate y pollo",
       "en": "Greens, blueberries, pear, peanuts, chicken"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -262,7 +262,7 @@
       "es": "Fresas, nuez, manzana y panela",
       "en": "Strawberries, walnuts, apple, panela"
      },
-     "price": "198"
+     "price": "200"
     },
     {
      "name": {
@@ -273,7 +273,7 @@
       "es": "Naranja, apio, piña y nopal",
       "en": "Orange, celery, pineapple, nopal"
      },
-     "price": "106"
+     "price": "105"
     },
     {
      "name": {
@@ -284,7 +284,7 @@
       "es": "Fresa, piña, plátano, mango y naranja",
       "en": "Strawberry, pineapple, banana, mango"
      },
-     "price": "124"
+     "price": "125"
     },
     {
      "name": {
@@ -295,7 +295,7 @@
       "es": "Plátano, avena, fresa, almendra, coco",
       "en": "Banana, oats, strawberry, almond, coconut"
      },
-     "price": "118"
+     "price": "120"
     }
    ]
   }

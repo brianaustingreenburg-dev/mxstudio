@@ -54,7 +54,7 @@
       "es": "Con 4 tortillas de harina",
       "en": "With 4 flour tortillas"
      },
-     "price": "218"
+     "price": "220"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "",
       "en": ""
      },
-     "price": "193"
+     "price": "195"
     },
     {
      "name": {
@@ -106,7 +106,7 @@
       "es": "Filete en tortilla recién hecha",
       "en": "Fillet on fresh tortilla"
      },
-     "price": "93"
+     "price": "95"
     },
     {
      "name": {
@@ -117,7 +117,7 @@
       "es": "",
       "en": ""
      },
-     "price": "98"
+     "price": "100"
     },
     {
      "name": {
@@ -158,7 +158,7 @@
       "es": "Seis tacos",
       "en": "Six tacos"
      },
-     "price": "556"
+     "price": "555"
     },
     {
      "name": {
@@ -169,7 +169,7 @@
       "es": "",
       "en": ""
      },
-     "price": "518"
+     "price": "520"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Pimiento, cebolla, tocino y queso",
       "en": "Peppers, onion, bacon, cheese"
      },
-     "price": "331"
+     "price": "330"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "",
       "en": ""
      },
-     "price": "318"
+     "price": "320"
     }
    ]
   },
@@ -210,7 +210,7 @@
       "es": "",
       "en": ""
      },
-     "price": "143"
+     "price": "145"
     },
     {
      "name": {
@@ -221,7 +221,7 @@
       "es": "",
       "en": ""
      },
-     "price": "162"
+     "price": "160"
     },
     {
      "name": {
@@ -254,7 +254,7 @@
       "es": "",
       "en": ""
      },
-     "price": "93"
+     "price": "95"
     }
    ]
   }

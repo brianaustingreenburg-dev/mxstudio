@@ -54,7 +54,7 @@
       "es": "Aros de calamar baby con limón",
       "en": "Baby squid rings with lemon"
      },
-     "price": "338"
+     "price": "340"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "Res, parmesano y reducción balsámica",
       "en": "Beef, parmesan, balsamic reduction"
      },
-     "price": "386"
+     "price": "385"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Salmón, alcaparras y vinagreta de limón",
       "en": "Salmon, capers, lemon vinaigrette"
      },
-     "price": "386"
+     "price": "385"
     },
     {
      "name": {
@@ -87,7 +87,7 @@
       "es": "Mozzarella de búfala, pesto y pistache",
       "en": "Buffalo mozzarella, pesto, pistachio"
      },
-     "price": "249"
+     "price": "250"
     }
    ]
   },
@@ -106,7 +106,7 @@
       "es": "Mozzarella, jitomate y albahaca",
       "en": "Mozzarella, tomato and basil"
      },
-     "price": "317"
+     "price": "315"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Cebolla caramelizada y gorgonzola",
       "en": "Caramelized onion and gorgonzola"
      },
-     "price": "494"
+     "price": "495"
     }
    ]
   },
@@ -158,7 +158,7 @@
       "es": "Huevo, tocino y parmesano",
       "en": "Egg, bacon and parmesan"
      },
-     "price": "297"
+     "price": "295"
     },
     {
      "name": {
@@ -169,7 +169,7 @@
       "es": "Mantequilla y parmesano",
       "en": "Butter and parmesan"
      },
-     "price": "304"
+     "price": "305"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Pesto, piñones y prosciutto crocante",
       "en": "Pesto, pine nuts, crispy prosciutto"
      },
-     "price": "331"
+     "price": "330"
     },
     {
      "name": {
@@ -210,7 +210,7 @@
       "es": "Pulpo, camarón, mejillón y almeja",
       "en": "Octopus, shrimp, mussels and clams"
      },
-     "price": "412"
+     "price": "410"
     },
     {
      "name": {
@@ -221,7 +221,7 @@
       "es": "Pasta de casa con pulpo y camarón",
       "en": "House pasta with octopus and shrimp"
      },
-     "price": "357"
+     "price": "355"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Rellenos de queso y espinaca",
       "en": "Filled with cheese and spinach"
      },
-     "price": "412"
+     "price": "410"
     },
     {
      "name": {
@@ -243,7 +243,7 @@
       "es": "Carne de res y salsa pomodoro",
       "en": "Beef ragù and pomodoro"
      },
-     "price": "412"
+     "price": "410"
     }
    ]
   },
@@ -262,7 +262,7 @@
       "es": "A la parrilla con vegetales asados",
       "en": "Grilled, with roasted vegetables"
      },
-     "price": "589"
+     "price": "590"
     },
     {
      "name": {
@@ -284,7 +284,7 @@
       "es": "Robalo 180 g con poro asado",
       "en": "180 g sea bass, roasted leek"
      },
-     "price": "494"
+     "price": "495"
     },
     {
      "name": {
@@ -295,7 +295,7 @@
       "es": "Arrachera 300 g con pasta aglio e olio",
       "en": "300 g skirt steak, aglio e olio"
      },
-     "price": "576"
+     "price": "575"
     }
    ]
   }

@@ -1,34 +1,303 @@
-{"name":"Restaurante El Camarón Jackie","slug":"el-camaron-jackie","area":"Hornos","place_id":"ChIJW_z5cwNYyoURq74T8vCiIPQ","lat":16.8567522,"lng":-99.8932065,"address":"Playa Karabalí s/n, Costera Miguel Alemán, Hornos","phone":"+52 744 485 1215","hours":{"es":"Lun–Dom 8:30–20:30","en":"Mon–Sun 8:30am–8:30pm"},"rating":4.2,"reviews":459,"price_level":2,
-"kind":"mar","cuisine":"seafood",
-"source":"real","sources":["https://www.rappi.com.mx/restaurantes/1930014839-el-camaron-jackie-acapulco"],
-"tagline":{"es":"Pescado a la talla frente a la playa","en":"Beachfront pescado a la talla"},
-"specialty":"Classic Acapulco beachfront seafood: whole red snapper a la talla, house shrimp specials and big family platters.",
-"signature":["Huachinango a la Talla 1 kg","Camarones a la Jackie","Piña Rellena de Mariscos (1 Persona)","Charola de Mariscos"],
-"photo_notes":{"cover":"Open-air beachfront seafood restaurant on Playa Karabalí, tables under palapa shade facing the bay, sand and gentle waves.","s1":"Whole butterflied red snapper grilled a la talla, half red chile adobo and half green herb, with rice, salad and lime.","s2":"Plump shrimp in a glossy reddish house sauce with white rice and fresh salad on a white plate.","s3":"Halved pineapple filled with sautéed shrimp, bell peppers and onion, served on a tropical table.","s4":"Large family seafood platter with garlic, diabla and breaded shrimp, octopus, grilled fish, sopes and pescadillas."},
-"menu":[
-{"cat":{"es":"Mariscos Fríos","en":"Cold Seafood"},"items":[
-{"name":{"es":"Coctel de Camarón Grande","en":"Large Shrimp Cocktail"},"desc":{"es":"Camarón con jitomate, cebolla, cilantro y salsa especial","en":"Shrimp with tomato, onion, cilantro, special sauce"},"price":"315"},
-{"name":{"es":"Vuelve a la Vida","en":"Vuelve a la Vida"},"desc":{"es":"Camarón, pulpo, caracol y surimi en salsa especial","en":"Shrimp, octopus, conch and surimi in special sauce"},"price":"310"},
-{"name":{"es":"Ceviche de Pescado Grande","en":"Large Fish Ceviche"},"desc":{"es":"Pescado con jitomate, cebolla y cilantro","en":"Fish with tomato, onion and cilantro"},"price":"280"},
-{"name":{"es":"Camarones Aguachile","en":"Shrimp Aguachile"},"desc":{"es":"Camarón en limón con cebolla, habanero y pepino","en":"Shrimp in lime with onion, habanero, cucumber"},"price":"355"}]},
-{"cat":{"es":"Entradas","en":"Starters"},"items":[
-{"name":{"es":"Tostadas Mixtas","en":"Mixed Tostadas"},"desc":{"es":"Tres tostadas de pulpo, camarón y ceviche","en":"Three tostadas: octopus, shrimp and ceviche"},"price":"340"},
-{"name":{"es":"Tacos de Mariscos","en":"Seafood Tacos"},"desc":{"es":"Tres tacos de harina gratinados con mariscos","en":"Three cheesy flour tacos with seafood"},"price":"245"},
-{"name":{"es":"Pescadillas","en":"Pescadillas"},"desc":{"es":"Tres pescadillas de pescado, elote y pimiento","en":"Three fish, corn and pepper pescadillas"},"price":"120"},
-{"name":{"es":"Empanadas de Camarón","en":"Shrimp Empanadas"},"desc":{"es":"Tres empanadas de camarón","en":"Three shrimp empanadas"},"price":"260"}]},
-{"cat":{"es":"Pescados","en":"Fish"},"items":[
-{"name":{"es":"Huachinango a la Talla 1 kg","en":"Red Snapper a la Talla 1 kg"},"desc":{"es":"Huachinango asado con salsa de chiles","en":"Grilled red snapper with chile adobo"},"price":"710"},
-{"name":{"es":"Mojarra de 1Kg a la Talla","en":"Mojarra a la Talla 1 kg"},"desc":{"es":"Mojarra asada a la talla con arroz y ensalada","en":"Grilled mojarra a la talla, rice and salad"},"price":"525"},
-{"name":{"es":"Filete de Huachinango a la Diabla","en":"Red Snapper Fillet a la Diabla"},"desc":{"es":"Filete de huachinango en salsa diabla","en":"Snapper fillet in spicy diabla sauce"},"price":"490"},
-{"name":{"es":"Filete de Cazón Al Mojo de Ajo","en":"Garlic Dogfish Fillet"},"desc":{"es":"Cazón al ajo con arroz y ensalada","en":"Dogfish in garlic with rice and salad"},"price":"239"}]},
-{"cat":{"es":"Especialidades","en":"House Specialties"},"items":[
-{"name":{"es":"Camarones a la Jackie","en":"Shrimp a la Jackie"},"desc":{"es":"Camarones en salsa de la casa con arroz y ensalada","en":"Shrimp in house sauce with rice and salad"},"price":"365"},
-{"name":{"es":"Camarones Arropados","en":"Bacon-Wrapped Shrimp"},"desc":{"es":"Rellenos de queso y envueltos en tocino","en":"Cheese-stuffed and wrapped in bacon"},"price":"480"},
-{"name":{"es":"Piña Rellena de Mariscos (1 Persona)","en":"Seafood-Stuffed Pineapple (1)"},"desc":{"es":"Piña rellena de camarón, pimiento y cebolla","en":"Pineapple filled with shrimp, peppers and onion"},"price":"460"},
-{"name":{"es":"Pulpo","en":"Octopus"},"desc":{"es":"Al ajo, ajillo, a la diabla o enamorado","en":"Garlic, ajillo, diabla or enamorado style"},"price":"480"},
-{"name":{"es":"Langosta 1/2 (al Gusto)","en":"Half Lobster (Your Way)"},"desc":{"es":"Al ajo, diabla, mantequilla o termidor","en":"Garlic, diabla, butter or thermidor"},"price":"650"}]},
-{"cat":{"es":"Caldos y Charolas","en":"Soups & Platters"},"items":[
-{"name":{"es":"Sopa de Mariscos","en":"Seafood Soup"},"desc":{"es":"Huachinango, pulpo, camarón, caracol y jaiba en guajillo","en":"Snapper, octopus, shrimp, conch, crab in guajillo"},"price":"399"},
-{"name":{"es":"Caldo de Camarón","en":"Shrimp Soup"},"desc":{"es":"Caldo de camarón en chile guajillo","en":"Shrimp broth in guajillo chile"},"price":"240"},
-{"name":{"es":"Charola de Mariscos","en":"Seafood Platter"},"desc":{"es":"Camarones, pulpo, mojarra a la talla, sopes y refrescos","en":"Shrimp, octopus, mojarra, sopes and sodas"},"price":"1940"}]}
-]}
+{
+ "name": "Restaurante El Camarón Jackie",
+ "slug": "el-camaron-jackie",
+ "area": "Hornos",
+ "place_id": "ChIJW_z5cwNYyoURq74T8vCiIPQ",
+ "lat": 16.8567522,
+ "lng": -99.8932065,
+ "address": "Playa Karabalí s/n, Costera Miguel Alemán, Hornos",
+ "phone": "+52 744 485 1215",
+ "hours": {
+  "es": "Lun–Dom 8:30–20:30",
+  "en": "Mon–Sun 8:30am–8:30pm"
+ },
+ "rating": 4.2,
+ "reviews": 459,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930014839-el-camaron-jackie-acapulco"
+ ],
+ "tagline": {
+  "es": "Pescado a la talla frente a la playa",
+  "en": "Beachfront pescado a la talla"
+ },
+ "specialty": "Classic Acapulco beachfront seafood: whole red snapper a la talla, house shrimp specials and big family platters.",
+ "signature": [
+  "Huachinango a la Talla 1 kg",
+  "Camarones a la Jackie",
+  "Piña Rellena de Mariscos (1 Persona)",
+  "Charola de Mariscos"
+ ],
+ "photo_notes": {
+  "cover": "Open-air beachfront seafood restaurant on Playa Karabalí, tables under palapa shade facing the bay, sand and gentle waves.",
+  "s1": "Whole butterflied red snapper grilled a la talla, half red chile adobo and half green herb, with rice, salad and lime.",
+  "s2": "Plump shrimp in a glossy reddish house sauce with white rice and fresh salad on a white plate.",
+  "s3": "Halved pineapple filled with sautéed shrimp, bell peppers and onion, served on a tropical table.",
+  "s4": "Large family seafood platter with garlic, diabla and breaded shrimp, octopus, grilled fish, sopes and pescadillas."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Mariscos Fríos",
+    "en": "Cold Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel de Camarón Grande",
+      "en": "Large Shrimp Cocktail"
+     },
+     "desc": {
+      "es": "Camarón con jitomate, cebolla, cilantro y salsa especial",
+      "en": "Shrimp with tomato, onion, cilantro, special sauce"
+     },
+     "price": "315"
+    },
+    {
+     "name": {
+      "es": "Vuelve a la Vida",
+      "en": "Vuelve a la Vida"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, caracol y surimi en salsa especial",
+      "en": "Shrimp, octopus, conch and surimi in special sauce"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Ceviche de Pescado Grande",
+      "en": "Large Fish Ceviche"
+     },
+     "desc": {
+      "es": "Pescado con jitomate, cebolla y cilantro",
+      "en": "Fish with tomato, onion and cilantro"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Camarones Aguachile",
+      "en": "Shrimp Aguachile"
+     },
+     "desc": {
+      "es": "Camarón en limón con cebolla, habanero y pepino",
+      "en": "Shrimp in lime with onion, habanero, cucumber"
+     },
+     "price": "355"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostadas Mixtas",
+      "en": "Mixed Tostadas"
+     },
+     "desc": {
+      "es": "Tres tostadas de pulpo, camarón y ceviche",
+      "en": "Three tostadas: octopus, shrimp and ceviche"
+     },
+     "price": "340"
+    },
+    {
+     "name": {
+      "es": "Tacos de Mariscos",
+      "en": "Seafood Tacos"
+     },
+     "desc": {
+      "es": "Tres tacos de harina gratinados con mariscos",
+      "en": "Three cheesy flour tacos with seafood"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Pescadillas",
+      "en": "Pescadillas"
+     },
+     "desc": {
+      "es": "Tres pescadillas de pescado, elote y pimiento",
+      "en": "Three fish, corn and pepper pescadillas"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Empanadas de Camarón",
+      "en": "Shrimp Empanadas"
+     },
+     "desc": {
+      "es": "Tres empanadas de camarón",
+      "en": "Three shrimp empanadas"
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescados",
+    "en": "Fish"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango a la Talla 1 kg",
+      "en": "Red Snapper a la Talla 1 kg"
+     },
+     "desc": {
+      "es": "Huachinango asado con salsa de chiles",
+      "en": "Grilled red snapper with chile adobo"
+     },
+     "price": "710"
+    },
+    {
+     "name": {
+      "es": "Mojarra de 1Kg a la Talla",
+      "en": "Mojarra a la Talla 1 kg"
+     },
+     "desc": {
+      "es": "Mojarra asada a la talla con arroz y ensalada",
+      "en": "Grilled mojarra a la talla, rice and salad"
+     },
+     "price": "525"
+    },
+    {
+     "name": {
+      "es": "Filete de Huachinango a la Diabla",
+      "en": "Red Snapper Fillet a la Diabla"
+     },
+     "desc": {
+      "es": "Filete de huachinango en salsa diabla",
+      "en": "Snapper fillet in spicy diabla sauce"
+     },
+     "price": "490"
+    },
+    {
+     "name": {
+      "es": "Filete de Cazón Al Mojo de Ajo",
+      "en": "Garlic Dogfish Fillet"
+     },
+     "desc": {
+      "es": "Cazón al ajo con arroz y ensalada",
+      "en": "Dogfish in garlic with rice and salad"
+     },
+     "price": "240"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Especialidades",
+    "en": "House Specialties"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones a la Jackie",
+      "en": "Shrimp a la Jackie"
+     },
+     "desc": {
+      "es": "Camarones en salsa de la casa con arroz y ensalada",
+      "en": "Shrimp in house sauce with rice and salad"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Camarones Arropados",
+      "en": "Bacon-Wrapped Shrimp"
+     },
+     "desc": {
+      "es": "Rellenos de queso y envueltos en tocino",
+      "en": "Cheese-stuffed and wrapped in bacon"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Piña Rellena de Mariscos (1 Persona)",
+      "en": "Seafood-Stuffed Pineapple (1)"
+     },
+     "desc": {
+      "es": "Piña rellena de camarón, pimiento y cebolla",
+      "en": "Pineapple filled with shrimp, peppers and onion"
+     },
+     "price": "460"
+    },
+    {
+     "name": {
+      "es": "Pulpo",
+      "en": "Octopus"
+     },
+     "desc": {
+      "es": "Al ajo, ajillo, a la diabla o enamorado",
+      "en": "Garlic, ajillo, diabla or enamorado style"
+     },
+     "price": "480"
+    },
+    {
+     "name": {
+      "es": "Langosta 1/2 (al Gusto)",
+      "en": "Half Lobster (Your Way)"
+     },
+     "desc": {
+      "es": "Al ajo, diabla, mantequilla o termidor",
+      "en": "Garlic, diabla, butter or thermidor"
+     },
+     "price": "650"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Caldos y Charolas",
+    "en": "Soups & Platters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopa de Mariscos",
+      "en": "Seafood Soup"
+     },
+     "desc": {
+      "es": "Huachinango, pulpo, camarón, caracol y jaiba en guajillo",
+      "en": "Snapper, octopus, shrimp, conch, crab in guajillo"
+     },
+     "price": "400"
+    },
+    {
+     "name": {
+      "es": "Caldo de Camarón",
+      "en": "Shrimp Soup"
+     },
+     "desc": {
+      "es": "Caldo de camarón en chile guajillo",
+      "en": "Shrimp broth in guajillo chile"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Charola de Mariscos",
+      "en": "Seafood Platter"
+     },
+     "desc": {
+      "es": "Camarones, pulpo, mojarra a la talla, sopes y refrescos",
+      "en": "Shrimp, octopus, mojarra, sopes and sodas"
+     },
+     "price": "1940"
+    }
+   ]
+  }
+ ]
+}

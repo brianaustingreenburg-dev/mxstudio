@@ -54,7 +54,7 @@
       "es": "Con pollo deshebrado o huevo estrellado",
       "en": "With shredded chicken or fried egg"
      },
-     "price": "186"
+     "price": "185"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "En mole oaxaqueño con crema y queso",
       "en": "In Oaxacan mole with cream and cheese"
      },
-     "price": "186"
+     "price": "185"
     },
     {
      "name": {
@@ -87,7 +87,7 @@
       "es": "Guajillo, papa y pollo, crema y queso",
       "en": "Guajillo, potato and chicken, cream, cheese"
      },
-     "price": "198"
+     "price": "200"
     },
     {
      "name": {
@@ -98,7 +98,7 @@
       "es": "Cochinita en crema de habanero",
       "en": "Cochinita in habanero cream sauce"
      },
-     "price": "186"
+     "price": "185"
     },
     {
      "name": {
@@ -109,7 +109,7 @@
       "es": "Muffin inglés, jamón y holandesa",
       "en": "English muffin, ham and hollandaise"
      },
-     "price": "234"
+     "price": "235"
     },
     {
      "name": {
@@ -120,7 +120,7 @@
       "es": "Crema de frijol con hoja santa y chorizo",
       "en": "Bean cream with hoja santa and chorizo"
      },
-     "price": "204"
+     "price": "205"
     }
    ]
   },
@@ -139,7 +139,7 @@
       "es": "Dos huevos en mole oaxaqueño",
       "en": "Two eggs in Oaxacan mole"
      },
-     "price": "216"
+     "price": "215"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Tortilla, frijol, plátano y chícharos",
       "en": "Tortilla, beans, plantain and peas"
      },
-     "price": "204"
+     "price": "205"
     },
     {
      "name": {
@@ -161,7 +161,7 @@
       "es": "Relleno de huitlacoche y cilantro",
       "en": "Filled with huitlacoche and cilantro"
      },
-     "price": "216"
+     "price": "215"
     },
     {
      "name": {
@@ -172,7 +172,7 @@
       "es": "Claras con espinaca y champiñón",
       "en": "Egg whites with spinach and mushroom"
      },
-     "price": "204"
+     "price": "205"
     }
    ]
   },
@@ -191,7 +191,7 @@
       "es": "Brioche con higos, jamón y queso de cabra",
       "en": "Brioche with figs, ham and goat cheese"
      },
-     "price": "221"
+     "price": "220"
     },
     {
      "name": {
@@ -202,7 +202,7 @@
       "es": "Frutos rojos flameados y helado de café",
       "en": "Flambéed berries and coffee ice cream"
      },
-     "price": "216"
+     "price": "215"
     },
     {
      "name": {
@@ -213,7 +213,7 @@
       "es": "Salsa de frutos rojos y moras azules",
       "en": "Berry sauce and fresh blueberries"
      },
-     "price": "192"
+     "price": "190"
     },
     {
      "name": {
@@ -224,7 +224,7 @@
       "es": "Brioche, aguacate, requesón y chile",
       "en": "Brioche, avocado, cottage cheese, chili"
      },
-     "price": "209"
+     "price": "210"
     },
     {
      "name": {
@@ -235,7 +235,7 @@
       "es": "Frijol, queso gratinado y arrachera",
       "en": "Beans, melted cheese and skirt steak"
      },
-     "price": "234"
+     "price": "235"
     }
    ]
   },
@@ -254,7 +254,7 @@
       "es": "Espresso con leche espumada y cacao",
       "en": "Espresso, frothed milk and cocoa"
      },
-     "price": "92"
+     "price": "90"
     },
     {
      "name": {
@@ -265,7 +265,7 @@
       "es": "Té chai con shot de espresso",
       "en": "Chai tea with an espresso shot"
      },
-     "price": "98"
+     "price": "100"
     },
     {
      "name": {

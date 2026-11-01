@@ -54,7 +54,7 @@
       "es": "Huevo con cecina en salsa roja",
       "en": "Eggs with cecina in red sauce"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "Sobre tortilla, con frijol y tocino",
       "en": "On tortilla, beans and bacon"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Queso, jamón y plátano",
       "en": "Cheese, ham and plantain"
      },
-     "price": "229"
+     "price": "230"
     }
    ]
   },
@@ -95,7 +95,7 @@
       "es": "Con betún de queso crema",
       "en": "With cream cheese frosting"
      },
-     "price": "169"
+     "price": "170"
     },
     {
      "name": {
@@ -106,7 +106,7 @@
       "es": "Con frutos rojos",
       "en": "With red berries"
      },
-     "price": "169"
+     "price": "170"
     },
     {
      "name": {
@@ -117,7 +117,7 @@
       "es": "Pera, queso de cabra y serrano",
       "en": "Pear, goat cheese, serrano ham"
      },
-     "price": "159"
+     "price": "160"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Con mango y aguacate",
       "en": "With mango and avocado"
      },
-     "price": "269"
+     "price": "270"
     }
    ]
   },
@@ -147,7 +147,7 @@
       "es": "Pollo en salsa verde cremosa",
       "en": "Chicken, creamy green sauce"
      },
-     "price": "239"
+     "price": "240"
     },
     {
      "name": {
@@ -158,7 +158,7 @@
       "es": "Arrachera con enmolada y guacamole",
       "en": "Skirt steak, enmolada, guacamole"
      },
-     "price": "329"
+     "price": "330"
     },
     {
      "name": {
@@ -169,7 +169,7 @@
       "es": "Con consomé",
       "en": "With consommé"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Con papas al parmesano",
       "en": "With parmesan fries"
      },
-     "price": "369"
+     "price": "370"
     }
    ]
   },
@@ -199,7 +199,7 @@
       "es": "Sobre puré de camote",
       "en": "On sweet potato purée"
      },
-     "price": "369"
+     "price": "370"
     },
     {
      "name": {
@@ -210,7 +210,7 @@
       "es": "Finas hierbas y puré de camote",
       "en": "Herbs, sweet potato purée"
      },
-     "price": "339"
+     "price": "340"
     },
     {
      "name": {
@@ -221,7 +221,7 @@
       "es": "Vinagreta de piña picante",
       "en": "Spicy pineapple vinaigrette"
      },
-     "price": "309"
+     "price": "310"
     }
    ]
   },
@@ -240,7 +240,7 @@
       "es": "Piña, naranja, espinaca y limón",
       "en": "Pineapple, orange, spinach, lime"
      },
-     "price": "109"
+     "price": "110"
     },
     {
      "name": {
@@ -251,7 +251,7 @@
       "es": "Cremosa con hierbabuena",
       "en": "Creamy, with mint"
      },
-     "price": "109"
+     "price": "110"
     },
     {
      "name": {
@@ -262,7 +262,7 @@
       "es": "Vino con fruta",
       "en": "Wine with fruit"
      },
-     "price": "499"
+     "price": "500"
     },
     {
      "name": {
@@ -273,7 +273,7 @@
       "es": "Licor 43 y espresso",
       "en": "Licor 43 and espresso"
      },
-     "price": "139"
+     "price": "140"
     }
    ]
   }

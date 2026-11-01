@@ -54,7 +54,7 @@
       "es": "Gratinados con cecina",
       "en": "Cheese-gratin, with cured beef"
      },
-     "price": "162"
+     "price": "160"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Salsa, tocino, chorizo, aguacate y queso",
       "en": "Salsa, bacon, chorizo, avocado, cheese"
      },
-     "price": "122"
+     "price": "120"
     },
     {
      "name": {
@@ -87,7 +87,7 @@
       "es": "Salsa roja, tocino, rajas y aguacate",
       "en": "Red salsa, bacon, poblano, avocado"
      },
-     "price": "128"
+     "price": "130"
     },
     {
      "name": {
@@ -98,7 +98,7 @@
       "es": "Claras, panela, espinaca y champiñón",
       "en": "Egg whites, panela, spinach, mushroom"
      },
-     "price": "122"
+     "price": "120"
     },
     {
      "name": {
@@ -109,7 +109,7 @@
       "es": "Omelet enrollado con dos ingredientes",
       "en": "Rolled omelet with two fillings"
      },
-     "price": "149"
+     "price": "150"
     },
     {
      "name": {
@@ -142,7 +142,7 @@
       "es": "Pollo en salsa suiza gratinada",
       "en": "Chicken in creamy gratin sauce"
      },
-     "price": "149"
+     "price": "150"
     }
    ]
   },
@@ -161,7 +161,7 @@
       "es": "Tres tacos, receta de la casa",
       "en": "Three tacos, house recipe"
      },
-     "price": "162"
+     "price": "160"
     },
     {
      "name": {
@@ -172,7 +172,7 @@
       "es": "Tres tacos, receta de la casa",
       "en": "Three tacos, house recipe"
      },
-     "price": "199"
+     "price": "200"
     },
     {
      "name": {
@@ -183,7 +183,7 @@
       "es": "",
       "en": ""
      },
-     "price": "101"
+     "price": "100"
     }
    ]
   },
@@ -202,7 +202,7 @@
       "es": "300 g, preparación a elegir",
       "en": "300 g, your choice of style"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -213,7 +213,7 @@
       "es": "Verduras salteadas y aderezo soya-naranja",
       "en": "Sautéed veg, soy-orange dressing"
      },
-     "price": "299"
+     "price": "300"
     },
     {
      "name": {
@@ -224,7 +224,7 @@
       "es": "Preparación a elegir",
       "en": "Your choice of style"
      },
-     "price": "312"
+     "price": "310"
     },
     {
      "name": {
@@ -235,7 +235,7 @@
       "es": "300 g",
       "en": "300 g"
      },
-     "price": "229"
+     "price": "230"
     },
     {
      "name": {
@@ -246,7 +246,7 @@
       "es": "En salsa cremosa",
       "en": "In creamy sauce"
      },
-     "price": "189"
+     "price": "190"
     }
    ]
   },
@@ -265,7 +265,7 @@
       "es": "Café con canela y piloncillo",
       "en": "Coffee with cinnamon and cane sugar"
      },
-     "price": "47"
+     "price": "45"
     },
     {
      "name": {
@@ -276,7 +276,7 @@
       "es": "",
       "en": ""
      },
-     "price": "67"
+     "price": "65"
     },
     {
      "name": {
@@ -287,7 +287,7 @@
       "es": "",
       "en": ""
      },
-     "price": "81"
+     "price": "80"
     },
     {
      "name": {
@@ -298,7 +298,7 @@
       "es": "Natural",
       "en": "Fresh-squeezed"
      },
-     "price": "47"
+     "price": "45"
     }
    ]
   }

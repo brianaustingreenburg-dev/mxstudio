@@ -40,7 +40,7 @@
       "es": "Rojos o verdes, con crema y queso",
       "en": "Red or green, with cream and cheese"
      },
-     "price": "159"
+     "price": "160"
     },
     {
      "name": {
@@ -51,7 +51,7 @@
       "es": "",
       "en": ""
      },
-     "price": "206"
+     "price": "205"
     },
     {
      "name": {
@@ -62,7 +62,7 @@
       "es": "",
       "en": ""
      },
-     "price": "119"
+     "price": "120"
     },
     {
      "name": {
@@ -73,7 +73,7 @@
       "es": "Orden de 3",
       "en": "Order of 3"
      },
-     "price": "119"
+     "price": "120"
     },
     {
      "name": {
@@ -84,7 +84,7 @@
       "es": "Con fruta y miel",
       "en": "With fruit and syrup"
      },
-     "price": "139"
+     "price": "140"
     }
    ]
   },
@@ -103,7 +103,7 @@
       "es": "Tradicional; promo 2x1 en sucursal",
       "en": "Traditional; in-store 2-for-1 promo"
      },
-     "price": "137"
+     "price": "135"
     },
     {
      "name": {
@@ -114,7 +114,7 @@
       "es": "",
       "en": ""
      },
-     "price": "146"
+     "price": "145"
     },
     {
      "name": {
@@ -125,7 +125,7 @@
       "es": "Con crema, queso y lechuga",
       "en": "With cream, cheese and lettuce"
      },
-     "price": "131"
+     "price": "130"
     },
     {
      "name": {
@@ -136,7 +136,7 @@
       "es": "Cerdo pibil con cebolla morada",
       "en": "Achiote pork, pickled red onion"
      },
-     "price": "106"
+     "price": "105"
     },
     {
      "name": {
@@ -147,7 +147,7 @@
       "es": "",
       "en": ""
      },
-     "price": "56"
+     "price": "55"
     }
    ]
   },
@@ -166,7 +166,7 @@
       "es": "",
       "en": ""
      },
-     "price": "173"
+     "price": "175"
     },
     {
      "name": {
@@ -177,7 +177,7 @@
       "es": "",
       "en": ""
      },
-     "price": "267"
+     "price": "265"
     },
     {
      "name": {
@@ -188,7 +188,7 @@
       "es": "",
       "en": ""
      },
-     "price": "334"
+     "price": "335"
     },
     {
      "name": {
@@ -199,7 +199,7 @@
       "es": "",
       "en": ""
      },
-     "price": "347"
+     "price": "345"
     }
    ]
   },
@@ -218,7 +218,7 @@
       "es": "Churros con helado de vainilla",
       "en": "Churros with vanilla ice cream"
      },
-     "price": "109"
+     "price": "110"
     },
     {
      "name": {
@@ -229,7 +229,7 @@
       "es": "",
       "en": ""
      },
-     "price": "79"
+     "price": "80"
     },
     {
      "name": {
@@ -251,7 +251,7 @@
       "es": "",
       "en": ""
      },
-     "price": "87"
+     "price": "85"
     }
    ]
   },
@@ -270,7 +270,7 @@
       "es": "Fresa o chocolate",
       "en": "Strawberry or chocolate"
      },
-     "price": "106"
+     "price": "105"
     },
     {
      "name": {
@@ -281,7 +281,7 @@
       "es": "",
       "en": ""
      },
-     "price": "79"
+     "price": "80"
     },
     {
      "name": {
@@ -292,7 +292,7 @@
       "es": "",
       "en": ""
      },
-     "price": "72"
+     "price": "70"
     }
    ]
   }

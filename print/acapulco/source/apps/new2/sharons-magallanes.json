@@ -65,7 +65,7 @@
       "es": "Tres leches, flan y pastel de queso",
       "en": "Tres leches, flan and cheesecake"
      },
-     "price": "752"
+     "price": "750"
     },
     {
      "name": {
@@ -98,7 +98,7 @@
       "es": "Cheesecake con galleta Oreo",
       "en": "Cheesecake with Oreo cookies"
      },
-     "price": "672"
+     "price": "670"
     }
    ]
   },
@@ -139,7 +139,7 @@
       "es": "Rol de canela, Nutella y Ferrero",
       "en": "Cinnamon roll, Nutella and Ferrero"
      },
-     "price": "78"
+     "price": "80"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Rol de canela con Biscoff",
       "en": "Cinnamon roll with Biscoff"
      },
-     "price": "78"
+     "price": "80"
     },
     {
      "name": {
@@ -161,7 +161,7 @@
       "es": "Rol de canela con cajeta",
       "en": "Cinnamon roll with cajeta"
      },
-     "price": "78"
+     "price": "80"
     }
    ]
   },
@@ -180,7 +180,7 @@
       "es": "",
       "en": ""
      },
-     "price": "52"
+     "price": "50"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Espresso con leche espumada",
       "en": "Espresso with steamed foam"
      },
-     "price": "63"
+     "price": "65"
     },
     {
      "name": {
@@ -265,7 +265,7 @@
       "es": "Espresso frío con leche",
       "en": "Cold espresso with milk"
      },
-     "price": "78"
+     "price": "80"
     }
    ]
   }

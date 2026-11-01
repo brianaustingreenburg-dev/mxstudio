@@ -87,7 +87,7 @@
       "es": "Surimi y queso; plátano frito por fuera",
       "en": "Surimi and cheese; fried plantain outside"
      },
-     "price": "147"
+     "price": "145"
     },
     {
      "name": {
@@ -109,7 +109,7 @@
       "es": "Salmón fresco con queso por fuera",
       "en": "Fresh salmon with cream cheese outside"
      },
-     "price": "153"
+     "price": "155"
     },
     {
      "name": {
@@ -120,7 +120,7 @@
       "es": "Camarón, pepino y aguacate",
       "en": "Shrimp, cucumber and avocado"
      },
-     "price": "124"
+     "price": "125"
     }
    ]
   },
@@ -139,7 +139,7 @@
       "es": "Dashi con tres chiles y mariscos",
       "en": "Three-chile dashi with seafood"
      },
-     "price": "208"
+     "price": "210"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Caldo de pescado, udon y camarón",
       "en": "Fish broth, udon and shrimp"
      },
-     "price": "169"
+     "price": "170"
     },
     {
      "name": {
@@ -161,7 +161,7 @@
       "es": "Miso, tofu, fideo de arroz y camarón",
       "en": "Miso, tofu, rice noodles and shrimp"
      },
-     "price": "149.50"
+     "price": "150"
     }
    ]
   },
@@ -202,7 +202,7 @@
       "es": "5 banderillas de salmón y queso crema",
       "en": "5 salmon and cream cheese skewers"
      },
-     "price": "149"
+     "price": "150"
     },
     {
      "name": {
@@ -213,7 +213,7 @@
       "es": "5 banderillas empanizadas de camarón",
       "en": "5 breaded shrimp skewers"
      },
-     "price": "142"
+     "price": "140"
     }
    ]
   },
@@ -243,7 +243,7 @@
       "es": "Camarón coco, rollo, yakimeshi y postre",
       "en": "Coconut shrimp, roll, fried rice, dessert"
      },
-     "price": "363"
+     "price": "365"
     },
     {
      "name": {
@@ -265,7 +265,7 @@
       "es": "Kushiagues, yakimeshi y California roll",
       "en": "Kushiage, fried rice and California roll"
      },
-     "price": "221"
+     "price": "220"
     }
    ]
   }

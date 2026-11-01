@@ -1,25 +1,212 @@
-{"name":"Jumil Café y Cocina","kind":"cafe","source":"sample","sources":["https://oleada.mx/en/acapulco/cafe/jumil-cafe-y-cocina-cafe","https://www.facebook.com/p/Jumil-Caf%C3%A9-y-Cocina-61585528331420/"],
-"tagline":{"es":"Café de altura y cocina guerrerense en Hornos","en":"Specialty coffee and Guerrero cooking in Hornos"},
-"hours":{"es":"Lun–Jue 8:00–21:00 · Vie–Sáb 8:00–22:00 · Dom 9:00–20:00","en":"Mon–Thu 8am–9pm · Fri–Sat 8am–10pm · Sun 9am–8pm"},
-"specialty":"New Costera café (4.8 on Google) pairing Guerrero coffee with hearty breakfasts.",
-"signature":["Chilaquiles Jumil","Enchiladas de Mole","Café de Olla","Pan Francés con Frutos Rojos"],
-"menu":[
-{"cat":{"es":"Café","en":"Coffee"},"items":[
-{"name":{"es":"Americano","en":"Americano"},"desc":{"es":"Café de Guerrero, 350 ml","en":"Guerrero-grown coffee, 350 ml"},"price":"45"},
-{"name":{"es":"Capuchino","en":"Cappuccino"},"desc":{"es":"Espresso con leche espumada y canela","en":"Espresso, foamed milk, cinnamon"},"price":"60"},
-{"name":{"es":"Café de Olla","en":"Café de Olla"},"desc":{"es":"Con piloncillo y canela, receta de casa","en":"With piloncillo and cinnamon"},"price":"50"},
-{"name":{"es":"Frappé Moka","en":"Mocha Frappé"},"desc":{"es":"Espresso, chocolate y crema batida","en":"Espresso, chocolate, whipped cream"},"price":"80"}]},
-{"cat":{"es":"Desayunos","en":"Breakfast"},"items":[
-{"name":{"es":"Chilaquiles Jumil","en":"Jumil Chilaquiles"},"desc":{"es":"Rojos o verdes con huevo o pollo","en":"Red or green, with egg or chicken"},"price":"130"},
-{"name":{"es":"Huevos al Gusto","en":"Eggs Your Way"},"desc":{"es":"Con frijoles, pan y fruta","en":"With beans, bread and fruit"},"price":"110"},
-{"name":{"es":"Enchiladas de Mole","en":"Mole Enchiladas"},"desc":{"es":"Mole guerrerense con pollo y ajonjolí","en":"Guerrero mole, chicken, sesame"},"price":"145"},
-{"name":{"es":"Molletes","en":"Molletes"},"desc":{"es":"Bolillo, frijoles, queso gratinado y pico","en":"Bolillo, beans, melted cheese, pico"},"price":"95"}]},
-{"cat":{"es":"Cocina","en":"Kitchen"},"items":[
-{"name":{"es":"Club Sándwich","en":"Club Sandwich"},"desc":{"es":"Pollo, jamón, tocino y papas","en":"Chicken, ham, bacon, with fries"},"price":"140"},
-{"name":{"es":"Tacos Dorados de Pollo","en":"Crispy Chicken Tacos"},"desc":{"es":"Con crema, queso y salsa verde","en":"With cream, cheese and salsa verde"},"price":"120"},
-{"name":{"es":"Ensalada Costera","en":"Costera Salad"},"desc":{"es":"Mixta con pollo, mango y aderezo","en":"Greens, chicken, mango, dressing"},"price":"135"}]},
-{"cat":{"es":"Dulce","en":"Sweets"},"items":[
-{"name":{"es":"Pan Francés con Frutos Rojos","en":"French Toast with Berries"},"desc":{"es":"Brioche, frutos rojos y miel de maple","en":"Brioche, berries, maple syrup"},"price":"120"},
-{"name":{"es":"Hot Cakes","en":"Pancakes"},"desc":{"es":"Tres piezas con mantequilla y miel","en":"Three, with butter and syrup"},"price":"95"},
-{"name":{"es":"Pastel del Día","en":"Cake of the Day"},"desc":{"es":"Rebanada de repostería casera","en":"Slice of house-made cake"},"price":"75"}]}
-]}
+{
+ "name": "Jumil Café y Cocina",
+ "kind": "cafe",
+ "source": "sample",
+ "sources": [
+  "https://oleada.mx/en/acapulco/cafe/jumil-cafe-y-cocina-cafe",
+  "https://www.facebook.com/p/Jumil-Caf%C3%A9-y-Cocina-61585528331420/"
+ ],
+ "tagline": {
+  "es": "Café de altura y cocina guerrerense en Hornos",
+  "en": "Specialty coffee and Guerrero cooking in Hornos"
+ },
+ "hours": {
+  "es": "Lun–Jue 8:00–21:00 · Vie–Sáb 8:00–22:00 · Dom 9:00–20:00",
+  "en": "Mon–Thu 8am–9pm · Fri–Sat 8am–10pm · Sun 9am–8pm"
+ },
+ "specialty": "New Costera café (4.8 on Google) pairing Guerrero coffee with hearty breakfasts.",
+ "signature": [
+  "Chilaquiles Jumil",
+  "Enchiladas de Mole",
+  "Café de Olla",
+  "Pan Francés con Frutos Rojos"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Café",
+    "en": "Coffee"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Americano",
+      "en": "Americano"
+     },
+     "desc": {
+      "es": "Café de Guerrero, 350 ml",
+      "en": "Guerrero-grown coffee, 350 ml"
+     },
+     "price": "45"
+    },
+    {
+     "name": {
+      "es": "Capuchino",
+      "en": "Cappuccino"
+     },
+     "desc": {
+      "es": "Espresso con leche espumada y canela",
+      "en": "Espresso, foamed milk, cinnamon"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Café de Olla",
+      "en": "Café de Olla"
+     },
+     "desc": {
+      "es": "Con piloncillo y canela, receta de casa",
+      "en": "With piloncillo and cinnamon"
+     },
+     "price": "50"
+    },
+    {
+     "name": {
+      "es": "Frappé Moka",
+      "en": "Mocha Frappé"
+     },
+     "desc": {
+      "es": "Espresso, chocolate y crema batida",
+      "en": "Espresso, chocolate, whipped cream"
+     },
+     "price": "80"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles Jumil",
+      "en": "Jumil Chilaquiles"
+     },
+     "desc": {
+      "es": "Rojos o verdes con huevo o pollo",
+      "en": "Red or green, with egg or chicken"
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Huevos al Gusto",
+      "en": "Eggs Your Way"
+     },
+     "desc": {
+      "es": "Con frijoles, pan y fruta",
+      "en": "With beans, bread and fruit"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Enchiladas de Mole",
+      "en": "Mole Enchiladas"
+     },
+     "desc": {
+      "es": "Mole guerrerense con pollo y ajonjolí",
+      "en": "Guerrero mole, chicken, sesame"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Molletes",
+      "en": "Molletes"
+     },
+     "desc": {
+      "es": "Bolillo, frijoles, queso gratinado y pico",
+      "en": "Bolillo, beans, melted cheese, pico"
+     },
+     "price": "95"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocina",
+    "en": "Kitchen"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Club Sándwich",
+      "en": "Club Sandwich"
+     },
+     "desc": {
+      "es": "Pollo, jamón, tocino y papas",
+      "en": "Chicken, ham, bacon, with fries"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Tacos Dorados de Pollo",
+      "en": "Crispy Chicken Tacos"
+     },
+     "desc": {
+      "es": "Con crema, queso y salsa verde",
+      "en": "With cream, cheese and salsa verde"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Ensalada Costera",
+      "en": "Costera Salad"
+     },
+     "desc": {
+      "es": "Mixta con pollo, mango y aderezo",
+      "en": "Greens, chicken, mango, dressing"
+     },
+     "price": "135"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Dulce",
+    "en": "Sweets"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pan Francés con Frutos Rojos",
+      "en": "French Toast with Berries"
+     },
+     "desc": {
+      "es": "Brioche, frutos rojos y miel de maple",
+      "en": "Brioche, berries, maple syrup"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Hot Cakes",
+      "en": "Pancakes"
+     },
+     "desc": {
+      "es": "Tres piezas con mantequilla y miel",
+      "en": "Three, with butter and syrup"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Pastel del Día",
+      "en": "Cake of the Day"
+     },
+     "desc": {
+      "es": "Rebanada de repostería casera",
+      "en": "Slice of house-made cake"
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

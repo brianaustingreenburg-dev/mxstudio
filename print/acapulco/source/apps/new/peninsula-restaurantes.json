@@ -76,7 +76,7 @@
       "es": "Salmón ahumado, queso crema y alcaparras",
       "en": "Smoked salmon, cream cheese, capers"
      },
-     "price": "306"
+     "price": "305"
     },
     {
      "name": {
@@ -87,7 +87,7 @@
       "es": "Dos huevos con chilaquiles verdes y rojos",
       "en": "Two eggs with green and red chilaquiles"
      },
-     "price": "231"
+     "price": "230"
     }
    ]
   },
@@ -191,7 +191,7 @@
       "es": "Salmón a la leña",
       "en": "Wood-fired salmon"
      },
-     "price": "543"
+     "price": "545"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Con salsa de cerveza oscura",
       "en": "With dark beer sauce"
      },
-     "price": "612"
+     "price": "610"
     },
     {
      "name": {
@@ -254,7 +254,7 @@
       "es": "Medio pollo a la leña con espárragos",
       "en": "Half wood-fired chicken, asparagus"
      },
-     "price": "312"
+     "price": "310"
     }
    ]
   },
@@ -284,7 +284,7 @@
       "es": "Camarón, pulpo y mejillón",
       "en": "Shrimp, octopus and mussels"
      },
-     "price": "293"
+     "price": "295"
     },
     {
      "name": {
@@ -295,7 +295,7 @@
       "es": "A la leña con queso de búfala y arúgula",
       "en": "Wood-fired, buffalo cheese, arugula"
      },
-     "price": "362"
+     "price": "360"
     },
     {
      "name": {
@@ -306,7 +306,7 @@
       "es": "Arrabiata, mozzarella y mariscos",
       "en": "Arrabbiata, mozzarella and seafood"
      },
-     "price": "362"
+     "price": "360"
     }
    ]
   }

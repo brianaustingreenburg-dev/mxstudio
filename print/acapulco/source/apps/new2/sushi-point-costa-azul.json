@@ -54,7 +54,7 @@
       "es": "Atún con chile serrano en soya picante",
       "en": "Tuna with serrano chile in spicy soy"
      },
-     "price": "338"
+     "price": "340"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "Atún, pepino, cilantro y serrano",
       "en": "Tuna, cucumber, cilantro and serrano"
      },
-     "price": "338"
+     "price": "340"
     },
     {
      "name": {
@@ -117,7 +117,7 @@
       "es": "Salmón, camarón, queso crema y aguacate",
       "en": "Salmon, shrimp, cream cheese, avocado"
      },
-     "price": "309"
+     "price": "310"
     },
     {
      "name": {
@@ -128,7 +128,7 @@
       "es": "Atún, salmón, pulpo y vegetales",
       "en": "Tuna, salmon, octopus and vegetables"
      },
-     "price": "331"
+     "price": "330"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Camarón, queso y kanikama horneado",
       "en": "Shrimp, cheese and baked crab"
      },
-     "price": "324"
+     "price": "325"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Cubierto de atún, robalo y salmón",
       "en": "Topped with tuna, sea bass and salmon"
      },
-     "price": "288"
+     "price": "290"
     }
    ]
   },
@@ -169,7 +169,7 @@
       "es": "Pepino, aguacate y camarón",
       "en": "Cucumber, avocado and shrimp"
      },
-     "price": "151"
+     "price": "150"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Queso crema y salmón",
       "en": "Cream cheese and salmon"
      },
-     "price": "151"
+     "price": "150"
     },
     {
      "name": {
@@ -221,7 +221,7 @@
       "es": "Camarón y verduras en salsa dulce con arroz",
       "en": "Shrimp & veg in teriyaki with rice"
      },
-     "price": "379"
+     "price": "380"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Arroz frito con res, pollo y camarón",
       "en": "Fried rice with beef, chicken, shrimp"
      },
-     "price": "201"
+     "price": "200"
     },
     {
      "name": {
@@ -254,7 +254,7 @@
       "es": "Robalo, camarón y verduras capeadas",
       "en": "Battered sea bass, shrimp and veg"
      },
-     "price": "371"
+     "price": "370"
     }
    ]
   },
@@ -273,7 +273,7 @@
       "es": "Con helado",
       "en": "With ice cream"
      },
-     "price": "166"
+     "price": "165"
     },
     {
      "name": {
@@ -284,7 +284,7 @@
       "es": "Helado de vainilla en tempura",
       "en": "Vanilla ice cream in tempura"
      },
-     "price": "126"
+     "price": "125"
     },
     {
      "name": {

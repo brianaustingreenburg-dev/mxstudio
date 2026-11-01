@@ -54,7 +54,7 @@
       "es": "Con aderezo tártara",
       "en": "With tartar dressing"
      },
-     "price": "283"
+     "price": "285"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "10 piezas con aderezo tártara",
       "en": "10 pieces with tartar dressing"
      },
-     "price": "213"
+     "price": "215"
     },
     {
      "name": {
@@ -76,7 +76,7 @@
       "es": "Tortilla de maíz frita con pescado",
       "en": "Fried corn tortillas with white fish"
      },
-     "price": "189"
+     "price": "190"
     },
     {
      "name": {
@@ -87,7 +87,7 @@
       "es": "Atún al limón, cebolla caramelizada, aguacate",
       "en": "Lime tuna, caramelized onion, avocado"
      },
-     "price": "212"
+     "price": "210"
     },
     {
      "name": {
@@ -169,7 +169,7 @@
       "es": "Ceviche tradicional",
       "en": "Traditional ceviche"
      },
-     "price": "213"
+     "price": "215"
     },
     {
      "name": {
@@ -180,7 +180,7 @@
       "es": "Estilo tradicional",
       "en": "Traditional style"
      },
-     "price": "378"
+     "price": "380"
     },
     {
      "name": {
@@ -191,7 +191,7 @@
       "es": "Mariscos frescos",
       "en": "Fresh seafood mix"
      },
-     "price": "378"
+     "price": "380"
     }
    ]
   },
@@ -210,7 +210,7 @@
       "es": "Talla, mojo de ajo o plancha",
       "en": "Talla, garlic mojo or grilled"
      },
-     "price": "484"
+     "price": "485"
     },
     {
      "name": {
@@ -232,7 +232,7 @@
       "es": "Estilo Alfredo",
       "en": "Alfredo style"
      },
-     "price": "409"
+     "price": "410"
     },
     {
      "name": {

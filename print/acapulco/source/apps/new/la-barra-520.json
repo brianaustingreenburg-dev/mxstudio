@@ -54,7 +54,7 @@
       "es": "Con cebolla, cilantro y aguacate",
       "en": "With onion, cilantro and avocado"
      },
-     "price": "347"
+     "price": "345"
     },
     {
      "name": {
@@ -65,7 +65,7 @@
       "es": "Pulpo, ostión y camarón",
       "en": "Octopus, oyster and shrimp"
      },
-     "price": "364"
+     "price": "365"
     },
     {
      "name": {
@@ -109,7 +109,7 @@
       "es": "Al horno, con aguacate",
       "en": "Oven-baked, with avocado"
      },
-     "price": "136"
+     "price": "135"
     }
    ]
   },
@@ -128,7 +128,7 @@
       "es": "35 cm, horno de leña",
       "en": "35 cm, wood-fired"
      },
-     "price": "247"
+     "price": "245"
     },
     {
      "name": {
@@ -139,7 +139,7 @@
       "es": "Jamón, queso y arúgula",
       "en": "Ham, cheese and arugula"
      },
-     "price": "447"
+     "price": "445"
     },
     {
      "name": {
@@ -150,7 +150,7 @@
       "es": "Aguacate, frijol, jalapeño y res",
       "en": "Avocado, beans, jalapeño, beef"
      },
-     "price": "357"
+     "price": "355"
     },
     {
      "name": {
@@ -161,7 +161,7 @@
       "es": "Camarones y pulpo",
       "en": "Shrimp and octopus"
      },
-     "price": "442"
+     "price": "440"
     },
     {
      "name": {
@@ -172,7 +172,7 @@
       "es": "Pepperoni, salami y jamón",
       "en": "Pepperoni, salami and ham"
      },
-     "price": "346"
+     "price": "345"
     }
    ]
   },
@@ -202,7 +202,7 @@
       "es": "Ostiones, camarones y pulpo",
       "en": "Oysters, shrimp and octopus"
      },
-     "price": "413"
+     "price": "415"
     },
     {
      "name": {
@@ -213,7 +213,7 @@
       "es": "",
       "en": ""
      },
-     "price": "434"
+     "price": "435"
     },
     {
      "name": {
@@ -224,7 +224,7 @@
       "es": "Gouda y jamón de pierna",
       "en": "Gouda and roast ham"
      },
-     "price": "289"
+     "price": "290"
     }
    ]
   },
@@ -265,7 +265,7 @@
       "es": "12 oz",
       "en": "12 oz"
      },
-     "price": "67"
+     "price": "65"
     }
    ]
   }

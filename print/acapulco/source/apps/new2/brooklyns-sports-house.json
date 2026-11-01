@@ -55,7 +55,7 @@
       "es": "Bolitas de mozzarella y tocino en tempura",
       "en": "Mozzarella and bacon bites in tempura"
      },
-     "price": "199"
+     "price": "200"
     },
     {
      "name": {
@@ -66,7 +66,7 @@
       "es": "150 g de arrachera, guacamole y quesos",
       "en": "150 g skirt steak, guacamole, cheeses"
      },
-     "price": "312"
+     "price": "310"
     },
     {
      "name": {
@@ -77,7 +77,7 @@
       "es": "Papas gratinadas con mozzarella y tocino",
       "en": "Fries with melted cheeses and bacon"
      },
-     "price": "199"
+     "price": "200"
     },
     {
      "name": {
@@ -88,7 +88,7 @@
       "es": "Ocho dedos de mozzarella empanizada",
       "en": "Eight breaded mozzarella sticks"
      },
-     "price": "199"
+     "price": "200"
     },
     {
      "name": {
@@ -118,7 +118,7 @@
       "es": "200 g Angus, cheddar, tocino, cebolla",
       "en": "200 g Angus, cheddar, bacon, onion"
      },
-     "price": "309"
+     "price": "310"
     },
     {
      "name": {
@@ -129,7 +129,7 @@
       "es": "Angus, champiñones, tocino y cheddar",
       "en": "Angus, mushrooms, bacon and cheddar"
      },
-     "price": "309"
+     "price": "310"
     },
     {
      "name": {
@@ -140,7 +140,7 @@
       "es": "Angus en brioche con cheddar y papas",
       "en": "Angus on brioche with cheddar and fries"
      },
-     "price": "272"
+     "price": "270"
     },
     {
      "name": {
@@ -151,7 +151,7 @@
       "es": "Pechuga empanizada en salsa redhot",
       "en": "Breaded chicken in red-hot sauce"
      },
-     "price": "284"
+     "price": "285"
     },
     {
      "name": {
@@ -162,7 +162,7 @@
       "es": "Pechuga empanizada en brioche",
       "en": "Breaded chicken breast on brioche"
      },
-     "price": "284"
+     "price": "285"
     }
    ]
   },
@@ -181,7 +181,7 @@
       "es": "Con una o dos salsas a elegir",
       "en": "With one or two sauces of choice"
      },
-     "price": "274"
+     "price": "275"
     },
     {
      "name": {
@@ -192,7 +192,7 @@
       "es": "Con papas y una o dos salsas",
       "en": "With fries and one or two sauces"
      },
-     "price": "274"
+     "price": "275"
     }
    ]
   },
@@ -211,7 +211,7 @@
       "es": "250 g de arrachera, puré y verduras",
       "en": "250 g skirt steak, mash, vegetables"
      },
-     "price": "396"
+     "price": "395"
     },
     {
      "name": {
@@ -222,7 +222,7 @@
       "es": "Pechuga gratinada con mozzarella",
       "en": "Chicken breast au gratin with mozzarella"
      },
-     "price": "322"
+     "price": "320"
     },
     {
      "name": {
@@ -233,7 +233,7 @@
       "es": "Pechuga asada con puré y verduras",
       "en": "Grilled chicken with mash and vegetables"
      },
-     "price": "322"
+     "price": "320"
     },
     {
      "name": {
@@ -244,7 +244,7 @@
       "es": "Arrachera, chili beans y guacamole",
       "en": "Skirt steak, chili beans and guacamole"
      },
-     "price": "309"
+     "price": "310"
     }
    ]
   },
@@ -263,7 +263,7 @@
       "es": "Lechugas, pepino, aceitunas y feta",
       "en": "Greens, cucumber, olives and feta"
      },
-     "price": "298"
+     "price": "300"
     },
     {
      "name": {
@@ -274,7 +274,7 @@
       "es": "Fresa, queso de cabra y pollo asado",
       "en": "Strawberry, goat cheese, grilled chicken"
      },
-     "price": "298"
+     "price": "300"
     }
    ]
   }
