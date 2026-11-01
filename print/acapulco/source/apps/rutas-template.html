@@ -339,5 +339,24 @@ if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.service
 </script>
 <div id="offok" style="position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#1d7a4a;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:99;display:none;white-space:nowrap">✓ Funciona sin internet · Works offline</div>
 <script>try{if("serviceWorker"in navigator&&"caches"in window)navigator.serviceWorker.ready.then(()=>caches.match(location.pathname)).then(m=>{if(m){const b=document.getElementById("offok");b.style.display="block";setTimeout(()=>b.style.display="none",2500)}}).catch(()=>{})}catch(e){}</script>
+<div id="warm" style="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;background:#1b1411;border:1.5px solid rgba(217,163,95,.5);color:#f6ece0;border-radius:14px;padding:10px 12px;font:700 13px system-ui,sans-serif;display:none;box-shadow:0 8px 24px rgba(0,0,0,.4)"><div id="warmT"></div><div style="height:6px;background:rgba(255,255,255,.12);border-radius:9px;margin-top:6px;overflow:hidden"><i id="warmB" style="display:block;height:100%;width:0;background:linear-gradient(90deg,#d9a35f,#25d366)"></i></div></div>
+<script>
+// Save every restaurant app + photos on this phone so all tabs open without internet
+(async()=>{try{if(!("caches"in window)||!navigator.onLine)return;
+ const slugs=[...new Set(Object.values(APPS))],F=["","manifest.json","config.json","menu.json","card.json","img/cover.jpg","img/s1.jpg","img/s2.jpg","img/s3.jpg","img/s4.jpg"];
+ const urls=[];slugs.forEach(s=>F.forEach(f=>urls.push(new URL("../c/"+s+"/"+f,location.href).href)));
+ ["../tarjeta/","../precios/","../pendientes/","../rutas/","../lib/qrcode.js","../lib/fonts/m500.woff2","../lib/fonts/m700.woff2","../lib/fonts/m800.woff2","../icon-192.png"].forEach(x=>urls.push(new URL(x,location.href).href));
+ const c=await caches.open("mx-apps"),miss=[];
+ for(const u of urls){if(!(await caches.match(u)))miss.push(u)}
+ const box=document.getElementById("warm"),T=document.getElementById("warmT"),B=document.getElementById("warmB"),es=(document.documentElement.lang||"es")==="es";
+ if(!miss.length)return;
+ let done=0,fail=0;box.style.display="block";
+ const show=()=>{T.textContent=(es?"⬇️ Guardando apps para usar sin internet… ":"⬇️ Saving apps for offline… ")+done+"/"+miss.length;B.style.width=Math.round(done/miss.length*100)+"%"};show();
+ let i=0;const worker=async()=>{while(i<miss.length){const u=miss[i++];try{const r=await fetch(u,{cache:"no-store"});if(r.ok)await c.put(u,r);else fail++}catch(_){fail++}done++;show()}};
+ await Promise.all([1,2,3,4,5,6].map(worker));
+ T.textContent=fail?(es?"⚠️ Faltaron "+fail+" archivos. Toca 🔄 con internet para terminar.":"⚠️ "+fail+" files missing. Tap 🔄 online to finish."):(es?"✓ Todo listo sin internet":"✓ All set for offline");
+ setTimeout(()=>box.style.display="none",fail?6000:3000);
+}catch(e){}})();
+</script>
 </body>
 </html>
