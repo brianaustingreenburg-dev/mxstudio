@@ -29,7 +29,7 @@ html{-webkit-text-size-adjust:100%}
 body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.35;padding-bottom:calc(30px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
 button,textarea{font:inherit;color:inherit}
 .top{position:sticky;top:0;z-index:5;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:calc(10px + env(safe-area-inset-top)) 14px 10px;border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:8px}
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.bar .brand{flex:1 1 100%}.bar .lang{margin-right:auto}
 .brand{font-weight:800;font-size:1.05em;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand small{display:block;font-size:.6em;font-weight:700;letter-spacing:.14em;color:var(--sun)}
 .ib{all:unset;cursor:pointer;min-width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:.85em;background:var(--s2);border:1px solid var(--line);color:var(--gold)}
@@ -122,7 +122,7 @@ body.is-off .off{display:inline-block}
     <div class="lang" id="lang"><span class="knob"></span><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
     <button class="ib" id="smaller" aria-label="Letra más chica">A−</button>
     <button class="ib" id="bigger" aria-label="Letra más grande">A+</button>
-    <button class="ib" id="prices" aria-label="App de precios">📱</button>
+    <button class="ib" id="prices" aria-label="App de precios">📱</button><button class="ib" id="refresh" aria-label="Actualizar">🔄</button>
   </div>
   <div class="tabs" id="tabs"></div>
   <div class="filters" id="filters">
@@ -313,6 +313,10 @@ $("filters").onclick=e=>{const b=e.target.closest(".f");if(!b)return;st.filter=b
 $("bigger").onclick=()=>{st.fs=Math.min(28,st.fs+2);applyFs();save()};
 $("smaller").onclick=()=>{st.fs=Math.max(15,st.fs-2);applyFs();save()};
 $("prices").onclick=showPrices;
+$("refresh").onclick=async()=>{if(!navigator.onLine){toast(L().aOff);return}$("refresh").textContent="⏳";
+ try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.update()}catch(_){}
+ location.replace(location.pathname+"?fresh="+Date.now())};
+try{if(new URLSearchParams(location.search).has("fresh"))history.replaceState(null,"",location.pathname)}catch(_){}
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;st.lang=b.dataset.l;save();applyLang();render()};
 $("sheet").addEventListener("input",editInput);
 $("sheet").onclick=e=>{if(e.target.id==="eSave"){saveEdit();return}{const d=e.target.closest("[data-del]");if(d){if(confirm(L().eDel)){const [ci,ii]=d.dataset.del.split("-").map(Number);EM[ci].items.splice(ii,1);drawEdit()}return}const ad=e.target.closest("[data-add]");if(ad){EM[+ad.dataset.add].items.push({name:{es:L().eNew,en:"New dish"},desc:{es:"",en:""},price:"",img:""});drawEdit();return}}if(e.target.id==="aPub"){publishAct();return}if(e.target.id==="copyL"){const u=e.target.dataset.u;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast(L().copied)).catch(()=>toast(u));return}if(e.target.id==="sheet"||e.target.id==="closeSheet")$("sheet").classList.remove("on")};
