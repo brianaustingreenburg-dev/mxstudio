@@ -203,7 +203,7 @@ const APPS={"v-NiJBks": "buzos-costera", "BxbTqFF0": "jumil-cafe", "dYfMznSc": "
 let actSlug=null,actName="";
 const actGet=s=>{try{return JSON.parse(localStorage.getItem("mx-act-"+s)||"null")}catch(_){return null}};
 const b64u=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
-const appUrl=s=>{const a=actGet(s);return "../c/"+s+"/"+(a&&a.a?"?a="+a.a:"")};
+const appUrl=s=>{const a=actGet(s);return "../c/"+s+"/?r=1"+(a&&a.a?"&a="+a.a:"")};
 const cardUrl=s=>{const a=actGet(s);return "../tarjeta/?s="+s+(a&&a.a?"&a="+a.a:"")};
 function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 ${n+4} ${n+4}" shape-rendering="crispEdges" style="width:230px;height:230px;display:block;margin:10px auto;background:#fff;border-radius:14px"><path d="${d}" fill="#000"/></svg>`}
@@ -228,7 +228,7 @@ function publishAct(){const t=L();const wa=($("aW").value||"").replace(/\D/g,"")
  $("sheetBox").innerHTML=`<h3 class="ah">${t.sendT}</h3><div class="an">${esc(actName)}</div><p class="as">${t.sendS}</p>${qrSvg(url)}
   ${w?`<a class="share" style="display:block;text-decoration:none;margin-top:8px;background:#25d366;color:#063117" target="_blank" href="https://api.whatsapp.com/send?phone=${w}&text=${encodeURIComponent(msg)}">${t.sendB}</a>`:`<p class="as">${t.sendNoWa}</p>`}
   <a class="close" style="display:block;text-align:center;text-decoration:none;margin-top:8px" href="../tarjeta/?s=${actSlug}&a=${a}">${t.cardB}</a>
-  <a class="close" style="display:block;text-align:center;text-decoration:none;margin-top:8px" href="../c/${actSlug}/?a=${a}">${t.aSee} →</a>
+  <a class="close" style="display:block;text-align:center;text-decoration:none;margin-top:8px" href="../c/${actSlug}/?r=1&a=${a}">${t.aSee} →</a>
   <button class="close" id="copyL" data-u="${url}" style="display:block;width:100%;margin-top:8px">${t.copyL}</button>
   <button class="close" id="closeSheet">${t.close}</button>`;
  render();
