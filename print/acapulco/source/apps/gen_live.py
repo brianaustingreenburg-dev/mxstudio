@@ -21,6 +21,8 @@ for n,name in enumerate(names,1):
     if not os.path.exists(o+'config.json'):
         json.dump({"whatsapp":"","wifi":None,"waiter":True,"carryout":False,"reservations":False},open(o+'config.json','w'))
     url=f'https://go.myjefetech.app/acapulco/c/{slug}/'
+    sigc=[it for c in d['menu'] for it in c['items'] if it.get('img')][:4]
+    json.dump({"name":d['name'],"color":d['color'],"tagline":d['tagline'],"address":d['address'],"phone":L['phone'],"hours":L['hours'],"cover":"img/cover.jpg","top":[it['name'] for it in sigc]},open(o+'card.json','w'),ensure_ascii=False)
     q=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,border=0,box_size=10);q.add_data(url);q.make(fit=True)
     b=io.BytesIO();q.make_image(image_factory=qrcode.image.svg.SvgPathImage).save(b);qs=b.getvalue().decode();qs=qs[qs.index('<svg'):]
     # back: most popular dishes
