@@ -30,6 +30,15 @@ RR={"types":R['types'],"routes":[
  {"num":3,"title":"Costa Azul","title_en":"Costa Azul","span":"Costera y calles de Costa Azul","span_en":"Costera & Costa Azul streets","desc":"Costa Azul: muchos restaurantes juntos en la Costera y calles de atrás. Se puede caminar.","desc_en":"Costa Azul: many restaurants close together on the Costera and side streets. Walkable.","bring":br,"bring_en":br_en,"stops":B1},
  {"num":4,"title":"Icacos → Las Brisas","title_en":"Icacos → Las Brisas","span":"Zona Dorada y Escénica","span_en":"Golden Zone & Scenic road","desc":"Restaurantes finos de Icacos y con vista en Las Brisas. Mejor de 4 a 6 pm.","desc_en":"Upscale places in Icacos and the view restaurants in Las Brisas. Best 4–6 pm.","bring":br,"bring_en":br_en,"stops":B2},
  {"num":5,"title":"Diamante → Barra Vieja","title_en":"Diamante → Barra Vieja","span":"Puerto Marqués · Bulevar de las Naciones · Barra Vieja","span_en":"Puerto Marqués · Blvd. de las Naciones · Barra Vieja","desc":"Puerto Marqués, Punta Diamante y el Bulevar, y al final Barra Vieja. Necesitas coche; ve en la mañana.","desc_en":"Puerto Marqués, Punta Diamante and the Boulevard, ending at Barra Vieja. You need a car; go in the morning.","bring":br,"bring_en":br_en,"stops":C}]}
+ORDER=["Costa Azul","Magallanes → Condesa","Caleta → Centro → Hornos","Diamante → Barra Vieja","Icacos → Las Brisas"]
+WHY={"Costa Azul":("⭐ #1 para vender: la más llena de lugares listos y se camina.","⭐ #1 to sell: the most ready places and walkable."),
+ "Magallanes → Condesa":("⭐ #2: zona turística con mucho movimiento, todo cerca.","⭐ #2: busy tourist strip, all close together."),
+ "Caleta → Centro → Hornos":("#3: dueños que atienden en persona; estaciona y camina.","#3: owners on site; park and walk."),
+ "Diamante → Barra Vieja":("#4: buenos restaurantes pero lejos entre sí; necesitas coche.","#4: good restaurants but far apart; you need a car."),
+ "Icacos → Las Brisas":("#5: los más finos; más difícil hablar con el dueño.","#5: the most upscale; harder to reach the owner.")}
+RR['routes'].sort(key=lambda r:ORDER.index(r['title']))
+for i,r in enumerate(RR['routes'],1):
+    r['num']=i;w=WHY[r['title']];r['desc']=w[0]+' '+r['desc'];r['desc_en']=w[1]+' '+r['desc_en']
 for i,r in enumerate(pend_routes,1):r['num']=i
 PP={"types":R['types'],"routes":pend_routes}
 t=open('rutas-template.html').read()
