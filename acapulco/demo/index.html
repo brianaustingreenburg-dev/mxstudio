@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Demo · MX Studio</title>
+<meta name="description" content="App demo por MX Studio">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Demo · MX Studio">
+<meta property="og:description" content="App demo por MX Studio">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Demo MX">
+<style>
+:root{--c:#000000;--bg:#faf6f0;--card:#fff;--line:#ece3d8;--ink:#1d1715;--muted:#776a63;--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.4;font-size:16px;padding-bottom:calc(96px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.hero{position:relative;min-height:230px;background:var(--c);color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+.hero img.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.05) 35%,rgba(0,0,0,.72))}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:44px}
+.topbar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:0;right:0}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 16px}
+.demo{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#f3d9a8;font-weight:800;font-size:11px;letter-spacing:.08em;padding:8px 12px;border-radius:999px;text-decoration:none;border:1px solid rgba(243,217,168,.35)}
+.pop{margin-top:18px}
+.pop h2{font-size:19px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 8px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.pc{flex:0 0 62%;max-width:240px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 6px 18px rgba(40,25,15,.08)}
+.pc img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f1e8dc}
+.pc .pb{padding:10px 12px 12px}
+.pc b{display:block;font-size:15px;line-height:1.2;min-height:36px}
+.pc .row{padding-top:6px}
+.lang{display:flex;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:3px}
+.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:7px 13px;border-radius:999px;color:rgba(255,255,255,.75)}
+.lang button[aria-pressed=true]{background:#fff;color:var(--ink)}
+.id{display:flex;gap:12px;align-items:center}
+.logo{width:64px;height:64px;border-radius:18px;background:#fff;object-fit:cover;flex:0 0 auto;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.logo.txt{display:grid;place-items:center;font-weight:800;font-size:24px;color:var(--c)}
+h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.tag{font-size:14px;opacity:.92;margin-top:3px;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:-26px 0 6px;position:relative;z-index:3}
+.q{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;background:var(--card);border-radius:16px;padding:12px 6px;box-shadow:0 6px 18px rgba(40,25,15,.12);font-weight:800;font-size:13.5px}
+.q i{display:block;font-style:normal;font-size:22px;margin-bottom:3px}
+.info{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;font-size:14.5px;display:grid;gap:8px}
+.info div{display:flex;gap:10px}
+.info b{flex:0 0 22px;text-align:center}
+.cats{position:sticky;top:0;z-index:5;background:rgba(250,246,240,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:16px -16px 0;padding:10px 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.cats::-webkit-scrollbar{display:none}
+.cat{all:unset;cursor:pointer;white-space:nowrap;font-weight:800;font-size:14px;padding:9px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.cat.on{background:var(--c);color:#fff;border-color:transparent}
+.sec{font-size:19px;font-weight:800;margin:22px 0 10px;scroll-margin-top:70px}
+.item{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;margin-bottom:10px}
+.item img{width:92px;height:92px;border-radius:14px;object-fit:cover;flex:0 0 auto;background:#f1e8dc}
+.it{flex:1;min-width:0;display:flex;flex-direction:column}
+.it b{font-size:16px;line-height:1.2}
+.it small{color:var(--muted);font-size:13.5px;margin-top:3px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px;gap:8px}
+.price{font-weight:800;font-size:16px;color:var(--c)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{all:unset;cursor:pointer;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:19px;background:var(--c);color:#fff}
+.qty button.m{background:#f0e6da;color:var(--ink)}
+.qty span{min-width:14px;text-align:center;font-weight:800}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(250,246,240,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.bar .wrap{padding:0;display:flex;gap:8px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font-weight:800;font-size:14px;padding:14px 8px;border-radius:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-wa{background:var(--wa);color:#063117}
+.b-c{background:var(--c);color:#fff;flex:1.6}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:20}
+.sheet.on{display:flex}
+.box{width:100%;max-width:560px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+.box h3{font-size:19px;font-weight:800;margin-bottom:10px}
+.box label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:10px 0 4px}
+.box input,.box select,.box textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;background:#fff}
+.box .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;margin:10px 0 4px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+.seg button{all:unset;cursor:pointer;text-align:center;padding:11px;border-radius:12px;border:1.5px solid var(--line);font-weight:700}
+.seg button.on{border-color:var(--c);background:var(--c);color:#fff}
+.acts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:14px}
+.btn.g{background:#f0e6da;color:var(--ink)}
+.empty{color:var(--muted);text-align:center;padding:30px}
+.inst{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:22px}
+.inst h3{font-size:17px;font-weight:800}
+.inst p{color:var(--muted);font-size:13.5px;margin-top:2px}
+.os{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0 10px}
+.os button{all:unset;cursor:pointer;text-align:center;padding:10px;border-radius:12px;border:1.5px solid var(--line);font-weight:800;font-size:14px}
+.os button.on{background:var(--c);border-color:var(--c);color:#fff}
+.steps{list-style:none;counter-reset:s;display:grid;gap:8px}
+.steps li{counter-increment:s;display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
+.steps li:before{content:counter(s);flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f0e6da;color:var(--ink)}
+.ibtn{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;padding:13px;border-radius:14px;background:var(--c);color:#fff;font-weight:800}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span id="demoPill"></span><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div>
+<header class="hero" id="hero"></header>
+<div class="wrap">
+  <div class="quick" id="quick"></div>
+  <div class="info" id="info"></div>
+  <section class="pop" id="pop"></section>
+  <nav class="cats" id="cats"></nav>
+  <main id="menu"></main>
+  <section class="inst" id="inst"></section>
+  <p class="foot" id="foot">App por MX Studio ✝ · Acapulco</p>
+</div>
+<div class="bar"><div class="wrap" id="bar"></div></div>
+<div class="sheet" id="sheet"><div class="box" id="box"></div></div>
+<script>
+const D=(function(){const X={"B": [{"id": "v-NiJBks", "n": "Buzos Costera", "k": "mar", "c": "#0f6e8c", "a": "Av costera Miguel Alemán S/n Hornos sin numero, Horn…", "r": 1}, {"id": "BxbTqFF0", "n": "Jumil Café y Cocina", "k": "cafe", "c": "#6b3e22", "a": "Av Costera Miguel Alemán 256-Loc 4 A, Hornos", "r": 1}, {"id": "dYfMznSc", "n": "El Amigo Miguel", "k": "mar", "c": "#b5642f", "a": "Av Costera Miguel Alemán s/n, Hornos", "r": 1}, {"id": "7HyHo9q0", "n": "Punto 55", "k": "res", "c": "#b03a48", "a": "Av Costera Miguel Alemán 1632-Int. B4, Fracc Magalla…", "r": 1}, {"id": "4w1_MDvw", "n": "Emilia Café", "k": "cafe", "c": "#8a5a35", "a": "Israel local 4, Fracc Magallanes", "r": 1}, {"id": "rswgt_uo", "n": "Café al Mar", "k": "res", "c": "#c48a1a", "a": "Plaza Marbella, Av Costera Miguel Alemán SN-Local 28", "r": 1}, {"id": "qA2KOq8I", "n": "Terraza Buffet", "k": "res", "c": "#7a3b1d", "a": "Av Costera Miguel Alemán no. 8 - 9-8 - 9, Deportivo", "r": 1}, {"id": "NNNPUPd4", "n": "Narciso", "k": "cafe", "c": "#4e342e", "a": "Av Costera Miguel Alemán 58, Fracc Costa Azul", "r": 1}, {"id": "7twWZVZc", "n": "Kassandra Beach House", "k": "bar", "c": "#4a2a6a", "a": "Centro Comercial Marbella, Av Costera Miguel Alemán …", "r": 2}, {"id": "jVz_dd_4", "n": "Baby Lobster", "k": "bar", "c": "#1d1715", "a": "Av Costera Miguel Alemán 109, La Condesa", "r": 2}, {"id": "iblARx4g", "n": "Antigua Acapulco", "k": "res", "c": "#2d6a4f", "a": "Costera Miguel Alemán, Fracc. Condesa", "r": 2}, {"id": "2BSbDq1I", "n": "Baby'O Acapulco", "k": "bar", "c": "#6a1b4d", "a": "Av Costera Miguel Alemán 22, Costa Azul", "r": 2}, {"id": "Iewv9J8I", "n": "Ronin 22 Acapulco", "k": "bar", "c": "#2b2d6a", "a": "Escénica 22, Guitarron", "r": 2}, {"id": "FcpbDXFk", "n": "Don Camarón", "k": "mar", "c": "#1d7a6a", "a": "Blvrd Cabo Marqués 1007, Punta Diamante", "r": 3}, {"id": "aTeeDAB4", "n": "La Casa del Mar", "k": "mar", "c": "#c2502f", "a": "Miguel Alemán, Puerto Marqués", "r": 3}, {"id": "NC6TYDe4", "n": "Celeste Beach House", "k": "mar", "c": "#0b5d7a", "a": "P.º del Club 7, Brisas del Marqués", "r": 3}, {"id": "bVsCQkbE", "n": "Mary de Revolcadero", "k": "mar", "c": "#a0522d", "a": "Revolcadero s/n, El Pueblito del Revolcadero", "r": 3}, {"id": "5pUK-bVI", "n": "Mariscos El Sirenito", "k": "mar", "c": "#127a8a", "a": "Cam. Viejo 1, Granjas del Marqués", "r": 3}, {"id": "fJj-Ug_o", "n": "Paititi del Mar", "k": "mar", "c": "#9c3d2b", "a": "Ignacio Zaragoza 6, La Poza", "r": 3}, {"id": "JMY3GMzM", "n": "Café Acapulco Caféba", "k": "cafe", "c": "#a0673a", "a": "Blvd. de las Naciones 70, La Poza", "r": 3}, {"id": "__eQuxs8", "n": "Zabesu Barra Vieja", "k": "mar", "c": "#0f6e8c", "a": "Carretera Acapulco - Barra Vieja No. 229, San Andrés", "r": 3}, {"id": "dE3m8bK4", "n": "Cira La Morena 1", "k": "mar", "c": "#b5642f", "a": "Domicilio Conocido s /n Barra Vieja", "r": 3}, {"id": "0e4m4HMk", "n": "Mariscos Catamarán", "k": "mar", "c": "#1d7a6a", "a": "Av Costera Miguel Alemán 215, Las Playas", "r": 4}, {"id": "66cxVA6Y", "n": "The Cauldron Wizard's Coffee", "k": "cafe", "c": "#5d4037", "a": "Av. Hidalgo 20, Zona Urbana 49", "r": 4}, {"id": "Jlg2pi-E", "n": "La Casa de los Abuelos", "k": "res", "c": "#8f2d56", "a": "Plaza Álvarez 6, Centro", "r": 4}, {"id": "uJ4Hteq8", "n": "Café Wadi", "k": "cafe", "c": "#7b4a2a", "a": "Francisco Javier Mina s/n, Centro", "r": 4}, {"id": "zsIVGnis", "n": "Restaurant El Tío Markos", "k": "mar", "c": "#c2502f", "a": "AV FZA AEREA LT 21 PLAYA PIE CUESTA MN 56, PLAYAS", "r": 4}, {"id": "muOGnk2A", "n": "ALTAMAR restaurante y jardín", "k": "mar", "c": "#0b5d7a", "a": "avenida fuerza aérea, Playa Pie de la Cuesta", "r": 4}, {"id": "JfpbSzOw", "n": "Tres Marías Restaurante", "k": "mar", "c": "#a0522d", "a": "Pie de La Cuesta - Barra de Coyuca 109, Pie de la Cu…", "r": 4}, {"id": "kKSUWH7I", "n": "La Choza de la Freed", "k": "mar", "c": "#127a8a", "a": "Av fuerza aérea militar 403 Av Fuerza aerea militar,…", "r": 4}], "M": {"mar": {"cover": "img/cover-mariscos.jpg", "tag": {"es": "Mariscos frescos en Acapulco", "en": "Fresh seafood in Acapulco"}, "delivery": true, "menu": [{"cat": {"es": "Ceviches y cocteles", "en": "Ceviches & cocktails"}, "items": [{"name": {"es": "Ceviche de pescado", "en": "Fish ceviche"}, "desc": {"es": "Limón, cebolla morada, cilantro y aguacate", "en": "Lime, red onion, cilantro and avocado"}, "price": "180", "img": "img/m-ceviche.jpg"}, {"name": {"es": "Aguachile verde", "en": "Green shrimp aguachile"}, "desc": {"es": "Camarón, pepino, chile serrano", "en": "Shrimp, cucumber, serrano chili"}, "price": "220", "img": "img/m-aguachile.jpg"}, {"name": {"es": "Coctel de camarón", "en": "Shrimp cocktail"}, "desc": {"es": "Con aguacate y galletas saladas", "en": "With avocado and crackers"}, "price": "190", "img": "img/m-coctel.jpg"}]}, {"cat": {"es": "Del mar", "en": "From the sea"}, "items": [{"name": {"es": "Pescado a la talla", "en": "Pescado a la talla"}, "desc": {"es": "Rojo y verde, para 2 · tortillas y salsas", "en": "Red & green, for 2 · tortillas and salsas"}, "price": "420", "img": "img/m-talla.jpg"}, {"name": {"es": "Camarones al mojo de ajo", "en": "Garlic butter shrimp"}, "desc": {"es": "Con arroz y ensalada", "en": "With rice and salad"}, "price": "260", "img": "img/m-camarones.jpg"}, {"name": {"es": "Tacos de pescado", "en": "Fish tacos"}, "desc": {"es": "Tres tacos estilo Baja", "en": "Three Baja-style tacos"}, "price": "150", "img": "img/m-tacos.jpg"}]}, {"cat": {"es": "Bebidas", "en": "Drinks"}, "items": [{"name": {"es": "Agua de coco", "en": "Coconut water"}, "desc": {"es": "Natural, recién abierto", "en": "Fresh, just opened"}, "price": "70", "img": "img/m-coco.jpg"}, {"name": {"es": "Limonada con hierbabuena", "en": "Mint limeade"}, "desc": {"es": "", "en": ""}, "price": "55", "img": "img/m-limonada.jpg"}, {"name": {"es": "Margarita", "en": "Margarita"}, "desc": {"es": "Limón o mango", "en": "Lime or mango"}, "price": "120", "img": "img/b-margarita.jpg"}]}]}, "res": {"cover": "img/cover-restaurante.jpg", "tag": {"es": "Cocina mexicana con sabor de Acapulco", "en": "Mexican food with Acapulco flavor"}, "delivery": true, "menu": [{"cat": {"es": "Para empezar", "en": "Starters"}, "items": [{"name": {"es": "Guacamole en molcajete", "en": "Molcajete guacamole"}, "desc": {"es": "Con totopos recién hechos", "en": "With fresh tortilla chips"}, "price": "140", "img": "img/r-guacamole.jpg"}]}, {"cat": {"es": "Platos fuertes", "en": "Main dishes"}, "items": [{"name": {"es": "Pozole verde guerrerense", "en": "Guerrero green pozole"}, "desc": {"es": "Jueves de pozole todo el día", "en": "Pozole Thursday all day"}, "price": "160", "img": "img/r-pozole.jpg"}, {"name": {"es": "Tacos al pastor", "en": "Tacos al pastor"}, "desc": {"es": "Cuatro tacos con piña", "en": "Four tacos with pineapple"}, "price": "120", "img": "img/r-pastor.jpg"}, {"name": {"es": "Enchiladas de mole", "en": "Mole enchiladas"}, "desc": {"es": "Con arroz y frijoles", "en": "With rice and beans"}, "price": "175", "img": "img/r-enchiladas.jpg"}, {"name": {"es": "Chile relleno", "en": "Chile relleno"}, "desc": {"es": "Poblano capeado con queso", "en": "Battered poblano with cheese"}, "price": "165", "img": "img/r-chilerelleno.jpg"}]}, {"cat": {"es": "Postres y bebidas", "en": "Desserts & drinks"}, "items": [{"name": {"es": "Flan napolitano", "en": "Mexican flan"}, "desc": {"es": "", "en": ""}, "price": "70", "img": "img/r-flan.jpg"}, {"name": {"es": "Margarita", "en": "Margarita"}, "desc": {"es": "", "en": ""}, "price": "120", "img": "img/b-margarita.jpg"}, {"name": {"es": "Limonada con hierbabuena", "en": "Mint limeade"}, "desc": {"es": "", "en": ""}, "price": "55", "img": "img/m-limonada.jpg"}]}]}, "cafe": {"cover": "img/cover-cafe.jpg", "tag": {"es": "Café, pan dulce y desayunos", "en": "Coffee, pastries and breakfast"}, "delivery": false, "menu": [{"cat": {"es": "Café", "en": "Coffee"}, "items": [{"name": {"es": "Capuchino", "en": "Cappuccino"}, "desc": {"es": "Con arte latte", "en": "With latte art"}, "price": "60", "img": "img/c-latte.jpg"}, {"name": {"es": "Café de olla", "en": "Café de olla"}, "desc": {"es": "Canela y piloncillo", "en": "Cinnamon and piloncillo"}, "price": "45", "img": "img/c-olla.jpg"}, {"name": {"es": "Frappé de caramelo", "en": "Caramel frappé"}, "desc": {"es": "", "en": ""}, "price": "75", "img": "img/c-frappe.jpg"}]}, {"cat": {"es": "Desayunos", "en": "Breakfast"}, "items": [{"name": {"es": "Chilaquiles verdes con huevo", "en": "Green chilaquiles with egg"}, "desc": {"es": "Con frijoles, crema y queso", "en": "With beans, cream and cheese"}, "price": "135", "img": "img/c-chilaquiles.jpg"}]}, {"cat": {"es": "Panadería y postres", "en": "Bakery & desserts"}, "items": [{"name": {"es": "Conchas y pan dulce", "en": "Conchas & pan dulce"}, "desc": {"es": "Recién horneado", "en": "Freshly baked"}, "price": "35", "img": "img/c-conchas.jpg"}, {"name": {"es": "Flan napolitano", "en": "Mexican flan"}, "desc": {"es": "", "en": ""}, "price": "70", "img": "img/r-flan.jpg"}]}]}, "bar": {"cover": "img/cover-bar.jpg", "tag": {"es": "Coctelería y noches en Acapulco", "en": "Cocktails and nights in Acapulco"}, "delivery": false, "carry": false, "menu": [{"cat": {"es": "Cocteles", "en": "Cocktails"}, "items": [{"name": {"es": "Margarita de mango con chamoy", "en": "Mango chamoy margarita"}, "desc": {"es": "", "en": ""}, "price": "160", "img": "img/b-mango.jpg"}, {"name": {"es": "Margarita clásica", "en": "Classic margarita"}, "desc": {"es": "", "en": ""}, "price": "140", "img": "img/b-margarita.jpg"}, {"name": {"es": "Michelada con camarón", "en": "Shrimp michelada"}, "desc": {"es": "", "en": ""}, "price": "150", "img": "img/b-michelada.jpg"}, {"name": {"es": "Mezcal · 3 copitas", "en": "Mezcal · 3 tasting cups"}, "desc": {"es": "Con naranja y sal de gusano", "en": "With orange and worm salt"}, "price": "260", "img": "img/b-mezcal.jpg"}]}, {"cat": {"es": "Botanas", "en": "Snacks"}, "items": [{"name": {"es": "Nachos supremos", "en": "Loaded nachos"}, "desc": {"es": "", "en": ""}, "price": "180", "img": "img/b-nachos.jpg"}, {"name": {"es": "Guacamole en molcajete", "en": "Molcajete guacamole"}, "desc": {"es": "", "en": ""}, "price": "140", "img": "img/r-guacamole.jpg"}]}]}}};const q=new URLSearchParams(location.search);const b=X.B.find(x=>x.id===q.get("id"))||X.B[0];const m=X.M[b.k];
+ return {slug:"demo-"+b.id,name:b.n,tagline:m.tag,color:b.c,logo:"",cover:m.cover,whatsapp:"527441930502",phone:"527441930502",address:b.a,map:"",hours:{es:"",en:""},
+ reservations:true,carryout:m.carry!==false,delivery:!!m.delivery,menu:m.menu,demo:true,back:"../rutas/"}})();
+const U={
+ es:{res:"Reservar",go:"Cómo llegar",call:"Llamar",hours:"Horario",addr:"Dirección",menu:"Menú",order:"Para llevar",cart:"Tu pedido",empty:"Agrega platillos del menú con el botón +",
+  name:"Tu nombre",time:"Hora para recoger",pick:"Recoger",deliv:"A domicilio",address:"Dirección de entrega",notes:"Notas (opcional)",send:"Enviar pedido por WhatsApp",cancel:"Cerrar",total:"Total",
+  rT:"Reservar mesa",people:"Personas",date:"Fecha",rtime:"Hora",rsend:"Enviar reserva por WhatsApp",today:"Hoy",
+  mOrder:(n,ls,t,how,extra,notes)=>`Hola ${D.name}, quiero un pedido ${how}:\n${ls}\nTotal: ${t}\nNombre: ${n}${extra}${notes?"\nNotas: "+notes:""}`,
+  mRes:(p,d,t,n)=>`Hola ${D.name}, quiero reservar una mesa para ${p} personas el ${d} a las ${t}.\nNombre: ${n}`,
+  howP:"para llevar",howD:"a domicilio",pickT:"\nHora para recoger: ",delA:"\nDirección: ",
+  pop:"⭐ Lo más pedido",demo:"DEMO · MX STUDIO",demoFoot:"Demo creada por MX Studio ✝ · Menú y fotos de ejemplo",
+  iT:"📲 Guarda esta app en tu teléfono",iP:"Ábrela desde tu pantalla de inicio, incluso sin internet.",iBtn:"Instalar ahora",
+  ios:["Abre esta página en <b>Safari</b>.","Toca el botón <b>Compartir</b> (cuadro con flecha ↑).","Elige <b>Agregar a inicio</b> y toca <b>Agregar</b>."],
+  and:["Abre esta página en <b>Chrome</b>.","Toca el menú <b>⋮</b> (arriba a la derecha).","Elige <b>Instalar app</b> o <b>Agregar a pantalla principal</b>."]},
+ en:{res:"Reserve",go:"Directions",call:"Call",hours:"Hours",addr:"Address",menu:"Menu",order:"Carry-out",cart:"Your order",empty:"Add dishes from the menu with the + button",
+  name:"Your name",time:"Pickup time",pick:"Pickup",deliv:"Delivery",address:"Delivery address",notes:"Notes (optional)",send:"Send order on WhatsApp",cancel:"Close",total:"Total",
+  rT:"Reserve a table",people:"People",date:"Date",rtime:"Time",rsend:"Send reservation on WhatsApp",today:"Today",
+  mOrder:(n,ls,t,how,extra,notes)=>`Hi ${D.name}, I'd like to order ${how}:\n${ls}\nTotal: ${t}\nName: ${n}${extra}${notes?"\nNotes: "+notes:""}`,
+  mRes:(p,d,t,n)=>`Hi ${D.name}, I'd like to reserve a table for ${p} people on ${d} at ${t}.\nName: ${n}`,
+  howP:"for pickup",howD:"for delivery",pickT:"\nPickup time: ",delA:"\nAddress: ",
+  pop:"⭐ Most popular",demo:"DEMO · MX STUDIO",demoFoot:"Demo by MX Studio ✝ · Sample menu and photos",
+  iT:"📲 Save this app to your phone",iP:"Open it from your home screen, even offline.",iBtn:"Install now",
+  ios:["Open this page in <b>Safari</b>.","Tap the <b>Share</b> button (square with ↑ arrow).","Choose <b>Add to Home Screen</b>, then tap <b>Add</b>."],
+  and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>."]}
+};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tx=o=>!o?"":typeof o==="string"?o:(lang==="en"&&o.en?o.en:(o.es||o.en||""));
+const money=n=>"$"+Number(n||0).toLocaleString("en-US");
+const KEY="app-"+(D.slug||"x");
+let lang="es",cart={},how="p",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
+const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;os="and";if(typeof render==="function")render()});
+try{lang=localStorage.getItem(KEY+"-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
+const items=()=>D.menu.flatMap((c,ci)=>c.items.map((it,ii)=>Object.assign({id:ci+"-"+ii},it)));
+const wa=t=>`https://api.whatsapp.com/send?phone=${D.whatsapp}&text=${encodeURIComponent(t)}`;
+const mapUrl=()=>D.map||("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(D.name+" "+(D.address||"")+" Acapulco"));
+function render(){
+ const u=U[lang];document.documentElement.lang=lang;
+ if(D.color){document.documentElement.style.setProperty("--c",D.color);const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=D.color}
+ $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
+ $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
+ const q=[];
+ if(D.reservations)q.push(`<button class="q" data-a="res"><i>📅</i>${u.res}</button>`);
+ q.push(`<a class="q" href="${esc(mapUrl())}" target="_blank" rel="noopener"><i>📍</i>${u.go}</a>`);
+ q.push(`<a class="q" href="tel:+${esc(D.phone||D.whatsapp)}"><i>📞</i>${u.call}</a>`);
+ if(!D.reservations)q.unshift(`<a class="q" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener"><i>💬</i>WhatsApp</a>`);
+ $("quick").innerHTML=q.slice(0,3).join("");
+ const inf=[];
+ if(tx(D.hours))inf.push(`<div><b>🕒</b><span><strong>${u.hours}:</strong> ${esc(tx(D.hours))}</span></div>`);
+ if(D.address)inf.push(`<div><b>📍</b><span>${esc(D.address)}</span></div>`);
+ $("info").innerHTML=inf.join("");$("info").style.display=inf.length?"":"none";
+ const popular=items().filter(it=>it.img).slice(0,6);
+ $("pop").style.display=popular.length>=3?"":"none";
+ $("pop").innerHTML=`<h2>${u.pop}</h2><div class="rail">${popular.map(it=>{const n=cart[it.id]||0;return `<div class="pc"><img src="${esc(it.img)}" alt="" loading="lazy"><div class="pb"><b>${esc(tx(it.name))}</b><div class="row"><span class="price">${it.price?money(it.price):""}</span>${D.carryout&&it.price?`<div class="qty">${n?`<button class="m" data-d="${it.id}">−</button><span>${n}</span>`:""}<button data-a="${it.id}">+</button></div>`:""}</div></div></div>`}).join("")}</div>`;
+ $("demoPill").innerHTML=D.demo?`<a class="demo" href="${esc(D.back||"#")}">${D.back?"← ":""}${u.demo}</a>`:"";
+ $("foot").textContent=D.demo?u.demoFoot:"App por MX Studio ✝ · Acapulco";
+ $("cats").innerHTML=D.menu.map((c,i)=>`<button class="cat" data-c="${i}">${esc(tx(c.cat))}</button>`).join("");
+ $("menu").innerHTML=D.menu.map((c,ci)=>`<h2 class="sec" id="c${ci}">${esc(tx(c.cat))}</h2>`+c.items.map((it,ii)=>{const id=ci+"-"+ii,n=cart[id]||0;
+  return `<div class="item">${it.img?`<img src="${esc(it.img)}" alt="" loading="lazy">`:""}<div class="it"><b>${esc(tx(it.name))}</b>${tx(it.desc)?`<small>${esc(tx(it.desc))}</small>`:""}
+  <div class="row"><span class="price">${it.price?money(it.price):""}</span>${D.carryout&&it.price?`<div class="qty">${n?`<button class="m" data-d="${id}">−</button><span>${n}</span>`:""}<button data-a="${id}">+</button></div>`:""}</div></div></div>`}).join("")).join("");
+ const cnt=Object.values(cart).reduce((a,b)=>a+b,0),tot=items().reduce((s,it)=>s+(cart[it.id]||0)*(+it.price||0),0);
+ const bb=[];
+ if(D.carryout)bb.push(`<button class="btn b-c" data-a="cart">🛍️ ${u.order}${cnt?` (${cnt}) · ${money(tot)}`:""}</button>`);
+ if(D.reservations)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
+ if(!bb.length)bb.push(`<a class="btn b-wa" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener">💬 WhatsApp</a>`);
+ $("bar").innerHTML=bb.join("");
+ $("inst").style.display=standalone?"none":"";
+ $("inst").innerHTML=`<h3>${u.iT}</h3><p>${u.iP}</p><div class="os"><button data-os="ios" class="${os==="ios"?"on":""}">iPhone</button><button data-os="and" class="${os==="and"?"on":""}">Android</button></div>
+  <ol class="steps">${u[os].map(s=>`<li><span>${s}</span></li>`).join("")}</ol>${os==="and"&&deferred?`<button class="ibtn" data-inst="1">${u.iBtn}</button>`:""}`;
+ document.title=D.name;
+}
+function openCart(){
+ const u=U[lang],its=items().filter(it=>cart[it.id]);
+ const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
+ $("box").innerHTML=`<h3>${u.cart}</h3>${its.length?its.map(it=>`<div class="line"><span>${cart[it.id]} × ${esc(tx(it.name))}</span><span>${money(cart[it.id]*(+it.price||0))}</span></div>`).join("")+`<div class="tot"><span>${u.total}</span><span>${money(tot)}</span></div>`:`<p class="empty">${u.empty}</p>`}
+ ${its.length?`${D.delivery?`<div class="seg"><button class="${how==="p"?"on":""}" data-how="p">${u.pick}</button><button class="${how==="d"?"on":""}" data-how="d">${u.deliv}</button></div>`:""}
+ <label>${u.name}</label><input id="fName" autocomplete="name">
+ ${how==="d"&&D.delivery?`<label>${u.address}</label><input id="fAddr" autocomplete="street-address">`:`<label>${u.time}</label><input id="fTime" type="time">`}
+ <label>${u.notes}</label><input id="fNotes">`:""}
+ <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button>${its.length?`<button class="btn b-wa" data-x="send">${u.send}</button>`:""}</div>`;
+ $("sheet").classList.add("on");
+}
+function openRes(){
+ const u=U[lang];const d=new Date().toISOString().slice(0,10);
+ $("box").innerHTML=`<h3>${u.rT}</h3><div class="two"><div><label>${u.people}</label><select id="rP">${[1,2,3,4,5,6,7,8,10,12,15,20].map(n=>`<option ${n===2?"selected":""}>${n}</option>`).join("")}</select></div><div><label>${u.rtime}</label><input id="rT" type="time" value="20:00"></div></div>
+ <label>${u.date}</label><input id="rD" type="date" value="${d}" min="${d}"><label>${u.name}</label><input id="rN" autocomplete="name">
+ <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button><button class="btn b-wa" data-x="rsend">${u.rsend}</button></div>`;
+ $("sheet").classList.add("on");
+}
+document.addEventListener("click",e=>{
+ const l=e.target.closest("#lang button");if(l){lang=l.dataset.l;try{localStorage.setItem(KEY+"-lang",lang)}catch(_){}render();return}
+ const o=e.target.closest("[data-os]");if(o){os=o.dataset.os;render();return}
+ if(e.target.closest("[data-inst]")&&deferred){deferred.prompt();deferred=null;render();return}
+ const c=e.target.closest(".cat");if(c){const el=$("c"+c.dataset.c);if(el)el.scrollIntoView({behavior:"smooth"});return}
+ const a=e.target.closest("[data-a]");
+ if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="cart")return openCart();cart[k]=(cart[k]||0)+1;render();return}
+ const d=e.target.closest("[data-d]");if(d){cart[d.dataset.d]--;if(!cart[d.dataset.d])delete cart[d.dataset.d];render();return}
+ const h=e.target.closest("[data-how]");if(h){how=h.dataset.how;openCart();return}
+ if(e.target.id==="sheet")return $("sheet").classList.remove("on");
+ const x=e.target.closest("[data-x]");if(!x)return;const u=U[lang];
+ if(x.dataset.x==="close")return $("sheet").classList.remove("on");
+ if(x.dataset.x==="send"){const its=items().filter(it=>cart[it.id]);const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
+  const ls=its.map(it=>`• ${cart[it.id]} × ${tx(it.name)} (${money(cart[it.id]*(+it.price||0))})`).join("\n");
+  const n=($("fName")||{}).value||"",del=how==="d"&&D.delivery;
+  const extra=del?u.delA+(($("fAddr")||{}).value||""):(($("fTime")||{}).value?u.pickT+$("fTime").value:"");
+  open(wa(u.mOrder(n,ls,money(tot),del?u.howD:u.howP,extra,($("fNotes")||{}).value||"")),"_blank");return}
+ if(x.dataset.x==="rsend"){const dt=$("rD").value?new Date($("rD").value+"T12:00").toLocaleDateString(lang==="es"?"es-MX":"en-US",{weekday:"long",day:"numeric",month:"long"}):"";
+  open(wa(u.mRes($("rP").value,dt,$("rT").value,$("rN").value)),"_blank");}
+});
+render();
+if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>

@@ -25,7 +25,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.05) 35%,rgba(0,0,0,.72))}
 .hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:44px}
 .topbar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:0;right:0}
-.topbar .wrap{display:flex;justify-content:flex-end;padding:0 16px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 16px}
+.demo{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#f3d9a8;font-weight:800;font-size:11px;letter-spacing:.08em;padding:8px 12px;border-radius:999px;text-decoration:none;border:1px solid rgba(243,217,168,.35)}
+.pop{margin-top:18px}
+.pop h2{font-size:19px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 8px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.pc{flex:0 0 62%;max-width:240px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 6px 18px rgba(40,25,15,.08)}
+.pc img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f1e8dc}
+.pc .pb{padding:10px 12px 12px}
+.pc b{display:block;font-size:15px;line-height:1.2;min-height:36px}
+.pc .row{padding-top:6px}
 .lang{display:flex;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:3px}
 .lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:7px 13px;border-radius:999px;color:rgba(255,255,255,.75)}
 .lang button[aria-pressed=true]{background:#fff;color:var(--ink)}
@@ -61,7 +71,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .bar .wrap{padding:0;display:flex;gap:8px}
 .btn{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font-weight:800;font-size:14px;padding:14px 8px;border-radius:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .b-wa{background:var(--wa);color:#063117}
-.b-c{background:var(--c);color:#fff}
+.b-c{background:var(--c);color:#fff;flex:1.6}
 .sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:20}
 .sheet.on{display:flex}
 .box{width:100%;max-width:560px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
@@ -90,15 +100,16 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div>
+<div class="topbar"><div class="wrap"><span id="demoPill"></span><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div>
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
   <div class="info" id="info"></div>
+  <section class="pop" id="pop"></section>
   <nav class="cats" id="cats"></nav>
   <main id="menu"></main>
   <section class="inst" id="inst"></section>
-  <p class="foot">App por MX Studio ✝ · Acapulco</p>
+  <p class="foot" id="foot">App por MX Studio ✝ · Acapulco</p>
 </div>
 <div class="bar"><div class="wrap" id="bar"></div></div>
 <div class="sheet" id="sheet"><div class="box" id="box"></div></div>
@@ -111,6 +122,7 @@ const U={
   mOrder:(n,ls,t,how,extra,notes)=>`Hola ${D.name}, quiero un pedido ${how}:\n${ls}\nTotal: ${t}\nNombre: ${n}${extra}${notes?"\nNotas: "+notes:""}`,
   mRes:(p,d,t,n)=>`Hola ${D.name}, quiero reservar una mesa para ${p} personas el ${d} a las ${t}.\nNombre: ${n}`,
   howP:"para llevar",howD:"a domicilio",pickT:"\nHora para recoger: ",delA:"\nDirección: ",
+  pop:"⭐ Lo más pedido",demo:"DEMO · MX STUDIO",demoFoot:"Demo creada por MX Studio ✝ · Menú y fotos de ejemplo",
   iT:"📲 Guarda esta app en tu teléfono",iP:"Ábrela desde tu pantalla de inicio, incluso sin internet.",iBtn:"Instalar ahora",
   ios:["Abre esta página en <b>Safari</b>.","Toca el botón <b>Compartir</b> (cuadro con flecha ↑).","Elige <b>Agregar a inicio</b> y toca <b>Agregar</b>."],
   and:["Abre esta página en <b>Chrome</b>.","Toca el menú <b>⋮</b> (arriba a la derecha).","Elige <b>Instalar app</b> o <b>Agregar a pantalla principal</b>."]},
@@ -120,6 +132,7 @@ const U={
   mOrder:(n,ls,t,how,extra,notes)=>`Hi ${D.name}, I'd like to order ${how}:\n${ls}\nTotal: ${t}\nName: ${n}${extra}${notes?"\nNotes: "+notes:""}`,
   mRes:(p,d,t,n)=>`Hi ${D.name}, I'd like to reserve a table for ${p} people on ${d} at ${t}.\nName: ${n}`,
   howP:"for pickup",howD:"for delivery",pickT:"\nPickup time: ",delA:"\nAddress: ",
+  pop:"⭐ Most popular",demo:"DEMO · MX STUDIO",demoFoot:"Demo by MX Studio ✝ · Sample menu and photos",
   iT:"📲 Save this app to your phone",iP:"Open it from your home screen, even offline.",iBtn:"Install now",
   ios:["Open this page in <b>Safari</b>.","Tap the <b>Share</b> button (square with ↑ arrow).","Choose <b>Add to Home Screen</b>, then tap <b>Add</b>."],
   and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>."]}
@@ -138,6 +151,7 @@ const wa=t=>`https://api.whatsapp.com/send?phone=${D.whatsapp}&text=${encodeURIC
 const mapUrl=()=>D.map||("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(D.name+" "+(D.address||"")+" Acapulco"));
 function render(){
  const u=U[lang];document.documentElement.lang=lang;
+ if(D.color){document.documentElement.style.setProperty("--c",D.color);const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=D.color}
  $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
  const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
  $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
@@ -151,6 +165,11 @@ function render(){
  if(tx(D.hours))inf.push(`<div><b>🕒</b><span><strong>${u.hours}:</strong> ${esc(tx(D.hours))}</span></div>`);
  if(D.address)inf.push(`<div><b>📍</b><span>${esc(D.address)}</span></div>`);
  $("info").innerHTML=inf.join("");$("info").style.display=inf.length?"":"none";
+ const popular=items().filter(it=>it.img).slice(0,6);
+ $("pop").style.display=popular.length>=3?"":"none";
+ $("pop").innerHTML=`<h2>${u.pop}</h2><div class="rail">${popular.map(it=>{const n=cart[it.id]||0;return `<div class="pc"><img src="${esc(it.img)}" alt="" loading="lazy"><div class="pb"><b>${esc(tx(it.name))}</b><div class="row"><span class="price">${it.price?money(it.price):""}</span>${D.carryout&&it.price?`<div class="qty">${n?`<button class="m" data-d="${it.id}">−</button><span>${n}</span>`:""}<button data-a="${it.id}">+</button></div>`:""}</div></div></div>`}).join("")}</div>`;
+ $("demoPill").innerHTML=D.demo?`<a class="demo" href="${esc(D.back||"#")}">${D.back?"← ":""}${u.demo}</a>`:"";
+ $("foot").textContent=D.demo?u.demoFoot:"App por MX Studio ✝ · Acapulco";
  $("cats").innerHTML=D.menu.map((c,i)=>`<button class="cat" data-c="${i}">${esc(tx(c.cat))}</button>`).join("");
  $("menu").innerHTML=D.menu.map((c,ci)=>`<h2 class="sec" id="c${ci}">${esc(tx(c.cat))}</h2>`+c.items.map((it,ii)=>{const id=ci+"-"+ii,n=cart[id]||0;
   return `<div class="item">${it.img?`<img src="${esc(it.img)}" alt="" loading="lazy">`:""}<div class="it"><b>${esc(tx(it.name))}</b>${tx(it.desc)?`<small>${esc(tx(it.desc))}</small>`:""}
