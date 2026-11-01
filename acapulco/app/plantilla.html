@@ -287,6 +287,9 @@ if(UA&&!D.demo){Object.assign(D,UA);if(UA.whatsapp&&!D.phone)D.phone=UA.whatsapp
  try{const m=document.querySelector('link[rel="manifest"]');if(m)fetch(m.href).then(r=>r.json()).then(j=>{j.start_url=location.href;j.scope=location.origin+location.pathname;j.icons=(j.icons||[]).map(i=>Object.assign({},i,{src:new URL(i.src,m.href).href}));m.href=URL.createObjectURL(new Blob([JSON.stringify(j)],{type:"application/json"}))}).catch(()=>{})}catch(_){}}
 else if(!D.demo){try{applyCfg(JSON.parse(localStorage.getItem(KEY+"-cfg")||"null"))}catch(_){}
  fetch("config.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(c){applyCfg(c);try{localStorage.setItem(KEY+"-cfg",JSON.stringify(c))}catch(_){}render()}}).catch(()=>{})}
+// live menu (edited from Rutas → ✏️ Editar menú) → menu.json
+if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if(Array.isArray(m)&&m.length)D.menu=m}catch(_){}
+ fetch("menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(m=>{if(Array.isArray(m)&&m.length){D.menu=m;try{localStorage.setItem(KEY+"-menu",JSON.stringify(m))}catch(_){}render()}}).catch(()=>{})}
 render();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){navigator.serviceWorker.register("../../sw.js").catch(()=>{})}
 </script>

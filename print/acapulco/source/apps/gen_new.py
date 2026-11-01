@@ -27,6 +27,7 @@ for f in sorted(glob.glob('/home/claude/routes/new/*.json')):
       "hours":d['hours'],"reservations":False,"carryout":False,"waiter":True,"delivery":k!='cafe',"menu":menu,"demo":False}
     h=fill(tpl,app).replace('<meta property="og:image"',f'<meta property="og:url" content="https://go.myjefetech.app/acapulco/c/{slug}/">\n<meta property="og:image"',1)
     open(o+'index.html','w').write(h);open(o+'manifest.json','w').write(manifest(app))
+    if not os.path.exists(o+'menu.json'):json.dump(app['menu'],open(o+'menu.json','w'),ensure_ascii=False)
     if not os.path.exists(o+'config.json'):json.dump({"whatsapp":"","wifi":None,"waiter":True,"carryout":False,"reservations":False},open(o+'config.json','w'))
     top=[it['name'] for c in menu for it in c['items'] if it['img']][:4]
     json.dump({"name":d['name'],"color":col,"tagline":d['tagline'],"address":d['address'],"phone":d.get('phone',''),"hours":d['hours'],"cover":"img/cover.jpg","top":top},open(o+'card.json','w'),ensure_ascii=False)

@@ -18,6 +18,7 @@ for n,name in enumerate(names,1):
     html=fill(tpl,d)
     html=html.replace('<meta property="og:image"',f'<meta property="og:url" content="https://go.myjefetech.app/acapulco/c/{slug}/">\n<meta property="og:image"',1)
     open(o+'index.html','w').write(html);open(o+'manifest.json','w').write(manifest(d))
+    if not os.path.exists(o+'menu.json'):json.dump(d['menu'],open(o+'menu.json','w'),ensure_ascii=False)
     if not os.path.exists(o+'config.json'):
         json.dump({"whatsapp":"","wifi":None,"waiter":True,"carryout":False,"reservations":False},open(o+'config.json','w'))
     url=f'https://go.myjefetech.app/acapulco/c/{slug}/'
