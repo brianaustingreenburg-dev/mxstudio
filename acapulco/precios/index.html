@@ -102,6 +102,10 @@ h1 span{color:var(--gold)}
 .ln span:last-child{font-weight:700;white-space:nowrap}
 .tt{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding:12px 0 2px}
 .ty{display:flex;justify-content:space-between;color:#776a63;font-size:14px}
+.pays{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pays button{all:unset;cursor:pointer;box-sizing:border-box;padding:12px;border-radius:14px;border:2px solid #e4d8ca;background:#fff}
+.pays b{display:block;font-size:15px}.pays small{display:block;color:#776a63;font-size:12px;margin-top:2px}
+.pays button.on{border-color:#25d366;background:#effaf3}
 .onote{font-size:12.5px;color:#776a63;margin:12px 0 4px}
 .oacts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:12px}
 .oacts button{all:unset;cursor:pointer;text-align:center;padding:14px;border-radius:14px;font-weight:800}
@@ -173,11 +177,12 @@ const T={
   tbT:"¿Cuántas mesas?",tbM:"Mesas:",tbS:"Tarjetas QR para mesas incluidas hasta 10 · +$25 por mesa extra (impresión aparte)",tbX:"mesas extra",xK:"Opcional",xH:"Agrega a tu app",xP:"Toca para ver tu total. Puedes agregarlos cuando quieras.",
   hK:"Negocios grandes",hH:"Hoteles y resorts",hT:"Cotización a tu medida",hS:"Guía del huésped, servicio a cuarto y más. Escríbenos por WhatsApp.",
   fK:"Preguntas",fH:"Lo que nos preguntan",
-  faq:[["¿Qué es la tarjeta QR?","Una tarjeta bilingüe para tus mesas o mostrador con dos códigos: uno abre tu app con el menú y otro conecta a tu WiFi sin escribir la contraseña. Incluye hasta 10 mesas, cada una con su número."],["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas el soporte una vez al año y puedes cancelar cuando quieras."],["¿Y si cancelo antes?","Te devolvemos los meses que no usaste del soporte anual. Ejemplo: si cancelas a los 4 meses, te regresamos 8 meses ($666). La instalación no es reembolsable."],["¿Cómo pago?","Toca “Comprar ahora”: te enviamos tu link de pago por WhatsApp. Pagas la instalación y el primer año al empezar; después, $999 una vez al año. Con tarjeta, débito o transferencia."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
+  faq:[["¿Qué es la tarjeta QR?","Una tarjeta bilingüe para tus mesas o mostrador con dos códigos: uno abre tu app con el menú y otro conecta a tu WiFi sin escribir la contraseña. Incluye hasta 10 mesas, cada una con su número."],["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas el soporte una vez al año y puedes cancelar cuando quieras."],["¿Y si cancelo antes?","Te devolvemos los meses que no usaste del soporte anual. Ejemplo: si cancelas a los 4 meses, te regresamos 8 meses ($666). La instalación no es reembolsable."],["¿Cómo pago?","Toca “Comprar ahora” y elige: efectivo (sin comisiones) o link de pago Wise con tarjeta. Pagas la instalación y el primer año al empezar; después, $999 una vez al año."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
   today:"HOY (con 1er año)",monthly:"CADA AÑO",cta:"Comprar ahora",per:"/año",
   oT:"Tu orden",oNo:"Orden",oDate:"Fecha",oBiz:"Nombre de tu negocio",oName:"Tu nombre",oBase:"App MX Studio · instalación",oSup:"Soporte 1er año (cambios ilimitados)",oTables:"Mesas",oExtraT:"Mesas extra",oToday:"Total a pagar hoy",oYear:"Después, cada año",
-  oNote:"Al confirmar se abre WhatsApp con tu orden. MX Studio te responde con la bienvenida y tu link de pago (tarjeta, débito o transferencia).",oSend:"Confirmar y enviar por WhatsApp",oCancel:"Cerrar",oNeed:"Escribe el nombre de tu negocio",
-  msg:(o)=>`🧾 *ORDEN ${o.no} · MX Studio ✝*\nFecha: ${o.date}\nNegocio: ${o.biz}${o.name?"\nNombre: "+o.name:""}\n\n${o.lines}\n\n*Total a pagar hoy: ${o.today}*\nDespués, cada año: ${o.year}\n\nHola MX Studio, quiero mi app. Por favor envíenme mi link de pago. 🙌`},
+  pay:"Forma de pago",payC:"💵 Efectivo",payCs:"Sin comisiones · pagas en persona",payW:"🌎 Link de pago Wise",payWs:"Tarjeta · te enviamos el link",payCm:"Efectivo (sin comisiones)",payWm:"Link de pago Wise",
+  oNote:"Al confirmar se abre WhatsApp con tu orden. MX Studio te responde con la bienvenida y los detalles de tu pago.",oSend:"Confirmar y enviar por WhatsApp",oCancel:"Cerrar",oNeed:"Escribe el nombre de tu negocio",
+  msg:(o)=>`🧾 *ORDEN ${o.no} · MX Studio ✝*\nFecha: ${o.date}\nNegocio: ${o.biz}${o.name?"\nNombre: "+o.name:""}\n\n${o.lines}\n\n*Total a pagar hoy: ${o.today}*\nDespués, cada año: ${o.year}\nForma de pago: ${o.pay}\n\nHola MX Studio, quiero mi app. 🙌`},
  en:{kicker:"Prices · Acapulco",h1a:"Your bilingual app",h1b:"support $999 a year",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
   pname:"MX Studio app",ptitle:"Everything your business needs",once:"setup · one time",month:"support per year",was:"was $1,490",promo:"🌴 Slow-season price: support 33% off",
   feats:[["🔳","Printed QR card: one QR opens your app, one connects to WiFi"],["📖","Menu with photos and prices"],["📍","Location and directions"],["💬","WhatsApp reservations and carry-out"],["⭐","Google review button"],["🌎","Spanish and English, one tap"]],
@@ -185,11 +190,12 @@ const T={
   tbT:"How many tables?",tbM:"Tables:",tbS:"QR table cards included up to 10 · +$25 per extra table (printing not included)",tbX:"extra tables",xK:"Optional",xH:"Add to your app",xP:"Tap to see your total. Add them anytime.",
   hK:"Bigger businesses",hH:"Hotels & resorts",hT:"Custom quote",hS:"Guest guide, room service and more. Message us on WhatsApp.",
   fK:"Questions",fH:"What people ask us",
-  faq:[["What is the QR card?","A bilingual card for your tables or counter with two codes: one opens your app with the menu, the other connects to your WiFi without typing the password. Includes up to 10 tables, each with its number."],["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay support once a year and can cancel anytime."],["What if I cancel early?","We refund the unused months of your yearly support. Example: cancel after 4 months and we refund 8 months ($666). Setup is non-refundable."],["How do I pay?","Tap “Buy now” and we send your payment link on WhatsApp. Pay setup and the first year when you start; after that, $999 once a year. By card, debit or bank transfer."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
+  faq:[["What is the QR card?","A bilingual card for your tables or counter with two codes: one opens your app with the menu, the other connects to your WiFi without typing the password. Includes up to 10 tables, each with its number."],["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay support once a year and can cancel anytime."],["What if I cancel early?","We refund the unused months of your yearly support. Example: cancel after 4 months and we refund 8 months ($666). Setup is non-refundable."],["How do I pay?","Tap “Buy now” and choose: cash (no fees) or a Wise payment link by card. Pay setup and the first year when you start; after that, $999 once a year."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
   today:"TODAY (with 1st year)",monthly:"EACH YEAR",cta:"Buy now",per:"/yr",
   oT:"Your order",oNo:"Order",oDate:"Date",oBiz:"Your business name",oName:"Your name",oBase:"MX Studio app · setup",oSup:"1st year support (unlimited updates)",oTables:"Tables",oExtraT:"Extra tables",oToday:"Total due today",oYear:"Then, each year",
-  oNote:"Confirming opens WhatsApp with your order. MX Studio replies with a welcome and your payment link (card, debit or transfer).",oSend:"Confirm and send on WhatsApp",oCancel:"Close",oNeed:"Enter your business name",
-  msg:(o)=>`🧾 *ORDER ${o.no} · MX Studio ✝*\nDate: ${o.date}\nBusiness: ${o.biz}${o.name?"\nName: "+o.name:""}\n\n${o.lines}\n\n*Total due today: ${o.today}*\nThen, each year: ${o.year}\n\nHi MX Studio, I want my app. Please send me my payment link. 🙌`}
+  pay:"Payment method",payC:"💵 Cash",payCs:"No fees · pay in person",payW:"🌎 Wise payment link",payWs:"Card · we send you the link",payCm:"Cash (no fees)",payWm:"Wise payment link",
+  oNote:"Confirming opens WhatsApp with your order. MX Studio replies with a welcome and your payment details.",oSend:"Confirm and send on WhatsApp",oCancel:"Close",oNeed:"Enter your business name",
+  msg:(o)=>`🧾 *ORDER ${o.no} · MX Studio ✝*\nDate: ${o.date}\nBusiness: ${o.biz}${o.name?"\nName: "+o.name:""}\n\n${o.lines}\n\n*Total due today: ${o.today}*\nThen, each year: ${o.year}\nPayment: ${o.pay}\n\nHi MX Studio, I want my app. 🙌`}
 };
 const $=id=>document.getElementById(id);
 let lang="es",sel={};
@@ -212,7 +218,7 @@ function render(){
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
 document.querySelector(".step").onclick=e=>{const b=e.target.closest("[data-tb]");if(!b)return;tables=Math.min(200,Math.max(1,tables+(+b.dataset.tb)));render()};
 $("extras").onclick=e=>{const b=e.target.closest(".x");if(!b)return;sel[b.dataset.k]=!sel[b.dataset.k];render()};
-let orderNo=null;
+let orderNo=null,pay="c";
 function orderLines(){const u=T[lang];const L=[[u.oBase,fmt(BASE.once)],[u.oSup,fmt(BASE.year)],[u.oTables+" ("+tables+")",lang==="es"?"10 incluidas":"10 included"]];
  if(extraT())L.push([u.oExtraT+" ("+(tables-10)+")",fmt(extraT())]);
  X.filter(x=>sel[x.k]).forEach(x=>{L.push([x[lang][0],fmt(x.once)+(x.year?" + "+fmt(x.year)+u.per:"")])});return L}
@@ -223,17 +229,19 @@ function openOrder(){const u=T[lang],t=totals();if(!orderNo)orderNo="MX-"+Date.n
  <label>${u.oBiz}</label><input id="oBiz" value="${biz.replace(/"/g,"&quot;")}" autocomplete="organization"><label>${u.oName}</label><input id="oName" value="${nm.replace(/"/g,"&quot;")}" autocomplete="name">
  <div style="margin-top:12px">${orderLines().map(l=>`<div class="ln"><span>${l[0]}</span><span>${l[1]}</span></div>`).join("")}</div>
  <div class="tt"><span>${u.oToday}</span><span>${fmt(t.o)}</span></div><div class="ty"><span>${u.oYear}</span><span>${fmt(t.m)}</span></div>
+ <label>${u.pay}</label><div class="pays"><button data-pay="c" class="${pay==="c"?"on":""}"><b>${u.payC}</b><small>${u.payCs}</small></button><button data-pay="w" class="${pay==="w"?"on":""}"><b>${u.payW}</b><small>${u.payWs}</small></button></div>
  <p class="onote">${u.oNote}</p><div class="oacts"><button class="ob1" id="oClose">${u.oCancel}</button><button class="ob2" id="oSend">${u.oSend}</button></div>`;
  $("sheet").classList.add("on");d&&0}
 $("cta").onclick=openOrder;
 $("sheet").onclick=e=>{const u=T[lang];
+ const pb=e.target.closest("[data-pay]");if(pb){pay=pb.dataset.pay;document.querySelectorAll(".pays button").forEach(b=>b.classList.toggle("on",b.dataset.pay===pay));return}
  if(e.target.id==="sheet"||e.target.id==="oClose"){$("sheet").classList.remove("on");return}
  if(e.target.id!=="oSend")return;const biz=$("oBiz").value.trim(),nm=$("oName").value.trim();
  if(!biz){$("oBiz").focus();$("oBiz").placeholder=u.oNeed;$("oBiz").style.borderColor="#e0703a";return}
  try{localStorage.setItem("mx-order-biz",biz);localStorage.setItem("mx-order-name",nm)}catch(_){}
  const t=totals();const lines=orderLines().map(l=>`• ${l[0]}: ${l[1]}`).join("\n");
  const d=new Date().toLocaleDateString(lang==="es"?"es-MX":"en-US",{day:"numeric",month:"long",year:"numeric"});
- open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),year:fmt(t.m)+u.per}))}`,"_blank")};
+ open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:u.payWm}))}`,"_blank")};
 const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
 render();
 if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
