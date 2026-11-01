@@ -107,6 +107,7 @@ h1 span{color:var(--gold)}
 .ptog button[aria-pressed=true]{color:#05301a}
 .ptog .pk{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:#25d366;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .25s ease}
 .ptog.w .pk{transform:translateX(100%)}
+.olang{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .psub{font-size:13px;color:#776a63;text-align:center;margin-top:6px}
 .onote{font-size:12.5px;color:#776a63;margin:12px 0 4px}
 .oacts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:12px}
@@ -224,18 +225,20 @@ let orderNo=null,pay="c";
 function orderLines(){const u=T[lang];const L=[[u.oBase,fmt(BASE.once)],[u.oSup,fmt(BASE.year)],[u.oTables+" ("+tables+")",lang==="es"?"10 incluidas":"10 included"]];
  if(extraT())L.push([u.oExtraT+" ("+(tables-10)+")",fmt(extraT())]);
  X.filter(x=>sel[x.k]).forEach(x=>{L.push([x[lang][0],fmt(x.once)+(x.year?" + "+fmt(x.year)+u.per:"")])});return L}
-function openOrder(){const u=T[lang],t=totals();if(!orderNo)orderNo="MX-"+Date.now().toString(36).slice(-5).toUpperCase();
+function openOrder(keep){const u=T[lang],t=totals();if(!orderNo)orderNo="MX-"+Date.now().toString(36).slice(-5).toUpperCase();
  const d=new Date().toLocaleDateString(lang==="es"?"es-MX":"en-US",{day:"numeric",month:"long",year:"numeric"});
  let biz="",nm="";try{biz=localStorage.getItem("mx-order-biz")||"";nm=localStorage.getItem("mx-order-name")||""}catch(_){}
- $("box").innerHTML=`<div class="inv-h"><div><b>🧾 ${u.oT}</b><small>${u.oNo} ${orderNo} · ${u.oDate}: ${d}</small></div><div class="brand2">MX STUDIO ✝</div></div>
+ if(keep){biz=keep[0];nm=keep[1]}
+ $("box").innerHTML=`<div class="inv-h"><div><b>🧾 ${u.oT}</b><small>${u.oNo} ${orderNo} · ${u.oDate}: ${d}</small></div><div class="olang"><div class="lang ${lang==="en"?"en":""}" id="olang"><span class="knob"></span><button data-ol="es" aria-pressed="${lang==="es"}">ES</button><button data-ol="en" aria-pressed="${lang==="en"}">EN</button></div><div class="brand2">MX STUDIO ✝</div></div></div>
  <label>${u.oBiz}</label><input id="oBiz" value="${biz.replace(/"/g,"&quot;")}" autocomplete="organization"><label>${u.oName}</label><input id="oName" value="${nm.replace(/"/g,"&quot;")}" autocomplete="name">
  <div style="margin-top:12px">${orderLines().map(l=>`<div class="ln"><span>${l[0]}</span><span>${l[1]}</span></div>`).join("")}</div>
  <div class="tt"><span>${u.oToday}</span><span>${fmt(t.o)}</span></div><div class="ty"><span>${u.oYear}</span><span>${fmt(t.m)}</span></div>
  <label>${u.pay}</label><div class="ptog ${pay==="w"?"w":""}" id="ptog"><span class="pk"></span><button data-pay="c" aria-pressed="${pay==="c"}">${u.payC}</button><button data-pay="w" aria-pressed="${pay==="w"}">${u.payW}</button></div><p class="psub" id="psub">${pay==="c"?u.payCs:u.payWs}</p>
  <p class="onote">${u.oNote}</p><div class="oacts"><button class="ob1" id="oClose">${u.oCancel}</button><button class="ob2" id="oSend">${u.oSend}</button></div>`;
  $("sheet").classList.add("on");d&&0}
-$("cta").onclick=openOrder;
+$("cta").onclick=()=>openOrder();
 $("sheet").onclick=e=>{const u=T[lang];
+ const ol=e.target.closest("[data-ol]");if(ol){const k=[$("oBiz").value,$("oName").value];lang=ol.dataset.ol;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render();openOrder(k);return}
  const pb=e.target.closest("[data-pay]");if(pb){pay=pb.dataset.pay;$("ptog").classList.toggle("w",pay==="w");$("ptog").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.pay===pay));$("psub").textContent=pay==="c"?u.payCs:u.payWs;return}
  if(e.target.id==="sheet"||e.target.id==="oClose"){$("sheet").classList.remove("on");return}
  if(e.target.id!=="oSend")return;const biz=$("oBiz").value.trim(),nm=$("oName").value.trim();
