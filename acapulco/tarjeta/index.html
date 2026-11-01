@@ -78,7 +78,7 @@ async function go(){
  document.documentElement.style.setProperty("--c",d.color);$("tt").textContent="Tarjeta 5×7 · "+d.name;$("ts").textContent=A?"Con su WhatsApp y WiFi ✓":"Sin activar · not activated";
  document.title="Tarjeta "+d.name;
  const cover="../c/"+slug+"/"+d.cover,top=(d.top||[]).map((n,i)=>`<div class="hl"><span>${i+1}</span><div><b>${esc(n.es)}</b><i>${esc(n.en)}</i></div></div>`).join("");
- const wifi=c.n?`<div class="wf"><b>WiFi:</b> ${esc(c.n)}${c.p?` · <b>Clave / Password:</b> ${esc(c.p)}`:""}</div>`:"";
+ const wifi="";
  const tel=c.w?("+"+c.w).replace(/^\+52(\d{3})(\d{3})(\d{4})$/,"+52 $1 $2 $3"):d.phone;
  $("pages").innerHTML=`<div class="page">${marks()}<div class="side f"><div class="ph" style="background-image:url('${cover}')"></div><div class="nm"><h1>${esc(d.name)}</h1><p>${esc(d.tagline.es)} · ${esc(d.tagline.en)}</p></div><div class="band"></div><div class="qrw">${qrSvg(url)}</div>
   <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div><div class="ft">APP POR MX STUDIO ✝ · ACAPULCO</div></div></div>
