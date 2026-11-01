@@ -1,0 +1,303 @@
+{
+ "name": "Restaurante Nuevo Gusto",
+ "slug": "restaurante-nuevo-gusto",
+ "area": "Costa Azul",
+ "place_id": "ChIJH_u-585ZyoURjMKtJvmIe_8",
+ "lat": 16.8476164,
+ "lng": -99.8493896,
+ "address": "Teniente Mateo F. Maury 19, Fracc. Costa Azul",
+ "phone": "+52 744 481 0846",
+ "hours": {
+  "es": "Lun–Dom 8:00–13:00",
+  "en": "Mon–Sun 8am–1pm"
+ },
+ "rating": 4.5,
+ "reviews": 366,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "breakfast",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930049204-restaurante-nuevo-gusto"
+ ],
+ "tagline": {
+  "es": "Desayunos completos y jugos naturales",
+  "en": "Hearty breakfasts and fresh juices"
+ },
+ "specialty": "Classic Acapulco breakfast spot: breakfast packages, chilaquiles, waffles and fresh juices",
+ "signature": [
+  "Paquete 5 especial Nuevo Gusto",
+  "Chilaquiles con arrachera",
+  "Waffles Nuevo Gusto",
+  "Ensalada Paraíso"
+ ],
+ "photo_notes": {
+  "cover": "Airy family breakfast restaurant with white tablecloths, ceiling fans and a sunny open dining room.",
+  "s1": "Breakfast platter with grilled skirt steak, chilaquiles, two fried eggs, bacon and refried beans.",
+  "s2": "Chilaquiles in red salsa topped with sliced arrachera, cream and crumbled cheese.",
+  "s3": "Waffles with eggs, sautéed spinach, crispy bacon and fresh strawberries.",
+  "s4": "Mixed-greens salad with blueberries, pear slices, peanuts and grilled chicken."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Paquetes",
+    "en": "Breakfast Packages"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Paquete 2 chilaquiles o enchiladas",
+      "en": "Package 2: Chilaquiles or Enchiladas"
+     },
+     "desc": {
+      "es": "Con huevo o pollo, crema, queso y frijoles",
+      "en": "With egg or chicken, cream, cheese, beans"
+     },
+     "price": "267"
+    },
+    {
+     "name": {
+      "es": "Paquete 4 tampiqueña",
+      "en": "Package 4: Tampiqueña"
+     },
+     "desc": {
+      "es": "Carne, guacamole y enchiladas de mole",
+      "en": "Beef, guacamole and mole enchiladas"
+     },
+     "price": "335"
+    },
+    {
+     "name": {
+      "es": "Paquete 5 especial Nuevo Gusto",
+      "en": "Package 5: Nuevo Gusto Special"
+     },
+     "desc": {
+      "es": "Arrachera, chilaquiles, huevos y tocino",
+      "en": "Skirt steak, chilaquiles, eggs, bacon"
+     },
+     "price": "384"
+    },
+    {
+     "name": {
+      "es": "Desayuno continental",
+      "en": "Continental Breakfast"
+     },
+     "desc": {
+      "es": "Avena o hot cakes con café o té",
+      "en": "Oatmeal or pancakes with coffee or tea"
+     },
+     "price": "148"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Chilaquiles y Enchiladas",
+    "en": "Chilaquiles & Enchiladas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles con arrachera",
+      "en": "Chilaquiles with Arrachera"
+     },
+     "desc": {
+      "es": "Salsa roja o verde con arrachera",
+      "en": "Red or green salsa with skirt steak"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles con cecina",
+      "en": "Chilaquiles with Cecina"
+     },
+     "desc": {
+      "es": "Salsa roja o verde con cecina",
+      "en": "Red or green salsa with cured beef"
+     },
+     "price": "236"
+    },
+    {
+     "name": {
+      "es": "Suizas",
+      "en": "Swiss Enchiladas"
+     },
+     "desc": {
+      "es": "Enchiladas, enfrijoladas o chilaquiles",
+      "en": "Enchiladas, enfrijoladas or chilaquiles"
+     },
+     "price": "198"
+    },
+    {
+     "name": {
+      "es": "Enmoladas",
+      "en": "Enmoladas"
+     },
+     "desc": {
+      "es": "Tres enchiladas bañadas en mole",
+      "en": "Three enchiladas topped with mole"
+     },
+     "price": "161"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Huevos y Omelettes",
+    "en": "Eggs & Omelettes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Nuevo Gusto",
+      "en": "Nuevo Gusto Omelette"
+     },
+     "desc": {
+      "es": "Arrachera, champiñones y queso",
+      "en": "Skirt steak, mushrooms and cheese"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Requesón con espinacas",
+      "en": "Ricotta & Spinach Omelette"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "148"
+    },
+    {
+     "name": {
+      "es": "Omelet saludable (tres claras)",
+      "en": "Healthy Egg-White Omelette"
+     },
+     "desc": {
+      "es": "Claras con verduras y aguacate",
+      "en": "Egg whites with veggies and avocado"
+     },
+     "price": "136"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hot Cakes y Waffles",
+    "en": "Pancakes & Waffles"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Waffles Nuevo Gusto",
+      "en": "Nuevo Gusto Waffles"
+     },
+     "desc": {
+      "es": "Con huevo, espinaca, tocino y fresa",
+      "en": "With egg, spinach, bacon, strawberry"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "Waffles con plátano y fresas",
+      "en": "Banana & Strawberry Waffles"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "167"
+    },
+    {
+     "name": {
+      "es": "Pan francés",
+      "en": "French Toast"
+     },
+     "desc": {
+      "es": "Con ensalada de espinaca y cajeta",
+      "en": "With spinach salad and cajeta"
+     },
+     "price": "162"
+    },
+    {
+     "name": {
+      "es": "Con jamón, huevo o tocino",
+      "en": "Pancakes with Ham, Egg or Bacon"
+     },
+     "desc": {
+      "es": "Tres hot cakes",
+      "en": "Three pancakes"
+     },
+     "price": "192"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Ensaladas y Jugos",
+    "en": "Salads & Juices"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ensalada Paraíso",
+      "en": "Paradise Salad"
+     },
+     "desc": {
+      "es": "Mixta con moras, pera, cacahuate y pollo",
+      "en": "Greens, blueberries, pear, peanuts, chicken"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "Ensalada Nuevo Gusto",
+      "en": "Nuevo Gusto Salad"
+     },
+     "desc": {
+      "es": "Fresas, nuez, manzana y panela",
+      "en": "Strawberries, walnuts, apple, panela"
+     },
+     "price": "198"
+    },
+    {
+     "name": {
+      "es": "Verde",
+      "en": "Green Juice"
+     },
+     "desc": {
+      "es": "Naranja, apio, piña y nopal",
+      "en": "Orange, celery, pineapple, nopal"
+     },
+     "price": "106"
+    },
+    {
+     "name": {
+      "es": "Mix",
+      "en": "Mix Juice"
+     },
+     "desc": {
+      "es": "Fresa, piña, plátano, mango y naranja",
+      "en": "Strawberry, pineapple, banana, mango"
+     },
+     "price": "124"
+    },
+    {
+     "name": {
+      "es": "Especial NG",
+      "en": "NG Special Smoothie"
+     },
+     "desc": {
+      "es": "Plátano, avena, fresa, almendra, coco",
+      "en": "Banana, oats, strawberry, almond, coconut"
+     },
+     "price": "118"
+    }
+   ]
+  }
+ ]
+}

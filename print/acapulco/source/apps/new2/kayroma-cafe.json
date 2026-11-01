@@ -1,0 +1,295 @@
+{
+ "name": "Kayroma Café",
+ "slug": "kayroma-cafe",
+ "area": "Costa Azul",
+ "place_id": "ChIJPySSHWlZyoURUGNwAKAONqw",
+ "lat": 16.8487402,
+ "lng": -99.8486734,
+ "address": "Horacio Nelson 191 Loc. 2, Fracc. Costa Azul",
+ "phone": "+52 744 467 0413",
+ "hours": {
+  "es": "Lun–Sáb 8:30–21:00, Dom 15:00–21:00",
+  "en": "Mon–Sat 8:30am–9pm, Sun 3pm–9pm"
+ },
+ "rating": 4.5,
+ "reviews": 431,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "specialty coffee",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923629647-kayroma-cafe"
+ ],
+ "tagline": {
+  "es": "Café de Guerrero, frappés y brunch",
+  "en": "Guerrero coffee, frappés and brunch"
+ },
+ "specialty": "Guerrero specialty coffee, signature frappés and all-day brunch plates",
+ "signature": [
+  "Salmon Toast",
+  "Pancakes Kayroma",
+  "Frappé moka",
+  "Waffle Frutos Rojos"
+ ],
+ "photo_notes": {
+  "cover": "Modern compact coffee shop with a marble espresso bar, pendant lights and a few cozy tables by the window.",
+  "s1": "Multigrain toast with cream cheese, smoked salmon and capers beside a small salad and berries.",
+  "s2": "Stack of three fluffy pancakes topped with red berries, whipped cream and berry compote.",
+  "s3": "Tall iced mocha frappé crowned with whipped cream and chocolate drizzle.",
+  "s4": "Golden waffle topped with strawberries, blueberries and whipped cream."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfasts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Salmon Toast",
+      "en": "Salmon Toast"
+     },
+     "desc": {
+      "es": "Pan multigrano, queso crema, salmón, alcaparras",
+      "en": "Multigrain, cream cheese, salmon, capers"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Toast Avo-Egg",
+      "en": "Avo-Egg Toast"
+     },
+     "desc": {
+      "es": "Aguacate y huevo al gusto",
+      "en": "Avocado and eggs your way"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Pancakes Kayroma",
+      "en": "Kayroma Pancakes"
+     },
+     "desc": {
+      "es": "Frutos rojos, crema batida y compota",
+      "en": "Berries, whipped cream and compote"
+     },
+     "price": "179"
+    },
+    {
+     "name": {
+      "es": "Pancakes Tocino y Huevo",
+      "en": "Bacon & Egg Pancakes"
+     },
+     "desc": {
+      "es": "Con huevo, tocino y miel maple",
+      "en": "With egg, bacon and maple syrup"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Pan frances",
+      "en": "French Toast"
+     },
+     "desc": {
+      "es": "Brioche, frosting de queso y frutos rojos",
+      "en": "Brioche, cream cheese frosting, berries"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles con Arrachera",
+      "en": "Chilaquiles with Arrachera"
+     },
+     "desc": {
+      "es": "Verdes o rojos con tiras de arrachera",
+      "en": "Green or red with skirt steak strips"
+     },
+     "price": "269"
+    },
+    {
+     "name": {
+      "es": "Enchiladas Suizas",
+      "en": "Swiss Enchiladas"
+     },
+     "desc": {
+      "es": "Salsa verde con habanero, gratinadas",
+      "en": "Green habanero sauce, au gratin"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Omelet de Espinacas y Champiñones",
+      "en": "Spinach & Mushroom Omelet"
+     },
+     "desc": {
+      "es": "Con ensalada, papas y frijoles",
+      "en": "With salad, potatoes and beans"
+     },
+     "price": "169"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Alimentos",
+    "en": "Light Bites"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Panini Español",
+      "en": "Spanish Panini"
+     },
+     "desc": {
+      "es": "Jamón, pepperoni y mezcla de quesos",
+      "en": "Ham, pepperoni and cheese blend"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Sándwich de Pechuga de Pollo",
+      "en": "Chicken Breast Sandwich"
+     },
+     "desc": {
+      "es": "Pan multigrano, pollo y manchego",
+      "en": "Multigrain, chicken and manchego"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Crepa",
+      "en": "Crepe"
+     },
+     "desc": {
+      "es": "Dulce o salada a elegir",
+      "en": "Sweet or savory, your choice"
+     },
+     "price": "129"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Barra de Café",
+    "en": "Coffee Bar"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Café americano",
+      "en": "Americano"
+     },
+     "desc": {
+      "es": "Café de especialidad de Guerrero",
+      "en": "Guerrero specialty coffee"
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Capuchino clásico",
+      "en": "Classic Cappuccino"
+     },
+     "desc": {
+      "es": "16 oz, tueste medio",
+      "en": "16 oz, medium roast"
+     },
+     "price": "79"
+    },
+    {
+     "name": {
+      "es": "Coco latte",
+      "en": "Coconut Latte"
+     },
+     "desc": {
+      "es": "Espresso con leche y coco",
+      "en": "Espresso, steamed milk and coconut"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Matcha Latte",
+      "en": "Matcha Latte"
+     },
+     "desc": {
+      "es": "16 oz",
+      "en": "16 oz"
+     },
+     "price": "90"
+    },
+    {
+     "name": {
+      "es": "Espresso Tónic",
+      "en": "Espresso Tonic"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Frappés y Postres",
+    "en": "Frappés & Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frappé moka",
+      "en": "Mocha Frappé"
+     },
+     "desc": {
+      "es": "Café, chocolate y crema batida",
+      "en": "Coffee, chocolate and whipped cream"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Frappé chai",
+      "en": "Chai Frappé"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Waffle Frutos Rojos",
+      "en": "Berry Waffle"
+     },
+     "desc": {
+      "es": "Frutos rojos, fresas y crema batida",
+      "en": "Berries, strawberries, whipped cream"
+     },
+     "price": "159"
+    },
+    {
+     "name": {
+      "es": "Bísquet de nutella",
+      "en": "Nutella Biscuit"
+     },
+     "desc": {
+      "es": "Avellana, plátano y fresas",
+      "en": "Hazelnut, banana and strawberries"
+     },
+     "price": "65"
+    }
+   ]
+  }
+ ]
+}

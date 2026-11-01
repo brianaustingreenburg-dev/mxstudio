@@ -1,0 +1,303 @@
+{
+ "name": "Sushi Point",
+ "slug": "sushi-point-costa-azul",
+ "area": "Costa Azul",
+ "place_id": "ChIJHfG4WtBZyoURa7IwnJPj1fc",
+ "lat": 16.8539966,
+ "lng": -99.847971,
+ "address": "Horacio Nelson 12, Fracc. Costa Azul",
+ "phone": "+52 744 190 2166",
+ "hours": {
+  "es": "Lun–Mié y Vie 14:00–22:00, Jue y Sáb 14:00–23:00, Dom 14:00–20:00",
+  "en": "Mon–Wed & Fri 2pm–10pm, Thu & Sat 2pm–11pm, Sun 2pm–8pm"
+ },
+ "rating": 4.6,
+ "reviews": 282,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "sushi",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923739425-sushi-point-aca"
+ ],
+ "tagline": {
+  "es": "Sushi creativo a dos calles de la Costera",
+  "en": "Creative sushi two blocks off the Costera"
+ },
+ "specialty": "Signature rolls, serranito sashimi and teppanyaki in Costa Azul",
+ "signature": [
+  "Dragon",
+  "Sashimi Serranito de Atún",
+  "Futomaki",
+  "Teppanyaki Mixto"
+ ],
+ "photo_notes": {
+  "cover": "Cozy modern Japanese restaurant with a sushi bar, warm wood, pendant lights and a few tables, tropical evening outside.",
+  "s1": "Dragon roll topped with mango and avocado slices drizzled with sweet eel sauce on a long slate plate.",
+  "s2": "Thin tuna sashimi slices with serrano chile rings in spicy soy on a white plate.",
+  "s3": "Large futomaki roll cut in thick pieces showing tuna, salmon, octopus and vegetables.",
+  "s4": "Sizzling mixed teppanyaki with ribeye, shrimp, chicken and grilled vegetables on an iron plate."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sashimi Serranito de Atún",
+      "en": "Tuna serranito sashimi"
+     },
+     "desc": {
+      "es": "Atún con chile serrano en soya picante",
+      "en": "Tuna with serrano chile in spicy soy"
+     },
+     "price": "338"
+    },
+    {
+     "name": {
+      "es": "Sahisimi Acapulquito",
+      "en": "Acapulquito sashimi"
+     },
+     "desc": {
+      "es": "Atún, pepino, cilantro y serrano",
+      "en": "Tuna, cucumber, cilantro and serrano"
+     },
+     "price": "338"
+    },
+    {
+     "name": {
+      "es": "Gyozas",
+      "en": "Gyozas"
+     },
+     "desc": {
+      "es": "Ravioles japoneses de cerdo (3 pzas)",
+      "en": "Pork dumplings (3 pcs)"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Edamanes Asados",
+      "en": "Grilled edamame"
+     },
+     "desc": {
+      "es": "Vainas de soya asadas con soya",
+      "en": "Grilled soybeans with soy sauce"
+     },
+     "price": "115"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos especiales",
+    "en": "Signature rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Dragon",
+      "en": "Dragon"
+     },
+     "desc": {
+      "es": "Kanikama, camarón y queso, mango y aguacate",
+      "en": "Crab, shrimp & cheese, mango, avocado"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Colors Point",
+      "en": "Colors Point"
+     },
+     "desc": {
+      "es": "Salmón, camarón, queso crema y aguacate",
+      "en": "Salmon, shrimp, cream cheese, avocado"
+     },
+     "price": "309"
+    },
+    {
+     "name": {
+      "es": "Futomaki",
+      "en": "Futomaki"
+     },
+     "desc": {
+      "es": "Atún, salmón, pulpo y vegetales",
+      "en": "Tuna, salmon, octopus and vegetables"
+     },
+     "price": "331"
+    },
+    {
+     "name": {
+      "es": "Mavericks",
+      "en": "Mavericks"
+     },
+     "desc": {
+      "es": "Camarón, queso y kanikama horneado",
+      "en": "Shrimp, cheese and baked crab"
+     },
+     "price": "324"
+    },
+    {
+     "name": {
+      "es": "Rainbow",
+      "en": "Rainbow"
+     },
+     "desc": {
+      "es": "Cubierto de atún, robalo y salmón",
+      "en": "Topped with tuna, sea bass and salmon"
+     },
+     "price": "288"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos clásicos",
+    "en": "Classic rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "California",
+      "en": "California"
+     },
+     "desc": {
+      "es": "Pepino, aguacate y camarón",
+      "en": "Cucumber, avocado and shrimp"
+     },
+     "price": "151"
+    },
+    {
+     "name": {
+      "es": "Filadelfia",
+      "en": "Philadelphia"
+     },
+     "desc": {
+      "es": "Queso crema y salmón",
+      "en": "Cream cheese and salmon"
+     },
+     "price": "151"
+    },
+    {
+     "name": {
+      "es": "Empanizado Gratinado",
+      "en": "Breaded au gratin roll"
+     },
+     "desc": {
+      "es": "Camarón, aguacate y queso gratinado",
+      "en": "Shrimp, avocado, melted cheese"
+     },
+     "price": "230"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Calientes",
+    "en": "Hot dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Teppanyaki Mixto",
+      "en": "Mixed teppanyaki"
+     },
+     "desc": {
+      "es": "Pollo, rib eye, camarón, robalo y verduras",
+      "en": "Chicken, ribeye, shrimp, sea bass, veg"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Teriyaki de Camarón",
+      "en": "Shrimp teriyaki"
+     },
+     "desc": {
+      "es": "Camarón y verduras en salsa dulce con arroz",
+      "en": "Shrimp & veg in teriyaki with rice"
+     },
+     "price": "379"
+    },
+    {
+     "name": {
+      "es": "Yakimeshi Mixto",
+      "en": "Mixed yakimeshi"
+     },
+     "desc": {
+      "es": "Arroz frito con res, pollo y camarón",
+      "en": "Fried rice with beef, chicken, shrimp"
+     },
+     "price": "201"
+    },
+    {
+     "name": {
+      "es": "Ramen",
+      "en": "Ramen"
+     },
+     "desc": {
+      "es": "Alga, huevo, carne, pasta y cebollín",
+      "en": "Seaweed, egg, beef, noodles, scallion"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Tempura Mixto",
+      "en": "Mixed tempura"
+     },
+     "desc": {
+      "es": "Robalo, camarón y verduras capeadas",
+      "en": "Battered sea bass, shrimp and veg"
+     },
+     "price": "371"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y bebidas",
+    "en": "Desserts & drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Volcán de Chocolate",
+      "en": "Chocolate lava cake"
+     },
+     "desc": {
+      "es": "Con helado",
+      "en": "With ice cream"
+     },
+     "price": "166"
+    },
+    {
+     "name": {
+      "es": "Tempura Helado",
+      "en": "Tempura ice cream"
+     },
+     "desc": {
+      "es": "Helado de vainilla en tempura",
+      "en": "Vanilla ice cream in tempura"
+     },
+     "price": "126"
+    },
+    {
+     "name": {
+      "es": "Limonada",
+      "en": "Lemonade"
+     },
+     "desc": {
+      "es": "Natural, 800 ml",
+      "en": "Fresh, 800 ml"
+     },
+     "price": "100"
+    }
+   ]
+  }
+ ]
+}

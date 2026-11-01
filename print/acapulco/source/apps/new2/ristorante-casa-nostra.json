@@ -1,0 +1,303 @@
+{
+ "name": "Ristorante Casa Nostra",
+ "slug": "ristorante-casa-nostra",
+ "area": "Diamante",
+ "place_id": "ChIJS1JKQ91byoURDkmIzT9xxps",
+ "lat": 16.7965275,
+ "lng": -99.80245839999999,
+ "address": "Circuito Ruiz Massieu 7, U.H. Luis Donaldo Colosio",
+ "phone": "+52 744 443 3461",
+ "hours": {
+  "es": "Lun–Dom 13:30–22:00",
+  "en": "Mon–Sun 1:30pm–10pm"
+ },
+ "rating": 4.4,
+ "reviews": 703,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "italian",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923570965-ristorante-casa-nostra-acapulco"
+ ],
+ "tagline": {
+  "es": "El italiano familiar de la zona Diamante",
+  "en": "Diamante's family Italian table"
+ },
+ "specialty": "Classic Italian pastas, 30 cm pizzas and charcoal-grilled meats",
+ "signature": [
+  "Spaguetti Frutti Di Mare",
+  "Pizza Toscana",
+  "Filete Mignon con Salsa de Funghi",
+  "Gamberi Coconut"
+ ],
+ "photo_notes": {
+  "cover": "Warm family-run Italian dining room with checkered accents, soft lights, wine bottles and a relaxed tropical evening feel.",
+  "s1": "Spaghetti with shrimp, mussels, clams, octopus and squid in tomato sauce.",
+  "s2": "Thin 30 cm pizza with tomato, mozzarella, fresh tomato, arugula, serrano ham and parmesan.",
+  "s3": "Charcoal-grilled filet mignon in creamy mushroom sauce with gratin potatoes.",
+  "s4": "Golden coconut shrimp with parmesan couscous and mango sauce."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Avocato Ripieno Di Gamberi",
+      "en": "Shrimp-stuffed avocado"
+     },
+     "desc": {
+      "es": "Aguacate con camarones en salsa rosa",
+      "en": "Avocado with shrimp in pink sauce"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Mozzarella All'a Caprese",
+      "en": "Caprese mozzarella"
+     },
+     "desc": {
+      "es": "Jitomate, albahaca y balsámico",
+      "en": "Tomato, basil and balsamic"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Calamari Fritti",
+      "en": "Fried calamari"
+     },
+     "desc": {
+      "es": "Con aderezo aurora",
+      "en": "With aurora dip"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Insalata Cesare con Pollo",
+      "en": "Chicken Caesar salad"
+     },
+     "desc": {
+      "es": "Lechuga orejona, parmesano y aderezo",
+      "en": "Romaine, parmesan and dressing"
+     },
+     "price": "190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas",
+    "en": "Pastas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Fettuccine Alfredo",
+      "en": "Fettuccine alfredo"
+     },
+     "desc": {
+      "es": "Crema y queso",
+      "en": "Cream and cheese"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Ravioli 4 Formaggi",
+      "en": "Four-cheese ravioli"
+     },
+     "desc": {
+      "es": "En crema de cuatro quesos",
+      "en": "In four-cheese cream"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Lasagña a la Bolognesa",
+      "en": "Lasagna bolognese"
+     },
+     "desc": {
+      "es": "Al horno con carne y queso gratinado",
+      "en": "Baked with meat and melted cheese"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Spaguetti Frutti Di Mare",
+      "en": "Seafood spaghetti"
+     },
+     "desc": {
+      "es": "Camarón, mejillón, almeja, pulpo, calamar",
+      "en": "Shrimp, mussels, clams, octopus, squid"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas (30 cm)",
+    "en": "Pizzas (30 cm)"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pizza Margherita Originale",
+      "en": "Margherita"
+     },
+     "desc": {
+      "es": "Mozzarella, jitomate fresco y albahaca",
+      "en": "Mozzarella, fresh tomato, basil"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Pizza Toscana",
+      "en": "Toscana pizza"
+     },
+     "desc": {
+      "es": "Arúgula, jamón serrano y parmesano",
+      "en": "Arugula, serrano ham, parmesan"
+     },
+     "price": "250"
+    },
+    {
+     "name": {
+      "es": "Pizza Quattro Stagioni",
+      "en": "Four seasons pizza"
+     },
+     "desc": {
+      "es": "Champiñón, aceituna, alcachofa, prosciutto",
+      "en": "Mushroom, olive, artichoke, prosciutto"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Pizza Di Manzo",
+      "en": "Beef pizza"
+     },
+     "desc": {
+      "es": "Arrachera, cebolla y pimientos asados",
+      "en": "Skirt steak, onion, roasted peppers"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Carnes y mariscos",
+    "en": "Meat & seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Filete Mignon con Salsa de Funghi",
+      "en": "Filet mignon, mushroom sauce"
+     },
+     "desc": {
+      "es": "250 g al carbón con papas gratinadas",
+      "en": "250 g charcoal-grilled, gratin potatoes"
+     },
+     "price": "355"
+    },
+    {
+     "name": {
+      "es": "Rib Eye",
+      "en": "Rib eye"
+     },
+     "desc": {
+      "es": "300 g con vegetales y puré",
+      "en": "300 g with vegetables and mash"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Pollo Alla Parmigiana",
+      "en": "Chicken parmigiana"
+     },
+     "desc": {
+      "es": "Empanizado, gratinado, con pasta",
+      "en": "Breaded, cheese-topped, with pasta"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Gamberi All'a Fradiavolo",
+      "en": "Shrimp fra diavolo"
+     },
+     "desc": {
+      "es": "Flameados con brandy y chile de árbol",
+      "en": "Flambéed with brandy and árbol chili"
+     },
+     "price": "330"
+    },
+    {
+     "name": {
+      "es": "Gamberi Coconut",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Con cous-cous y salsa de mango",
+      "en": "With couscous and mango sauce"
+     },
+     "price": "350"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y bebidas",
+    "en": "Desserts & drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pastel Tiramissu",
+      "en": "Tiramisu"
+     },
+     "desc": {
+      "es": "Mascarpone, licor de café y cocoa",
+      "en": "Mascarpone, coffee liqueur, cocoa"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Pay de Queso",
+      "en": "Cheesecake"
+     },
+     "desc": {
+      "es": "Base de galleta",
+      "en": "Cookie crust"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Sangría",
+      "en": "Sangria"
+     },
+     "desc": {
+      "es": "1 litro con vino tinto",
+      "en": "1 liter with red wine"
+     },
+     "price": "150"
+    }
+   ]
+  }
+ ]
+}

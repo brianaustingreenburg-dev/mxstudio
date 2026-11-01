@@ -1,0 +1,263 @@
+{
+ "name": "Crepas & Bobas",
+ "slug": "crepas-y-bobas",
+ "area": "Magallanes",
+ "place_id": "ChIJpYUE1btZyoURSK0c385aQg0",
+ "lat": 16.8614207,
+ "lng": -99.8816686,
+ "address": "Av. Costera Miguel Alemán 1632 Loc. C2, Fracc. Magallanes",
+ "phone": "+52 56 3513 9252",
+ "hours": {
+  "es": "Lun–Dom 10:00–21:30",
+  "en": "Mon–Sun 10am–9:30pm"
+ },
+ "rating": 4.8,
+ "reviews": 255,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "crêpes & bubble tea",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930281728-crepas-y-bobas",
+  "https://www.rappi.com.mx/acapulco/restaurantes/delivery/619783-crepas-y-bobas"
+ ],
+ "tagline": {
+  "es": "Crepas dulces y saladas con bubble tea",
+  "en": "Sweet and savory crêpes with bubble tea"
+ },
+ "specialty": "Made-to-order sweet and savory crêpes, boba frappés and shakes on the Costera",
+ "signature": [
+  "Crepas Gourmet",
+  "Crepas dulces, especiales",
+  "Bubble tea frappe",
+  "Malteada de Mazapán 16 Oz"
+ ],
+ "photo_notes": {
+  "cover": "Colorful, playful crêpe and boba café with pastel walls, neon accents and small round tables.",
+  "s1": "Folded gourmet crêpe filled with premium savory ingredients and melted cheese on a wooden board.",
+  "s2": "Sweet crêpe drizzled with chocolate, filled with strawberries, banana and powdered sugar.",
+  "s3": "Creamy pastel bubble tea frappé with dark tapioca pearls and a wide straw.",
+  "s4": "Mazapán milkshake topped with whipped cream in a tall glass."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Crepas",
+    "en": "Crêpes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Crepas dulces, clásicas",
+      "en": "Classic Sweet Crêpe"
+     },
+     "desc": {
+      "es": "Uno o dos ingredientes",
+      "en": "One or two fillings"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Crepas dulces, especiales",
+      "en": "Special Sweet Crêpe"
+     },
+     "desc": {
+      "es": "Combinación dulce de la casa",
+      "en": "House sweet combination"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Crepas saladas, clásicas",
+      "en": "Classic Savory Crêpe"
+     },
+     "desc": {
+      "es": "Elige dos ingredientes",
+      "en": "Choose two fillings"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Crepas saladas, especiales",
+      "en": "Special Savory Crêpe"
+     },
+     "desc": {
+      "es": "Ingredientes especiales a tu gusto",
+      "en": "Special fillings to taste"
+     },
+     "price": "205"
+    },
+    {
+     "name": {
+      "es": "Crepas Gourmet",
+      "en": "Gourmet Crêpe"
+     },
+     "desc": {
+      "es": "Con ingredientes premium",
+      "en": "With premium ingredients"
+     },
+     "price": "229"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bobas y Frappés",
+    "en": "Boba & Frappés"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frappe base leche",
+      "en": "Milk Frappé"
+     },
+     "desc": {
+      "es": "Con perlas de tapioca y chocolate",
+      "en": "With tapioca pearls and chocolate"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Frappe base yogurt",
+      "en": "Yogurt Frappé"
+     },
+     "desc": {
+      "es": "Sabor a elegir",
+      "en": "Flavor of your choice"
+     },
+     "price": "129"
+    },
+    {
+     "name": {
+      "es": "Bubble tea frio",
+      "en": "Iced Bubble Tea"
+     },
+     "desc": {
+      "es": "Té negro o verde con boba",
+      "en": "Black or green tea with boba"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Bubble tea frappe",
+      "en": "Bubble Tea Frappé"
+     },
+     "desc": {
+      "es": "Frappé de té con un shot de boba",
+      "en": "Tea frappé with a boba shot"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Smoothie frutal",
+      "en": "Fruit Smoothie"
+     },
+     "desc": {
+      "es": "Base agua con chamoy",
+      "en": "Water-based with chamoy"
+     },
+     "price": "95"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Malteadas",
+    "en": "Milkshakes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Malteada de Mazapán 16 Oz",
+      "en": "Mazapán Shake 16 oz"
+     },
+     "desc": {
+      "es": "Con crema batida",
+      "en": "With whipped cream"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Malteada de Galleta Oreo 16 Oz",
+      "en": "Oreo Shake 16 oz"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Malteada de Fresa 16 Oz",
+      "en": "Strawberry Shake 16 oz"
+     },
+     "desc": {
+      "es": "Con crema batida",
+      "en": "With whipped cream"
+     },
+     "price": "115"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Café",
+    "en": "Coffee"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Latte 16 Oz",
+      "en": "Latte 16 oz"
+     },
+     "desc": {
+      "es": "Espresso con leche",
+      "en": "Espresso with milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Mokaccino 16 Oz",
+      "en": "Mochaccino 16 oz"
+     },
+     "desc": {
+      "es": "Espresso con chocolate",
+      "en": "Espresso with chocolate"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Carlos V 16 Oz",
+      "en": "Carlos V Chocolate Coffee 16 oz"
+     },
+     "desc": {
+      "es": "Café de la casa con chocolate",
+      "en": "House coffee with chocolate"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Chocolate Abuelita 16 Oz",
+      "en": "Mexican Hot Chocolate 16 oz"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

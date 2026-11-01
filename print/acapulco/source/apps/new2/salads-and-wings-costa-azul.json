@@ -1,0 +1,273 @@
+{
+ "name": "Salads & Wings Terraza",
+ "slug": "salads-and-wings-costa-azul",
+ "area": "Costa Azul",
+ "place_id": "ChIJi31Fs1RZyoURjl8LPuXVnBo",
+ "lat": 16.847256,
+ "lng": -99.8496503,
+ "address": "Plaza Pabellón Costera, Av. Costera Miguel Alemán 3124, Costa Azul",
+ "phone": "+52 744 159 8378",
+ "hours": {
+  "es": "Lun–Jue 14:00–23:00 · Vie–Sáb 14:00–1:00 · Dom 14:00–0:00",
+  "en": "Mon–Thu 2pm–11pm · Fri–Sat 2pm–1am · Sun 2pm–12am"
+ },
+ "rating": 4.7,
+ "reviews": 2058,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "wings & burgers",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923655677-salads-y-wings"
+ ],
+ "tagline": {
+  "es": "Alitas, hamburguesas rockeras y cerveza helada con pantallas y música en vivo",
+  "en": "Wings, rock-named burgers and ice-cold beer with big screens and live music"
+ },
+ "specialty": "Gourmet wings and boneless in signature sauces, rock-themed burgers and tacos",
+ "signature": [
+  "Orden de 10 Alitas Gourmet",
+  "S&W Burguer Rock",
+  "Tacos Gobernador Sw",
+  "Camarones Roca"
+ ],
+ "photo_notes": {
+  "cover": "Lively upstairs sports-bar terrace with many TVs, string lights, wooden tables and a balcony over the Costera.",
+  "s1": "Basket of crispy glazed chicken wings in mango-habanero sauce with ranch dip, celery and carrot.",
+  "s2": "Tall double-patty burger with bacon, melted gouda and BBQ sauce next to golden fries.",
+  "s3": "Three flour-tortilla shrimp tacos gobernador with melted cheese, peppers and chipotle mayo.",
+  "s4": "Battered shrimp tossed in creamy rock sauce topped with chopped chives in a bowl."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Alitas y Boneless",
+    "en": "Wings & Boneless"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Orden de 10 Alitas",
+      "en": "10 Wings"
+     },
+     "desc": {
+      "es": "Dos salsas a elegir y dip ranch",
+      "en": "Two sauces of choice and ranch dip"
+     },
+     "price": "350"
+    },
+    {
+     "name": {
+      "es": "Orden de 10 Alitas Gourmet",
+      "en": "10 Gourmet Wings"
+     },
+     "desc": {
+      "es": "Salsas gourmet de la casa y ranch",
+      "en": "House gourmet sauces and ranch"
+     },
+     "price": "381"
+    },
+    {
+     "name": {
+      "es": "Orden de 5 Alitas",
+      "en": "5 Wings"
+     },
+     "desc": {
+      "es": "Una salsa a elegir y dip ranch",
+      "en": "One sauce of choice and ranch dip"
+     },
+     "price": "197"
+    },
+    {
+     "name": {
+      "es": "Orden de 10 Boneless",
+      "en": "10 Boneless"
+     },
+     "desc": {
+      "es": "Dos salsas a elegir y dip ranch",
+      "en": "Two sauces of choice and ranch dip"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Orden de 10 Boneless Gourmet",
+      "en": "10 Gourmet Boneless"
+     },
+     "desc": {
+      "es": "Salsas gourmet de la casa y ranch",
+      "en": "House gourmet sauces and ranch"
+     },
+     "price": "390"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hamburguesas",
+    "en": "Burgers"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "S&W Burguer Rock",
+      "en": "S&W Rock Burger"
+     },
+     "desc": {
+      "es": "Doble carne, tocino, gouda y BBQ",
+      "en": "Double patty, bacon, gouda and BBQ"
+     },
+     "price": "396"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa Madona",
+      "en": "Madonna Burger"
+     },
+     "desc": {
+      "es": "Arrachera, tocino, aguacate y aderezo serrano",
+      "en": "Skirt steak, bacon, avocado, serrano dressing"
+     },
+     "price": "396"
+    },
+    {
+     "name": {
+      "es": "la Master Of Puppets",
+      "en": "Master of Puppets"
+     },
+     "desc": {
+      "es": "Res con salchicha, choriqueso y chile toreado",
+      "en": "Beef, sausage, chorizo-cheese, toreado chile"
+     },
+     "price": "335"
+    },
+    {
+     "name": {
+      "es": "Californication",
+      "en": "Californication"
+     },
+     "desc": {
+      "es": "Cheddar, tocino y cebolla caramelizada",
+      "en": "Cheddar, bacon and caramelized onion"
+     },
+     "price": "304"
+    },
+    {
+     "name": {
+      "es": "Lost Acapulco",
+      "en": "Lost Acapulco"
+     },
+     "desc": {
+      "es": "Piña caramelizada y queso gouda",
+      "en": "Caramelized pineapple and gouda"
+     },
+     "price": "304"
+    },
+    {
+     "name": {
+      "es": "la Clasica Mercury",
+      "en": "Classic Mercury"
+     },
+     "desc": {
+      "es": "Tocino, queso americano y vegetales",
+      "en": "Bacon, American cheese and vegetables"
+     },
+     "price": "228"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos",
+    "en": "Tacos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos Gobernador Sw",
+      "en": "S&W Gobernador Tacos"
+     },
+     "desc": {
+      "es": "Camarón salteado gratinado, harina",
+      "en": "Sautéed shrimp with melted cheese, flour"
+     },
+     "price": "335"
+    },
+    {
+     "name": {
+      "es": "Tacos Salads&wings",
+      "en": "Salads & Wings Tacos"
+     },
+     "desc": {
+      "es": "Arrachera y chorizo con chicharrón",
+      "en": "Skirt steak and chorizo with chicharrón"
+     },
+     "price": "335"
+    },
+    {
+     "name": {
+      "es": "Tacos de Arrachera",
+      "en": "Skirt Steak Tacos"
+     },
+     "desc": {
+      "es": "Arrachera con queso gratinado y salsa verde",
+      "en": "Skirt steak, melted cheese, green salsa"
+     },
+     "price": "304"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones Roca",
+      "en": "Rock Shrimp"
+     },
+     "desc": {
+      "es": "Seis camarones capeados en salsa roca",
+      "en": "Six battered shrimp in rock sauce"
+     },
+     "price": "436"
+    },
+    {
+     "name": {
+      "es": "Papas California",
+      "en": "California Fries"
+     },
+     "desc": {
+      "es": "Cheddar, tocino y aderezo California",
+      "en": "Cheddar, bacon and California dressing"
+     },
+     "price": "243"
+    },
+    {
+     "name": {
+      "es": "Dedos de Queso",
+      "en": "Cheese Sticks"
+     },
+     "desc": {
+      "es": "Cinco dedos de mozzarella con chipotle",
+      "en": "Five mozzarella sticks with chipotle"
+     },
+     "price": "228"
+    },
+    {
+     "name": {
+      "es": "Ensalada S&W",
+      "en": "S&W Salad"
+     },
+     "desc": {
+      "es": "Lechugas con 3 boneless y ranch",
+      "en": "Greens with 3 boneless and ranch"
+     },
+     "price": "258"
+    }
+   ]
+  }
+ ]
+}

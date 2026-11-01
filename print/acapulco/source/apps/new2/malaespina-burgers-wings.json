@@ -1,0 +1,273 @@
+{
+ "name": "Malaespina Burgers & Wings",
+ "slug": "malaespina-burgers-wings",
+ "area": "Hornos",
+ "place_id": "ChIJJ2BrQHtZyoUR1BZmGLmlg3A",
+ "lat": 16.8567723,
+ "lng": -99.8956719,
+ "address": "Plaza Navegantes, Av. Capitán Malaspina 26 Loc 2, Hornos",
+ "phone": "+52 744 448 5238",
+ "hours": {
+  "es": "Dom–Jue 13:00–0:00 · Vie–Sáb 13:00–1:00",
+  "en": "Sun–Thu 1pm–12am · Fri–Sat 1pm–1am"
+ },
+ "rating": 4.4,
+ "reviews": 280,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "burgers & wings",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923726339-malaespina-burgers-y-wings"
+ ],
+ "tagline": {
+  "es": "Hamburguesas en pan artesanal, alitas grandes y malteadas",
+  "en": "Burgers on artisan buns, big wings and thick milkshakes"
+ },
+ "specialty": "Premium-beef burgers on artisan buns with wedge fries, wings and milkshakes",
+ "signature": [
+  "Jack jack",
+  "Malaburger",
+  "Alitas 10 Piezas",
+  "Malote"
+ ],
+ "photo_notes": {
+  "cover": "Urban burger joint with industrial lights, dark wood, chalkboard menu and a neon-lit counter.",
+  "s1": "Double beef burger with cheese crust, Monterey Jack and whiskey bacon jam, wedge fries.",
+  "s2": "Burger with American cheese, crispy onion rings and pickles on an artisan bun.",
+  "s3": "Ten large breaded wings tossed in sauce with ranch, celery and carrot sticks.",
+  "s4": "Warm corn cake topped with a scoop of vanilla ice cream and melted caramel."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Hamburguesas",
+    "en": "Burgers"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Jack jack",
+      "en": "Jack Jack"
+     },
+     "desc": {
+      "es": "Doble carne, costra de queso, jam de tocino",
+      "en": "Double patty, cheese crust, bacon jam"
+     },
+     "price": "319"
+    },
+    {
+     "name": {
+      "es": "Big mala",
+      "en": "Big Mala"
+     },
+     "desc": {
+      "es": "Doble carne, doble cheddar y aros de cebolla",
+      "en": "Double patty, double cheddar, onion rings"
+     },
+     "price": "305"
+    },
+    {
+     "name": {
+      "es": "Malaburger",
+      "en": "Malaburger"
+     },
+     "desc": {
+      "es": "160 g premium, queso americano y aros",
+      "en": "160 g premium beef, American cheese, rings"
+     },
+     "price": "259"
+    },
+    {
+     "name": {
+      "es": "Champion Burger",
+      "en": "Champion Burger"
+     },
+     "desc": {
+      "es": "Manchego, champiñones y cebolla salteados",
+      "en": "Manchego, sautéed mushrooms and onion"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Bbq Pork Burger",
+      "en": "BBQ Pork Burger"
+     },
+     "desc": {
+      "es": "Cerdo deshebrado BBQ con coleslaw",
+      "en": "Pulled BBQ pork with coleslaw"
+     },
+     "price": "249"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Alitas y Entradas",
+    "en": "Wings & Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Alitas 10 Piezas",
+      "en": "10 Wings"
+     },
+     "desc": {
+      "es": "Alitas grandes con salsa a elegir y ranch",
+      "en": "Large wings, sauce of choice and ranch"
+     },
+     "price": "329"
+    },
+    {
+     "name": {
+      "es": "Alitas 5 Piezas",
+      "en": "5 Wings"
+     },
+     "desc": {
+      "es": "Alitas grandes con salsa a elegir",
+      "en": "Large wings with sauce of choice"
+     },
+     "price": "189"
+    },
+    {
+     "name": {
+      "es": "Chilinachos",
+      "en": "Chili Nachos"
+     },
+     "desc": {
+      "es": "Totopos con carne, frijol y cheddar",
+      "en": "Chips with beef, beans and cheddar"
+     },
+     "price": "225"
+    },
+    {
+     "name": {
+      "es": "Macarrones con queso y tocino",
+      "en": "Bacon Mac & Cheese"
+     },
+     "desc": {
+      "es": "Macarrones con queso y tocino",
+      "en": "Macaroni and cheese with bacon"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Aros de cebolla",
+      "en": "Onion Rings"
+     },
+     "desc": {
+      "es": "Aros empanizados con dip ranch",
+      "en": "Breaded rings with ranch dip"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Dedos de queso",
+      "en": "Cheese Sticks"
+     },
+     "desc": {
+      "es": "Dedos de mozzarella rellenos",
+      "en": "Filled mozzarella sticks"
+     },
+     "price": "215"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hot Dogs",
+    "en": "Hot Dogs"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chili Dog",
+      "en": "Chili Dog"
+     },
+     "desc": {
+      "es": "Salchicha con chili, frijoles y cheddar",
+      "en": "Sausage with chili, beans and cheddar"
+     },
+     "price": "249"
+    },
+    {
+     "name": {
+      "es": "Hot Nacho",
+      "en": "Hot Nacho Dog"
+     },
+     "desc": {
+      "es": "Relish, Doritos Nacho y cheddar",
+      "en": "Relish, nacho chips and cheddar"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "Bacon Dog",
+      "en": "Bacon Dog"
+     },
+     "desc": {
+      "es": "Relish de cebolla, tocino y aderezo",
+      "en": "Onion relish, bacon and house dressing"
+     },
+     "price": "239"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres y Malteadas",
+    "en": "Desserts & Shakes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Malote",
+      "en": "Malote"
+     },
+     "desc": {
+      "es": "Pastel de elote tibio con helado y cajeta",
+      "en": "Warm corn cake, ice cream and caramel"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Malteada Cookies And Cream",
+      "en": "Cookies & Cream Shake"
+     },
+     "desc": {
+      "es": "Malteada de galleta",
+      "en": "Cookies and cream milkshake"
+     },
+     "price": "139"
+    },
+    {
+     "name": {
+      "es": "Malteada Dr. Pepper",
+      "en": "Dr Pepper Shake"
+     },
+     "desc": {
+      "es": "Malteada con refresco Dr Pepper",
+      "en": "Milkshake made with Dr Pepper"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Malteada de fresa",
+      "en": "Strawberry Shake"
+     },
+     "desc": {
+      "es": "Malteada de fresa",
+      "en": "Strawberry milkshake"
+     },
+     "price": "139"
+    }
+   ]
+  }
+ ]
+}

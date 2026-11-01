@@ -1,0 +1,282 @@
+{
+ "name": "Ojo de Bife Parrilla Argentina",
+ "slug": "ojo-de-bife-parrilla-argentina",
+ "area": "Costera",
+ "place_id": "ChIJg8a6TgBZyoURPUJBd_N1tb4",
+ "lat": 16.8552005,
+ "lng": -99.8596639,
+ "address": "Av. Costera Miguel Alemán 81, Local B, Fracc. Club Deportivo",
+ "phone": "+52 744 485 7827",
+ "hours": {
+  "es": "Dom–Jue 8:00–23:00 · Vie–Sáb 8:00–24:00",
+  "en": "Sun–Thu 8am–11pm · Fri–Sat 8am–12am"
+ },
+ "rating": 4.7,
+ "reviews": 248,
+ "price_level": 3,
+ "kind": "res",
+ "cuisine": "argentine steakhouse",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930247585-ojo-de-bife",
+  "https://reservandonos.com/lugar/ojo-de-bife-parrilla-argentina-acapulco/"
+ ],
+ "tagline": {
+  "es": "Parrilla argentina con alma acapulqueña",
+  "en": "Argentine grill with an Acapulco soul"
+ },
+ "specialty": "Argentine charcoal grill platters, choripanes and Lotus cake",
+ "signature": [
+  "Pampeana",
+  "Mar de Plata",
+  "Mar y Tierra Azul",
+  "Pastel Lotus"
+ ],
+ "photo_notes": {
+  "cover": "Elegant Argentine steakhouse on the Costera with dark wood, warm amber lights, an open charcoal grill and wine racks.",
+  "s1": "Wooden board grill platter with sliced rib eye, tenderloin, blood sausage and chorizo, fries and salad.",
+  "s2": "Crusty choripán loaded with grilled chorizo, shrimp and octopus under garlic cream.",
+  "s3": "Thin pizza topped with shrimp, octopus, beef fillet strips and melted blue cheese.",
+  "s4": "Slice of creamy Lotus biscuit cake topped with a Lotus cookie and fresh berries."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "De la parrilla del gaucho",
+    "en": "Gaucho grill platters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pampeana",
+      "en": "Pampeana platter"
+     },
+     "desc": {
+      "es": "1.2 kg: ojo de bife, filete, churrasco, picaña",
+      "en": "1.2 kg: rib eye, tenderloin, churrasco, cap"
+     },
+     "price": "1950"
+    },
+    {
+     "name": {
+      "es": "Asado",
+      "en": "Asado platter"
+     },
+     "desc": {
+      "es": "1.2 kg: churrasco, filete, chorizo, medio pollo",
+      "en": "1.2 kg: churrasco, tenderloin, chorizo, chicken"
+     },
+     "price": "1400"
+    },
+    {
+     "name": {
+      "es": "Puerto Madero",
+      "en": "Puerto Madero platter"
+     },
+     "desc": {
+      "es": "1.35 kg de cortes, pulpo y camarón",
+      "en": "1.35 kg of cuts, octopus and shrimp"
+     },
+     "price": "2200"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Choripanes",
+    "en": "Choripanes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Buenos Aires",
+      "en": "Buenos Aires"
+     },
+     "desc": {
+      "es": "Chorizo clásico, crema de ajo y chimichurri",
+      "en": "Classic chorizo, garlic cream, chimichurri"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Porteño",
+      "en": "Porteño"
+     },
+     "desc": {
+      "es": "Chorizo a la parrilla con queso cremoso",
+      "en": "Grilled chorizo with creamy cheese"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Mendoza",
+      "en": "Mendoza"
+     },
+     "desc": {
+      "es": "Chorizo, morcilla y chistorra",
+      "en": "Chorizo, blood sausage and chistorra"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Tierra de Fuego",
+      "en": "Tierra de Fuego"
+     },
+     "desc": {
+      "es": "Picaña y chorizo argentino",
+      "en": "Picanha and Argentine chorizo"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Mar de Plata",
+      "en": "Mar de Plata"
+     },
+     "desc": {
+      "es": "Chorizo con camarón, pulpo y crema de ajo",
+      "en": "Chorizo with shrimp, octopus, garlic cream"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas y pastas",
+    "en": "Pizzas & pasta"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Clásica Porteña",
+      "en": "Classic porteña"
+     },
+     "desc": {
+      "es": "Mozzarella, ajo, cherry y aceitunas",
+      "en": "Mozzarella, garlic, cherry tomato, olives"
+     },
+     "price": "255"
+    },
+    {
+     "name": {
+      "es": "la Parrillera",
+      "en": "Grill pizza"
+     },
+     "desc": {
+      "es": "Rib eye sobre base clásica con cherry",
+      "en": "Rib eye on a classic base, cherry tomato"
+     },
+     "price": "375"
+    },
+    {
+     "name": {
+      "es": "Mar y Tierra Azul",
+      "en": "Blue surf & turf"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, queso azul y filete",
+      "en": "Shrimp, octopus, blue cheese, fillet"
+     },
+     "price": "435"
+    },
+    {
+     "name": {
+      "es": "la Gaucha Picante",
+      "en": "Spicy gaucha"
+     },
+     "desc": {
+      "es": "Chorizo, chistorra, pimiento y provolone",
+      "en": "Chorizo, chistorra, pepper, provolone"
+     },
+     "price": "345"
+    },
+    {
+     "name": {
+      "es": "Pasta de la Casa",
+      "en": "House pasta"
+     },
+     "desc": {
+      "es": "Fusilli, fideos o rigatoni a elegir",
+      "en": "Choice of fusilli, noodles or rigatoni"
+     },
+     "price": "220"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Extras y burgers",
+    "en": "Sides & burgers"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Papas a la Francesa Trufadas",
+      "en": "Truffle fries"
+     },
+     "desc": {
+      "es": "Papas fritas con toque de trufa",
+      "en": "Fries with a touch of truffle"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Mash Burguer Doble",
+      "en": "Double smash burger"
+     },
+     "desc": {
+      "es": "Doble carne premium y mozzarella",
+      "en": "Double premium beef, mozzarella"
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Dulces tentaciones",
+    "en": "Sweet temptations"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan de Dulce de Leche",
+      "en": "Dulce de leche flan"
+     },
+     "desc": {
+      "es": "Con crema fría de canela",
+      "en": "With cold cinnamon cream"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Alfajores",
+      "en": "Alfajores"
+     },
+     "desc": {
+      "es": "Dos piezas rellenas de dulce de leche",
+      "en": "Two, filled with dulce de leche"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Pastel Lotus",
+      "en": "Lotus cake"
+     },
+     "desc": {
+      "es": "Con galleta Lotus y fruta fresca",
+      "en": "With Lotus cookie and fresh fruit"
+     },
+     "price": "250"
+    }
+   ]
+  }
+ ]
+}

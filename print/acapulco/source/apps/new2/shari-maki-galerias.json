@@ -1,0 +1,273 @@
+{
+ "name": "Shari Maki",
+ "slug": "shari-maki-galerias",
+ "area": "Magallanes",
+ "place_id": "ChIJf9DR0x9YyoURH3_5OT89rSQ",
+ "lat": 16.861184,
+ "lng": -99.8814843,
+ "address": "Galerías Acapulco, Av. Costera Miguel Alemán 1632, Magallanes",
+ "phone": "+52 744 105 0480",
+ "hours": {
+  "es": "Lun–Dom 9:30–18:45",
+  "en": "Mon–Sun 9:30am–6:45pm"
+ },
+ "rating": 4.4,
+ "reviews": 601,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "japanese",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923690728-shari-maki-galerias-acapulco"
+ ],
+ "tagline": {
+  "es": "Sushi, sopas y combos japoneses a buen precio en Galerías",
+  "en": "Well-priced sushi, soups and Japanese combos at Galerías"
+ },
+ "specialty": "Classic and creative rolls, udon and seafood soups, kushiage and value combos",
+ "signature": [
+  "Fresa roll",
+  "Sharimaki de mariscos",
+  "Tokyo roll salmón",
+  "Tempura de camarón"
+ ],
+ "photo_notes": {
+  "cover": "Clean contemporary Japanese restaurant with light wood, red accents and a small sushi counter.",
+  "s1": "Roll wrapped in thin fresh strawberry slices over crab stick and cream cheese.",
+  "s2": "Spicy red dashi seafood soup with shrimp, octopus, salmon and vegetables in a clay bowl.",
+  "s3": "Panko-breaded salmon roll cut in thick golden pieces with eel sauce drizzle.",
+  "s4": "Shrimp and vegetable tempura in light batter with sweet eel sauce on a bamboo tray."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Sushi",
+    "en": "Sushi Rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Fresa roll",
+      "en": "Strawberry Roll"
+     },
+     "desc": {
+      "es": "Kanikama, pepino y queso; fresa por fuera",
+      "en": "Crab stick, cucumber, cheese; strawberry top"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Tokyo roll salmón",
+      "en": "Tokyo Salmon Roll"
+     },
+     "desc": {
+      "es": "Salmón, aguacate y queso; empanizado",
+      "en": "Salmon, avocado, cheese; breaded"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Avocado anguila",
+      "en": "Avocado Eel Roll"
+     },
+     "desc": {
+      "es": "Anguila y queso crema; aguacate fuera",
+      "en": "Eel and cream cheese; avocado outside"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Platano roll",
+      "en": "Plantain Roll"
+     },
+     "desc": {
+      "es": "Surimi y queso; plátano frito por fuera",
+      "en": "Surimi and cheese; fried plantain outside"
+     },
+     "price": "147"
+    },
+    {
+     "name": {
+      "es": "Sakura roll",
+      "en": "Sakura Roll"
+     },
+     "desc": {
+      "es": "Surimi, queso crema y chipotle",
+      "en": "Surimi, cream cheese and chipotle"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Rollo filadelfia nevado",
+      "en": "Snowy Philadelphia Roll"
+     },
+     "desc": {
+      "es": "Salmón fresco con queso por fuera",
+      "en": "Fresh salmon with cream cheese outside"
+     },
+     "price": "153"
+    },
+    {
+     "name": {
+      "es": "California roll",
+      "en": "California Roll"
+     },
+     "desc": {
+      "es": "Camarón, pepino y aguacate",
+      "en": "Shrimp, cucumber and avocado"
+     },
+     "price": "124"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Sopas",
+    "en": "Soups"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sharimaki de mariscos",
+      "en": "Sharimaki Seafood Soup"
+     },
+     "desc": {
+      "es": "Dashi con tres chiles y mariscos",
+      "en": "Three-chile dashi with seafood"
+     },
+     "price": "208"
+    },
+    {
+     "name": {
+      "es": "Udon especial",
+      "en": "Special Udon"
+     },
+     "desc": {
+      "es": "Caldo de pescado, udon y camarón",
+      "en": "Fish broth, udon and shrimp"
+     },
+     "price": "169"
+    },
+    {
+     "name": {
+      "es": "Misoshiro tradicional",
+      "en": "Traditional Miso Soup"
+     },
+     "desc": {
+      "es": "Miso, tofu, fideo de arroz y camarón",
+      "en": "Miso, tofu, rice noodles and shrimp"
+     },
+     "price": "149.50"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Kushiagues y Tempura",
+    "en": "Kushiage & Tempura"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tempura de camarón",
+      "en": "Shrimp Tempura"
+     },
+     "desc": {
+      "es": "5 camarones y verduras con salsa de anguila",
+      "en": "5 shrimp and vegetables, eel sauce"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Tempura de calamar",
+      "en": "Squid Tempura"
+     },
+     "desc": {
+      "es": "Calamar capeado con salsa de anguila",
+      "en": "Battered squid with eel sauce"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Kushiagues salmón y queso",
+      "en": "Salmon & Cheese Kushiage"
+     },
+     "desc": {
+      "es": "5 banderillas de salmón y queso crema",
+      "en": "5 salmon and cream cheese skewers"
+     },
+     "price": "149"
+    },
+    {
+     "name": {
+      "es": "Kushiagues camarón",
+      "en": "Shrimp Kushiage"
+     },
+     "desc": {
+      "es": "5 banderillas empanizadas de camarón",
+      "en": "5 breaded shrimp skewers"
+     },
+     "price": "142"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Combos y Paquetes",
+    "en": "Combos & Sets"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Menú turístico",
+      "en": "Tourist Menu"
+     },
+     "desc": {
+      "es": "Salmón asado, rollo, ensalada y postre",
+      "en": "Grilled salmon, roll, salad and dessert"
+     },
+     "price": "325"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut Shrimp Set"
+     },
+     "desc": {
+      "es": "Camarón coco, rollo, yakimeshi y postre",
+      "en": "Coconut shrimp, roll, fried rice, dessert"
+     },
+     "price": "363"
+    },
+    {
+     "name": {
+      "es": "Paquete 1",
+      "en": "Set No. 1"
+     },
+     "desc": {
+      "es": "Tres rollos y media ensalada kanikama",
+      "en": "Three rolls and half crab salad"
+     },
+     "price": "440"
+    },
+    {
+     "name": {
+      "es": "Combo 1",
+      "en": "Combo 1"
+     },
+     "desc": {
+      "es": "Kushiagues, yakimeshi y California roll",
+      "en": "Kushiage, fried rice and California roll"
+     },
+     "price": "221"
+    }
+   ]
+  }
+ ]
+}

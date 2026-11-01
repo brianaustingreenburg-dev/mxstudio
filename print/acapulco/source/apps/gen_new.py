@@ -5,7 +5,8 @@ def norm(s):return unicodedata.normalize('NFKD',s).encode('ascii','ignore').deco
 A='/home/claude/mxstudio/acapulco/'
 COL={'mar':['#0f6e8c','#b5642f','#1d7a6a','#c2502f','#0b5d7a','#a0522d','#127a8a','#9c3d2b'],'res':['#b03a48','#c48a1a','#7a3b1d','#2d6a4f','#8f2d56','#3d5a80','#6d597a'],'cafe':['#6b3e22','#8a5a35','#4e342e','#a0673a']}
 tpl=open(A+'app/plantilla.html').read();cnt={'mar':0,'res':0,'cafe':0};built=[];missing=[]
-for f in sorted(glob.glob('/home/claude/routes/new/*.json')):
+DIRS=sys.argv[1:] or ['new']
+for f in sorted(sum([glob.glob(f'/home/claude/routes/{x}/*.json') for x in DIRS],[])):
     d=json.load(open(f));slug=d['slug'];ph=f'/home/claude/routes/photos-new/{slug}'
     if not all(os.path.exists(f'{ph}/{n}.jpg') for n in ['cover','s1','s2','s3','s4']):missing.append(slug);continue
     k=d['kind'] if d['kind'] in COL else 'res';col=COL[k][cnt[k]%len(COL[k])];cnt[k]+=1

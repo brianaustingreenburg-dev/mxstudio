@@ -1,0 +1,273 @@
+{
+ "name": "Sharon's Magallanes",
+ "slug": "sharons-magallanes",
+ "area": "Magallanes",
+ "place_id": "ChIJ_W-mNfVXyoUR7YLlnZT4c50",
+ "lat": 16.863782,
+ "lng": -99.8797448,
+ "address": "Martín Alonso Pinzón 28 Local 6, Fracc. Magallanes",
+ "phone": "+52 744 486 3036",
+ "hours": {
+  "es": "Lun–Dom 8:00–20:30",
+  "en": "Mon–Sun 8am–8:30pm"
+ },
+ "rating": 4.3,
+ "reviews": 334,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "bakery café",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923517891-sharons-acapulco"
+ ],
+ "tagline": {
+  "es": "Pasteles de tres leches y café en Magallanes",
+  "en": "Tres leches cakes and coffee in Magallanes"
+ },
+ "specialty": "Acapulco's tres leches cake house: mocha and flan-filled cakes, cinnamon rolls and frappés",
+ "signature": [
+  "Supremo",
+  "Moka Decorado",
+  "Rol de Nutella",
+  "Frappé Brownie"
+ ],
+ "photo_notes": {
+  "cover": "Bright pastry café with a glass display case full of frosted cakes and a few café tables.",
+  "s1": "Tres leches cake layered with Neapolitan flan, pecans and cookies around the sides.",
+  "s2": "Mocha tres leches cake decorated with chocolate shards and whipped cream rosettes.",
+  "s3": "Glazed cinnamon roll topped with cream, hazelnut spread and a chocolate praline.",
+  "s4": "Tall brownie frappé with whipped cream and brownie chunks with walnuts."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Pasteles",
+    "en": "Whole Cakes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Supremo",
+      "en": "Supremo"
+     },
+     "desc": {
+      "es": "Tres leches relleno de flan napolitano",
+      "en": "Tres leches filled with Neapolitan flan"
+     },
+     "price": "810"
+    },
+    {
+     "name": {
+      "es": "Delicias",
+      "en": "Delicias"
+     },
+     "desc": {
+      "es": "Tres leches, flan y pastel de queso",
+      "en": "Tres leches, flan and cheesecake"
+     },
+     "price": "752"
+    },
+    {
+     "name": {
+      "es": "Moka Decorado",
+      "en": "Decorated Mocha Cake"
+     },
+     "desc": {
+      "es": "Tres leches moka con chocolate",
+      "en": "Mocha tres leches with chocolate"
+     },
+     "price": "710"
+    },
+    {
+     "name": {
+      "es": "Pastel de Rompope",
+      "en": "Rompope Cake"
+     },
+     "desc": {
+      "es": "Vainilla con crema y rompope",
+      "en": "Vanilla with cream and eggnog liqueur"
+     },
+     "price": "710"
+    },
+    {
+     "name": {
+      "es": "Oreo",
+      "en": "Oreo Cheesecake"
+     },
+     "desc": {
+      "es": "Cheesecake con galleta Oreo",
+      "en": "Cheesecake with Oreo cookies"
+     },
+     "price": "672"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rebanadas y Roles",
+    "en": "Slices & Rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Rebanada de Mocka",
+      "en": "Mocha Slice"
+     },
+     "desc": {
+      "es": "Rebanada de tres leches moka",
+      "en": "Slice of mocha tres leches"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Rebanada Del Día",
+      "en": "Slice of the Day"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Rol de Nutella",
+      "en": "Nutella Roll"
+     },
+     "desc": {
+      "es": "Rol de canela, Nutella y Ferrero",
+      "en": "Cinnamon roll, Nutella and Ferrero"
+     },
+     "price": "78"
+    },
+    {
+     "name": {
+      "es": "Rol Biscoff",
+      "en": "Biscoff Roll"
+     },
+     "desc": {
+      "es": "Rol de canela con Biscoff",
+      "en": "Cinnamon roll with Biscoff"
+     },
+     "price": "78"
+    },
+    {
+     "name": {
+      "es": "Rol Cajeta",
+      "en": "Cajeta Roll"
+     },
+     "desc": {
+      "es": "Rol de canela con cajeta",
+      "en": "Cinnamon roll with cajeta"
+     },
+     "price": "78"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas Calientes",
+    "en": "Hot Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Café americano",
+      "en": "Americano"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "52"
+    },
+    {
+     "name": {
+      "es": "Capuchino",
+      "en": "Cappuccino"
+     },
+     "desc": {
+      "es": "Espresso con leche espumada",
+      "en": "Espresso with steamed foam"
+     },
+     "price": "63"
+    },
+    {
+     "name": {
+      "es": "Chocolate abuelita",
+      "en": "Mexican Hot Chocolate"
+     },
+     "desc": {
+      "es": "Chocolate caliente con espuma",
+      "en": "Hot chocolate with foam"
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Té chai",
+      "en": "Chai Tea"
+     },
+     "desc": {
+      "es": "16 oz",
+      "en": "16 oz"
+     },
+     "price": "110"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas Frías",
+    "en": "Cold Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frappé Clásico",
+      "en": "Classic Frappé"
+     },
+     "desc": {
+      "es": "Café, chantilly y granillo",
+      "en": "Coffee, whipped cream, sprinkles"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Frappé Brownie",
+      "en": "Brownie Frappé"
+     },
+     "desc": {
+      "es": "Con trozos de brownie con nuez",
+      "en": "With walnut brownie chunks"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Frappé Ferrero",
+      "en": "Ferrero Frappé"
+     },
+     "desc": {
+      "es": "16 oz sin café",
+      "en": "16 oz, coffee-free"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Café Helado",
+      "en": "Iced Coffee"
+     },
+     "desc": {
+      "es": "Espresso frío con leche",
+      "en": "Cold espresso with milk"
+     },
+     "price": "78"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,270 @@
+{
+ "name": "The Only Pizzas Gourmet",
+ "slug": "the-only-pizzas-gourmet",
+ "area": "Hornos",
+ "place_id": "ChIJ95i4yKtZyoURU5t8JDSAP8s",
+ "lat": 16.85682,
+ "lng": -99.8957507,
+ "address": "Av. Capitán Malaspina 26, Fracc. Hornos Insurgentes",
+ "phone": "+52 744 204 4763",
+ "hours": {
+  "es": "Lun–Dom 13:00–20:30",
+  "en": "Mon–Sun 1pm–8:30pm"
+ },
+ "rating": 4.9,
+ "reviews": 150,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "pizza",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930047060-the-only-pizzas-acapulco-gourment"
+ ],
+ "tagline": {
+  "es": "Pizzas gourmet de 35 cm y papas al horno",
+  "en": "35 cm gourmet pizzas and loaded baked potatoes"
+ },
+ "specialty": "Thin-crust 35 cm gourmet pizzas and loaded baked potatoes",
+ "signature": [
+  "Pizza marinera",
+  "Pizza española",
+  "Pizza de 4 quesos",
+  "Papa con camarones"
+ ],
+ "photo_notes": {
+  "cover": "Colorful two-level neighborhood pizzeria near the Costera with quirky toys and art on the walls and a bright, clean dining room.",
+  "s1": "Thin pizza topped with squid in its ink, black olives and garlic shrimp.",
+  "s2": "Pizza with pomodoro base, melted mozzarella and draped serrano ham.",
+  "s3": "Golden four-cheese pizza with mozzarella, fresh cheese, goat cheese and parmesan.",
+  "s4": "Big baked potato split open, filled with melted cheese and sautéed shrimp."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Pizzas tradicionales",
+    "en": "Classic pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pizza de pepperoni",
+      "en": "Pepperoni pizza"
+     },
+     "desc": {
+      "es": "35 cm, mozzarella y pepperoni",
+      "en": "35 cm, mozzarella and pepperoni"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Pizza de champiñones",
+      "en": "Mushroom pizza"
+     },
+     "desc": {
+      "es": "35 cm con champiñones frescos",
+      "en": "35 cm with fresh mushrooms"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Pizza de queso",
+      "en": "Cheese pizza"
+     },
+     "desc": {
+      "es": "Mozzarella y cheddar",
+      "en": "Mozzarella and cheddar"
+     },
+     "price": "290"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas especialidades",
+    "en": "Specialty pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pizza suprema",
+      "en": "Supreme pizza"
+     },
+     "desc": {
+      "es": "Pepperoni, champiñón, pimiento, aceituna",
+      "en": "Pepperoni, mushroom, pepper, olive"
+     },
+     "price": "330"
+    },
+    {
+     "name": {
+      "es": "Pizza mexicana",
+      "en": "Mexican pizza"
+     },
+     "desc": {
+      "es": "Chorizo, jalapeño, cebolla morada y elote",
+      "en": "Chorizo, jalapeño, red onion, corn"
+     },
+     "price": "330"
+    },
+    {
+     "name": {
+      "es": "Pizza hawaiana",
+      "en": "Hawaiian pizza"
+     },
+     "desc": {
+      "es": "Jamón y piña",
+      "en": "Ham and pineapple"
+     },
+     "price": "330"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas gourmet",
+    "en": "Gourmet pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pizza marinera",
+      "en": "Seafood pizza"
+     },
+     "desc": {
+      "es": "Calamar en su tinta y camarones al ajo",
+      "en": "Squid in ink and garlic shrimp"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pizza española",
+      "en": "Spanish pizza"
+     },
+     "desc": {
+      "es": "Pomodoro, mozzarella y jamón serrano",
+      "en": "Pomodoro, mozzarella, serrano ham"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pizza de 4 quesos",
+      "en": "Four-cheese pizza"
+     },
+     "desc": {
+      "es": "Mozzarella, fresco, cabra y parmesano",
+      "en": "Mozzarella, fresh, goat, parmesan"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pizza de camarones",
+      "en": "Shrimp pizza"
+     },
+     "desc": {
+      "es": "Camarones con hierbas finas",
+      "en": "Shrimp with fine herbs"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pizza margarita",
+      "en": "Margherita pizza"
+     },
+     "desc": {
+      "es": "Mozzarella fresca, jitomate y albahaca",
+      "en": "Fresh mozzarella, tomato, basil"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Pizza de carnes frías gourmet",
+      "en": "Gourmet cured meats pizza"
+     },
+     "desc": {
+      "es": "Salami, tocino y jamón serrano",
+      "en": "Salami, bacon, serrano ham"
+     },
+     "price": "380"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas y papas al horno",
+    "en": "Pasta & baked potatoes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Espagueti a la boloñesa",
+      "en": "Spaghetti bolognese"
+     },
+     "desc": {
+      "es": "Con pan de ajo",
+      "en": "With garlic bread"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Espagueti a la crema y tocino",
+      "en": "Creamy bacon spaghetti"
+     },
+     "desc": {
+      "es": "Crema y trozos de tocino",
+      "en": "Cream and bacon pieces"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Papa gratinada",
+      "en": "Cheesy baked potato"
+     },
+     "desc": {
+      "es": "Mantequilla y mezcla de quesos",
+      "en": "Butter and mixed cheeses"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Papa con camarones",
+      "en": "Shrimp baked potato"
+     },
+     "desc": {
+      "es": "Camarones, aderezo y quesos",
+      "en": "Shrimp, house dressing, cheese"
+     },
+     "price": "230"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Vinos",
+    "en": "Wine"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Lambrusco 750 ml",
+      "en": "Lambrusco 750 ml"
+     },
+     "desc": {
+      "es": "Botella",
+      "en": "Bottle"
+     },
+     "price": "325"
+    }
+   ]
+  }
+ ]
+}

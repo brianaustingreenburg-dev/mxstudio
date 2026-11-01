@@ -1,0 +1,303 @@
+{
+ "name": "Aca Grill",
+ "slug": "aca-grill-diamante",
+ "area": "Diamante",
+ "place_id": "ChIJUeqvkRVZyoURQJuX6-JnVFI",
+ "lat": 16.782216,
+ "lng": -99.8034619,
+ "address": "Costera de las Palmas Mz 54 Lt 15, Playa Diamante",
+ "phone": "+52 744 194 3148",
+ "hours": {
+  "es": "Lun–Dom 14:00–20:45",
+  "en": "Mon–Sun 2pm–8:45pm"
+ },
+ "rating": 4.7,
+ "reviews": 182,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "grill / steakhouse",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930245092-Aca-Grill-acapulco"
+ ],
+ "tagline": {
+  "es": "Parrilla al carbón en la zona Diamante",
+  "en": "Charcoal grill in the Diamante zone"
+ },
+ "specialty": "Charcoal-grilled arrachera, rib-eye platters and grilled octopus",
+ "signature": [
+  "Parrillada Rib-eye",
+  "Tuétanos de Arrachera",
+  "Pulpo mar y fuego",
+  "Queso Fundido de Arrachera"
+ ],
+ "photo_notes": {
+  "cover": "Casual-upscale open-air grill restaurant in Acapulco Diamante with a smoking charcoal parrilla, wood tables and string lights.",
+  "s1": "Sizzling cast-iron platter of sliced rib-eye, Argentine chorizo and chistorra with grilled onions.",
+  "s2": "Two roasted beef marrow bones topped with chopped skirt steak, warm tortillas on the side.",
+  "s3": "Charred grilled octopus tentacle with grilled corn and baby potatoes.",
+  "s4": "Bubbling clay dish of melted cheese topped with grilled skirt steak and flour tortillas."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Queso Fundido de Arrachera",
+      "en": "Skirt steak queso fundido"
+     },
+     "desc": {
+      "es": "Dos quesos con arrachera a la parrilla",
+      "en": "Two cheeses with grilled skirt steak"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Chile Momia",
+      "en": "Chile momia"
+     },
+     "desc": {
+      "es": "Jalapeño relleno envuelto en tocino",
+      "en": "Bacon-wrapped stuffed jalapeño"
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Escorpión de Mar",
+      "en": "Sea scorpion"
+     },
+     "desc": {
+      "es": "Jalapeño con tentáculo de pulpo y tocino",
+      "en": "Jalapeño with octopus and bacon"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Pork Belly",
+      "en": "Pork belly"
+     },
+     "desc": {
+      "es": "150 g crujiente sobre guacamole",
+      "en": "150 g crispy, on guacamole"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Empalme de Arrachera",
+      "en": "Arrachera empalme"
+     },
+     "desc": {
+      "es": "Arrachera sobre tortillas rellenas",
+      "en": "Skirt steak on stuffed tortillas"
+     },
+     "price": "180"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Carnes",
+    "en": "Meats"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Arrachera 500g",
+      "en": "Skirt steak 500 g"
+     },
+     "desc": {
+      "es": "Arrachera premium con chorizo",
+      "en": "Premium skirt steak with chorizo"
+     },
+     "price": "870"
+    },
+    {
+     "name": {
+      "es": "Tuétanos de Arrachera",
+      "en": "Marrow bones with arrachera"
+     },
+     "desc": {
+      "es": "Dos tuétanos con arrachera y tortillas",
+      "en": "Two marrow bones, steak, tortillas"
+     },
+     "price": "500"
+    },
+    {
+     "name": {
+      "es": "Parrillada Rib-eye",
+      "en": "Rib-eye grill platter"
+     },
+     "desc": {
+      "es": "Rib-eye y embutidos para compartir",
+      "en": "Rib-eye and sausages to share"
+     },
+     "price": "1885"
+    },
+    {
+     "name": {
+      "es": "Parrillada de Arrachera",
+      "en": "Arrachera grill platter"
+     },
+     "desc": {
+      "es": "Arrachera y embutidos para compartir",
+      "en": "Skirt steak and sausages to share"
+     },
+     "price": "1310"
+    },
+    {
+     "name": {
+      "es": "Parrillada Premium",
+      "en": "Premium grill platter"
+     },
+     "desc": {
+      "es": "Gran parrillada de cortes y guarniciones",
+      "en": "Large mixed grill with sides"
+     },
+     "price": "2885"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Especiales del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo mar y fuego",
+      "en": "Fire-grilled octopus"
+     },
+     "desc": {
+      "es": "220 g con elote y papas",
+      "en": "220 g with corn and potatoes"
+     },
+     "price": "790"
+    },
+    {
+     "name": {
+      "es": "Huachinango a la talla",
+      "en": "Red snapper a la talla"
+     },
+     "desc": {
+      "es": "Adobado a la parrilla con guacamole",
+      "en": "Grilled, marinated, with guacamole"
+     },
+     "price": "515"
+    },
+    {
+     "name": {
+      "es": "Camarones Grill",
+      "en": "Grilled shrimp"
+     },
+     "desc": {
+      "es": "Marinados con papas y elote",
+      "en": "Marinated, with potatoes and corn"
+     },
+     "price": "645"
+    },
+    {
+     "name": {
+      "es": "Parrillada del mar",
+      "en": "Seafood grill platter"
+     },
+     "desc": {
+      "es": "Huachinango, pulpo y camarón",
+      "en": "Snapper, octopus and shrimp"
+     },
+     "price": "3190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tacos y burgers",
+    "en": "Tacos & burgers"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de Arrachera",
+      "en": "Arrachera tacos"
+     },
+     "desc": {
+      "es": "Tres tacos de doble tortilla",
+      "en": "Three double-tortilla tacos"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Tacos de Chorizo Argentino",
+      "en": "Argentine chorizo tacos"
+     },
+     "desc": {
+      "es": "Tres tacos de doble tortilla",
+      "en": "Three double-tortilla tacos"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Aca Burguer",
+      "en": "Aca burger"
+     },
+     "desc": {
+      "es": "Sirloin, guacamole, tocino y queso",
+      "en": "Sirloin, guacamole, bacon, cheese"
+     },
+     "price": "360"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Acompañamientos y bebidas",
+    "en": "Sides & drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "100 g con jitomate y cebolla",
+      "en": "100 g with tomato and onion"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Frijoles con Chorizo",
+      "en": "Beans with chorizo"
+     },
+     "desc": {
+      "es": "Con queso cotija",
+      "en": "With cotija cheese"
+     },
+     "price": "90"
+    },
+    {
+     "name": {
+      "es": "Limonada de kiwi",
+      "en": "Kiwi lemonade"
+     },
+     "desc": {
+      "es": "475 ml",
+      "en": "475 ml"
+     },
+     "price": "95"
+    }
+   ]
+  }
+ ]
+}

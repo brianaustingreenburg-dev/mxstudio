@@ -1,0 +1,262 @@
+{
+ "name": "Flamingos Tropical Sushi",
+ "slug": "flamingos-tropical-sushi",
+ "area": "Icacos",
+ "place_id": "ChIJHSi8mpVZyoURTad0GiNLJWY",
+ "lat": 16.838154,
+ "lng": -99.8466916,
+ "address": "Plaza Las Pérgolas, Av. Escénica esq. Ejército Nacional, Las Brisas",
+ "phone": "+52 744 229 4636",
+ "hours": {
+  "es": "Lun–Dom 14:00–22:00",
+  "en": "Mon–Sun 2pm–10pm"
+ },
+ "rating": 4.6,
+ "reviews": 396,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "sushi",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923595441-flamingos-tropical-sushi"
+ ],
+ "tagline": {
+  "es": "Sushi tropical con rollos que llevan nombre de playa",
+  "en": "Tropical sushi with rolls named after Acapulco beaches"
+ },
+ "specialty": "Tropical-style rolls, poke bowls, teppanyaki and gin cocktails",
+ "signature": [
+  "Brisas Roll",
+  "Papagayo Roll",
+  "Poke Bowl Tuna",
+  "Black Widow"
+ ],
+ "photo_notes": {
+  "cover": "Bright tropical sushi restaurant with pink flamingo accents, palm prints, neon-free pastel decor and an open-air terrace.",
+  "s1": "Sushi roll with coconut shrimp topped with strawberry and tropical sauce on a pink plate.",
+  "s2": "Breaded shrimp roll topped with plantain slices and tropical sauce.",
+  "s3": "Poke bowl with tuna, avocado, mango, edamame and vegetables over rice.",
+  "s4": "Gin and tonic with rosemary and lime in a large balloon glass."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Calamares Fritos",
+      "en": "Fried calamari"
+     },
+     "desc": {
+      "es": "Con mayo chipotle",
+      "en": "With chipotle mayo"
+     },
+     "price": "199"
+    },
+    {
+     "name": {
+      "es": "Camarones Roca",
+      "en": "Rock shrimp"
+     },
+     "desc": {
+      "es": "En salsa roca",
+      "en": "In rock sauce"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Edamames Especiales",
+      "en": "Special edamame"
+     },
+     "desc": {
+      "es": "Soya, tajín y limón",
+      "en": "Soy, tajín and lime"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Bolita de Fuego",
+      "en": "Fire ball"
+     },
+     "desc": {
+      "es": "Arroz empanizado con camarón",
+      "en": "Breaded rice ball with shrimp"
+     },
+     "price": "145"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos especiales",
+    "en": "Signature rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Brisas Roll",
+      "en": "Brisas roll"
+     },
+     "desc": {
+      "es": "Camarón al coco con fresa",
+      "en": "Coconut shrimp with strawberry"
+     },
+     "price": "279"
+    },
+    {
+     "name": {
+      "es": "Papagayo Roll",
+      "en": "Papagayo roll"
+     },
+     "desc": {
+      "es": "Camarón empanizado con plátano",
+      "en": "Breaded shrimp with plantain"
+     },
+     "price": "279"
+    },
+    {
+     "name": {
+      "es": "Barra Vieja Roll",
+      "en": "Barra Vieja roll"
+     },
+     "desc": {
+      "es": "Camarón tempura con salmón horneado",
+      "en": "Tempura shrimp, baked salmon"
+     },
+     "price": "279"
+    },
+    {
+     "name": {
+      "es": "Roqueta Roll",
+      "en": "Roqueta roll"
+     },
+     "desc": {
+      "es": "Rib eye, guacamole y manchego",
+      "en": "Ribeye, guacamole, manchego"
+     },
+     "price": "279"
+    },
+    {
+     "name": {
+      "es": "Surf y Turf Roll",
+      "en": "Surf & turf roll"
+     },
+     "desc": {
+      "es": "Camarón y rib eye gratinado",
+      "en": "Shrimp and ribeye au gratin"
+     },
+     "price": "279"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bowls y calientes",
+    "en": "Bowls & hot dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Poke Bowl Tuna",
+      "en": "Tuna poke bowl"
+     },
+     "desc": {
+      "es": "Atún, aguacate, mango y edamame",
+      "en": "Tuna, avocado, mango, edamame"
+     },
+     "price": "209"
+    },
+    {
+     "name": {
+      "es": "Ramen Mixta",
+      "en": "Mixed ramen"
+     },
+     "desc": {
+      "es": "Fideos, verduras y huevo",
+      "en": "Noodles, vegetables, egg"
+     },
+     "price": "329"
+    },
+    {
+     "name": {
+      "es": "Teppanyaki Mixto",
+      "en": "Mixed teppanyaki"
+     },
+     "desc": {
+      "es": "Camarón, rib eye y pollo",
+      "en": "Shrimp, ribeye and chicken"
+     },
+     "price": "439"
+    },
+    {
+     "name": {
+      "es": "Yakimeshi Mixto",
+      "en": "Mixed yakimeshi"
+     },
+     "desc": {
+      "es": "Arroz frito con proteínas",
+      "en": "Fried rice with proteins"
+     },
+     "price": "219"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Black Widow",
+      "en": "Black Widow"
+     },
+     "desc": {
+      "es": "Gin, limón, romero y tónica",
+      "en": "Gin, lime, rosemary, tonic"
+     },
+     "price": "219"
+    },
+    {
+     "name": {
+      "es": "El Drácula",
+      "en": "El Drácula"
+     },
+     "desc": {
+      "es": "Mezcal con jamaica",
+      "en": "Mezcal with hibiscus"
+     },
+     "price": "219"
+    },
+    {
+     "name": {
+      "es": "Maracu-yeah!",
+      "en": "Maracu-yeah!"
+     },
+     "desc": {
+      "es": "Maracuyá, fresa y ginger ale",
+      "en": "Passion fruit, strawberry, ginger ale"
+     },
+     "price": "109"
+    },
+    {
+     "name": {
+      "es": "Pepimind",
+      "en": "Pepimind"
+     },
+     "desc": {
+      "es": "Pepino, hierbabuena y tónica",
+      "en": "Cucumber, mint and tonic"
+     },
+     "price": "109"
+    }
+   ]
+  }
+ ]
+}

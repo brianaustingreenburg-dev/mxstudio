@@ -1,0 +1,273 @@
+{
+ "name": "Tóxica Snack & Bar",
+ "slug": "toxica-snack-bar",
+ "area": "Costa Azul",
+ "place_id": "ChIJo_fUHjdZyoURuc-2gxZS6H8",
+ "lat": 16.8477359,
+ "lng": -99.8499843,
+ "address": "Av. Costera Miguel Alemán 34, Costa Azul",
+ "phone": "",
+ "hours": {
+  "es": "Lun–Dom 14:00–4:00",
+  "en": "Mon–Sun 2pm–4am"
+ },
+ "rating": 4.3,
+ "reviews": 1426,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "bar & grill",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923805119-toxica-snack-bar"
+ ],
+ "tagline": {
+  "es": "Bar & grill con cortes, mariscos y deportes hasta la madrugada",
+  "en": "Bar & grill with steaks, seafood and sports until late"
+ },
+ "specialty": "Late-night bar and grill: rib eye, grilled octopus, shrimp dishes, sliders and wings",
+ "signature": [
+  "Pulpo Argentino",
+  "Rib Eye 360 Gr",
+  "Trilogía Slider",
+  "Camarones al Coco"
+ ],
+ "photo_notes": {
+  "cover": "Stylish bar and grill on the Costera with moody lighting, a long backlit bar, many TVs and lounge seating.",
+  "s1": "Charcoal-grilled octopus tentacle with chimichurri and grilled vegetables on a dark plate.",
+  "s2": "Thick 360 g rib eye steak with toreado chiles and guacamole on a wooden board.",
+  "s3": "Three mini sliders — shrimp, buffalo chicken and bacon beef — on a slate with skewers.",
+  "s4": "Coconut-breaded shrimp with plantain purée and curry rice."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chicharrón de Arrachera",
+      "en": "Arrachera Chicharrón"
+     },
+     "desc": {
+      "es": "Arrachera frita sobre guacamole con totopos",
+      "en": "Fried steak bites over guacamole, chips"
+     },
+     "price": "229"
+    },
+    {
+     "name": {
+      "es": "Carpaccio de Salmón",
+      "en": "Salmon Carpaccio"
+     },
+     "desc": {
+      "es": "Salmón ahumado, cítricos, alcaparras",
+      "en": "Smoked salmon, citrus, capers"
+     },
+     "price": "209"
+    },
+    {
+     "name": {
+      "es": "Pan con Ajo",
+      "en": "Garlic Bread"
+     },
+     "desc": {
+      "es": "Pan rústico con ajo y quesos gratinados",
+      "en": "Rustic bread with garlic and melted cheese"
+     },
+     "price": "142"
+    },
+    {
+     "name": {
+      "es": "Sopa de Tortilla",
+      "en": "Tortilla Soup"
+     },
+     "desc": {
+      "es": "Caldo de guajillo con aguacate y queso",
+      "en": "Guajillo broth with avocado and cheese"
+     },
+     "price": "199"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Camarones y Mariscos",
+    "en": "Shrimp & Seafood"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo Argentino",
+      "en": "Argentine-Style Octopus"
+     },
+     "desc": {
+      "es": "Pulpo al carbón con chimichurri",
+      "en": "Charcoal-grilled octopus with chimichurri"
+     },
+     "price": "361"
+    },
+    {
+     "name": {
+      "es": "Camarones al Coco",
+      "en": "Coconut Shrimp"
+     },
+     "desc": {
+      "es": "Con puré de plátano y arroz al curry",
+      "en": "With plantain purée and curry rice"
+     },
+     "price": "311"
+    },
+    {
+     "name": {
+      "es": "Camarones al Tamarindo",
+      "en": "Tamarind Shrimp"
+     },
+     "desc": {
+      "es": "En salsa de tamarindo con arroz al curry",
+      "en": "Tamarind sauce with curry rice"
+     },
+     "price": "311"
+    },
+    {
+     "name": {
+      "es": "Cazuela Gratinada",
+      "en": "Seafood Gratin"
+     },
+     "desc": {
+      "es": "Camarón y pulpo al chipotle gratinados",
+      "en": "Chipotle shrimp and octopus au gratin"
+     },
+     "price": "398"
+    },
+    {
+     "name": {
+      "es": "Brocheta Mar y Tierra",
+      "en": "Surf & Turf Skewer"
+     },
+     "desc": {
+      "es": "Camarón y arrachera sobre lechugas",
+      "en": "Shrimp and steak over greens"
+     },
+     "price": "299"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Carnes y Aves",
+    "en": "Steaks & Poultry"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Rib Eye 360 Gr",
+      "en": "Rib Eye 360 g"
+     },
+     "desc": {
+      "es": "Con chiles toreados, guacamole y 2 guarniciones",
+      "en": "Toreado chiles, guacamole, 2 sides"
+     },
+     "price": "486"
+    },
+    {
+     "name": {
+      "es": "T Bone",
+      "en": "T-Bone"
+     },
+     "desc": {
+      "es": "600 g con chiles toreados y guacamole",
+      "en": "600 g with toreado chiles and guacamole"
+     },
+     "price": "586"
+    },
+    {
+     "name": {
+      "es": "Arrachera 250 Gr",
+      "en": "Arrachera 250 g"
+     },
+     "desc": {
+      "es": "Con guacamole, frijoles y guarniciones",
+      "en": "With guacamole, beans and sides"
+     },
+     "price": "399"
+    },
+    {
+     "name": {
+      "es": "Costilla de Cerdo",
+      "en": "BBQ Pork Ribs"
+     },
+     "desc": {
+      "es": "Costillas BBQ con 2 guarniciones",
+      "en": "BBQ ribs with 2 sides"
+     },
+     "price": "324"
+    },
+    {
+     "name": {
+      "es": "Suprema de Pollo",
+      "en": "Stuffed Chicken"
+     },
+     "desc": {
+      "es": "Rellena de camarón, espinaca y queso",
+      "en": "Stuffed with shrimp, spinach, cheese"
+     },
+     "price": "299"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hamburguesas y Alitas",
+    "en": "Burgers & Wings"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Trilogía Slider",
+      "en": "Slider Trilogy"
+     },
+     "desc": {
+      "es": "Tres mini: camarón, pollo búfalo y res",
+      "en": "Three minis: shrimp, buffalo chicken, beef"
+     },
+     "price": "309"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa BBQ",
+      "en": "BBQ Burger"
+     },
+     "desc": {
+      "es": "Hamburguesa de res con salsa BBQ",
+      "en": "Beef burger with BBQ sauce"
+     },
+     "price": "199"
+    },
+    {
+     "name": {
+      "es": "Alitas X 10",
+      "en": "10 Wings"
+     },
+     "desc": {
+      "es": "Alitas con salsa a elegir",
+      "en": "Wings in sauce of choice"
+     },
+     "price": "269"
+    },
+    {
+     "name": {
+      "es": "Tacos de Camarón",
+      "en": "Shrimp Tacos"
+     },
+     "desc": {
+      "es": "Estilo Ensenada con col y crema de aguacate",
+      "en": "Ensenada-style, cabbage, avocado cream"
+     },
+     "price": "248"
+    }
+   ]
+  }
+ ]
+}

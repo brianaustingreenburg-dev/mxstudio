@@ -1,0 +1,240 @@
+{
+ "name": "Negro Santo",
+ "slug": "negro-santo-costa-azul",
+ "area": "Costa Azul",
+ "place_id": "ChIJa6UA3NFZyoUROqg79f5mQtI",
+ "lat": 16.8522733,
+ "lng": -99.8497279,
+ "address": "Almte. Cosme Damián Churruca 8, Fracc. Costa Azul",
+ "phone": "+52 744 484 5837",
+ "hours": {
+  "es": "Lun–Sáb 8:00–23:00, Dom 8:00–22:00",
+  "en": "Mon–Sat 8am–11pm, Sun 8am–10pm"
+ },
+ "rating": 4.3,
+ "reviews": 364,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "italian & grill",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930310481-negro-santo"
+ ],
+ "tagline": {
+  "es": "Pastas, pizzas y costillas en Costa Azul",
+  "en": "Pasta, pizza and ribs in Costa Azul"
+ },
+ "specialty": "Hearty pastas, stone-baked pizzas and BBQ ribs",
+ "signature": [
+  "Pasta carbonara con camarones",
+  "De mariscos",
+  "Lasagna bolognesa",
+  "Costillas bbq"
+ ],
+ "photo_notes": {
+  "cover": "Relaxed neighborhood restaurant with dark wood, black accents, warm Edison bulbs and street-side tables.",
+  "s1": "Creamy carbonara spaghetti with shrimp and crisp bacon in a white bowl.",
+  "s2": "Seafood pizza with shrimp, mussels and squid on a wooden peel.",
+  "s3": "Thick slice of bolognese lasagna with melted cheese, side salad and garlic bread.",
+  "s4": "Rack of glossy BBQ ribs with grilled sweet corn on a board."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Ensaladas",
+    "en": "Salads"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Cesar clásica",
+      "en": "Classic Caesar"
+     },
+     "desc": {
+      "es": "Aderezo César casero",
+      "en": "House Caesar dressing"
+     },
+     "price": "236"
+    },
+    {
+     "name": {
+      "es": "Cesar con camarones",
+      "en": "Caesar with shrimp"
+     },
+     "desc": {
+      "es": "Cinco camarones y crutones",
+      "en": "Five shrimp and croutons"
+     },
+     "price": "459"
+    },
+    {
+     "name": {
+      "es": "Capresse",
+      "en": "Caprese"
+     },
+     "desc": {
+      "es": "Mozzarella, pesto y jitomate",
+      "en": "Mozzarella, pesto, tomato"
+     },
+     "price": "263"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas",
+    "en": "Pasta"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pasta carbonara con camarones",
+      "en": "Shrimp carbonara"
+     },
+     "desc": {
+      "es": "Con camarones y tocino",
+      "en": "With shrimp and bacon"
+     },
+     "price": "587"
+    },
+    {
+     "name": {
+      "es": "Pasta alfredo con arrachera",
+      "en": "Alfredo with skirt steak"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "395"
+    },
+    {
+     "name": {
+      "es": "Con mejillones al vino blanco",
+      "en": "Mussels in white wine"
+     },
+     "desc": {
+      "es": "Con pan con ajo",
+      "en": "With garlic bread"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Bolognesa",
+      "en": "Bolognese"
+     },
+     "desc": {
+      "es": "Salsa de carne y albahaca",
+      "en": "Meat sauce and basil"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Lasagna bolognesa",
+      "en": "Bolognese lasagna"
+     },
+     "desc": {
+      "es": "Con ensalada y pan con ajo",
+      "en": "Salad and garlic bread"
+     },
+     "price": "421"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pizzas",
+    "en": "Pizzas"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "De mariscos",
+      "en": "Seafood pizza"
+     },
+     "desc": {
+      "es": "Mariscos salteados al vino blanco",
+      "en": "Seafood sautéed in white wine"
+     },
+     "price": "566"
+    },
+    {
+     "name": {
+      "es": "La mexicana curious",
+      "en": "La Mexicana"
+     },
+     "desc": {
+      "es": "Chorizo, panceta, bistec y chile verde",
+      "en": "Chorizo, pancetta, steak, green chile"
+     },
+     "price": "527"
+    },
+    {
+     "name": {
+      "es": "A los 6 quesos",
+      "en": "Six-cheese"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "434"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margherita"
+     },
+     "desc": {
+      "es": "Jitomate, albahaca y orégano",
+      "en": "Tomato, basil, oregano"
+     },
+     "price": "381"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hamburguesas y carnes",
+    "en": "Burgers & meats"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Costillas bbq",
+      "en": "BBQ ribs"
+     },
+     "desc": {
+      "es": "400 g con mazorca dulce",
+      "en": "400 g with sweet corn"
+     },
+     "price": "514"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa con salsa bbq",
+      "en": "BBQ burger"
+     },
+     "desc": {
+      "es": "Manchego y papas",
+      "en": "Manchego and fries"
+     },
+     "price": "329"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa con queso",
+      "en": "Cheeseburger"
+     },
+     "desc": {
+      "es": "Con papas",
+      "en": "With fries"
+     },
+     "price": "288"
+    }
+   ]
+  }
+ ]
+}

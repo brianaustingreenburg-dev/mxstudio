@@ -1,0 +1,284 @@
+{
+ "name": "Yoyas",
+ "slug": "yoyas-acapulco",
+ "area": "Costa Azul",
+ "place_id": "ChIJAQAwmc5ZyoURqwEgHJFTc-4",
+ "lat": 16.8476438,
+ "lng": -99.8511993,
+ "address": "Av. Costera Miguel Alemán 3007, Fracc. Costa Azul",
+ "phone": "+52 744 149 0878",
+ "hours": {
+  "es": "Lun–Dom 8:00–22:00",
+  "en": "Mon–Sun 8am–10pm"
+ },
+ "rating": 4.3,
+ "reviews": 437,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "brunch & bistro",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923780686-yoyas-acapulco"
+ ],
+ "tagline": {
+  "es": "Bistró y panadería de brunch a cena",
+  "en": "Bistro and bakery from brunch to dinner"
+ },
+ "specialty": "All-day bistro: brioche French toast and benedicts by day, short rib, pizzas and salmon by night",
+ "signature": [
+  "Pan Frances",
+  "Short Rib",
+  "Ceviche de la Pasión",
+  "Pizza Prosciutto"
+ ],
+ "photo_notes": {
+  "cover": "Stylish bistro-bakery on the Costera with light wood, greenery, a pastry counter and an open terrace.",
+  "s1": "Thick butter brioche French toast with mixed berries and powdered sugar.",
+  "s2": "Slow-cooked glazed short rib served with roasted bone marrow on a dark plate.",
+  "s3": "Sea bass ceviche in passion-fruit tiger's milk with jicama, avocado and starfruit slices.",
+  "s4": "Thin-crust pizza topped with prosciutto, fresh arugula and parmesan shavings."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfasts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Bowl de Frutas Mixtas",
+      "en": "Mixed Fruit Bowl"
+     },
+     "desc": {
+      "es": "Fruta, yogurt, granola y miel",
+      "en": "Fruit, yogurt, granola and honey"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Benedictinos",
+      "en": "Eggs Benedict"
+     },
+     "desc": {
+      "es": "Huevos pochados en croissant, holandesa",
+      "en": "Poached eggs on croissant, hollandaise"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles Del Pacifico",
+      "en": "Pacific Chilaquiles"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Enmoladas",
+      "en": "Enmoladas"
+     },
+     "desc": {
+      "es": "Pollo en mole casero, crema y queso",
+      "en": "Chicken in house mole, cream, cheese"
+     },
+     "price": "215"
+    },
+    {
+     "name": {
+      "es": "Molletes",
+      "en": "Molletes"
+     },
+     "desc": {
+      "es": "Baguette, frijol, pancetta y manchego",
+      "en": "Baguette, beans, pancetta, manchego"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Pan Frances",
+      "en": "French Toast"
+     },
+     "desc": {
+      "es": "Brioche de mantequilla con frutos rojos",
+      "en": "Butter brioche with mixed berries"
+     },
+     "price": "150"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas y Ensaladas",
+    "en": "Starters & Salads"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche de la Pasión",
+      "en": "Passion Fruit Ceviche"
+     },
+     "desc": {
+      "es": "Robalo en leche de tigre de maracuyá",
+      "en": "Sea bass in passion-fruit tiger's milk"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Aguachile de Rib Eye",
+      "en": "Rib Eye Aguachile"
+     },
+     "desc": {
+      "es": "Rib eye curado en cítricos y chile",
+      "en": "Rib eye cured in citrus and chile"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Empanadas de la Abuela",
+      "en": "Grandma's Empanadas"
+     },
+     "desc": {
+      "es": "Tres piezas con chimichurri",
+      "en": "Three pieces with chimichurri"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Frutos del Bosque y Cabra",
+      "en": "Berries & Goat Cheese Salad"
+     },
+     "desc": {
+      "es": "Lechuga, naranja, nuez y queso de cabra",
+      "en": "Greens, orange, walnuts, goat cheese"
+     },
+     "price": "155"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas y Pizzas",
+    "en": "Pasta & Pizza"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Risotto de Hongos",
+      "en": "Mushroom Risotto"
+     },
+     "desc": {
+      "es": "Arborio, hongos y aceite de trufa",
+      "en": "Arborio, mushrooms and truffle oil"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Spaguetti Frutti di Mare",
+      "en": "Spaghetti Frutti di Mare"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Pizza Prosciutto",
+      "en": "Prosciutto Pizza"
+     },
+     "desc": {
+      "es": "Mozzarella, prosciutto, arúgula, parmesano",
+      "en": "Mozzarella, prosciutto, arugula"
+     },
+     "price": "250"
+    },
+    {
+     "name": {
+      "es": "Pizza Cinco Quesos",
+      "en": "Five-Cheese Pizza"
+     },
+     "desc": {
+      "es": "Mozzarella, cabra, manchego, roquefort",
+      "en": "Mozzarella, goat, manchego, roquefort"
+     },
+     "price": "375"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Short Rib",
+      "en": "Short Rib"
+     },
+     "desc": {
+      "es": "Cocción lenta 24 h con tuétano",
+      "en": "24-hour slow-cooked, with bone marrow"
+     },
+     "price": "475"
+    },
+    {
+     "name": {
+      "es": "Salmón Tilín Tilín",
+      "en": "Salmón Tilín Tilín"
+     },
+     "desc": {
+      "es": "Mantequilla de trufa y romero",
+      "en": "Truffle-rosemary butter"
+     },
+     "price": "455"
+    },
+    {
+     "name": {
+      "es": "Pollo Campesino",
+      "en": "Country Chicken"
+     },
+     "desc": {
+      "es": "Costra de pistache y almendra",
+      "en": "Pistachio-almond crusted breast"
+     },
+     "price": "360"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa de Camarón",
+      "en": "Shrimp Burger"
+     },
+     "desc": {
+      "es": "Camarón tempura, ensalada y chipotle",
+      "en": "Tempura shrimp, slaw and chipotle mayo"
+     },
+     "price": "375"
+    },
+    {
+     "name": {
+      "es": "Sándwich Yoyas",
+      "en": "Yoyas Sandwich"
+     },
+     "desc": {
+      "es": "Brioche con pavo, tocino y papas trufadas",
+      "en": "Brioche, turkey, bacon, truffle fries"
+     },
+     "price": "255"
+    }
+   ]
+  }
+ ]
+}

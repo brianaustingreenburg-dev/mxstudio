@@ -1,0 +1,284 @@
+{
+ "name": "Aiko Comida Japonesa",
+ "slug": "aiko-comida-japonesa",
+ "area": "Condesa",
+ "place_id": "ChIJR3lBBF1ZyoURi_qGmLqW5RI",
+ "lat": 16.8569906,
+ "lng": -99.8665643,
+ "address": "Av. Costera Miguel Alemán 120, Condesa",
+ "phone": "+52 744 190 9187",
+ "hours": {
+  "es": "Lun–Dom 13:00–22:30",
+  "en": "Mon–Sun 1pm–10:30pm"
+ },
+ "rating": 4.4,
+ "reviews": 234,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "sushi",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930206784-aiko-sushi-condesa"
+ ],
+ "tagline": {
+  "es": "Rollos frutales y teppanyaki sobre la Costera",
+  "en": "Fruity rolls and teppanyaki right on the Costera"
+ },
+ "specialty": "Tropical fruit rolls (mango, strawberry, kiwi), teppanyaki and sashimi platters",
+ "signature": [
+  "Mango roll",
+  "Fresa roll",
+  "Dragón roll",
+  "Teppanyaki de mixto"
+ ],
+ "photo_notes": {
+  "cover": "Casual Japanese restaurant on the beachfront avenue with light wood, paper lamps and a sushi bar.",
+  "s1": "Sushi roll with shrimp, avocado and fresh mango slices on top, glossy sauce, white plate.",
+  "s2": "Roll topped with fresh strawberry slices over coconut shrimp and cream cheese.",
+  "s3": "Long dragon-shaped roll with eel and avocado scales and crab salad on a wooden board.",
+  "s4": "Sizzling teppanyaki of beef, shrimp and chicken with vegetables, noodles and sesame."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Kushiague de plátano y queso",
+      "en": "Banana & Cheese Kushiage"
+     },
+     "desc": {
+      "es": "Brocheta empanizada de plátano y queso",
+      "en": "Breaded banana and cheese skewer"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Yakitori",
+      "en": "Yakitori"
+     },
+     "desc": {
+      "es": "Tres brochetas de pollo con teriyaki",
+      "en": "Three chicken skewers with teriyaki"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Alitas aiko",
+      "en": "Aiko Wings"
+     },
+     "desc": {
+      "es": "Alitas BBQ con arroz y lechuga",
+      "en": "BBQ wings with rice and lettuce"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Edamame",
+      "en": "Edamame"
+     },
+     "desc": {
+      "es": "Frijol de soya al vapor",
+      "en": "Steamed soybeans"
+     },
+     "price": "150"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Rollos Especiales",
+    "en": "Special Rolls"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Mango roll",
+      "en": "Mango Roll"
+     },
+     "desc": {
+      "es": "Pepino, camarón, aguacate y mango",
+      "en": "Cucumber, shrimp, avocado and mango"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Fresa roll",
+      "en": "Strawberry Roll"
+     },
+     "desc": {
+      "es": "Camarón coco, Philadelphia y fresa",
+      "en": "Coconut shrimp, cream cheese, strawberry"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Kiwi roll",
+      "en": "Kiwi Roll"
+     },
+     "desc": {
+      "es": "Camarón coco, aguacate y kiwi",
+      "en": "Coconut shrimp, avocado and kiwi"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Dragón roll",
+      "en": "Dragon Roll"
+     },
+     "desc": {
+      "es": "Surimi, anguila y aguacate en forma de dragón",
+      "en": "Surimi, eel and avocado shaped as a dragon"
+     },
+     "price": "365"
+    },
+    {
+     "name": {
+      "es": "Hawai 5-0",
+      "en": "Hawaii 5-0"
+     },
+     "desc": {
+      "es": "Camarón coco, Philadelphia, mango",
+      "en": "Coconut shrimp, cream cheese, mango"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Mikado roll",
+      "en": "Mikado Roll"
+     },
+     "desc": {
+      "es": "Salmón empanizado, surimi y teriyaki",
+      "en": "Breaded salmon, surimi and teriyaki"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Dinamita",
+      "en": "Dynamite Roll"
+     },
+     "desc": {
+      "es": "Atún, salmón y pescado blanco aderezado",
+      "en": "Dressed tuna, salmon and white fish"
+     },
+     "price": "190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Sashimi y Platones",
+    "en": "Sashimi & Platters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sashimi de Atún Tataki",
+      "en": "Seared Tuna Tataki"
+     },
+     "desc": {
+      "es": "Atún sellado con ponzu y cebollín",
+      "en": "Seared tuna with ponzu and chives"
+     },
+     "price": "325"
+    },
+    {
+     "name": {
+      "es": "Chirashi sushi",
+      "en": "Chirashi Sushi"
+     },
+     "desc": {
+      "es": "Sashimi grueso mixto sobre arroz",
+      "en": "Thick-cut mixed sashimi over rice"
+     },
+     "price": "385"
+    },
+    {
+     "name": {
+      "es": "Platón n 1",
+      "en": "Platter No. 1"
+     },
+     "desc": {
+      "es": "Surtido para 2: rollos y kushiagues",
+      "en": "Sampler for two: rolls and kushiage"
+     },
+     "price": "570"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Calientes",
+    "en": "Hot Dishes"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Teppanyaki de mixto",
+      "en": "Mixed Teppanyaki"
+     },
+     "desc": {
+      "es": "Carnes, verduras y fideos con ponzu",
+      "en": "Meats, vegetables and noodles with ponzu"
+     },
+     "price": "390"
+    },
+    {
+     "name": {
+      "es": "Teriyaki de salmon",
+      "en": "Salmon Teriyaki"
+     },
+     "desc": {
+      "es": "Salmón glaseado con verduras y arroz",
+      "en": "Glazed salmon with vegetables and rice"
+     },
+     "price": "370"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut Shrimp"
+     },
+     "desc": {
+      "es": "Con aderezo de jerez, arroz y verduras",
+      "en": "With sherry dressing, rice, vegetables"
+     },
+     "price": "360"
+    },
+    {
+     "name": {
+      "es": "Ramen",
+      "en": "Ramen"
+     },
+     "desc": {
+      "es": "Fideos japoneses con huevo y alga",
+      "en": "Japanese noodles with egg and seaweed"
+     },
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Yakimeshi especial",
+      "en": "Special Fried Rice"
+     },
+     "desc": {
+      "es": "Arroz frito con verduras y carnes",
+      "en": "Fried rice with vegetables and meats"
+     },
+     "price": "230"
+    }
+   ]
+  }
+ ]
+}

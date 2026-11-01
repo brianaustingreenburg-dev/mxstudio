@@ -1,0 +1,273 @@
+{
+ "name": "Verde Pistache Co.",
+ "slug": "verde-pistache-co",
+ "area": "Costa Azul",
+ "place_id": "ChIJmSVCG89ZyoURikZnnAikfRM",
+ "lat": 16.8483304,
+ "lng": -99.8483047,
+ "address": "Horacio Nelson 3228, Fracc. Costa Azul",
+ "phone": "+52 744 189 4752",
+ "hours": {
+  "es": "Lun–Dom 9:00–20:00",
+  "en": "Mon–Sun 9am–8pm"
+ },
+ "rating": 4.4,
+ "reviews": 394,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "vegan & healthy",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923719807-verde-vegan-suc-costa-azul"
+ ],
+ "tagline": {
+  "es": "Cocina vegana, smoothies y café de especialidad",
+  "en": "Vegan kitchen, smoothies and specialty coffee"
+ },
+ "specialty": "Plant-based Mexican breakfasts, açaí bowls, vegan burgers and superfood smoothies",
+ "signature": [
+  "Acaí Bowl",
+  "Veganator Burguer",
+  "Chilaquiles",
+  "Berry Boom"
+ ],
+ "photo_notes": {
+  "cover": "Fresh green-and-white plant-based café with hanging plants, natural wood and a smoothie bar.",
+  "s1": "Açaí bowl topped with berries, banana, cacao nibs, coconut, chia and granola.",
+  "s2": "Vegan burger with pea-protein patty, guacamole and cheddar on an artisan bun with baby potatoes.",
+  "s3": "Crispy chilaquiles with cashew cream, avocado slices, onion and black beans.",
+  "s4": "Deep purple mixed-berry smoothie in a tall glass with fresh berries."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfasts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles",
+      "en": "Chilaquiles"
+     },
+     "desc": {
+      "es": "Queso de nuez, aguacate y frijol",
+      "en": "Nut cheese, avocado and beans"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Enchiladas Verdes",
+      "en": "Green Enchiladas"
+     },
+     "desc": {
+      "es": "Frijol y ricotta de almendra",
+      "en": "Beans and almond ricotta"
+     },
+     "price": "148"
+    },
+    {
+     "name": {
+      "es": "Hot Cakes",
+      "en": "Pancakes"
+     },
+     "desc": {
+      "es": "Avena y plátano con chocolate artesanal",
+      "en": "Oat-banana with artisan chocolate"
+     },
+     "price": "147"
+    },
+    {
+     "name": {
+      "es": "Acaí Bowl",
+      "en": "Açaí Bowl"
+     },
+     "desc": {
+      "es": "Açaí, frutos rojos, plátano y granola",
+      "en": "Açaí, berries, banana and granola"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Pan Francés",
+      "en": "French Toast"
+     },
+     "desc": {
+      "es": "Integral con frutos rojos y crema de nuez",
+      "en": "Whole wheat, berries, cashew cream"
+     },
+     "price": "190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platillos",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Veganator Burguer",
+      "en": "Veganator Burger"
+     },
+     "desc": {
+      "es": "Proteína de chícharo, guacamole y papitas",
+      "en": "Pea-protein patty, guacamole, potatoes"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Lasagna Bolognesa",
+      "en": "Bolognese Lasagna"
+     },
+     "desc": {
+      "es": "Con carne vegetal y queso estilo mozzarella",
+      "en": "Plant-based meat and vegan mozzarella"
+     },
+     "price": "197"
+    },
+    {
+     "name": {
+      "es": "Tacos de Pastor",
+      "en": "Al Pastor Tacos"
+     },
+     "desc": {
+      "es": "Cinco tacos de soya al pastor con piña",
+      "en": "Five soy al pastor tacos with pineapple"
+     },
+     "price": "147"
+    },
+    {
+     "name": {
+      "es": "Pepito de Milanesa",
+      "en": "Seitan Milanesa Sandwich"
+     },
+     "desc": {
+      "es": "Seitán, aguacate y queso de nuez",
+      "en": "Seitan, avocado and cashew cheese"
+     },
+     "price": "154"
+    },
+    {
+     "name": {
+      "es": "Croque Madame",
+      "en": "Croque Madame"
+     },
+     "desc": {
+      "es": "Jamón de soya, bechamel y huevo",
+      "en": "Soy ham, béchamel and fried egg"
+     },
+     "price": "211"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Smoothies",
+    "en": "Smoothies"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Berry Boom",
+      "en": "Berry Boom"
+     },
+     "desc": {
+      "es": "Frutos rojos, dátil y plátano",
+      "en": "Mixed berries, dates and banana"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Diosa Verde",
+      "en": "Green Goddess"
+     },
+     "desc": {
+      "es": "Espinaca, kale, nopal y piña",
+      "en": "Spinach, kale, nopal and pineapple"
+     },
+     "price": "98"
+    },
+    {
+     "name": {
+      "es": "Smoothie Maniac",
+      "en": "Maniac Smoothie"
+     },
+     "desc": {
+      "es": "Plátano, crema de cacahuate y cacao",
+      "en": "Banana, peanut butter and cacao"
+     },
+     "price": "132"
+    },
+    {
+     "name": {
+      "es": "Bombastic",
+      "en": "Bombastic"
+     },
+     "desc": {
+      "es": "Betabel, fresa, ashwagandha y espirulina",
+      "en": "Beet, strawberry, ashwagandha, spirulina"
+     },
+     "price": "149"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Café de Especialidad",
+    "en": "Specialty Coffee"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flat white",
+      "en": "Flat White"
+     },
+     "desc": {
+      "es": "150 ml",
+      "en": "150 ml"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Latte",
+      "en": "Latte"
+     },
+     "desc": {
+      "es": "300 ml",
+      "en": "300 ml"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Honey Lime Tonic",
+      "en": "Honey Lime Tonic"
+     },
+     "desc": {
+      "es": "Espresso doble, tónica, miel y limón",
+      "en": "Double espresso, tonic, honey, lime"
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Matcha Frappe",
+      "en": "Matcha Frappé"
+     },
+     "desc": {
+      "es": "Matcha orgánico, crema de almendra y dátil",
+      "en": "Organic matcha, almond cream, dates"
+     },
+     "price": "200"
+    }
+   ]
+  }
+ ]
+}

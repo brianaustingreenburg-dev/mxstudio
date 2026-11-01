@@ -1,0 +1,303 @@
+{
+ "name": "La Ribaicita",
+ "slug": "la-ribaicita",
+ "area": "Costa Azul",
+ "place_id": "ChIJp7sPBtBZyoUR7-hel7s5ZoM",
+ "lat": 16.8527801,
+ "lng": -99.8462907,
+ "address": "Parque Sur 270, Costa Azul",
+ "phone": "+52 744 484 5493",
+ "hours": {
+  "es": "Mar–Dom 13:00–20:30 · Lun cerrado",
+  "en": "Tue–Sun 1pm–8:30pm · Mon closed"
+ },
+ "rating": 4.4,
+ "reviews": 236,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "steakhouse / cortes",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930262156-la-ribaicita"
+ ],
+ "tagline": {
+  "es": "Cortes al carbón, expertos en carne",
+  "en": "Charcoal-grilled cuts from meat experts"
+ },
+ "specialty": "Imported and national steaks grilled over charcoal, marrow and charro beans",
+ "signature": [
+  "Rib eye importado",
+  "Porter house",
+  "Tuétanos 3 pzas",
+  "Parrillada para 8 personas"
+ ],
+ "photo_notes": {
+  "cover": "Rustic steakhouse dining room in Costa Azul with an indoor charcoal grill glowing, wooden tables and an air-conditioned salon.",
+  "s1": "Thick marbled rib eye with charred crust, sliced on a wooden board with chimichurri.",
+  "s2": "Huge grilled porterhouse with T-bone, strip and fillet sides, coarse salt on top.",
+  "s3": "Three roasted beef marrow bones sprinkled with herbs, lime and warm tortillas.",
+  "s4": "Big grill platter with arrachera, picanha, rib eye, chistorra, guacamole and queso fundido."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Cortes importados",
+    "en": "Imported cuts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Rib eye importado",
+      "en": "Imported rib eye"
+     },
+     "desc": {
+      "es": "400 g, marmoleo intenso",
+      "en": "400 g, richly marbled"
+     },
+     "price": "555"
+    },
+    {
+     "name": {
+      "es": "Porter house",
+      "en": "Porterhouse"
+     },
+     "desc": {
+      "es": "400 g con hueso en T",
+      "en": "400 g T-bone cut"
+     },
+     "price": "605"
+    },
+    {
+     "name": {
+      "es": "Picaña",
+      "en": "Picanha"
+     },
+     "desc": {
+      "es": "400 g, término a elegir",
+      "en": "400 g, cooked to order"
+     },
+     "price": "365"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cortes nacionales",
+    "en": "National cuts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Rib eye nacional",
+      "en": "Mexican rib eye"
+     },
+     "desc": {
+      "es": "350 g jugoso",
+      "en": "350 g, juicy"
+     },
+     "price": "319"
+    },
+    {
+     "name": {
+      "es": "Arrachera",
+      "en": "Skirt steak"
+     },
+     "desc": {
+      "es": "400 g marinada a la parrilla",
+      "en": "400 g marinated and grilled"
+     },
+     "price": "269"
+    },
+    {
+     "name": {
+      "es": "Short rib",
+      "en": "Short rib"
+     },
+     "desc": {
+      "es": "800 g de costilla marmoleada",
+      "en": "800 g marbled beef ribs"
+     },
+     "price": "469"
+    },
+    {
+     "name": {
+      "es": "Kansas steak",
+      "en": "Kansas steak"
+     },
+     "desc": {
+      "es": "400 g grueso y jugoso",
+      "en": "400 g, thick and juicy"
+     },
+     "price": "289"
+    },
+    {
+     "name": {
+      "es": "Cowboy",
+      "en": "Cowboy steak"
+     },
+     "desc": {
+      "es": "400 g con hueso",
+      "en": "400 g bone-in"
+     },
+     "price": "269"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Asados y entradas",
+    "en": "Grill starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tuétanos 3 pzas",
+      "en": "Bone marrow (3)"
+     },
+     "desc": {
+      "es": "Tuétano asado con hierbas",
+      "en": "Roasted marrow with herbs"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Mollejas",
+      "en": "Sweetbreads"
+     },
+     "desc": {
+      "es": "Mollejas de res al carbón",
+      "en": "Charcoal-grilled beef sweetbreads"
+     },
+     "price": "169"
+    },
+    {
+     "name": {
+      "es": "Chinchulines",
+      "en": "Chinchulines"
+     },
+     "desc": {
+      "es": "Con limón y salsas",
+      "en": "With lime and salsas"
+     },
+     "price": "159"
+    },
+    {
+     "name": {
+      "es": "Queso fundido",
+      "en": "Queso fundido"
+     },
+     "desc": {
+      "es": "Queso Chihuahua gratinado",
+      "en": "Melted Chihuahua cheese"
+     },
+     "price": "139"
+    },
+    {
+     "name": {
+      "es": "Empanadas de Elote",
+      "en": "Corn empanadas"
+     },
+     "desc": {
+      "es": "Dos piezas",
+      "en": "Two pieces"
+     },
+     "price": "99"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Parrilladas",
+    "en": "Grill platters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "4 Personas",
+      "en": "Platter for 4"
+     },
+     "desc": {
+      "es": "Arrachera, rib eye, chistorra, tuétano",
+      "en": "Arrachera, rib eye, chistorra, marrow"
+     },
+     "price": "1090"
+    },
+    {
+     "name": {
+      "es": "Parrillada para 8 personas",
+      "en": "Platter for 8"
+     },
+     "desc": {
+      "es": "Arrachera, picaña, rib eye, New York y más",
+      "en": "Arrachera, picanha, rib eye, NY and more"
+     },
+     "price": "1989"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Guarniciones y postres",
+    "en": "Sides & desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frijoles charros",
+      "en": "Charro beans"
+     },
+     "desc": {
+      "es": "Con chorizo, salchicha y chicharrón",
+      "en": "With chorizo, sausage, pork crackling"
+     },
+     "price": "119"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Con tostadas",
+      "en": "With tostadas"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Papa carbón",
+      "en": "Charcoal potato"
+     },
+     "desc": {
+      "es": "Con tocino y crema",
+      "en": "With bacon and sour cream"
+     },
+     "price": "129"
+    },
+    {
+     "name": {
+      "es": "Ensalada Ribaicita",
+      "en": "Ribaicita salad"
+     },
+     "desc": {
+      "es": "Lechuga, manzana y nuez",
+      "en": "Romaine, apple and walnut"
+     },
+     "price": "198"
+    },
+    {
+     "name": {
+      "es": "Pastel de Elote",
+      "en": "Corn cake"
+     },
+     "desc": {
+      "es": "Esponjoso y dulce",
+      "en": "Light and sweet"
+     },
+     "price": "115"
+    }
+   ]
+  }
+ ]
+}
