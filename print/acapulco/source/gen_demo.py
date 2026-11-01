@@ -27,6 +27,7 @@ for r in R['routes']:
         k='cafe' if t=='C' else 'bar' if t=='X' else ('mar' if s['n'] in SEA else 'res')
         col=COL[k][cnt[k]%len(COL[k])];cnt[k]+=1
         B.append({"id":s['id'][-8:],"n":s['n'],"k":k,"c":col,"a":s['a'],"r":r['num']})
+used={b["k"] for b in B};MENUS={k:v for k,v in MENUS.items() if k in used}
 js=json.dumps({"B":B,"M":MENUS},ensure_ascii=False).replace('<','\\u003c')
 expr="""(function(){const X=%s;const q=new URLSearchParams(location.search);const b=X.B.find(x=>x.id===q.get("id"))||X.B[0];const m=X.M[b.k];
  return {slug:"demo-"+b.id,name:b.n,tagline:m.tag,color:b.c,logo:"",cover:m.cover,whatsapp:"527441930502",phone:"527441930502",address:b.a,map:"",hours:{es:"",en:""},
