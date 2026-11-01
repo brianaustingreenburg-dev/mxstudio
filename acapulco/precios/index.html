@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Precios · MX Studio ✝️</title>
-<meta name="description" content="Tu app bilingüe con menú, ubicación y WhatsApp para reservas y para llevar. $1,999 instalación + $1,490 al año.">
+<meta name="description" content="Tu app bilingüe con menú, ubicación y WhatsApp para reservas y para llevar. $1,999 instalación + $999 al año.">
 <meta name="theme-color" content="#000000">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="../icon-192.png">
@@ -40,6 +40,8 @@ h1 span{color:var(--gold)}
 .pbox{background:#000;border:1px solid var(--line);border-radius:18px;padding:14px 10px;text-align:center}
 .pbox b{display:block;font-size:30px;font-weight:800;color:var(--green);line-height:1.05}
 .pbox span{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:4px}
+.pbox .was{font-size:11.5px;color:var(--gold);margin-top:2px}
+.promo{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:99px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a}
 .feats{list-style:none;display:grid;gap:10px}
 .feats li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
 .feats i{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:18px}
@@ -104,9 +106,10 @@ body.is-off .off{display:block}
   <section class="plan">
     <div class="pname" data-t="pname"></div>
     <div class="ptitle" data-t="ptitle"></div>
+    <div class="promo" data-t="promo"></div>
     <div class="prices">
       <div class="pbox"><b>$1,999</b><span data-t="once"></span></div>
-      <div class="pbox"><b>$1,490</b><span data-t="month"></span></div>
+      <div class="pbox"><b>$999</b><span data-t="month"></span><span class="was" data-t="was"></span></div>
     </div>
     <ul class="feats" id="feats"></ul>
     <div class="inc" id="inc"></div>
@@ -126,13 +129,13 @@ body.is-off .off{display:block}
 </div>
 
 <div class="total"><div class="in">
-  <div class="trow"><div><small data-t="today"></small><b id="tToday">$3,489</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$1,490</b></div></div>
+  <div class="trow"><div><small data-t="today"></small><b id="tToday">$2,998</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$999</b></div></div>
   <button class="cta" id="cta"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg><span data-t="cta"></span></button>
 </div></div>
 
 <script>
 const PHONE="527441930502";
-const BASE={once:1999,year:1490};
+const BASE={once:1999,year:999};
 const X=[
  {k:"mesa",ic:"🍽️",once:990,year:490,es:["QR por mesa + llamar al mesero","Cada mesa con su QR; el cliente llama al mesero desde su teléfono"],en:["Table QR + call-the-waiter","Every table gets its own QR; guests call the waiter from their phone"]},
  {k:"resenas",ic:"⭐",once:490,year:0,es:["Botón y QR de reseñas Google","Más reseñas de 5 estrellas en Google"],en:["Google review button + QR","More 5-star reviews on Google"]},
@@ -143,26 +146,26 @@ const X=[
  {k:"print",ic:"🖨️",once:490,year:0,es:["Diseño de tarjetas QR impresas","Tarjetas bilingües listas para imprimir"],en:["Printed QR card design","Bilingual cards ready to print"]}
 ];
 const T={
- es:{kicker:"Precios · Acapulco",h1a:"Tu app bilingüe",h1b:"$1,490 al año",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
-  pname:"App MX Studio",ptitle:"Todo lo que tu negocio necesita",once:"instalación · una vez",month:"soporte al año",
+ es:{kicker:"Precios · Acapulco",h1a:"Tu app bilingüe",h1b:"soporte $999 al año",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
+  pname:"App MX Studio",ptitle:"Todo lo que tu negocio necesita",once:"instalación · una vez",month:"soporte al año",was:"antes $1,490",promo:"🌴 Precio de temporada baja: soporte −33%",
   feats:[["📍","Ubicación y cómo llegar"],["📖","Menú con fotos y precios"],["💬","Reservas y para llevar por WhatsApp"],["🌎","Español e inglés, con un botón"]],
   inc:["Cambios ilimitados","Soporte 7 días","Hosting incluido","Tu propio dominio","Sin contrato","Reembolso si cancelas"],tax:"Precios finales en pesos mexicanos (MXN) · sin cargos extra",
   xK:"Opcional",xH:"Agrega a tu app",xP:"Toca para ver tu total. Puedes agregarlos cuando quieras.",
   hK:"Negocios grandes",hH:"Hoteles y resorts",hT:"Cotización a tu medida",hS:"Guía del huésped, servicio a cuarto y más. Escríbenos por WhatsApp.",
   fK:"Preguntas",fH:"Lo que nos preguntan",
-  faq:[["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas el soporte una vez al año y puedes cancelar cuando quieras."],["¿Y si cancelo antes?","Te devolvemos los meses que no usaste del soporte anual. Ejemplo: si cancelas a los 4 meses, te regresamos 8 meses ($993). La instalación no es reembolsable."],["¿Cómo pago?","La instalación y el primer año al empezar. Después, $1,490 una vez al año. Con tarjeta, transferencia o efectivo."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
+  faq:[["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas el soporte una vez al año y puedes cancelar cuando quieras."],["¿Y si cancelo antes?","Te devolvemos los meses que no usaste del soporte anual. Ejemplo: si cancelas a los 4 meses, te regresamos 8 meses ($666). La instalación no es reembolsable."],["¿Cómo pago?","La instalación y el primer año al empezar. Después, $999 una vez al año. Con tarjeta, transferencia o efectivo."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
   today:"HOY (con 1er año)",monthly:"CADA AÑO",cta:"Lo quiero · Enviar por WhatsApp",per:"/año",
-  msg:(lines,o,m)=>`Hola MX Studio, me interesa la app:\n• App MX Studio ($1,999 + $1,490/año)${lines}\nTotal hoy (con primer año): ${o} · Cada año: ${m}`},
- en:{kicker:"Prices · Acapulco",h1a:"Your bilingual app",h1b:"$1,490 a year",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
-  pname:"MX Studio app",ptitle:"Everything your business needs",once:"setup · one time",month:"support per year",
+  msg:(lines,o,m)=>`Hola MX Studio, me interesa la app:\n• App MX Studio ($1,999 + $999/año)${lines}\nTotal hoy (con primer año): ${o} · Cada año: ${m}`},
+ en:{kicker:"Prices · Acapulco",h1a:"Your bilingual app",h1b:"support $999 a year",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
+  pname:"MX Studio app",ptitle:"Everything your business needs",once:"setup · one time",month:"support per year",was:"was $1,490",promo:"🌴 Slow-season price: support 33% off",
   feats:[["📍","Location and directions"],["📖","Menu with photos and prices"],["💬","WhatsApp reservations and carry-out"],["🌎","Spanish and English, one tap"]],
   inc:["Unlimited updates","7-day support","Hosting included","Your own domain","No contract","Refund if you cancel"],tax:"Final prices in Mexican pesos (MXN) · no extra fees",
   xK:"Optional",xH:"Add to your app",xP:"Tap to see your total. Add them anytime.",
   hK:"Bigger businesses",hH:"Hotels & resorts",hT:"Custom quote",hS:"Guest guide, room service and more. Message us on WhatsApp.",
   fK:"Questions",fH:"What people ask us",
-  faq:[["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay support once a year and can cancel anytime."],["What if I cancel early?","We refund the unused months of your yearly support. Example: cancel after 4 months and we refund 8 months ($993). Setup is non-refundable."],["How do I pay?","Setup and the first year when you start. After that, $1,490 once a year. By card, bank transfer or cash."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
+  faq:[["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay support once a year and can cancel anytime."],["What if I cancel early?","We refund the unused months of your yearly support. Example: cancel after 4 months and we refund 8 months ($666). Setup is non-refundable."],["How do I pay?","Setup and the first year when you start. After that, $999 once a year. By card, bank transfer or cash."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
   today:"TODAY (with 1st year)",monthly:"EACH YEAR",cta:"I want it · Send on WhatsApp",per:"/yr",
-  msg:(lines,o,m)=>`Hi MX Studio, I'm interested in the app:\n• MX Studio app ($1,999 + $1,490/yr)${lines}\nTotal today (with first year): ${o} · Each year: ${m}`}
+  msg:(lines,o,m)=>`Hi MX Studio, I'm interested in the app:\n• MX Studio app ($1,999 + $999/yr)${lines}\nTotal today (with first year): ${o} · Each year: ${m}`}
 };
 const $=id=>document.getElementById(id);
 let lang="es",sel={};
