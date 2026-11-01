@@ -23,7 +23,7 @@ C=[s for s in ready if CO[s['id']][0]<=16.81]
 A.sort(key=lambda s:CO[s['id']][1]);A2.sort(key=lambda s:CO[s['id']][1]);B.sort(key=lambda s:-CO[s['id']][0]);B1=[s for s in B if CO[s['id']][0]>=16.843];B2=[s for s in B if CO[s['id']][0]<16.843];B1.sort(key=lambda s:CO[s['id']][1]);C.sort(key=lambda s:-CO[s['id']][1])
 C=sorted(C,key=lambda s:CO[s['id']][1])
 assert len(A)+len(A2)+len(B1)+len(B2)+len(C)==len(ready)
-br="Teléfono con Rutas y Precios abiertos · tarjetas 5×7";br_en="Phone with Rutas & Precios open · 5×7 cards"
+br="Teléfono con MX Dashboard abierto · tarjetas 5×7";br_en="Phone with MX Dashboard open · 5×7 cards"
 RR={"types":R['types'],"routes":[
  {"num":1,"title":"Caleta → Centro → Hornos","title_en":"Caleta → Downtown → Hornos","span":"Caleta · Zócalo · Hornos","span_en":"Caleta · Zócalo · Hornos","desc":"Acapulco tradicional. Estaciona en el Centro y camina las primeras.","desc_en":"Old Acapulco. Park downtown and walk the first ones.","bring":br,"bring_en":br_en,"stops":A},
  {"num":2,"title":"Magallanes → Condesa","title_en":"Magallanes → Condesa","span":"Costera centro","span_en":"Central Costera","desc":"La Costera desde Magallanes hasta la Condesa. Todo cerca.","desc_en":"The Costera from Magallanes to Condesa. All close together.","bring":br,"bring_en":br_en,"stops":A2},
@@ -52,6 +52,6 @@ t=t.replace('const r=DATA.routes.find(x=>x.num===st.route);','const r=DATA.route
 open('rutas-template.html','w').write(t)
 main=t.replace('__DATA__',json.dumps(RR,ensure_ascii=False),1).replace('__PEND__',json.dumps(PP,ensure_ascii=False),1)
 open('/home/claude/mxstudio/acapulco/rutas/index.html','w').write(main)
-open('/home/claude/mxstudio/acapulco/pendientes/index.html','w').write('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rutas ✝ MX Studio</title><meta http-equiv="refresh" content="0;url=../rutas/?m=p"><script>location.replace("../rutas/?m=p")</script><a href="../rutas/?m=p">Rutas</a>')
+open('/home/claude/mxstudio/acapulco/pendientes/index.html','w').write('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MX Dashboard ✝ MX Studio</title><meta http-equiv="refresh" content="0;url=../rutas/?m=p"><script>location.replace("../rutas/?m=p")</script><a href="../rutas/?m=p">MX Dashboard</a>')
 print('ready',len(ready),'routes',[len(A),len(A2),len(B1),len(B2),len(C)],'| pending',sum(len(r['stops']) for r in pend_routes),'in',len(pend_routes),'routes')
 for r in RR['routes']:print(r['num'],[s['n'] for s in r['stops']])
