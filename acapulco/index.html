@@ -447,7 +447,7 @@ $("instBtn").addEventListener("click",async()=>{if(deferred){deferred.prompt();d
 const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);
 addEventListener("online",net);addEventListener("offline",net);net();
 render();
-if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("sw.js").catch(()=>{})}
 </script>
 </body>
 </html>

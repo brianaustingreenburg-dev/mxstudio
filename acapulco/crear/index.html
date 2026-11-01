@@ -317,7 +317,7 @@ document.addEventListener("click",async e=>{const g=s=>e.target.closest(s);let e
   try{const r=await gh("");ks.innerHTML=`<div class="status ok">${T().keyOk} · ${esc(r.full_name)}</div>`}catch(err){ks.innerHTML=`<div class="status err">${T().keyBad}${esc(err.message)}</div>`}return}
 });
 (async()=>{try{const ds=(await allDrafts()).sort((a,b)=>b.updated-a.updated);D=ds[0]||null}catch(e){D=null}if(!D){D=blank();try{await putDraft(D)}catch(e){}}render()})();
-if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
 </script>
 </body>
 </html>

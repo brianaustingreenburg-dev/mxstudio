@@ -249,7 +249,9 @@ $("sheet").onclick=e=>{const u=T[lang];
  open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:u.payWm}))}`,"_blank")};
 const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
 render();
-if("serviceWorker" in navigator&&location.protocol==="https:"){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
 </script>
+<div id="offok" style="position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#1d7a4a;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:99;display:none;white-space:nowrap">✓ Funciona sin internet · Works offline</div>
+<script>try{if("serviceWorker"in navigator&&"caches"in window)navigator.serviceWorker.ready.then(()=>caches.match(location.pathname)).then(m=>{if(m){const b=document.getElementById("offok");b.style.display="block";setTimeout(()=>b.style.display="none",2500)}}).catch(()=>{})}catch(e){}</script>
 </body>
 </html>

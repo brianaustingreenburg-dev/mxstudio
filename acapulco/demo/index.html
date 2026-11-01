@@ -272,7 +272,7 @@ document.addEventListener("click",e=>{
   open(wa(u.mRes($("rP").value,dt,$("rT").value,$("rN").value)),"_blank");}
 });
 render();
-if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){addEventListener("load",()=>navigator.serviceWorker.register("../sw.js").catch(()=>{}))}
+if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
 </script>
 </body>
 </html>
