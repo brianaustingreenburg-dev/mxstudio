@@ -47,6 +47,11 @@ h1 span{color:var(--gold)}
 .feats i{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:18px}
 .inc{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:6px}
 .inc span{font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:99px;background:rgba(37,211,102,.12);color:#7fe9aa;border:1px solid rgba(37,211,102,.3)}
+.tables{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:14px;padding:12px;border-radius:16px;background:#000;border:1px solid var(--line)}
+.tables b{display:block;font-size:15px}.tables small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.step{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.step button{all:unset;cursor:pointer;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:22px;background:var(--s2);border:1px solid var(--line2);color:var(--gold)}
+.step span{min-width:28px;text-align:center;font-weight:800;font-size:20px}
 .tax{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
 .sec{margin:30px 0 10px}
 .sec small{font-size:11px;font-weight:800;letter-spacing:.28em;color:var(--sun);text-transform:uppercase}
@@ -113,6 +118,7 @@ body.is-off .off{display:block}
     </div>
     <ul class="feats" id="feats"></ul>
     <div class="inc" id="inc"></div>
+    <div class="tables"><div><b data-t="tbT"></b><small data-t="tbS"></small></div><div class="step"><button data-tb="-1" aria-label="−">−</button><span id="tbN">10</span><button data-tb="1" aria-label="+">+</button></div></div>
     <div class="tax" data-t="tax"></div>
   </section>
 
@@ -138,32 +144,31 @@ const PHONE="527441930502";
 const BASE={once:1999,year:999};
 const X=[
  {k:"mesa",ic:"🍽️",once:990,year:490,es:["QR por mesa + llamar al mesero","Cada mesa con su QR; el cliente llama al mesero desde su teléfono"],en:["Table QR + call-the-waiter","Every table gets its own QR; guests call the waiter from their phone"]},
- {k:"resenas",ic:"⭐",once:490,year:0,es:["Botón y QR de reseñas Google","Más reseñas de 5 estrellas en Google"],en:["Google review button + QR","More 5-star reviews on Google"]},
- {k:"pago",ic:"💳",once:490,year:0,es:["Pago con tarjeta","Botón de pago con Mercado Pago en tu app"],en:["Card payments","Mercado Pago pay button in your app"]},
+ {k:"pago",ic:"💳",once:490,year:0,es:["Pago con tarjeta","Botón “Pagar con tarjeta” con tu link de Mercado Pago"],en:["Card payments","“Pay by card” button with your Mercado Pago link"]},
  {k:"lealtad",ic:"☕",once:990,year:490,es:["Tarjeta de lealtad digital","Sellos en el teléfono: ¡el 10º es gratis!"],en:["Digital loyalty card","Stamps on the phone: the 10th is free!"]},
  {k:"dash",ic:"📊",once:990,year:790,es:["Dashboard","Ve cuántos visitan tu app y qué piden"],en:["Dashboard","See how many people visit your app and what they order"]},
  {k:"inv",ic:"📦",once:1990,year:1490,es:["Escáner de inventario","Cuenta tu inventario con la cámara del teléfono"],en:["Inventory scanner","Count your stock with your phone's camera"]},
- {k:"print",ic:"🖨️",once:490,year:0,es:["Diseño de tarjetas QR impresas","Tarjetas bilingües listas para imprimir"],en:["Printed QR card design","Bilingual cards ready to print"]}
+ {k:"juegos",ic:"🎮",once:490,year:0,es:["Juegos mientras esperan","Memoria y dibujos para colorear para niños, trivia de Acapulco para adultos"],en:["Games while they wait","Memory game and coloring for kids, Acapulco trivia for adults"]}
 ];
 const T={
  es:{kicker:"Precios · Acapulco",h1a:"Tu app bilingüe",h1b:"soporte $999 al año",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
   pname:"App MX Studio",ptitle:"Todo lo que tu negocio necesita",once:"instalación · una vez",month:"soporte al año",was:"antes $1,490",promo:"🌴 Precio de temporada baja: soporte −33%",
-  feats:[["📍","Ubicación y cómo llegar"],["📖","Menú con fotos y precios"],["💬","Reservas y para llevar por WhatsApp"],["🌎","Español e inglés, con un botón"]],
+  feats:[["🔳","Tarjeta QR impresa: un QR abre tu app y otro conecta al WiFi"],["📖","Menú con fotos y precios"],["📍","Ubicación y cómo llegar"],["💬","Reservas y para llevar por WhatsApp"],["⭐","Botón de reseñas en Google"],["🌎","Español e inglés, con un botón"]],
   inc:["Cambios ilimitados","Soporte 7 días","Hosting incluido","Tu propio dominio","Sin contrato","Reembolso si cancelas"],tax:"Precios finales en pesos mexicanos (MXN) · sin cargos extra",
-  xK:"Opcional",xH:"Agrega a tu app",xP:"Toca para ver tu total. Puedes agregarlos cuando quieras.",
+  tbT:"¿Cuántas mesas?",tbM:"Mesas:",tbS:"Tarjetas QR para mesas incluidas hasta 10 · +$25 por mesa extra (impresión aparte)",tbX:"mesas extra",xK:"Opcional",xH:"Agrega a tu app",xP:"Toca para ver tu total. Puedes agregarlos cuando quieras.",
   hK:"Negocios grandes",hH:"Hoteles y resorts",hT:"Cotización a tu medida",hS:"Guía del huésped, servicio a cuarto y más. Escríbenos por WhatsApp.",
   fK:"Preguntas",fH:"Lo que nos preguntan",
-  faq:[["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas el soporte una vez al año y puedes cancelar cuando quieras."],["¿Y si cancelo antes?","Te devolvemos los meses que no usaste del soporte anual. Ejemplo: si cancelas a los 4 meses, te regresamos 8 meses ($666). La instalación no es reembolsable."],["¿Cómo pago?","La instalación y el primer año al empezar. Después, $999 una vez al año. Con tarjeta, transferencia o efectivo."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
+  faq:[["¿Qué es la tarjeta QR?","Una tarjeta bilingüe para tus mesas o mostrador con dos códigos: uno abre tu app con el menú y otro conecta a tu WiFi sin escribir la contraseña. Incluye hasta 10 mesas, cada una con su número."],["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Hay contrato?","No. Pagas el soporte una vez al año y puedes cancelar cuando quieras."],["¿Y si cancelo antes?","Te devolvemos los meses que no usaste del soporte anual. Ejemplo: si cancelas a los 4 meses, te regresamos 8 meses ($666). La instalación no es reembolsable."],["¿Cómo pago?","La instalación y el primer año al empezar. Después, $999 una vez al año. Con tarjeta, transferencia o efectivo."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
   today:"HOY (con 1er año)",monthly:"CADA AÑO",cta:"Lo quiero · Enviar por WhatsApp",per:"/año",
   msg:(lines,o,m)=>`Hola MX Studio, me interesa la app:\n• App MX Studio ($1,999 + $999/año)${lines}\nTotal hoy (con primer año): ${o} · Cada año: ${m}`},
  en:{kicker:"Prices · Acapulco",h1a:"Your bilingual app",h1b:"support $999 a year",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
   pname:"MX Studio app",ptitle:"Everything your business needs",once:"setup · one time",month:"support per year",was:"was $1,490",promo:"🌴 Slow-season price: support 33% off",
-  feats:[["📍","Location and directions"],["📖","Menu with photos and prices"],["💬","WhatsApp reservations and carry-out"],["🌎","Spanish and English, one tap"]],
+  feats:[["🔳","Printed QR card: one QR opens your app, one connects to WiFi"],["📖","Menu with photos and prices"],["📍","Location and directions"],["💬","WhatsApp reservations and carry-out"],["⭐","Google review button"],["🌎","Spanish and English, one tap"]],
   inc:["Unlimited updates","7-day support","Hosting included","Your own domain","No contract","Refund if you cancel"],tax:"Final prices in Mexican pesos (MXN) · no extra fees",
-  xK:"Optional",xH:"Add to your app",xP:"Tap to see your total. Add them anytime.",
+  tbT:"How many tables?",tbM:"Tables:",tbS:"QR table cards included up to 10 · +$25 per extra table (printing not included)",tbX:"extra tables",xK:"Optional",xH:"Add to your app",xP:"Tap to see your total. Add them anytime.",
   hK:"Bigger businesses",hH:"Hotels & resorts",hT:"Custom quote",hS:"Guest guide, room service and more. Message us on WhatsApp.",
   fK:"Questions",fH:"What people ask us",
-  faq:[["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay support once a year and can cancel anytime."],["What if I cancel early?","We refund the unused months of your yearly support. Example: cancel after 4 months and we refund 8 months ($666). Setup is non-refundable."],["How do I pay?","Setup and the first year when you start. After that, $999 once a year. By card, bank transfer or cash."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
+  faq:[["What is the QR card?","A bilingual card for your tables or counter with two codes: one opens your app with the menu, the other connects to your WiFi without typing the password. Includes up to 10 tables, each with its number."],["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["Is there a contract?","No. You pay support once a year and can cancel anytime."],["What if I cancel early?","We refund the unused months of your yearly support. Example: cancel after 4 months and we refund 8 months ($666). Setup is non-refundable."],["How do I pay?","Setup and the first year when you start. After that, $999 once a year. By card, bank transfer or cash."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
   today:"TODAY (with 1st year)",monthly:"EACH YEAR",cta:"I want it · Send on WhatsApp",per:"/yr",
   msg:(lines,o,m)=>`Hi MX Studio, I'm interested in the app:\n• MX Studio app ($1,999 + $999/yr)${lines}\nTotal today (with first year): ${o} · Each year: ${m}`}
 };
@@ -171,7 +176,8 @@ const $=id=>document.getElementById(id);
 let lang="es",sel={};
 try{lang=localStorage.getItem("mx-precios-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
 const fmt=n=>"$"+n.toLocaleString("en-US");
-function totals(){let m=BASE.year,o=BASE.once+BASE.year;X.forEach(x=>{if(sel[x.k]){o+=x.once+x.year;m+=x.year}});return{o,m}}
+let tables=10;const extraT=()=>Math.max(0,tables-10)*25;
+function totals(){let m=BASE.year,o=BASE.once+BASE.year+extraT();X.forEach(x=>{if(sel[x.k]){o+=x.once+x.year;m+=x.year}});return{o,m}}
 function render(){
  const u=T[lang];document.documentElement.lang=lang;
  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
@@ -180,13 +186,15 @@ function render(){
  $("inc").innerHTML=u.inc.map(s=>`<span>✓ ${s}</span>`).join("");
  $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.year?"+"+fmt(x.year)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
  $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
+ $("tbN").textContent=tables;
  const t=totals();$("tToday").textContent=fmt(t.o);$("tMonth").textContent=fmt(t.m)+u.per;
  document.title=(lang==="es"?"Precios":"Prices")+" · MX Studio ✝️";
 }
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
+document.querySelector(".step").onclick=e=>{const b=e.target.closest("[data-tb]");if(!b)return;tables=Math.min(200,Math.max(1,tables+(+b.dataset.tb)));render()};
 $("extras").onclick=e=>{const b=e.target.closest(".x");if(!b)return;sel[b.dataset.k]=!sel[b.dataset.k];render()};
 $("cta").onclick=()=>{const u=T[lang],t=totals();
- const lines=X.filter(x=>sel[x.k]).map(x=>`\n• ${x[lang][0]} (+${fmt(x.once)}${x.year?" +"+fmt(x.year)+u.per:""})`).join("");
+ const lines=`\n• ${u.tbM} ${tables}${extraT()?` (+${fmt(extraT())} ${u.tbX})`:""}`+X.filter(x=>sel[x.k]).map(x=>`\n• ${x[lang][0]} (+${fmt(x.once)}${x.year?" +"+fmt(x.year)+u.per:""})`).join("");
  open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg(lines,fmt(t.o),fmt(t.m)+u.per))}`,"_blank")};
 const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
 render();
