@@ -3,21 +3,22 @@
 @font-face{font-family:M;font-weight:700;src:url(/home/claude/card/node_modules/@fontsource/montserrat/files/montserrat-latin-700-normal.woff2)}
 @font-face{font-family:M;font-weight:800;src:url(/home/claude/card/node_modules/@fontsource/montserrat/files/montserrat-latin-800-normal.woff2)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{width:1200px;height:1600px;font-family:M,sans-serif;background:linear-gradient(180deg,#201528 0%,#2c1a33 45%,#3a1d2e 70%,#6e2e22 100%);color:#fff;position:relative;overflow:hidden;text-align:center}
-.logo{position:absolute;left:50%;top:64px;width:220px;height:220px;transform:translateX(-50%);border-radius:50%;filter:drop-shadow(0 10px 30px rgba(224,112,58,.35))}
-.k{position:absolute;left:0;right:0;top:316px;font-weight:700;font-size:31px;letter-spacing:.2em;color:#e3a565}
-.t{position:absolute;left:0;right:0;top:366px;font-weight:800;font-size:62px;letter-spacing:-.3px}
-.s{position:absolute;left:0;right:0;top:448px;font-weight:500;font-size:36px;color:#d8c6cf}
-.card{position:absolute;left:192px;top:510px;width:816px;height:816px;background:#f8f1e6;border:4px solid #e0a35f;border-radius:44px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.card img.q{position:absolute;left:98px;top:98px;width:612px;height:612px}
-.mid{position:absolute;left:50%;top:50%;width:132px;height:132px;transform:translate(-50%,-50%);border-radius:50%;background:#f8f1e6;padding:8px}
+body{width:1200px;height:1600px;font-family:M,sans-serif;background:#000;color:#fff;position:relative;overflow:hidden;text-align:center}
+.glow{position:absolute;left:50%;top:58%;width:1100px;height:900px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(224,112,58,.16),transparent 70%)}
+.logo{position:absolute;left:50%;top:110px;width:240px;height:240px;transform:translateX(-50%);border-radius:50%;filter:drop-shadow(0 10px 34px rgba(224,112,58,.45))}
+.k{position:absolute;left:0;right:0;top:396px;font-weight:700;font-size:31px;letter-spacing:.2em;color:#e3a565}
+.t{position:absolute;left:0;right:0;top:448px;font-weight:800;font-size:64px;letter-spacing:-.3px}
+.s{position:absolute;left:0;right:0;top:534px;font-weight:500;font-size:36px;color:#cfc3c8}
+.card{position:absolute;left:330px;top:630px;width:540px;height:540px;background:#f8f1e6;border:4px solid #e0a35f;border-radius:36px;box-shadow:0 0 70px rgba(224,112,58,.25)}
+.card img.q{position:absolute;left:58px;top:58px;width:416px;height:416px}
+.mid{position:absolute;left:50%;top:50%;width:92px;height:92px;transform:translate(-50%,-50%);border-radius:50%;background:#f8f1e6;padding:6px}
 .mid img{width:100%;height:100%;border-radius:50%;display:block}
-.num{position:absolute;left:0;right:0;top:1358px;font-weight:800;font-size:58px;color:#f3cf98;letter-spacing:.5px}
-.pill{position:absolute;left:50%;top:1452px;transform:translateX(-50%);background:#e8552a;border-radius:999px;padding:16px 40px;white-space:nowrap;box-shadow:0 8px 24px rgba(232,85,42,.35)}
+.num{position:absolute;left:0;right:0;top:1236px;font-weight:800;font-size:62px;color:#f3cf98;letter-spacing:.5px}
+.pill{position:absolute;left:50%;top:1346px;transform:translateX(-50%);background:#e8552a;border-radius:999px;padding:18px 44px;white-space:nowrap;box-shadow:0 8px 28px rgba(232,85,42,.4)}
 .pill b{display:block;font-weight:800;font-size:29px;letter-spacing:.06em}
 .pill small{display:block;font-weight:700;font-size:20px;letter-spacing:.08em;opacity:.92;margin-top:2px}
 </style></head><body>
-<img class="logo" src="logo.png">
+<div class="glow"></div><img class="logo" src="logo.png">
 <div class="k">ESCANÉAME · SCAN ME</div>
 <div class="t">Chat with MX Studio</div>
 <div class="s">en WhatsApp · on WhatsApp</div>
