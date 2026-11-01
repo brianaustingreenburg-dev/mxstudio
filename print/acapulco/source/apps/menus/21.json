@@ -1,12 +1,13 @@
 {
  "name": "La Casa de los Abuelos",
  "kind": "res",
- "source": "partial",
+ "source": "real",
  "sources": [
+  "https://www.rappi.com.mx/restaurantes/1923733156-la-casa-de-los-abuelos",
+  "https://web.didiglobal.com/mx/food/acapulco-gro/la-casa-de-los-abuelos-costa-azul/5764607666677352068/",
+  "https://mxmenu.org/la-casa-de-los-abuelos-menu/",
   "https://wanderlog.com/place/details/3304934",
-  "https://www.elfinanciero.com.mx/food-and-drink/2025/08/04/cual-es-el-origen-del-restaurante-la-casa-de-los-abuelos/",
-  "https://www.chilango.com/comida/menu-de-cuaresma-restaurante-de-cdmx/",
-  "https://www.chilango.com/comida-y-tragos/restaurantes/la-casa-de-los-abuelos-nuevo-menu-cdmx/"
+  "https://www.elfinanciero.com.mx/food-and-drink/2025/08/04/cual-es-el-origen-del-restaurante-la-casa-de-los-abuelos/"
  ],
  "tagline": {
   "es": "Sazón casero, pan dulce y café en pleno Centro",
@@ -16,7 +17,7 @@
   "es": "Lun–Dom 7:00–23:00",
   "en": "Mon–Sun 7am–11pm"
  },
- "specialty": "Family Mexican cafeteria-bakery known for pozole, breakfasts and in-house pastries.",
+ "specialty": "Cafetería-panadería familiar acapulqueña: pozole, desayunos, antojitos y pan de la casa. Precios de app (Rappi/DiDi).",
  "signature": [
   "Pozole",
   "Chilaquiles",
@@ -36,21 +37,43 @@
       "en": "Chilaquiles"
      },
      "desc": {
-      "es": "Rojos o verdes, con crema, queso y huevo",
-      "en": "Red or green, with cream, cheese and egg"
+      "es": "Rojos o verdes, con crema y queso",
+      "en": "Red or green, with cream and cheese"
      },
-     "price": "149"
+     "price": "159"
     },
     {
      "name": {
-      "es": "Avocado Toast",
-      "en": "Avocado Toast"
+      "es": "Huevos motuleños",
+      "en": "Huevos motuleños"
      },
      "desc": {
-      "es": "Pan, aguacate, huevo y jitomate cherry",
-      "en": "Bread, avocado, egg and cherry tomato"
+      "es": "",
+      "en": ""
      },
-     "price": "145"
+     "price": "206"
+    },
+    {
+     "name": {
+      "es": "Molletes",
+      "en": "Molletes"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "119"
+    },
+    {
+     "name": {
+      "es": "Hot cakes",
+      "en": "Hot cakes"
+     },
+     "desc": {
+      "es": "Orden de 3",
+      "en": "Order of 3"
+     },
+     "price": "119"
     },
     {
      "name": {
@@ -58,28 +81,17 @@
       "en": "French Toast"
      },
      "desc": {
-      "es": "Con frutos rojos, plátano y helado",
-      "en": "With red berries, banana and ice cream"
+      "es": "Con fruta y miel",
+      "en": "With fruit and syrup"
      },
      "price": "139"
-    },
-    {
-     "name": {
-      "es": "Huevos al gusto",
-      "en": "Eggs your way"
-     },
-     "desc": {
-      "es": "Con frijoles y chilaquiles",
-      "en": "With beans and chilaquiles"
-     },
-     "price": "129"
     }
    ]
   },
   {
    "cat": {
-    "es": "Antojitos y platos fuertes",
-    "en": "Antojitos & mains"
+    "es": "Sopas y antojitos",
+    "en": "Soups & antojitos"
    },
    "items": [
     {
@@ -88,32 +100,32 @@
       "en": "Pozole"
      },
      "desc": {
-      "es": "Pozole tradicional con tostadas y botanas",
-      "en": "Traditional pozole with tostadas and sides"
+      "es": "Tradicional; promo 2x1 en sucursal",
+      "en": "Traditional; in-store 2-for-1 promo"
      },
-     "price": "169"
+     "price": "137"
     },
     {
      "name": {
-      "es": "Flautas de pollo",
-      "en": "Chicken flautas"
+      "es": "Sopa Azteca",
+      "en": "Tortilla soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "146"
+    },
+    {
+     "name": {
+      "es": "Flautas tradicionales",
+      "en": "Traditional flautas"
      },
      "desc": {
       "es": "Con crema, queso y lechuga",
       "en": "With cream, cheese and lettuce"
      },
-     "price": "139"
-    },
-    {
-     "name": {
-      "es": "Sopes",
-      "en": "Sopes"
-     },
-     "desc": {
-      "es": "Sopes con guisados variados",
-      "en": "Sopes with assorted stews"
-     },
-     "price": "135"
+     "price": "131"
     },
     {
      "name": {
@@ -122,9 +134,39 @@
      },
      "desc": {
       "es": "Cerdo pibil con cebolla morada",
-      "en": "Achiote pork with pickled red onion"
+      "en": "Achiote pork, pickled red onion"
      },
-     "price": "149"
+     "price": "106"
+    },
+    {
+     "name": {
+      "es": "Quesadillas al comal",
+      "en": "Griddle quesadillas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "56"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Especialidades",
+    "en": "Specialties"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Club Sandwich",
+      "en": "Club Sandwich"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "173"
     },
     {
      "name": {
@@ -132,40 +174,21 @@
       "en": "Arrachera sandwich"
      },
      "desc": {
-      "es": "Con papas a la francesa",
-      "en": "With French fries"
+      "es": "",
+      "en": ""
      },
-     "price": "199"
-    }
-   ]
-  },
-  {
-   "cat": {
-    "es": "Del mar",
-    "en": "From the sea"
-   },
-   "items": [
-    {
-     "name": {
-      "es": "Coctel de camarones",
-      "en": "Shrimp cocktail"
-     },
-     "desc": {
-      "es": "Estilo Acapulco, con galletas saladas",
-      "en": "Acapulco style, with saltines"
-     },
-     "price": "189"
+     "price": "267"
     },
     {
      "name": {
-      "es": "Tostadas de atún",
-      "en": "Tuna tostadas"
+      "es": "Arrachera a la tampiqueña",
+      "en": "Arrachera tampiqueña"
      },
      "desc": {
-      "es": "Atún teriyaki, mayonesa y aguacate (2)",
-      "en": "Teriyaki tuna, mayo and avocado (2)"
+      "es": "",
+      "en": ""
      },
-     "price": "179"
+     "price": "334"
     },
     {
      "name": {
@@ -173,17 +196,17 @@
       "en": "Breaded shrimp"
      },
      "desc": {
-      "es": "Sobre puré de papa y ensalada",
-      "en": "Over mashed potatoes and salad"
+      "es": "",
+      "en": ""
      },
-     "price": "200"
+     "price": "347"
     }
    ]
   },
   {
    "cat": {
-    "es": "Postres y café",
-    "en": "Desserts & coffee"
+    "es": "Panadería y postres",
+    "en": "Bakery & desserts"
    },
    "items": [
     {
@@ -192,32 +215,84 @@
       "en": "Churro Nest"
      },
      "desc": {
-      "es": "Churros con bola de helado de vainilla",
-      "en": "Churros with a scoop of vanilla ice cream"
+      "es": "Churros con helado de vainilla",
+      "en": "Churros with vanilla ice cream"
      },
      "price": "109"
     },
     {
      "name": {
-      "es": "Café de olla",
-      "en": "Café de olla"
+      "es": "Concha de nata",
+      "en": "Cream concha"
      },
      "desc": {
-      "es": "Con canela y piloncillo",
-      "en": "With cinnamon and piloncillo"
+      "es": "",
+      "en": ""
      },
-     "price": "49"
+     "price": "79"
     },
     {
      "name": {
-      "es": "Pan dulce",
-      "en": "Pan dulce"
+      "es": "Rol de tres leches",
+      "en": "Tres leches roll"
      },
      "desc": {
-      "es": "Pieza de panadería de la casa",
-      "en": "House bakery piece"
+      "es": "",
+      "en": ""
      },
-     "price": "25"
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Flan de la casa",
+      "en": "House flan"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "87"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Licuados",
+      "en": "Shakes"
+     },
+     "desc": {
+      "es": "Fresa o chocolate",
+      "en": "Strawberry or chocolate"
+     },
+     "price": "106"
+    },
+    {
+     "name": {
+      "es": "Café lechero",
+      "en": "Café con leche"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "79"
+    },
+    {
+     "name": {
+      "es": "Aguas frescas",
+      "en": "Aguas frescas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "72"
     }
    ]
   }

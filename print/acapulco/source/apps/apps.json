@@ -58,6 +58,18 @@
      },
      {
       "name": {
+       "es": "Ostiones en su Concha",
+       "en": "Oysters on the Half Shell"
+      },
+      "desc": {
+       "es": "Docena de ostión fresco",
+       "en": "A dozen fresh oysters"
+      },
+      "price": "240",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Ceviche Acapulqueño",
        "en": "Acapulco-style Ceviche"
       },
@@ -134,6 +146,42 @@
        "en": "Fillet topped with seafood sauce"
       },
       "price": "340",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Morritos al Mojo de Ajo",
+       "en": "Morritos in Garlic"
+      },
+      "desc": {
+       "es": "Hueso de pez vela con carne, al ajo",
+       "en": "Sailfish collar in garlic butter"
+      },
+      "price": "290",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camarones a la Nuez",
+       "en": "Pecan Shrimp"
+      },
+      "desc": {
+       "es": "Camarón en salsa cremosa de nuez",
+       "en": "Shrimp in creamy pecan sauce"
+      },
+      "price": "300",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pescado a la Talla",
+       "en": "Pescado a la Talla"
+      },
+      "desc": {
+       "es": "Pescado entero asado con adobo",
+       "en": "Whole grilled fish in adobo"
+      },
+      "price": "420",
       "img": ""
      }
     ]
@@ -1227,45 +1275,21 @@
   "menu": [
    {
     "cat": {
-     "es": "Entradas",
-     "en": "Starters"
+     "es": "Entradas y tapas",
+     "en": "Starters & tapas"
     },
     "items": [
      {
       "name": {
-       "es": "Crema Sugerencia del Chef",
-       "en": "Chef's Soup of the Day"
+       "es": "Tabla al Mar",
+       "en": "Tabla al Mar (Sea Board)"
       },
       "desc": {
-       "es": "Crema del día según el chef",
-       "en": "Daily cream soup by the chef"
+       "es": "Tabla de mariscos para dos personas",
+       "en": "Seafood board for two"
       },
-      "price": "149",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Mini Tostadas de New York",
-       "en": "Mini New York Steak Tostadas"
-      },
-      "desc": {
-       "es": "Dos piezas de New York sobre tostada",
-       "en": "Two New York steak tostadas"
-      },
-      "price": "229",
-      "img": "img/rswgt_uo/s4.jpg"
-     },
-     {
-      "name": {
-       "es": "Aros de Calamar",
-       "en": "Calamari Rings"
-      },
-      "desc": {
-       "es": "Calamar empanizado con dip",
-       "en": "Breaded squid with dip"
-      },
-      "price": "309",
-      "img": ""
+      "price": "699",
+      "img": "img/rswgt_uo/s1.jpg"
      },
      {
       "name": {
@@ -1281,102 +1305,186 @@
      },
      {
       "name": {
-       "es": "Dip Tropical de Camarón",
-       "en": "Tropical Shrimp Dip"
+       "es": "Mini Tostadas de New York",
+       "en": "Mini New York Steak Tostadas"
       },
       "desc": {
-       "es": "Dip cremoso de camarón y fruta",
-       "en": "Creamy shrimp and fruit dip"
+       "es": "Dos piezas de New York sobre tostada",
+       "en": "Two New York steak tostadas"
       },
-      "price": "309",
+      "price": "229",
+      "img": "img/rswgt_uo/s4.jpg"
+     },
+     {
+      "name": {
+       "es": "Crema Sugerencia del Chef",
+       "en": "Chef's Cream Soup"
+      },
+      "desc": {
+       "es": "Crema del día con hierbas frescas",
+       "en": "Daily cream soup with fresh herbs"
+      },
+      "price": "129",
       "img": ""
      },
      {
       "name": {
-       "es": "Tabla al Mar",
-       "en": "Tabla al Mar (Sea Board)"
+       "es": "Tapa Mediterránea",
+       "en": "Mediterranean Tapa"
       },
       "desc": {
-       "es": "Tabla de mariscos para dos personas",
-       "en": "Seafood board for two"
+       "es": "Jamón serrano, gouda e higo con miel",
+       "en": "Serrano ham, gouda, fig and honey"
       },
-      "price": "699",
-      "img": "img/rswgt_uo/s1.jpg"
+      "price": "169",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Tapa de Frutos Rojos",
+       "en": "Berry Tapa"
+      },
+      "desc": {
+       "es": "Frutos rojos, miel y queso de cabra",
+       "en": "Berries, honey and goat cheese"
+      },
+      "price": "169",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Charola de Tapeo",
+       "en": "Tapas Platter"
+      },
+      "desc": {
+       "es": "10 tapas surtidas",
+       "en": "10 assorted tapas"
+      },
+      "price": "499",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Charola de Quesos 2 Personas",
+       "en": "Cheese Board for Two"
+      },
+      "desc": {
+       "es": "Serrano, salami, feta, fruta y nueces",
+       "en": "Serrano, salami, feta, fruit, nuts"
+      },
+      "price": "379",
+      "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Tapas del Mar",
-     "en": "Sea Tapas"
+     "es": "Ensaladas y baguettes",
+     "en": "Salads & Baguettes"
     },
     "items": [
      {
       "name": {
-       "es": "Tacos de Camarón",
-       "en": "Shrimp Tacos"
+       "es": "Ensalada Ibérica",
+       "en": "Iberian Salad"
       },
       "desc": {
-       "es": "Tres tacos con col y chipotle",
-       "en": "Three tacos, slaw, chipotle"
+       "es": "Higo, serrano, parmesano, balsámico",
+       "en": "Fig, serrano, parmesan, balsamic"
       },
-      "price": "260",
+      "price": "249",
       "img": ""
      },
      {
       "name": {
-       "es": "Ceviche de la Casa",
-       "en": "House Ceviche"
+       "es": "Ensalada Santa Lucía",
+       "en": "Santa Lucía Salad"
       },
       "desc": {
-       "es": "Pescado fresco en limón y mango",
-       "en": "Fresh fish cured in lime and mango"
+       "es": "Lechuga, piña asada y cebolla morada",
+       "en": "Lettuce, grilled pineapple, red onion"
       },
-      "price": "280",
+      "price": "249",
       "img": ""
      },
+     {
+      "name": {
+       "es": "Baguette Jamón Serrano",
+       "en": "Serrano Ham Baguette"
+      },
+      "desc": {
+       "es": "Gouda, higos, arúgula y miel",
+       "en": "Gouda, figs, arugula, honey"
+      },
+      "price": "269",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Baguette Roast Beef",
+       "en": "Roast Beef Baguette"
+      },
+      "desc": {
+       "es": "Gouda y cebolla caramelizada",
+       "en": "Gouda and caramelized onion"
+      },
+      "price": "349",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Baguette Grilleado de Camarón",
+       "en": "Grilled Shrimp Baguette"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "259",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Especialidades y pastas",
+     "en": "Specialties & Pasta"
+    },
+    "items": [
      {
       "name": {
        "es": "Camarones al Coco",
        "en": "Coconut Shrimp"
       },
       "desc": {
-       "es": "Empanizados en coco, salsa de mango",
-       "en": "Coconut-crusted, mango sauce"
+       "es": "Empanizados en coco, mayonesa ahumada",
+       "en": "Coconut-crusted, smoked mayo"
       },
-      "price": "340",
+      "price": "399",
       "img": "img/rswgt_uo/s3.jpg"
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Fuertes y Pastas",
-     "en": "Mains & Pasta"
-    },
-    "items": [
+     },
      {
       "name": {
-       "es": "Salmón a la Parrilla",
-       "en": "Grilled Salmon"
+       "es": "Salmón en Salsa Naranja",
+       "en": "Salmon in Orange Sauce"
       },
       "desc": {
-       "es": "Con verduras y puré",
-       "en": "With vegetables and mash"
+       "es": "Sobre verduras y pasta",
+       "en": "Over vegetables and pasta"
       },
-      "price": "420",
+      "price": "399",
       "img": ""
      },
      {
       "name": {
-       "es": "Pasta Alfredo",
-       "en": "Pasta Alfredo"
+       "es": "New York a la Pimienta",
+       "en": "Pepper New York Steak"
       },
       "desc": {
-       "es": "Fettuccine en salsa cremosa de parmesano",
-       "en": "Fettuccine in creamy parmesan sauce"
+       "es": "Con papas y ensalada de tomate",
+       "en": "With potatoes and tomato salad"
       },
-      "price": "260",
+      "price": "459",
       "img": ""
      },
      {
@@ -1385,42 +1493,66 @@
        "en": "Al Mar Burger"
       },
       "desc": {
-       "es": "Res, queso, tocino y papas",
-       "en": "Beef, cheese, bacon, fries"
+       "es": "Camarones, aderezo especial y papas",
+       "en": "Shrimp, special dressing, fries"
       },
-      "price": "290",
+      "price": "399",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pasta Alfredo",
+       "en": "Pasta Alfredo"
+      },
+      "desc": {
+       "es": "Linguini en salsa de parmesano",
+       "en": "Linguine in parmesan cream"
+      },
+      "price": "249",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Vinos y Postres",
-     "en": "Wine & Desserts"
+     "es": "Postres",
+     "en": "Desserts"
     },
     "items": [
      {
       "name": {
-       "es": "Copa de Vino de la Casa",
-       "en": "House Wine by the Glass"
+       "es": "Peras al Vino Tinto",
+       "en": "Red Wine Pears"
       },
       "desc": {
-       "es": "Tinto, blanco o rosado",
-       "en": "Red, white or rosé"
+       "es": "Sobre crema de vainilla",
+       "en": "Over vanilla cream"
       },
-      "price": "150",
+      "price": "139",
       "img": ""
      },
      {
       "name": {
-       "es": "Postre del Día",
-       "en": "Dessert of the Day"
+       "es": "Cheesecake con Frutos Rojos",
+       "en": "Cheesecake with Berries"
       },
       "desc": {
-       "es": "Pregunta por la sugerencia",
-       "en": "Ask for today's choice"
+       "es": "Salsa tibia de frutos rojos",
+       "en": "Warm berry sauce"
       },
-      "price": "150",
+      "price": "139",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Tarta de Limón y Blueberries",
+       "en": "Lemon Blueberry Tart"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "89",
       "img": ""
      }
     ]
@@ -1784,6 +1916,42 @@
       },
       "price": "",
       "img": ""
+     },
+     {
+      "name": {
+       "es": "Aguachile",
+       "en": "Aguachile"
+      },
+      "desc": {
+       "es": "Camarón en limón y chile · Incluido en el buffet",
+       "en": "Shrimp in lime and chile · Included in buffet"
+      },
+      "price": "",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Mojarritas a la diabla",
+       "en": "Mojarritas a la diabla"
+      },
+      "desc": {
+       "es": "Mojarra frita en salsa picante · Incluido en el buffet",
+       "en": "Fried mojarra in spicy sauce · Included in buffet"
+      },
+      "price": "",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Salpicón costeño",
+       "en": "Salpicón costeño"
+      },
+      "desc": {
+       "es": "Pescado deshebrado estilo Costa · Incluido en el buffet",
+       "en": "Coastal-style shredded fish · Included in buffet"
+      },
+      "price": "",
+      "img": ""
      }
     ]
    },
@@ -1799,8 +1967,8 @@
        "en": "Paella"
       },
       "desc": {
-       "es": "Arroz con mariscos, pollo y chorizo · Incluido en el buffet",
-       "en": "Rice with seafood, chicken and chorizo · Included in buffet"
+       "es": "Mariscos, pollo y chorizo; fines de semana · Incluido en el buffet",
+       "en": "Seafood, chicken, chorizo; weekends · Included in buffet"
       },
       "price": "",
       "img": "img/qA2KOq8I/s1.jpg"
@@ -1831,12 +1999,12 @@
      },
      {
       "name": {
-       "es": "Mole de pollo",
-       "en": "Chicken mole"
+       "es": "Costillas BBQ",
+       "en": "BBQ ribs"
       },
       "desc": {
-       "es": "Pollo en mole poblano con ajonjolí · Incluido en el buffet",
-       "en": "Chicken in mole poblano with sesame · Included in buffet"
+       "es": "Recomendación del chef · Incluido en el buffet",
+       "en": "Chef's recommendation · Included in buffet"
       },
       "price": "",
       "img": ""
@@ -1872,17 +2040,37 @@
       },
       "price": "",
       "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Bebidas",
+     "en": "Drinks"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Piña colada",
+       "en": "Piña colada"
+      },
+      "desc": {
+       "es": "Bebida insignia, 2x1 en promoción",
+       "en": "House favorite, 2x1 promo"
+      },
+      "price": "150",
+      "img": ""
      },
      {
       "name": {
-       "es": "Duraznos en almíbar",
-       "en": "Peaches in syrup"
+       "es": "Baby mango",
+       "en": "Baby mango"
       },
       "desc": {
-       "es": "Clásico postre de buffet · Incluido en el buffet",
-       "en": "Classic buffet dessert · Included in buffet"
+       "es": "Coctel frapé de mango",
+       "en": "Frozen mango cocktail"
       },
-      "price": "",
+      "price": "150",
       "img": ""
      }
     ]
@@ -1930,8 +2118,8 @@
        "en": "Espresso"
       },
       "desc": {
-       "es": "Grano de Guerrero, extracción doble",
-       "en": "Guerrero beans, double shot"
+       "es": "Doble",
+       "en": "Double shot"
       },
       "price": "55",
       "img": ""
@@ -1942,8 +2130,8 @@
        "en": "Lavender latte"
       },
       "desc": {
-       "es": "Leche vaporizada con jarabe de lavanda",
-       "en": "Steamed milk with lavender syrup"
+       "es": "Con leche vegetal a elegir",
+       "en": "Plant milk available"
       },
       "price": "85",
       "img": "img/NNNPUPd4/s1.jpg"
@@ -1954,54 +2142,90 @@
        "en": "Cold brew"
       },
       "desc": {
-       "es": "Infusión en frío 18 horas",
-       "en": "18-hour cold steep"
+       "es": "Infusión en frío",
+       "en": "Cold steeped"
       },
       "price": "75",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Frappé de cajeta",
-       "en": "Cajeta frappé"
-      },
-      "desc": {
-       "es": "Café helado con cajeta y crema",
-       "en": "Iced coffee with cajeta and cream"
-      },
-      "price": "90",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Bebidas frías",
-     "en": "Cold drinks"
+     "es": "Sándwiches",
+     "en": "Sandwiches"
     },
     "items": [
      {
       "name": {
-       "es": "Matcha latte frío",
-       "en": "Iced matcha latte"
+       "es": "Best Bacon",
+       "en": "Best Bacon"
       },
       "desc": {
-       "es": "Matcha ceremonial con leche",
-       "en": "Ceremonial matcha with milk"
+       "es": "Pechuga de pavo, brie, tocino y maple",
+       "en": "Turkey, brie, bacon and maple"
       },
-      "price": "95",
+      "price": "200",
       "img": ""
      },
      {
       "name": {
-       "es": "Limonada de maracuyá",
-       "en": "Passion fruit lemonade"
+       "es": "Fausto",
+       "en": "Fausto"
       },
       "desc": {
-       "es": "Limón fresco, maracuyá y hierbabuena",
-       "en": "Fresh lime, passion fruit and mint"
+       "es": "Pollo, quesos, tocino, cebolla, chipotle",
+       "en": "Chicken, cheeses, bacon, onion, chipotle"
       },
-      "price": "70",
+      "price": "220",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Prosciutto",
+       "en": "Prosciutto"
+      },
+      "desc": {
+       "es": "Mozzarella, arúgula, pesto y balsámico",
+       "en": "Mozzarella, arugula, pesto, balsamic"
+      },
+      "price": "200",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Grilled Cheese",
+       "en": "Grilled Cheese"
+      },
+      "desc": {
+       "es": "Mezcla de quesos, salsa frambuesa-chipotle",
+       "en": "Cheese blend, raspberry-chipotle"
+      },
+      "price": "170",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Arándano",
+       "en": "Arándano"
+      },
+      "desc": {
+       "es": "Pavo, queso de cabra y blueberries",
+       "en": "Turkey, goat cheese, blueberries"
+      },
+      "price": "165",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Egguito",
+       "en": "Egguito"
+      },
+      "desc": {
+       "es": "Huevo, espinaca, manchego y aguacate",
+       "en": "Egg, spinach, manchego, avocado"
+      },
+      "price": "160",
       "img": ""
      }
     ]
@@ -2019,7 +2243,7 @@
       },
       "desc": {
        "es": "Salsa verde, huevo, crema y queso",
-       "en": "Green salsa, egg, cream and cheese"
+       "en": "Green salsa, egg, cream, cheese"
       },
       "price": "165",
       "img": "img/NNNPUPd4/s2.jpg"
@@ -2030,8 +2254,8 @@
        "en": "Avocado toast"
       },
       "desc": {
-       "es": "Pan de masa madre, aguacate y huevo pochado",
-       "en": "Sourdough, avocado and poached egg"
+       "es": "Pan de masa madre, aguacate y huevo",
+       "en": "Sourdough, avocado and egg"
       },
       "price": "155",
       "img": "img/NNNPUPd4/s3.jpg"
@@ -2042,66 +2266,110 @@
        "en": "Berry hotcakes"
       },
       "desc": {
-       "es": "Tres hotcakes con frutos rojos y miel",
-       "en": "Three hotcakes with berries and honey"
+       "es": "Con frutos rojos y miel",
+       "en": "With berries and honey"
       },
       "price": "145",
       "img": "img/NNNPUPd4/s4.jpg"
-     },
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Jugos",
+     "en": "Juices"
+    },
+    "items": [
      {
       "name": {
-       "es": "Bowl de frutas",
-       "en": "Fruit bowl"
+       "es": "Narciso",
+       "en": "Narciso"
       },
       "desc": {
-       "es": "Fruta de temporada, yogurt y granola",
-       "en": "Seasonal fruit, yogurt and granola"
+       "es": "Plátano, piña, mango y naranja",
+       "en": "Banana, pineapple, mango, orange"
       },
-      "price": "120",
+      "price": "90",
       "img": ""
      },
      {
       "name": {
-       "es": "Bagel de salmón",
-       "en": "Salmon bagel"
+       "es": "Deméter",
+       "en": "Deméter"
       },
       "desc": {
-       "es": "Salmón ahumado, queso crema y alcaparras",
-       "en": "Smoked salmon, cream cheese, capers"
+       "es": "Espinaca, apio, pepino, manzana, jengibre",
+       "en": "Spinach, celery, cucumber, apple, ginger"
       },
-      "price": "185",
+      "price": "90",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Elixir",
+       "en": "Elixir"
+      },
+      "desc": {
+       "es": "Zanahoria, papaya, cúrcuma y naranja",
+       "en": "Carrot, papaya, turmeric, orange"
+      },
+      "price": "90",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Jugo de naranja",
+       "en": "Orange juice"
+      },
+      "desc": {
+       "es": "Natural",
+       "en": "Fresh squeezed"
+      },
+      "price": "85",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Panadería",
-     "en": "Bakery"
+     "es": "Bebidas",
+     "en": "Drinks"
     },
     "items": [
      {
       "name": {
-       "es": "Croissant de almendra",
-       "en": "Almond croissant"
+       "es": "Blueberry Lemonade",
+       "en": "Blueberry Lemonade"
       },
       "desc": {
-       "es": "Hojaldre relleno de crema de almendra",
-       "en": "Pastry filled with almond cream"
+       "es": "Limonada con blueberry",
+       "en": "Lemonade with blueberry"
       },
-      "price": "65",
+      "price": "75",
       "img": ""
      },
      {
       "name": {
-       "es": "Roll de canela",
-       "en": "Cinnamon roll"
+       "es": "Naranjada",
+       "en": "Orangeade"
       },
       "desc": {
-       "es": "Glaseado de queso crema",
-       "en": "Cream cheese glaze"
+       "es": "Con un toque de granadina",
+       "en": "With a hint of grenadine"
       },
-      "price": "60",
+      "price": "70",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Agua mineral",
+       "en": "Mineral water"
+      },
+      "desc": {
+       "es": "Garci Crespo 275 ml",
+       "en": "Garci Crespo 275 ml"
+      },
+      "price": "50",
       "img": ""
      }
     ]
@@ -2145,12 +2413,24 @@
     "items": [
      {
       "name": {
-       "es": "Plátano macho horneado",
-       "en": "Baked plantain"
+       "es": "Sopes",
+       "en": "Sopes"
       },
       "desc": {
-       "es": "Plátano al horno con crema y queso",
-       "en": "Baked plantain with cream and cheese"
+       "es": "Orden de 6",
+       "en": "Order of 6"
+      },
+      "price": "75",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camaronillas",
+       "en": "Camaronillas"
+      },
+      "desc": {
+       "es": "Orden de 4, quesadillas de camarón",
+       "en": "4 shrimp quesadillas"
       },
       "price": "120",
       "img": ""
@@ -2161,30 +2441,42 @@
        "en": "Shrimp empanadas"
       },
       "desc": {
-       "es": "Tres empanadas crujientes de camarón",
-       "en": "Three crispy shrimp empanadas"
+       "es": "Orden de 3, camarón o pescado",
+       "en": "3 pieces, shrimp or fish"
       },
-      "price": "160",
+      "price": "130",
       "img": ""
      },
      {
       "name": {
-       "es": "Sopes de la tía",
-       "en": "Auntie's sopes"
+       "es": "Tostadas de pulpo",
+       "en": "Octopus tostadas"
       },
       "desc": {
-       "es": "Sopes caseros con frijol y salsa",
-       "en": "Homemade sopes with beans and salsa"
+       "es": "Orden de 3",
+       "en": "Order of 3"
       },
-      "price": "130",
+      "price": "165",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Queso fundido con camarón",
+       "en": "Melted cheese with shrimp"
+      },
+      "desc": {
+       "es": "Con 4 tortillas de harina",
+       "en": "With 4 flour tortillas"
+      },
+      "price": "110",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Fríos",
-     "en": "Cold bar"
+     "es": "Cocteles",
+     "en": "Cocktails"
     },
     "items": [
      {
@@ -2193,11 +2485,23 @@
        "en": "Shrimp aguachile"
       },
       "desc": {
-       "es": "Camarón crudo en limón y chile verde",
-       "en": "Raw shrimp in lime and green chile"
+       "es": "Camarón en limón y chile verde",
+       "en": "Shrimp in lime and green chile"
       },
-      "price": "290",
+      "price": "220",
       "img": "img/FcpbDXFk/s4.jpg"
+     },
+     {
+      "name": {
+       "es": "Vuelve a la vida",
+       "en": "Vuelve a la vida"
+      },
+      "desc": {
+       "es": "Pescado, camarón, pulpo y caracol, 1 L",
+       "en": "Fish, shrimp, octopus, conch, 1 L"
+      },
+      "price": "250",
+      "img": ""
      },
      {
       "name": {
@@ -2205,10 +2509,10 @@
        "en": "Campechana"
       },
       "desc": {
-       "es": "Coctel de camarón, pulpo y ostión",
-       "en": "Shrimp, octopus and oyster cocktail"
+       "es": "Pescado, camarón y pulpo, 1 litro",
+       "en": "Fish, shrimp and octopus, 1 liter"
       },
-      "price": "350",
+      "price": "230",
       "img": ""
      },
      {
@@ -2217,18 +2521,30 @@
        "en": "Shrimp cocktail"
       },
       "desc": {
-       "es": "Camarón en salsa coctelera con aguacate",
-       "en": "Shrimp in cocktail sauce with avocado"
+       "es": "",
+       "en": ""
       },
-      "price": "280",
+      "price": "160",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Ostiones en su concha",
+       "en": "Oysters on the half shell"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "160",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Del mar",
-     "en": "From the sea"
+     "es": "Especialidades",
+     "en": "Specialties"
     },
     "items": [
      {
@@ -2237,47 +2553,23 @@
        "en": "Coconut shrimp"
       },
       "desc": {
-       "es": "Camarón empanizado en coco, salsa de mango",
-       "en": "Coconut-crusted shrimp, mango sauce"
+       "es": "Camarón empanizado en coco",
+       "en": "Coconut-crusted shrimp"
       },
-      "price": "400",
+      "price": "270",
       "img": "img/FcpbDXFk/s1.jpg"
      },
      {
       "name": {
-       "es": "Piña rellena de mariscos",
-       "en": "Seafood-stuffed pineapple"
+       "es": "Piña rellena de mariscos al horno",
+       "en": "Baked seafood-stuffed pineapple"
       },
       "desc": {
-       "es": "Camarón, pescado y pulpo gratinados",
-       "en": "Shrimp, fish and octopus au gratin"
+       "es": "Mariscos gratinados en piña natural",
+       "en": "Seafood au gratin in a fresh pineapple"
       },
-      "price": "380",
+      "price": "325",
       "img": "img/FcpbDXFk/s2.jpg"
-     },
-     {
-      "name": {
-       "es": "Pulpo al ajo",
-       "en": "Garlic octopus"
-      },
-      "desc": {
-       "es": "Pulpo salteado al mojo de ajo",
-       "en": "Octopus sautéed in garlic butter"
-      },
-      "price": "390",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Mojarra al mojo de ajo",
-       "en": "Garlic mojarra"
-      },
-      "desc": {
-       "es": "Mojarra frita entera bañada en ajo",
-       "en": "Whole fried mojarra in garlic"
-      },
-      "price": "260",
-      "img": ""
      },
      {
       "name": {
@@ -2285,42 +2577,78 @@
        "en": "Filete Don Camarón"
       },
       "desc": {
-       "es": "Filete de la casa relleno de mariscos",
-       "en": "House fish fillet stuffed with seafood"
+       "es": "Platillo de la casa",
+       "en": "House signature fillet"
       },
-      "price": "320",
+      "price": "220",
       "img": ""
      },
      {
       "name": {
-       "es": "Charola de mariscada",
-       "en": "Seafood platter"
+       "es": "Mariscada para 4",
+       "en": "Seafood platter for 4"
       },
       "desc": {
-       "es": "Charola para compartir con lo mejor del mar",
-       "en": "Sharing platter of mixed seafood"
+       "es": "Charola para compartir",
+       "en": "Sharing platter"
       },
-      "price": "950",
+      "price": "900",
       "img": "img/FcpbDXFk/s3.jpg"
+     },
+     {
+      "name": {
+       "es": "Pescado a la talla",
+       "en": "Grilled whole fish"
+      },
+      "desc": {
+       "es": "Precio por kilo",
+       "en": "Priced per kilo"
+      },
+      "price": "450",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Huachinango frito o al mojo de ajo",
+       "en": "Red snapper, fried or garlic"
+      },
+      "desc": {
+       "es": "600 g",
+       "en": "600 g"
+      },
+      "price": "275",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Caldo de camarón",
+       "en": "Shrimp broth"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "180",
+      "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Tierra",
-     "en": "Land"
+     "es": "Tierra y postres",
+     "en": "Land & desserts"
     },
     "items": [
      {
       "name": {
-       "es": "Milanesa de res",
-       "en": "Breaded steak"
+       "es": "Rib eye",
+       "en": "Rib eye"
       },
       "desc": {
-       "es": "Con papas a la francesa y ensalada",
-       "en": "With fries and salad"
+       "es": "250 g con guarniciones",
+       "en": "250 g with sides"
       },
-      "price": "280",
+      "price": "250",
       "img": ""
      },
      {
@@ -2329,10 +2657,78 @@
        "en": "Chicken cordon bleu"
       },
       "desc": {
-       "es": "Pollo relleno de jamón y queso",
-       "en": "Chicken stuffed with ham and cheese"
+       "es": "",
+       "en": ""
       },
       "price": "150",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Plátano macho horneado",
+       "en": "Baked plantain"
+      },
+      "desc": {
+       "es": "Muy recomendado",
+       "en": "Highly recommended"
+      },
+      "price": "85",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Bebidas",
+     "en": "Drinks"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Piña loca",
+       "en": "Piña loca"
+      },
+      "desc": {
+       "es": "Servida en piña natural",
+       "en": "Served in a fresh pineapple"
+      },
+      "price": "160",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Coco preparado",
+       "en": "Spiked coconut"
+      },
+      "desc": {
+       "es": "Con vodka o ginebra",
+       "en": "With vodka or gin"
+      },
+      "price": "70",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Cubeta de Corona o Victoria",
+       "en": "Corona or Victoria bucket"
+      },
+      "desc": {
+       "es": "10 cervezas",
+       "en": "10 beers"
+      },
+      "price": "240",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camaronchela",
+       "en": "Camaronchela"
+      },
+      "desc": {
+       "es": "Clamato, camarón y cerveza",
+       "en": "Clamato, shrimp and beer"
+      },
+      "price": "130",
       "img": ""
      }
     ]
@@ -2376,20 +2772,20 @@
     "items": [
      {
       "name": {
-       "es": "Paquete Básico",
-       "en": "Basic package"
+       "es": "Paquete de 450",
+       "en": "450 package"
       },
       "desc": {
-       "es": "Desayuno y comida con bebida",
-       "en": "Breakfast and lunch with a drink"
+       "es": "Desayuno y comida",
+       "en": "Breakfast and lunch"
       },
       "price": "450",
       "img": ""
      },
      {
       "name": {
-       "es": "Paquete Bahía",
-       "en": "Bay package"
+       "es": "Paquete de 500",
+       "en": "500 package"
       },
       "desc": {
        "es": "Desayuno, comida y paseo en lancha",
@@ -2400,12 +2796,12 @@
      },
      {
       "name": {
-       "es": "Paquete Completo",
-       "en": "Full package"
+       "es": "Paquete de 550",
+       "en": "550 package"
       },
       "desc": {
-       "es": "Incluye lancha y banana",
-       "en": "Includes boat ride and banana boat"
+       "es": "Desayuno, comida, lancha y banana",
+       "en": "Breakfast, lunch, boat and banana ride"
       },
       "price": "550",
       "img": ""
@@ -2424,20 +2820,20 @@
        "en": "Chilaquiles with chicken"
       },
       "desc": {
-       "es": "Con frijoles y bolillo",
-       "en": "With beans and bolillo"
+       "es": "Opción de desayuno del paquete",
+       "en": "Package breakfast option"
       },
       "price": "120",
       "img": "img/aTeeDAB4/s2.jpg"
      },
      {
       "name": {
-       "es": "Chilaquiles con huevo",
-       "en": "Chilaquiles with eggs"
+       "es": "Huevos al gusto",
+       "en": "Eggs any style"
       },
       "desc": {
-       "es": "Salsa roja o verde, frijoles",
-       "en": "Red or green salsa, beans"
+       "es": "Opción de desayuno del paquete",
+       "en": "Package breakfast option"
       },
       "price": "110",
       "img": ""
@@ -2482,6 +2878,18 @@
       "desc": {
        "es": "Mojarra frita bañada en ajo",
        "en": "Fried mojarra in garlic butter"
+      },
+      "price": "240",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Mojarra a la diabla",
+       "en": "Mojarra a la diabla"
+      },
+      "desc": {
+       "es": "Mojarra frita en salsa picante",
+       "en": "Fried mojarra in spicy sauce"
       },
       "price": "240",
       "img": ""
@@ -2544,6 +2952,18 @@
      },
      {
       "name": {
+       "es": "Café",
+       "en": "Coffee"
+      },
+      "desc": {
+       "es": "A la carta, costo extra al paquete",
+       "en": "À la carte, extra to package"
+      },
+      "price": "35",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Naranjada",
        "en": "Orangeade"
       },
@@ -2556,12 +2976,12 @@
      },
      {
       "name": {
-       "es": "Café de olla",
-       "en": "Café de olla"
+       "es": "Refresco",
+       "en": "Soft drink"
       },
       "desc": {
-       "es": "Con canela y piloncillo",
-       "en": "With cinnamon and piloncillo"
+       "es": "",
+       "en": ""
       },
       "price": "35",
       "img": ""
@@ -2587,8 +3007,8 @@
   "address": "P.º del Club 7, Brisas del Marqués",
   "map": "https://www.google.com/maps/search/?api=1&query=Celeste%20Beach%20House%20Acapulco&query_place_id=ChIJK64VFypZyoURCCmNC6TYDe4",
   "hours": {
-   "es": "Lun–Dom 10:00–19:00",
-   "en": "Mon–Sun 10am–7pm"
+   "es": "Mié–Lun 10:00–19:00 (martes cerrado)",
+   "en": "Wed–Mon 10am–7pm (closed Tue)"
   },
   "reservations": true,
   "carryout": true,
@@ -2599,6 +3019,38 @@
    "pass": "ejemplo2026"
   },
   "menu": [
+   {
+    "cat": {
+     "es": "Acceso",
+     "en": "Entry"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Consumo mínimo adulto",
+       "en": "Adult minimum spend"
+      },
+      "desc": {
+       "es": "Se abona a tu consumo; varía por fecha",
+       "en": "Credited to your bill; varies by date"
+      },
+      "price": "500",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Consumo mínimo niño",
+       "en": "Child minimum spend"
+      },
+      "desc": {
+       "es": "Mayores de 10 pagan como adulto",
+       "en": "Over 10 pay adult rate"
+      },
+      "price": "250",
+      "img": ""
+     }
+    ]
+   },
    {
     "cat": {
      "es": "Para compartir",
@@ -3105,14 +3557,38 @@
      },
      {
       "name": {
-       "es": "Aguachile de camarón y callo",
-       "en": "Shrimp & scallop aguachile"
+       "es": "Ceviche Acapulqueño",
+       "en": "Ceviche Acapulqueño"
+      },
+      "desc": {
+       "es": "Pescado en limón con salsa cóctel",
+       "en": "Lime-cured fish with cocktail sauce"
+      },
+      "price": "180",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Aguachile verde",
+       "en": "Green aguachile"
       },
       "desc": {
        "es": "Camarón y callo en limón y chile",
        "en": "Shrimp and scallop in lime and chile"
       },
       "price": "290",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Aguachile de palmitos",
+       "en": "Hearts of palm aguachile"
+      },
+      "desc": {
+       "es": "Opción sin mariscos",
+       "en": "Seafood-free option"
+      },
+      "price": "190",
       "img": ""
      },
      {
@@ -3137,8 +3613,8 @@
     "items": [
      {
       "name": {
-       "es": "Taco de camarón estilo Baja",
-       "en": "Baja-style shrimp taco"
+       "es": "Taco estilo Baja",
+       "en": "Baja-style taco"
       },
       "desc": {
        "es": "Camarón capeado crujiente y verduras",
@@ -3170,6 +3646,30 @@
       },
       "price": "75",
       "img": ""
+     },
+     {
+      "name": {
+       "es": "Taco Sirenito",
+       "en": "Taco Sirenito"
+      },
+      "desc": {
+       "es": "Taco de la casa",
+       "en": "House taco"
+      },
+      "price": "75",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Tacos de flor de jamaica",
+       "en": "Hibiscus flower tacos"
+      },
+      "desc": {
+       "es": "Opción vegetariana",
+       "en": "Vegetarian option"
+      },
+      "price": "60",
+      "img": ""
      }
     ]
    },
@@ -3185,8 +3685,8 @@
        "en": "Charcoal-grilled octopus"
       },
       "desc": {
-       "es": "Pulpo asado con papas y ensalada",
-       "en": "Grilled octopus with potatoes and salad"
+       "es": "También al ajillo o zarandeado",
+       "en": "Also garlic or zarandeado style"
       },
       "price": "340",
       "img": "img/5pUK-bVI/s1.jpg"
@@ -3197,8 +3697,8 @@
        "en": "Pescado Sirenito"
       },
       "desc": {
-       "es": "Filete de la casa en salsa especial",
-       "en": "House fish fillet in special sauce"
+       "es": "Filete con camarón en salsa cremosa",
+       "en": "Fillet with shrimp in creamy sauce"
       },
       "price": "280",
       "img": "img/5pUK-bVI/s2.jpg"
@@ -3217,6 +3717,30 @@
      },
      {
       "name": {
+       "es": "Camarones al coco",
+       "en": "Coconut shrimp"
+      },
+      "desc": {
+       "es": "Empanizados con coco",
+       "en": "Coconut-crusted shrimp"
+      },
+      "price": "280",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camarones envueltos en tocino",
+       "en": "Bacon-wrapped shrimp"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "290",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Caldo de camarón con hueva",
        "en": "Shrimp broth with roe"
       },
@@ -3229,14 +3753,26 @@
      },
      {
       "name": {
-       "es": "Huachinango a la talla",
-       "en": "Huachinango a la talla"
+       "es": "Arroz a la tumbada",
+       "en": "Arroz a la tumbada"
       },
       "desc": {
-       "es": "Huachinango adobado a las brasas, kilo",
-       "en": "Adobo-grilled red snapper, per kilo"
+       "es": "Arroz caldoso con mariscos",
+       "en": "Brothy rice with seafood"
       },
-      "price": "520",
+      "price": "290",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Molcajete de mariscos",
+       "en": "Seafood molcajete"
+      },
+      "desc": {
+       "es": "Mariscos en salsa, para compartir",
+       "en": "Seafood in salsa, to share"
+      },
+      "price": "420",
       "img": ""
      }
     ]
@@ -3273,6 +3809,18 @@
      },
      {
       "name": {
+       "es": "Nieve de mamey",
+       "en": "Mamey sorbet"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "60",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Agua de coco",
        "en": "Coconut water"
       },
@@ -3281,6 +3829,18 @@
        "en": "Fresh coconut"
       },
       "price": "45",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Michelada",
+       "en": "Michelada"
+      },
+      "desc": {
+       "es": "Cerveza preparada",
+       "en": "Spiced beer"
+      },
+      "price": "90",
       "img": ""
      }
     ]
@@ -3318,6 +3878,50 @@
   "menu": [
    {
     "cat": {
+     "es": "Desayunos",
+     "en": "Breakfast"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Bolillo de marlín",
+       "en": "Marlin bolillo"
+      },
+      "desc": {
+       "es": "Marlín ahumado en bolillo",
+       "en": "Smoked marlin on a bolillo roll"
+      },
+      "price": "140",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Chilaquiles",
+       "en": "Chilaquiles"
+      },
+      "desc": {
+       "es": "Rojos o verdes",
+       "en": "Red or green"
+      },
+      "price": "150",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pan francés",
+       "en": "French toast"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "140",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
      "es": "Ceviches y aguachiles",
      "en": "Ceviches & aguachiles"
     },
@@ -3336,12 +3940,24 @@
      },
      {
       "name": {
+       "es": "Ceviche Paititi",
+       "en": "Ceviche Paititi"
+      },
+      "desc": {
+       "es": "Ceviche de la casa",
+       "en": "House ceviche"
+      },
+      "price": "230",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Ceviche tropical",
        "en": "Tropical ceviche"
       },
       "desc": {
-       "es": "Pescado con piña y coco",
-       "en": "Fish with pineapple and coconut"
+       "es": "Pescado con fruta tropical",
+       "en": "Fish with tropical fruit"
       },
       "price": "210",
       "img": ""
@@ -3352,20 +3968,20 @@
        "en": "Bougainvillea aguachile"
       },
       "desc": {
-       "es": "Camarón en salsa roja de jamaica y chile",
-       "en": "Shrimp in hibiscus-chile red sauce"
+       "es": "Camarón en salsa roja de jamaica",
+       "en": "Shrimp in red hibiscus sauce"
       },
       "price": "240",
       "img": "img/fJj-Ug_o/s3.jpg"
      },
      {
       "name": {
-       "es": "Leche de tigre",
-       "en": "Leche de tigre"
+       "es": "Babiche de leche de tigre",
+       "en": "Leche de tigre babiche"
       },
       "desc": {
-       "es": "Shot cítrico con trocitos de pescado",
-       "en": "Citrus shot with bits of fish"
+       "es": "Shot cítrico con mariscos",
+       "en": "Citrus shot with seafood"
       },
       "price": "120",
       "img": ""
@@ -3384,8 +4000,8 @@
        "en": "Tostada toreada"
       },
       "desc": {
-       "es": "Atún con chiles toreados y mayo",
-       "en": "Tuna with blistered chiles and mayo"
+       "es": "Atún con chiles toreados",
+       "en": "Tuna with blistered chiles"
       },
       "price": "130",
       "img": "img/fJj-Ug_o/s4.jpg"
@@ -3396,22 +4012,46 @@
        "en": "Tuna tostada"
       },
       "desc": {
-       "es": "Atún fresco, aguacate y salsa macha",
-       "en": "Fresh tuna, avocado and salsa macha"
+       "es": "Atún fresco y aguacate",
+       "en": "Fresh tuna and avocado"
       },
       "price": "125",
       "img": ""
      },
      {
       "name": {
-       "es": "Tacos de pulpo",
-       "en": "Octopus tacos"
+       "es": "Tacos de chicharrón de pulpo",
+       "en": "Octopus chicharrón tacos"
       },
       "desc": {
-       "es": "Pulpo a la brasa en tortilla de maíz",
-       "en": "Grilled octopus on corn tortilla"
+       "es": "Pulpo crujiente",
+       "en": "Crispy octopus"
       },
-      "price": "160",
+      "price": "170",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Tacos de mantarraya",
+       "en": "Manta ray tacos"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "150",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Carnitas de atún",
+       "en": "Tuna carnitas"
+      },
+      "desc": {
+       "es": "Atún estilo carnitas en tacos",
+       "en": "Carnitas-style tuna tacos"
+      },
+      "price": "170",
       "img": ""
      },
      {
@@ -3420,8 +4060,8 @@
        "en": "Gamba Burger"
       },
       "desc": {
-       "es": "Hamburguesa de camarón con chipotle",
-       "en": "Shrimp burger with chipotle"
+       "es": "Hamburguesa de camarón",
+       "en": "Shrimp burger"
       },
       "price": "195",
       "img": ""
@@ -3448,6 +4088,18 @@
      },
      {
       "name": {
+       "es": "Camarones colorados",
+       "en": "Camarones colorados"
+      },
+      "desc": {
+       "es": "Camarón en adobo rojo",
+       "en": "Shrimp in red adobo"
+      },
+      "price": "290",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Robalo a la menta",
        "en": "Snook with mint"
       },
@@ -3464,22 +4116,34 @@
        "en": "Caper salmon"
       },
       "desc": {
-       "es": "Salmón a la plancha, mantequilla y alcaparras",
-       "en": "Seared salmon, butter and capers"
+       "es": "Salmón con mantequilla y alcaparras",
+       "en": "Salmon with butter and capers"
       },
       "price": "330",
       "img": ""
      },
      {
       "name": {
-       "es": "Caldo costeño",
-       "en": "Caldo costeño"
+       "es": "Alambre de mariscos",
+       "en": "Seafood alambre"
       },
       "desc": {
-       "es": "Sopa picante de mariscos",
-       "en": "Spicy seafood soup"
+       "es": "Mariscos salteados con verduras",
+       "en": "Seafood sautéed with vegetables"
       },
-      "price": "230",
+      "price": "290",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Crema de almejas en pan",
+       "en": "Clam chowder in bread bowl"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "220",
       "img": ""
      }
     ]
@@ -3492,26 +4156,26 @@
     "items": [
      {
       "name": {
-       "es": "Agua fresca del día",
-       "en": "Agua fresca of the day"
+       "es": "Agua de maracuyá-mango",
+       "en": "Passion fruit-mango agua"
       },
       "desc": {
-       "es": "Fruta natural de temporada",
-       "en": "Fresh seasonal fruit"
+       "es": "Agua fresca natural",
+       "en": "Fresh agua fresca"
       },
       "price": "50",
       "img": ""
      },
      {
       "name": {
-       "es": "Jugo natural",
-       "en": "Fresh juice"
+       "es": "Margarita de mango",
+       "en": "Mango margarita"
       },
       "desc": {
-       "es": "Naranja, piña o verde",
-       "en": "Orange, pineapple or green"
+       "es": "",
+       "en": ""
       },
-      "price": "60",
+      "price": "150",
       "img": ""
      }
     ]
@@ -3555,38 +4219,14 @@
     "items": [
      {
       "name": {
-       "es": "Frappé de chilate",
-       "en": "Chilate frappé"
+       "es": "Espresso / cortado",
+       "en": "Espresso / cortado"
       },
       "desc": {
-       "es": "Bebida tradicional guerrerense de cacao y arroz",
-       "en": "Traditional Guerrero cacao-rice drink"
+       "es": "",
+       "en": ""
       },
-      "price": "75",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Americano",
-       "en": "Americano"
-      },
-      "desc": {
-       "es": "Café de Atoyac, tostado medio",
-       "en": "Atoyac coffee, medium roast"
-      },
-      "price": "45",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Capuchino",
-       "en": "Cappuccino"
-      },
-      "desc": {
-       "es": "Espresso doble con leche espumada",
-       "en": "Double espresso with foamed milk"
-      },
-      "price": "60",
+      "price": "55",
       "img": ""
      },
      {
@@ -3598,71 +4238,199 @@
        "es": "Con piloncillo y canela",
        "en": "With piloncillo and cinnamon"
       },
-      "price": "50",
+      "price": "65",
       "img": "img/JMY3GMzM/s1.jpg"
      },
      {
       "name": {
-       "es": "Latte de vainilla",
-       "en": "Vanilla latte"
+       "es": "Café Mexicano",
+       "en": "Café Mexicano"
       },
       "desc": {
-       "es": "Espresso, leche y vainilla",
-       "en": "Espresso, milk and vanilla"
+       "es": "12 oz",
+       "en": "12 oz"
       },
-      "price": "70",
+      "price": "88",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Cappuccino",
+       "en": "Cappuccino"
+      },
+      "desc": {
+       "es": "12 oz",
+       "en": "12 oz"
+      },
+      "price": "94",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Café Latte",
+       "en": "Café Latte"
+      },
+      "desc": {
+       "es": "12 oz",
+       "en": "12 oz"
+      },
+      "price": "94",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Café Moka",
+       "en": "Café Moka"
+      },
+      "desc": {
+       "es": "12 oz",
+       "en": "12 oz"
+      },
+      "price": "106",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Café Capuchilate",
+       "en": "Café Capuchilate"
+      },
+      "desc": {
+       "es": "Capuchino con chilate, 12 oz",
+       "en": "Cappuccino with chilate, 12 oz"
+      },
+      "price": "118",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Abuelacho",
+       "en": "Abuelacho"
+      },
+      "desc": {
+       "es": "Especialidad de la casa, 12 oz",
+       "en": "House specialty, 12 oz"
+      },
+      "price": "130",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Bebidas frías",
-     "en": "Cold drinks"
+     "es": "Frappés",
+     "en": "Frappés"
     },
     "items": [
+     {
+      "name": {
+       "es": "Frappé de chilate",
+       "en": "Chilate frappé"
+      },
+      "desc": {
+       "es": "Cacao y arroz guerrerense, 16 oz",
+       "en": "Guerrero cacao-rice drink, 16 oz"
+      },
+      "price": "137",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Frappé Capuchilate",
+       "en": "Capuchilate frappé"
+      },
+      "desc": {
+       "es": "16 oz",
+       "en": "16 oz"
+      },
+      "price": "146",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Frappé de aguacate",
+       "en": "Avocado frappé"
+      },
+      "desc": {
+       "es": "Sin café, 16 oz",
+       "en": "Coffee-free, 16 oz"
+      },
+      "price": "146",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Frappé Mexicano",
+       "en": "Mexicano frappé"
+      },
+      "desc": {
+       "es": "Con café, 16 oz",
+       "en": "With coffee, 16 oz"
+      },
+      "price": "118",
+      "img": ""
+     },
      {
       "name": {
        "es": "Frappé de cajeta",
        "en": "Cajeta frappé"
       },
       "desc": {
-       "es": "Café frappé con cajeta y crema",
-       "en": "Frappé with cajeta and cream"
+       "es": "Café frappé con cajeta",
+       "en": "Frappé with cajeta"
       },
-      "price": "85",
+      "price": "118",
       "img": "img/JMY3GMzM/s2.jpg"
      },
      {
       "name": {
-       "es": "Cold brew",
-       "en": "Cold brew"
+       "es": "Frappé Carajillo",
+       "en": "Carajillo frappé"
       },
       "desc": {
-       "es": "Extracción en frío 16 horas",
-       "en": "16-hour cold extraction"
+       "es": "Café con licor, 16 oz",
+       "en": "Coffee with liqueur, 16 oz"
       },
-      "price": "65",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Chai helado",
-       "en": "Iced chai"
-      },
-      "desc": {
-       "es": "Té chai especiado con leche",
-       "en": "Spiced chai with milk"
-      },
-      "price": "70",
+      "price": "262",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Desayunos",
-     "en": "Breakfast"
+     "es": "Tés",
+     "en": "Teas"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Té chai caliente",
+       "en": "Hot chai tea"
+      },
+      "desc": {
+       "es": "12 oz",
+       "en": "12 oz"
+      },
+      "price": "62",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Té chai frío",
+       "en": "Iced chai tea"
+      },
+      "desc": {
+       "es": "20 oz",
+       "en": "20 oz"
+      },
+      "price": "118",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Bocadillos y postres",
+     "en": "Bites & desserts"
     },
     "items": [
      {
@@ -3674,63 +4442,91 @@
        "es": "Con pollo, crema y queso",
        "en": "With chicken, cream and cheese"
       },
-      "price": "120",
+      "price": "140",
       "img": "img/JMY3GMzM/s3.jpg"
      },
      {
       "name": {
-       "es": "Molletes",
-       "en": "Molletes"
+       "es": "Chicken Bake",
+       "en": "Chicken Bake"
       },
       "desc": {
-       "es": "Bolillo con frijol, queso y pico de gallo",
-       "en": "Bolillo, beans, cheese, pico de gallo"
+       "es": "",
+       "en": ""
       },
-      "price": "90",
+      "price": "148",
       "img": ""
      },
      {
       "name": {
-       "es": "Sándwich de jamón y queso",
-       "en": "Ham and cheese sandwich"
+       "es": "Sándwich",
+       "en": "Sandwich"
       },
       "desc": {
-       "es": "Pan de caja tostado",
-       "en": "Toasted sandwich bread"
+       "es": "",
+       "en": ""
       },
-      "price": "85",
+      "price": "133",
       "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Panadería",
-     "en": "Bakery"
-    },
-    "items": [
+     },
+     {
+      "name": {
+       "es": "Croissant",
+       "en": "Croissant"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "128",
+      "img": ""
+     },
      {
       "name": {
        "es": "Concha rellena",
        "en": "Filled concha"
       },
       "desc": {
-       "es": "Rellena de nata",
-       "en": "Filled with cream"
+       "es": "Pan de temporada",
+       "en": "Seasonal sweet bread"
       },
-      "price": "40",
+      "price": "66",
       "img": "img/JMY3GMzM/s4.jpg"
      },
      {
       "name": {
-       "es": "Pay de queso",
-       "en": "Cheesecake"
+       "es": "Panqué de elote",
+       "en": "Corn pound cake"
       },
       "desc": {
-       "es": "Rebanada casera",
-       "en": "Homemade slice"
+       "es": "",
+       "en": ""
       },
-      "price": "65",
+      "price": "108",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pastel de coco",
+       "en": "Coconut cake"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "128",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Tiramisú",
+       "en": "Tiramisu"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "196",
       "img": ""
      }
     ]
@@ -3768,88 +4564,8 @@
   "menu": [
    {
     "cat": {
-     "es": "Cocteles y ceviches",
-     "en": "Cocktails & ceviches"
-    },
-    "items": [
-     {
-      "name": {
-       "es": "Quesadillas de pescado",
-       "en": "Fish quesadillas"
-      },
-      "desc": {
-       "es": "",
-       "en": ""
-      },
-      "price": "140",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Pulpo enamorado",
-       "en": "Pulpo enamorado"
-      },
-      "desc": {
-       "es": "Pulpo en salsa cremosa de ajo y chile",
-       "en": "Octopus in creamy garlic-chile sauce"
-      },
-      "price": "280",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Camarones al coco",
-       "en": "Coconut shrimp"
-      },
-      "desc": {
-       "es": "",
-       "en": ""
-      },
-      "price": "260",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Coctel campechano",
-       "en": "Coctel campechano"
-      },
-      "desc": {
-       "es": "Camarón, pulpo y ostión",
-       "en": "Shrimp, octopus and oyster"
-      },
-      "price": "210",
-      "img": "img/__eQuxs8/s3.jpg"
-     },
-     {
-      "name": {
-       "es": "Ceviche acapulqueño",
-       "en": "Acapulco-style ceviche"
-      },
-      "desc": {
-       "es": "Pescado con salsa catsup y aceituna",
-       "en": "Fish with ketchup sauce and olives"
-      },
-      "price": "170",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Ostiones en su concha",
-       "en": "Oysters on the half shell"
-      },
-      "desc": {
-       "es": "Docena con limón y salsa",
-       "en": "Dozen with lime and salsa"
-      },
-      "price": "240",
-      "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Del mar",
-     "en": "From the sea"
+     "es": "Especialidades del mar",
+     "en": "Seafood specialties"
     },
     "items": [
      {
@@ -3858,23 +4574,91 @@
        "en": "Pescado a la talla"
       },
       "desc": {
-       "es": "Huachinango con adobo rojo a la leña (kg)",
-       "en": "Red snapper, red adobo, wood-grilled (kg)"
+       "es": "Pescado del hielo, adobo rojo, a la leña (kg)",
+       "en": "Fish from the ice, red adobo, wood-grilled (kg)"
       },
-      "price": "480",
+      "price": "550",
       "img": "img/__eQuxs8/s1.jpg"
      },
+     {
+      "name": {
+       "es": "Huachinango a la talla",
+       "en": "Red snapper a la talla"
+      },
+      "desc": {
+       "es": "Abierto y asado a la leña (kg)",
+       "en": "Butterflied, wood-grilled (kg)"
+      },
+      "price": "620",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pescado estilo Sarita",
+       "en": "Sarita-style fish"
+      },
+      "desc": {
+       "es": "Receta de la casa",
+       "en": "House recipe"
+      },
+      "price": "550",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pescado a la talla y camarones enchilados",
+       "en": "Fish a la talla & spicy shrimp"
+      },
+      "desc": {
+       "es": "Combinado para compartir, 4–5 personas",
+       "en": "Sharing combo for 4–5"
+      },
+      "price": "1200",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Langosta",
+       "en": "Lobster"
+      },
+      "desc": {
+       "es": "Al mojo de ajo o a la diabla",
+       "en": "Garlic or a la diabla"
+      },
+      "price": "900",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Camarones y pulpo",
+     "en": "Shrimp & octopus"
+    },
+    "items": [
      {
       "name": {
        "es": "Camarones al mojo de ajo",
        "en": "Garlic shrimp"
       },
       "desc": {
-       "es": "Con arroz y ensalada",
-       "en": "With rice and salad"
+       "es": "Ajo y chile, con arroz y ensalada",
+       "en": "Garlic & chile, rice and salad"
       },
-      "price": "260",
+      "price": "380",
       "img": "img/__eQuxs8/s2.jpg"
+     },
+     {
+      "name": {
+       "es": "Camarones al coco",
+       "en": "Coconut shrimp"
+      },
+      "desc": {
+       "es": "Empanizados en coco",
+       "en": "Coconut-crusted"
+      },
+      "price": "400",
+      "img": ""
      },
      {
       "name": {
@@ -3885,51 +4669,123 @@
        "es": "En salsa picante de chiles secos",
        "en": "In spicy dried-chile sauce"
       },
-      "price": "380",
+      "price": "480",
       "img": "img/__eQuxs8/s4.jpg"
      },
      {
       "name": {
-       "es": "Filete empapelado",
-       "en": "Fish fillet en papillote"
+       "es": "Pulpo enamorado",
+       "en": "Pulpo enamorado"
       },
       "desc": {
-       "es": "Con verduras y mantequilla",
-       "en": "With vegetables and butter"
+       "es": "Pulpo en salsa cremosa de ajo y chile",
+       "en": "Octopus in creamy garlic-chile sauce"
       },
-      "price": "220",
+      "price": "450",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pulpo enchilado",
+       "en": "Spicy octopus"
+      },
+      "desc": {
+       "es": "En salsa roja picosita",
+       "en": "In spicy red sauce"
+      },
+      "price": "450",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Para picar",
-     "en": "Starters"
+     "es": "Cocteles y entradas",
+     "en": "Cocktails & starters"
     },
     "items": [
      {
       "name": {
-       "es": "Quesadillas de camarón",
-       "en": "Shrimp quesadillas"
+       "es": "Coctel campechano",
+       "en": "Coctel campechano"
       },
       "desc": {
-       "es": "Tortilla hecha a mano, orden de 3",
-       "en": "Handmade tortillas, order of 3"
+       "es": "Camarón, pulpo y ostión",
+       "en": "Shrimp, octopus and oyster"
+      },
+      "price": "260",
+      "img": "img/__eQuxs8/s3.jpg"
+     },
+     {
+      "name": {
+       "es": "Que disque coctel de camarones",
+       "en": "\"So-called\" shrimp cocktail"
+      },
+      "desc": {
+       "es": "Coctel de camarón de la casa",
+       "en": "House shrimp cocktail"
+      },
+      "price": "220",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Aguachile",
+       "en": "Aguachile"
+      },
+      "desc": {
+       "es": "Camarón en limón y chile",
+       "en": "Shrimp in lime and chile"
+      },
+      "price": "280",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Tiritas de pescado",
+       "en": "Tiritas de pescado"
+      },
+      "desc": {
+       "es": "Pescado curado en limón, con totopos",
+       "en": "Lime-cured fish strips, chips"
+      },
+      "price": "200",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Sopa de mariscos",
+       "en": "Seafood soup"
+      },
+      "desc": {
+       "es": "Caldo picosito de mariscos",
+       "en": "Spicy seafood broth"
+      },
+      "price": "260",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Quesadillas de pescado",
+       "en": "Fish quesadillas"
+      },
+      "desc": {
+       "es": "Tortilla hecha a mano",
+       "en": "Handmade tortilla"
       },
       "price": "150",
       "img": ""
      },
      {
       "name": {
-       "es": "Picaditas de mariscos",
-       "en": "Seafood picaditas"
+       "es": "Sopecitos y pescadillas",
+       "en": "Sopecitos & pescadillas"
       },
       "desc": {
-       "es": "Sopes con salsa y mariscos",
-       "en": "Little sopes with salsa and seafood"
+       "es": "Antojitos de la costa",
+       "en": "Coastal snacks"
       },
-      "price": "140",
+      "price": "150",
       "img": ""
      }
     ]
@@ -3942,26 +4798,62 @@
     "items": [
      {
       "name": {
-       "es": "Coco frío",
-       "en": "Chilled coconut"
+       "es": "Coco loco",
+       "en": "Coco loco"
       },
       "desc": {
-       "es": "Agua de coco natural",
-       "en": "Fresh coconut water"
+       "es": "Coco con licores",
+       "en": "Coconut with spirits"
       },
-      "price": "60",
+      "price": "150",
       "img": ""
      },
      {
       "name": {
-       "es": "Michelada",
-       "en": "Michelada"
+       "es": "Piña colada",
+       "en": "Piña colada"
       },
       "desc": {
-       "es": "Cerveza con limón, sal y salsas",
-       "en": "Beer with lime, salt and sauces"
+       "es": "",
+       "en": ""
       },
-      "price": "85",
+      "price": "130",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Cerveza Corona cubana",
+       "en": "Corona cubana"
+      },
+      "desc": {
+       "es": "Cerveza preparada",
+       "en": "Spiced prepared beer"
+      },
+      "price": "95",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Carajillo",
+       "en": "Carajillo"
+      },
+      "desc": {
+       "es": "Licor 43 con espresso",
+       "en": "Licor 43 with espresso"
+      },
+      "price": "140",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Café de olla",
+       "en": "Café de olla"
+      },
+      "desc": {
+       "es": "Con canela y piloncillo",
+       "en": "With cinnamon and piloncillo"
+      },
+      "price": "50",
       "img": ""
      }
     ]
@@ -3999,8 +4891,8 @@
   "menu": [
    {
     "cat": {
-     "es": "A la talla",
-     "en": "A la talla"
+     "es": "Especialidades de la casa",
+     "en": "House specialties"
     },
     "items": [
      {
@@ -4009,10 +4901,10 @@
        "en": "Red snapper a la talla"
       },
       "desc": {
-       "es": "Abierto, adobado y asado a la leña (kg)",
-       "en": "Butterflied, adobo, wood-grilled (kg)"
+       "es": "Abierto, adobado, a la leña; precio por tamaño",
+       "en": "Butterflied, adobo, wood-grilled; by size"
       },
-      "price": "520",
+      "price": "650",
       "img": "img/dE3m8bK4/s1.jpg"
      },
      {
@@ -4021,22 +4913,22 @@
        "en": "Pescado a la talla"
       },
       "desc": {
-       "es": "Pescado del día, mitad roja y mitad verde (kg)",
-       "en": "Catch of the day, half red, half green (kg)"
+       "es": "Pescado del día; precio según tamaño",
+       "en": "Catch of the day; priced by size"
       },
-      "price": "450",
+      "price": "550",
       "img": "img/dE3m8bK4/s2.jpg"
      },
      {
       "name": {
-       "es": "Robalo a la talla",
-       "en": "Snook a la talla"
+       "es": "Pescado al mojo de ajo",
+       "en": "Garlic fish"
       },
       "desc": {
-       "es": "Con adobo enchilado de la casa (kg)",
-       "en": "With house chile adobo (kg)"
+       "es": "Entero; precio según tamaño",
+       "en": "Whole; priced by size"
       },
-      "price": "540",
+      "price": "550",
       "img": ""
      },
      {
@@ -4045,130 +4937,238 @@
        "en": "Shrimp a la talla"
       },
       "desc": {
-       "es": "Camarón gigante adobado a las brasas",
-       "en": "Jumbo shrimp, adobo, grilled"
+       "es": "Camarón grande, docena",
+       "en": "Large shrimp, dozen"
       },
-      "price": "320",
+      "price": "600",
       "img": "img/dE3m8bK4/s4.jpg"
+     },
+     {
+      "name": {
+       "es": "Camarones al chingadazo",
+       "en": "Camarones al chingadazo"
+      },
+      "desc": {
+       "es": "Camarón grande, docena",
+       "en": "Large shrimp, dozen"
+      },
+      "price": "600",
+      "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Antojitos",
-     "en": "Antojitos"
+     "es": "Entradas",
+     "en": "Starters"
     },
     "items": [
      {
       "name": {
-       "es": "Picaditas",
-       "en": "Picaditas"
+       "es": "Sopes Cira",
+       "en": "Sopes Cira"
       },
       "desc": {
-       "es": "Sopes pellizcados con salsa y queso",
-       "en": "Pinched sopes with salsa and cheese"
+       "es": "Picaditas de la casa",
+       "en": "House picaditas"
       },
-      "price": "90",
+      "price": "160",
       "img": "img/dE3m8bK4/s3.jpg"
      },
      {
       "name": {
-       "es": "Quesadillas de pescado",
-       "en": "Fish quesadillas"
+       "es": "Empanadas de cazón",
+       "en": "Dogfish empanadas"
       },
       "desc": {
-       "es": "Tortilla de maíz hecha a mano",
-       "en": "Handmade corn tortilla"
+       "es": "",
+       "en": ""
       },
-      "price": "120",
+      "price": "150",
       "img": ""
      },
      {
       "name": {
-       "es": "Tostadas de ceviche",
-       "en": "Ceviche tostadas"
+       "es": "Empanadas de queso",
+       "en": "Cheese empanadas"
       },
       "desc": {
-       "es": "Pescado curado en limón, orden de 3",
-       "en": "Lime-cured fish, order of 3"
+       "es": "",
+       "en": ""
       },
       "price": "130",
       "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Mariscos",
-     "en": "Seafood"
-    },
-    "items": [
+     },
      {
       "name": {
-       "es": "Pescado marinado",
-       "en": "Marinated fish"
+       "es": "Cóctel de camarón chico",
+       "en": "Small shrimp cocktail"
       },
       "desc": {
-       "es": "Filete en marinada de la casa",
-       "en": "Fillet in house marinade"
+       "es": "",
+       "en": ""
       },
-      "price": "230",
+      "price": "200",
       "img": ""
      },
      {
       "name": {
-       "es": "Coctel de camarón",
-       "en": "Shrimp cocktail"
+       "es": "Caldo de pescado",
+       "en": "Fish soup"
       },
       "desc": {
-       "es": "Estilo acapulqueño con aguacate",
-       "en": "Acapulco-style with avocado"
+       "es": "",
+       "en": ""
       },
-      "price": "180",
+      "price": "250",
       "img": ""
      },
      {
       "name": {
-       "es": "Caldo de mariscos",
-       "en": "Seafood soup"
+       "es": "Caldo de camarón",
+       "en": "Shrimp soup"
       },
       "desc": {
-       "es": "Caldo picosito con mariscos surtidos",
-       "en": "Spicy broth with mixed seafood"
+       "es": "",
+       "en": ""
       },
-      "price": "220",
+      "price": "250",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Bebidas",
-     "en": "Drinks"
+     "es": "Pescado y pulpo",
+     "en": "Fish & octopus"
     },
     "items": [
      {
       "name": {
-       "es": "Coco con ginebra",
-       "en": "Coconut with gin"
+       "es": "Filete empapelado",
+       "en": "Fish fillet en papillote"
       },
       "desc": {
-       "es": "Servido en el coco",
-       "en": "Served in the coconut"
+       "es": "",
+       "en": ""
+      },
+      "price": "350",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Filete a la diabla",
+       "en": "Fish fillet a la diabla"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "380",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Mojarra frita o al mojo de ajo",
+       "en": "Fried or garlic mojarra"
+      },
+      "desc": {
+       "es": "Entera",
+       "en": "Whole"
+      },
+      "price": "500",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pulpo enamorado",
+       "en": "Pulpo enamorado"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "450",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pulpo al chingadazo",
+       "en": "Pulpo al chingadazo"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "450",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Guarniciones y postres",
+     "en": "Sides & desserts"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Arroz con plátano",
+       "en": "Rice with plantain"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "100",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Orden de queso fresco",
+       "en": "Fresh cheese"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "100",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Plátanos fritos con lechera",
+       "en": "Fried plantains with condensed milk"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "100",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Pastel de elote con helado",
+       "en": "Corn cake with ice cream"
+      },
+      "desc": {
+       "es": "Helado de vainilla",
+       "en": "Vanilla ice cream"
       },
       "price": "120",
       "img": ""
      },
      {
       "name": {
-       "es": "Agua de jamaica",
-       "en": "Hibiscus water"
+       "es": "Café americano",
+       "en": "Americano"
       },
       "desc": {
-       "es": "Jarra natural",
-       "en": "Fresh pitcher"
+       "es": "",
+       "en": ""
       },
-      "price": "70",
+      "price": "80",
       "img": ""
      }
     ]
@@ -4181,8 +5181,8 @@
   "slug": "demo-0e4m4HMk",
   "name": "Mariscos Catamarán",
   "tagline": {
-   "es": "Mariscos clásicos de la Costera en Las Playas",
-   "en": "Classic Costera seafood in Las Playas"
+   "es": "Mariscos con vista a la bahía en la Marina, sobre la Costera",
+   "en": "Seafood with bay views at the Marina on the Costera"
   },
   "color": "#b5642f",
   "logo": "",
@@ -4192,8 +5192,8 @@
   "address": "Av Costera Miguel Alemán 215, Las Playas",
   "map": "https://www.google.com/maps/search/?api=1&query=Mariscos%20Catamar%C3%A1n%20Acapulco&query_place_id=ChIJqQGa3In3yoURz_r0e4m4HMk",
   "hours": {
-   "es": "",
-   "en": ""
+   "es": "Lun–Dom 8:30–22:30",
+   "en": "Mon–Sun 8:30am–10:30pm"
   },
   "reservations": true,
   "carryout": true,
@@ -4206,8 +5206,120 @@
   "menu": [
    {
     "cat": {
-     "es": "Cocteles",
-     "en": "Seafood cocktails"
+     "es": "Desayunos",
+     "en": "Breakfast"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Sartén del Capitán",
+       "en": "Captain's skillet"
+      },
+      "desc": {
+       "es": "Huevos estrellados, chistorra y queso costeño",
+       "en": "Fried eggs, chistorra, coastal cheese"
+      },
+      "price": "185",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Salmon Toast",
+       "en": "Salmon Toast"
+      },
+      "desc": {
+       "es": "Pan tostado con salmón",
+       "en": "Toast with salmon"
+      },
+      "price": "210",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Entradas",
+     "en": "Starters"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Camarones roca",
+       "en": "Rock shrimp"
+      },
+      "desc": {
+       "es": "8 pz capeados en salsa dulce picante",
+       "en": "8 battered pcs, sweet-spicy sauce"
+      },
+      "price": "279",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Chicharrón de pulpo",
+       "en": "Octopus chicharrón"
+      },
+      "desc": {
+       "es": "Pulpo frito con guacamole",
+       "en": "Fried octopus with guacamole"
+      },
+      "price": "325",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Carpaccio de atún",
+       "en": "Tuna carpaccio"
+      },
+      "desc": {
+       "es": "Láminas de atún con toque cítrico",
+       "en": "Thin tuna, citrus touch"
+      },
+      "price": "235",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Carpaccio de salmón",
+       "en": "Salmon carpaccio"
+      },
+      "desc": {
+       "es": "Alcaparras, aceitunas y queso crema",
+       "en": "Capers, olives, cream cheese"
+      },
+      "price": "279",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Ostiones Rockefeller",
+       "en": "Oysters Rockefeller"
+      },
+      "desc": {
+       "es": "Gratinados con espinaca y queso",
+       "en": "Baked with spinach and cheese"
+      },
+      "price": "379",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Esferas de camarón",
+       "en": "Shrimp spheres"
+      },
+      "desc": {
+       "es": "3 pz crujientes sobre bisque",
+       "en": "3 crispy pcs on shrimp bisque"
+      },
+      "price": "279",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Cocteles y ceviches",
+     "en": "Cocktails & ceviches"
     },
     "items": [
      {
@@ -4219,41 +5331,9 @@
        "es": "Camarón, pulpo, ostión y caracol",
        "en": "Shrimp, octopus, oyster and conch"
       },
-      "price": "220",
+      "price": "290",
       "img": "img/0e4m4HMk/s1.jpg"
      },
-     {
-      "name": {
-       "es": "Coctel de camarón",
-       "en": "Shrimp cocktail"
-      },
-      "desc": {
-       "es": "Estilo acapulqueño con aguacate",
-       "en": "Acapulco-style with avocado"
-      },
-      "price": "170",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Vuelve a la vida",
-       "en": "Vuelve a la vida"
-      },
-      "desc": {
-       "es": "Mariscos mixtos en salsa roja",
-       "en": "Mixed seafood in red sauce"
-      },
-      "price": "200",
-      "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Ceviches y tostadas",
-     "en": "Ceviches & tostadas"
-    },
-    "items": [
      {
       "name": {
        "es": "Tostada de ceviche",
@@ -4263,20 +5343,8 @@
        "es": "Pescado curado con jitomate y cebolla",
        "en": "Cured fish, tomato and onion"
       },
-      "price": "55",
+      "price": "95",
       "img": "img/0e4m4HMk/s4.jpg"
-     },
-     {
-      "name": {
-       "es": "Ceviche de camarón",
-       "en": "Shrimp ceviche"
-      },
-      "desc": {
-       "es": "Con pepino, cebolla morada y limón",
-       "en": "With cucumber, red onion and lime"
-      },
-      "price": "180",
-      "img": ""
      },
      {
       "name": {
@@ -4287,17 +5355,65 @@
        "es": "Camarón en salsa de chile serrano",
        "en": "Shrimp in serrano chile sauce"
       },
-      "price": "190",
+      "price": "280",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Platillos",
+     "es": "Platos fuertes",
      "en": "Mains"
     },
     "items": [
+     {
+      "name": {
+       "es": "Molcajete de mariscos",
+       "en": "Seafood molcajete"
+      },
+      "desc": {
+       "es": "Pulpo, camarón, mejillón y pescado gratinados",
+       "en": "Octopus, shrimp, mussel, fish au gratin"
+      },
+      "price": "520",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Salmón Mare Toscana",
+       "en": "Salmon Mare Toscana"
+      },
+      "desc": {
+       "es": "Salsa cremosa de espinaca, ajo y tomate",
+       "en": "Creamy spinach, garlic, tomato sauce"
+      },
+      "price": "420",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Langosta Thermidor",
+       "en": "Lobster Thermidor"
+      },
+      "desc": {
+       "es": "Gratinada al vino blanco",
+       "en": "Gratinéed with white wine"
+      },
+      "price": "850",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Paella",
+       "en": "Paella"
+      },
+      "desc": {
+       "es": "Solo domingos",
+       "en": "Sundays only"
+      },
+      "price": "380",
+      "img": ""
+     },
      {
       "name": {
        "es": "Filete a la diabla",
@@ -4307,7 +5423,7 @@
        "es": "En salsa picante de chile seco",
        "en": "In spicy dried-chile sauce"
       },
-      "price": "190",
+      "price": "320",
       "img": "img/0e4m4HMk/s2.jpg"
      },
      {
@@ -4319,32 +5435,8 @@
        "es": "Entera, con arroz y ensalada",
        "en": "Whole, with rice and salad"
       },
-      "price": "200",
+      "price": "330",
       "img": "img/0e4m4HMk/s3.jpg"
-     },
-     {
-      "name": {
-       "es": "Camarones empanizados",
-       "en": "Breaded shrimp"
-      },
-      "desc": {
-       "es": "Con papas y aderezo",
-       "en": "With fries and dressing"
-      },
-      "price": "230",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Pulpo al mojo de ajo",
-       "en": "Garlic octopus"
-      },
-      "desc": {
-       "es": "Salteado en ajo y mantequilla",
-       "en": "Sautéed in garlic and butter"
-      },
-      "price": "260",
-      "img": ""
      }
     ]
    },
@@ -4360,10 +5452,10 @@
        "en": "Mexican beer"
       },
       "desc": {
-       "es": "Corona, Victoria o Modelo",
-       "en": "Corona, Victoria or Modelo"
+       "es": "",
+       "en": ""
       },
-      "price": "45",
+      "price": "70",
       "img": ""
      },
      {
@@ -4375,7 +5467,7 @@
        "es": "Natural o mineral",
        "en": "Still or sparkling"
       },
-      "price": "45",
+      "price": "65",
       "img": ""
      }
     ]
@@ -4399,8 +5491,8 @@
   "address": "Av. Hidalgo 20, Zona Urbana 49",
   "map": "https://www.google.com/maps/search/?api=1&query=The%20Cauldron%20Wizard%27s%20Coffee%20Acapulco&query_place_id=ChIJM6skj473yoURWOm66cxVA6Y",
   "hours": {
-   "es": "",
-   "en": ""
+   "es": "Lun–Dom 12:00–20:00",
+   "en": "Mon–Sun 12pm–8pm"
   },
   "reservations": true,
   "carryout": true,
@@ -4413,62 +5505,30 @@
   "menu": [
    {
     "cat": {
-     "es": "Pociones calientes",
-     "en": "Hot potions"
-    },
-    "items": [
-     {
-      "name": {
-       "es": "Latte del Caldero",
-       "en": "Cauldron latte"
-      },
-      "desc": {
-       "es": "Espresso, leche y canela especiada",
-       "en": "Espresso, milk and spiced cinnamon"
-      },
-      "price": "70",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Chocolate Mágico",
-       "en": "Mágico hot chocolate"
-      },
-      "desc": {
-       "es": "Chocolate oaxaqueño con malvaviscos",
-       "en": "Oaxacan chocolate with marshmallows"
-      },
-      "price": "75",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Americano del Mago",
-       "en": "Wizard's Americano"
-      },
-      "desc": {
-       "es": "Café de altura de Guerrero",
-       "en": "High-altitude Guerrero coffee"
-      },
-      "price": "45",
-      "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
      "es": "Pociones frías",
      "en": "Cold potions"
     },
     "items": [
      {
       "name": {
+       "es": "Bebida de caramelo y mantequilla",
+       "en": "Butterscotch cream drink"
+      },
+      "desc": {
+       "es": "Estilo malteada; 2x1 martes y jueves",
+       "en": "Shake-style; 2-for-1 Tue & Thu"
+      },
+      "price": "95",
+      "img": ""
+     },
+     {
+      "name": {
        "es": "Latte del Hechicero",
        "en": "Sorcerer's Latte"
       },
       "desc": {
-       "es": "Sin alcohol, caramelo y espuma dulce",
-       "en": "Alcohol-free, caramel and sweet foam"
+       "es": "Caramelo y espuma dulce",
+       "en": "Caramel and sweet foam"
       },
       "price": "85",
       "img": "img/66cxVA6Y/s1.jpg"
@@ -4479,8 +5539,8 @@
        "en": "Red berry potion"
       },
       "desc": {
-       "es": "Soda de kiwi que cambia de color",
-       "en": "Color-changing kiwi soda"
+       "es": "Bebida de temporada",
+       "en": "Seasonal potion"
       },
       "price": "80",
       "img": "img/66cxVA6Y/s2.jpg"
@@ -4491,22 +5551,134 @@
        "en": "Encantado frappé"
       },
       "desc": {
-       "es": "Vainilla, galleta y chispas plateadas",
-       "en": "Vanilla, cookie and silver sprinkles"
+       "es": "Vainilla, galleta y chispas",
+       "en": "Vanilla, cookie and sprinkles"
       },
       "price": "90",
       "img": "img/66cxVA6Y/s3.jpg"
      },
      {
       "name": {
-       "es": "Jugo de Manzana Especiado",
-       "en": "Spiced apple juice"
+       "es": "Malteada de galleta Oreo",
+       "en": "Oreo cookie milkshake"
       },
       "desc": {
-       "es": "Manzana, canela y especias",
-       "en": "Apple, cinnamon and spices"
+       "es": "",
+       "en": ""
+      },
+      "price": "95",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Pociones calientes",
+     "en": "Hot potions"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Mocachino",
+       "en": "Mochaccino"
+      },
+      "desc": {
+       "es": "Espresso, chocolate y leche",
+       "en": "Espresso, chocolate and milk"
       },
       "price": "70",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Café de olla",
+       "en": "Café de olla"
+      },
+      "desc": {
+       "es": "Con canela y piloncillo",
+       "en": "With cinnamon and piloncillo"
+      },
+      "price": "45",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Chocolate caliente",
+       "en": "Hot chocolate"
+      },
+      "desc": {
+       "es": "Con malvaviscos",
+       "en": "With marshmallows"
+      },
+      "price": "70",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Antojos del caldero",
+     "en": "Cauldron bites"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Papas con pollo del caldero",
+       "en": "Cauldron chicken fries"
+      },
+      "desc": {
+       "es": "Platillo favorito de la casa",
+       "en": "House favorite"
+      },
+      "price": "120",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Boneless del fénix",
+       "en": "Phoenix boneless"
+      },
+      "desc": {
+       "es": "Mango habanero o picante",
+       "en": "Mango habanero or spicy"
+      },
+      "price": "130",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Dedos de queso",
+       "en": "Cheese sticks"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "90",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Panini",
+       "en": "Panini"
+      },
+      "desc": {
+       "es": "Apto para niños",
+       "en": "Kid friendly"
+      },
+      "price": "110",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Hamburguesa",
+       "en": "Burger"
+      },
+      "desc": {
+       "es": "Con papas",
+       "en": "With fries"
+      },
+      "price": "130",
       "img": ""
      }
     ]
@@ -4523,11 +5695,23 @@
        "en": "Cauldron cake"
       },
       "desc": {
-       "es": "Chocolate con centro fundido",
-       "en": "Chocolate with molten center"
+       "es": "Rebanada de pastel de la casa",
+       "en": "House cake slice"
       },
       "price": "85",
       "img": "img/66cxVA6Y/s4.jpg"
+     },
+     {
+      "name": {
+       "es": "Grageas de todos los sabores",
+       "en": "Every-flavor jelly beans"
+      },
+      "desc": {
+       "es": "Bolsita",
+       "en": "Small bag"
+      },
+      "price": "60",
+      "img": ""
      },
      {
       "name": {
@@ -4535,54 +5719,10 @@
        "en": "Chocolate stars"
       },
       "desc": {
-       "es": "Bombones de chocolate, pieza",
-       "en": "Chocolate bonbons, each"
+       "es": "Bombones de chocolate",
+       "en": "Chocolate bonbons"
       },
       "price": "35",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Pay de Manzana del Bosque",
-       "en": "Forest apple pie"
-      },
-      "desc": {
-       "es": "Rebanada con crema batida",
-       "en": "Slice with whipped cream"
-      },
-      "price": "75",
-      "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Bocados del Gran Comedor",
-     "en": "Great Hall bites"
-    },
-    "items": [
-     {
-      "name": {
-       "es": "Croissant de jamón y queso",
-       "en": "Ham and cheese croissant"
-      },
-      "desc": {
-       "es": "Horneado y gratinado",
-       "en": "Baked and gratinéed"
-      },
-      "price": "80",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Panini del Hechicero",
-       "en": "Sorcerer's panini"
-      },
-      "desc": {
-       "es": "Pollo, pesto y queso manchego",
-       "en": "Chicken, pesto and manchego"
-      },
-      "price": "110",
       "img": ""
      }
     ]
@@ -4630,22 +5770,46 @@
        "en": "Chilaquiles"
       },
       "desc": {
-       "es": "Rojos o verdes, con crema, queso y huevo",
-       "en": "Red or green, with cream, cheese and egg"
+       "es": "Rojos o verdes, con crema y queso",
+       "en": "Red or green, with cream and cheese"
       },
-      "price": "149",
+      "price": "159",
       "img": "img/Jlg2pi-E/s2.jpg"
      },
      {
       "name": {
-       "es": "Avocado Toast",
-       "en": "Avocado Toast"
+       "es": "Huevos motuleños",
+       "en": "Huevos motuleños"
       },
       "desc": {
-       "es": "Pan, aguacate, huevo y jitomate cherry",
-       "en": "Bread, avocado, egg and cherry tomato"
+       "es": "",
+       "en": ""
       },
-      "price": "145",
+      "price": "206",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Molletes",
+       "en": "Molletes"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "119",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Hot cakes",
+       "en": "Hot cakes"
+      },
+      "desc": {
+       "es": "Orden de 3",
+       "en": "Order of 3"
+      },
+      "price": "119",
       "img": ""
      },
      {
@@ -4654,30 +5818,18 @@
        "en": "French Toast"
       },
       "desc": {
-       "es": "Con frutos rojos, plátano y helado",
-       "en": "With red berries, banana and ice cream"
+       "es": "Con fruta y miel",
+       "en": "With fruit and syrup"
       },
       "price": "139",
       "img": "img/Jlg2pi-E/s3.jpg"
-     },
-     {
-      "name": {
-       "es": "Huevos al gusto",
-       "en": "Eggs your way"
-      },
-      "desc": {
-       "es": "Con frijoles y chilaquiles",
-       "en": "With beans and chilaquiles"
-      },
-      "price": "129",
-      "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Antojitos y platos fuertes",
-     "en": "Antojitos & mains"
+     "es": "Sopas y antojitos",
+     "en": "Soups & antojitos"
     },
     "items": [
      {
@@ -4686,34 +5838,34 @@
        "en": "Pozole"
       },
       "desc": {
-       "es": "Pozole tradicional con tostadas y botanas",
-       "en": "Traditional pozole with tostadas and sides"
+       "es": "Tradicional; promo 2x1 en sucursal",
+       "en": "Traditional; in-store 2-for-1 promo"
       },
-      "price": "169",
+      "price": "137",
       "img": "img/Jlg2pi-E/s1.jpg"
      },
      {
       "name": {
-       "es": "Flautas de pollo",
-       "en": "Chicken flautas"
+       "es": "Sopa Azteca",
+       "en": "Tortilla soup"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "146",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Flautas tradicionales",
+       "en": "Traditional flautas"
       },
       "desc": {
        "es": "Con crema, queso y lechuga",
        "en": "With cream, cheese and lettuce"
       },
-      "price": "139",
-      "img": ""
-     },
-     {
-      "name": {
-       "es": "Sopes",
-       "en": "Sopes"
-      },
-      "desc": {
-       "es": "Sopes con guisados variados",
-       "en": "Sopes with assorted stews"
-      },
-      "price": "135",
+      "price": "131",
       "img": ""
      },
      {
@@ -4723,9 +5875,41 @@
       },
       "desc": {
        "es": "Cerdo pibil con cebolla morada",
-       "en": "Achiote pork with pickled red onion"
+       "en": "Achiote pork, pickled red onion"
       },
-      "price": "149",
+      "price": "106",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Quesadillas al comal",
+       "en": "Griddle quesadillas"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "56",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Especialidades",
+     "en": "Specialties"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Club Sandwich",
+       "en": "Club Sandwich"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "173",
       "img": ""
      },
      {
@@ -4734,42 +5918,22 @@
        "en": "Arrachera sandwich"
       },
       "desc": {
-       "es": "Con papas a la francesa",
-       "en": "With French fries"
+       "es": "",
+       "en": ""
       },
-      "price": "199",
-      "img": ""
-     }
-    ]
-   },
-   {
-    "cat": {
-     "es": "Del mar",
-     "en": "From the sea"
-    },
-    "items": [
-     {
-      "name": {
-       "es": "Coctel de camarones",
-       "en": "Shrimp cocktail"
-      },
-      "desc": {
-       "es": "Estilo Acapulco, con galletas saladas",
-       "en": "Acapulco style, with saltines"
-      },
-      "price": "189",
+      "price": "267",
       "img": ""
      },
      {
       "name": {
-       "es": "Tostadas de atún",
-       "en": "Tuna tostadas"
+       "es": "Arrachera a la tampiqueña",
+       "en": "Arrachera tampiqueña"
       },
       "desc": {
-       "es": "Atún teriyaki, mayonesa y aguacate (2)",
-       "en": "Teriyaki tuna, mayo and avocado (2)"
+       "es": "",
+       "en": ""
       },
-      "price": "179",
+      "price": "334",
       "img": ""
      },
      {
@@ -4778,18 +5942,18 @@
        "en": "Breaded shrimp"
       },
       "desc": {
-       "es": "Sobre puré de papa y ensalada",
-       "en": "Over mashed potatoes and salad"
+       "es": "",
+       "en": ""
       },
-      "price": "200",
+      "price": "347",
       "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Postres y café",
-     "en": "Desserts & coffee"
+     "es": "Panadería y postres",
+     "en": "Bakery & desserts"
     },
     "items": [
      {
@@ -4798,34 +5962,90 @@
        "en": "Churro Nest"
       },
       "desc": {
-       "es": "Churros con bola de helado de vainilla",
-       "en": "Churros with a scoop of vanilla ice cream"
+       "es": "Churros con helado de vainilla",
+       "en": "Churros with vanilla ice cream"
       },
       "price": "109",
       "img": "img/Jlg2pi-E/s4.jpg"
      },
      {
       "name": {
-       "es": "Café de olla",
-       "en": "Café de olla"
+       "es": "Concha de nata",
+       "en": "Cream concha"
       },
       "desc": {
-       "es": "Con canela y piloncillo",
-       "en": "With cinnamon and piloncillo"
+       "es": "",
+       "en": ""
       },
-      "price": "49",
+      "price": "79",
       "img": ""
      },
      {
       "name": {
-       "es": "Pan dulce",
-       "en": "Pan dulce"
+       "es": "Rol de tres leches",
+       "en": "Tres leches roll"
       },
       "desc": {
-       "es": "Pieza de panadería de la casa",
-       "en": "House bakery piece"
+       "es": "",
+       "en": ""
       },
-      "price": "25",
+      "price": "60",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Flan de la casa",
+       "en": "House flan"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "87",
+      "img": ""
+     }
+    ]
+   },
+   {
+    "cat": {
+     "es": "Bebidas",
+     "en": "Drinks"
+    },
+    "items": [
+     {
+      "name": {
+       "es": "Licuados",
+       "en": "Shakes"
+      },
+      "desc": {
+       "es": "Fresa o chocolate",
+       "en": "Strawberry or chocolate"
+      },
+      "price": "106",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Café lechero",
+       "en": "Café con leche"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "79",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Aguas frescas",
+       "en": "Aguas frescas"
+      },
+      "desc": {
+       "es": "",
+       "en": ""
+      },
+      "price": "72",
       "img": ""
      }
     ]
@@ -4873,8 +6093,8 @@
        "en": "Piloncillo-roast espresso"
       },
       "desc": {
-       "es": "Grano de Guerrero tostado con piloncillo",
-       "en": "Guerrero beans roasted with piloncillo"
+       "es": "Tostado con piloncillo, la especialidad",
+       "en": "The house piloncillo roast"
       },
       "price": "35",
       "img": "img/uJ4Hteq8/s3.jpg"
@@ -4885,8 +6105,8 @@
        "en": "Americano"
       },
       "desc": {
-       "es": "Café de la casa, recién molido",
-       "en": "House coffee, freshly ground"
+       "es": "Café de Guerrero recién molido",
+       "en": "Freshly ground Guerrero coffee"
       },
       "price": "35",
       "img": ""
@@ -4917,12 +6137,12 @@
      },
      {
       "name": {
-       "es": "Lechero",
-       "en": "Café lechero"
+       "es": "Café árabe / turco",
+       "en": "Arabic / Turkish coffee"
       },
       "desc": {
-       "es": "Café con leche caliente al estilo porteño",
-       "en": "Coffee with hot milk, port style"
+       "es": "Receta de la familia libanesa fundadora",
+       "en": "Recipe of the founding Lebanese family"
       },
       "price": "45",
       "img": ""
@@ -4931,8 +6151,8 @@
    },
    {
     "cat": {
-     "es": "Bebidas frías",
-     "en": "Cold drinks"
+     "es": "Frappés y fríos",
+     "en": "Frappés & cold"
     },
     "items": [
      {
@@ -4949,18 +6169,6 @@
      },
      {
       "name": {
-       "es": "Café helado",
-       "en": "Iced coffee"
-      },
-      "desc": {
-       "es": "Espresso sobre hielo con leche",
-       "en": "Espresso over ice with milk"
-      },
-      "price": "50",
-      "img": ""
-     },
-     {
-      "name": {
        "es": "Frappé de moka",
        "en": "Mocha frappé"
       },
@@ -4970,15 +6178,51 @@
       },
       "price": "65",
       "img": ""
+     },
+     {
+      "name": {
+       "es": "Café helado",
+       "en": "Iced coffee"
+      },
+      "desc": {
+       "es": "Espresso sobre hielo con leche",
+       "en": "Espresso over ice with milk"
+      },
+      "price": "50",
+      "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Panadería",
-     "en": "Bakery"
+     "es": "Crepas y pan",
+     "en": "Crepes & bakery"
     },
     "items": [
+     {
+      "name": {
+       "es": "Crepa de cajeta",
+       "en": "Cajeta crepe"
+      },
+      "desc": {
+       "es": "Crepa dulce hecha al momento",
+       "en": "Sweet crepe made to order"
+      },
+      "price": "60",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Churros",
+       "en": "Churros"
+      },
+      "desc": {
+       "es": "Con azúcar y canela",
+       "en": "With sugar and cinnamon"
+      },
+      "price": "35",
+      "img": ""
+     },
      {
       "name": {
        "es": "Concha",
@@ -5002,49 +6246,85 @@
       },
       "price": "22",
       "img": ""
-     },
-     {
-      "name": {
-       "es": "Pastel del día",
-       "en": "Cake of the day"
-      },
-      "desc": {
-       "es": "Rebanada de pastel casero",
-       "en": "Slice of homemade cake"
-      },
-      "price": "45",
-      "img": ""
      }
     ]
    },
    {
     "cat": {
-     "es": "Para llevar",
-     "en": "To go"
+     "es": "Café por kilo",
+     "en": "Coffee by the kilo"
     },
     "items": [
      {
       "name": {
-       "es": "Café en grano 250 g",
-       "en": "Whole beans 250 g"
+       "es": "Caracolillo espresso 1 kg",
+       "en": "Caracolillo espresso 1 kg"
       },
       "desc": {
-       "es": "Mezcla guerrerense tostada en casa",
-       "en": "House-roasted Guerrero blend"
+       "es": "Molido fino o en grano",
+       "en": "Fine-ground or whole bean"
       },
-      "price": "130",
+      "price": "300",
       "img": ""
      },
      {
       "name": {
-       "es": "Café molido 500 g",
-       "en": "Ground coffee 500 g"
+       "es": "Tostado con piloncillo 1 kg",
+       "en": "Piloncillo roast 1 kg"
       },
       "desc": {
-       "es": "Molido a tu gusto",
-       "en": "Ground to your preference"
+       "es": "El clásico de Wadi",
+       "en": "The Wadi classic"
       },
-      "price": "240",
+      "price": "300",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Costeño Premier 1 kg",
+       "en": "Costeño Premier 1 kg"
+      },
+      "desc": {
+       "es": "Café de la costa de Guerrero",
+       "en": "Coastal Guerrero coffee"
+      },
+      "price": "320",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Criollo natural 1 kg",
+       "en": "Criollo natural 1 kg"
+      },
+      "desc": {
+       "es": "Tueste natural, sin azúcar",
+       "en": "Natural roast, no sugar"
+      },
+      "price": "280",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Descafeinado 500 g",
+       "en": "Decaf 500 g"
+      },
+      "desc": {
+       "es": "En grano o molido",
+       "en": "Whole bean or ground"
+      },
+      "price": "180",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Bolsita de café",
+       "en": "Small coffee bag"
+      },
+      "desc": {
+       "es": "Bolsitas individuales",
+       "en": "Single-use small bags"
+      },
+      "price": "5",
       "img": ""
      }
     ]
@@ -5095,7 +6375,7 @@
        "es": "Con jitomate, cebolla, chile y frijoles",
        "en": "With tomato, onion, chile and beans"
       },
-      "price": "110",
+      "price": "85",
       "img": ""
      },
      {
@@ -5107,7 +6387,31 @@
        "es": "Sobre tortilla con salsa roja",
        "en": "On tortilla with red salsa"
       },
-      "price": "110",
+      "price": "85",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Huevos al albañil",
+       "en": "Huevos al albañil"
+      },
+      "desc": {
+       "es": "Revueltos en salsa picosa",
+       "en": "Scrambled in spicy salsa"
+      },
+      "price": "85",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Chilaquiles",
+       "en": "Chilaquiles"
+      },
+      "desc": {
+       "es": "Rojos o verdes, con crema y queso",
+       "en": "Red or green, with cream and cheese"
+      },
+      "price": "90",
       "img": ""
      }
     ]
@@ -5416,6 +6720,18 @@
       },
       "price": "250",
       "img": ""
+     },
+     {
+      "name": {
+       "es": "Camarones a la diabla",
+       "en": "Camarones a la diabla"
+      },
+      "desc": {
+       "es": "Camarón en salsa picante de la casa",
+       "en": "Shrimp in spicy house sauce"
+      },
+      "price": "240",
+      "img": ""
      }
     ]
    },
@@ -5425,6 +6741,18 @@
      "en": "From the land"
     },
     "items": [
+     {
+      "name": {
+       "es": "Hamburguesa Altamar",
+       "en": "Altamar burger"
+      },
+      "desc": {
+       "es": "Res a la parrilla con papas",
+       "en": "Grilled beef with fries"
+      },
+      "price": "170",
+      "img": ""
+     },
      {
       "name": {
        "es": "Arrachera",
@@ -5579,6 +6907,18 @@
       },
       "price": "180",
       "img": ""
+     },
+     {
+      "name": {
+       "es": "Aguachile",
+       "en": "Aguachile"
+      },
+      "desc": {
+       "es": "Camarón en limón, chile y pepino",
+       "en": "Shrimp in lime, chile and cucumber"
+      },
+      "price": "240",
+      "img": ""
      }
     ]
    },
@@ -5599,6 +6939,18 @@
       },
       "price": "320",
       "img": "img/JfpbSzOw/s1.jpg"
+     },
+     {
+      "name": {
+       "es": "Pulpo a la talla",
+       "en": "Pulpo a la talla"
+      },
+      "desc": {
+       "es": "Pulpo adobado a las brasas",
+       "en": "Adobo octopus over coals"
+      },
+      "price": "340",
+      "img": ""
      },
      {
       "name": {
@@ -5897,6 +7249,18 @@
        "en": "Whole crispy tilapia"
       },
       "price": "190",
+      "img": ""
+     },
+     {
+      "name": {
+       "es": "Camarones empanizados",
+       "en": "Breaded shrimp"
+      },
+      "desc": {
+       "es": "Con arroz, ensalada y papas",
+       "en": "With rice, salad and fries"
+      },
+      "price": "220",
       "img": ""
      }
     ]

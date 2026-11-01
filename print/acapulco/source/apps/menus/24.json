@@ -109,6 +109,17 @@
       "en": "Fish fillet au gratin with shrimp"
      },
      "price": "250"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Camarones a la diabla"
+     },
+     "desc": {
+      "es": "Camarón en salsa picante de la casa",
+      "en": "Shrimp in spicy house sauce"
+     },
+     "price": "240"
     }
    ]
   },
@@ -118,6 +129,17 @@
     "en": "From the land"
    },
    "items": [
+    {
+     "name": {
+      "es": "Hamburguesa Altamar",
+      "en": "Altamar burger"
+     },
+     "desc": {
+      "es": "Res a la parrilla con papas",
+      "en": "Grilled beef with fries"
+     },
+     "price": "170"
+    },
     {
      "name": {
       "es": "Arrachera",

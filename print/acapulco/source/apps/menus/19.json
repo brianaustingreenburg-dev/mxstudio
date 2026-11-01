@@ -1,22 +1,275 @@
-{"name":"Mariscos Catamarán","kind":"mar","source":"sample","sources":[],
-"tagline":{"es":"Mariscos clásicos de la Costera en Las Playas","en":"Classic Costera seafood in Las Playas"},
-"hours":{"es":"","en":""},
-"specialty":"Cocteles, ceviches y pescado frito estilo acapulqueño a precio familiar.",
-"signature":["Coctel Catamarán","Filete a la diabla","Mojarra frita","Tostada de ceviche"],
-"menu":[
-{"cat":{"es":"Cocteles","en":"Seafood cocktails"},"items":[
-{"name":{"es":"Coctel Catamarán","en":"Catamarán cocktail"},"desc":{"es":"Camarón, pulpo, ostión y caracol","en":"Shrimp, octopus, oyster and conch"},"price":"220"},
-{"name":{"es":"Coctel de camarón","en":"Shrimp cocktail"},"desc":{"es":"Estilo acapulqueño con aguacate","en":"Acapulco-style with avocado"},"price":"170"},
-{"name":{"es":"Vuelve a la vida","en":"Vuelve a la vida"},"desc":{"es":"Mariscos mixtos en salsa roja","en":"Mixed seafood in red sauce"},"price":"200"}]},
-{"cat":{"es":"Ceviches y tostadas","en":"Ceviches & tostadas"},"items":[
-{"name":{"es":"Tostada de ceviche","en":"Ceviche tostada"},"desc":{"es":"Pescado curado con jitomate y cebolla","en":"Cured fish, tomato and onion"},"price":"55"},
-{"name":{"es":"Ceviche de camarón","en":"Shrimp ceviche"},"desc":{"es":"Con pepino, cebolla morada y limón","en":"With cucumber, red onion and lime"},"price":"180"},
-{"name":{"es":"Aguachile verde","en":"Green aguachile"},"desc":{"es":"Camarón en salsa de chile serrano","en":"Shrimp in serrano chile sauce"},"price":"190"}]},
-{"cat":{"es":"Platillos","en":"Mains"},"items":[
-{"name":{"es":"Filete a la diabla","en":"Fish fillet a la diabla"},"desc":{"es":"En salsa picante de chile seco","en":"In spicy dried-chile sauce"},"price":"190"},
-{"name":{"es":"Mojarra frita","en":"Fried mojarra"},"desc":{"es":"Entera, con arroz y ensalada","en":"Whole, with rice and salad"},"price":"200"},
-{"name":{"es":"Camarones empanizados","en":"Breaded shrimp"},"desc":{"es":"Con papas y aderezo","en":"With fries and dressing"},"price":"230"},
-{"name":{"es":"Pulpo al mojo de ajo","en":"Garlic octopus"},"desc":{"es":"Salteado en ajo y mantequilla","en":"Sautéed in garlic and butter"},"price":"260"}]},
-{"cat":{"es":"Bebidas","en":"Drinks"},"items":[
-{"name":{"es":"Cerveza nacional","en":"Mexican beer"},"desc":{"es":"Corona, Victoria o Modelo","en":"Corona, Victoria or Modelo"},"price":"45"},
-{"name":{"es":"Limonada","en":"Lemonade"},"desc":{"es":"Natural o mineral","en":"Still or sparkling"},"price":"45"}]}]}
+{
+ "name": "Mariscos Catamarán",
+ "kind": "mar",
+ "source": "partial",
+ "sources": [
+  "https://www.tripadvisor.ie/Restaurant_Review-g150787-d34679942-Reviews-Catamaran_Restaurante_Acapulco-Acapulco_Pacific_Coast.html",
+  "https://visitacapulco.travel/restaurante-catamaran-acapulco/"
+ ],
+ "tagline": {
+  "es": "Mariscos con vista a la bahía en la Marina, sobre la Costera",
+  "en": "Seafood with bay views at the Marina on the Costera"
+ },
+ "hours": {
+  "es": "Lun–Dom 8:30–22:30",
+  "en": "Mon–Sun 8:30am–10:30pm"
+ },
+ "specialty": "Mariscos frente a la bahía en Marina Acapulco: desayunos, molcajete de mariscos, langosta y paella dominical.",
+ "signature": [
+  "Coctel Catamarán",
+  "Filete a la diabla",
+  "Mojarra frita",
+  "Tostada de ceviche"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sartén del Capitán",
+      "en": "Captain's skillet"
+     },
+     "desc": {
+      "es": "Huevos estrellados, chistorra y queso costeño",
+      "en": "Fried eggs, chistorra, coastal cheese"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Salmon Toast",
+      "en": "Salmon Toast"
+     },
+     "desc": {
+      "es": "Pan tostado con salmón",
+      "en": "Toast with salmon"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Camarones roca",
+      "en": "Rock shrimp"
+     },
+     "desc": {
+      "es": "8 pz capeados en salsa dulce picante",
+      "en": "8 battered pcs, sweet-spicy sauce"
+     },
+     "price": "279"
+    },
+    {
+     "name": {
+      "es": "Chicharrón de pulpo",
+      "en": "Octopus chicharrón"
+     },
+     "desc": {
+      "es": "Pulpo frito con guacamole",
+      "en": "Fried octopus with guacamole"
+     },
+     "price": "325"
+    },
+    {
+     "name": {
+      "es": "Carpaccio de atún",
+      "en": "Tuna carpaccio"
+     },
+     "desc": {
+      "es": "Láminas de atún con toque cítrico",
+      "en": "Thin tuna, citrus touch"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Carpaccio de salmón",
+      "en": "Salmon carpaccio"
+     },
+     "desc": {
+      "es": "Alcaparras, aceitunas y queso crema",
+      "en": "Capers, olives, cream cheese"
+     },
+     "price": "279"
+    },
+    {
+     "name": {
+      "es": "Ostiones Rockefeller",
+      "en": "Oysters Rockefeller"
+     },
+     "desc": {
+      "es": "Gratinados con espinaca y queso",
+      "en": "Baked with spinach and cheese"
+     },
+     "price": "379"
+    },
+    {
+     "name": {
+      "es": "Esferas de camarón",
+      "en": "Shrimp spheres"
+     },
+     "desc": {
+      "es": "3 pz crujientes sobre bisque",
+      "en": "3 crispy pcs on shrimp bisque"
+     },
+     "price": "279"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cocteles y ceviches",
+    "en": "Cocktails & ceviches"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Coctel Catamarán",
+      "en": "Catamarán cocktail"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, ostión y caracol",
+      "en": "Shrimp, octopus, oyster and conch"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Tostada de ceviche",
+      "en": "Ceviche tostada"
+     },
+     "desc": {
+      "es": "Pescado curado con jitomate y cebolla",
+      "en": "Cured fish, tomato and onion"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón en salsa de chile serrano",
+      "en": "Shrimp in serrano chile sauce"
+     },
+     "price": "280"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Molcajete de mariscos",
+      "en": "Seafood molcajete"
+     },
+     "desc": {
+      "es": "Pulpo, camarón, mejillón y pescado gratinados",
+      "en": "Octopus, shrimp, mussel, fish au gratin"
+     },
+     "price": "520"
+    },
+    {
+     "name": {
+      "es": "Salmón Mare Toscana",
+      "en": "Salmon Mare Toscana"
+     },
+     "desc": {
+      "es": "Salsa cremosa de espinaca, ajo y tomate",
+      "en": "Creamy spinach, garlic, tomato sauce"
+     },
+     "price": "420"
+    },
+    {
+     "name": {
+      "es": "Langosta Thermidor",
+      "en": "Lobster Thermidor"
+     },
+     "desc": {
+      "es": "Gratinada al vino blanco",
+      "en": "Gratinéed with white wine"
+     },
+     "price": "850"
+    },
+    {
+     "name": {
+      "es": "Paella",
+      "en": "Paella"
+     },
+     "desc": {
+      "es": "Solo domingos",
+      "en": "Sundays only"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Filete a la diabla",
+      "en": "Fish fillet a la diabla"
+     },
+     "desc": {
+      "es": "En salsa picante de chile seco",
+      "en": "In spicy dried-chile sauce"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried mojarra"
+     },
+     "desc": {
+      "es": "Entera, con arroz y ensalada",
+      "en": "Whole, with rice and salad"
+     },
+     "price": "330"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Limonada",
+      "en": "Lemonade"
+     },
+     "desc": {
+      "es": "Natural o mineral",
+      "en": "Still or sparkling"
+     },
+     "price": "65"
+    }
+   ]
+  }
+ ]
+}

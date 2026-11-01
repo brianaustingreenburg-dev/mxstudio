@@ -1,9 +1,12 @@
 {
  "name": "Don Camarón",
  "kind": "mar",
- "source": "partial",
+ "source": "real",
  "sources": [
-  "https://pos.do/en/acapulco/restaurant/don-camaron-3"
+  "https://pos.do/en/acapulco/restaurant/don-camaron-3",
+  "https://vagabundeando.mx/top-Mariscos-Acapulco/Restaurante-Don-Camaron/a/90/menu",
+  "https://www.tripadvisor.com/Restaurant_Review-g150787-d10746351-Reviews-Restaurante_Don_Camaron-Acapulco_Pacific_Coast.html",
+  "https://restaurantguru.com/Don-Camaron-Acapulco"
  ],
  "tagline": {
   "es": "Mariscos a pie de playa en Majahua",
@@ -16,8 +19,8 @@
  "specialty": "Beach seafood on Playa Majahua, famous for coconut shrimp and baked plantain.",
  "signature": [
   "Camarones al coco",
-  "Piña rellena de mariscos",
-  "Charola de mariscada",
+  "Piña rellena de mariscos al horno",
+  "Mariscada para 4",
   "Aguachile de camarón"
  ],
  "menu": [
@@ -29,12 +32,23 @@
    "items": [
     {
      "name": {
-      "es": "Plátano macho horneado",
-      "en": "Baked plantain"
+      "es": "Sopes",
+      "en": "Sopes"
      },
      "desc": {
-      "es": "Plátano al horno con crema y queso",
-      "en": "Baked plantain with cream and cheese"
+      "es": "Orden de 6",
+      "en": "Order of 6"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Camaronillas",
+      "en": "Camaronillas"
+     },
+     "desc": {
+      "es": "Orden de 4, quesadillas de camarón",
+      "en": "4 shrimp quesadillas"
      },
      "price": "120"
     },
@@ -44,28 +58,39 @@
       "en": "Shrimp empanadas"
      },
      "desc": {
-      "es": "Tres empanadas crujientes de camarón",
-      "en": "Three crispy shrimp empanadas"
+      "es": "Orden de 3, camarón o pescado",
+      "en": "3 pieces, shrimp or fish"
      },
-     "price": "160"
+     "price": "130"
     },
     {
      "name": {
-      "es": "Sopes de la tía",
-      "en": "Auntie's sopes"
+      "es": "Tostadas de pulpo",
+      "en": "Octopus tostadas"
      },
      "desc": {
-      "es": "Sopes caseros con frijol y salsa",
-      "en": "Homemade sopes with beans and salsa"
+      "es": "Orden de 3",
+      "en": "Order of 3"
      },
-     "price": "130"
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Queso fundido con camarón",
+      "en": "Melted cheese with shrimp"
+     },
+     "desc": {
+      "es": "Con 4 tortillas de harina",
+      "en": "With 4 flour tortillas"
+     },
+     "price": "110"
     }
    ]
   },
   {
    "cat": {
-    "es": "Fríos",
-    "en": "Cold bar"
+    "es": "Cocteles",
+    "en": "Cocktails"
    },
    "items": [
     {
@@ -74,10 +99,21 @@
       "en": "Shrimp aguachile"
      },
      "desc": {
-      "es": "Camarón crudo en limón y chile verde",
-      "en": "Raw shrimp in lime and green chile"
+      "es": "Camarón en limón y chile verde",
+      "en": "Shrimp in lime and green chile"
      },
-     "price": "290"
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Vuelve a la vida",
+      "en": "Vuelve a la vida"
+     },
+     "desc": {
+      "es": "Pescado, camarón, pulpo y caracol, 1 L",
+      "en": "Fish, shrimp, octopus, conch, 1 L"
+     },
+     "price": "250"
     },
     {
      "name": {
@@ -85,10 +121,10 @@
       "en": "Campechana"
      },
      "desc": {
-      "es": "Coctel de camarón, pulpo y ostión",
-      "en": "Shrimp, octopus and oyster cocktail"
+      "es": "Pescado, camarón y pulpo, 1 litro",
+      "en": "Fish, shrimp and octopus, 1 liter"
      },
-     "price": "350"
+     "price": "230"
     },
     {
      "name": {
@@ -96,17 +132,28 @@
       "en": "Shrimp cocktail"
      },
      "desc": {
-      "es": "Camarón en salsa coctelera con aguacate",
-      "en": "Shrimp in cocktail sauce with avocado"
+      "es": "",
+      "en": ""
      },
-     "price": "280"
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Ostiones en su concha",
+      "en": "Oysters on the half shell"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "160"
     }
    ]
   },
   {
    "cat": {
-    "es": "Del mar",
-    "en": "From the sea"
+    "es": "Especialidades",
+    "en": "Specialties"
    },
    "items": [
     {
@@ -115,43 +162,21 @@
       "en": "Coconut shrimp"
      },
      "desc": {
-      "es": "Camarón empanizado en coco, salsa de mango",
-      "en": "Coconut-crusted shrimp, mango sauce"
+      "es": "Camarón empanizado en coco",
+      "en": "Coconut-crusted shrimp"
      },
-     "price": "400"
+     "price": "270"
     },
     {
      "name": {
-      "es": "Piña rellena de mariscos",
-      "en": "Seafood-stuffed pineapple"
+      "es": "Piña rellena de mariscos al horno",
+      "en": "Baked seafood-stuffed pineapple"
      },
      "desc": {
-      "es": "Camarón, pescado y pulpo gratinados",
-      "en": "Shrimp, fish and octopus au gratin"
+      "es": "Mariscos gratinados en piña natural",
+      "en": "Seafood au gratin in a fresh pineapple"
      },
-     "price": "380"
-    },
-    {
-     "name": {
-      "es": "Pulpo al ajo",
-      "en": "Garlic octopus"
-     },
-     "desc": {
-      "es": "Pulpo salteado al mojo de ajo",
-      "en": "Octopus sautéed in garlic butter"
-     },
-     "price": "390"
-    },
-    {
-     "name": {
-      "es": "Mojarra al mojo de ajo",
-      "en": "Garlic mojarra"
-     },
-     "desc": {
-      "es": "Mojarra frita entera bañada en ajo",
-      "en": "Whole fried mojarra in garlic"
-     },
-     "price": "260"
+     "price": "325"
     },
     {
      "name": {
@@ -159,40 +184,73 @@
       "en": "Filete Don Camarón"
      },
      "desc": {
-      "es": "Filete de la casa relleno de mariscos",
-      "en": "House fish fillet stuffed with seafood"
+      "es": "Platillo de la casa",
+      "en": "House signature fillet"
      },
-     "price": "320"
+     "price": "220"
     },
     {
      "name": {
-      "es": "Charola de mariscada",
-      "en": "Seafood platter"
+      "es": "Mariscada para 4",
+      "en": "Seafood platter for 4"
      },
      "desc": {
-      "es": "Charola para compartir con lo mejor del mar",
-      "en": "Sharing platter of mixed seafood"
+      "es": "Charola para compartir",
+      "en": "Sharing platter"
      },
-     "price": "950"
+     "price": "900"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Grilled whole fish"
+     },
+     "desc": {
+      "es": "Precio por kilo",
+      "en": "Priced per kilo"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Huachinango frito o al mojo de ajo",
+      "en": "Red snapper, fried or garlic"
+     },
+     "desc": {
+      "es": "600 g",
+      "en": "600 g"
+     },
+     "price": "275"
+    },
+    {
+     "name": {
+      "es": "Caldo de camarón",
+      "en": "Shrimp broth"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "180"
     }
    ]
   },
   {
    "cat": {
-    "es": "Tierra",
-    "en": "Land"
+    "es": "Tierra y postres",
+    "en": "Land & desserts"
    },
    "items": [
     {
      "name": {
-      "es": "Milanesa de res",
-      "en": "Breaded steak"
+      "es": "Rib eye",
+      "en": "Rib eye"
      },
      "desc": {
-      "es": "Con papas a la francesa y ensalada",
-      "en": "With fries and salad"
+      "es": "250 g con guarniciones",
+      "en": "250 g with sides"
      },
-     "price": "280"
+     "price": "250"
     },
     {
      "name": {
@@ -200,10 +258,73 @@
       "en": "Chicken cordon bleu"
      },
      "desc": {
-      "es": "Pollo relleno de jamón y queso",
-      "en": "Chicken stuffed with ham and cheese"
+      "es": "",
+      "en": ""
      },
      "price": "150"
+    },
+    {
+     "name": {
+      "es": "Plátano macho horneado",
+      "en": "Baked plantain"
+     },
+     "desc": {
+      "es": "Muy recomendado",
+      "en": "Highly recommended"
+     },
+     "price": "85"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Piña loca",
+      "en": "Piña loca"
+     },
+     "desc": {
+      "es": "Servida en piña natural",
+      "en": "Served in a fresh pineapple"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Coco preparado",
+      "en": "Spiked coconut"
+     },
+     "desc": {
+      "es": "Con vodka o ginebra",
+      "en": "With vodka or gin"
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Cubeta de Corona o Victoria",
+      "en": "Corona or Victoria bucket"
+     },
+     "desc": {
+      "es": "10 cervezas",
+      "en": "10 beers"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Camaronchela",
+      "en": "Camaronchela"
+     },
+     "desc": {
+      "es": "Clamato, camarón y cerveza",
+      "en": "Clamato, shrimp and beer"
+     },
+     "price": "130"
     }
    ]
   }

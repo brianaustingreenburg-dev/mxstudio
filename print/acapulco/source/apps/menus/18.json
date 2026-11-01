@@ -1,22 +1,292 @@
-{"name":"Cira La Morena 1","kind":"mar","source":"partial","sources":["https://emprendedor.com/juana-la-cubana-la-costena-que-levanta-su-restaurante-tras-el-paso-de-otis/","https://wanderlog.com/place/details/3473086/cira-la-morena-2-de-juana-la-cubana","https://www.elfinanciero.com.mx/after-office/barra-vieja-cuna-del-pescado-a-la-talla/"],
-"tagline":{"es":"El legendario pescado a la talla de Barra Vieja","en":"Barra Vieja's legendary pescado a la talla"},
-"hours":{"es":"Lun–Dom 10:00–19:30","en":"Mon–Sun 10am–7:30pm"},
-"specialty":"Huachinango a la talla a la leña, receta de Cira la Morena, favorito de famosos.",
-"signature":["Huachinango a la talla","Pescado a la talla","Picaditas","Camarones a la talla"],
-"menu":[
-{"cat":{"es":"A la talla","en":"A la talla"},"items":[
-{"name":{"es":"Huachinango a la talla","en":"Red snapper a la talla"},"desc":{"es":"Abierto, adobado y asado a la leña (kg)","en":"Butterflied, adobo, wood-grilled (kg)"},"price":"520"},
-{"name":{"es":"Pescado a la talla","en":"Pescado a la talla"},"desc":{"es":"Pescado del día, mitad roja y mitad verde (kg)","en":"Catch of the day, half red, half green (kg)"},"price":"450"},
-{"name":{"es":"Robalo a la talla","en":"Snook a la talla"},"desc":{"es":"Con adobo enchilado de la casa (kg)","en":"With house chile adobo (kg)"},"price":"540"},
-{"name":{"es":"Camarones a la talla","en":"Shrimp a la talla"},"desc":{"es":"Camarón gigante adobado a las brasas","en":"Jumbo shrimp, adobo, grilled"},"price":"320"}]},
-{"cat":{"es":"Antojitos","en":"Antojitos"},"items":[
-{"name":{"es":"Picaditas","en":"Picaditas"},"desc":{"es":"Sopes pellizcados con salsa y queso","en":"Pinched sopes with salsa and cheese"},"price":"90"},
-{"name":{"es":"Quesadillas de pescado","en":"Fish quesadillas"},"desc":{"es":"Tortilla de maíz hecha a mano","en":"Handmade corn tortilla"},"price":"120"},
-{"name":{"es":"Tostadas de ceviche","en":"Ceviche tostadas"},"desc":{"es":"Pescado curado en limón, orden de 3","en":"Lime-cured fish, order of 3"},"price":"130"}]},
-{"cat":{"es":"Mariscos","en":"Seafood"},"items":[
-{"name":{"es":"Pescado marinado","en":"Marinated fish"},"desc":{"es":"Filete en marinada de la casa","en":"Fillet in house marinade"},"price":"230"},
-{"name":{"es":"Coctel de camarón","en":"Shrimp cocktail"},"desc":{"es":"Estilo acapulqueño con aguacate","en":"Acapulco-style with avocado"},"price":"180"},
-{"name":{"es":"Caldo de mariscos","en":"Seafood soup"},"desc":{"es":"Caldo picosito con mariscos surtidos","en":"Spicy broth with mixed seafood"},"price":"220"}]},
-{"cat":{"es":"Bebidas","en":"Drinks"},"items":[
-{"name":{"es":"Coco con ginebra","en":"Coconut with gin"},"desc":{"es":"Servido en el coco","en":"Served in the coconut"},"price":"120"},
-{"name":{"es":"Agua de jamaica","en":"Hibiscus water"},"desc":{"es":"Jarra natural","en":"Fresh pitcher"},"price":"70"}]}]}
+{
+ "name": "Cira La Morena 1",
+ "kind": "mar",
+ "source": "real",
+ "sources": [
+  "https://www.ciralamorena.com/menu-comida/",
+  "https://emprendedor.com/juana-la-cubana-la-costena-que-levanta-su-restaurante-tras-el-paso-de-otis/",
+  "https://wanderlog.com/place/details/3473086/cira-la-morena-2-de-juana-la-cubana",
+  "https://www.elfinanciero.com.mx/after-office/barra-vieja-cuna-del-pescado-a-la-talla/",
+  "https://www.tripadvisor.com/Restaurant_Review-g150787-d3403563-Reviews-Cira_La_Morena_1-Acapulco_Pacific_Coast.html"
+ ],
+ "tagline": {
+  "es": "El legendario pescado a la talla de Barra Vieja",
+  "en": "Barra Vieja's legendary pescado a la talla"
+ },
+ "hours": {
+  "es": "Lun–Dom 10:00–19:30",
+  "en": "Mon–Sun 10am–7:30pm"
+ },
+ "specialty": "Pescado a la talla a la leña, receta de Cira la Morena. Precios de la carta oficial ciralamorena.com (casa hermana Cira La Morena 2, referencia válida).",
+ "signature": [
+  "Huachinango a la talla",
+  "Pescado a la talla",
+  "Sopes Cira",
+  "Camarones a la talla"
+ ],
+ "menu": [
+  {
+   "cat": {
+    "es": "Especialidades de la casa",
+    "en": "House specialties"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango a la talla",
+      "en": "Red snapper a la talla"
+     },
+     "desc": {
+      "es": "Abierto, adobado, a la leña; precio por tamaño",
+      "en": "Butterflied, adobo, wood-grilled; by size"
+     },
+     "price": "650"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Pescado a la talla"
+     },
+     "desc": {
+      "es": "Pescado del día; precio según tamaño",
+      "en": "Catch of the day; priced by size"
+     },
+     "price": "550"
+    },
+    {
+     "name": {
+      "es": "Pescado al mojo de ajo",
+      "en": "Garlic fish"
+     },
+     "desc": {
+      "es": "Entero; precio según tamaño",
+      "en": "Whole; priced by size"
+     },
+     "price": "550"
+    },
+    {
+     "name": {
+      "es": "Camarones a la talla",
+      "en": "Shrimp a la talla"
+     },
+     "desc": {
+      "es": "Camarón grande, docena",
+      "en": "Large shrimp, dozen"
+     },
+     "price": "600"
+    },
+    {
+     "name": {
+      "es": "Camarones al chingadazo",
+      "en": "Camarones al chingadazo"
+     },
+     "desc": {
+      "es": "Camarón grande, docena",
+      "en": "Large shrimp, dozen"
+     },
+     "price": "600"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopes Cira",
+      "en": "Sopes Cira"
+     },
+     "desc": {
+      "es": "Picaditas de la casa",
+      "en": "House picaditas"
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Empanadas de cazón",
+      "en": "Dogfish empanadas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Empanadas de queso",
+      "en": "Cheese empanadas"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Cóctel de camarón chico",
+      "en": "Small shrimp cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Caldo de pescado",
+      "en": "Fish soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "250"
+    },
+    {
+     "name": {
+      "es": "Caldo de camarón",
+      "en": "Shrimp soup"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "250"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pescado y pulpo",
+    "en": "Fish & octopus"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Filete empapelado",
+      "en": "Fish fillet en papillote"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "350"
+    },
+    {
+     "name": {
+      "es": "Filete a la diabla",
+      "en": "Fish fillet a la diabla"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita o al mojo de ajo",
+      "en": "Fried or garlic mojarra"
+     },
+     "desc": {
+      "es": "Entera",
+      "en": "Whole"
+     },
+     "price": "500"
+    },
+    {
+     "name": {
+      "es": "Pulpo enamorado",
+      "en": "Pulpo enamorado"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Pulpo al chingadazo",
+      "en": "Pulpo al chingadazo"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "450"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Guarniciones y postres",
+    "en": "Sides & desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Arroz con plátano",
+      "en": "Rice with plantain"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Orden de queso fresco",
+      "en": "Fresh cheese"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains with condensed milk"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Pastel de elote con helado",
+      "en": "Corn cake with ice cream"
+     },
+     "desc": {
+      "es": "Helado de vainilla",
+      "en": "Vanilla ice cream"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Café americano",
+      "en": "Americano"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "80"
+    }
+   ]
+  }
+ ]
+}

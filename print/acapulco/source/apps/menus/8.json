@@ -7,7 +7,9 @@
   "https://www.tripadvisor.com/LocationPhotoDirectLink-g150787-d21512154-i486141804-Terraza_Buffet-Acapulco_Pacific_Coast.html",
   "https://www.tripadvisor.com/LocationPhotoDirectLink-g150787-d21512154-i476427512-Terraza_Buffet-Acapulco_Pacific_Coast.html",
   "https://www.facebook.com/p/Terraza-Buffet-61555523919406/",
-  "https://terrazabuffet.com/"
+  "https://terrazabuffet.com/",
+  "https://reservandonos.com/lugar/terraza-buffet-acapulco/",
+  "https://www.tripadvisor.com.mx/ShowUserReviews-g150787-d21512154-r1021388427-Terraza_Buffet-Acapulco_Pacific_Coast.html"
  ],
  "tagline": {
   "es": "Buffet libre frente a la Costera",
@@ -17,7 +19,7 @@
   "es": "Lun–Dom 8:00–22:00",
   "en": "Mon–Sun 8am–10pm"
  },
- "specialty": "All-you-can-eat seafood and Mexican buffet: paella, ceviches, mixiotes and desserts.",
+ "specialty": "Sea-view Costera buffet with 25+ seafood and Mexican dishes; paella on weekends.",
  "signature": [
   "Paella",
   "Ceviche sinaloense",
@@ -115,6 +117,39 @@
       "en": "Battered fish with slaw and chipotle"
      },
      "price": "0"
+    },
+    {
+     "name": {
+      "es": "Aguachile",
+      "en": "Aguachile"
+     },
+     "desc": {
+      "es": "Camarón en limón y chile",
+      "en": "Shrimp in lime and chile"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Mojarritas a la diabla",
+      "en": "Mojarritas a la diabla"
+     },
+     "desc": {
+      "es": "Mojarra frita en salsa picante",
+      "en": "Fried mojarra in spicy sauce"
+     },
+     "price": "0"
+    },
+    {
+     "name": {
+      "es": "Salpicón costeño",
+      "en": "Salpicón costeño"
+     },
+     "desc": {
+      "es": "Pescado deshebrado estilo Costa",
+      "en": "Coastal-style shredded fish"
+     },
+     "price": "0"
     }
    ]
   },
@@ -130,8 +165,8 @@
       "en": "Paella"
      },
      "desc": {
-      "es": "Arroz con mariscos, pollo y chorizo",
-      "en": "Rice with seafood, chicken and chorizo"
+      "es": "Mariscos, pollo y chorizo; fines de semana",
+      "en": "Seafood, chicken, chorizo; weekends"
      },
      "price": "0"
     },
@@ -159,12 +194,12 @@
     },
     {
      "name": {
-      "es": "Mole de pollo",
-      "en": "Chicken mole"
+      "es": "Costillas BBQ",
+      "en": "BBQ ribs"
      },
      "desc": {
-      "es": "Pollo en mole poblano con ajonjolí",
-      "en": "Chicken in mole poblano with sesame"
+      "es": "Recomendación del chef",
+      "en": "Chef's recommendation"
      },
      "price": "0"
     }
@@ -197,17 +232,36 @@
       "en": "Chocolate cake and flan in one slice"
      },
      "price": "0"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Bebida insignia, 2x1 en promoción",
+      "en": "House favorite, 2x1 promo"
+     },
+     "price": "150"
     },
     {
      "name": {
-      "es": "Duraznos en almíbar",
-      "en": "Peaches in syrup"
+      "es": "Baby mango",
+      "en": "Baby mango"
      },
      "desc": {
-      "es": "Clásico postre de buffet",
-      "en": "Classic buffet dessert"
+      "es": "Coctel frapé de mango",
+      "en": "Frozen mango cocktail"
      },
-     "price": "0"
+     "price": "150"
     }
    ]
   }

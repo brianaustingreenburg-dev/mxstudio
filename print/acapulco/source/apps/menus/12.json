@@ -6,15 +6,18 @@
   "https://www.realacapulco.com/en/celeste-beach-house",
   "https://www.tripadvisor.com/Restaurant_Review-g150787-d19903842-Reviews-Celeste_Beach_House-Acapulco_Pacific_Coast.html",
   "https://wanderlog.com/place/details/9752465/celeste-beach-house",
-  "https://www.facebook.com/celestebeachhouse/"
+  "https://www.facebook.com/celestebeachhouse/",
+  "https://casasacapulco.com.mx/Servicios/CelesteBeachHouse.html",
+  "https://www.tripadvisor.com.mx/ShowUserReviews-g150787-d19903842-r890902509-Celeste_Beach_House-Acapulco_Pacific_Coast.html",
+  "https://sandbeds.com/beach_club/celeste-beach-house-acapulco/"
  ],
  "tagline": {
   "es": "Club de playa familiar con albercas en Diamante",
   "en": "Family beach club with pools in Diamante"
  },
  "hours": {
-  "es": "Lun–Dom 10:00–19:00",
-  "en": "Mon–Sun 10am–7pm"
+  "es": "Mié–Lun 10:00–19:00 (martes cerrado)",
+  "en": "Wed–Mon 10am–7pm (closed Tue)"
  },
  "specialty": "Family, pet-friendly beach club with pools and palapas; ceviche Acapulqueño and paella.",
  "signature": [
@@ -24,6 +27,36 @@
   "Michelada"
  ],
  "menu": [
+  {
+   "cat": {
+    "es": "Acceso",
+    "en": "Entry"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Consumo mínimo adulto",
+      "en": "Adult minimum spend"
+     },
+     "desc": {
+      "es": "Se abona a tu consumo; varía por fecha",
+      "en": "Credited to your bill; varies by date"
+     },
+     "price": "500"
+    },
+    {
+     "name": {
+      "es": "Consumo mínimo niño",
+      "en": "Child minimum spend"
+     },
+     "desc": {
+      "es": "Mayores de 10 pagan como adulto",
+      "en": "Over 10 pay adult rate"
+     },
+     "price": "250"
+    }
+   ]
+  },
   {
    "cat": {
     "es": "Para compartir",

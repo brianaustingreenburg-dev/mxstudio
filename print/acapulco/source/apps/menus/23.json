@@ -6,7 +6,8 @@
   "https://www.tripadvisor.com/Restaurant_Review-g150787-d27763836-Reviews-Restaurant_El_Tio_Markos_Official-Acapulco_Pacific_Coast.html",
   "https://steemit.com/food/@lily-da-vine/adventures-around-acapulco-part-12-restaurant-el-tio-markos-in-pie-de-la-cuesta",
   "https://www.facebook.com/p/Restaurant-El-t%C3%ADo-Markos-Official-100047484352790/",
-  "https://restaurantguru.com/El-tio-markos-Acapulco"
+  "https://restaurantguru.com/El-tio-markos-Acapulco",
+  "https://www.tripadvisor.com.mx/ShowUserReviews-g150787-d27763836-r1009009579-Restaurant_El_Tio_Markos_Official-Acapulco_Pacific_Coast.html"
  ],
  "tagline": {
   "es": "Mariscos frente al mar, hamacas y música en vivo",
@@ -39,7 +40,7 @@
       "es": "Con jitomate, cebolla, chile y frijoles",
       "en": "With tomato, onion, chile and beans"
      },
-     "price": "110"
+     "price": "85"
     },
     {
      "name": {
@@ -50,7 +51,29 @@
       "es": "Sobre tortilla con salsa roja",
       "en": "On tortilla with red salsa"
      },
-     "price": "110"
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Huevos al albañil",
+      "en": "Huevos al albañil"
+     },
+     "desc": {
+      "es": "Revueltos en salsa picosa",
+      "en": "Scrambled in spicy salsa"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles",
+      "en": "Chilaquiles"
+     },
+     "desc": {
+      "es": "Rojos o verdes, con crema y queso",
+      "en": "Red or green, with cream and cheese"
+     },
+     "price": "90"
     }
    ]
   },

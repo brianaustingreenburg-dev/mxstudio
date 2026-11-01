@@ -5,7 +5,10 @@
  "sources": [
   "https://pos.do/en/acapulco/restaurant/el-sirenito",
   "https://wanderlog.com/place/details/1176241",
-  "https://m.facebook.com/MariscosElSirenito"
+  "https://m.facebook.com/MariscosElSirenito",
+  "https://wanderlog.com/place/details/1176241/mariscos-el-sirenito",
+  "https://www.realacapulco.com/en/mariscos-el-sirenito",
+  "https://evendo.com/locations/mexico/costa-grande/restaurant/mariscos-el-sirenito"
  ],
  "tagline": {
   "es": "Mariscos de barrio, porciones generosas",
@@ -53,14 +56,36 @@
     },
     {
      "name": {
-      "es": "Aguachile de camarón y callo",
-      "en": "Shrimp & scallop aguachile"
+      "es": "Ceviche Acapulqueño",
+      "en": "Ceviche Acapulqueño"
+     },
+     "desc": {
+      "es": "Pescado en limón con salsa cóctel",
+      "en": "Lime-cured fish with cocktail sauce"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
      },
      "desc": {
       "es": "Camarón y callo en limón y chile",
       "en": "Shrimp and scallop in lime and chile"
      },
      "price": "290"
+    },
+    {
+     "name": {
+      "es": "Aguachile de palmitos",
+      "en": "Hearts of palm aguachile"
+     },
+     "desc": {
+      "es": "Opción sin mariscos",
+      "en": "Seafood-free option"
+     },
+     "price": "190"
     },
     {
      "name": {
@@ -83,8 +108,8 @@
    "items": [
     {
      "name": {
-      "es": "Taco de camarón estilo Baja",
-      "en": "Baja-style shrimp taco"
+      "es": "Taco estilo Baja",
+      "en": "Baja-style taco"
      },
      "desc": {
       "es": "Camarón capeado crujiente y verduras",
@@ -113,6 +138,28 @@
       "en": "Octopus with special salsa"
      },
      "price": "75"
+    },
+    {
+     "name": {
+      "es": "Taco Sirenito",
+      "en": "Taco Sirenito"
+     },
+     "desc": {
+      "es": "Taco de la casa",
+      "en": "House taco"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Tacos de flor de jamaica",
+      "en": "Hibiscus flower tacos"
+     },
+     "desc": {
+      "es": "Opción vegetariana",
+      "en": "Vegetarian option"
+     },
+     "price": "60"
     }
    ]
   },
@@ -128,8 +175,8 @@
       "en": "Charcoal-grilled octopus"
      },
      "desc": {
-      "es": "Pulpo asado con papas y ensalada",
-      "en": "Grilled octopus with potatoes and salad"
+      "es": "También al ajillo o zarandeado",
+      "en": "Also garlic or zarandeado style"
      },
      "price": "340"
     },
@@ -139,8 +186,8 @@
       "en": "Pescado Sirenito"
      },
      "desc": {
-      "es": "Filete de la casa en salsa especial",
-      "en": "House fish fillet in special sauce"
+      "es": "Filete con camarón en salsa cremosa",
+      "en": "Fillet with shrimp in creamy sauce"
      },
      "price": "280"
     },
@@ -157,6 +204,28 @@
     },
     {
      "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Empanizados con coco",
+      "en": "Coconut-crusted shrimp"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Camarones envueltos en tocino",
+      "en": "Bacon-wrapped shrimp"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "290"
+    },
+    {
+     "name": {
       "es": "Caldo de camarón con hueva",
       "en": "Shrimp broth with roe"
      },
@@ -168,14 +237,25 @@
     },
     {
      "name": {
-      "es": "Huachinango a la talla",
-      "en": "Huachinango a la talla"
+      "es": "Arroz a la tumbada",
+      "en": "Arroz a la tumbada"
      },
      "desc": {
-      "es": "Huachinango adobado a las brasas, kilo",
-      "en": "Adobo-grilled red snapper, per kilo"
+      "es": "Arroz caldoso con mariscos",
+      "en": "Brothy rice with seafood"
      },
-     "price": "520"
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Molcajete de mariscos",
+      "en": "Seafood molcajete"
+     },
+     "desc": {
+      "es": "Mariscos en salsa, para compartir",
+      "en": "Seafood in salsa, to share"
+     },
+     "price": "420"
     }
    ]
   },
@@ -209,6 +289,17 @@
     },
     {
      "name": {
+      "es": "Nieve de mamey",
+      "en": "Mamey sorbet"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "60"
+    },
+    {
+     "name": {
       "es": "Agua de coco",
       "en": "Coconut water"
      },
@@ -217,6 +308,17 @@
       "en": "Fresh coconut"
      },
      "price": "45"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza preparada",
+      "en": "Spiced beer"
+     },
+     "price": "90"
     }
    ]
   }

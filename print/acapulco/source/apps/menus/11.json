@@ -30,19 +30,19 @@
    "items": [
     {
      "name": {
-      "es": "Paquete Básico",
-      "en": "Basic package"
+      "es": "Paquete de 450",
+      "en": "450 package"
      },
      "desc": {
-      "es": "Desayuno y comida con bebida",
-      "en": "Breakfast and lunch with a drink"
+      "es": "Desayuno y comida",
+      "en": "Breakfast and lunch"
      },
      "price": "450"
     },
     {
      "name": {
-      "es": "Paquete Bahía",
-      "en": "Bay package"
+      "es": "Paquete de 500",
+      "en": "500 package"
      },
      "desc": {
       "es": "Desayuno, comida y paseo en lancha",
@@ -52,12 +52,12 @@
     },
     {
      "name": {
-      "es": "Paquete Completo",
-      "en": "Full package"
+      "es": "Paquete de 550",
+      "en": "550 package"
      },
      "desc": {
-      "es": "Incluye lancha y banana",
-      "en": "Includes boat ride and banana boat"
+      "es": "Desayuno, comida, lancha y banana",
+      "en": "Breakfast, lunch, boat and banana ride"
      },
      "price": "550"
     }
@@ -75,19 +75,19 @@
       "en": "Chilaquiles with chicken"
      },
      "desc": {
-      "es": "Con frijoles y bolillo",
-      "en": "With beans and bolillo"
+      "es": "Opción de desayuno del paquete",
+      "en": "Package breakfast option"
      },
      "price": "120"
     },
     {
      "name": {
-      "es": "Chilaquiles con huevo",
-      "en": "Chilaquiles with eggs"
+      "es": "Huevos al gusto",
+      "en": "Eggs any style"
      },
      "desc": {
-      "es": "Salsa roja o verde, frijoles",
-      "en": "Red or green salsa, beans"
+      "es": "Opción de desayuno del paquete",
+      "en": "Package breakfast option"
      },
      "price": "110"
     },
@@ -129,6 +129,17 @@
      "desc": {
       "es": "Mojarra frita bañada en ajo",
       "en": "Fried mojarra in garlic butter"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Mojarra a la diabla",
+      "en": "Mojarra a la diabla"
+     },
+     "desc": {
+      "es": "Mojarra frita en salsa picante",
+      "en": "Fried mojarra in spicy sauce"
      },
      "price": "240"
     },
@@ -186,6 +197,17 @@
     },
     {
      "name": {
+      "es": "Café",
+      "en": "Coffee"
+     },
+     "desc": {
+      "es": "A la carta, costo extra al paquete",
+      "en": "À la carte, extra to package"
+     },
+     "price": "35"
+    },
+    {
+     "name": {
       "es": "Naranjada",
       "en": "Orangeade"
      },
@@ -197,12 +219,12 @@
     },
     {
      "name": {
-      "es": "Café de olla",
-      "en": "Café de olla"
+      "es": "Refresco",
+      "en": "Soft drink"
      },
      "desc": {
-      "es": "Con canela y piloncillo",
-      "en": "With cinnamon and piloncillo"
+      "es": "",
+      "en": ""
      },
      "price": "35"
     }

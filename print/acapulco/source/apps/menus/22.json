@@ -4,7 +4,10 @@
  "source": "partial",
  "sources": [
   "https://wanderlog.com/place/details/1513965/café-wadi",
-  "https://theculturetrip.com/north-america/mexico/acapulco/articles/top-5-the-best-coffee-in-acapulco"
+  "https://theculturetrip.com/north-america/mexico/acapulco/articles/top-5-the-best-coffee-in-acapulco",
+  "https://cafewadi.mx/en/",
+  "https://bajopalabra.com.mx/cafe-wadi-el-aroma-de-los-mejores-recuerdos-de-acapulco-desde-1940",
+  "https://www.tripadvisor.com.mx/ShowUserReviews-g150787-d10466998-r791090514-Cafe_Wadi-Acapulco_Pacific_Coast.html"
  ],
  "tagline": {
   "es": "Café guerrerense tostado con piloncillo",
@@ -14,7 +17,7 @@
   "es": "Lun–Sáb 8:00–18:00",
   "en": "Mon–Sat 8am–6pm"
  },
- "specialty": "Downtown roaster famous for piloncillo-roasted Guerrero coffee and its cajeta frappé.",
+ "specialty": "Acapulco roaster since 1940: Guerrero beans, piloncillo roast, frappés, crepes and coffee by the kilo.",
  "signature": [
   "Frappé de cajeta",
   "Café de olla",
@@ -34,8 +37,8 @@
       "en": "Piloncillo-roast espresso"
      },
      "desc": {
-      "es": "Grano de Guerrero tostado con piloncillo",
-      "en": "Guerrero beans roasted with piloncillo"
+      "es": "Tostado con piloncillo, la especialidad",
+      "en": "The house piloncillo roast"
      },
      "price": "35"
     },
@@ -45,8 +48,8 @@
       "en": "Americano"
      },
      "desc": {
-      "es": "Café de la casa, recién molido",
-      "en": "House coffee, freshly ground"
+      "es": "Café de Guerrero recién molido",
+      "en": "Freshly ground Guerrero coffee"
      },
      "price": "35"
     },
@@ -74,12 +77,12 @@
     },
     {
      "name": {
-      "es": "Lechero",
-      "en": "Café lechero"
+      "es": "Café árabe / turco",
+      "en": "Arabic / Turkish coffee"
      },
      "desc": {
-      "es": "Café con leche caliente al estilo porteño",
-      "en": "Coffee with hot milk, port style"
+      "es": "Receta de la familia libanesa fundadora",
+      "en": "Recipe of the founding Lebanese family"
      },
      "price": "45"
     }
@@ -87,8 +90,8 @@
   },
   {
    "cat": {
-    "es": "Bebidas frías",
-    "en": "Cold drinks"
+    "es": "Frappés y fríos",
+    "en": "Frappés & cold"
    },
    "items": [
     {
@@ -104,17 +107,6 @@
     },
     {
      "name": {
-      "es": "Café helado",
-      "en": "Iced coffee"
-     },
-     "desc": {
-      "es": "Espresso sobre hielo con leche",
-      "en": "Espresso over ice with milk"
-     },
-     "price": "50"
-    },
-    {
-     "name": {
       "es": "Frappé de moka",
       "en": "Mocha frappé"
      },
@@ -123,15 +115,48 @@
       "en": "Coffee, chocolate and blended ice"
      },
      "price": "65"
+    },
+    {
+     "name": {
+      "es": "Café helado",
+      "en": "Iced coffee"
+     },
+     "desc": {
+      "es": "Espresso sobre hielo con leche",
+      "en": "Espresso over ice with milk"
+     },
+     "price": "50"
     }
    ]
   },
   {
    "cat": {
-    "es": "Panadería",
-    "en": "Bakery"
+    "es": "Crepas y pan",
+    "en": "Crepes & bakery"
    },
    "items": [
+    {
+     "name": {
+      "es": "Crepa de cajeta",
+      "en": "Cajeta crepe"
+     },
+     "desc": {
+      "es": "Crepa dulce hecha al momento",
+      "en": "Sweet crepe made to order"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Churros",
+      "en": "Churros"
+     },
+     "desc": {
+      "es": "Con azúcar y canela",
+      "en": "With sugar and cinnamon"
+     },
+     "price": "35"
+    },
     {
      "name": {
       "es": "Concha",
@@ -153,47 +178,80 @@
       "en": "Flaky and freshly baked"
      },
      "price": "22"
-    },
-    {
-     "name": {
-      "es": "Pastel del día",
-      "en": "Cake of the day"
-     },
-     "desc": {
-      "es": "Rebanada de pastel casero",
-      "en": "Slice of homemade cake"
-     },
-     "price": "45"
     }
    ]
   },
   {
    "cat": {
-    "es": "Para llevar",
-    "en": "To go"
+    "es": "Café por kilo",
+    "en": "Coffee by the kilo"
    },
    "items": [
     {
      "name": {
-      "es": "Café en grano 250 g",
-      "en": "Whole beans 250 g"
+      "es": "Caracolillo espresso 1 kg",
+      "en": "Caracolillo espresso 1 kg"
      },
      "desc": {
-      "es": "Mezcla guerrerense tostada en casa",
-      "en": "House-roasted Guerrero blend"
+      "es": "Molido fino o en grano",
+      "en": "Fine-ground or whole bean"
      },
-     "price": "130"
+     "price": "300"
     },
     {
      "name": {
-      "es": "Café molido 500 g",
-      "en": "Ground coffee 500 g"
+      "es": "Tostado con piloncillo 1 kg",
+      "en": "Piloncillo roast 1 kg"
      },
      "desc": {
-      "es": "Molido a tu gusto",
-      "en": "Ground to your preference"
+      "es": "El clásico de Wadi",
+      "en": "The Wadi classic"
      },
-     "price": "240"
+     "price": "300"
+    },
+    {
+     "name": {
+      "es": "Costeño Premier 1 kg",
+      "en": "Costeño Premier 1 kg"
+     },
+     "desc": {
+      "es": "Café de la costa de Guerrero",
+      "en": "Coastal Guerrero coffee"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Criollo natural 1 kg",
+      "en": "Criollo natural 1 kg"
+     },
+     "desc": {
+      "es": "Tueste natural, sin azúcar",
+      "en": "Natural roast, no sugar"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Descafeinado 500 g",
+      "en": "Decaf 500 g"
+     },
+     "desc": {
+      "es": "En grano o molido",
+      "en": "Whole bean or ground"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Bolsita de café",
+      "en": "Small coffee bag"
+     },
+     "desc": {
+      "es": "Bolsitas individuales",
+      "en": "Single-use small bags"
+     },
+     "price": "5"
     }
    ]
   }

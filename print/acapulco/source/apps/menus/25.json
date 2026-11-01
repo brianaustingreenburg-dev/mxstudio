@@ -4,7 +4,8 @@
  "source": "partial",
  "sources": [
   "https://www.zonaturistica.com/restaurantes/guerrero/pie-de-la-cuesta/tres-marias",
-  "https://www.elfinanciero.com.mx/food-and-drink/2024/02/17/asi-es-el-restaurante-tres-marias-en-acapulco-favorito-de-sasha-montenegro-y-jose-lopez-portillo/"
+  "https://www.elfinanciero.com.mx/food-and-drink/2024/02/17/asi-es-el-restaurante-tres-marias-en-acapulco-favorito-de-sasha-montenegro-y-jose-lopez-portillo/",
+  "https://www.waze.com/live-map/directions/mx/gro./acapulco-de-juarez/tres-marias-(playa-y-alberca)-restaurante?to=place.ChIJYd4reRb5yoUR5lRJfpbSzOw"
  ],
  "tagline": {
   "es": "Mariscos familiares junto a la Laguna de Coyuca",
@@ -71,6 +72,17 @@
       "en": "Lime-cured fish, Acapulco style"
      },
      "price": "180"
+    },
+    {
+     "name": {
+      "es": "Aguachile",
+      "en": "Aguachile"
+     },
+     "desc": {
+      "es": "Camarón en limón, chile y pepino",
+      "en": "Shrimp in lime, chile and cucumber"
+     },
+     "price": "240"
     }
    ]
   },
@@ -90,6 +102,17 @@
       "en": "Octopus in the house special sauce"
      },
      "price": "320"
+    },
+    {
+     "name": {
+      "es": "Pulpo a la talla",
+      "en": "Pulpo a la talla"
+     },
+     "desc": {
+      "es": "Pulpo adobado a las brasas",
+      "en": "Adobo octopus over coals"
+     },
+     "price": "340"
     },
     {
      "name": {

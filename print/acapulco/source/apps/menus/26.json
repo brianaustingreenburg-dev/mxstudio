@@ -153,6 +153,17 @@
       "en": "Whole crispy tilapia"
      },
      "price": "190"
+    },
+    {
+     "name": {
+      "es": "Camarones empanizados",
+      "en": "Breaded shrimp"
+     },
+     "desc": {
+      "es": "Con arroz, ensalada y papas",
+      "en": "With rice, salad and fries"
+     },
+     "price": "220"
     }
    ]
   },

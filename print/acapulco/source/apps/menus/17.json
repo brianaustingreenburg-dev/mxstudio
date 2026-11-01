@@ -3,7 +3,11 @@
  "kind": "mar",
  "source": "partial",
  "sources": [
-  "https://uk.trip.com/travel-guide/foods/Acapulco%20de%20Juarez-1744522-restaurant/Zabesu-19069825"
+  "https://uk.trip.com/travel-guide/foods/Acapulco%20de%20Juarez-1744522-restaurant/Zabesu-19069825",
+  "https://guidespot-info.com/pdf/bd52bf01f8ac1a1000b2506093a78c08.pdf",
+  "https://wanderlog.com/es/place/details/3304905/restaurant-zabesu-barra-vieja",
+  "https://www.tripadvisor.com/Restaurant_Review-g150787-d4041259-Reviews-Zabesu-Acapulco_Pacific_Coast.html",
+  "https://www.ciralamorena.com/menu-comida/"
  ],
  "tagline": {
   "es": "Mariscos frente al mar en la carretera a Barra Vieja",
@@ -13,7 +17,7 @@
   "es": "Lun–Dom 9:00–19:00",
   "en": "Mon–Sun 9am–7pm"
  },
- "specialty": "Pescado a la talla a la leña y mariscos frescos a pie de playa.",
+ "specialty": "Escoge tu pescado del hielo: a la talla a la leña, pulpo enamorado y camarones al coco frente al mar.",
  "signature": [
   "Pescado a la talla",
   "Camarones al mojo de ajo",
@@ -23,82 +27,8 @@
  "menu": [
   {
    "cat": {
-    "es": "Cocteles y ceviches",
-    "en": "Cocktails & ceviches"
-   },
-   "items": [
-    {
-     "name": {
-      "es": "Quesadillas de pescado",
-      "en": "Fish quesadillas"
-     },
-     "desc": {
-      "es": "",
-      "en": ""
-     },
-     "price": "140"
-    },
-    {
-     "name": {
-      "es": "Pulpo enamorado",
-      "en": "Pulpo enamorado"
-     },
-     "desc": {
-      "es": "Pulpo en salsa cremosa de ajo y chile",
-      "en": "Octopus in creamy garlic-chile sauce"
-     },
-     "price": "280"
-    },
-    {
-     "name": {
-      "es": "Camarones al coco",
-      "en": "Coconut shrimp"
-     },
-     "desc": {
-      "es": "",
-      "en": ""
-     },
-     "price": "260"
-    },
-    {
-     "name": {
-      "es": "Coctel campechano",
-      "en": "Coctel campechano"
-     },
-     "desc": {
-      "es": "Camarón, pulpo y ostión",
-      "en": "Shrimp, octopus and oyster"
-     },
-     "price": "210"
-    },
-    {
-     "name": {
-      "es": "Ceviche acapulqueño",
-      "en": "Acapulco-style ceviche"
-     },
-     "desc": {
-      "es": "Pescado con salsa catsup y aceituna",
-      "en": "Fish with ketchup sauce and olives"
-     },
-     "price": "170"
-    },
-    {
-     "name": {
-      "es": "Ostiones en su concha",
-      "en": "Oysters on the half shell"
-     },
-     "desc": {
-      "es": "Docena con limón y salsa",
-      "en": "Dozen with lime and salsa"
-     },
-     "price": "240"
-    }
-   ]
-  },
-  {
-   "cat": {
-    "es": "Del mar",
-    "en": "From the sea"
+    "es": "Especialidades del mar",
+    "en": "Seafood specialties"
    },
    "items": [
     {
@@ -107,21 +37,84 @@
       "en": "Pescado a la talla"
      },
      "desc": {
-      "es": "Huachinango con adobo rojo a la leña (kg)",
-      "en": "Red snapper, red adobo, wood-grilled (kg)"
+      "es": "Pescado del hielo, adobo rojo, a la leña (kg)",
+      "en": "Fish from the ice, red adobo, wood-grilled (kg)"
      },
-     "price": "480"
+     "price": "550"
     },
+    {
+     "name": {
+      "es": "Huachinango a la talla",
+      "en": "Red snapper a la talla"
+     },
+     "desc": {
+      "es": "Abierto y asado a la leña (kg)",
+      "en": "Butterflied, wood-grilled (kg)"
+     },
+     "price": "620"
+    },
+    {
+     "name": {
+      "es": "Pescado estilo Sarita",
+      "en": "Sarita-style fish"
+     },
+     "desc": {
+      "es": "Receta de la casa",
+      "en": "House recipe"
+     },
+     "price": "550"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla y camarones enchilados",
+      "en": "Fish a la talla & spicy shrimp"
+     },
+     "desc": {
+      "es": "Combinado para compartir, 4–5 personas",
+      "en": "Sharing combo for 4–5"
+     },
+     "price": "1200"
+    },
+    {
+     "name": {
+      "es": "Langosta",
+      "en": "Lobster"
+     },
+     "desc": {
+      "es": "Al mojo de ajo o a la diabla",
+      "en": "Garlic or a la diabla"
+     },
+     "price": "900"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Camarones y pulpo",
+    "en": "Shrimp & octopus"
+   },
+   "items": [
     {
      "name": {
       "es": "Camarones al mojo de ajo",
       "en": "Garlic shrimp"
      },
      "desc": {
-      "es": "Con arroz y ensalada",
-      "en": "With rice and salad"
+      "es": "Ajo y chile, con arroz y ensalada",
+      "en": "Garlic & chile, rice and salad"
      },
-     "price": "260"
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Empanizados en coco",
+      "en": "Coconut-crusted"
+     },
+     "price": "400"
     },
     {
      "name": {
@@ -132,48 +125,114 @@
       "es": "En salsa picante de chiles secos",
       "en": "In spicy dried-chile sauce"
      },
-     "price": "380"
+     "price": "480"
     },
     {
      "name": {
-      "es": "Filete empapelado",
-      "en": "Fish fillet en papillote"
+      "es": "Pulpo enamorado",
+      "en": "Pulpo enamorado"
      },
      "desc": {
-      "es": "Con verduras y mantequilla",
-      "en": "With vegetables and butter"
+      "es": "Pulpo en salsa cremosa de ajo y chile",
+      "en": "Octopus in creamy garlic-chile sauce"
      },
-     "price": "220"
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Pulpo enchilado",
+      "en": "Spicy octopus"
+     },
+     "desc": {
+      "es": "En salsa roja picosita",
+      "en": "In spicy red sauce"
+     },
+     "price": "450"
     }
    ]
   },
   {
    "cat": {
-    "es": "Para picar",
-    "en": "Starters"
+    "es": "Cocteles y entradas",
+    "en": "Cocktails & starters"
    },
    "items": [
     {
      "name": {
-      "es": "Quesadillas de camarón",
-      "en": "Shrimp quesadillas"
+      "es": "Coctel campechano",
+      "en": "Coctel campechano"
      },
      "desc": {
-      "es": "Tortilla hecha a mano, orden de 3",
-      "en": "Handmade tortillas, order of 3"
+      "es": "Camarón, pulpo y ostión",
+      "en": "Shrimp, octopus and oyster"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Que disque coctel de camarones",
+      "en": "\"So-called\" shrimp cocktail"
+     },
+     "desc": {
+      "es": "Coctel de camarón de la casa",
+      "en": "House shrimp cocktail"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Aguachile",
+      "en": "Aguachile"
+     },
+     "desc": {
+      "es": "Camarón en limón y chile",
+      "en": "Shrimp in lime and chile"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Tiritas de pescado",
+      "en": "Tiritas de pescado"
+     },
+     "desc": {
+      "es": "Pescado curado en limón, con totopos",
+      "en": "Lime-cured fish strips, chips"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Sopa de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Caldo picosito de mariscos",
+      "en": "Spicy seafood broth"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Quesadillas de pescado",
+      "en": "Fish quesadillas"
+     },
+     "desc": {
+      "es": "Tortilla hecha a mano",
+      "en": "Handmade tortilla"
      },
      "price": "150"
     },
     {
      "name": {
-      "es": "Picaditas de mariscos",
-      "en": "Seafood picaditas"
+      "es": "Sopecitos y pescadillas",
+      "en": "Sopecitos & pescadillas"
      },
      "desc": {
-      "es": "Sopes con salsa y mariscos",
-      "en": "Little sopes with salsa and seafood"
+      "es": "Antojitos de la costa",
+      "en": "Coastal snacks"
      },
-     "price": "140"
+     "price": "150"
     }
    ]
   },
@@ -185,25 +244,58 @@
    "items": [
     {
      "name": {
-      "es": "Coco frío",
-      "en": "Chilled coconut"
+      "es": "Coco loco",
+      "en": "Coco loco"
      },
      "desc": {
-      "es": "Agua de coco natural",
-      "en": "Fresh coconut water"
+      "es": "Coco con licores",
+      "en": "Coconut with spirits"
      },
-     "price": "60"
+     "price": "150"
     },
     {
      "name": {
-      "es": "Michelada",
-      "en": "Michelada"
+      "es": "Piña colada",
+      "en": "Piña colada"
      },
      "desc": {
-      "es": "Cerveza con limón, sal y salsas",
-      "en": "Beer with lime, salt and sauces"
+      "es": "",
+      "en": ""
      },
-     "price": "85"
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Cerveza Corona cubana",
+      "en": "Corona cubana"
+     },
+     "desc": {
+      "es": "Cerveza preparada",
+      "en": "Spiced prepared beer"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Carajillo",
+      "en": "Carajillo"
+     },
+     "desc": {
+      "es": "Licor 43 con espresso",
+      "en": "Licor 43 with espresso"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Café de olla",
+      "en": "Café de olla"
+     },
+     "desc": {
+      "es": "Con canela y piloncillo",
+      "en": "With cinnamon and piloncillo"
+     },
+     "price": "50"
     }
    ]
   }
