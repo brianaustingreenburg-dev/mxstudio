@@ -39,7 +39,7 @@ for n,s in enumerate(stops,1):
     nm_clean=re.sub(r'[^A-Za-z0-9]','',norm(s['n']).title().replace(' ',''))[:18]
     B[pid]={"slug":"demo-"+pid,"name":s['n'],"tagline":m['tagline'],"color":col,"logo":"","cover":f"img/{pid}/cover.jpg",
       "whatsapp":"527441930502","phone":"527441930502","address":s['a'].replace('…',''),"map":"https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(s['n']+' Acapulco')+"&query_place_id="+s['id'],
-      "hours":m.get('hours') or {"es":"","en":""},"reservations":True,"carryout":True,"delivery":k!='cafe',
+      "hours":m.get('hours') or {"es":"","en":""},"reservations":True,"carryout":True,"waiter":True,"delivery":k!='cafe',
       "wifi":{"name":"WiFi "+s["n"][:22],"pass":"ejemplo2026"},
       "menu":menu,"demo":True,"back":"../rutas/"}
     report.append((n,s['n'],m['source'],len(used),missing))

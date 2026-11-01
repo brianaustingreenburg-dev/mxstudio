@@ -14,6 +14,8 @@ d=json.loads(json.dumps(d).replace(f'img/{pid}/','img/'))
 d.update(slug=slug,whatsapp=wa,phone=wa,wifi={"name":S['wifi_name'],"pass":S.get('wifi_pass','')},demo=False,
          story={"es":S.get('story_es',''),"en":S.get('story_en','')})
 d.pop('back',None)
+for k in ('waiter','carryout','reservations'):
+    if k in S:d[k]=bool(S[k])
 for k in ('menu','hours','tagline','address'):
     if k in S:d[k]=S[k]
 open(out+'index.html','w').write(fill(open(A+'app/plantilla.html').read(),d))

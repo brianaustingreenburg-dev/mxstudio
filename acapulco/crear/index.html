@@ -113,7 +113,7 @@ const L={
   newApp:"Nueva app",myApps:"Mis apps",bizH:"Datos del negocio",bizHint:"Solo llena lo que tengas. Todo se guarda solo en este teléfono.",
   name:"Nombre del negocio",slug:"Dirección web (se crea sola)",tagEs:"Frase corta (español)",tagEn:"Frase corta (inglés, opcional)",color:"Color",logo:"Logo",cover:"Foto de portada",pick:"Elegir foto",remove:"Quitar",
   contactH:"Contacto",wa:"WhatsApp del negocio (10 dígitos)",phone:"Teléfono para llamar (opcional)",addr:"Dirección",map:"Link de Google Maps (opcional)",hEs:"Horario (español)",wifiN:"WiFi: nombre de la red (como aparece en el celular)",wifiP:"WiFi: contraseña (exacta, con mayúsculas)",wifiHint:"Pídelo al dueño y pruébalo con tu celular antes de publicar.",hEn:"Horario (inglés, opcional)",
-  optsH:"Botones de la app",res:"Reservas",resS:"Reservar mesa por WhatsApp",carry:"Para llevar",carryS:"Carrito con el menú → pedido por WhatsApp",deliv:"A domicilio",delivS:"Opción de entrega a domicilio",
+  optsH:"Botones de la app",res:"Reservas",resS:"Reservar mesa por WhatsApp",waiter:"Lista para mostrar al mesero",waiterS:"El cliente arma su pedido y le enseña la pantalla al mesero. No usa WhatsApp.",carry:"Para llevar",carryS:"Carrito con el menú → pedido por WhatsApp",deliv:"A domicilio",delivS:"Opción de entrega a domicilio",
   menuH:"Menú",menuHint:"Agrega categorías y platillos. Toca un platillo para editarlo.",cat:"CATEGORÍA",catEs:"Nombre (español)",catEn:"Nombre (inglés)",
   addItem:"+ Platillo",addCat:"+ Agregar categoría",delCat:"Borrar categoría",itEs:"Nombre (español)",itEn:"Nombre (inglés)",dEs:"Descripción (español)",dEn:"Descripción (inglés)",price:"Precio ($)",photo:"Foto",
   up:"↑ Subir",down:"↓ Bajar",del:"Borrar",quickH:"Agregar rápido",quickHint:"Un platillo por línea: Nombre | Name in English | Precio",quickBtn:"Agregar estos platillos",newItem:"Platillo nuevo",
@@ -132,7 +132,7 @@ const L={
   newApp:"New app",myApps:"My apps",bizH:"Business info",bizHint:"Fill in what you have. Everything saves on this phone automatically.",
   name:"Business name",slug:"Web address (made for you)",tagEs:"Short line (Spanish)",tagEn:"Short line (English, optional)",color:"Color",logo:"Logo",cover:"Cover photo",pick:"Choose photo",remove:"Remove",
   contactH:"Contact",wa:"Business WhatsApp (10 digits)",phone:"Phone to call (optional)",addr:"Address",map:"Google Maps link (optional)",hEs:"Hours (Spanish)",wifiN:"WiFi: network name (exactly as phones show it)",wifiP:"WiFi: password (exact, with capitals)",wifiHint:"Ask the owner and test it on your phone before publishing.",hEn:"Hours (English, optional)",
-  optsH:"App buttons",res:"Reservations",resS:"Book a table on WhatsApp",carry:"Carry-out",carryS:"Cart from the menu → order on WhatsApp",deliv:"Delivery",delivS:"Home delivery option",
+  optsH:"App buttons",res:"Reservations",resS:"Book a table on WhatsApp",waiter:"List to show the waiter",waiterS:"Customer builds their order and shows the screen to the waiter. No WhatsApp.",carry:"Carry-out",carryS:"Cart from the menu → order on WhatsApp",deliv:"Delivery",delivS:"Home delivery option",
   menuH:"Menu",menuHint:"Add categories and dishes. Tap a dish to edit it.",cat:"CATEGORY",catEs:"Name (Spanish)",catEn:"Name (English)",
   addItem:"+ Dish",addCat:"+ Add category",delCat:"Delete category",itEs:"Name (Spanish)",itEn:"Name (English)",dEs:"Description (Spanish)",dEn:"Description (English)",price:"Price ($)",photo:"Photo",
   up:"↑ Up",down:"↓ Down",del:"Delete",quickH:"Quick add",quickHint:"One dish per line: Nombre | English name | Price",quickBtn:"Add these dishes",newItem:"New dish",
@@ -161,7 +161,7 @@ const putDraft=d=>idb("readwrite",s=>s.put(d,d.id));
 const getDraft=id=>idb("readonly",s=>s.get(id));
 const allDrafts=()=>idb("readonly",s=>s.getAll());
 const delDraft=id=>idb("readwrite",s=>s.delete(id));
-const blank=()=>({id:"d"+Date.now(),slug:"",name:"",tagline:{es:"",en:""},color:COLORS[0],logo:"",cover:"",whatsapp:"",phone:"",address:"",map:"",hours:{es:"",en:""},wifi:{name:"",pass:""},reservations:true,carryout:true,delivery:false,
+const blank=()=>({id:"d"+Date.now(),slug:"",name:"",tagline:{es:"",en:""},color:COLORS[0],logo:"",cover:"",whatsapp:"",phone:"",address:"",map:"",hours:{es:"",en:""},wifi:{name:"",pass:""},reservations:true,carryout:true,waiter:true,delivery:false,
  menu:[{cat:{es:"Platillos",en:"Dishes"},items:[]}],updated:Date.now(),publishedSlug:""});
 let D=null;
 let saveT=null;const save=()=>{if(!D)return;D.updated=Date.now();clearTimeout(saveT);saveT=setTimeout(()=>putDraft(D).catch(()=>toast("⚠️ No se pudo guardar")),300)};
@@ -189,7 +189,7 @@ function pBiz(){const t=T();
  ${imgPick(t.logo,"logo")}${imgPick(t.cover,"cover",1)}</div>
  <h2>${t.contactH}</h2><div class="card">${field(t.wa,"whatsapp","tel","744 123 4567")}${field(t.phone,"phone","tel","")}${field(t.addr,"address","text","Av. Costera Miguel Alemán 123")}${field(t.map,"map","url","https://maps.app.goo.gl/…")}
  <div class="two"><div>${field(t.hEs,"hours.es","text","Lun–Dom 1–10 pm")}</div><div>${field(t.hEn,"hours.en","text","Mon–Sun 1–10 pm")}</div></div>${field(t.wifiN,"wifi.name","text","Ej. Infinitum_A1B2")}${field(t.wifiP,"wifi.pass","text","")}<p class="hint">📶 ${t.wifiHint}</p></div>
- <h2>${t.optsH}</h2><div class="card">${tog(t.res,t.resS,"reservations")}${tog(t.carry,t.carryS,"carryout")}${tog(t.deliv,t.delivS,"delivery")}</div>
+ <h2>${t.optsH}</h2><div class="card">${tog(t.res,t.resS,"reservations")}${tog(t.waiter,t.waiterS,"waiter")}${tog(t.carry,t.carryS,"carryout")}${tog(t.deliv,t.delivS,"delivery")}</div>
  <p class="saved">💾 ${t.autosave}</p>`}
 function pMenu(){const t=T();
  return `<h2>${t.menuH}</h2><p class="hint">${t.menuHint}</p>`+D.menu.map((c,ci)=>`<div class="cat"><div class="cath"><span class="num">${t.cat} ${ci+1}</span></div>
@@ -234,7 +234,7 @@ function render(){renderTop();if(!D&&tab!==4)tab=4;
 let TPL=null;
 async function template(){if(TPL)return TPL;const r=await fetch("../app/plantilla.html",{cache:"no-cache"});if(!r.ok)throw new Error("plantilla "+r.status);TPL=await r.text();return TPL}
 function appData(d,forPub){const o={slug:d.slug,name:d.name.trim(),tagline:d.tagline,color:d.color,logo:d.logo,cover:d.cover,whatsapp:waNum(d.whatsapp),phone:waNum(d.phone||d.whatsapp),address:d.address,map:d.map,hours:d.hours,wifi:(d.wifi&&String(d.wifi.name||"").trim())?{name:String(d.wifi.name).trim(),pass:String(d.wifi.pass||"")}:null,
- reservations:d.reservations,carryout:d.carryout,delivery:d.delivery,menu:d.menu.map(c=>({cat:c.cat,items:c.items.map(it=>({name:it.name,desc:it.desc,price:String(it.price||"").replace(/[^0-9.]/g,""),img:it.img}))})).filter(c=>c.items.length)};return o}
+ reservations:d.reservations,carryout:d.carryout,waiter:d.waiter!==false,delivery:d.delivery,menu:d.menu.map(c=>({cat:c.cat,items:c.items.map(it=>({name:it.name,desc:it.desc,price:String(it.price||"").replace(/[^0-9.]/g,""),img:it.img}))})).filter(c=>c.items.length)};return o}
 function waNum(v){let n=String(v||"").replace(/\D/g,"");if(n.length===10)n="52"+n;if(n.length===12&&n.startsWith("52"))return n;if(n.startsWith("521")&&n.length===13)return "52"+n.slice(3);return n}
 const escA=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 function fill(tpl,d,preview){const icon=d.logo||"../../icon-192.png";let out=tpl.replace("/*__DATA__*/null",JSON.stringify(d).replace(/</g,"\\u003c"));
