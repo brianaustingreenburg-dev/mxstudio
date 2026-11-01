@@ -1,0 +1,1 @@
+{"name": "Mariscos El Sirenito", "short_name": "Mariscos El Si", "start_url": "./", "scope": "./", "display": "standalone", "background_color": "#faf6f0", "theme_color": "#a0522d", "icons": [{"src": "../../icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "../../icon-192.png", "sizes": "512x512", "type": "image/png"}]}
