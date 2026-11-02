@@ -1,8 +1,8 @@
 {
  "whatsapp": "",
  "wifi": null,
- "waiter": false,
+ "waiter": true,
  "carryout": false,
  "reservations": false,
- "t": 1793663704941
+ "t": 1793663899440
 }
