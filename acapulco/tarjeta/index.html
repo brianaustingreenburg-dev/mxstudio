@@ -50,17 +50,24 @@ html,body{font-family:M,sans-serif;background:#2a2320;-webkit-print-color-adjust
 .b .wf{margin-top:9pt;background:rgba(255,255,255,.14);border-radius:8pt;padding:7pt 9pt;font-size:8.5pt;line-height:1.45}
 .b .inf{font-size:8pt;font-weight:500;line-height:1.45}.b .inf b{font-weight:800}
 .b .ft{margin-top:8pt;font-weight:700;font-size:7pt;letter-spacing:.5pt;opacity:.85;text-align:center}
+/* sticker */
+.stk{position:absolute;width:3.6in;height:3.6in;border-radius:.25in;background:#fff;border:2.5pt solid var(--c);overflow:hidden;text-align:center}
+.stk .tp{background:var(--c);color:#fff;padding:.12in .1in .1in}.stk .tp b{display:block;font-weight:800;font-size:15pt;line-height:1.05}.stk .tp small{font-weight:700;font-size:7.5pt;letter-spacing:.5pt;opacity:.9}
+.stk .q{width:2.05in;height:2.05in;margin:.12in auto 0}.stk .q svg{width:100%;height:100%;display:block}
+.stk .sc{font-weight:800;font-size:10pt;color:var(--c);margin-top:.05in}.stk .sc i{display:block;font-style:normal;font-weight:500;font-size:7pt;color:#7a6d66}
+.fmt{display:flex;gap:6px;padding:8px 14px 0}.fmt button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:9px 12px;border-radius:999px;background:#3a302b;color:#f6ece0}.fmt button.on{background:#d9a35f;color:#1a0f0a}
 .err{color:#fff;padding:30px;text-align:center}
 @media print{.bar,.help{display:none}.pages{padding:0;gap:0;display:block}.page{transform:none!important;margin:0!important;page-break-after:always;break-after:page}html,body{background:#fff}}
 </style></head><body>
 <div class="bar"><div><b id="tt">Tarjeta 5×7</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">🖨️ Imprimir / PDF</button></div></div>
+<div class="fmt"><button data-f="m">🍽️ Mesa 5×7 · Table</button><button data-f="st">🏷️ Stickers 4 · Puerta, caja · Door, counter</button></div>
 <p class="help">Toca <b>Imprimir / PDF</b> → en iPhone pellizca la vista previa para abrir el PDF → Compartir → guárdalo o mándalo a la imprenta. Imprime a <b>100%</b>, doble cara, y corta en las marcas a 5×7. · Tap <b>Print / PDF</b>, print at 100%, double-sided, cut on the marks.</p>
 <div class="pages" id="pages"></div>
 <script src="../lib/qrcode.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const q=new URLSearchParams(location.search),slug=(q.get("s")||"").replace(/[^a-z0-9-]/g,""),A=q.get("a")||"";
+const q=new URLSearchParams(location.search),F=q.get("f")==="st"?"st":"m",slug=(q.get("s")||"").replace(/[^a-z0-9-]/g,""),A=q.get("a")||"";
 function cfg(){try{const j=JSON.parse(decodeURIComponent(escape(atob(A.replace(/-/g,"+").replace(/_/g,"/")))));return j}catch(_){return {}}}
 function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";
  for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;
@@ -80,6 +87,11 @@ async function go(){
  const cover="../c/"+slug+"/"+d.cover,top=(d.top||[]).map((n,i)=>`<div class="hl"><span>${i+1}</span><div><b>${esc(n.es)}</b><i>${esc(n.en)}</i></div></div>`).join("");
  const wifi="";
  const tel=c.w?("+"+c.w).replace(/^\+52(\d{3})(\d{3})(\d{4})$/,"+52 $1 $2 $3"):d.phone;
+ document.querySelectorAll(".fmt button").forEach(b=>{b.classList.toggle("on",b.dataset.f===F);b.onclick=()=>{q.set("f",b.dataset.f);location.search=q.toString()}});
+ if(F==="st"){const lines=[["MENÚ · MENU","Escanea · Scan","Menú, WiFi y más · Menu, WiFi & more"],["VE EL MENÚ","SEE THE MENU","Antes de entrar · Before you come in"],["MENÚ · MENU","Escanea · Scan","Para llevar · Carry-out"],["MENÚ · MENU","Escanea · Scan","Español · English"]];
+  const pos=[[.55,.9],[4.35,.9],[.55,5.1],[4.35,5.1]];
+  $("pages").innerHTML=`<div class="page">${pos.map((p,i)=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>${lines[i][0]}</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(url)}</div><div class="sc">${lines[i][1]}<i>${lines[i][2]}</i></div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Recorta por el borde · Cut along the border · MX STUDIO ✝</div></div>`;
+  $("tt").textContent="Stickers · "+d.name;fit();return}
  $("pages").innerHTML=`<div class="page">${marks()}<div class="side f"><div class="ph" style="background-image:url('${cover}')"></div><div class="nm"><h1>${esc(d.name)}</h1><p>${esc(d.tagline.es)} · ${esc(d.tagline.en)}</p></div><div class="band"></div><div class="qrw">${qrSvg(url)}</div>
   <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div><div class="ft">APP POR MX STUDIO ✝ · ACAPULCO</div></div></div>
   <div class="page">${marks()}<div class="side b"><div class="in"><div class="cr">✝</div><h2>${esc(d.name)}</h2><div class="tg">${esc(d.tagline.es)}</div><hr>
