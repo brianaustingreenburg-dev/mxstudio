@@ -288,15 +288,18 @@ async function openEdit(slug,name){const t=L();eSlug=slug;eName=name;$("sheetBox
  drawEdit()}
 function drawEdit(){const t=L();let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}
  $("sheetBox").innerHTML=`<h3 class="ah">✏️ ${t.eT}</h3><div class="an">${esc(eName)}</div><p class="as">${t.eS}</p>
- ${EM.map((c,ci)=>`<div class="ecat"><input class="ai ecn" data-c="${ci}" value="${esc(c.cat.es)}">
-  ${c.items.map((it,ii)=>`<div class="eit"><div class="enm"><input class="ai" data-i="${ci}-${ii}" data-f="es" value="${esc(it.name.es)}"><input class="ai een" data-i="${ci}-${ii}" data-f="en" value="${esc(it.name.en)}"></div><input class="ai epr" data-i="${ci}-${ii}" data-f="price" inputmode="decimal" placeholder="${t.ePh}" value="${esc(it.price)}"><button class="edel" data-del="${ci}-${ii}">✕</button></div>`).join("")}
+ ${EM.map((c,ci)=>`<div class="ecat"><div class="eit"><div class="enm"><input class="ai ecn" data-c="${ci}" value="${esc(c.cat.es)}"><input class="ai een ecen" data-c="${ci}" value="${esc(c.cat.en||"")}" placeholder="English"></div><button class="edel" data-delcat="${ci}">🗑</button></div>
+  ${c.items.map((it,ii)=>`<div class="eit"><div class="enm"><input class="ai" data-i="${ci}-${ii}" data-f="es" value="${esc(it.name.es)}"><input class="ai een" data-i="${ci}-${ii}" data-f="en" value="${esc(it.name.en)}"><input class="ai een" data-i="${ci}-${ii}" data-f="des" placeholder="Descripción (opcional)" value="${esc((it.desc||{}).es||"")}"></div><input class="ai epr" data-i="${ci}-${ii}" data-f="price" inputmode="decimal" placeholder="${t.ePh}" value="${esc(it.price)}"><button class="edel" data-del="${ci}-${ii}">✕</button></div>`).join("")}
   <button class="close eadd" data-add="${ci}">${t.eAdd}</button></div>`).join("")}
+ <div class="ecat"><b>+ Agregar sección · Add section</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button class="close eadd" data-addcat="Bebidas|Drinks">🥤 Bebidas</button><button class="close eadd" data-addcat="Postres|Desserts">🍰 Postres</button><button class="close eadd" data-addcat="Cócteles|Cocktails">🍹 Cócteles</button><button class="close eadd" data-addcat="?">✍️ Otra</button></div></div>
+ ${key?`<p class="as" style="font-size:.8em">🔑 Llave de GitHub guardada en este teléfono ✓ — sirve para las 106 apps · GitHub key saved on this phone — works for all apps</p>`:""}
  ${key?"":`<label class="al">${t.eKey}</label><input class="ai" id="eK" type="password" autocomplete="off"><p class="as" style="font-size:.78em">${t.eKeyH}</p>`}
  <button class="share" id="eSave" style="margin-top:12px">${t.eSave}</button><button class="close" id="closeSheet">${t.close}</button>`}
 function editInput(e){const el=e.target;if(!EM)return;
  if(el.dataset.c!==undefined&&el.classList.contains("ecn")){EM[+el.dataset.c].cat.es=el.value;return}
+ if(el.dataset.c!==undefined&&el.classList.contains("ecen")){EM[+el.dataset.c].cat.en=el.value;return}
  if(el.dataset.i){const [ci,ii]=el.dataset.i.split("-").map(Number),it=EM[ci].items[ii];
-  if(el.dataset.f==="es")it.name.es=el.value;else if(el.dataset.f==="en")it.name.en=el.value;else if(el.dataset.f==="price")it.price=el.value.replace(/[^0-9.]/g,"")}}
+  if(el.dataset.f==="es")it.name.es=el.value;else if(el.dataset.f==="en")it.name.en=el.value;else if(el.dataset.f==="des"){it.desc=it.desc||{es:"",en:""};it.desc.es=el.value}else if(el.dataset.f==="price")it.price=el.value.replace(/[^0-9.]/g,"")}}
 async function saveEdit(){const t=L();if(!navigator.onLine){toast(t.aOff);return}
  const kI=$("eK");if(kI&&kI.value.trim()){try{localStorage.setItem("crear-gh",kI.value.trim())}catch(_){}}
  let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}if(!key){kI&&kI.focus();return}
@@ -346,7 +349,9 @@ $("refresh").onclick=async()=>{if(!navigator.onLine){toast(L().aOff);return}$("r
 try{if(new URLSearchParams(location.search).has("fresh"))history.replaceState(null,"",location.pathname)}catch(_){}
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;st.lang=b.dataset.l;save();applyLang();render()};
 $("sheet").addEventListener("input",editInput);
-$("sheet").onclick=e=>{if(e.target.id==="eSave"){saveEdit();return}{const d=e.target.closest("[data-del]");if(d){if(confirm(L().eDel)){const [ci,ii]=d.dataset.del.split("-").map(Number);EM[ci].items.splice(ii,1);drawEdit()}return}const ad=e.target.closest("[data-add]");if(ad){EM[+ad.dataset.add].items.push({name:{es:L().eNew,en:"New dish"},desc:{es:"",en:""},price:"",img:""});drawEdit();return}}if(e.target.id==="aPub"){publishAct();return}if(e.target.id==="copyL"){const u=e.target.dataset.u;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast(L().copied)).catch(()=>toast(u));return}if(e.target.id==="sheet"||e.target.id==="closeSheet")$("sheet").classList.remove("on")};
+$("sheet").onclick=e=>{if(e.target.id==="eSave"){saveEdit();return}{const d=e.target.closest("[data-del]");if(d){if(confirm(L().eDel)){const [ci,ii]=d.dataset.del.split("-").map(Number);EM[ci].items.splice(ii,1);drawEdit()}return}const ac=e.target.closest("[data-addcat]");if(ac){let v=ac.dataset.addcat;if(v==="?"){const n=prompt("Nombre de la sección · Section name");if(!n)return;v=n+"|"+n}const [es,en]=v.split("|");EM.push({cat:{es,en},items:[{name:{es:L().eNew,en:"New dish"},desc:{es:"",en:""},price:"",img:""}]});drawEdit();setTimeout(()=>{const b=$("sheetBox").querySelectorAll(".ecat");b[b.length-2]&&b[b.length-2].scrollIntoView({behavior:"smooth"})},50);return}
+ const dc=e.target.closest("[data-delcat]");if(dc){if(confirm("¿Borrar toda esta sección? · Delete this whole section?")){EM.splice(+dc.dataset.delcat,1);drawEdit()}return}
+ const ad=e.target.closest("[data-add]");if(ad){EM[+ad.dataset.add].items.push({name:{es:L().eNew,en:"New dish"},desc:{es:"",en:""},price:"",img:""});drawEdit();return}}if(e.target.id==="aPub"){publishAct();return}if(e.target.id==="copyL"){const u=e.target.dataset.u;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast(L().copied)).catch(()=>toast(u));return}if(e.target.id==="sheet"||e.target.id==="closeSheet")$("sheet").classList.remove("on")};
 $("main").addEventListener("click",async e=>{
  const ed=e.target.closest("[data-edit]");if(ed){openEdit(ed.dataset.edit,ed.dataset.nm);return}
  const ac=e.target.closest("[data-act]");if(ac){openAct(ac.dataset.act,ac.dataset.nm);return}
