@@ -1,5 +1,5 @@
 // MX Studio ✝ Acapulco — offline support for MX Dashboard, Precios and every restaurant app
-const CACHE="mx-acapulco-v58";   // app shells (replaced on each update)
+const CACHE="mx-acapulco-v59";   // app shells (replaced on each update)
 const APPC="mx-apps";            // restaurant apps + photos (kept across updates; filled by MX Dashboard)
 const SCOPE=self.registration.scope;
 const CORE=["","index.html","logo.png","icon-192.png","icon-512.png","manifest.json","la-bahia/","la-bahia/index.html","hotel-caleta/","hotel-caleta/index.html","rutas/","rutas/index.html","rutas/manifest.json","precios/","precios/index.html","precios/manifest.json","crear/","crear/index.html","crear/manifest.json","app/plantilla.html","demo/","demo/index.html","demo/manifest.json","tarjeta/","tarjeta/index.html","lib/qrcode.js","lib/fonts/m500.woff2","lib/fonts/m700.woff2","lib/fonts/m800.woff2","pendientes/","pendientes/index.html","pendientes/manifest.json"].map(p=>new URL(p,SCOPE).href);
@@ -12,7 +12,7 @@ self.addEventListener("fetch",e=>{
   const r=e.request;if(r.method!=="GET")return;
   const u=new URL(r.url);if(u.origin!==location.origin)return;
   const key=u.origin+u.pathname;
-  if(u.pathname.endsWith("/config.json")||u.pathname.endsWith("/menu.json")){
+  if(u.pathname.endsWith("/config.json")||u.pathname.endsWith("/menu.json")||u.pathname.endsWith("/special.json")||u.pathname.endsWith("/fx.json")){
     e.respondWith(fetch(r).then(res=>put(u,key,res)).catch(()=>caches.match(key)));return;}
   if(r.mode==="navigate"){
     const alt=key.endsWith("/")?key+"index.html":key+"/";

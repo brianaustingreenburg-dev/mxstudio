@@ -44,6 +44,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .pc .pb{padding:10px 12px 12px}
 .pc b{display:block;font-size:15px;line-height:1.2;min-height:36px}
 .pc .row{padding-top:6px}
+.spec{margin:14px 0 0;padding:12px 14px;border-radius:16px;background:var(--c);color:#fff}.spec small{display:block;font-weight:800;font-size:11px;letter-spacing:.8px;text-transform:uppercase;opacity:.9}.spec b{font-size:16px;line-height:1.3}
+.revb{display:block;text-align:center;margin:18px 0 0;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-weight:800;color:inherit;text-decoration:none}
+.fxn{text-align:center;font-size:12px;opacity:.65;margin:10px 0 0}
 .lang{display:flex;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:3px}
 .lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:7px 13px;border-radius:999px;color:rgba(255,255,255,.75)}
 .lang button[aria-pressed=true]{background:#fff;color:var(--ink)}
@@ -114,17 +117,17 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span id="demoPill"></span><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div>
+<div class="topbar"><div class="wrap"><span id="demoPill"></span><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
   <div class="info" id="info"></div>
-  <div id="actv"></div><div id="story"></div>
+  <div id="spec"></div><div id="actv"></div><div id="story"></div>
   <section class="pop" id="pop"></section>
   <nav class="cats" id="cats"></nav>
   <main id="menu"></main>
   <section class="inst" id="inst"></section>
-  <p class="foot" id="foot">App por MX Studio ✝ · Acapulco</p>
+  <div id="rev"></div><p class="foot" id="foot">App por MX Studio ✝ · Acapulco</p>
 </div>
 <div class="bar"><div class="wrap" id="bar"></div></div>
 <div id="show"></div><div class="sheet" id="sheet"><div class="box" id="box"></div></div>
@@ -155,7 +158,8 @@ const U={
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tx=o=>!o?"":typeof o==="string"?o:(lang==="en"&&o.en?o.en:(o.es||o.en||""));
-const money=n=>"$"+Number(n||0).toLocaleString("en-US");
+let SP=null,cur="mxn",FX=18;try{cur=localStorage.getItem("mx-cur")||"mxn"}catch(_){}
+const money=n=>cur==="usd"?"US$"+(Math.round(Number(n||0)/FX*2)/2).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:1}):"$"+Number(n||0).toLocaleString("en-US");
 const KEY="app-"+(D.slug||"x");
 let lang="es",cart={},how="p",where="t",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
 const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
@@ -171,6 +175,10 @@ function render(){
  const u=U[lang];document.documentElement.lang=lang;
  if(D.color){document.documentElement.style.setProperty("--c",D.color);const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=D.color}
  $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("cur").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cur===cur));
+ $("spec").innerHTML=SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"";
+ const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
+ $("rev").innerHTML=(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur==="usd"?`<p class="fxn">US$ ${lang==="en"?"approx.":"aprox."} · 1 USD ≈ $${FX} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
  const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
  $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
  const q=[];
@@ -248,6 +256,7 @@ function openRes(){
  $("sheet").classList.add("on");
 }
 document.addEventListener("click",e=>{
+ const cb=e.target.closest("#cur button");if(cb){cur=cb.dataset.cur;try{localStorage.setItem("mx-cur",cur)}catch(_){}render();return}
  const l=e.target.closest("#lang button");if(l){lang=l.dataset.l;try{localStorage.setItem(KEY+"-lang",lang)}catch(_){}render();return}
  const o=e.target.closest("[data-os]");if(o){os=o.dataset.os;render();return}
  if(e.target.closest("[data-inst]")&&deferred){deferred.prompt();deferred=null;render();return}
@@ -294,6 +303,10 @@ if(UA&&!D.demo){Object.assign(D,UA);if(UA.whatsapp&&!D.phone)D.phone=UA.whatsapp
 if(!D.demo){const useC=c=>c&&(!UA||(+c.t||0)>(UA.t||0));
  try{const c=JSON.parse(localStorage.getItem(KEY+"-cfg")||"null");if(useC(c))applyCfg(c)}catch(_){}
  fetch("config.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(useC(c)){applyCfg(c);if(c.wifi===null)D.wifi=null;try{localStorage.setItem(KEY+"-cfg",JSON.stringify(c))}catch(_){}render()}}).catch(()=>{})}
+try{SP=JSON.parse(localStorage.getItem(KEY+"-sp")||"null")}catch(_){}
+try{const f=+localStorage.getItem("mx-fx");if(f>5)FX=f}catch(_){}
+fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&+j.mxn>5){FX=+j.mxn;try{localStorage.setItem("mx-fx",FX)}catch(_){}render()}}).catch(()=>{});
+if(!D.demo)fetch("special.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{SP=j&&j.on&&(j.es||j.en)?{es:j.es||j.en,en:j.en||j.es}:null;try{localStorage.setItem(KEY+"-sp",JSON.stringify(SP))}catch(_){}render()}).catch(()=>{});
 // live menu (edited from Rutas → ✏️ Editar menú) → menu.json
 if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if(Array.isArray(m)&&m.length)D.menu=m}catch(_){}
  fetch("menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(m=>{if(Array.isArray(m)&&m.length){D.menu=m;try{localStorage.setItem(KEY+"-menu",JSON.stringify(m))}catch(_){}render()}}).catch(()=>{})}

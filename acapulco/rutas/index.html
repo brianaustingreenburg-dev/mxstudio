@@ -143,6 +143,7 @@ body.is-off .off{display:inline-block}
 <div class="gs"><div class="gn">3</div><div><h3>Cómo se usa · How customers use it <small>30 s</small></h3><p class="do">Toca <b>+</b> en 2 platillos → <b>👀 Mostrar al mesero</b></p><p class="es">"El cliente escanea el QR en la mesa, ve el menú, arma su pedido y se lo enseña al mesero. Si quiere, también pedidos para llevar y reservas por su WhatsApp."</p><p class="en">The customer scans the QR at the table, sees the menu, builds the order and shows it to the waiter. Optional: carry-out and reservations on your WhatsApp.</p></div></div>
 <div class="gs"><div class="gn">4</div><div><h3>Precio · Price <small>15 s</small></h3><p class="do">Pestaña <b>💲 Precios</b> · Prices tab</p><p class="es">"Son $2,000 de instalación y $1,000 al año de soporte, con cambios ilimitados. Sin contrato. Si cancela, le devuelvo los meses que no usó."</p><p class="en">$2,000 setup and $1,000 a year for support, unlimited changes. No contract. If you cancel, I refund the unused months.</p></div></div>
 <div class="gs"><div class="gn">5</div><div><h3>Cierra · Close <small>30 s</small></h3><p class="es">"Si le gusta, la activamos ahorita: me da su WhatsApp y la clave del WiFi, y en un minuto ya es suya, con su tarjeta para imprimir."</p><p class="en">If you like it, we activate it now: your WhatsApp and WiFi password, and in a minute it's yours, with your card to print.</p><p class="do"><b>⚙️ Activar</b> → que escanee el QR de tu pantalla · they scan the QR on your screen → <b>📲 Enviar al dueño</b> → <b>💲 Comprar ahora</b> para cobrar · to get paid</p></div></div>
+<div class="gs"><div class="gn">★</div><div><h3>Extras incluidos · Included extras <small>20 s</small></h3><p class="es">"Y viene con: precios en dólares con un toque para los turistas, su promo del día que usted cambia cuando quiera, y un botón para que le dejen reseñas en Google."</p><p class="en">It also comes with: one-tap prices in dollars for tourists, a daily special you change anytime, and a button so customers leave you Google reviews.</p><p class="do">En su app toca <b>US$</b> arriba · tap US$ at the top. Reseñas: <b>🖨️ Imprimir QR → ⭐ Reseñas</b></p></div></div>
 <div class="gh"><h2>Objeciones · Pushback</h2></div>
 <div class="go"><b>"Ya tengo menú" · I already have a menu</b><p class="es">"Este se actualiza al momento, sin reimprimir, y en inglés para los turistas."</p><p class="en">This updates instantly, no reprinting, and in English for tourists.</p></div>
 <div class="go"><b>"Está caro" · It's expensive</b><p class="es">"Son menos de $85 al mes, menos que un platillo."</p><p class="en">Less than $85 a month, less than one dish.</p></div>
@@ -290,9 +291,10 @@ function navBlock(r){const t=L(),st=r.stops.filter(s=>CO[s.id]);if(!st.length)re
   legs.push(`<a class="leg" href="${u}" target="_blank" rel="noopener">${end-i===1?"Parada · Stop "+end:t.navP+" "+(i+1)+"–"+end}</a>`);i=end;if(i===st.length-1&&st.length>1){}}
  return `<div class="navb"><b>${t.navT}</b><p>${t.navS}</p><div class="legs">${legs.join("")}</div><details><summary>${t.mapT}</summary>${routeMap(r)}</details></div>`}
 
-let EM=null,eSlug="",eName="";
+let EM=null,eSlug="",eName="",ESP={es:"",en:""},ESP0="";
 async function openEdit(slug,name){const t=L();QA={on:false,text:"",sec:"",busy:""};eSlug=slug;eName=name;$("sheetBox").innerHTML=`<p style="text-align:center">${t.aLoad}</p>`;$("sheet").classList.add("on");
  try{const r=await fetch("../c/"+slug+"/menu.json?t="+Date.now(),{cache:"no-store"});EM=await r.json()}catch(_){EM=null}
+ ESP={es:"",en:""};ESP0="";try{const r=await fetch("../c/"+slug+"/special.json?t="+Date.now(),{cache:"no-store"});if(r.ok){const j=await r.json();if(j&&j.on)ESP={es:j.es||"",en:j.en||""}}}catch(_){}ESP0=JSON.stringify(ESP);
  if(!Array.isArray(EM)){$("sheetBox").innerHTML=`<p>${t.aOff}</p><button class="close" id="closeSheet">${t.close}</button>`;return}
  drawEdit()}
 let QA={on:false,text:"",sec:"",busy:""};
@@ -351,9 +353,11 @@ function openPrint(u,nm){const t=L(),j=u.includes("?")?"&":"?",B="display:block;
  $("sheetBox").innerHTML=`<h3 class="ah">🖨️ Imprimir QR · Print QR</h3><div class="an">${esc(nm)}</div><p class="as">Elige dónde va el QR · Pick where the QR goes. Mismo QR, misma app · Same QR, same app.</p>
  <a style="${B}" href="${u}${j}f=m"><b style="font-size:1.1em">🍽️ Tarjeta de mesa · Table card</b><br><small style="opacity:.75">Para las mesas · For tables · doble cara · double-sided</small></a>
  <a style="${B}" href="${u}${j}f=st"><b style="font-size:1.1em">🏷️ Stickers (4 por hoja) · Stickers</b><br><small style="opacity:.75">Puerta, ventana, caja, bolsas, dentro del menú · Door, window, register, bags, inside the menu</small></a>
+ <a style="${B}" href="${u}${j}f=rv"><b style="font-size:1.1em">⭐ Reseñas Google (4 por hoja) · Google reviews</b><br><small style="opacity:.75">Caja, ticket, mesa · Register, receipt, table → más reseñas, más arriba en Google Maps</small></a>
  <button class="close" id="closeSheet">${t.close}</button>`;$("sheet").classList.add("on")}
 function drawEdit(){const t=L();let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}
  $("sheetBox").innerHTML=`<h3 class="ah">✏️ ${t.eT}</h3><div class="an">${esc(eName)}</div><p class="as">${t.eS}</p>
+ <div class="ecat"><b>🔥 Platillo del día / Promo · Today's special</b><p class="as" style="font-size:.8em">Sale arriba en su app. Déjalo vacío para quitarlo. · Shows at the top of their app. Leave empty to remove.</p><input class="ai" id="spEs" placeholder="Ej: Hoy 2×1 en margaritas de 5 a 7" value="${esc(ESP.es)}"><input class="ai een" id="spEn" style="margin-top:6px" placeholder="English (opcional)" value="${esc(ESP.en)}"></div>
  ${qaHtml()}
  ${EM.map((c,ci)=>`<div class="ecat"><div class="eit"><div class="enm"><input class="ai ecn" data-c="${ci}" value="${esc(c.cat.es)}"><input class="ai een ecen" data-c="${ci}" value="${esc(c.cat.en||"")}" placeholder="English"></div><button class="edel" data-delcat="${ci}">🗑</button></div>
   ${c.items.map((it,ii)=>`<div class="eit"><div class="enm"><input class="ai" data-i="${ci}-${ii}" data-f="es" value="${esc(it.name.es)}"><input class="ai een" data-i="${ci}-${ii}" data-f="en" value="${esc(it.name.en)}"><input class="ai een" data-i="${ci}-${ii}" data-f="des" placeholder="Descripción (opcional)" value="${esc((it.desc||{}).es||"")}"></div><input class="ai epr" data-i="${ci}-${ii}" data-f="price" inputmode="decimal" placeholder="${t.ePh}" value="${esc(it.price)}"><button class="edel" data-del="${ci}-${ii}">✕</button></div>`).join("")}
@@ -368,6 +372,7 @@ let kT=0;function keyTyped(el){const v=el.value.replace(/\s+/g,"");const s=$("eK
  s.textContent="⏳ Revisando llave… · Checking key…";clearTimeout(kT);kT=setTimeout(async()=>{try{const r=await fetch("https://api.github.com/repos/brianaustingreenburg-dev/mxstudio",{headers:{Authorization:"Bearer "+v},cache:"no-store"});const j=await r.json().catch(()=>({}));
   s.textContent=r.ok&&j.permissions&&j.permissions.push?"✅ Llave guardada — ya sirve para TODAS las apps · Key saved — works for ALL apps":r.ok?"⚠️ La llave no tiene permiso de escribir (Contents: Read and write) · Key can't write":"❌ GitHub no acepta esta llave ("+r.status+"). Cópiala completa otra vez. · GitHub rejected this key."}catch(_){s.textContent="✓ Guardada (sin internet para revisarla) · Saved (offline, not checked)"}},600)}
 function editInput(e){const el=e.target;if(el.id==="eK"){keyTyped(el);return}
+ if(el.id==="spEs"){ESP.es=el.value;return}if(el.id==="spEn"){ESP.en=el.value;return}
  if(el.id==="qaTx"){QA.text=el.value;const n=parseQA(QA.text);const p=el.nextElementSibling,g=$("qaGo");if(p)p.textContent=n.length?"✓ "+n.length+" platillos: "+n.slice(0,6).map(x=>x.es+" $"+x.price).join(" · ")+(n.length>6?" …":""):"";if(g){g.disabled=!n.length;g.style.opacity=n.length?1:.5;g.textContent="➕ Agregar "+(n.length||"")+" al menú"}return}if(!EM)return;
  if(el.dataset.c!==undefined&&el.classList.contains("ecn")){EM[+el.dataset.c].cat.es=el.value;return}
  if(el.dataset.c!==undefined&&el.classList.contains("ecen")){EM[+el.dataset.c].cat.en=el.value;return}
@@ -382,6 +387,9 @@ async function saveEdit(){const t=L();if(!navigator.onLine){toast(t.aOff);return
  try{let sha;const g=await fetch(api+"?ref=main",{headers:h,cache:"no-store"});if(g.ok)sha=(await g.json()).sha;else if(g.status===401||g.status===403||g.status===404){throw new Error(g.status===404?"llave sin acceso a mxstudio / key can't see mxstudio":g.status===401?"llave vencida o incompleta — toca Cambiar y pega una nueva / key expired, tap Change":"llave / key "+g.status)}
   const p=await fetch(api,{method:"PUT",headers:h,body:JSON.stringify({message:"Menú "+eSlug+" ✝️",branch:"main",sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(clean))))})});
   if(!p.ok){const j=await p.json().catch(()=>({}));throw new Error(p.status+" "+(j.message||""))}
+  if(JSON.stringify(ESP)!==ESP0){const sa=api.replace("menu.json","special.json");let s2;const g2=await fetch(sa+"?ref=main",{headers:h,cache:"no-store"});if(g2.ok)s2=(await g2.json()).sha;
+   const es=ESP.es.trim(),en=ESP.en.trim(),body={on:!!(es||en),es,en:en||es};
+   const p2=await fetch(sa,{method:"PUT",headers:h,body:JSON.stringify({message:"Promo "+eSlug+" ✝️",branch:"main",sha:s2,content:btoa(unescape(encodeURIComponent(JSON.stringify(body))))})});if(!p2.ok)throw new Error("promo "+p2.status)}
   toast(t.eOk);$("sheet").classList.remove("on")}catch(err){btn.disabled=false;btn.textContent=t.eSave;toast(t.eErr+err.message)}}
 
 async function pushCfg(slug,cfg){const t=L(),el=$("cfgSt");let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}
