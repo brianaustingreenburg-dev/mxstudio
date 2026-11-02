@@ -461,7 +461,7 @@ if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.service
 (async()=>{try{if(!("caches"in window)||!navigator.onLine)return;
  const slugs=[...new Set(Object.values(APPS))],F=["","manifest.json","config.json","menu.json","card.json","img/cover.jpg","img/s1.jpg","img/s2.jpg","img/s3.jpg","img/s4.jpg"];
  const urls=[];slugs.forEach(s=>F.forEach(f=>urls.push(new URL("../c/"+s+"/"+f,location.href).href)));
- ["../tarjeta/","../precios/","../pendientes/","../rutas/","../lib/qrcode.js","../lib/fonts/m500.woff2","../lib/fonts/m700.woff2","../lib/fonts/m800.woff2","../icon-192.png"].forEach(x=>urls.push(new URL(x,location.href).href));
+ ["../tarjeta/","../precios/","../pendientes/","../rutas/","../lib/qrcode.js","../lib/fx.json","../lib/fonts/m500.woff2","../lib/fonts/m700.woff2","../lib/fonts/m800.woff2","../icon-192.png"].forEach(x=>urls.push(new URL(x,location.href).href));
  const c=await caches.open("mx-apps"),miss=[];
  for(const u of urls){if(!(await caches.match(u)))miss.push(u)}
  const box=document.getElementById("warm"),T=document.getElementById("warmT"),B=document.getElementById("warmB"),es=(document.documentElement.lang||"es")==="es";

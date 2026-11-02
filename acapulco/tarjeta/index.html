@@ -89,7 +89,7 @@ async function go(){
  const tel=c.w?("+"+c.w).replace(/^\+52(\d{3})(\d{3})(\d{4})$/,"+52 $1 $2 $3"):d.phone;
  document.querySelectorAll(".fmt button").forEach(b=>{b.classList.toggle("on",b.dataset.f===F);b.onclick=()=>{q.set("f",b.dataset.f);location.search=q.toString()}});
  if(F!=="m")$("help").innerHTML='Toca <b>Imprimir / PDF</b> → imprime a <b>100%</b>, una sola cara, en papel adhesivo o normal, y recorta por el borde. · Tap <b>Print / PDF</b>, print at 100%, one side, on sticker or plain paper, and cut along the border.';
- if(F==="rv"){let pid="";try{const t=await (await fetch("../c/"+slug+"/index.html")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
+ if(F==="rv"){let pid="";try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
   if(!pid){$("pages").innerHTML='<p class="err">Este lugar no tiene ficha de Google · No Google listing</p>';return}
   const ru="https://search.google.com/local/writereview?placeid="+pid,pos=[[.55,.9],[4.35,.9],[.55,5.1],[4.35,5.1]];
   $("pages").innerHTML=`<div class="page">${pos.map(p=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>⭐⭐⭐⭐⭐ ¿TE GUSTÓ? · ENJOYED IT?</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(ru)}</div><div class="sc">Déjanos tu reseña<i>Leave us a Google review</i></div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Recorta por el borde · Cut along the border · MX STUDIO ✝</div></div>`;
