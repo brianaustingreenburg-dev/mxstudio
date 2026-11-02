@@ -1,7 +1,7 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Tarjeta 5×7 · MX Studio ✝</title>
+<title>Imprimir QR · MX Studio ✝</title>
 <link rel="icon" href="../icon-192.png">
 <style>
 @font-face{font-family:M;font-weight:500;src:url(../lib/fonts/m500.woff2)}
@@ -59,8 +59,8 @@ html,body{font-family:M,sans-serif;background:#2a2320;-webkit-print-color-adjust
 .err{color:#fff;padding:30px;text-align:center}
 @media print{.bar,.help{display:none}.pages{padding:0;gap:0;display:block}.page{transform:none!important;margin:0!important;page-break-after:always;break-after:page}html,body{background:#fff}}
 </style></head><body>
-<div class="bar"><div><b id="tt">Tarjeta 5×7</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">🖨️ Imprimir / PDF</button></div></div>
-<div class="fmt"><button data-f="m">🍽️ Mesa 5×7 · Table</button><button data-f="st">🏷️ Stickers 4 · Puerta, caja · Door, counter</button></div>
+<div class="bar"><div><b id="tt">Imprimir QR</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">🖨️ Imprimir / PDF</button></div></div>
+<div class="fmt"><button data-f="m">🍽️ Tarjeta de mesa · Table</button><button data-f="st">🏷️ Stickers 4 · Puerta, caja · Door, counter</button></div>
 <p class="help">Toca <b>Imprimir / PDF</b> → en iPhone pellizca la vista previa para abrir el PDF → Compartir → guárdalo o mándalo a la imprenta. Imprime a <b>100%</b>, doble cara, y corta en las marcas a 5×7. · Tap <b>Print / PDF</b>, print at 100%, double-sided, cut on the marks.</p>
 <div class="pages" id="pages"></div>
 <script src="../lib/qrcode.js"></script>
@@ -82,7 +82,7 @@ async function go(){
  if(!slug){$("pages").innerHTML='<p class="err">Falta el restaurante · Missing place</p>';return}
  let d;try{d=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){$("pages").innerHTML='<p class="err">No se pudo cargar · Could not load</p>';return}
  const c=cfg(),url="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:"");
- document.documentElement.style.setProperty("--c",d.color);$("tt").textContent="Tarjeta 5×7 · "+d.name;$("ts").textContent=A?"Con su WhatsApp y WiFi ✓":"Sin activar · not activated";
+ document.documentElement.style.setProperty("--c",d.color);$("tt").textContent="Tarjeta de mesa · "+d.name;$("ts").textContent=A?"Con su WhatsApp y WiFi ✓":"Sin activar · not activated";
  document.title="Tarjeta "+d.name;
  const cover="../c/"+slug+"/"+d.cover,top=(d.top||[]).map((n,i)=>`<div class="hl"><span>${i+1}</span><div><b>${esc(n.es)}</b><i>${esc(n.en)}</i></div></div>`).join("");
  const wifi="";
