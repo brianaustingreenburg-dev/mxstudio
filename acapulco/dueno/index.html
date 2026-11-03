@@ -1,0 +1,49 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel del dueño · MX Studio ✝</title>
+<link rel="icon" href="../icon-192.png">
+<style>
+@font-face{font-family:M;font-weight:500;src:url(../lib/fonts/m500.woff2)}@font-face{font-family:M;font-weight:700;src:url(../lib/fonts/m700.woff2)}@font-face{font-family:M;font-weight:800;src:url(../lib/fonts/m800.woff2)}
+:root{--c:#b5642f;--bg:#faf6f0;--card:#fff;--ink:#1d1715;--line:#eadfd2}
+*{box-sizing:border-box}body{margin:0;font-family:M,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.top{background:var(--c);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 16px 18px}.top small{opacity:.85;font-weight:700;letter-spacing:.12em;font-size:11px}.top h1{margin:4px 0 2px;font-size:24px}.top p{margin:0;opacity:.9}
+.lang{float:right;display:flex;background:rgba(0,0,0,.25);border-radius:999px;padding:3px}.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px;color:#fff}.lang button[aria-pressed=true]{background:#fff;color:var(--ink)}
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px 40px}
+.card{background:var(--card);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 2px 12px rgba(40,25,15,.07)}.card h2{margin:0 0 4px;font-size:18px}.card p{margin:4px 0 10px;opacity:.8;line-height:1.45}
+.qr{width:200px;height:200px;margin:8px auto;padding:10px;background:#fff;border:3px solid var(--c);border-radius:16px}.qr svg{width:100%;height:100%;display:block}
+.b{all:unset;box-sizing:border-box;display:block;width:100%;text-align:center;cursor:pointer;border-radius:14px;padding:14px;font-weight:800;margin-top:8px;background:var(--c);color:#fff;text-decoration:none}.b.g{background:#25d366;color:#05301a}.b.l{background:#f1e9df;color:var(--ink)}
+.stars{font-size:28px;letter-spacing:4px;text-align:center}.tip{font-size:13px;opacity:.75;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid .b{margin-top:0;font-size:14px}
+</style></head><body>
+<div class="top"><div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div><small>MX STUDIO ✝ · <span data-t="panel"></span></small><h1 id="nm">…</h1><p data-t="sub"></p></div>
+<div class="wrap" id="w"></div>
+<script src="../lib/qrcode.js"></script>
+<script>
+const $=i=>document.getElementById(i),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const q=new URLSearchParams(location.search),slug=(q.get("s")||"").replace(/[^a-z0-9-]/g,""),A=(q.get("a")||"").replace(/[^A-Za-z0-9_-]/g,""),BR="527441930502";
+let lang="es";try{lang=localStorage.getItem("mx-dueno-lang")||((navigator.language||"es").startsWith("es")?"es":"en")}catch(_){}
+const T={es:{panel:"Panel del dueño",sub:"Todo lo de tu app en un lugar",app:"📱 Tu app",appP:"Este es el QR de tu app. Tus clientes lo escanean con la cámara.",open:"Abrir mi app",shareApp:"📲 Compartir mi app por WhatsApp",rev:"⭐ Más reseñas de 5 estrellas",revP:"Más reseñas = más arriba en Google Maps, donde te buscan los turistas.",revQR:"Que el cliente escanee este QR antes de irse:",revMsg:"📲 Mandar link de reseña a un cliente",revTip:"Tip: pídela cuando el cliente diga que le gustó. Pon los stickers ⭐ en la caja y en el ticket.",print:"🖨️ Imprimir",mesa:"🍽️ Tarjetas de mesa",stk:"🏷️ Stickers de menú",rvs:"⭐ Stickers de reseñas",chg:"✏️ Cambios",chgP:"Cambios ilimitados incluidos. Mándanos lo que quieras cambiar y lo hacemos.",spec:"🔥 Cambiar especial de hoy",menu:"📷 Mandar foto del menú o precios nuevos",help:"💬 Hablar con MX Studio",tipsH:"💡 Para vender más",tips:"Pon el link de tu app en tu Instagram, Facebook y en la respuesta automática de WhatsApp. Ponlo como “Menú” en tu perfil de Google.",copy:"📋 Copiar link de mi app",copied:"✓ Copiado",shareMsg:"¡Mira nuestro menú con fotos, en español e inglés! ",revAsk:"¡Gracias por visitarnos! ¿Nos regalas una reseña de 5 ⭐? Nos ayuda muchísimo: ",specMsg:"Hola MX Studio, quiero cambiar el especial de hoy de ",menuMsg:"Hola MX Studio, te mando cambios del menú de ",helpMsg:"Hola MX Studio, soy de ",none:"Falta el restaurante en el link."},
+ en:{panel:"Owner panel",sub:"Everything about your app in one place",app:"📱 Your app",appP:"This is your app's QR. Customers scan it with their camera.",open:"Open my app",shareApp:"📲 Share my app on WhatsApp",rev:"⭐ More 5-star reviews",revP:"More reviews = higher on Google Maps, where tourists search.",revQR:"Have the customer scan this QR before leaving:",revMsg:"📲 Send the review link to a customer",revTip:"Tip: ask when the customer says they liked it. Put the ⭐ stickers at the register and on receipts.",print:"🖨️ Print",mesa:"🍽️ Table cards",stk:"🏷️ Menu stickers",rvs:"⭐ Review stickers",chg:"✏️ Changes",chgP:"Unlimited changes included. Send us what you want changed and we'll do it.",spec:"🔥 Change today's special",menu:"📷 Send a menu photo or new prices",help:"💬 Talk to MX Studio",tipsH:"💡 Sell more",tips:"Put your app link on Instagram, Facebook and your WhatsApp auto-reply. Add it as the “Menu” on your Google profile.",copy:"📋 Copy my app link",copied:"✓ Copied",shareMsg:"See our menu with photos, in Spanish and English! ",revAsk:"Thanks for visiting! Would you leave us a 5 ⭐ review? It helps us a lot: ",specMsg:"Hi MX Studio, I want to change today's special for ",menuMsg:"Hi MX Studio, here are menu changes for ",helpMsg:"Hi MX Studio, this is ",none:"The restaurant is missing from the link."}};
+function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges"><path d="${d}" fill="#141414"/></svg>`}
+let D=null,pid="";
+async function load(){if(!slug){$("w").innerHTML=`<div class="card">${T[lang].none}</div>`;return}
+ try{D=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){D={name:slug}}
+ try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
+ if(D.color)document.documentElement.style.setProperty("--c",D.color);render()}
+function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:""),rv=pid?"https://search.google.com/local/writereview?placeid="+pid:"",tj="../tarjeta/?s="+slug+(A?"&a="+A:""),wa=(m,to)=>"https://api.whatsapp.com/send?"+(to?"phone="+to+"&":"")+"text="+encodeURIComponent(m);
+ document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(e=>e.textContent=u[e.dataset.t]);$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("nm").textContent=D.name||slug;document.title=u.panel+" · "+(D.name||slug);
+ $("w").innerHTML=`<div class="card"><h2>${u.app}</h2><p>${u.appP}</p><div class="qr">${qrSvg(app)}</div>
+  <a class="b" href="${app}" target="_blank">${u.open}</a><a class="b g" target="_blank" href="${wa(u.shareMsg+app)}">${u.shareApp}</a><button class="b l" id="cp">${u.copy}</button></div>
+ ${rv?`<div class="card"><h2>${u.rev}</h2><div class="stars">⭐⭐⭐⭐⭐</div><p>${u.revP}</p><p style="font-weight:700;opacity:1">${u.revQR}</p><div class="qr">${qrSvg(rv)}</div>
+  <a class="b g" target="_blank" href="${wa(u.revAsk+rv)}">${u.revMsg}</a><p class="tip">${u.revTip}</p></div>`:""}
+ <div class="card"><h2>${u.print}</h2><div class="grid"><a class="b l" href="${tj}&f=m">${u.mesa}</a><a class="b l" href="${tj}&f=st">${u.stk}</a><a class="b l" href="${tj}&f=rv" style="grid-column:span 2">${u.rvs}</a></div></div>
+ <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
+ <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
+ <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
+ $("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
+$("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-dueno-lang",lang)}catch(_){}render()};
+load();
+if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
+</script></body></html>
