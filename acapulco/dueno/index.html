@@ -22,6 +22,7 @@
 <div class="top"><div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div><small>MX STUDIO ✝ · <span data-t="panel"></span></small><h1 id="nm">…</h1><p data-t="sub"></p></div>
 <div class="wrap" id="w"></div>
 <script src="../lib/setup.js"></script>
+<script src="../lib/reviews.js"></script>
 <script src="../lib/qrcode.js"></script>
 <script>
 const $=i=>document.getElementById(i),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -41,7 +42,7 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  $("w").innerHTML=`<div class="card"><h2>${u.app}</h2><p>${u.appP}</p><div class="qr">${qrSvg(app)}</div>
   <a class="b" href="${app}" target="_blank">${u.open}</a><a class="b g" target="_blank" href="${wa(u.shareMsg+app)}">${u.shareApp}</a><button class="b l" id="cp">${u.copy}</button></div>
  ${rv?`<div class="card"><h2>${u.rev}</h2><div class="stars">⭐⭐⭐⭐⭐</div><p>${u.revP}</p><p style="font-weight:700;opacity:1">${u.revQR}</p><div class="qr">${qrSvg(rv)}</div>
-  <a class="b g" target="_blank" href="${wa(u.revAsk+rv)}">${u.revMsg}</a><p class="tip">${u.revTip}</p></div>`:""}
+  <a class="b g" target="_blank" href="${wa(u.revAsk+rv)}">${u.revMsg}</a><p class="tip">${u.revTip}</p>${revIdeas()}</div>`:""}
  <div class="card"><h2>${u.print}</h2><div class="grid"><a class="b l" href="${tj}&f=m">${u.mesa}</a><a class="b l" href="${tj}&f=st">${u.stk}</a><a class="b l" href="${tj}&f=rv" style="grid-column:span 2">${u.rvs}</a></div></div>
  <div class="card"><h2>${lang==="es"?"✏️ Edita tu menú":"✏️ Edit your menu"}</h2><p>${lang==="es"?"Cambia precios, agrega platillos, toma foto de tu menú o cambia el especial de hoy. Al terminar, toca Publicar.":"Change prices, add dishes, snap a photo of your menu or change today's special. When you're done, tap Publish."}</p><button class="b" id="edOpen">${lang==="es"?"✏️ Abrir editor":"✏️ Open editor"}</button></div>
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
@@ -50,6 +51,12 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
  $("edOpen").onclick=openEd;if(location.hash==="#setup"&&!window.__sj){window.__sj=1;setTimeout(()=>{const s=$("setup");if(s)s.scrollIntoView({behavior:"smooth"})},300)}$("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
 
+
+// ---------- ⭐ Review ideas (owner picks) ----------
+function revIdeas(){const L=window.MX_REV||[];if(!L.length)return "";const es=lang==="es",nm=D.name||slug,H=es?["Fácil, gratis","Fácil","Lo revisamos"]:["Easy, free","Easy","We check it"];
+ return `<details style="margin-top:12px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff"><summary style="cursor:pointer;font-weight:800">💡 ${es?"Ideas para conseguir más reseñas":"Ideas to get more reviews"}</summary>
+ <p style="margin:8px 0">${es?"Escoge las que quieras. Toca “Me interesa” y lo vemos juntos.":"Pick the ones you like. Tap “I'm interested” and we'll set it up together."}</p>
+ ${L.map(x=>{const t=x[es?"es":"en"],m=es?`Hola Brian, me interesa para ${nm}: ${t.t}`:`Hi Brian, for ${nm} I'm interested in: ${t.t}`;return `<div style="border-top:1px solid #f0e7dd;padding:10px 0"><b>${x.i} ${t.t}</b> <small style="opacity:.6">· ${H[x.hard]}</small><p style="margin:4px 0 8px;font-size:.92em">${t.d}</p><a class="b l" style="margin:0" target="_blank" href="https://api.whatsapp.com/send?phone=${BR}&text=${encodeURIComponent(m)}">👍 ${es?"Me interesa":"I'm interested"}</a></div>`}).join("")}</details>`}
 // ---------- 🧰 Setup guides ----------
 function stGet(){try{return JSON.parse(localStorage.getItem("mx-setup-"+slug)||"{}")}catch(_){return {}}}
 function stSet(o){try{localStorage.setItem("mx-setup-"+slug,JSON.stringify(o))}catch(_){}}
