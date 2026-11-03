@@ -96,6 +96,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .seg button{all:unset;cursor:pointer;text-align:center;padding:11px;border-radius:12px;border:1.5px solid var(--line);font-weight:700}
 .seg button.on{border-color:var(--c);background:var(--c);color:#fff}
 .actv{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;margin:12px 0 4px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#f6d77a,#e8b64c);color:#3a2700;box-shadow:0 6px 18px rgba(160,110,0,.25)}.actv b{display:block;font-size:17px}.actv small{display:block;font-size:13px;margin:3px 0 8px;opacity:.85}.actv span{display:inline-block;background:#3a2700;color:#ffe9a8;border-radius:999px;padding:7px 14px;font-weight:800;font-size:14px}
+.gamesb{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center;width:100%;background:var(--card);border-radius:16px;padding:12px 16px;margin:10px 0;box-shadow:0 2px 10px rgba(40,25,15,.06)}.gamesb span{grid-row:span 2;font-size:28px}.gamesb b{font-weight:800}.gamesb small{opacity:.7}
 .story{background:var(--card);border-radius:16px;padding:12px 16px;margin:10px 0;box-shadow:0 2px 10px rgba(40,25,15,.06)}.story summary{font-weight:800;cursor:pointer}.story p{margin-top:8px;line-height:1.5;color:#4a403a}
 #show{position:fixed;inset:0;z-index:40;background:#fffdf8;display:none;overflow:auto}#show.on{display:block}.sw{padding:28px 22px 40px;text-align:center}.sw small{display:block;font-weight:800;color:var(--c);font-size:15px}.sm{font-size:34px;font-weight:900;margin:6px 0 10px}.si{display:flex;gap:12px;align-items:baseline;text-align:left;font-size:26px;font-weight:800;padding:12px 4px;border-bottom:1.5px dashed #e4d9cc}.si b{color:var(--c);min-width:2.2em}.sw p{margin-top:18px;font-size:16px;font-weight:700;color:#4a403a}.sw p i{font-weight:500;color:#776a63}.sw em{display:block;margin-top:14px;font-style:normal;color:#9a8c84;font-size:13px}
 #box .tryo label.opt{display:flex;flex-direction:row;align-items:center;margin:0;padding:8px 2px;font-size:14.5px;font-weight:700;color:inherit;text-transform:none;letter-spacing:0}
@@ -122,7 +123,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 <div class="wrap">
   <div class="quick" id="quick"></div>
   <div class="info" id="info"></div>
-  <div id="spec"></div><div id="actv"></div><div id="story"></div>
+  <div id="spec"></div><div id="actv"></div><div id="story"></div><button class="gamesb" id="gamesB" type="button"><span>🎮</span><b id="gamesT"></b><small id="gamesS"></small></button>
   <section class="pop" id="pop"></section>
   <nav class="cats" id="cats"></nav>
   <main id="menu"></main>
@@ -198,6 +199,7 @@ function render(){
  $("demoPill").innerHTML=D.demo?`<a class="demo" href="${esc(D.back||"#")}">${D.back?"← ":""}${u.demo}</a>`:(new URLSearchParams(location.search).get("r")==="1"?`<a class="demo" href="../../rutas/">← MX Dashboard</a>`:"");
  const ck=(k,l)=>`<button class="opt ${D[k]?"on":""}" data-opt="${k}"><i>${D[k]?"✓":""}</i>${l}</button>`;
  $("actv").innerHTML=D.demo?`<div class="tryo"><small>${u.tryT}</small>${ck("waiter",u.oWaiter)}${ck("carryout",u.oCarry)}${ck("reservations",u.oRes)}</div><button class="actv" data-a="act"><b>✅ ${u.aBan}</b><small>${u.aBanS}</small><span>${u.aT} →</span></button>`:"";
+ $("gamesT").textContent=lang==="en"?"Family games":"Juegos en familia";$("gamesS").textContent=lang==="en"?"Acapulco trivia on everyone's phone · memory · coloring":"Trivia de Acapulco en el teléfono de cada quien · memoria · colorear";
  $("story").innerHTML=tx(D.story)?`<details class="story"><summary>📖 ${u.story}</summary><p>${esc(tx(D.story)).replace(/\n/g,"<br>")}</p></details>`:"";
  $("foot").textContent=D.demo?u.demoFoot:"App por MX Studio ✝ · Acapulco";
  if(CAT>=D.menu.length)CAT=-1;
@@ -312,6 +314,11 @@ if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if
  fetch("menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(m=>{if(Array.isArray(m)&&m.length){D.menu=m;try{localStorage.setItem(KEY+"-menu",JSON.stringify(m))}catch(_){}render()}}).catch(()=>{})}
 render();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){navigator.serviceWorker.register("../../sw.js").catch(()=>{})}
+
+window.MXG={slug:(location.pathname.match(/\/c\/([^/]+)/)||[])[1]||"app",name:D.name,lang:()=>lang,lib:(location.pathname.includes("/c/")?"../../lib/":"../lib/"),url:location.origin+location.pathname};
+(()=>{const s=document.createElement("script");s.src=MXG.lib+"games.js";s.defer=true;document.body.appendChild(s)})();
+$("gamesB").onclick=()=>{window.MXGames?MXGames.open():null};
+try{const jg=new URLSearchParams(location.search).get("jugar");if(jg){const go=()=>window.MXGames?MXGames.join(jg):setTimeout(go,200);go()}}catch(_){}
 </script>
 </body>
 </html>
