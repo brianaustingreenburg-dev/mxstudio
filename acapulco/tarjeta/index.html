@@ -59,9 +59,9 @@ html,body{font-family:M,sans-serif;background:#2a2320;-webkit-print-color-adjust
 .err{color:#fff;padding:30px;text-align:center}
 @media print{.bar,.help{display:none}.pages{padding:0;gap:0;display:block}.page{transform:none!important;margin:0!important;page-break-after:always;break-after:page}html,body{background:#fff}}
 </style></head><body>
-<div class="bar"><div><b id="tt">Imprimir QR</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">🖨️ Imprimir / PDF</button></div></div>
+<div class="bar"><div><b id="tt">Imprimir QR</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">📄 PDF · Imprimir / Enviar</button></div></div>
 <div class="fmt"><button data-f="m">🍽️ Tarjeta de mesa · Table</button><button data-f="st">🏷️ Stickers 4 · Puerta, caja · Door, counter</button><button data-f="rv">⭐ Reseñas · Reviews</button></div>
-<p class="help" id="help">Toca <b>Imprimir / PDF</b> → en iPhone pellizca la vista previa para abrir el PDF → Compartir → guárdalo o mándalo a la imprenta. Imprime a <b>100%</b>, doble cara, y corta en las marcas a 5×7. · Tap <b>Print / PDF</b>, print at 100%, double-sided, cut on the marks.</p>
+<p class="help" id="help">Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir (AirPrint), mandarlo por WhatsApp a la imprenta o guardarlo. Imprime a <b>100%</b>, doble cara, y corta en las marcas. · Tap <b>📄 PDF</b> → <b>Share</b> to print, WhatsApp it to a print shop, or save it.</p>
 <div class="pages" id="pages"></div>
 <script src="../lib/qrcode.js"></script>
 <script>
@@ -88,7 +88,7 @@ async function go(){
  const wifi="";
  const tel=c.w?("+"+c.w).replace(/^\+52(\d{3})(\d{3})(\d{4})$/,"+52 $1 $2 $3"):d.phone;
  document.querySelectorAll(".fmt button").forEach(b=>{b.classList.toggle("on",b.dataset.f===F);b.onclick=()=>{q.set("f",b.dataset.f);location.search=q.toString()}});
- if(F!=="m")$("help").innerHTML='Toca <b>Imprimir / PDF</b> → imprime a <b>100%</b>, una sola cara, en papel adhesivo o normal, y recorta por el borde. · Tap <b>Print / PDF</b>, print at 100%, one side, on sticker or plain paper, and cut along the border.';
+ if(F!=="m")$("help").innerHTML='Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir, mandarlo a la imprenta por WhatsApp o guardarlo. Imprime a <b>100%</b>, una cara, en papel adhesivo o normal, y recorta por el borde. · Tap <b>📄 PDF</b> → <b>Share</b> to print or send to a print shop. Print at 100%, one side.';
  if(F==="rv"){let pid="";try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
   if(!pid){$("pages").innerHTML='<p class="err">Este lugar no tiene ficha de Google · No Google listing</p>';return}
   const ru="https://search.google.com/local/writereview?placeid="+pid,pos=[[.55,.9],[4.35,.9],[.55,5.1],[4.35,5.1]];
@@ -105,6 +105,29 @@ async function go(){
   <div class="inf"><b>Dirección · Address:</b> ${esc(d.address)}${tel?`<br><b>Tel:</b> ${esc(tel)}`:""}<br><b>Horario:</b> ${esc(d.hours.es)}<br><b>Hours:</b> ${esc(d.hours.en)}</div>
   <div class="ft">Escanea el código al frente · Scan the code on the front</div></div></div></div>`;
  fit()}
-addEventListener("resize",fit);$("pr").onclick=()=>print();go();
+
+const ld=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
+let PDFB=null,PDFN="";
+async function makePdf(){const b=$("pr");b.textContent="⏳ Haciendo PDF… · Making PDF…";b.style.pointerEvents="none";
+ try{if(!window.html2canvas)await ld("../lib/html2canvas.min.js");if(!window.jspdf)await ld("../lib/jspdf.umd.min.js");await document.fonts.ready;
+  const pages=[...document.querySelectorAll(".page")],{jsPDF}=window.jspdf,doc=new jsPDF({unit:"in",format:"letter",orientation:"portrait"});
+  for(let i=0;i<pages.length;i++){const pg=pages[i],tf=pg.style.transform,mb=pg.style.marginBottom;pg.style.transform="none";pg.style.marginBottom="0";
+   const cv=await html2canvas(pg,{scale:2.4,useCORS:true,backgroundColor:"#ffffff",logging:false});pg.style.transform=tf;pg.style.marginBottom=mb;
+   if(i)doc.addPage("letter","portrait");doc.addImage(cv.toDataURL("image/jpeg",.92),"JPEG",0,0,8.5,11)}
+  const kind=F==="st"?"stickers":F==="rv"?"resenas":"tarjetas-mesa";PDFN=`${slug}-${kind}.pdf`;PDFB=doc.output("blob");showPdf()}
+ catch(e){alert("No se pudo hacer el PDF · Couldn't make the PDF");}
+ b.textContent="📄 PDF · Imprimir / Enviar";b.style.pointerEvents=""}
+function showPdf(){const url=URL.createObjectURL(PDFB),f=new File([PDFB],PDFN,{type:"application/pdf"}),can=navigator.canShare&&navigator.canShare({files:[f]});
+ let m=$("pdfBox");if(!m){m=document.createElement("div");m.id="pdfBox";m.style.cssText="position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center";document.body.appendChild(m);m.onclick=e=>{if(e.target===m)m.remove()}}
+ const B="display:block;box-sizing:border-box;width:100%;text-align:center;padding:15px;border-radius:14px;font:800 16px M,system-ui;margin-top:8px;text-decoration:none;border:0;cursor:pointer";
+ m.innerHTML=`<div style="background:#faf6f0;color:#1d1715;width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));font-family:M,system-ui">
+  <b style="font-size:18px">✅ PDF listo · PDF ready</b><p style="margin:4px 0 8px;opacity:.75;font-size:14px">${PDFN}</p>
+  ${can?`<button id="pdfShare" style="${B};background:#25d366;color:#05301a">📤 Compartir: imprimir, WhatsApp a la imprenta, guardar · Share</button>`:""}
+  <a href="${url}" download="${PDFN}" style="${B};background:#d9a35f;color:#1a0f0a">⬇️ Descargar PDF · Download</a>
+  <a href="${url}" target="_blank" style="${B};background:#eee;color:#1d1715">👀 Abrir PDF · Open</a>
+  <p style="font-size:12.5px;opacity:.7;margin:10px 0 0">Imprime a 100% (tamaño real) en hoja carta · Print at 100% (actual size) on letter paper. ${F==="m"?"Doble cara · double-sided.":"Una cara · one side."}</p>
+  <button id="pdfX" style="${B};background:transparent;color:#1d1715">Cerrar · Close</button></div>`;
+ const sh=$("pdfShare");if(sh)sh.onclick=()=>navigator.share({files:[f],title:PDFN}).catch(()=>{});$("pdfX").onclick=()=>m.remove()}
+addEventListener("resize",fit);$("pr").onclick=makePdf;go();
 </script>
 </body></html>
