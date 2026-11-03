@@ -1,5 +1,5 @@
 // MX Studio ✝ Acapulco — offline support for MX Dashboard, Precios and every restaurant app
-const CACHE="mx-acapulco-v64";   // app shells (replaced on each update)
+const CACHE="mx-acapulco-v65";   // app shells (replaced on each update)
 const APPC="mx-apps";            // restaurant apps + photos (kept across updates; filled by MX Dashboard)
 const SCOPE=self.registration.scope;
 const CORE=["","index.html","logo.png","icon-192.png","icon-512.png","manifest.json","la-bahia/","la-bahia/index.html","hotel-caleta/","hotel-caleta/index.html","rutas/","rutas/index.html","rutas/manifest.json","precios/","precios/index.html","precios/manifest.json","crear/","crear/index.html","crear/manifest.json","app/plantilla.html","demo/","demo/index.html","demo/manifest.json","tarjeta/","tarjeta/index.html","lib/qrcode.js","lib/fx.json","lib/fonts/m500.woff2","lib/fonts/m700.woff2","lib/fonts/m800.woff2","pendientes/","pendientes/index.html","pendientes/manifest.json"].map(p=>new URL(p,SCOPE).href);
@@ -17,9 +17,10 @@ self.addEventListener("fetch",e=>{
   if(r.mode==="navigate"){
     const alt=key.endsWith("/")?key+"index.html":key+"/";
     if(u.searchParams.has("fresh")){e.respondWith(fetch(r).then(res=>put(u,key,res)).catch(()=>caches.match(key)));return;}
-    const net=fetch(r).then(res=>put(u,key,res));
+    // Online: always the newest version (wait up to 3 s). Slow or no internet: the saved copy.
+    const net=fetch(r,{cache:"no-store"}).then(res=>put(u,key,res));e.waitUntil(net.catch(()=>{}));
     e.respondWith(caches.match(key).then(m=>m||caches.match(alt)).then(hit=>{
-      if(hit){e.waitUntil(net.catch(()=>{}));return hit}
+      if(hit)return Promise.race([net.then(res=>res.ok?res:hit),new Promise(ok=>setTimeout(()=>ok(hit),3000))]).catch(()=>hit);
       return Promise.race([net,new Promise((_,no)=>setTimeout(no,8000))]).catch(()=>u.pathname.includes("/c/")?new Response(OFF,{headers:{"Content-Type":"text/html; charset=utf-8"}}):caches.match(SCOPE))}));return;}
   e.respondWith(caches.match(r,{ignoreSearch:true}).then(hit=>hit||fetch(r).then(res=>put(u,r,res)).catch(()=>hit)));
 });
