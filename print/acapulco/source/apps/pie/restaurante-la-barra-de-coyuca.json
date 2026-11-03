@@ -1,0 +1,268 @@
+{
+ "name": "Restaurante La Barra de Coyuca",
+ "slug": "restaurante-la-barra-de-coyuca",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJPz4Po1jjyoURJoHpOZ3-348",
+ "lat": 16.946289,
+ "lng": -100.0960769,
+ "address": "La Barra, Coyuca de Benítez",
+ "phone": "",
+ "hours": {
+  "es": "Lun–Dom 8:00–21:00",
+  "en": "Mon–Sun 8am–9pm"
+ },
+ "rating": 4.4,
+ "reviews": 106,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Cocina familiar entre la laguna y el mar abierto",
+  "en": "Family cooking between lagoon and open sea"
+ },
+ "specialty": "Family-run palapa with grilled fish, handmade tortillas and lagoon boat rides",
+ "signature": [
+  "Pescado zarandeado",
+  "Camarones a la diabla",
+  "Calamares a la plancha",
+  "Agua de coco"
+ ],
+ "photo_notes": {
+  "cover": "Rustic family palapa restaurant on sand where lagoon meets the ocean, hammocks, thatched tables, waves breaking close, sunset glow.",
+  "s1": "Whole butterflied fish charcoal-grilled with red adobo on a wooden board with lime and onion.",
+  "s2": "Shrimp in fiery red diabla sauce with rice, beans and handmade tortillas.",
+  "s3": "Griddled squid rings and tentacles with garlic butter and parsley.",
+  "s4": "Fresh green coconut with a straw on a palapa table, ocean behind."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huevos rancheros",
+      "en": "Huevos rancheros"
+     },
+     "desc": {
+      "es": "Con tortillas hechas a mano",
+      "en": "With handmade tortillas"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles",
+      "en": "Chilaquiles"
+     },
+     "desc": {
+      "es": "Rojos o verdes, con huevo",
+      "en": "Red or green, with egg"
+     },
+     "price": "110"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Picaditas",
+      "en": "Picaditas"
+     },
+     "desc": {
+      "es": "Tres, con salsa y queso",
+      "en": "Three, with salsa and cheese"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Con tostadas",
+      "en": "With tostadas"
+     },
+     "price": "150"
+    },
+    {
+     "name": {
+      "es": "Cóctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "170"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado zarandeado",
+      "en": "Zarandeado grilled fish"
+     },
+     "desc": {
+      "es": "Precio por kilo",
+      "en": "Per kilo"
+     },
+     "price": "380"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Diabla shrimp"
+     },
+     "desc": {
+      "es": "Con arroz, frijoles y tortillas",
+      "en": "With rice, beans, tortillas"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Camarones empanizados",
+      "en": "Breaded shrimp"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "220"
+    },
+    {
+     "name": {
+      "es": "Calamares a la plancha",
+      "en": "Griddled squid"
+     },
+     "desc": {
+      "es": "Al ajo con arroz",
+      "en": "Garlic, with rice"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried tilapia"
+     },
+     "desc": {
+      "es": "Entera, con ensalada",
+      "en": "Whole, with salad"
+     },
+     "price": "170"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "Coco frío servido entero",
+      "en": "Whole chilled coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Con o sin alcohol",
+      "en": "With or without rum"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, tequila y escarcha de sal",
+      "en": "Lime, tequila, salt rim"
+     },
+     "price": "125"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con leche condensada",
+      "en": "With condensed milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Cocada",
+      "en": "Cocada"
+     },
+     "desc": {
+      "es": "Dulce de coco casero",
+      "en": "Homemade coconut candy"
+     },
+     "price": "40"
+    }
+   ]
+  }
+ ]
+}

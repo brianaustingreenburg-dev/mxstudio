@@ -1,0 +1,268 @@
+{
+ "name": "Laguna Café",
+ "slug": "laguna-cafe",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJARApqJ_5yoURpz6QIzWOKc0",
+ "lat": 16.9014003,
+ "lng": -99.9711045,
+ "address": "Fuerza Aérea Mexicana s/n, Pie de la Cuesta",
+ "phone": "",
+ "hours": {
+  "es": "Lun–Dom 9:00–13:00, 17:00–21:00",
+  "en": "Mon–Sun 9am–1pm, 5–9pm"
+ },
+ "rating": 4.3,
+ "reviews": 220,
+ "price_level": 2,
+ "kind": "cafe",
+ "cuisine": "café",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Café, frappés y desayunos con vista a la laguna",
+  "en": "Coffee, frappés and breakfast over the lagoon"
+ },
+ "specialty": "Cozy lagoon-view café for chilaquiles, coffee and chai frappés",
+ "signature": [
+  "Chilaquiles verdes",
+  "Frappé de chai",
+  "Bowl de frutas",
+  "Hot cakes"
+ ],
+ "photo_notes": {
+  "cover": "Cozy small café terrace with wooden tables and plants overlooking calm Coyuca lagoon with palms and mangroves, soft morning light.",
+  "s1": "Green chilaquiles with fried egg, crema, queso fresco and red onion on a ceramic plate.",
+  "s2": "Chai frappé topped with whipped cream and cinnamon in a tall glass, lagoon behind.",
+  "s3": "Colorful fruit bowl with papaya, mango, banana, granola and honey.",
+  "s4": "Stack of fluffy pancakes with butter, honey drizzle and strawberries."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles verdes",
+      "en": "Green chilaquiles"
+     },
+     "desc": {
+      "es": "Con huevo estrellado, crema y queso",
+      "en": "Fried egg, cream, cheese"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Hot cakes",
+      "en": "Pancakes"
+     },
+     "desc": {
+      "es": "Con miel y fruta",
+      "en": "With syrup and fruit"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Bowl de frutas",
+      "en": "Fruit bowl"
+     },
+     "desc": {
+      "es": "Granola, yogur y miel",
+      "en": "Granola, yogurt, honey"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Molletes",
+      "en": "Molletes"
+     },
+     "desc": {
+      "es": "Frijoles, queso y pico de gallo",
+      "en": "Beans, cheese, pico de gallo"
+     },
+     "price": "85"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Ensaladas y sándwiches",
+    "en": "Salads & sandwiches"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ensalada de la casa",
+      "en": "House salad"
+     },
+     "desc": {
+      "es": "Pollo, lechuga, nuez y vinagreta",
+      "en": "Chicken, greens, pecans, vinaigrette"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Baguette de pollo",
+      "en": "Chicken baguette"
+     },
+     "desc": {
+      "es": "Con papas",
+      "en": "With chips"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Sincronizadas",
+      "en": "Sincronizadas"
+     },
+     "desc": {
+      "es": "Jamón y queso en tortilla de harina",
+      "en": "Ham and cheese flour tortilla"
+     },
+     "price": "85"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Café",
+    "en": "Coffee"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Americano",
+      "en": "Americano"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "40"
+    },
+    {
+     "name": {
+      "es": "Capuchino",
+      "en": "Cappuccino"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Café de olla",
+      "en": "Café de olla"
+     },
+     "desc": {
+      "es": "Con canela y piloncillo",
+      "en": "Cinnamon and piloncillo"
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Frappé de chai",
+      "en": "Chai frappé"
+     },
+     "desc": {
+      "es": "Con crema batida",
+      "en": "With whipped cream"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Frappé de moka",
+      "en": "Mocha frappé"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Smoothie de mango",
+      "en": "Mango smoothie"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "70"
+    },
+    {
+     "name": {
+      "es": "Limonada",
+      "en": "Lemonade"
+     },
+     "desc": {
+      "es": "Natural o mineral",
+      "en": "Still or sparkling"
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pastel de chocolate",
+      "en": "Chocolate cake"
+     },
+     "desc": {
+      "es": "Rebanada",
+      "en": "Slice"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Pay de limón",
+      "en": "Key lime pie"
+     },
+     "desc": {
+      "es": "Base de galleta",
+      "en": "Cookie crust"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Crepas de cajeta",
+      "en": "Cajeta crêpes"
+     },
+     "desc": {
+      "es": "Con nuez",
+      "en": "With pecans"
+     },
+     "price": "95"
+    }
+   ]
+  }
+ ]
+}

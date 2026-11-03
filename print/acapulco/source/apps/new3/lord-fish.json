@@ -1,0 +1,41 @@
+{"name":"Lord Fish Sea Food & Costillas Grill","slug":"lord-fish","area":"Caleta + Centro + Hornos","place_id":"ChIJK4gjicNXyoUR_jsVEAOpIRk","lat":16.8627312,"lng":-99.898623,"address":"Durango 16A, Col. Progreso","phone":"+52 744 174 9537","hours":{"es":"Mar–Dom 12:00–20:00 · Lun cerrado","en":"Tue–Sun 12pm–8pm · Mon closed"},"rating":4.4,"reviews":161,"price_level":2,
+"kind":"mar","cuisine":"seafood","source":"real","sources":["https://www.rappi.com.mx/restaurantes/1930043309-lord-fish-sea-food"],
+"estimated_extras":true,
+"tagline":{"es":"Mariscos al carbón y torres frías en la Progreso","en":"Charcoal seafood and chilled towers in Progreso"},
+"specialty":"House 'Salsa Lord' octopus and shrimp, stuffed pineapples and towering cold seafood platters.",
+"signature":["Piña Lord Fish","Torre Sirena Enamorada","Pulpo Loco","Camarones Arropados"],
+"photo_notes":{"cover":"Casual neighborhood seafood restaurant with bright tables, nautical touches and platters of shrimp and octopus under warm afternoon light.","s1":"Halved pineapple filled with bubbling hot seafood and melted cheese on a wooden board.","s2":"Tall cold seafood tower layered with shrimp, octopus, oysters, scallops and ceviche, lime wedges around.","s3":"Charred grilled octopus tentacles glossed in a dark red house sauce on a black plate.","s4":"Golden fried shrimp stuffed with cream cheese and wrapped in bacon, with dipping sauce."},
+"menu":[
+{"cat":{"es":"Especialidades","en":"Specialties"},"items":[
+{"name":{"es":"Piña Lord Fish","en":"Lord Fish Pineapple"},"desc":{"es":"Piña rellena de mariscos calientes y queso","en":"Pineapple filled with hot seafood and cheese"},"price":"430"},
+{"name":{"es":"Molcajete Lord Fish","en":"Lord Fish Molcajete"},"desc":{"es":"Camarón, pulpo y mejillón, para 2","en":"Shrimp, octopus and mussels, for 2"},"price":"665"},
+{"name":{"es":"Camarones Arropados","en":"Wrapped Shrimp"},"desc":{"es":"Rellenos de queso crema y gouda, con tocino","en":"Stuffed with cream cheese and gouda, with bacon"},"price":"420"},
+{"name":{"es":"Pulpo Loco","en":"Crazy Octopus"},"desc":{"es":"Tentáculos asados en salsa de la casa","en":"Grilled tentacles in house sauce"},"price":"470"},
+{"name":{"es":"Arroz Lord Fish","en":"Lord Fish Rice"},"desc":{"es":"Arroz con camarón, pulpo, caracol y jaiba","en":"Rice with shrimp, octopus, conch and crab"},"price":"410"},
+{"name":{"es":"Torre Sirena Enamorada","en":"Mermaid Seafood Tower"},"desc":{"es":"Camarón, ostión, pulpo, callo y ceviche","en":"Shrimp, oyster, octopus, scallop and ceviche"},"price":"565"},
+{"name":{"es":"Agua Chile Camarón","en":"Shrimp Aguachile"},"desc":{"es":"Salsas verde, roja y negra","en":"Green, red and black sauces"},"price":"400"}]},
+{"cat":{"es":"Ceviches y Cócteles","en":"Ceviches & Cocktails"},"items":[
+{"name":{"es":"Ceviche","en":"Fish Ceviche"},"desc":{"es":"Pescado, cebolla morada, serrano y cilantro","en":"Fish, red onion, serrano and cilantro"},"price":"165"},
+{"name":{"es":"Campechana","en":"Campechana"},"desc":{"es":"Camarón, aguacate y cebolla morada","en":"Shrimp, avocado and red onion"},"price":"335"},
+{"name":{"es":"Coctel Grande Mix","en":"Large Mixed Cocktail"},"desc":{"es":"Pulpo, camarón y caracol","en":"Octopus, shrimp and conch"},"price":"430"},
+{"name":{"es":"Vuelve a la Vida","en":"Vuelve a la Vida"},"desc":{"es":"Camarón, ostión, almeja, callo, pulpo y caracol","en":"Shrimp, oyster, clam, scallop, octopus, conch"},"price":"420"}]},
+{"cat":{"es":"Camarones y Pulpo","en":"Shrimp & Octopus"},"items":[
+{"name":{"es":"Camarones al Mojo","en":"Garlic Shrimp"},"desc":{"es":"Al mojo de ajo o mantequilla","en":"Garlic mojo or butter"},"price":"345"},
+{"name":{"es":"Camarones Empanizados","en":"Breaded Shrimp"},"desc":{"es":"Camarón con cola empanizado","en":"Tail-on breaded shrimp"},"price":"390"},
+{"name":{"es":"Fettuccine con Camarón","en":"Shrimp Fettuccine"},"desc":{"es":"En salsa cremosa de perejil","en":"In creamy parsley sauce"},"price":"390"},
+{"name":{"es":"Pulpo en Salsa Borracha","en":"Octopus in Salsa Borracha"},"desc":{"es":"Pulpo al carbón en salsa borracha","en":"Charcoal octopus in borracha sauce"},"price":"470"},
+{"name":{"es":"Pulpo Salsa Lord","en":"Octopus in Lord Sauce"},"desc":{"es":"En la salsa especial de la casa","en":"In the house special sauce"},"price":"395"}]},
+{"cat":{"es":"Carnes y Costillas","en":"Meats & Ribs"},"items":[
+{"name":{"es":"Ribeye","en":"Ribeye"},"desc":{"es":"350 g sellado a la pimienta","en":"350 g pepper-seared"},"price":"545"},
+{"name":{"es":"Costilla BabyBackRib","en":"Baby Back Ribs"},"desc":{"es":"10 huesos bañados en salsa","en":"10 bones glazed in sauce"},"price":"435"},
+{"name":{"es":"Cecina","en":"Cecina"},"desc":{"es":"Cecina de res, 180 g","en":"Thin cured beef, 180 g"},"price":"325"}]},
+{"cat":{"es":"Bebidas","en":"Drinks"},"items":[
+{"name":{"es":"Agua de sabor","en":"Fresh Fruit Water"},"desc":{"es":"1/2 L: limón, piña, hierbabuena o chía","en":"1/2 L: lime, pineapple, mint or chia"},"price":"25"},
+{"name":{"es":"Refresco de 600 ml","en":"Soft Drink 600 ml"},"desc":{"es":"","en":""},"price":"50"},
+{"name":{"es":"Agua Natural","en":"Still Water"},"desc":{"es":"","en":""},"price":"40"},
+{"name":{"es":"Café","en":"Coffee"},"desc":{"es":"","en":""},"price":"25"}]},
+{"cat":{"es":"Postres","en":"Desserts"},"items":[
+{"name":{"es":"Flan Napolitano","en":"Neapolitan Flan"},"desc":{"es":"Flan casero con caramelo","en":"Homemade caramel flan"},"price":"85"},
+{"name":{"es":"Pay de Queso","en":"Cheesecake"},"desc":{"es":"Rebanada con mermelada de frutos rojos","en":"Slice with berry jam"},"price":"95"},
+{"name":{"es":"Plátanos Fritos","en":"Fried Plantains"},"desc":{"es":"Con lechera y crema","en":"With condensed milk and cream"},"price":"80"}]}
+]}

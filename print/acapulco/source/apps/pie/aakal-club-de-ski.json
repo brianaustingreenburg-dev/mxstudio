@@ -1,0 +1,268 @@
+{
+ "name": "Aakal Club de Ski",
+ "slug": "aakal-club-de-ski",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJgxmAaZ75yoUReekPJbsg634",
+ "lat": 16.9024088,
+ "lng": -99.9732196,
+ "address": "Av. Fuerza Aérea Mexicana L74, Pie de la Cuesta",
+ "phone": "+52 744 317 9512",
+ "hours": {
+  "es": "Mié–Lun 10:00–19:00, Sáb–Dom desde 9:00 (Mar cerrado)",
+  "en": "Wed–Mon 10am–7pm, Sat–Sun from 9am (closed Tue)"
+ },
+ "rating": 4.2,
+ "reviews": 135,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "seafood & pasta",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Club de ski en la laguna con paella, pastas y mariscos",
+  "en": "Lagoon ski club with paella, pasta and seafood"
+ },
+ "specialty": "Lagoon-side ski club restaurant known for paella, creamy pasta and pulpo enamorado",
+ "signature": [
+  "Paella marinera",
+  "Pulpo enamorado",
+  "Torre de mariscos",
+  "Aperol spritz"
+ ],
+ "photo_notes": {
+  "cover": "Spacious lagoon-side club restaurant with long tables, pool, wooden dock and ski boats on calm water, mangroves beyond.",
+  "s1": "Large paella pan with saffron rice, shrimp, mussels, clams and lemon wedges.",
+  "s2": "Octopus in a creamy chipotle-garlic sauce served with white rice.",
+  "s3": "Tall layered seafood tower with shrimp, octopus, avocado and sauce drizzle.",
+  "s4": "Aperol spritz and lemon daiquiri side by side on a table overlooking the lagoon."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Torre de mariscos",
+      "en": "Seafood tower"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, aguacate y pepino",
+      "en": "Shrimp, octopus, avocado, cucumber"
+     },
+     "price": "280"
+    },
+    {
+     "name": {
+      "es": "Ceviche de camarón",
+      "en": "Shrimp ceviche"
+     },
+     "desc": {
+      "es": "Con tostadas",
+      "en": "With tostadas"
+     },
+     "price": "190"
+    },
+    {
+     "name": {
+      "es": "Nuggets de pollo",
+      "en": "Chicken nuggets"
+     },
+     "desc": {
+      "es": "Con papas, menú infantil",
+      "en": "With fries, kids' menu"
+     },
+     "price": "120"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Pastas y arroces",
+    "en": "Pasta & rice"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Paella marinera",
+      "en": "Seafood paella"
+     },
+     "desc": {
+      "es": "Para dos, mariscos frescos",
+      "en": "For two, fresh seafood"
+     },
+     "price": "560"
+    },
+    {
+     "name": {
+      "es": "Pasta cremosa con pulpo y camarón",
+      "en": "Creamy octopus & shrimp pasta"
+     },
+     "desc": {
+      "es": "Salsa de la casa",
+      "en": "House cream sauce"
+     },
+     "price": "290"
+    },
+    {
+     "name": {
+      "es": "Espagueti a la boloñesa",
+      "en": "Spaghetti Bolognese"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "190"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pulpo enamorado",
+      "en": "Pulpo enamorado"
+     },
+     "desc": {
+      "es": "Pulpo en salsa cremosa de chipotle",
+      "en": "Octopus in creamy chipotle sauce"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Filete Martina",
+      "en": "Fillet Martina"
+     },
+     "desc": {
+      "es": "Pescado con mariscos y guarnición",
+      "en": "Fish with seafood and sides"
+     },
+     "price": "320"
+    },
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Grilled fish a la talla"
+     },
+     "desc": {
+      "es": "Precio por kilo",
+      "en": "Per kilo"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "265"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Aperol spritz",
+      "en": "Aperol spritz"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Daiquirí de limón",
+      "en": "Lime daiquiri"
+     },
+     "desc": {
+      "es": "Frappé",
+      "en": "Frozen"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "50"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Brownie con helado",
+      "en": "Brownie à la mode"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Pay de limón",
+      "en": "Key lime pie"
+     },
+     "desc": {
+      "es": "Base de galleta",
+      "en": "Cookie crust"
+     },
+     "price": "80"
+    }
+   ]
+  }
+ ]
+}

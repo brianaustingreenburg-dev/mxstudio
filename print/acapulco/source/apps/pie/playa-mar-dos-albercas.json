@@ -1,0 +1,301 @@
+{
+ "name": "Playa Mar Dos Albercas",
+ "slug": "playa-mar-dos-albercas",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJuW5VcGHjyoURvEOMh4wScN4",
+ "lat": 16.9479522,
+ "lng": -100.1078796,
+ "address": "Carr. Pie de la Cuesta–Barra de Coyuca, La Barra",
+ "phone": "+52 744 160 6259",
+ "hours": {
+  "es": "Lun–Dom 8:00–20:30",
+  "en": "Mon–Sun 8am–8:30pm"
+ },
+ "rating": 4.4,
+ "reviews": 333,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Mariscos, mar abierto y dos albercas para toda la familia",
+  "en": "Seafood, open ocean and two pools for the family"
+ },
+ "specialty": "Family beach club in Barra de Coyuca with two pools and fresh seafood",
+ "signature": [
+  "Pescado a la talla",
+  "Camarones al coco",
+  "Torre de mariscos",
+  "Coco loco"
+ ],
+ "photo_notes": {
+  "cover": "Beach club restaurant with two turquoise pools, palapa umbrellas and hammocks, wide Pacific beach behind under bright blue sky.",
+  "s1": "Butterflied grilled fish with red chile adobo on banana leaf, lime and onion.",
+  "s2": "Coconut-crusted shrimp with mango sauce in a small bowl.",
+  "s3": "Tall layered seafood tower of shrimp, octopus, avocado and cucumber in a glass mold.",
+  "s4": "Coco loco cocktail in a fresh green coconut with a straw."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles",
+      "en": "Chilaquiles"
+     },
+     "desc": {
+      "es": "Rojos o verdes con huevo",
+      "en": "Red or green with egg"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Huevos a la mexicana",
+      "en": "Mexican-style eggs"
+     },
+     "desc": {
+      "es": "Con frijoles y tortillas",
+      "en": "With beans and tortillas"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Hot cakes",
+      "en": "Pancakes"
+     },
+     "desc": {
+      "es": "Con mantequilla y miel",
+      "en": "With butter and syrup"
+     },
+     "price": "95"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cócteles y entradas",
+    "en": "Cocktails & starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Torre de mariscos",
+      "en": "Seafood tower"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, aguacate y pepino",
+      "en": "Shrimp, octopus, avocado, cucumber"
+     },
+     "price": "265"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Con tostadas",
+      "en": "With tostadas"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Aguachile rojo",
+      "en": "Red aguachile"
+     },
+     "desc": {
+      "es": "Camarón en chiltepín y limón",
+      "en": "Shrimp in chiltepín and lime"
+     },
+     "price": "210"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Grilled fish a la talla"
+     },
+     "desc": {
+      "es": "Precio por kilo",
+      "en": "Per kilo"
+     },
+     "price": "400"
+    },
+    {
+     "name": {
+      "es": "Camarones al coco",
+      "en": "Coconut shrimp"
+     },
+     "desc": {
+      "es": "Con salsa de mango",
+      "en": "With mango sauce"
+     },
+     "price": "245"
+    },
+    {
+     "name": {
+      "es": "Camarones al ajillo",
+      "en": "Shrimp al ajillo"
+     },
+     "desc": {
+      "es": "Chile guajillo y ajo",
+      "en": "Guajillo chile and garlic"
+     },
+     "price": "235"
+    },
+    {
+     "name": {
+      "es": "Filete relleno de mariscos",
+      "en": "Seafood-stuffed fillet"
+     },
+     "desc": {
+      "es": "Gratinado, con arroz",
+      "en": "Gratinated, with rice"
+     },
+     "price": "255"
+    },
+    {
+     "name": {
+      "es": "Pescadillas",
+      "en": "Pescadillas"
+     },
+     "desc": {
+      "es": "Tres tacos dorados de pescado",
+      "en": "Three crispy fish tacos"
+     },
+     "price": "120"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "Coco frío servido entero",
+      "en": "Whole chilled coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Con o sin alcohol",
+      "en": "With or without rum"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, tequila y escarcha de sal",
+      "en": "Lime, tequila, salt rim"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Coco loco",
+      "en": "Coco loco"
+     },
+     "desc": {
+      "es": "Coco con ron, vodka y ginebra",
+      "en": "Coconut with rum, vodka, gin"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Agua fresca",
+      "en": "Agua fresca"
+     },
+     "desc": {
+      "es": "Jamaica u horchata, jarra",
+      "en": "Hibiscus or horchata, pitcher"
+     },
+     "price": "90"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con leche condensada",
+      "en": "With condensed milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Gelatina de mosaico",
+      "en": "Mosaic jello"
+     },
+     "desc": {
+      "es": "Casera",
+      "en": "Homemade"
+     },
+     "price": "50"
+    }
+   ]
+  }
+ ]
+}

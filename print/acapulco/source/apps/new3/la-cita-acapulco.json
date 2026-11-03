@@ -1,0 +1,337 @@
+{
+ "name": "La Cita",
+ "slug": "la-cita-acapulco",
+ "area": "Magallanes + Condesa",
+ "place_id": "ChIJDQ78KjFZyoURMoW_SlZ1iM8",
+ "lat": 16.8611861,
+ "lng": -99.881073,
+ "address": "Av. Costera Miguel Alemán, Fracc. Magallanes",
+ "phone": "+52 744 516 2133",
+ "hours": {
+  "es": "Lun 15:00–0:00 · Mar–Jue 15:00–23:30 · Vie–Dom 15:00–0:00",
+  "en": "Mon 3pm–12am · Tue–Thu 3–11:30pm · Fri–Sun 3pm–12am"
+ },
+ "rating": 4.2,
+ "reviews": 177,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican grill",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930028219-la-cita"
+ ],
+ "estimated_extras": true,
+ "tagline": {
+  "es": "Parrilla, tuétano y música en vivo en la Costera",
+  "en": "Grill, bone marrow and live music on the Costera"
+ },
+ "specialty": "Mexican grill plates, skewers and loaded burgers served with charro beans and live bands",
+ "signature": [
+  "Brocheta Mixta",
+  "Tuetano Gratinado",
+  "Cardiaca",
+  "Papa Chistorra y Queso"
+ ],
+ "photo_notes": {
+  "cover": "Casual open-air bar-and-grill on the Costera at night, wooden tables, string lights and a small stage for a live band.",
+  "s1": "Grilled mixed skewer of chicken, beef and pork with peppers, served with rice, charro beans and cabbage salad.",
+  "s2": "Roasted beef bone marrow halves gratinated with cheese, toasts, cherry tomatoes and pickled onion.",
+  "s3": "Towering double beef burger with ham, melted cheese, grilled pineapple and a fried egg.",
+  "s4": "Baked potato split open and loaded with chistorra sausage and melted cheese."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Especialidades de la Casa",
+    "en": "House Specialties"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Taco de Cecina",
+      "en": "Cecina Tacos"
+     },
+     "desc": {
+      "es": "Tres tacos con arroz, frijoles charros y ensalada",
+      "en": "Three tacos with rice, charro beans, salad"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Carne Enchilada",
+      "en": "Chile-rubbed Pork"
+     },
+     "desc": {
+      "es": "Con arroz, frijoles charros y ensalada",
+      "en": "With rice, charro beans and salad"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Brocheta Mixta",
+      "en": "Mixed Skewer"
+     },
+     "desc": {
+      "es": "Pollo, res y cerdo a la parrilla",
+      "en": "Grilled chicken, beef and pork"
+     },
+     "price": "205"
+    },
+    {
+     "name": {
+      "es": "Chuleta de Res",
+      "en": "Beef Chop"
+     },
+     "desc": {
+      "es": "Con guarniciones de la casa",
+      "en": "With house sides"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Pechuga y Ala 1/4",
+      "en": "Quarter Chicken (Breast & Wing)"
+     },
+     "desc": {
+      "es": "Pollo asado con guarniciones",
+      "en": "Grilled chicken with sides"
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Pollo Entero",
+      "en": "Whole Grilled Chicken"
+     },
+     "desc": {
+      "es": "Para compartir, con guarniciones",
+      "en": "For sharing, with sides"
+     },
+     "price": "480"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Hamburguesas",
+    "en": "Burgers"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Hamburguesa Clásica",
+      "en": "Classic Burger"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa Chipotle",
+      "en": "Chipotle Burger"
+     },
+     "desc": {
+      "es": "Res, aderezo de chipotle, jamón y queso",
+      "en": "Beef, chipotle dressing, ham and cheese"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Salchiburger",
+      "en": "Salchiburger"
+     },
+     "desc": {
+      "es": "Res con jamón, queso y salchicha asada",
+      "en": "Beef with ham, cheese and grilled sausage"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Cardiaca",
+      "en": "Cardiaca Double Burger"
+     },
+     "desc": {
+      "es": "Doble carne, jamón, queso, piña y huevo",
+      "en": "Double beef, ham, cheese, pineapple, egg"
+     },
+     "price": "205"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Guarniciones y Botanas",
+    "en": "Sides & Snacks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tuetano Gratinado",
+      "en": "Gratinated Bone Marrow"
+     },
+     "desc": {
+      "es": "Con pan tostado y cebolla encurtida",
+      "en": "With toast and pickled onion"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Tuetano",
+      "en": "Bone Marrow"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "155"
+    },
+    {
+     "name": {
+      "es": "Papa Chistorra y Queso",
+      "en": "Chistorra & Cheese Potato"
+     },
+     "desc": {
+      "es": "Papa al horno con chistorra y queso",
+      "en": "Baked potato with chistorra and cheese"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Papa Tocino y Queso",
+      "en": "Bacon & Cheese Potato"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Con totopos",
+      "en": "With tortilla chips"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Elote Dulce",
+      "en": "Sweet Corn"
+     },
+     "desc": {
+      "es": "Con crema y limón",
+      "en": "With cream and lime"
+     },
+     "price": "60"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Refresco 355 ml",
+      "en": "Soda 355 ml"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "25"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "90"
+    },
+    {
+     "name": {
+      "es": "Cubeta de Cervezas",
+      "en": "Beer Bucket"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "400"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "120"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan Casero",
+      "en": "Homemade Flan"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Pastel de Chocolate",
+      "en": "Chocolate Cake"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Plátanos Fritos",
+      "en": "Fried Plantains"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

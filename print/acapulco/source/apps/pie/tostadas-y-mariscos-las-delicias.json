@@ -1,0 +1,290 @@
+{
+ "name": "Tostadas y Mariscos Las Delicias",
+ "slug": "tostadas-y-mariscos-las-delicias",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJPRb-1Hv5yoUR2LGIizvi_mo",
+ "lat": 16.9098063,
+ "lng": -99.982941,
+ "address": "Av. Fuerza Aérea Lote 11, Pie de la Cuesta",
+ "phone": "+52 667 138 0131",
+ "hours": {
+  "es": "Mar–Dom 9:00–18:00 (Lun cerrado)",
+  "en": "Tue–Sun 9am–6pm (closed Mon)"
+ },
+ "rating": 4.5,
+ "reviews": 158,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Tostadas, caldos y el mejor pan francés de Pie de la Cuesta",
+  "en": "Tostadas, seafood soups and famous French toast"
+ },
+ "specialty": "Sinaloa-style seafood, shrimp broth and combos, with pool and trampoline",
+ "signature": [
+  "Camarones momia",
+  "Tostada mixta",
+  "Caldo de camarón",
+  "Pan francés"
+ ],
+ "photo_notes": {
+  "cover": "Casual family seafood restaurant with colorful tables under a palapa, small pool and garden, bright tropical daylight.",
+  "s1": "Bacon-wrapped stuffed shrimp, golden and crispy, with chipotle dip and lime.",
+  "s2": "Loaded seafood tostada piled with shrimp, octopus, cucumber, avocado and red onion.",
+  "s3": "Steaming red shrimp broth in a clay bowl with lime, chopped onion and cilantro.",
+  "s4": "Thick French toast dusted with sugar and cinnamon, honey and strawberries."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pan francés",
+      "en": "French toast"
+     },
+     "desc": {
+      "es": "Estrella de la casa, con miel y fruta",
+      "en": "House star, honey and fruit"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Huevos al gusto",
+      "en": "Eggs your way"
+     },
+     "desc": {
+      "es": "Con frijoles y tortillas",
+      "en": "With beans and tortillas"
+     },
+     "price": "100"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles con camarón",
+      "en": "Shrimp chilaquiles"
+     },
+     "desc": {
+      "es": "Salsa roja o verde",
+      "en": "Red or green salsa"
+     },
+     "price": "150"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Tostadas y cócteles",
+    "en": "Tostadas & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostada mixta",
+      "en": "Mixed seafood tostada"
+     },
+     "desc": {
+      "es": "Camarón, pulpo y aguacate",
+      "en": "Shrimp, octopus, avocado"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Tostada de ceviche",
+      "en": "Ceviche tostada"
+     },
+     "desc": {
+      "es": "Pescado en limón",
+      "en": "Lime-cured fish"
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Aguachile",
+      "en": "Aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo, pepino y cebolla",
+      "en": "Raw shrimp, cucumber, onion"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Campechana",
+      "en": "Campechana"
+     },
+     "desc": {
+      "es": "Cóctel de camarón y pulpo",
+      "en": "Shrimp and octopus cocktail"
+     },
+     "price": "185"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Caldos y platos",
+    "en": "Soups & mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Caldo de camarón",
+      "en": "Shrimp broth"
+     },
+     "desc": {
+      "es": "Picosito, con verduras",
+      "en": "Mildly spicy, with vegetables"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Sopa de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Camarón, pulpo, pescado y almeja",
+      "en": "Shrimp, octopus, fish, clam"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Camarones momia",
+      "en": "Mummy shrimp"
+     },
+     "desc": {
+      "es": "Rellenos de queso, envueltos en tocino",
+      "en": "Cheese-stuffed, bacon-wrapped"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Combo camarones y cerveza",
+      "en": "Shrimp & beer combo"
+     },
+     "desc": {
+      "es": "Camarones al gusto y dos cervezas",
+      "en": "Shrimp your way and two beers"
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "Coco frío servido entero",
+      "en": "Whole chilled coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Con o sin alcohol",
+      "en": "With or without rum"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, tequila y escarcha de sal",
+      "en": "Lime, tequila, salt rim"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "40"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con leche condensada",
+      "en": "With condensed milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Pay de queso",
+      "en": "Cheesecake"
+     },
+     "desc": {
+      "es": "Casero",
+      "en": "Homemade"
+     },
+     "price": "70"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,301 @@
+{
+ "name": "Quinta Rosita",
+ "slug": "quinta-rosita",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJR4vSXZ_5yoURYdW1y54qWtQ",
+ "lat": 16.9003811,
+ "lng": -99.9691594,
+ "address": "Fuerza Aérea Mexicana 346, Pie de la Cuesta",
+ "phone": "+52 744 238 4395",
+ "hours": {
+  "es": "Lun–Dom 8:00–18:00",
+  "en": "Mon–Sun 8am–6pm"
+ },
+ "rating": 4.2,
+ "reviews": 483,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Cocina familiar a pasos del oleaje",
+  "en": "Family seafood steps from the surf"
+ },
+ "specialty": "Family-run beach spot known for red snapper, shrimp quesadillas and mojitos",
+ "signature": [
+  "Huachinango a la talla",
+  "Quesadillas de camarón",
+  "Camarones a la diabla",
+  "Mojito"
+ ],
+ "photo_notes": {
+  "cover": "Small family-run beachfront restaurant with plastic-free wooden tables under a palapa, sand and crashing Pacific waves beyond, bougainvillea.",
+  "s1": "Whole grilled red snapper with orange adobo, lime wedges and tortillas on a rustic platter.",
+  "s2": "Golden crispy shrimp quesadillas cut open showing shrimp and melted cheese, salsa on the side.",
+  "s3": "Shrimp in glossy red spicy diabla sauce with white rice in a clay plate.",
+  "s4": "Tall mojito with crushed ice, mint and lime, beach in the background."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huevos rancheros",
+      "en": "Huevos rancheros"
+     },
+     "desc": {
+      "es": "Con frijoles y tortillas hechas a mano",
+      "en": "With beans and handmade tortillas"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles con pollo",
+      "en": "Chilaquiles with chicken"
+     },
+     "desc": {
+      "es": "Salsa roja o verde",
+      "en": "Red or green salsa"
+     },
+     "price": "130"
+    },
+    {
+     "name": {
+      "es": "Molletes",
+      "en": "Molletes"
+     },
+     "desc": {
+      "es": "Con pico de gallo",
+      "en": "With pico de gallo"
+     },
+     "price": "95"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Quesadillas de camarón",
+      "en": "Shrimp quesadillas"
+     },
+     "desc": {
+      "es": "Tres piezas, tortilla frita",
+      "en": "Three, crispy fried tortilla"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Ceviche de camarón",
+      "en": "Shrimp ceviche"
+     },
+     "desc": {
+      "es": "Con tostadas",
+      "en": "With tostadas"
+     },
+     "price": "180"
+    },
+    {
+     "name": {
+      "es": "Tostadas de pescado",
+      "en": "Fish tostadas"
+     },
+     "desc": {
+      "es": "Tres piezas",
+      "en": "Three pieces"
+     },
+     "price": "130"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango a la talla",
+      "en": "Grilled red snapper a la talla"
+     },
+     "desc": {
+      "es": "Precio por kilo",
+      "en": "Per kilo"
+     },
+     "price": "420"
+    },
+    {
+     "name": {
+      "es": "Camarones a la diabla",
+      "en": "Diabla shrimp"
+     },
+     "desc": {
+      "es": "Salsa picante, arroz y ensalada",
+      "en": "Spicy sauce, rice and salad"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Camarones empanizados",
+      "en": "Breaded shrimp"
+     },
+     "desc": {
+      "es": "Con papas y ensalada",
+      "en": "With fries and salad"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Filete al mojo de ajo",
+      "en": "Garlic fish fillet"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "200"
+    },
+    {
+     "name": {
+      "es": "Pulpo encebollado",
+      "en": "Octopus with onions"
+     },
+     "desc": {
+      "es": "Con arroz",
+      "en": "With rice"
+     },
+     "price": "260"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "Coco frío servido entero",
+      "en": "Whole chilled coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Con o sin alcohol",
+      "en": "With or without rum"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, tequila y escarcha de sal",
+      "en": "Lime, tequila, salt rim"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Mojito",
+      "en": "Mojito"
+     },
+     "desc": {
+      "es": "Hierbabuena fresca y ron",
+      "en": "Fresh mint and rum"
+     },
+     "price": "115"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "45"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con leche condensada",
+      "en": "With condensed milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Nieve de coco",
+      "en": "Coconut sorbet"
+     },
+     "desc": {
+      "es": "Servida en el coco",
+      "en": "Served in the shell"
+     },
+     "price": "85"
+    }
+   ]
+  }
+ ]
+}

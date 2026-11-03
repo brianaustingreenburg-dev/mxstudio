@@ -1,0 +1,268 @@
+{
+ "name": "Barra De Coyuca",
+ "slug": "barra-de-coyuca",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJ6wYDGVbjyoURxlaydVIC5sQ",
+ "lat": 16.9457489,
+ "lng": -100.0875386,
+ "address": "Carr. Pie de la Cuesta–Barra de Coyuca 16, Los Mogotes",
+ "phone": "",
+ "hours": {
+  "es": "Lun–Dom 9:00–19:00",
+  "en": "Mon–Sun 9am–7pm"
+ },
+ "rating": 4.7,
+ "reviews": 82,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Palapa entre río y mar, con liberación de tortugas",
+  "en": "Palapa between river and sea, with turtle releases"
+ },
+ "specialty": "Riverside palapa with local catch, sopes, handmade tortillas and lagoon boat tours",
+ "signature": [
+  "Pescado a la talla",
+  "Sopes de camarón",
+  "Caldo de mariscos",
+  "Agua de jamaica"
+ ],
+ "photo_notes": {
+  "cover": "Large thatched palapa with hammocks over a calm river on one side and open Pacific beach on the other, lush palms, peaceful nature.",
+  "s1": "Grilled whole fish with red adobo on banana leaf with lime and handmade tortillas.",
+  "s2": "Thick handmade sopes topped with sautéed shrimp, beans, lettuce, cream and cheese.",
+  "s3": "Steaming seafood soup with shrimp, fish, crab legs and lime in a clay pot.",
+  "s4": "Pitcher and glass of deep red hibiscus agua fresca with ice."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Antojitos",
+    "en": "Antojitos"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Sopes de camarón",
+      "en": "Shrimp sopes"
+     },
+     "desc": {
+      "es": "Tres, masa hecha a mano",
+      "en": "Three, handmade masa"
+     },
+     "price": "110"
+    },
+    {
+     "name": {
+      "es": "Quesadillas a mano",
+      "en": "Handmade quesadillas"
+     },
+     "desc": {
+      "es": "Tres, con queso",
+      "en": "Three, with cheese"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Empanadas de camarón",
+      "en": "Shrimp empanadas"
+     },
+     "desc": {
+      "es": "Tres piezas",
+      "en": "Three pieces"
+     },
+     "price": "105"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Cócteles",
+    "en": "Seafood cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Con tostadas",
+      "en": "With tostadas"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Cóctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "160"
+    },
+    {
+     "name": {
+      "es": "Aguachile",
+      "en": "Aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón y chile",
+      "en": "Raw shrimp in lime and chile"
+     },
+     "price": "180"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Pescado a la talla",
+      "en": "Grilled fish a la talla"
+     },
+     "desc": {
+      "es": "Precio por kilo, pesca local",
+      "en": "Per kilo, local catch"
+     },
+     "price": "360"
+    },
+    {
+     "name": {
+      "es": "Caldo de mariscos",
+      "en": "Seafood soup"
+     },
+     "desc": {
+      "es": "Camarón, pescado y jaiba",
+      "en": "Shrimp, fish and crab"
+     },
+     "price": "170"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con arroz y tortillas",
+      "en": "With rice and tortillas"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Mojarra frita",
+      "en": "Fried tilapia"
+     },
+     "desc": {
+      "es": "Entera, con ensalada",
+      "en": "Whole, with salad"
+     },
+     "price": "160"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de jamaica",
+      "en": "Hibiscus agua fresca"
+     },
+     "desc": {
+      "es": "Jarra",
+      "en": "Pitcher"
+     },
+     "price": "80"
+    },
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    },
+    {
+     "name": {
+      "es": "Cerveza nacional",
+      "en": "Mexican beer"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "40"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "80"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con leche condensada",
+      "en": "With condensed milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Cocada",
+      "en": "Cocada"
+     },
+     "desc": {
+      "es": "Dulce de coco casero",
+      "en": "Homemade coconut candy"
+     },
+     "price": "40"
+    },
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,301 @@
+{
+ "name": "Tres Marías Laguna",
+ "slug": "tres-marias-laguna",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJyRsPPwb5yoURMHjP_Blqan4",
+ "lat": 16.9030917,
+ "lng": -99.9741671,
+ "address": "Fuerza Aérea Mexicana 375, Pie de la Cuesta",
+ "phone": "+52 744 460 0013",
+ "hours": {
+  "es": "Lun–Dom 9:00–18:00",
+  "en": "Mon–Sun 9am–6pm"
+ },
+ "rating": 4.3,
+ "reviews": 2523,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Restaurante y club de ski frente a la Laguna de Coyuca",
+  "en": "Restaurant and ski club on Coyuca Lagoon"
+ },
+ "specialty": "Huachinango a la talla with lagoon views, water skiing and a pool",
+ "signature": [
+  "Huachinango a la talla",
+  "Pulpo a la talla",
+  "Aguachile verde",
+  "Piña colada"
+ ],
+ "photo_notes": {
+  "cover": "Open-air palapa restaurant on a wooden dock over a calm green lagoon, ski boats moored, pool and palms, golden afternoon light.",
+  "s1": "Whole red snapper butterflied and grilled with red adobo, lime and onion on a large platter.",
+  "s2": "Grilled octopus tentacles glazed with chile adobo, charred edges, on a wooden board.",
+  "s3": "Shrimp aguachile in vivid green chile-lime broth with cucumber and red onion in a black stone bowl.",
+  "s4": "Piña colada in a hollowed pineapple with a cherry, lagoon blurred behind."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Chilaquiles rojos o verdes",
+      "en": "Red or green chilaquiles"
+     },
+     "desc": {
+      "es": "Con huevo o pollo, crema y queso",
+      "en": "With egg or chicken, cream, cheese"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Huevos al gusto",
+      "en": "Eggs your way"
+     },
+     "desc": {
+      "es": "Con frijoles y tortillas",
+      "en": "With beans and tortillas"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Omelette de camarón",
+      "en": "Shrimp omelette"
+     },
+     "desc": {
+      "es": "Con salsa ranchera",
+      "en": "With ranchero sauce"
+     },
+     "price": "175"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas y cócteles",
+    "en": "Starters & cocktails"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Aguachile verde",
+      "en": "Green aguachile"
+     },
+     "desc": {
+      "es": "Camarón crudo en limón y chile serrano",
+      "en": "Raw shrimp in lime and serrano"
+     },
+     "price": "215"
+    },
+    {
+     "name": {
+      "es": "Ceviche de pescado",
+      "en": "Fish ceviche"
+     },
+     "desc": {
+      "es": "Estilo Acapulco, con tostadas",
+      "en": "Acapulco style, with tostadas"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Cóctel de camarón",
+      "en": "Shrimp cocktail"
+     },
+     "desc": {
+      "es": "Grande, con aguacate",
+      "en": "Large, with avocado"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Con totopos",
+      "en": "With tortilla chips"
+     },
+     "price": "120"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Del mar",
+    "en": "From the sea"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Huachinango a la talla",
+      "en": "Grilled red snapper a la talla"
+     },
+     "desc": {
+      "es": "Precio por kilo, especialidad de la casa",
+      "en": "Per kilo, house specialty"
+     },
+     "price": "450"
+    },
+    {
+     "name": {
+      "es": "Pulpo a la talla",
+      "en": "Grilled octopus a la talla"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "295"
+    },
+    {
+     "name": {
+      "es": "Camarones al mojo de ajo",
+      "en": "Garlic shrimp"
+     },
+     "desc": {
+      "es": "Con arroz y ensalada",
+      "en": "With rice and salad"
+     },
+     "price": "260"
+    },
+    {
+     "name": {
+      "es": "Filete empanizado",
+      "en": "Breaded fish fillet"
+     },
+     "desc": {
+      "es": "Con papas a la francesa",
+      "en": "With fries"
+     },
+     "price": "210"
+    },
+    {
+     "name": {
+      "es": "Medio pollo asado",
+      "en": "Half roasted chicken"
+     },
+     "desc": {
+      "es": "Adobado, con arroz",
+      "en": "Adobo-marinated, with rice"
+     },
+     "price": "195"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "Coco frío servido entero",
+      "en": "Whole chilled coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Con o sin alcohol",
+      "en": "With or without rum"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, tequila y escarcha de sal",
+      "en": "Lime, tequila, salt rim"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Limonada",
+      "en": "Lemonade"
+     },
+     "desc": {
+      "es": "Natural o mineral",
+      "en": "Still or sparkling"
+     },
+     "price": "50"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Plátanos fritos con lechera",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con leche condensada",
+      "en": "With condensed milk"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Pay de limón",
+      "en": "Key lime pie"
+     },
+     "desc": {
+      "es": "Base de galleta",
+      "en": "Cookie crust"
+     },
+     "price": "80"
+    }
+   ]
+  }
+ ]
+}

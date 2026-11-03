@@ -1,0 +1,290 @@
+{
+ "name": "Acapulquitos",
+ "slug": "acapulquitos",
+ "area": "Pie de la Cuesta",
+ "place_id": "ChIJpVWZtXf5yoURd4o-qoADzNs",
+ "lat": 16.9055969,
+ "lng": -99.9775127,
+ "address": "Fuerza Aérea 420, Pie de la Cuesta",
+ "phone": "+52 744 505 3128",
+ "hours": {
+  "es": "Jue–Mar 8:00–19:00 (Mié cerrado)",
+  "en": "Thu–Tue 8am–7pm (closed Wed)"
+ },
+ "rating": 4.2,
+ "reviews": 261,
+ "price_level": 2,
+ "kind": "mar",
+ "cuisine": "seafood",
+ "source": "sample",
+ "sources": [],
+ "tagline": {
+  "es": "Mariscos con toque neoyorquino, alberca y habitaciones",
+  "en": "Seafood with a New York twist, pool and rooms"
+ },
+ "specialty": "Creative seafood and cocktails with a pool, in a small Pie de la Cuesta hotel",
+ "signature": [
+  "Tacos de camarón estilo Baja",
+  "Pulpo a las brasas",
+  "Tostada de atún",
+  "Aperol spritz"
+ ],
+ "photo_notes": {
+  "cover": "Boutique restaurant-bar beside a small blue pool with lounge chairs, white walls, palms and colorful tile, relaxed tropical vibe.",
+  "s1": "Three Baja-style battered shrimp tacos with purple cabbage, chipotle cream and lime.",
+  "s2": "Charred octopus tentacle on potato purée with paprika oil, modern plating.",
+  "s3": "Tuna tostada with avocado slices, crispy leeks and spicy mayo.",
+  "s4": "Bright orange Aperol spritz in a wine glass with orange slice by the pool."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Desayunos",
+    "en": "Breakfast"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Bagel de salmón",
+      "en": "Salmon bagel"
+     },
+     "desc": {
+      "es": "Queso crema, alcaparras y cebolla",
+      "en": "Cream cheese, capers, onion"
+     },
+     "price": "165"
+    },
+    {
+     "name": {
+      "es": "Chilaquiles con arrachera",
+      "en": "Chilaquiles with steak"
+     },
+     "desc": {
+      "es": "Salsa verde",
+      "en": "Green salsa"
+     },
+     "price": "175"
+    },
+    {
+     "name": {
+      "es": "Huevos benedictinos",
+      "en": "Eggs Benedict"
+     },
+     "desc": {
+      "es": "Salsa holandesa",
+      "en": "Hollandaise sauce"
+     },
+     "price": "155"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Entradas",
+    "en": "Starters"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tostada de atún",
+      "en": "Tuna tostada"
+     },
+     "desc": {
+      "es": "Aguacate y mayonesa picante",
+      "en": "Avocado and spicy mayo"
+     },
+     "price": "145"
+    },
+    {
+     "name": {
+      "es": "Ceviche peruano",
+      "en": "Peruvian ceviche"
+     },
+     "desc": {
+      "es": "Leche de tigre y camote",
+      "en": "Tiger's milk and sweet potato"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Alitas búfalo",
+      "en": "Buffalo wings"
+     },
+     "desc": {
+      "es": "Con aderezo blue cheese",
+      "en": "With blue cheese dip"
+     },
+     "price": "165"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Platos fuertes",
+    "en": "Mains"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Tacos de camarón estilo Baja",
+      "en": "Baja-style shrimp tacos"
+     },
+     "desc": {
+      "es": "Capeados, col morada y chipotle",
+      "en": "Battered, cabbage, chipotle"
+     },
+     "price": "185"
+    },
+    {
+     "name": {
+      "es": "Pulpo a las brasas",
+      "en": "Charcoal-grilled octopus"
+     },
+     "desc": {
+      "es": "Puré de papa y paprika",
+      "en": "Potato purée and paprika"
+     },
+     "price": "310"
+    },
+    {
+     "name": {
+      "es": "Hamburguesa de la casa",
+      "en": "House burger"
+     },
+     "desc": {
+      "es": "Res, tocino y queso cheddar",
+      "en": "Beef, bacon, cheddar"
+     },
+     "price": "195"
+    },
+    {
+     "name": {
+      "es": "Pasta con camarones",
+      "en": "Shrimp pasta"
+     },
+     "desc": {
+      "es": "Salsa cremosa de chipotle",
+      "en": "Creamy chipotle sauce"
+     },
+     "price": "225"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua de coco",
+      "en": "Fresh coconut water"
+     },
+     "desc": {
+      "es": "Coco frío servido entero",
+      "en": "Whole chilled coconut"
+     },
+     "price": "60"
+    },
+    {
+     "name": {
+      "es": "Michelada",
+      "en": "Michelada"
+     },
+     "desc": {
+      "es": "Cerveza con limón, sal y salsas",
+      "en": "Beer with lime, salt and sauces"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Piña colada",
+      "en": "Piña colada"
+     },
+     "desc": {
+      "es": "Con o sin alcohol",
+      "en": "With or without rum"
+     },
+     "price": "120"
+    },
+    {
+     "name": {
+      "es": "Margarita",
+      "en": "Margarita"
+     },
+     "desc": {
+      "es": "Limón, tequila y escarcha de sal",
+      "en": "Lime, tequila, salt rim"
+     },
+     "price": "125"
+    },
+    {
+     "name": {
+      "es": "Aperol spritz",
+      "en": "Aperol spritz"
+     },
+     "desc": {
+      "es": "Prosecco y naranja",
+      "en": "Prosecco and orange"
+     },
+     "price": "140"
+    },
+    {
+     "name": {
+      "es": "Limonada de pepino",
+      "en": "Cucumber lemonade"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "55"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Cheesecake estilo Nueva York",
+      "en": "New York cheesecake"
+     },
+     "desc": {
+      "es": "Con frutos rojos",
+      "en": "With berry sauce"
+     },
+     "price": "105"
+    },
+    {
+     "name": {
+      "es": "Brownie con helado",
+      "en": "Brownie à la mode"
+     },
+     "desc": {
+      "es": "Helado de vainilla",
+      "en": "Vanilla ice cream"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Flan napolitano",
+      "en": "Flan"
+     },
+     "desc": {
+      "es": "Casero, con caramelo",
+      "en": "Homemade, caramel sauce"
+     },
+     "price": "75"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,304 @@
+{
+ "name": "Taquería Tres Chiles",
+ "slug": "taqueria-tres-chiles",
+ "area": "Costa Azul",
+ "place_id": "ChIJ9c56Ac9ZyoURwS7KF94rwI4",
+ "lat": 16.8489546,
+ "lng": -99.848339,
+ "address": "Horacio Nelson 390, Fracc. Costa Azul",
+ "phone": "+52 744 484 5811",
+ "hours": {
+  "es": "Lun–Dom 9:00–22:00",
+  "en": "Mon–Sun 9am–10pm"
+ },
+ "rating": 4.3,
+ "reviews": 504,
+ "price_level": 2,
+ "kind": "res",
+ "cuisine": "mexican tacos",
+ "source": "real",
+ "sources": [
+  "https://www.rappi.com.mx/restaurantes/1930337923-tres-chiles-tacos"
+ ],
+ "estimated_extras": true,
+ "tagline": {
+  "es": "Tacos de carnitas, cecina y suadero en Costa Azul",
+  "en": "Carnitas, cecina and suadero tacos in Costa Azul"
+ },
+ "specialty": "Generous orders of carnitas, cecina and supremo tacos with house salsas",
+ "signature": [
+  "Orden carnitas con adobo",
+  "Orden cecina",
+  "1 Kg Supremo",
+  "Cubana Litro"
+ ],
+ "photo_notes": {
+  "cover": "Casual-elegant taquería in Costa Azul with wooden tables, colorful Mexican tiles, open grill and evening lights.",
+  "s1": "Four soft corn tacos of red adobo carnitas with chopped onion, cilantro and lime wedges.",
+  "s2": "Four tacos of thin grilled cecina with onion, cilantro and green salsa on a clay plate.",
+  "s3": "Big platter of chopped grilled steak with stacked tortillas, grilled onions and salsas.",
+  "s4": "Frosty one-liter michelada-style beer with dark sauces, salt and lime rim."
+ },
+ "menu": [
+  {
+   "cat": {
+    "es": "Tacos (orden de 4)",
+    "en": "Tacos (order of 4)"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Orden supremo",
+      "en": "Supremo steak tacos"
+     },
+     "desc": {
+      "es": "Bistec con cebolla, cilantro y salsas",
+      "en": "Steak with onion, cilantro and salsas"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Orden cecina",
+      "en": "Cecina tacos"
+     },
+     "desc": {
+      "es": "Cecina con cebolla, cilantro y salsas",
+      "en": "Cured beef with onion, cilantro and salsas"
+     },
+     "price": "250"
+    },
+    {
+     "name": {
+      "es": "Orden carnitas",
+      "en": "Carnitas tacos"
+     },
+     "desc": {
+      "es": "Carnitas con cebolla, cilantro y salsas",
+      "en": "Carnitas with onion, cilantro and salsas"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Orden carnitas con adobo",
+      "en": "Adobo carnitas tacos"
+     },
+     "desc": {
+      "es": "Carnitas en adobo con cebolla y cilantro",
+      "en": "Adobo carnitas with onion and cilantro"
+     },
+     "price": "240"
+    },
+    {
+     "name": {
+      "es": "Orden campechano",
+      "en": "Campechano tacos"
+     },
+     "desc": {
+      "es": "Suadero con chorizo",
+      "en": "Suadero beef with chorizo"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Orden suadero",
+      "en": "Suadero tacos"
+     },
+     "desc": {
+      "es": "Suadero con cebolla, cilantro y salsas",
+      "en": "Suadero beef with onion, cilantro, salsas"
+     },
+     "price": "230"
+    },
+    {
+     "name": {
+      "es": "Orden tripa",
+      "en": "Tripe tacos"
+     },
+     "desc": {
+      "es": "Tripa dorada con cebolla y cilantro",
+      "en": "Crispy tripe with onion and cilantro"
+     },
+     "price": "250"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Porciones",
+    "en": "By the kilo"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "1/2 Kg Cecina",
+      "en": "1/2 kg cecina"
+     },
+     "desc": {
+      "es": "Con tortillas, verduras y salsas",
+      "en": "With tortillas, vegetables and salsas"
+     },
+     "price": "655"
+    },
+    {
+     "name": {
+      "es": "1 Kg Supremo",
+      "en": "1 kg supremo steak"
+     },
+     "desc": {
+      "es": "Con tortillas, verduras y salsas",
+      "en": "With tortillas, vegetables and salsas"
+     },
+     "price": "875"
+    },
+    {
+     "name": {
+      "es": "1 Kg Carnitas",
+      "en": "1 kg carnitas"
+     },
+     "desc": {
+      "es": "Con tortillas, verduras y salsas",
+      "en": "With tortillas, vegetables and salsas"
+     },
+     "price": "875"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Órdenes",
+    "en": "Sides"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Guacamole",
+      "en": "Guacamole"
+     },
+     "desc": {
+      "es": "Fresco, 200 g",
+      "en": "Fresh, 200 g"
+     },
+     "price": "135"
+    },
+    {
+     "name": {
+      "es": "Chicharrón",
+      "en": "Pork cracklings"
+     },
+     "desc": {
+      "es": "Chicharrón fresco, 200 g",
+      "en": "Fresh cracklings, 200 g"
+     },
+     "price": "115"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Bebidas",
+    "en": "Drinks"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Agua De Sabor Litro",
+      "en": "Agua fresca, liter"
+     },
+     "desc": {
+      "es": "Sabor del día",
+      "en": "Flavor of the day"
+     },
+     "price": "90"
+    },
+    {
+     "name": {
+      "es": "Corona 355 ml",
+      "en": "Corona 355 ml"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "65"
+    },
+    {
+     "name": {
+      "es": "Michelada 355 Ml",
+      "en": "Michelada 355 ml"
+     },
+     "desc": {
+      "es": "Cerveza con limón y sal",
+      "en": "Beer with lime and salt"
+     },
+     "price": "95"
+    },
+    {
+     "name": {
+      "es": "Cubana Litro",
+      "en": "Cubana, liter"
+     },
+     "desc": {
+      "es": "Cerveza de litro con salsas negras",
+      "en": "Liter beer with dark sauces"
+     },
+     "price": "205"
+    },
+    {
+     "name": {
+      "es": "Coca Cola 600 Ml",
+      "en": "Coca-Cola 600 ml"
+     },
+     "desc": {
+      "es": "",
+      "en": ""
+     },
+     "price": "50"
+    }
+   ]
+  },
+  {
+   "cat": {
+    "es": "Postres",
+    "en": "Desserts"
+   },
+   "items": [
+    {
+     "name": {
+      "es": "Flan Napolitano",
+      "en": "Napolitano flan"
+     },
+     "desc": {
+      "es": "Flan casero con caramelo",
+      "en": "Homemade caramel flan"
+     },
+     "price": "75"
+    },
+    {
+     "name": {
+      "es": "Pastel de Tres Leches",
+      "en": "Tres leches cake"
+     },
+     "desc": {
+      "es": "Rebanada casera",
+      "en": "Homemade slice"
+     },
+     "price": "85"
+    },
+    {
+     "name": {
+      "es": "Plátanos Fritos",
+      "en": "Fried plantains"
+     },
+     "desc": {
+      "es": "Con crema y lechera",
+      "en": "With cream and condensed milk"
+     },
+     "price": "80"
+    }
+   ]
+  }
+ ]
+}
