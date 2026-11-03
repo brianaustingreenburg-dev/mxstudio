@@ -21,6 +21,7 @@
 </style></head><body>
 <div class="top"><div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div><small>MX STUDIO ✝ · <span data-t="panel"></span></small><h1 id="nm">…</h1><p data-t="sub"></p></div>
 <div class="wrap" id="w"></div>
+<script src="../lib/setup.js"></script>
 <script src="../lib/qrcode.js"></script>
 <script>
 const $=i=>document.getElementById(i),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -44,9 +45,27 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <div class="card"><h2>${u.print}</h2><div class="grid"><a class="b l" href="${tj}&f=m">${u.mesa}</a><a class="b l" href="${tj}&f=st">${u.stk}</a><a class="b l" href="${tj}&f=rv" style="grid-column:span 2">${u.rvs}</a></div></div>
  <div class="card"><h2>${lang==="es"?"✏️ Edita tu menú":"✏️ Edit your menu"}</h2><p>${lang==="es"?"Cambia precios, agrega platillos, toma foto de tu menú o cambia el especial de hoy. Al terminar, toca Publicar.":"Change prices, add dishes, snap a photo of your menu or change today's special. When you're done, tap Publish."}</p><button class="b" id="edOpen">${lang==="es"?"✏️ Abrir editor":"✏️ Open editor"}</button></div>
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
+ ${setupCard()}
  <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
  <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
- $("edOpen").onclick=openEd;$("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
+ $("edOpen").onclick=openEd;if(location.hash==="#setup"&&!window.__sj){window.__sj=1;setTimeout(()=>{const s=$("setup");if(s)s.scrollIntoView({behavior:"smooth"})},300)}$("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
+
+// ---------- 🧰 Setup guides ----------
+function stGet(){try{return JSON.parse(localStorage.getItem("mx-setup-"+slug)||"{}")}catch(_){return {}}}
+function stSet(o){try{localStorage.setItem("mx-setup-"+slug,JSON.stringify(o))}catch(_){}}
+function setupCard(){const L=window.MX_SETUP||[];if(!L.length)return "";const es=lang==="es",done=stGet(),n=L.filter(x=>done[x.k]).length,nm=D.name||slug;
+ const money=v=>"$"+v.toLocaleString("en-US");
+ return `<div class="card" id="setup"><h2>🧰 ${es?"Configura todo, paso a paso":"Set up everything, step by step"}</h2>
+ <p>${es?`<b>${n} de ${L.length}</b> listos. Hazlo tú con estas guías, o pídeme que lo haga yo.`:`<b>${n} of ${L.length}</b> done. Do it yourself with these guides, or ask me to do it for you.`}</p>
+ <div style="height:8px;background:#eadfd3;border-radius:9px;overflow:hidden;margin:6px 0 10px"><div style="height:100%;width:${Math.round(n/L.length*100)}%;background:#25d366"></div></div>
+ ${L.map(x=>{const t=x[es?"es":"en"],ok=!!done[x.k],pr=x.price?money(x.price)+(t.n?" "+t.n:""):(es?"incluido":"included");
+  const msg=(es?`Hola Brian, quiero que me hagas: ${t.d} (${pr}) para ${nm}.`:`Hi Brian, please do this for me: ${t.d} (${pr}) for ${nm}.`);
+  return `<details style="border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;margin:8px 0;background:${ok?"#eef9f1":"#fff"}"><summary style="cursor:pointer;font-weight:800;list-style:none;display:flex;gap:8px;align-items:center"><span>${ok?"✅":x.i}</span><span style="flex:1">${t.t}</span><small style="font-weight:700;opacity:.65">${x.price?(es?"o yo: ":"or me: ")+money(x.price):(es?"incluido":"included")}</small></summary>
+  <ol style="margin:10px 0 6px;padding-left:20px;line-height:1.5">${t.s.map(s=>`<li style="margin:4px 0">${s}</li>`).join("")}</ol>
+  <label style="display:flex;gap:8px;align-items:center;font-weight:700;margin:8px 0"><input type="checkbox" data-stk="${x.k}" ${ok?"checked":""} style="width:22px;height:22px"> ${es?"Ya lo hice":"Done"}</label>
+  <a class="b ${x.price?"g":"l"}" target="_blank" href="https://api.whatsapp.com/send?phone=${BR}&text=${encodeURIComponent(msg)}">🙋 ${t.d} · ${pr}</a></details>`}).join("")}
+ <p class="tip">${es?"Los precios de “hazlo por mí” son un solo pago. Lo que dice incluido no cuesta extra.":"“Do it for me” prices are a one-time payment. Anything marked included costs nothing extra."}</p></div>`}
+document.addEventListener("change",e=>{const c=e.target.closest("[data-stk]");if(!c)return;const o=stGet();if(c.checked)o[c.dataset.stk]=1;else delete o[c.dataset.stk];stSet(o);const y=scrollY;render();scrollTo(0,y);const s=document.querySelector(`[data-stk="${c.dataset.stk}"]`);if(s)s.closest("details").open=true});
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-dueno-lang",lang)}catch(_){}render()};
 
 // ---------- Owner menu editor ----------
