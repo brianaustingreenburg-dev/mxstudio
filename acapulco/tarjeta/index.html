@@ -52,10 +52,10 @@ body.m5 .page{width:5in;height:7in}body.m5 .side{left:-.125in;top:-.125in}body.m
 .b .inf{font-size:8pt;font-weight:500;line-height:1.45}.b .inf b{font-weight:800}
 .b .ft{margin-top:8pt;font-weight:700;font-size:7pt;letter-spacing:.5pt;opacity:.85;text-align:center}
 /* sticker */
-.stk{position:absolute;width:3.6in;height:3.6in;border-radius:.25in;background:#fff;border:2.5pt solid var(--c);overflow:hidden;text-align:center}
+.stk{position:absolute;width:9cm;height:9cm;border-radius:.25in;background:#fff;border:2.5pt solid var(--c);overflow:hidden;text-align:center}
 .stk .tp{background:var(--c);color:#fff;padding:.12in .1in .1in}.stk .tp b{display:block;font-weight:800;font-size:15pt;line-height:1.05}.stk .tp small{font-weight:700;font-size:7.5pt;letter-spacing:.5pt;opacity:.9}
 .stk .q{width:2.05in;height:2.05in;margin:.12in auto 0}.stk .q svg{width:100%;height:100%;display:block}
-.stk .sc{font-weight:800;font-size:10pt;color:var(--c);margin-top:.05in}.stk .sc i{display:block;font-style:normal;font-weight:500;font-size:7pt;color:#7a6d66}
+.stk .by{position:absolute;left:0;right:0;bottom:.09in;font-weight:800;font-size:6.5pt;letter-spacing:.6pt;color:#9a8c84}.stk .sc{font-weight:800;font-size:10pt;color:var(--c);margin-top:.05in}.stk .sc i{display:block;font-style:normal;font-weight:500;font-size:7pt;color:#7a6d66}
 .fmt{display:flex;gap:6px;padding:8px 14px 0}.fmt button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:9px 12px;border-radius:999px;background:#3a302b;color:#f6ece0}.fmt button.on{background:#d9a35f;color:#1a0f0a}
 .err{color:#fff;padding:30px;text-align:center}
 @media print{.bar,.help{display:none}.pages{padding:0;gap:0;display:block}.page{transform:none!important;margin:0!important;page-break-after:always;break-after:page}html,body{background:#fff}}
@@ -90,22 +90,22 @@ async function go(){
  const wifi="";
  const tel=c.w?("+"+c.w).replace(/^\+52(\d{3})(\d{3})(\d{4})$/,"+52 $1 $2 $3"):d.phone;
  document.querySelectorAll(".fmt button").forEach(b=>{b.classList.toggle("on",b.dataset.f===F);b.onclick=()=>{q.set("f",b.dataset.f);location.search=q.toString()}});
- if(F!=="m")$("help").innerHTML='Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir, mandarlo a la imprenta por WhatsApp o guardarlo. Imprime a <b>100%</b>, una cara, en papel adhesivo o normal, y recorta por el borde. · Tap <b>📄 PDF</b> → <b>Share</b> to print or send to a print shop. Print at 100%, one side.';
+ if(F!=="m")$("help").innerHTML='Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir, mandarlo a la imprenta por WhatsApp o guardarlo. Imprime a <b>100%</b>, una cara, 4 stickers de <b>9×9 cm</b>: imprenta en <b>vinil blanco mate laminado</b>, hoja carta, <b>corte a contorno</b> (plotter). · Print shop: 9×9 cm, white matte laminated vinyl, letter sheet, contour cut.';
  if(F==="rv"){let pid="";try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
   if(!pid){$("pages").innerHTML='<p class="err">Este lugar no tiene ficha de Google · No Google listing</p>';return}
-  const ru="https://search.google.com/local/writereview?placeid="+pid,pos=[[.55,.9],[4.35,.9],[.55,5.1],[4.35,5.1]];
-  $("pages").innerHTML=`<div class="page">${pos.map(p=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>⭐⭐⭐⭐⭐ ¿TE GUSTÓ? · ENJOYED IT?</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(ru)}</div><div class="sc">Déjanos tu reseña<i>Leave us a Google review</i></div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Recorta por el borde · Cut along the border · MX STUDIO ✝</div></div>`;
+  const ru="https://search.google.com/local/writereview?placeid="+pid,pos=[[.46,1.71],[4.5,1.71],[.46,5.75],[4.5,5.75]];
+  $("pages").innerHTML=`<div class="page">${pos.map(p=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>⭐⭐⭐⭐⭐ ¿TE GUSTÓ? · ENJOYED IT?</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(ru)}</div><div class="sc">Déjanos tu reseña<i>Leave us a Google review</i></div><div class="by">by MX STUDIO ✝</div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Vinil blanco mate laminado · 9×9 cm · corte a contorno · White matte laminated vinyl · 9×9 cm · contour cut · MX STUDIO ✝</div></div>`;
   $("tt").textContent="Reseñas · "+d.name;fit();return}
  if(F==="st"){const lines=[["MENÚ · MENU","Escanea · Scan","Menú, WiFi y más · Menu, WiFi & more"],["VE EL MENÚ","SEE THE MENU","Antes de entrar · Before you come in"],["MENÚ · MENU","Escanea · Scan","Para llevar · Carry-out"],["MENÚ · MENU","Escanea · Scan","Español · English"]];
-  const pos=[[.55,.9],[4.35,.9],[.55,5.1],[4.35,5.1]];
-  $("pages").innerHTML=`<div class="page">${pos.map((p,i)=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>${lines[i][0]}</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(url)}</div><div class="sc">${lines[i][1]}<i>${lines[i][2]}</i></div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Recorta por el borde · Cut along the border · MX STUDIO ✝</div></div>`;
+  const pos=[[.46,1.71],[4.5,1.71],[.46,5.75],[4.5,5.75]];
+  $("pages").innerHTML=`<div class="page">${pos.map((p,i)=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>${lines[i][0]}</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(url)}</div><div class="sc">${lines[i][1]}<i>${lines[i][2]}</i></div><div class="by">by MX STUDIO ✝</div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Vinil blanco mate laminado · 9×9 cm · corte a contorno · White matte laminated vinyl · 9×9 cm · contour cut · MX STUDIO ✝</div></div>`;
   $("tt").textContent="Stickers · "+d.name;fit();return}
  $("pages").innerHTML=`<div class="page">${marks()}<div class="side f"><div class="ph" style="background-image:url('${cover}')"></div><div class="nm"><h1>${esc(d.name)}</h1><p>${esc(d.tagline.es)} · ${esc(d.tagline.en)}</p></div><div class="band"></div><div class="qrw">${qrSvg(url)}</div>
   <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div><div class="ft">APP POR MX STUDIO ✝ · ACAPULCO</div></div></div>
   <div class="page">${marks()}<div class="side b"><div class="in"><div class="cr">✝</div><h2>${esc(d.name)}</h2><div class="tg">${esc(d.tagline.es)}</div><hr>
   <div class="st"><h3>Lo más pedido · Most popular</h3>${top}${wifi}</div><hr>
   <div class="inf"><b>Dirección · Address:</b> ${esc(d.address)}${tel?`<br><b>Tel:</b> ${esc(tel)}`:""}<br><b>Horario:</b> ${esc(d.hours.es)}<br><b>Hours:</b> ${esc(d.hours.en)}</div>
-  <div class="ft">Escanea el código al frente · Scan the code on the front</div></div></div></div>`;
+  <div class="ft">Escanea el código al frente · Scan the code on the front · by MX STUDIO ✝</div></div></div></div>`;
  fit()}
 
 const ld=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
@@ -127,7 +127,7 @@ function showPdf(){const url=URL.createObjectURL(PDFB),f=new File([PDFB],PDFN,{t
   ${can?`<button id="pdfShare" style="${B};background:#25d366;color:#05301a">📤 Compartir: imprimir, WhatsApp a la imprenta, guardar · Share</button>`:""}
   <a href="${url}" download="${PDFN}" style="${B};background:#d9a35f;color:#1a0f0a">⬇️ Descargar PDF · Download</a>
   <a href="${url}" target="_blank" style="${B};background:#eee;color:#1d1715">👀 Abrir PDF · Open</a>
-  <p style="font-size:12.5px;opacity:.7;margin:10px 0 0">${F==="m"?"Imprenta: 5×7 in, papel premium mate, doble cara, 100% tamaño real. Página 1 = frente, página 2 = reverso. · Print shop: 5×7 in premium matte card, double-sided, 100% actual size. Page 1 = front, page 2 = back.":"Imprime a 100% (tamaño real) en hoja carta · Print at 100% (actual size) on letter paper. Una cara · one side."}</p>
+  <p style="font-size:12.5px;opacity:.7;margin:10px 0 0">${F==="m"?"Imprenta: 5×7 in, papel premium mate, doble cara, 100% tamaño real. Página 1 = frente, página 2 = reverso. · Print shop: 5×7 in premium matte card, double-sided, 100% actual size. Page 1 = front, page 2 = back.":"Imprenta: vinil blanco mate <b>laminado</b> (resiste sol y agua), hoja carta, 100% tamaño real, <b>corte a contorno</b> en el borde de color — 4 stickers de 9×9 cm. · Print shop: white matte laminated vinyl, letter sheet, 100%, contour-cut on the colored border — four 9×9 cm stickers."}</p>
   <button id="pdfX" style="${B};background:transparent;color:#1d1715">Cerrar · Close</button></div>`;
  const sh=$("pdfShare");if(sh)sh.onclick=()=>navigator.share({files:[f],title:PDFN}).catch(()=>{});$("pdfX").onclick=()=>m.remove()}
 addEventListener("resize",fit);$("pr").onclick=makePdf;go();
