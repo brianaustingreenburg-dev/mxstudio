@@ -232,7 +232,7 @@ function render(){
  $("main").innerHTML=`<div class="head"><h1>${t.route} ${r.num} · <span>${esc(F(r,"title"))}</span></h1><p>${esc(F(r,"span"))} · ${r.stops.length} ${t.visits}</p></div>
   <div class="prog"><i style="width:${Math.round(done/r.stops.length*100)}%"></i></div><div class="progt">${done} ${t.of} ${r.stops.length} ${t.visited}</div>
   <div class="info">${esc(F(r,"desc"))}<br><b>${t.when}</b> ${t.whenV} · <b>${t.ask}</b> ${t.askV}<br><b>${t.bring}</b> ${esc(F(r,"bring"))}</div>
-  ${navBlock(r)}
+  ${walkBlock(r)}${navBlock(r)}
   ${cards||`<div class="empty">${t.empty}</div>`}
   <button class="share" id="share">${t.share}</button>
   <div class="foot">${t.foot}</div>`;
@@ -283,6 +283,40 @@ function routeMap(r){const pts=r.stops.map((s,i)=>({i:i+1,s,c:CO[s.id]})).filter
  const line=P.map(p=>p.x.toFixed(1)+","+p.y.toFixed(1)).join(" ");
  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block;background:rgba(255,255,255,.04);border-radius:14px;margin-top:8px"><polyline points="${line}" fill="none" stroke="#d9a35f" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>${P.map(p=>`<g><circle cx="${p.x}" cy="${p.y}" r="11" fill="${p.i===1?"#25d366":"#d98b5f"}" stroke="#120d0b" stroke-width="2"/><text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="11" font-weight="800" fill="#120d0b">${p.i}</text></g>`).join("")}</svg>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;font-size:.78em;margin-top:6px;opacity:.85">${P.map(p=>`<span><b style="color:var(--gold)">${p.i}</b> ${esc(p.s.n)}</span>`).join("")}</div>`}
+// ---- Directions without internet: bus from Pie de la Cuesta + walking legs computed from coordinates ----
+const WK={
+ home:{es:"Párate en la carretera (Av. Fuerza Aérea) enfrente de La Choza de la Freed, del lado que va hacia Acapulco. Toma el camión que dice ZÓCALO – PIE DE LA CUESTA y bájate al final, en el Zócalo (30–45 min).",en:"Stand on the main road (Av. Fuerza Aérea) in front of La Choza de la Freed, on the side heading toward Acapulco. Take the bus marked ZÓCALO – PIE DE LA CUESTA and ride to the end, the Zócalo (30–45 min)."},
+ sanborns:{es:"En el Zócalo camina 2 cuadras al este (hacia los hoteles) a la parada junto a Sanborns, en la Costera.",en:"At the Zócalo walk 2 blocks east (toward the hotels) to the bus stop next to Sanborns on the Costera."},
+ back:{es:"🏠 De regreso: en la Costera toma un camión hacia el oeste que diga ZÓCALO o CALETA, bájate en el Zócalo y toma ZÓCALO – PIE DE LA CUESTA. Pregunta a qué hora sale el último.",en:"🏠 Going home: on the Costera take a bus going west marked ZÓCALO or CALETA, get off at the Zócalo, then take ZÓCALO – PIE DE LA CUESTA. Ask what time the last one leaves."},
+ r:{
+  "Costa Azul":{es:"Toma un camión hacia el este que diga BASE, HORNOS, CICI o WAL-MART. Dile al chofer: “Costera 81, Club Deportivo” (Ojo de Bife). 20–30 min.",en:"Take a bus going east marked BASE, HORNOS, CICI or WAL-MART. Tell the driver: “Costera 81, Club Deportivo” (Ojo de Bife). 20–30 min."},
+  "Magallanes → Condesa":{es:"Toma un camión hacia el este que diga BASE, HORNOS, CICI o WAL-MART. Bájate en la plaza Galerías Acapulco (Costera 1632, Magallanes). 15–20 min.",en:"Take a bus going east marked BASE, HORNOS, CICI or WAL-MART. Get off at Galerías Acapulco mall (Costera 1632, Magallanes). 15–20 min."},
+  "Caleta → Centro → Hornos":{es:"Ya llegaste: Mi Piaci y La Casa de los Abuelos están en el mismo Zócalo (Plaza Álvarez 6).",en:"You're already there: Mi Piaci and La Casa de los Abuelos are right on the Zócalo (Plaza Álvarez 6).",order:["Mi Piaci","La Casa de los Abuelos","Mesón de los Ángeles","The Only Pizzas Gourmet","Malaespina Burgers & Wings","El Amigo Miguel","Restaurante El Camarón Jackie","Chi Palace","El Nono","Chelas & Burgers"],
+   hop:{"Mesón de los Ángeles":{es:"🚌 En el Zócalo toma un camión que diga CALETA. Dile al chofer: “Av. López Mateos 147, Las Playas”.",en:"🚌 At the Zócalo take a bus marked CALETA. Tell the driver: “Av. López Mateos 147, Las Playas”."},
+        "The Only Pizzas Gourmet":{es:"🚌 Regresa con un camión hacia el este que diga BASE u HORNOS. Bájate en Hornos, Av. Capitán Malaspina (Plaza Navegantes).",en:"🚌 Take a bus going east marked BASE or HORNOS. Get off in Hornos at Av. Capitán Malaspina (Plaza Navegantes)."},
+        "Chelas & Burgers":{es:"🚕 Está tierra adentro (Calle 1, entre Av. Lázaro Cárdenas y Av. Vicente Guerrero). Toma un taxi o colectivo; es la última del día.",en:"🚕 It's inland (Calle 1, between Av. Lázaro Cárdenas and Av. Vicente Guerrero). Take a taxi or colectivo; do it last."}}},
+  "Diamante → Barra Vieja":{es:"⚠️ Esta ruta es larga: mejor en taxi o coche. En camión: en la parada de Sanborns toma uno que diga PUERTO MARQUÉS (sube por la Escénica). Baja en Puerto Marqués y pide “Punta Diamante, Blvd. Cabo Marqués” (Península).",en:"⚠️ This route is long: best by taxi or car. By bus: at the Sanborns stop take one marked PUERTO MARQUÉS (it climbs the Escénica). Get off in Puerto Marqués and ask for “Punta Diamante, Blvd. Cabo Marqués” (Península)."},
+  "Icacos → Las Brisas":{es:"Toma un camión hacia el este que diga PUERTO MARQUÉS (sube por la Escénica). Bájate en Plaza Las Pérgolas (Escénica esq. Ejército Nacional, Las Brisas). La Escénica casi no tiene banqueta: para subir entre paradas usa el mismo camión.",en:"Take a bus going east marked PUERTO MARQUÉS (it climbs the Escénica). Get off at Plaza Las Pérgolas (Escénica & Ejército Nacional, Las Brisas). The Escénica has almost no sidewalk: use the same bus for the uphill hops.",maxWalk:300}
+ }};
+function _hv(a,b){const R=6371000,t=x=>x*Math.PI/180,dl=t(b[0]-a[0]),dn=t(b[1]-a[1]),h=Math.sin(dl/2)**2+Math.cos(t(a[0]))*Math.cos(t(b[0]))*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
+function _dir(a,b,en){const y=Math.sin((b[1]-a[1])*Math.PI/180)*Math.cos(b[0]*Math.PI/180),x=Math.cos(a[0]*Math.PI/180)*Math.sin(b[0]*Math.PI/180)-Math.sin(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.cos((b[1]-a[1])*Math.PI/180);
+ const br=(Math.atan2(y,x)*180/Math.PI+360)%360,i=Math.round(br/45)%8;
+ const E=["north","northeast","east","southeast","south","southwest","west","northwest"],S=["norte","noreste","este","sureste","sur","suroeste","oeste","noroeste"];
+ const hint=i===2?(en?" (toward the airport)":" (hacia el aeropuerto)"):i===6?(en?" (toward the Zócalo)":" (hacia el Zócalo)"):"";
+ return (en?E[i]:S[i])+hint}
+function walkBlock(r){const en=st.lang==="en";const X=WK.r[r.title];if(!X)return "";
+ let ss=r.stops.filter(s=>CO[s.id]);if(X.order){const o=X.order;ss=ss.slice().sort((a,b)=>(o.indexOf(a.n)+99)%999-(o.indexOf(b.n)+99)%999)}else if(ss.length>2){const rest=ss.slice(1),out=[ss[0]];while(rest.length){const c=CO[out[out.length-1].id];let bi=0,bd=1e12;rest.forEach((s,k)=>{const d=_hv(c,CO[s.id]);if(d<bd){bd=d;bi=k}});out.push(rest.splice(bi,1)[0])}ss=out}
+ const lines=[];lines.push(`<li>🚌 ${WK.home[en?"en":"es"]}</li>`);if(!r.title.startsWith("Caleta"))lines.push(`<li>🚶 ${WK.sanborns[en?"en":"es"]}</li>`);
+ lines.push(`<li>🚌 ${X[en?"en":"es"]}</li>`);
+ ss.forEach((s,k)=>{const nm=`<b>${k+1}. ${esc(s.n)}</b>`,ad=`<small style="opacity:.75">${esc(s.a)}</small>`;
+  if(k===0){lines.push(`<li>📍 ${nm} — ${en?"first stop":"primera parada"}<br>${ad}</li>`);return}
+  const hop=X.hop&&X.hop[s.n];if(hop){lines.push(`<li>${hop[en?"en":"es"]}<br>📍 ${nm}<br>${ad}</li>`);return}
+  const p=ss[k-1],d=_hv(CO[p.id],CO[s.id]),w=d*1.3,min=Math.max(1,Math.round(w/80)),dr=_dir(CO[p.id],CO[s.id],en);
+  if(d<25)lines.push(`<li>👉 ${nm} — ${en?"right next door / same building":"al lado / en el mismo edificio"}<br>${ad}</li>`);
+  else if(d<=(X.maxWalk||1200))lines.push(`<li>🚶 ${en?"Walk":"Camina"} ${dr} ${en?"about":"unos"} <b>${Math.round(w/10)*10} m</b> (${min} min) → ${nm}<br>${ad}</li>`);
+  else lines.push(`<li>🚌 ${en?"Too far to walk":"Muy lejos para caminar"} (${(d/1000).toFixed(1)} km ${dr}). ${en?"Take a bus, colectivo or taxi and ask for:":"Toma camión, colectivo o taxi y pide:"}<br>📍 ${nm}<br>${ad}</li>`)});
+ lines.push(`<li>${WK.back[en?"en":"es"]}</li>`);
+ return `<details class="navb" open><summary style="font-weight:800;cursor:pointer">🚌🚶 ${en?"How to get there (no internet needed)":"Cómo llegar (sin internet)"}</summary><p style="font-size:.8em;opacity:.75;margin:6px 0">${en?"Distances are from the map; side of the street isn't known — look for the name. Use the iPhone Compass app (works offline) for east/west. Confirm bus signs with the driver.":"Distancias sacadas del mapa; el lado de la calle no lo sé — busca el nombre. Usa la app Brújula del iPhone (funciona sin internet) para este/oeste. Confirma el letrero con el chofer."}</p><ul style="list-style:none;padding:0;margin:6px 0;display:grid;gap:10px;font-size:.92em">${lines.join("")}</ul></details>`}
 function navBlock(r){const t=L(),st=r.stops.filter(s=>CO[s.id]);if(!st.length)return "";const legs=[];let i=0;
  while(i<st.length){const end=Math.min(i+4,st.length),seg=st.slice(i,end),prev=i>0?st[i-1]:null,dest=seg[seg.length-1],way=seg.slice(0,-1);
   const ll=s=>CO[s.id][0]+","+CO[s.id][1];
