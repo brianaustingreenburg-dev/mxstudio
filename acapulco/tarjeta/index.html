@@ -101,11 +101,11 @@ async function go(){
   $("pages").innerHTML=`<div class="page">${pos.map((p,i)=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>${lines[i][0]}</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(url)}</div><div class="sc">${lines[i][1]}<i>${lines[i][2]}</i></div><div class="by">by MX STUDIO ✝</div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Vinil blanco mate laminado · 9×9 cm · corte a contorno · White matte laminated vinyl · 9×9 cm · contour cut · MX STUDIO ✝</div></div>`;
   $("tt").textContent="Stickers · "+d.name;fit();return}
  $("pages").innerHTML=`<div class="page">${marks()}<div class="side f"><div class="ph" style="background-image:url('${cover}')"></div><div class="nm"><h1>${esc(d.name)}</h1><p>${esc(d.tagline.es)} · ${esc(d.tagline.en)}</p></div><div class="band"></div><div class="qrw">${qrSvg(url)}</div>
-  <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div><div class="ft">APP POR MX STUDIO ✝ · ACAPULCO</div></div></div>
+  <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div><div class="ft">Diseñado por MX Studio ✝ · Designed by MX Studio</div></div></div>
   <div class="page">${marks()}<div class="side b"><div class="in"><div class="cr">✝</div><h2>${esc(d.name)}</h2><div class="tg">${esc(d.tagline.es)}</div><hr>
   <div class="st"><h3>Lo más pedido · Most popular</h3>${top}${wifi}</div><hr>
   <div class="inf"><b>Dirección · Address:</b> ${esc(d.address)}${tel?`<br><b>Tel:</b> ${esc(tel)}`:""}<br><b>Horario:</b> ${esc(d.hours.es)}<br><b>Hours:</b> ${esc(d.hours.en)}</div>
-  <div class="ft">Escanea el código al frente · Scan the code on the front · by MX STUDIO ✝</div></div></div></div>`;
+  <div class="ft">Escanea el código al frente · Scan the code on the front</div></div></div></div>`;
  fit()}
 
 const ld=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
