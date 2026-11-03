@@ -31,6 +31,7 @@ button{font:inherit;color:inherit}
 .wrap{max-width:560px;margin:0 auto;padding:0 16px}
 .top{display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 0 6px}
 .brand{font-weight:800;letter-spacing:.22em;font-size:12px;color:var(--gold)}
+.cur{display:flex;gap:2px;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:auto;margin-right:6px}.cur button{all:unset;cursor:pointer;font-weight:800;font-size:12px;padding:7px 9px;border-radius:999px;opacity:.7}.cur button[aria-pressed=true]{background:#25d366;color:#05301a;opacity:1}.curnote{text-align:center;font-size:12px;opacity:.7;margin:6px 0 0}
 .lang{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;position:relative}
 .lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:8px 15px;border-radius:999px;color:var(--muted);position:relative;z-index:1}
 .lang button[aria-pressed=true]{color:#1a0f0a}
@@ -132,7 +133,7 @@ body.is-off .off{display:block}
 <div class="wrap">
   <header class="top">
     <div class="brand"><a id="backR" href="../rutas/" style="display:none;margin-right:8px;padding:6px 12px;border-radius:999px;background:rgba(217,163,95,.18);color:inherit;text-decoration:none;font-weight:800;font-size:13px">← MX Dashboard</a>MX STUDIO ✝</div>
-    <div class="lang" id="lang"><span class="knob"></span><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
+    <div class="cur" id="cur"><button data-c="mxn" aria-pressed="true">MXN</button><button data-c="usd" aria-pressed="false">USD</button><button data-c="cad" aria-pressed="false">CAD</button></div><div class="lang" id="lang"><span class="knob"></span><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
   </header>
   <section class="hero">
     <div class="glow"></div>
@@ -307,6 +308,16 @@ $("sheet").onclick=e=>{const u=T[lang];
  open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),mo:t.mo?fmt(t.mo)+(lang==="es"?"/mes":"/mo")+(t.n?(lang==="es"?` (${t.n} pagos de ${fmt(t.inst)}${host?" + hosting $300":""})`:` (${t.n} payments of ${fmt(t.inst)}${host?" + $300 hosting":""})`):(host?(lang==="es"?" (hosting)":" (hosting)"):"")):"",year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:pay==="w"?u.payWm:(lang==="es"?"Tarjeta (Stripe)":"Card (Stripe)")})+pkgText())}`,"_blank")};
 const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
 render();
+let CUR="mxn",FXR={usd:18.8,cad:12.4};try{CUR=localStorage.getItem("mx-precios-cur")||"mxn"}catch(_){}
+fetch("../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){if(+j.usd>5)FXR.usd=+j.usd;else if(+j.mxn>5)FXR.usd=+j.mxn;if(+j.cad>5)FXR.cad=+j.cad;applyCur()}}).catch(()=>{});
+const _cOrig=new WeakMap();
+function conv(s){if(CUR==="mxn")return s;const r=FXR[CUR],pre=CUR==="usd"?"US$":"CA$";return s.replace(/\$\s?([\d][\d,]*)/g,(m,n)=>{const v=Math.round(+n.replace(/,/g,"")/r/5)*5;return pre+v.toLocaleString("en-US")})}
+function applyCur(){const roots=[document.querySelector("main")||document.body];roots.forEach(root=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentNode.closest("#cur,#curnote,script,style"))continue;if(!_cOrig.has(n)||(_cOrig.get(n).last!==n.nodeValue))_cOrig.set(n,{o:n.nodeValue,last:null});const rec=_cOrig.get(n);const v=conv(rec.o);if(v!==n.nodeValue)n.nodeValue=v;rec.last=n.nodeValue}});
+ document.querySelectorAll("#cur button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===CUR));let cn=document.getElementById("curnote");if(!cn){cn=document.createElement("p");cn.id="curnote";cn.className="curnote";const pl=document.querySelector(".prices");pl&&pl.after(cn)}
+ const nt=CUR==="mxn"?"":(lang==="es"?`Aproximado · 1 ${CUR.toUpperCase()} ≈ $${FXR[CUR]} MXN · se cobra en pesos`:`Approximate · 1 ${CUR.toUpperCase()} ≈ $${FXR[CUR]} MXN · charged in pesos`);if(cn.textContent!==nt)cn.textContent=nt}
+document.getElementById("cur").onclick=e=>{const b=e.target.closest("[data-c]");if(!b)return;CUR=b.dataset.c;try{localStorage.setItem("mx-precios-cur",CUR)}catch(_){}applyCur()};
+new MutationObserver(()=>{if(CUR!=="mxn"&&!window._curBusy){window._curBusy=true;try{applyCur()}finally{window._curBusy=false}}}).observe(document.body,{childList:true,subtree:true,characterData:true});
+applyCur();
 if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
 </script>
 <div id="offok" style="position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#1d7a4a;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:99;display:none;white-space:nowrap">✓ Funciona sin internet · Works offline</div>

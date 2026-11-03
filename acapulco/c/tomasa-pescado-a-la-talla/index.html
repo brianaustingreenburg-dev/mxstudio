@@ -118,7 +118,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span id="demoPill"></span><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
+<div class="topbar"><div class="wrap"><span id="demoPill"></span><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button><button data-cur="cad" aria-pressed="false">CA$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
@@ -159,8 +159,9 @@ const U={
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tx=o=>!o?"":typeof o==="string"?o:(lang==="en"&&o.en?o.en:(o.es||o.en||""));
-let SP=null,cur="mxn",FX=18;try{cur=localStorage.getItem("mx-cur")||"mxn"}catch(_){}
-const money=n=>cur==="usd"?"US$"+(Math.round(Number(n||0)/FX*2)/2).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:1}):"$"+Number(n||0).toLocaleString("en-US");
+let SP=null,cur="mxn",FX=18.8;try{cur=localStorage.getItem("mx-cur")||"mxn"}catch(_){}
+let FXC=12.4;try{const c=+localStorage.getItem("mx-fxc");if(c>5)FXC=c}catch(_){}
+const money=n=>cur==="usd"||cur==="cad"?(cur==="usd"?"US$":"CA$")+(Math.round(Number(n||0)/(cur==="usd"?FX:FXC)*2)/2).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:1}):"$"+Number(n||0).toLocaleString("en-US");
 const KEY="app-"+(D.slug||"x");
 let lang="es",cart={},how="p",where="t",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
 const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
@@ -179,7 +180,7 @@ function render(){
  $("cur").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cur===cur));
  $("spec").innerHTML=SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"";
  const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
- $("rev").innerHTML=(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur==="usd"?`<p class="fxn">US$ ${lang==="en"?"approx.":"aprox."} · 1 USD ≈ $${FX} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
+ $("rev").innerHTML=(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
  const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
  $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
  const q=[];
@@ -307,7 +308,7 @@ if(!D.demo){const useC=c=>c&&(!UA||(+c.t||0)>(UA.t||0));
  fetch("config.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(useC(c)){applyCfg(c);if(c.wifi===null)D.wifi=null;try{localStorage.setItem(KEY+"-cfg",JSON.stringify(c))}catch(_){}render()}}).catch(()=>{})}
 try{SP=JSON.parse(localStorage.getItem(KEY+"-sp")||"null")}catch(_){}
 try{const f=+localStorage.getItem("mx-fx");if(f>5)FX=f}catch(_){}
-fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&+j.mxn>5){FX=+j.mxn;try{localStorage.setItem("mx-fx",FX)}catch(_){}render()}}).catch(()=>{});
+fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){const u=+j.usd||+j.mxn;if(u>5){FX=u;try{localStorage.setItem("mx-fx",FX)}catch(_){}}if(+j.cad>5){FXC=+j.cad;try{localStorage.setItem("mx-fxc",FXC)}catch(_){}}render()}}).catch(()=>{});
 if(!D.demo)fetch("special.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{SP=j&&j.on&&(j.es||j.en)?{es:j.es||j.en,en:j.en||j.es}:null;try{localStorage.setItem(KEY+"-sp",JSON.stringify(SP))}catch(_){}render()}).catch(()=>{});
 // live menu (edited from Rutas → ✏️ Editar menú) → menu.json
 if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if(Array.isArray(m)&&m.length)D.menu=m}catch(_){}
