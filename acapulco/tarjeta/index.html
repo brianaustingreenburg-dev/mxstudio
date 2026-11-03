@@ -19,6 +19,7 @@ html,body{font-family:M,sans-serif;background:#2a2320;-webkit-print-color-adjust
 .pages{display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 0 40px}
 .page{width:8.5in;height:11in;background:#fff;position:relative;overflow:hidden;transform-origin:top center}
 .cut{position:absolute;background:#000}
+body.m5 .page{width:5in;height:7in}body.m5 .side{left:-.125in;top:-.125in}body.m5 .cut{display:none}
 .side{position:absolute;left:1.625in;top:1.875in;width:5.25in;height:7.25in;overflow:hidden}
 /* front */
 .f{background:#fbf7f1}
@@ -58,10 +59,11 @@ html,body{font-family:M,sans-serif;background:#2a2320;-webkit-print-color-adjust
 .fmt{display:flex;gap:6px;padding:8px 14px 0}.fmt button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:9px 12px;border-radius:999px;background:#3a302b;color:#f6ece0}.fmt button.on{background:#d9a35f;color:#1a0f0a}
 .err{color:#fff;padding:30px;text-align:center}
 @media print{.bar,.help{display:none}.pages{padding:0;gap:0;display:block}.page{transform:none!important;margin:0!important;page-break-after:always;break-after:page}html,body{background:#fff}}
-</style></head><body>
+</style><style id="pgsz"></style>
+</head><body>
 <div class="bar"><div><b id="tt">Imprimir QR</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">📄 PDF · Imprimir / Enviar</button></div></div>
 <div class="fmt"><button data-f="m">🍽️ Tarjeta de mesa · Table</button><button data-f="st">🏷️ Stickers 4 · Puerta, caja · Door, counter</button><button data-f="rv">⭐ Reseñas · Reviews</button></div>
-<p class="help" id="help">Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir (AirPrint), mandarlo por WhatsApp a la imprenta o guardarlo. Imprime a <b>100%</b>, doble cara, y corta en las marcas. · Tap <b>📄 PDF</b> → <b>Share</b> to print, WhatsApp it to a print shop, or save it.</p>
+<p class="help" id="help">Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir (AirPrint), mandarlo por WhatsApp a la imprenta o guardarlo. Tarjeta <b>5×7</b> en papel <b>premium mate</b>, doble cara, a <b>100%</b> — sin recortar. · Tap <b>📄 PDF</b> → <b>Share</b> and send it to the print shop: 5×7 premium matte, double-sided, 100%.</p>
 <div class="pages" id="pages"></div>
 <script src="../lib/qrcode.js"></script>
 <script>
@@ -77,12 +79,12 @@ function marks(){const L=1.625,T=1.875,W=5.25,H=7.25,B=.125,out=[];
  xs.forEach(x=>{out.push(`<div class="cut" style="left:${x}in;top:${T-.4}in;width:.5pt;height:.32in"></div>`,`<div class="cut" style="left:${x}in;top:${T+H+.08}in;width:.5pt;height:.32in"></div>`)});
  ys.forEach(y=>{out.push(`<div class="cut" style="top:${y}in;left:${L-.4}in;height:.5pt;width:.32in"></div>`,`<div class="cut" style="top:${y}in;left:${L+W+.08}in;height:.5pt;width:.32in"></div>`)});
  return out.join("")}
-function fit(){const w=Math.min(innerWidth-16,816)/816;document.querySelectorAll(".page").forEach(p=>{p.style.transform=`scale(${w})`;p.style.marginBottom=`${(w-1)*1056}px`})}
+function fit(){const M=document.body.classList.contains("m5"),PW=M?480:816,PH=M?672:1056,w=Math.min(innerWidth-16,PW)/PW;document.querySelectorAll(".page").forEach(p=>{p.style.transform=`scale(${w})`;p.style.marginBottom=`${(w-1)*PH}px`})}
 async function go(){
  if(!slug){$("pages").innerHTML='<p class="err">Falta el restaurante · Missing place</p>';return}
  let d;try{d=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){$("pages").innerHTML='<p class="err">No se pudo cargar · Could not load</p>';return}
  const c=cfg(),url="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:"");
- document.documentElement.style.setProperty("--c",d.color);$("tt").textContent="Tarjeta de mesa · "+d.name;$("ts").textContent=A?"Con su WhatsApp y WiFi ✓":"Sin activar · not activated";
+ document.body.classList.toggle("m5",F==="m");$("pgsz").textContent=F==="m"?"@page{size:5in 7in;margin:0}":"";document.documentElement.style.setProperty("--c",d.color);$("tt").textContent="Tarjeta de mesa · "+d.name;$("ts").textContent=A?"Con su WhatsApp y WiFi ✓":"Sin activar · not activated";
  document.title="Tarjeta "+d.name;
  const cover="../c/"+slug+"/"+d.cover,top=(d.top||[]).map((n,i)=>`<div class="hl"><span>${i+1}</span><div><b>${esc(n.es)}</b><i>${esc(n.en)}</i></div></div>`).join("");
  const wifi="";
@@ -110,10 +112,10 @@ const ld=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.s
 let PDFB=null,PDFN="";
 async function makePdf(){const b=$("pr");b.textContent="⏳ Haciendo PDF… · Making PDF…";b.style.pointerEvents="none";
  try{if(!window.html2canvas)await ld("../lib/html2canvas.min.js");if(!window.jspdf)await ld("../lib/jspdf.umd.min.js");await document.fonts.ready;
-  const pages=[...document.querySelectorAll(".page")],{jsPDF}=window.jspdf,doc=new jsPDF({unit:"in",format:"letter",orientation:"portrait"});
+  const pages=[...document.querySelectorAll(".page")],{jsPDF}=window.jspdf,M5=F==="m",PW=M5?5:8.5,PH=M5?7:11,doc=new jsPDF({unit:"in",format:[PW,PH],orientation:"portrait"});
   for(let i=0;i<pages.length;i++){const pg=pages[i],tf=pg.style.transform,mb=pg.style.marginBottom;pg.style.transform="none";pg.style.marginBottom="0";
-   const cv=await html2canvas(pg,{scale:2.4,useCORS:true,backgroundColor:"#ffffff",logging:false});pg.style.transform=tf;pg.style.marginBottom=mb;
-   if(i)doc.addPage("letter","portrait");doc.addImage(cv.toDataURL("image/jpeg",.92),"JPEG",0,0,8.5,11)}
+   const cv=await html2canvas(pg,{scale:M5?3.6:2.4,useCORS:true,backgroundColor:"#ffffff",logging:false});pg.style.transform=tf;pg.style.marginBottom=mb;
+   if(i)doc.addPage([PW,PH],"portrait");doc.addImage(cv.toDataURL("image/jpeg",.94),"JPEG",0,0,PW,PH)}
   const kind=F==="st"?"stickers":F==="rv"?"resenas":"tarjetas-mesa";PDFN=`${slug}-${kind}.pdf`;PDFB=doc.output("blob");showPdf()}
  catch(e){alert("No se pudo hacer el PDF · Couldn't make the PDF");}
  b.textContent="📄 PDF · Imprimir / Enviar";b.style.pointerEvents=""}
@@ -125,7 +127,7 @@ function showPdf(){const url=URL.createObjectURL(PDFB),f=new File([PDFB],PDFN,{t
   ${can?`<button id="pdfShare" style="${B};background:#25d366;color:#05301a">📤 Compartir: imprimir, WhatsApp a la imprenta, guardar · Share</button>`:""}
   <a href="${url}" download="${PDFN}" style="${B};background:#d9a35f;color:#1a0f0a">⬇️ Descargar PDF · Download</a>
   <a href="${url}" target="_blank" style="${B};background:#eee;color:#1d1715">👀 Abrir PDF · Open</a>
-  <p style="font-size:12.5px;opacity:.7;margin:10px 0 0">Imprime a 100% (tamaño real) en hoja carta · Print at 100% (actual size) on letter paper. ${F==="m"?"Doble cara · double-sided.":"Una cara · one side."}</p>
+  <p style="font-size:12.5px;opacity:.7;margin:10px 0 0">${F==="m"?"Imprenta: 5×7 in, papel premium mate, doble cara, 100% tamaño real. Página 1 = frente, página 2 = reverso. · Print shop: 5×7 in premium matte card, double-sided, 100% actual size. Page 1 = front, page 2 = back.":"Imprime a 100% (tamaño real) en hoja carta · Print at 100% (actual size) on letter paper. Una cara · one side."}</p>
   <button id="pdfX" style="${B};background:transparent;color:#1d1715">Cerrar · Close</button></div>`;
  const sh=$("pdfShare");if(sh)sh.onclick=()=>navigator.share({files:[f],title:PDFN}).catch(()=>{});$("pdfX").onclick=()=>m.remove()}
 addEventListener("resize",fit);$("pr").onclick=makePdf;go();
