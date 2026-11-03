@@ -175,9 +175,22 @@ body.is-off .off{display:block}
 <script>
 const PHONE="527441930502";
 const QS=new URLSearchParams(location.search),PS=(QS.get("s")||"").replace(/[^a-z0-9-]/g,""),PA=(QS.get("a")||"").replace(/[^A-Za-z0-9_-]/g,""),PN=QS.get("n")||"";
+function cfgPA(){try{return JSON.parse(decodeURIComponent(escape(atob(PA.replace(/-/g,"+").replace(/_/g,"/")))))}catch(_){return {}}}
+const esc2=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const b64u=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const ymd=x=>`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`;
+const addY=(d,n)=>{const x=new Date(d);x.setFullYear(x.getFullYear()+n);return x};
+function icsFor(s){const r=new Date(s.renew+"T12:00"),p=n=>String(n).padStart(2,"0"),dt=`${r.getFullYear()}${p(r.getMonth()+1)}${p(r.getDate())}`;
+ return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//MX Studio//ES","BEGIN:VEVENT","UID:"+s.id+"@mxstudio","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z","DTSTART;VALUE=DATE:"+dt,"SUMMARY:Renovación MX Studio: "+s.biz+" ($1,000)",
+  "DESCRIPTION:Cobrar renovación anual de "+s.biz+". Dueño: "+(s.name||"")+" · WhatsApp: "+(s.wa||"")+" · Email: "+(s.email||""),
+  "BEGIN:VALARM","TRIGGER:-P30D","ACTION:DISPLAY","DESCRIPTION:Renovación en 30 días: "+s.biz,"END:VALARM","BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Renovación mañana: "+s.biz,"END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n")}
+async function pushCfgP(slug,cfg){let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}if(!key||!navigator.onLine)return false;
+ const body={whatsapp:cfg.w,wifi:cfg.n?{name:cfg.n,pass:cfg.p}:null,waiter:cfg.o.includes("m"),carryout:cfg.o.includes("c"),reservations:cfg.o.includes("r"),t:cfg.t};
+ const api="https://api.github.com/repos/brianaustingreenburg-dev/mxstudio/contents/acapulco/c/"+slug+"/config.json",hd={Authorization:"Bearer "+key,Accept:"application/vnd.github+json"};
+ try{let sha;const g=await fetch(api+"?ref=main",{headers:hd,cache:"no-store"});if(g.ok)sha=(await g.json()).sha;const r=await fetch(api,{method:"PUT",headers:hd,body:JSON.stringify({message:"Venta "+slug+" ✝️",branch:"main",sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(body,null,1))))})});return r.ok}catch(_){return false}}
 function ownerWa(){try{const j=JSON.parse(decodeURIComponent(escape(atob(PA.replace(/-/g,"+").replace(/_/g,"/")))));return (j.w||"").replace(/^52/,"")}catch(_){return ""}}
-function pkgText(){if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=PA?"&a="+PA:"",es=lang==="es";
- return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(PA?"?a="+PA:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"}
+function pkgText(A){A=A===undefined?PA:A;if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=A?"&a="+A:"",es=lang==="es";
+ return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(A?"?a="+A:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"}
 const BASE={once:2000,year:1000};
 const X=[
  {k:"pago",ic:"💳",once:490,year:0,es:["Pago con tarjeta","Botón “Pagar con tarjeta” con tu link de Mercado Pago"],en:["Card payments","“Pay by card” button with your Mercado Pago link"]},
@@ -244,7 +257,7 @@ function openOrder(keep){const u=T[lang],t=totals();if(!orderNo)orderNo="MX-"+Da
  let biz="",nm="";try{biz=localStorage.getItem("mx-order-biz")||"";nm=localStorage.getItem("mx-order-name")||""}catch(_){}
  if(PN&&!keep)biz=PN;if(keep){biz=keep[0];nm=keep[1]}
  $("box").innerHTML=`<div class="inv-h"><div><b>🧾 ${u.oT}</b><small>${u.oNo} ${orderNo} · ${u.oDate}: ${d}</small></div><div class="olang"><div class="lang ${lang==="en"?"en":""}" id="olang"><span class="knob"></span><button data-ol="es" aria-pressed="${lang==="es"}">ES</button><button data-ol="en" aria-pressed="${lang==="en"}">EN</button></div><div class="brand2">MX STUDIO ✝</div></div></div>
- <label>${u.oBiz}</label><input id="oBiz" value="${biz.replace(/"/g,"&quot;")}" autocomplete="organization"><label>${u.oName}</label><input id="oName" value="${nm.replace(/"/g,"&quot;")}" autocomplete="name"><label>${lang==="es"?"WhatsApp del dueño (le llega su orden con su app y sus QR)":"Owner's WhatsApp (gets the order with their app and QRs)"}</label><input id="oWa" inputmode="tel" placeholder="744 123 4567" value="${ownerWa()}">
+ <label>${u.oBiz}</label><input id="oBiz" value="${biz.replace(/"/g,"&quot;")}" autocomplete="organization"><label>${u.oName}</label><input id="oName" value="${nm.replace(/"/g,"&quot;")}" autocomplete="name"><label>${lang==="es"?"WhatsApp del dueño (le llega su orden con su app y sus QR)":"Owner's WhatsApp (gets the order with their app and QRs)"}</label><input id="oWa" inputmode="tel" placeholder="744 123 4567" value="${ownerWa()}">${PS?`<label>Email</label><input id="oEm" type="email" inputmode="email" autocomplete="email" placeholder="nombre@correo.com"><label>${lang==="es"?"WiFi del restaurante: nombre exacto":"Restaurant WiFi: exact name"}</label><input id="oWn" autocomplete="off" autocapitalize="off" value="${String(cfgPA().n||"").replace(/"/g,"&quot;")}"><label>${lang==="es"?"WiFi: contraseña exacta":"WiFi: exact password"}</label><input id="oWp" autocomplete="off" autocapitalize="off" value="${String(cfgPA().p||"").replace(/"/g,"&quot;")}">`:""}
  <div style="margin-top:12px">${orderLines().map(l=>`<div class="ln"><span>${l[0]}</span><span>${l[1]}</span></div>`).join("")}</div>
  <div class="tt"><span>${u.oToday}</span><span>${fmt(t.o)}</span></div><div class="ty"><span>${u.oYear}</span><span>${fmt(t.m)}</span></div>
  <label>${u.pay}</label><div class="ptog ${pay==="w"?"w":""}" id="ptog"><span class="pk"></span><button data-pay="c" aria-pressed="${pay==="c"}">${u.payC}</button><button data-pay="w" aria-pressed="${pay==="w"}">${u.payW}</button></div><p class="psub" id="psub">${pay==="c"?u.payCs:u.payWs}</p>
@@ -261,9 +274,22 @@ $("sheet").onclick=e=>{const u=T[lang];
  const t=totals();const lines=orderLines().map(l=>`• ${l[0]}: ${l[1]}`).join("\n");
  const d=new Date().toLocaleDateString(lang==="es"?"es-MX":"en-US",{day:"numeric",month:"long",year:"numeric"});
  const ow=($("oWa")&&$("oWa").value||"").replace(/\D/g,""),to=ow.length>=10?(ow.length===10?"52"+ow:ow):PHONE;
- let body=u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:u.payWm})+pkgText();
+ let A=PA,sale=null;
+ if(PS){const em=($("oEm").value||"").trim(),wn=($("oWn").value||"").trim(),wp=$("oWp").value||"",bw=ow.length>=10?(ow.length===10?"52"+ow:ow):"";
+  const cfg={w:bw,n:wn,p:wn?wp:"",o:bw?"mcr":"m",t:Date.now()};A=b64u(cfg);
+  try{localStorage.setItem("mx-act-"+PS,JSON.stringify(Object.assign({a:A},cfg)))}catch(_){}
+  const now=new Date();sale={id:orderNo,slug:PS,biz,name:nm,wa:bw,email:em,wifi:wn,date:ymd(now),renew:ymd(addY(now,1)),amount:t.o,year:t.m,pay:pay};
+  try{const L=JSON.parse(localStorage.getItem("mx-sales")||"[]").filter(x=>x.slug!==PS);L.push(sale);localStorage.setItem("mx-sales",JSON.stringify(L));localStorage.setItem("mx-sales-dirty","1")}catch(_){}
+  pushCfgP(PS,cfg)}
+ let body=u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:u.payWm})+(sale?(lang==="es"?`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 Renovación: ${sale.renew} · ${fmt(t.m)}`:`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 Renewal: ${sale.renew} · ${fmt(t.m)}`):"")+pkgText(A);
  if(to!==PHONE)body=body.replace(/\n\n(Hola MX Studio, quiero mi app\. 🙌|Hi MX Studio, I want my app\. 🙌)/,"")+(lang==="es"?"\n\n¡Gracias por tu compra! 🙌\n— MX Studio ✝ · +52 744 193 0502":"\n\nThank you for your purchase! 🙌\n— MX Studio ✝ · +52 744 193 0502");
- open(`https://api.whatsapp.com/send?phone=${to}&text=${encodeURIComponent(body)}`,"_blank");return;
+ open(`https://api.whatsapp.com/send?phone=${to}&text=${encodeURIComponent(body)}`,"_blank");
+ if(sale){const es=lang==="es",url=URL.createObjectURL(new Blob([icsFor(sale)],{type:"text/calendar"}));
+  $("box").innerHTML=`<div style="text-align:center;padding:10px 4px"><div style="font-size:44px">✅</div><h3 style="margin:6px 0">${es?"Venta guardada":"Sale saved"}</h3><p>${esc2(biz)} · ${fmt(t.o)}</p><p style="font-weight:800">🔁 ${es?"Renueva":"Renews"}: ${sale.renew} · ${fmt(t.m)}</p>
+  <a style="display:block;text-decoration:none;margin:14px 0 8px;padding:16px;border-radius:14px;background:#25d366;color:#05301a;font-weight:800;font-size:16px" href="${url}" download="renovacion-${PS}.ics">📅 ${es?"Agregar renovación a mi calendario":"Add renewal to my calendar"}</a>
+  <p style="font-size:13px;opacity:.75">${es?"Te avisa 30 días y 1 día antes. La app ya quedó activada con su WhatsApp y WiFi.":"Alerts you 30 days and 1 day before. The app is already activated with their WhatsApp and WiFi."}</p>
+  <button id="oClose" style="all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;margin-top:10px;padding:14px;border-radius:14px;background:#e9e1d6;color:#1d1715;font-weight:800;text-align:center">${u.oCancel}</button></div>`}
+ return;
  open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:u.payWm})+pkgText())}`,"_blank")};
 const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
 render();
