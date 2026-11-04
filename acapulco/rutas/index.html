@@ -116,7 +116,8 @@ body.is-off .off{display:inline-block}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--s2);border:1px solid var(--gold2);padding:12px 16px;border-radius:14px;font-weight:700;font-size:.8em;transition:.25s;z-index:30;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .pqr svg{display:block!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}
-html[lang=en] #guion .le{display:none!important}#guion details.sayes{margin:4px 0 8px;font-size:.92em;opacity:.9}#guion details.sayes summary{cursor:pointer;font-weight:700;color:var(--gold)}html[lang=es] #guion .ln,html[lang=es] #guion p.en{display:none!important}
+html[lang=en] #guion h2 .le,#guion h3 .le,#guion .go>b .le{display:inline!important}#guion h2 .le::after,#guion h3 .le::after,#guion .go>b .le::after{content:" · "}#guion p.do .le,#guion .gh p .le{display:none!important}
+#guion p.bi-es{font-weight:800;font-size:1.02em;margin:8px 0 4px}#guion p.bi-en{opacity:.75;font-size:.9em;margin:0 0 6px}#guion details.sayes{margin:4px 0 8px;font-size:.92em;opacity:.9}#guion details.sayes summary{cursor:pointer;font-weight:700;color:var(--gold)}html[lang=es] #guion .ln,html[lang=es] #guion p.en{display:none!important}
 </style>
 </head>
 <body>
@@ -648,7 +649,7 @@ try{if(new URLSearchParams(location.search).has("fresh"))history.replaceState(nu
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;st.lang=b.dataset.l;save();applyLang();render();if(st.mode==="v")drawSales();const sh=$("sheet");if(sh.classList.contains("on"))biNode(sh)};
 $("sheet").addEventListener("input",editInput);
 try{const m=location.hash.match(/k=([A-Za-z0-9_]+)/);if(m){localStorage.setItem("crear-gh",m[1]);history.replaceState(null,"",location.pathname+location.search);setTimeout(()=>toast("🔑 ✓ Llave guardada · Key saved"),400)}}catch(_){}
-document.querySelectorAll("#guion p.es").forEach(pe=>{const d=document.createElement("details");d.className="sayes";d.innerHTML=`<summary>🇲🇽 Say it in Spanish</summary><p class="es2">${pe.innerHTML}</p>`;const en=pe.nextElementSibling&&pe.nextElementSibling.classList.contains("en")?pe.nextElementSibling:null;if(en)en.after(d);else pe.after(d);pe.remove()});
+document.querySelectorAll("#guion p.es").forEach(pe=>{const q=document.createElement("p");q.className="bi-es";q.innerHTML="🇲🇽 "+pe.innerHTML;const en=pe.nextElementSibling&&pe.nextElementSibling.classList.contains("en")?pe.nextElementSibling:null;if(en){const e2=document.createElement("p");e2.className="bi-en";e2.innerHTML="🇺🇸 "+en.innerHTML;en.replaceWith(e2)}pe.replaceWith(q)});
 try{const mm=location.hash.match(/chg=([A-Za-z0-9_-]+)/);if(mm)setTimeout(()=>showChg(mm[1]),600)}catch(_){}
 $("keyB").onclick=openKey;keyDot();setTimeout(()=>{try{salesSync()}catch(_){}},1500);
 $("sheet").addEventListener("change",e=>{if(e.target.id==="qaPh"){qaPhoto(e.target.files[0]);return}if(e.target.id==="qaSec"){QA.sec=e.target.value}});
