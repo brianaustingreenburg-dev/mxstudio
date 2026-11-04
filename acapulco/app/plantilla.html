@@ -121,6 +121,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
+  <div id="rvtop"></div>
   <div class="info" id="info"></div>
   <div id="spec"></div><div id="actv"></div><div id="story"></div><button class="gamesb" id="gamesB" type="button"><span>🎮</span><b id="gamesT"></b><small id="gamesS"></small></button>
   <section class="pop" id="pop"></section>
@@ -179,6 +180,7 @@ function render(){
  $("cur").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cur===cur));
  $("spec").innerHTML=lyBanner()+(SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"");
  const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
+ $("rvtop").innerHTML=pid&&!D.demo&&OP.revTop!==false?`<a href="https://search.google.com/local/reviews?placeid=${esc(pid)}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:inherit;text-decoration:none;font-weight:800"><span style="font-size:20px">⭐</span><span style="flex:1">${lang==="en"?"See our Google reviews":"Ver nuestras reseñas en Google"}<br><small style="font-weight:600;opacity:.7">${lang==="en"?"What our guests say about the food":"Lo que dicen nuestros clientes de la comida"}</small></span><span style="opacity:.6">›</span></a>`:"";
  $("rev").innerHTML=lyBill()+(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
  const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
  $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
@@ -311,6 +313,8 @@ if(!D.demo){const useC=c=>c&&(!UA||(+c.t||0)>(UA.t||0));
 try{SP=JSON.parse(localStorage.getItem(KEY+"-sp")||"null")}catch(_){}
 try{const f=+localStorage.getItem("mx-fx");if(f>5)FX=f}catch(_){}
 fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){const u=+j.usd||+j.mxn;if(u>5){FX=u;try{localStorage.setItem("mx-fx",FX)}catch(_){}}if(+j.cad>5){FXC=+j.cad;try{localStorage.setItem("mx-fxc",FXC)}catch(_){}}render()}}).catch(()=>{});
+let OP={};try{OP=JSON.parse(localStorage.getItem(KEY+"-op")||"{}")||{}}catch(_){}
+if(!D.demo)fetch("opts.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{OP=j||{};try{localStorage.setItem(KEY+"-op",JSON.stringify(OP))}catch(_){}render()}).catch(()=>{});
 let LY=null;try{LY=JSON.parse(localStorage.getItem(KEY+"-ly")||"null")}catch(_){}
 if(!D.demo)fetch("loyalty.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{LY=j&&j.on?j:null;try{localStorage.setItem(KEY+"-ly",JSON.stringify(LY))}catch(_){}render()}).catch(()=>{});
 const cpnGet=()=>{try{return JSON.parse(localStorage.getItem(KEY+"-cpn")||"null")}catch(_){return null}},cpnSet=o=>{try{localStorage.setItem(KEY+"-cpn",JSON.stringify(o))}catch(_){}};
