@@ -129,7 +129,7 @@ html[lang=en] #guion h2 .le,#guion h3 .le,#guion .go>b .le{display:inline!import
     <button class="ib" id="bigger" aria-label="Letra más grande">A+</button>
     <button class="ib" id="prices" aria-label="App de precios">📱</button><button class="ib" id="refresh" aria-label="Actualizar">🔄</button><button class="ib" id="keyB" aria-label="Llave GitHub" style="position:relative">🔑<i id="keyDot" style="position:absolute;top:4px;right:4px;width:9px;height:9px;border-radius:50%;background:#e5484d"></i></button>
   </div>
-  <div class="modes" id="modes"><button data-m="r" data-t="mR"></button><button data-m="p" data-t="mP"></button><button data-m="$" data-t="mPr"></button><button data-m="g" data-t="mG"></button><button data-m="v" data-t="mV"></button></div>
+  <div class="modes" id="modes"><button data-m="r" data-t="mR"></button><button data-m="p" data-t="mP"></button><button data-m="$" data-t="mPr"></button><button data-m="v" data-t="mV"></button></div>
   <div class="tabs" id="tabs"></div>
   <div class="filters" id="filters">
     <button class="f" data-f="all" aria-pressed="true" data-t="fAll"></button>
@@ -199,7 +199,7 @@ const PEND={"types": {"R": {"es": "Restaurante", "c": "#d98b5f", "en": "Restaura
 const RT=()=>st.mode==="p"?PEND.routes:DATA.routes;
 const ALLR=()=>[...DATA.routes,...PEND.routes];
 try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s)st=Object.assign(st,s)}catch(e){}
-st.lang="en"; // MX Dashboard is English-only (customers get their own ES/EN toggle)
+st.lang="en";if(st.mode==="g")st.mode="r"; // MX Dashboard is English-only (customers get their own ES/EN toggle)
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mk=id=>st.marks[id]||(st.marks[id]={v:0,i:0,f:0,note:""});
