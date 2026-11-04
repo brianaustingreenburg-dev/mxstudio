@@ -222,6 +222,23 @@ async function editOwn(slug){const o=ownOf(slug)||{};const n=prompt("Who to ask 
  try{const hd={Authorization:"Bearer "+key,Accept:"application/vnd.github+json"},api="https://api.github.com/repos/brianaustingreenburg-dev/mxstudio/contents/acapulco/lib/owners.json";let sha;const g=await fetch(api+"?ref=main",{headers:hd,cache:"no-store"});if(g.ok)sha=(await g.json()).sha;
   await fetch(api,{method:"PUT",headers:hd,body:JSON.stringify({message:"Contactos ✝️",branch:"main",sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(OWN,null,1))))})})}catch(_){}}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-own]");if(b){e.stopPropagation();editOwn(b.dataset.own)}},true);
+// ---- 📩 Owner not here: send sample + prices on WhatsApp, follow up in 2 days ----
+window.ymd=window.ymd||(d=>{const x=new Date(d),p=n=>String(n).padStart(2,"0");return x.getFullYear()+"-"+p(x.getMonth()+1)+"-"+p(x.getDate())});
+const DIA=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+function fdTxt(d){const x=new Date(d+"T12:00");return x.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
+function addDays(n){const d=new Date();d.setDate(d.getDate()+n);if(d.getDay()===0)d.setDate(d.getDate()+1);return d}
+function leftMsg(slug,nm,who,fd){const G="https://go.myjefetech.app/acapulco/",dia=DIA[fd.getDay()]+" "+fd.getDate();
+ return `¡Hola! Soy Brian, de MX Studio ✝\n\nHoy pasé a ${nm}${who?" y le dejé la información con "+who:""}. Le preparé una muestra de su app, con su menú completo en español e inglés, fotos, precios en dólares, botón de WiFi, cómo llegar y reseñas de Google:\n👉 ${G}c/${slug}/\n\nAquí está todo lo que incluye y el precio:\n👉 ${G}precios/?s=${slug}&n=${encodeURIComponent(nm)}\n\n$8,000 con todo incluido y el primer año incluido. O $3,000 hoy y el resto cada 3 meses, en efectivo y sin comisiones.\n\nPaso de nuevo el ${dia} para enseñársela en persona. ¿A qué hora le queda bien?`}
+function openLeft(slug,sid,nm){const fd=addDays(2);
+ $("sheetBox").innerHTML=`<h3 class="ah">📩 Owner not here</h3><div class="an">${esc(nm)}</div><p class="as">Sends the sample app and the price page on WhatsApp, and marks a follow-up for <b>${esc(fd.toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric"}))}</b>.</p>
+ <label class="al">Who did you leave it with? (optional)</label><input class="ai" id="lwWho" placeholder="Ej: Carlos, el encargado">
+ <label class="al">Owner's WhatsApp (optional — leave empty to pick the chat yourself)</label><input class="ai" id="lwWa" inputmode="tel" placeholder="744 123 4567">
+ <button class="share" id="lwSend" data-slug="${slug}" data-sid="${sid}" data-nm="${esc(nm)}">📩 Send on WhatsApp</button><button class="close" id="closeSheet">Close</button>`;$("sheet").classList.add("on")}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-left]");if(b){e.stopPropagation();openLeft(b.dataset.left,b.dataset.sid,b.dataset.nm);return}
+ if(e.target.id==="lwSend"){const x=e.target,who=$("lwWho").value.trim(),wa=$("lwWa").value.replace(/\D/g,""),fd=addDays(2);
+  const num=wa?(wa.length===10?"52"+wa:wa):"";open("https://api.whatsapp.com/send?"+(num?"phone="+num+"&":"")+"text="+encodeURIComponent(leftMsg(x.dataset.slug,x.dataset.nm,who,fd)),"_blank");
+  const m=mk(x.dataset.sid);m.v=1;m.f=1;m.fd=ymd(fd);if(who)m.lw=who;if(wa)m.wa=num;const line="📩 "+new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"})+": sent sample"+(who?" (left with "+who+")":"")+(num?" · WA +"+num:"");m.note=(m.note?m.note+"\n":"")+line;save();$("sheet").classList.remove("on");render();toast("↻ Follow up "+fdTxt(m.fd))}},true);
+
 function render(){
  if(!RT().some(x=>x.num===st.route))st.route=1;
  renderTabs();
@@ -235,14 +252,14 @@ function render(){
   return `<div class="card ${m.v?"done":""}" data-id="${s.id}">
    <div class="ch"><div class="n">${m.v?"✓":i+1}</div><div style="flex:1;min-width:0">
     <div class="nm">${esc(s.n)}</div><span class="tag" style="background:${ty.c}">${F(ty,"es").toUpperCase()}</span>
-    <div class="ad">${esc(s.a)}</div><div class="pi">→ ${esc(F(s,"p"))}</div>${ownLine(APPS[s.demo])}${s.demo in READY?(isReady(APPS[s.demo])?`<div class="rdy ok">✅ Menú real · Ready to sell</div>`:`<div class="rdy no">⚠️ Menú por confirmar · Menu needs checking</div>`):""}</div></div>
+    <div class="ad">${esc(s.a)}</div><div class="pi">→ ${esc(F(s,"p"))}</div>${m.fd?`<div class="pi" style="color:#f0a35e;font-weight:800">↻ Follow up ${esc(fdTxt(m.fd))}${m.lw?" · left with "+esc(m.lw):""}</div>`:""}${ownLine(APPS[s.demo])}${s.demo in READY?(isReady(APPS[s.demo])?`<div class="rdy ok">✅ Menú real · Ready to sell</div>`:`<div class="rdy no">⚠️ Menú por confirmar · Menu needs checking</div>`):""}</div></div>
    <div class="acts">
     <button class="a v ${m.v?"on":""}" data-k="v"><b>✓</b>${t.v}</button>
     <button class="a i ${m.i?"on":""}" data-k="i"><b>★</b>${t.i}</button>
     <button class="a f ${m.f?"on":""}" data-k="f"><b>↻</b>${t.f}</button>
    </div>
    <textarea data-note placeholder="${t.note}">${esc(m.note||"")}</textarea>
-   ${APPS[s.demo]?`<button class="demoBtn" style="width:100%;border:0;cursor:pointer;font:inherit" data-pres="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.appB}</button><div class="appBtns"><button data-act="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.actB}</button><button data-edit="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.editB}</button><button data-print="${cardUrl(APPS[s.demo])}" data-nm="${esc(s.n)}">${t.cardB}</button></div>`:(s.demo?`<a class="demoBtn" href="../demo/?id=${s.demo}">${t.demoB}</a>`:"")}
+   ${APPS[s.demo]?`<button class="demoBtn" style="width:100%;border:0;cursor:pointer;font:inherit" data-pres="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.appB}</button><div class="appBtns"><button data-act="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.actB}</button><button data-edit="${APPS[s.demo]}" data-nm="${esc(s.n)}">${t.editB}</button><button data-print="${cardUrl(APPS[s.demo])}" data-nm="${esc(s.n)}">${t.cardB}</button></div><button class="demoBtn" style="width:100%;border:0;cursor:pointer;font:inherit;margin-top:6px;background:#25d366;color:#05301a" data-left="${APPS[s.demo]}" data-sid="${s.id}" data-nm="${esc(s.n)}">📩 Owner not here — send it &amp; follow up</button>`:(s.demo?`<a class="demoBtn" href="../demo/?id=${s.demo}">${t.demoB}</a>`:"")}
    <button class="go" data-go="${s.id}">${t.go}</button>
   </div>`}).join("");
  const t=L();
