@@ -53,6 +53,7 @@ h1 span{color:var(--gold)}
 .pbox span{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:4px}
 .pbox .was{font-size:11.5px;color:var(--gold);margin-top:2px}.plans{margin:14px 0 4px;display:grid;gap:8px}.plh{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}.plb{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:30px 1fr;column-gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14)}.plb span{grid-row:span 2;font-size:22px}.plb b{font-size:15.5px}.plb small{opacity:.75;font-size:12.5px}.plb[aria-pressed=true]{border-color:#25d366;background:rgba(37,211,102,.12)}.pnote{font-size:11.5px;color:var(--gold);margin-top:2px}
 .was{text-decoration:line-through;text-decoration-thickness:2px;opacity:.85}
+.bonus{margin-top:10px;padding:10px 13px;border-radius:14px;border:1.5px dashed var(--gold);font-size:13px;font-weight:700;line-height:1.4}.bonus b{display:block;font-size:14.5px}
 .promo{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:99px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a}
 .feats{list-style:none;display:grid;gap:10px}
 .feats li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
@@ -148,6 +149,7 @@ body.is-off .off{display:block}
     <div class="pname" data-t="pname"></div>
     <div class="ptitle" data-t="ptitle"></div>
     <div class="promo" data-t="promo"></div>
+    <div class="bonus" id="bonus" hidden></div>
     <div class="prices">
       <div class="pbox"><b>$8,000</b><span data-t="once"></span><span class="pnote" data-t="wasO"></span></div>
       <div class="pbox"><b>$300</b><span data-t="month"></span><span class="pnote" data-t="was"></span></div>
@@ -236,8 +238,10 @@ try{lang=localStorage.getItem("mx-precios-lang")||((navigator.language||"es").to
 const fmt=n=>"$"+n.toLocaleString("en-US");
 let tables=10;const extraT=()=>0;
 function totals(){const P=PL[plan];let o=P.today+(host?HOST:0),y=0,mo=P.mo+(host?HOST:0);X.forEach(x=>{if(sel[x.k]){o+=x.once;y+=x.year}});return{o,m:y,mo,n:P.n,inst:P.mo}}
+const BONUS_END=new Date("2026-11-12T00:00:00-06:00");const bonusOn=()=>Date.now()<BONUS_END.getTime();
+function bonusTxt(es){return es?["🎁 Activa antes del 11 de noviembre","Te configuro tu perfil de Google gratis: fotos, horario, menú y reseñas (valor $1,500)."]:["🎁 Activate before November 11","I'll set up your Google profile free: photos, hours, menu and reviews (a $1,500 value)."]}
 function render(){
- const u=T[lang];document.documentElement.lang=lang;
+ const u=T[lang];{const bx=document.getElementById("bonus");if(bx){if(bonusOn()){const b=bonusTxt(lang==="es");bx.innerHTML=`<b>${b[0]}</b>${b[1]}`;bx.hidden=false}else bx.hidden=true}}document.documentElement.lang=lang;
  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
  $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
  $("feats").innerHTML=u.feats.map(f=>`<li><i>${f[0]}</i>${f[1]}</li>`).join("");
@@ -259,6 +263,7 @@ function orderLines(){const u=T[lang];const es=lang==="es",P=PL[plan];const L=[[
   [es?"🧑‍🍳 Tu panel para cambios":"🧑‍🍳 Your editing panel",es?"Incluido":"Included"],
   [es?"Desde el 2º año (hosting, soporte, cambios)":"From year 2 (hosting, support, changes)",fmt(HOST)+(es?"/mes":"/mo")],[u.oTables,es?"Ilimitados (impresión aparte)":"Unlimited (printing extra)"],[u.oStk,es?"Ilimitados":"Unlimited"],[u.oRev,es?"Ilimitados":"Unlimited"]];
  
+ if(bonusOn())L.push([es?"🎁 Bono: perfil de Google configurado (activado antes del 11 nov)":"🎁 Bonus: Google profile set up (activated before Nov 11)",es?"Gratis · valor $1,500":"Free · $1,500 value"]);
  X.filter(x=>sel[x.k]).forEach(x=>{L.push([x[lang][0],fmt(x.once)+(x.year?" + "+fmt(x.year)+u.per:"")])});return L}
 function openOrder(keep){const u=T[lang],t=totals();if(!orderNo)orderNo="MX-"+Date.now().toString(36).slice(-5).toUpperCase();
  const d=new Date().toLocaleDateString(lang==="es"?"es-MX":"en-US",{day:"numeric",month:"long",year:"numeric"});
