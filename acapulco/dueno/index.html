@@ -23,6 +23,7 @@
 <div class="wrap" id="w"></div>
 <script src="../lib/setup.js"></script>
 <script src="../lib/reviews.js"></script>
+<script src="../lib/loyalty.js"></script>
 <script src="../lib/qrcode.js"></script>
 <script>
 const $=i=>document.getElementById(i),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -35,6 +36,7 @@ let D=null,pid="";
 async function load(){if(!slug){$("w").innerHTML=`<div class="card">${T[lang].none}</div>`;return}
  try{D=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){D={name:slug}}
  try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
+ try{const r=await fetch("../c/"+slug+"/loyalty.json?t="+Date.now(),{cache:"no-store"});LYC=r.ok?await r.json():null}catch(_){LYC=null}
  if(D.color)document.documentElement.style.setProperty("--c",D.color);render()}
 function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:""),rv=pid?"https://search.google.com/local/writereview?placeid="+pid:"",tj="../tarjeta/?s="+slug+(A?"&a="+A:""),wa=(m,to)=>"https://api.whatsapp.com/send?"+(to?"phone="+to+"&":"")+"text="+encodeURIComponent(m);
  document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(e=>e.textContent=u[e.dataset.t]);$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
@@ -46,12 +48,56 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <div class="card"><h2>${u.print}</h2><div class="grid"><a class="b l" href="${tj}&f=m">${u.mesa}</a><a class="b l" href="${tj}&f=st">${u.stk}</a><a class="b l" href="${tj}&f=rv" style="grid-column:span 2">${u.rvs}</a></div></div>
  <div class="card"><h2>${lang==="es"?"✏️ Edita tu menú":"✏️ Edit your menu"}</h2><p>${lang==="es"?"Cambia precios, agrega platillos, toma foto de tu menú o cambia el especial de hoy. Al terminar, toca Publicar.":"Change prices, add dishes, snap a photo of your menu or change today's special. When you're done, tap Publish."}</p><button class="b" id="edOpen">${lang==="es"?"✏️ Abrir editor":"✏️ Open editor"}</button></div>
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
+ ${lyCard()}
  ${setupCard()}
  <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
  <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
  $("edOpen").onclick=openEd;if(location.hash==="#setup"&&!window.__sj){window.__sj=1;setTimeout(()=>{const s=$("setup");if(s)s.scrollIntoView({behavior:"smooth"})},300)}$("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
 
 
+
+// ---------- 🎁 Guest gift + 🏆 waiter credit ----------
+let LYC=null,LYD=null;const GIFTS=[["10% de descuento","10% off"],["Postre gratis","Free dessert"],["Bebida gratis","Free drink"],["Café gratis","Free coffee"]];
+const redGet=()=>{try{return JSON.parse(localStorage.getItem("mx-red-"+slug)||"[]")}catch(_){return []}},redSet=a=>{try{localStorage.setItem("mx-red-"+slug,JSON.stringify(a))}catch(_){}};
+function lyCard(){const es=lang==="es",L=LYC&&LYC.on?LYC:null,g=L?(es?L.gift.es:L.gift.en):"",ym=d=>{const x=new Date(d);return x.getFullYear()+"-"+x.getMonth()},mo=ym(Date.now()),R=redGet().filter(x=>x.at&&ym(x.at)===mo);
+ const cnt={};R.forEach(x=>{const n=x.n||(es?"Sin nombre":"No name");cnt[n]=(cnt[n]||0)+1});const rk=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
+ let prize="";try{prize=localStorage.getItem("mx-prize-"+slug)||""}catch(_){}
+ const S=LYD||{on:L?true:true,g:L?L.gift.es:GIFTS[0][0],ge:L?L.gift.en:GIFTS[0][1],days:L?L.days:30,staff:L?(L.staff||[]).join("\n"):""};
+ return `<div class="card" id="lyc"><h2>🎁 ${es?"Regalo para clientes y premio a meseros":"Guest gift and waiter reward"}</h2>
+ <p>${L?`✅ <b>${es?"Activado":"On"}:</b> ${esc(g)} · ${es?"válido":"valid"} ${L.days} ${es?"días":"days"}`:`⚪ <b>${es?"Apagado":"Off"}</b> — ${es?"configúralo abajo":"set it up below"}`}</p>
+ <p style="font-size:.92em">${es?"Cuando el cliente toca <b>🧾 Pedir la cuenta</b> en tu app, recibe un regalo para su próxima visita y le pedimos una reseña en Google. Cuando regresa y lo canjea, el mesero que lo atendió gana un punto.":"When a guest taps <b>🧾 Ask for the bill</b> in your app, they get a gift for their next visit and we ask for a Google review. When they come back and redeem it, the waiter who served them earns a point."}</p>
+ <p class="tip">${es?"El regalo es para todos, no a cambio de la reseña: así lo permite Google. Pide a tus meseros que digan: “Le dejamos un regalo en la app para su próxima visita. Y si le gustó, nos ayuda mucho con una reseña.”":"The gift is for everyone, not in exchange for a review — that's what Google allows. Have waiters say: “There's a gift for your next visit in the app. And if you liked it, a review helps us a lot.”"}</p>
+ ${L?`<h3 style="margin:14px 0 4px">✅ ${es?"Canjear un cupón":"Redeem a coupon"}</h3><p style="font-size:.9em;margin:0">${es?"El cliente te enseña su pantalla. Escribe el código:":"The guest shows their screen. Type the code:"}</p>
+ <input id="lyCode" placeholder="ABC-1234" autocapitalize="characters" autocomplete="off" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:800 20px ui-monospace,monospace;letter-spacing:2px;text-align:center"><button class="b" id="lyChk">${es?"Revisar código":"Check code"}</button><div id="lyRes"></div>
+ <h3 style="margin:16px 0 4px">🏆 ${es?"Meseros del mes":"Waiters of the month"}</h3>
+ ${rk.length?`<ol style="margin:4px 0 6px;padding-left:22px">${rk.map(([n,c],i)=>`<li style="margin:3px 0"><b>${esc(n)}</b> — ${c} ${es?(c===1?"cliente regresó":"clientes regresaron"):(c===1?"guest came back":"guests came back")}${i===0?" 🥇":""}</li>`).join("")}</ol>`:`<p style="font-size:.9em;opacity:.75">${es?"Todavía no hay cupones canjeados este mes.":"No coupons redeemed this month yet."}</p>`}
+ <input id="lyPrize" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:inherit" placeholder="${es?"Premio del mes (ej: $500 al mesero #1)":"Monthly prize (e.g. $500 to waiter #1)"}" value="${esc(prize)}">
+ ${rk.length?`<a class="b g" target="_blank" href="https://api.whatsapp.com/send?text=${encodeURIComponent((es?"🏆 Meseros del mes · ":"🏆 Waiters of the month · ")+(D.name||slug)+"\n"+rk.map(([n,c],i)=>`${i+1}. ${n}: ${c}`).join("\n")+(prize?"\n🎁 "+prize:""))}">📤 ${es?"Compartir con tu equipo":"Share with your team"}</a>`:""}
+ <p class="tip">${es?"Los canjes se guardan en este teléfono: usa siempre el mismo teléfono del negocio.":"Redemptions are saved on this phone: always use the same business phone."}</p>`:""}
+ <details style="margin-top:12px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff" ${L?"":"open"}><summary style="cursor:pointer;font-weight:800">⚙️ ${es?"Configurar":"Settings"}</summary>
+ <label style="display:flex;gap:8px;align-items:center;font-weight:700;margin:10px 0"><input type="checkbox" id="lyOn" ${S.on?"checked":""} style="width:22px;height:22px;margin:0"> ${es?"Activar regalo en mi app":"Turn on the gift in my app"}</label>
+ <b>${es?"Regalo":"Gift"}</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0">${GIFTS.map(([a,b])=>`<button class="b l" style="margin:0;padding:10px" data-gift="${esc(a)}|${esc(b)}">${es?a:b}</button>`).join("")}</div>
+ <input id="lyG" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:inherit" value="${esc(S.g)}" placeholder="${es?"Regalo en español":"Gift in Spanish"}"><input id="lyGe" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:inherit" value="${esc(S.ge)}" placeholder="${es?"Regalo en inglés":"Gift in English"}">
+ <b style="display:block;margin-top:10px">${es?"Válido por":"Valid for"}</b><select id="lyDays" style="width:100%;padding:11px;border-radius:10px;margin-top:5px;font:inherit">${[15,30,60,90].map(d=>`<option value="${d}" ${+S.days===d?"selected":""}>${d} ${es?"días":"days"}</option>`).join("")}</select>
+ <b style="display:block;margin-top:10px">${es?"Tus meseros (uno por renglón)":"Your waiters (one per line)"}</b><textarea id="lyStaff" rows="5" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;font:inherit;margin-top:5px" placeholder="Juan\nMaría\nLuis">${esc(S.staff)}</textarea>
+ <p class="tip">${es?"Agrega meseros nuevos al final; no cambies el orden de los que ya están.":"Add new waiters at the end; don't reorder the ones already there."}</p>
+ <button class="b" id="lySend">📤 ${es?"Enviar a MX Studio para activar":"Send to MX Studio to turn on"}</button></details></div>`}
+document.addEventListener("click",async e=>{const es=lang==="es";
+ const gb=e.target.closest("[data-gift]");if(gb){const [a,b]=gb.dataset.gift.split("|");$("lyG").value=a;$("lyGe").value=b;return}
+ if(e.target.id==="lyChk"){const v=$("lyCode").value,r=window.MXL&&MXL.read(slug,v),box=$("lyRes"),days=+(LYC&&LYC.days)||30;
+  if(!r){box.innerHTML=`<p style="color:#b3261e;font-weight:800">❌ ${es?"Código no válido":"Invalid code"}</p>`;return}
+  const used=redGet().find(x=>x.c===r.code),age=MXL.today()-r.day,nm=r.staff>=0&&LYC&&LYC.staff?LYC.staff[r.staff]||"":"";
+  if(used){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⚠️ ${es?"Ya se usó el":"Already used on"} ${esc(new Date(used.at).toLocaleDateString(es?"es-MX":"en-US",{day:"numeric",month:"long"}))}</p>`;return}
+  if(age>days){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⌛ ${es?"Vencido":"Expired"} (${age} ${es?"días":"days"})</p>`;return}
+  if(age<1){box.innerHTML=`<p style="color:#b5642f;font-weight:800">🕒 ${es?"Este cupón es para su próxima visita (se dio hoy).":"This coupon is for their next visit (issued today)."}</p>`;return}
+  box.innerHTML=`<p style="color:#1f7a46;font-weight:800">✅ ${es?"Válido":"Valid"} · ${esc(es?LYC.gift.es:LYC.gift.en)}${nm?` · ${es?"Lo atendió":"Served by"} ${esc(nm)}`:""}</p><button class="b g" id="lyRed" data-c="${r.code}" data-n="${esc(nm)}">✅ ${es?"Canjear":"Redeem"}</button>`;return}
+ if(e.target.id==="lyRed"){const a=redGet();a.push({c:e.target.dataset.c,n:e.target.dataset.n,at:new Date().toISOString()});redSet(a);const y=scrollY;render();scrollTo(0,y);return}
+ if(e.target.id==="lySend"){const on=$("lyOn").checked,staff=$("lyStaff").value.split("\n").map(s=>s.trim()).filter(Boolean).slice(0,15);
+  const ly={on,gift:{es:$("lyG").value.trim()||GIFTS[0][0],en:$("lyGe").value.trim()||$("lyG").value.trim()||GIFTS[0][1]},days:+$("lyDays").value||30,staff};
+  const code=await pack({s:slug,ly,t:Date.now()}),link="https://go.myjefetech.app/acapulco/rutas/#chg="+code;
+  open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent((es?"🎁 Regalo y meseros de *":"🎁 Gift & waiters for *")+(D.name||slug)+(es?"* — toca para publicar:\n":"* — tap to publish:\n")+link),"_blank");
+  LYD={on,g:ly.gift.es,ge:ly.gift.en,days:ly.days,staff:staff.join("\n")};e.target.textContent="✅ "+(es?"Enviado. Se activa en unos minutos.":"Sent. It turns on in a few minutes.");return}});
+document.addEventListener("change",e=>{if(e.target.id==="lyPrize"){try{localStorage.setItem("mx-prize-"+slug,e.target.value)}catch(_){}}});
 // ---------- ⭐ Review ideas (owner picks) ----------
 function revIdeas(){const L=window.MX_REV||[];if(!L.length)return "";const es=lang==="es",nm=D.name||slug,H=es?["Fácil, gratis","Fácil","Lo revisamos"]:["Easy, free","Easy","We check it"];
  return `<details style="margin-top:12px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff"><summary style="cursor:pointer;font-weight:800">💡 ${es?"Ideas para conseguir más reseñas":"Ideas to get more reviews"}</summary>

@@ -178,9 +178,9 @@ function render(){
  if(D.color){document.documentElement.style.setProperty("--c",D.color);const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=D.color}
  $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
  $("cur").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cur===cur));
- $("spec").innerHTML=SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"";
+ $("spec").innerHTML=lyBanner()+(SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"");
  const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
- $("rev").innerHTML=(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
+ $("rev").innerHTML=lyBill()+(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
  const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
  $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
  const q=[];
@@ -274,6 +274,9 @@ document.addEventListener("click",e=>{
  if(e.target.id==="sheet")return $("sheet").classList.remove("on");
  const x=e.target.closest("[data-x]");if(!x)return;const u=U[lang];
  if(x.dataset.x==="close")return $("sheet").classList.remove("on");
+ if(x.dataset.x==="bill")return billStart();
+ if(x.dataset.x==="stf")return billIssue(+x.dataset.i);
+ if(x.dataset.x==="cpn"){const c=cpnGet();if(c)cpnView(c,false);return}
  if(x.dataset.x==="clear"){cart={};render();$("sheet").classList.remove("on");return}
  if(x.dataset.x==="show"){const u=U[lang],its=items().filter(it=>cart[it.id]),m=new URLSearchParams(location.search).get("mesa");
   $("show").innerHTML=`<div class="sw"><small>${esc(D.name)}</small>${m?`<div class="sm">${u.mesa} ${esc(m)}</div>`:""}${its.map(it=>`<div class="si"><b>${cart[it.id]}×</b><span>${esc(tx(it.name))}</span></div>`).join("")}<p>${u.showT}<br><i>${u.showS}</i></p><em>${u.showX}</em></div>`;
@@ -309,6 +312,28 @@ if(!D.demo){const useC=c=>c&&(!UA||(+c.t||0)>(UA.t||0));
 try{SP=JSON.parse(localStorage.getItem(KEY+"-sp")||"null")}catch(_){}
 try{const f=+localStorage.getItem("mx-fx");if(f>5)FX=f}catch(_){}
 fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){const u=+j.usd||+j.mxn;if(u>5){FX=u;try{localStorage.setItem("mx-fx",FX)}catch(_){}}if(+j.cad>5){FXC=+j.cad;try{localStorage.setItem("mx-fxc",FXC)}catch(_){}}render()}}).catch(()=>{});
+let LY=null;try{LY=JSON.parse(localStorage.getItem(KEY+"-ly")||"null")}catch(_){}
+if(!D.demo)fetch("loyalty.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{LY=j&&j.on?j:null;try{localStorage.setItem(KEY+"-ly",JSON.stringify(LY))}catch(_){}render()}).catch(()=>{});
+const cpnGet=()=>{try{return JSON.parse(localStorage.getItem(KEY+"-cpn")||"null")}catch(_){return null}},cpnSet=o=>{try{localStorage.setItem(KEY+"-cpn",JSON.stringify(o))}catch(_){}};
+const lyT=o=>o?(lang==="en"?(o.en||o.es):(o.es||o.en)):"";
+function cpnView(c,fresh){const en=lang==="en",pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1],exp=new Date(c.e);
+ $("box").innerHTML=`<div style="text-align:center"><div style="font-size:44px">🎁</div><h3 style="margin:4px 0">${fresh?(en?"Thank you!":"¡Gracias!"):(en?"Your gift":"Tu regalo")}</h3>
+ <div style="border:2px dashed var(--acc,#d9a35f);border-radius:16px;padding:14px;margin:10px 0"><b style="font-size:1.25em;line-height:1.2;display:block">${esc(c.g)}</b><small>${en?"on your next visit":"en tu próxima visita"} · ${esc(D.name||"")}</small>
+ <div style="font:800 26px/1.2 ui-monospace,monospace;letter-spacing:3px;margin:10px 0 2px">${esc(c.c)}</div><small style="opacity:.75">${en?"Valid until":"Válido hasta"} ${exp.toLocaleDateString(en?"en-US":"es-MX",{day:"numeric",month:"long"})}${c.s?` · ${en?"Served by":"Te atendió"}: ${esc(c.s)}`:""}</small></div>
+ ${fresh?`<p style="margin:6px 0">${en?"It's saved on your phone. Next time, open this app and show it to your waiter.":"Ya quedó guardado en tu teléfono. La próxima vez abre esta app y enséñaselo a tu mesero."}</p>`:`<p style="margin:6px 0">${en?"Show this screen to your waiter.":"Enséñale esta pantalla a tu mesero."}</p>`}
+ ${fresh&&pid?`<a class="revb" style="margin-top:12px;background:#fff6e5" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${en?"Enjoyed it? Help us with a Google review — 1 minute":"¿Te gustó? Ayúdanos con una reseña en Google — 1 minuto"}</a>`:""}
+ <button class="revb" style="width:100%;margin-top:10px" data-x="close">${en?"Close":"Cerrar"}</button></div>`;$("sheet").classList.add("on")}
+function billStart(){const en=lang==="en",st=(LY&&Array.isArray(LY.staff)?LY.staff:[]).filter(Boolean);
+ const old=cpnGet();if(old&&Date.now()-old.i<4*36e5&&Date.now()<old.e)return cpnView(old,true);
+ if(!st.length)return billIssue(-1);
+ $("box").innerHTML=`<h3>🧾 ${en?"Ask for the bill":"Pedir la cuenta"}</h3><p>${en?"Who served you today? There's a gift for you.":"¿Quién te atendió hoy? Hay un regalo para ti."}</p>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">${st.map((n,i)=>`<button class="revb" style="margin:0" data-x="stf" data-i="${i}">${esc(n)}</button>`).join("")}</div>
+ <button class="revb" style="width:100%;margin:0;opacity:.8" data-x="stf" data-i="-1">${en?"Not sure":"No sé"}</button>`;$("sheet").classList.add("on")}
+function billIssue(i){if(!window.MXL)return setTimeout(()=>billIssue(i),300);const st=(LY.staff||[]),days=+LY.days||30;
+ const c={c:MXL.make(D.slug||"x",i),s:i>=0?st[i]:"",g:lyT(LY.gift)||(lang==="en"?"10% off":"10% de descuento"),i:Date.now(),e:Date.now()+days*864e5};cpnSet(c);cpnView(c,true);render()}
+function lyBanner(){if(!LY)return "";const c=cpnGet(),en=lang==="en";if(!c||Date.now()>c.e||Date.now()-c.i<4*36e5)return "";
+ return `<button data-x="cpn" style="all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;margin:10px 0;padding:12px 14px;border-radius:14px;background:#fff6e5;border:2px dashed #d9a35f;color:#3a2700;font-weight:800">🎁 ${en?"You have a gift":"Tienes un regalo"}: ${esc(c.g)} — ${en?"tap and show your waiter":"tócalo y enséñaselo a tu mesero"}</button>`}
+function lyBill(){if(!LY)return "";const en=lang==="en";return `<button class="revb" style="width:100%;background:#1f7a46;color:#fff;border-color:#1f7a46" data-x="bill">🧾 ${en?"Ask for the bill":"Pedir la cuenta"} · 🎁 ${esc(lyT(LY.gift)||(en?"gift":"regalo"))} ${en?"for your next visit":"para tu próxima visita"}</button>`}
 if(!D.demo)fetch("special.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{SP=j&&j.on&&(j.es||j.en)?{es:j.es||j.en,en:j.en||j.es}:null;try{localStorage.setItem(KEY+"-sp",JSON.stringify(SP))}catch(_){}render()}).catch(()=>{});
 // live menu (edited from Rutas → ✏️ Editar menú) → menu.json
 if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if(Array.isArray(m)&&m.length)D.menu=m}catch(_){}
@@ -318,6 +343,7 @@ if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW
 
 window.MXG={slug:(location.pathname.match(/\/c\/([^/]+)/)||[])[1]||"app",name:D.name,lang:()=>lang,lib:(location.pathname.includes("/c/")?"../../lib/":"../lib/"),url:location.origin+location.pathname};
 (()=>{const s=document.createElement("script");s.src=MXG.lib+"games.js";s.defer=true;document.body.appendChild(s)})();
+(()=>{const s=document.createElement("script");s.src=MXG.lib+"loyalty.js";document.body.appendChild(s)})();
 $("gamesB").onclick=()=>{window.MXGames?MXGames.open():null};
 try{const jg=new URLSearchParams(location.search).get("jugar");if(jg){const go=()=>window.MXGames?MXGames.join(jg):setTimeout(go,200);go()}}catch(_){}
 </script>
