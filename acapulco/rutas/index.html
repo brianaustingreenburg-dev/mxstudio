@@ -263,7 +263,7 @@ const b64u=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/
 const appUrl=s=>{const a=actGet(s);return "../c/"+s+"/?r=1"+(a&&a.a?"&a="+a.a:"")};
 const cardUrl=s=>{const a=actGet(s);return "../tarjeta/?s="+s+(a&&a.a?"&a="+a.a:"")};
 function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;
- return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 ${n+4} ${n+4}" shape-rendering="crispEdges" style="width:230px;height:230px;display:block;margin:10px auto;background:#fff;border-radius:14px"><path d="${d}" fill="#000"/></svg>`}
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 ${n+8} ${n+8}" shape-rendering="crispEdges" style="width:230px;height:230px;display:block;margin:10px auto;background:#fff;border-radius:14px"><path d="${d}" fill="#000"/></svg>`}
 function openAct(slug,name){const t=L();actSlug=slug;actName=name;const c=actGet(slug)||{},o=c.o||"m";
  const ck=(id,k,l)=>`<label class="aopt"><input type="checkbox" id="${id}" ${o.includes(k)?"checked":""}><span>${l}</span></label>`;
  $("sheetBox").innerHTML=`<h3 class="ah">⚙️ ${t.actT}</h3><div class="an">${esc(name)}</div><p class="as">${t.actS}</p>
@@ -446,7 +446,7 @@ async function openPres(slug,nm){const t=L(),a=actGet(slug);let d={};try{d=await
   <div style="position:relative;height:150px;background:#333 url('../c/${slug}/img/cover.jpg') center/cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.75))"></div>
   <div style="position:absolute;left:16px;right:16px;bottom:12px;color:#fff"><b style="font-size:1.45em;line-height:1.05;display:block">${esc(d.name||nm)}</b><small style="opacity:.9">${esc(tg.es||"")}${tg.en?" · "+esc(tg.en):""}</small></div></div>
   <div style="height:6px;background:${c}"></div>
-  <div class="pqr" style="width:210px;height:210px;box-sizing:border-box;margin:18px auto 0;padding:10px;background:#fff;border:3px solid ${c};border-radius:16px;overflow:hidden">${qrSvg(live)}</div>
+  <div class="pqr" style="width:260px;box-sizing:border-box;margin:18px auto 0;padding:6px;background:#fff;border:3px solid ${c};border-radius:16px">${qrSvg(live)}</div>
   <div style="text-align:center;padding:10px 12px 16px"><b style="color:${c};font-size:1.15em;letter-spacing:.5px">ESCANEA · SCAN</b><div style="font-weight:700;font-size:.85em;margin-top:2px">Menú · WiFi · Reservar · Para llevar</div><div style="font-size:.7em;opacity:.55;margin-top:6px">Diseñado por MX Studio ✝ · Designed by MX Studio</div></div></div>
  ${ownLine(slug)}
  <p class="as" style="text-align:center;margin-top:12px">👆 Así se ve en su mesa. Que lo escanee con su cámara. · This is their table card. Have them scan it with their camera.</p>
