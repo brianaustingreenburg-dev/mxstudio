@@ -218,6 +218,21 @@ function renderTabs(){
   return `<button class="tab" data-r="${r.num}" aria-pressed="${r.num===st.route}">${L().route} ${r.num}<small>${done}/${r.stops.length}</small></button>`}).join("");
  $("filters").querySelectorAll(".f").forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===st.filter));
 }
+// ---- 🙋 Who to ask for (owner / manager). Prefilled from public sources; Brian edits as he learns. Backed up to lib/owners.json with the key. ----
+const OWN0={"zibu-acapulco":{n:"Eduardo Palazuelos",r:"Chef and founder (El Financiero, 2025). If he's not there, ask for the manager."},
+ "casa-de-los-abuelos":{n:"The branch manager (gerente)",r:"Chain with 21+ branches; chain director is Armando Carmona Arteaga (El Financiero, 2025)."},
+ "cira-la-morena":{n:"The family of Cira Zavaleta “Cira la Morena”",r:"Her mother's original restaurant; her daughter Juana “la Cubana” runs Cira la Morena 2 (Emprendedor)."},
+ "elcano-diamante-club-de-playa":{n:"Food & beverage manager (gerente de A&B)",r:"Beach club of the Elcano hotel."}};
+let OWN={};try{OWN=JSON.parse(localStorage.getItem("mx-owners")||"{}")}catch(_){}
+fetch("../lib/owners.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{let ch=0;for(const k in j){if(!OWN[k]||(j[k].t||0)>(OWN[k].t||0)){OWN[k]=j[k];ch=1}}if(ch){try{localStorage.setItem("mx-owners",JSON.stringify(OWN))}catch(_){}try{render()}catch(_){}}}).catch(()=>{});
+const ownOf=slug=>OWN[slug]||OWN0[slug]||null;
+function ownLine(slug){if(!slug)return "";const o=ownOf(slug);return `<div class="pi" style="margin-top:4px">🙋 Ask for: <b>${o&&o.n?esc(o.n):"el dueño o el encargado"}</b>${o&&o.r?`<br><small style="opacity:.75">${esc(o.r)}</small>`:""} <button data-own="${slug}" style="all:unset;cursor:pointer;margin-left:4px;font-size:.85em;text-decoration:underline">✏️ edit</button></div>`}
+async function editOwn(slug){const o=ownOf(slug)||{};const n=prompt("Who to ask for (name, and role if you know it):",o.n||"");if(n===null)return;const r=prompt("Note (best time, phone, who you talked to…):",o.r||"");if(r===null)return;
+ OWN[slug]={n:n.trim(),r:r.trim(),t:Date.now()};try{localStorage.setItem("mx-owners",JSON.stringify(OWN))}catch(_){}render();toast("✓ Saved");
+ let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}if(!key||!navigator.onLine)return;
+ try{const hd={Authorization:"Bearer "+key,Accept:"application/vnd.github+json"},api="https://api.github.com/repos/brianaustingreenburg-dev/mxstudio/contents/acapulco/lib/owners.json";let sha;const g=await fetch(api+"?ref=main",{headers:hd,cache:"no-store"});if(g.ok)sha=(await g.json()).sha;
+  await fetch(api,{method:"PUT",headers:hd,body:JSON.stringify({message:"Contactos ✝️",branch:"main",sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(OWN,null,1))))})})}catch(_){}}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-own]");if(b){e.stopPropagation();editOwn(b.dataset.own)}},true);
 function render(){
  if(!RT().some(x=>x.num===st.route))st.route=1;
  renderTabs();
@@ -231,7 +246,7 @@ function render(){
   return `<div class="card ${m.v?"done":""}" data-id="${s.id}">
    <div class="ch"><div class="n">${m.v?"✓":i+1}</div><div style="flex:1;min-width:0">
     <div class="nm">${esc(s.n)}</div><span class="tag" style="background:${ty.c}">${F(ty,"es").toUpperCase()}</span>
-    <div class="ad">${esc(s.a)}</div><div class="pi">→ ${esc(F(s,"p"))}</div>${s.demo in READY?(isReady(APPS[s.demo])?`<div class="rdy ok">✅ Menú real · Ready to sell</div>`:`<div class="rdy no">⚠️ Menú por confirmar · Menu needs checking</div>`):""}</div></div>
+    <div class="ad">${esc(s.a)}</div><div class="pi">→ ${esc(F(s,"p"))}</div>${ownLine(APPS[s.demo])}${s.demo in READY?(isReady(APPS[s.demo])?`<div class="rdy ok">✅ Menú real · Ready to sell</div>`:`<div class="rdy no">⚠️ Menú por confirmar · Menu needs checking</div>`):""}</div></div>
    <div class="acts">
     <button class="a v ${m.v?"on":""}" data-k="v"><b>✓</b>${t.v}</button>
     <button class="a i ${m.i?"on":""}" data-k="i"><b>★</b>${t.i}</button>
@@ -444,6 +459,7 @@ async function openPres(slug,nm){const t=L(),a=actGet(slug);let d={};try{d=await
   <div style="height:6px;background:${c}"></div>
   <div class="pqr" style="width:210px;height:210px;box-sizing:border-box;margin:18px auto 0;padding:10px;background:#fff;border:3px solid ${c};border-radius:16px;overflow:hidden">${qrSvg(live)}</div>
   <div style="text-align:center;padding:10px 12px 16px"><b style="color:${c};font-size:1.15em;letter-spacing:.5px">ESCANEA · SCAN</b><div style="font-weight:700;font-size:.85em;margin-top:2px">Menú · WiFi · Reservar · Para llevar</div><div style="font-size:.7em;opacity:.55;margin-top:6px">Diseñado por MX Studio ✝ · Designed by MX Studio</div></div></div>
+ ${ownLine(slug)}
  <p class="as" style="text-align:center;margin-top:12px">👆 Así se ve en su mesa. Que lo escanee con su cámara. · This is their table card. Have them scan it with their camera.</p>
  <a class="share" style="display:block;text-decoration:none;text-align:center" href="${appUrl(slug)}">📱 Abrir la app aquí · Open it here</a>
  <button class="close" style="width:100%;box-sizing:border-box" data-print="${cardUrl(slug)}" data-nm="${esc(nm)}">${t.cardB}</button>
