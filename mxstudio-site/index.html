@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MX Studio · Apps y dashboards · Acapulco</title>
-<meta name="description" content="MX Studio diseña apps con código QR para hoteles, restaurantes y cafés, inventario para cualquier negocio y dashboards. Sin descargas, en español e inglés. Acapulco, Guerrero.">
+<meta name="description" content="MX Studio diseña apps web y apps nativas para iPhone y Android: apps con código QR para hoteles, restaurantes y cafés, inventario para cualquier negocio y dashboards. En español e inglés. Acapulco, Guerrero.">
 <meta name="theme-color" content="#14232c">
 <meta property="og:title" content="MX Studio · Apps y dashboards de cinco estrellas">
-<meta property="og:description" content="Apps con código QR para hoteles, restaurantes y cafés. Inventario para cualquier negocio. Acapulco.">
+<meta property="og:description" content="Apps web y nativas: QR para hoteles, restaurantes y cafés, inventario y dashboards. Acapulco.">
 <meta property="og:image" content="img/hero.jpg">
 <link rel="icon" type="image/png" href="img/logo.png">
 <link rel="apple-touch-icon" href="img/logo.png">
@@ -92,8 +92,9 @@
   .lk svg{width:13px;height:13px}
 
   /* services */
-  .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
-  .svc div{background:var(--paper);padding:30px 26px}
+  .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;background:var(--paper);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:44px}
+  .svc div{background:var(--paper);padding:30px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .fine{font-size:12.5px;line-height:1.6;color:var(--muted);margin-top:14px;max-width:80ch}
   .svc svg{width:30px;height:30px;color:var(--brass)}
   .svc h3{font-family:var(--serif);font-weight:500;font-size:25px;margin-top:16px;line-height:1.1}
   .svc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin-top:8px}
@@ -162,6 +163,7 @@
 <section id="servicios"><div class="wrap">
   <div class="eb micro rv" data-t="sk"></div><h2 class="rv" data-h="sh"></h2>
   <div class="svc rv" id="svc"></div>
+  <p class="fine rv" data-t="fine"></p>
 </div></section>
 
 <section id="proceso"><div class="wrap">
@@ -187,15 +189,16 @@
 const T={
  es:{nWork:'Trabajo',nSvc:'Servicios',nHow:'Cómo trabajamos',nContact:'Contacto',
   hk:'MX Studio · Acapulco, Guerrero',h1:'Apps de <em>cinco estrellas</em> para su negocio',
-  hp:'Diseñamos apps con código QR para hoteles, restaurantes y cafés, inventario para cualquier negocio y dashboards para el dueño. Sin descargas, en español e inglés.',
+  hp:'Diseñamos apps web y apps nativas para iPhone y Android: apps con código QR para hoteles, restaurantes y cafés, inventario para cualquier negocio y dashboards para el dueño. En español e inglés.',
   cta1:'Escríbanos por WhatsApp',cta2:'Ver el trabajo',
-  stats:[['120+','apps de restaurantes construidas'],['32','países en JefeTech'],['ES · EN','en todas nuestras apps'],['0','descargas: solo escanear']],
+  stats:[['120+','apps de restaurantes construidas'],['32','países en JefeTech'],['ES · EN','en todas nuestras apps'],['0','descargas en apps web: solo escanear']],
   wk:'Trabajo',wh:'Lo que hemos <em>construido</em>',wp:'Apps reales que funcionan en el teléfono de sus clientes, diseñadas una por una.',
   sk:'Servicios',sh:'Lo que hacemos <em>por usted</em>',
   ph:'Así <em>trabajamos</em>',pk:'Proceso',
   b1k:'Restaurantes y cafés',b1h:'$8,000 MXN, primer año incluido',b1p:'Su app con menú en español e inglés, precios en dólares, botón de WiFi, reseñas de Google y tarjetas QR. O $3,000 hoy y el resto en pagos.',b1l:'Ver precios y lo que incluye',
   b2k:'Hoteles y negocios',b2h:'A la medida',b2p:'Apps para huéspedes, paneles de dirección e inventario. Le construimos una muestra gratis antes de decidir.',b2l:'Pedir mi muestra gratis',
   ck:'Contacto',ch:'Le hacemos una <em>muestra gratis</em> de su app',cp:'Cuéntenos de su negocio por WhatsApp. Le enseñamos cómo se vería su app, sin compromiso.',
+  fine:'Apps nativas: la publicación depende de la revisión de Apple (App Store) y Google (Google Play), que MX Studio no controla. Los pagos no son reembolsables.',
   mail:'Enviar un correo',loc:'Acapulco, Guerrero · Atendemos en persona',
   foot:' Diseñado y construido en Acapulco · go.myjefetech.app',
   wa:'Hola MX Studio, vi su página y me interesa una app para mi negocio.',
@@ -209,20 +212,21 @@ const T={
    ['jefetech','Contratistas · 32 países','JefeTech','App para dirigir a todo el equipo: trabajos, medidas, cotizaciones y nómina, con moneda y reglas de cada país.',['32 países','Monedas','Equipos'],'https://myjefetech.app/'],
    ['family','Familias · gratis','Family First','App familiar gratuita: check-ins, alertas SOS, ubicación y bóveda familiar, en muchos idiomas.',['Seguridad','Multilingüe','Gratis'],'https://myfamilyfirst.app/']
   ],
-  svc:[['qr','Apps con código QR','Para hoteles, restaurantes y cafés: menú, actividades, WiFi, reseñas y reservas. El cliente escanea y listo.'],['box','Inventario','Para cualquier negocio: escanea con cualquier celular, cuenta piezas y lleva las ventas sin equipo especial.'],['chart','Dashboards','Para el dueño o la dirección: ventas, uso, reseñas y opiniones de clientes en una sola pantalla.'],['print','Diseño impreso','Tarjetas de mesa, tarjetas para habitación y stickers con el estilo de su app, listos para imprimir.']],
+  svc:[['phone','Apps nativas · iPhone y Android','Publicadas en App Store y Google Play, con su nombre y su ícono. Sujetas a la revisión de Apple y Google.'],['qr','Apps web con código QR','Para hoteles, restaurantes y cafés: menú, actividades, WiFi, reseñas y reservas. El cliente escanea y listo.'],['box','Inventario','Para cualquier negocio: escanea con cualquier celular, cuenta piezas y lleva las ventas sin equipo especial.'],['chart','Dashboards','Para el dueño o la dirección: ventas, uso, reseñas y opiniones de clientes en una sola pantalla.'],['print','Diseño impreso','Tarjetas de mesa, tarjetas para habitación y stickers con el estilo de su app, listos para imprimir.']],
   steps:[['Su muestra, gratis','Construimos una muestra de su app con su menú o sus servicios, antes de que pague nada.'],['La ajustamos juntos','Cambiamos fotos, precios y textos hasta que quede como usted quiere.'],['Lanzamos con sus QR','Le entregamos las tarjetas y stickers listos para mesas, habitaciones o mostrador.'],['Le acompañamos','Cambios de menú, horarios y promociones cuando los necesite, por WhatsApp.']]
  },
  en:{nWork:'Work',nSvc:'Services',nHow:'How we work',nContact:'Contact',
   hk:'MX Studio · Acapulco, Guerrero',h1:'<em>Five-star</em> apps for your business',
-  hp:'We design QR-code apps for hotels, restaurants and cafés, inventory for any business, and dashboards for owners. No downloads, in Spanish and English.',
+  hp:'We design web apps and native iPhone and Android apps: QR-code apps for hotels, restaurants and cafés, inventory for any business, and dashboards for owners. In Spanish and English.',
   cta1:'Message us on WhatsApp',cta2:'See the work',
-  stats:[['120+','restaurant apps built'],['32','countries in JefeTech'],['ES · EN','in every app we make'],['0','downloads: just scan']],
+  stats:[['120+','restaurant apps built'],['32','countries in JefeTech'],['ES · EN','in every app we make'],['0','downloads for web apps: just scan']],
   wk:'Work',wh:'What we’ve <em>built</em>',wp:'Real apps that run on your customers’ phones, each one designed by hand.',
   sk:'Services',sh:'What we do <em>for you</em>',
   ph:'How we <em>work</em>',pk:'Process',
   b1k:'Restaurants & cafés',b1h:'$8,000 MXN, first year included',b1p:'Your app with a menu in Spanish and English, dollar prices, WiFi button, Google reviews and QR cards. Or $3,000 today and the rest in payments.',b1l:'See prices and what’s included',
   b2k:'Hotels & businesses',b2h:'Made to measure',b2p:'Guest apps, management dashboards and inventory. We build you a free sample before you decide.',b2l:'Request my free sample',
   ck:'Contact',ch:'We’ll build you a <em>free sample</em> of your app',cp:'Tell us about your business on WhatsApp. We’ll show you what your app would look like, no obligation.',
+  fine:'Native apps: publishing depends on Apple (App Store) and Google (Google Play) review, which MX Studio does not control. Payments are non-refundable.',
   mail:'Send an email',loc:'Acapulco, Guerrero · We meet in person',
   foot:' Designed and built in Acapulco · go.myjefetech.app',
   wa:'Hi MX Studio, I saw your page and I’m interested in an app for my business.',
@@ -236,10 +240,10 @@ const T={
    ['jefetech','Contractors · 32 countries','JefeTech','One app to run the whole crew: jobs, measurements, quotes and payroll, with each country’s currency and rules.',['32 countries','Currencies','Crews'],'https://myjefetech.app/'],
    ['family','Families · free','Family First','A free family app: check-ins, SOS alerts, location and a family vault, in many languages.',['Safety','Multilingual','Free'],'https://myfamilyfirst.app/']
   ],
-  svc:[['qr','QR-code apps','For hotels, restaurants and cafés: menu, activities, WiFi, reviews and reservations. Customers scan and they’re in.'],['box','Inventory','For any business: scan with any phone, count stock and track sales with no special equipment.'],['chart','Dashboards','For owners and management: sales, usage, reviews and customer feedback on one screen.'],['print','Print design','Table cards, room cards and stickers in your app’s style, ready to print.']],
+  svc:[['phone','Native apps · iPhone & Android','Published on the App Store and Google Play, with your name and icon. Subject to Apple and Google review.'],['qr','QR-code web apps','For hotels, restaurants and cafés: menu, activities, WiFi, reviews and reservations. Customers scan and they’re in.'],['box','Inventory','For any business: scan with any phone, count stock and track sales with no special equipment.'],['chart','Dashboards','For owners and management: sales, usage, reviews and customer feedback on one screen.'],['print','Print design','Table cards, room cards and stickers in your app’s style, ready to print.']],
   steps:[['Your sample, free','We build a sample of your app with your menu or services before you pay anything.'],['We fine-tune it together','We change photos, prices and text until it’s exactly how you want it.'],['We launch with your QRs','You get table, room or counter cards and stickers, ready to place.'],['We stay with you','Menu, hours and promo changes whenever you need them, by WhatsApp.']]
  }};
-const ICON={qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/>',box:'<path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',print:'<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/>'};
+const ICON={phone:'<rect x="6.5" y="2.5" width="11" height="19" rx="2.2"/><path d="M10.5 18.5h3"/>',qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/>',box:'<path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',print:'<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/>'};
 const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 let lang=(()=>{try{return localStorage.getItem('mx-lang')}catch(e){return null}})()||((navigator.language||'es').startsWith('en')?'en':'es');
 const $=s=>document.querySelector(s);
