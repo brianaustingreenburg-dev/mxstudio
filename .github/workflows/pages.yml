@@ -38,6 +38,7 @@ jobs:
           cp -R portfolio out/portfolio
           cp -R portafolio out/portafolio
           cp -R ritz-acapulco out/ritz-acapulco
+          cp -R mxstudio-site out/mxstudio
           cp -R acapulco out/acapulco
           rm -f out/acapulco/vercel.json out/acapulco/_headers
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/

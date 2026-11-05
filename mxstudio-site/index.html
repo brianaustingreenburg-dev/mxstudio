@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MX Studio · Apps y dashboards · Acapulco</title>
+<meta name="description" content="MX Studio diseña apps con código QR para hoteles, restaurantes y cafés, inventario para cualquier negocio y dashboards. Sin descargas, en español e inglés. Acapulco, Guerrero.">
+<meta name="theme-color" content="#14232c">
+<meta property="og:title" content="MX Studio · Apps y dashboards de cinco estrellas">
+<meta property="og:description" content="Apps con código QR para hoteles, restaurantes y cafés. Inventario para cualquier negocio. Acapulco.">
+<meta property="og:image" content="img/hero.jpg">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="apple-touch-icon" href="img/logo.png">
+<style>
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-weight:500;font-display:swap;src:url(fonts/inter-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2')}
+  :root{--bone:#f5f0e8;--paper:#fbf8f3;--line:#e3d9c8;--line-2:#d6c8b1;--ink:#14232c;--ink-2:#3a4852;--muted:#6f777d;--brass:#a8834f;--brass-2:#c9a46c;--wa:#1f8f4e;
+    --serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bone)}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bone);-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .micro{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:500}
+  .serif{font-family:var(--serif);font-weight:500}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  nav.solid{background:rgba(245,240,232,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+  nav .in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;color:#fdfaf4}
+  nav.solid .brand,nav.solid .links a{color:var(--ink)}
+  .brand img{width:38px;height:38px;border-radius:50%}
+  .brand b{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:.02em}
+  .links{display:flex;gap:28px;align-items:center}
+  .links a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#f1e7d6;font-weight:500}
+  .sw{position:relative;display:grid;grid-template-columns:1fr 1fr;width:84px;height:30px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(12,23,29,.25);font-size:11px;font-weight:600;letter-spacing:.14em}
+  nav.solid .sw{border-color:var(--ink);background:transparent}
+  .sw .knob{position:absolute;top:2px;left:2px;width:39px;height:24px;border-radius:999px;background:#fbf8f3;transition:transform .3s cubic-bezier(.4,1.3,.6,1)}
+  nav.solid .sw .knob{background:var(--ink)}
+  .sw[aria-checked="true"] .knob{transform:translateX(41px)}
+  .sw span{position:relative;z-index:1;display:grid;place-items:center;color:#fff;padding-left:.14em;transition:color .3s}
+  .sw[aria-checked="false"] .es,.sw[aria-checked="true"] .en{color:var(--ink)}
+  nav.solid .sw span{color:var(--ink)} nav.solid .sw[aria-checked="false"] .es,nav.solid .sw[aria-checked="true"] .en{color:#fbf8f3}
+
+  /* hero */
+  .hero{position:relative;min-height:min(92vh,820px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#14232c}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.04);animation:kb 20s ease-out forwards}
+  @keyframes kb{to{transform:scale(1)}}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,23,29,.6) 0%,rgba(12,23,29,.15) 28%,rgba(12,23,29,.5) 55%,rgba(12,23,29,.92) 100%),linear-gradient(90deg,rgba(12,23,29,.6) 0%,rgba(12,23,29,.15) 65%,rgba(12,23,29,0) 100%)}
+  .hero h1{text-shadow:0 2px 24px rgba(0,0,0,.35)}
+  .hero .wrap{position:relative;z-index:1;padding-bottom:72px;width:100%}
+  .hero .k{color:var(--brass-2)}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(42px,6.4vw,84px);line-height:1;margin-top:16px;max-width:15ch}
+  .hero h1 em{color:#e3c693}
+  .hero p{font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:#e6ddcf;margin-top:20px;max-width:56ch}
+  .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .b1,.b2{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;border-radius:2px}
+  .b1{background:#fbf8f3;color:var(--ink)}
+  .b2{border:1px solid rgba(255,255,255,.6);color:#fff}
+  .b1 svg{width:17px;height:17px;color:var(--wa)}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+  .stats div{padding:28px 0 26px;text-align:center;border-right:1px solid var(--line)}
+  .stats div:last-child{border-right:0}
+  .stats b{display:block;font-family:var(--serif);font-weight:500;font-size:44px;line-height:1}
+  .stats span{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+
+  section{padding:96px 0 0}
+  .eb{color:var(--brass)}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.4vw,56px);line-height:1.02;margin-top:12px;max-width:18ch}
+  h2 em{font-style:italic;color:var(--brass)}
+  .lead{font-size:16px;line-height:1.65;color:var(--ink-2);margin-top:16px;max-width:60ch}
+
+  /* work */
+  .work{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;margin-top:44px}
+  .w{display:flex;flex-direction:column}
+  .phone{position:relative;aspect-ratio:390/700;border-radius:30px;overflow:hidden;background:#14232c;border:7px solid #14232c;box-shadow:0 22px 50px rgba(20,35,44,.18)}
+  .phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .w .t{margin-top:18px}
+  .w .cat{color:var(--brass)}
+  .w h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.1;margin-top:6px}
+  .w p{font-size:14px;line-height:1.55;color:var(--ink-2);margin-top:8px}
+  .w .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .w .tags span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);border:1px solid var(--line-2);padding:4px 8px;border-radius:999px}
+  .lk{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--brass);padding-bottom:3px;align-self:flex-start}
+  .lk svg{width:13px;height:13px}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+  .svc div{background:var(--paper);padding:30px 26px}
+  .svc svg{width:30px;height:30px;color:var(--brass)}
+  .svc h3{font-family:var(--serif);font-weight:500;font-size:25px;margin-top:16px;line-height:1.1}
+  .svc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin-top:8px}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-top:44px;counter-reset:s}
+  .steps div{border-top:1px solid var(--line-2);padding-top:20px}
+  .steps i{font-family:var(--serif);font-style:italic;font-size:40px;color:var(--brass);line-height:1}
+  .steps h3{font-family:var(--serif);font-weight:500;font-size:24px;margin-top:10px}
+  .steps p{font-size:14px;line-height:1.6;color:var(--ink-2);margin-top:6px}
+
+  /* price band */
+  .band{margin-top:96px;background:var(--ink);color:#f1e7d6}
+  .band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;padding:0}
+  .band .c{padding:46px 32px}
+  .band .c + .c{border-left:1px solid rgba(201,164,108,.3)}
+  .band .k{color:var(--brass-2)}
+  .band h3{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.05;margin-top:12px;color:#fdfaf4}
+  .band p{font-size:14.5px;line-height:1.6;color:#cfc6b8;margin-top:10px;max-width:44ch}
+  .band .lk{color:#fdfaf4;border-color:var(--brass-2)}
+
+  /* contact */
+  .contact{text-align:center;padding:110px 0 70px}
+  .contact h2{margin:12px auto 0;max-width:20ch}
+  .contact .lead{margin:16px auto 0}
+  .contact .ctas{justify-content:center}
+  .contact .b1{background:var(--ink);color:#fbf8f3}
+  .contact .b1 svg{color:#5fd38f}
+  .contact .b2{border-color:var(--ink);color:var(--ink)}
+  .meta{margin-top:26px;font-size:13.5px;color:var(--muted);line-height:1.8}
+  footer{border-top:1px solid var(--line);padding:30px 0 40px;text-align:center;font-size:12px;color:var(--muted)}
+  footer .mk{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink);display:block;margin-bottom:4px}
+  .wa-float{position:fixed;right:18px;bottom:18px;z-index:30;width:56px;height:56px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+  .wa-float svg{width:28px;height:28px;color:#fff}
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .rv.on{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hero img{animation:none}}
+  @media (max-width:860px){ .links a{display:none} .stats{grid-template-columns:1fr 1fr} .stats div:nth-child(2){border-right:0} .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)} .band .wrap{grid-template-columns:1fr} .band .c + .c{border-left:0;border-top:1px solid rgba(201,164,108,.3)} section{padding-top:72px} }
+  @media (max-width:520px){ .wrap{padding:0 18px} .brand b{font-size:19px} .hero .wrap{padding-bottom:52px} .stats b{font-size:36px} .work{grid-template-columns:1fr 1fr;gap:16px} .phone{border-width:5px;border-radius:22px} .w h3{font-size:21px} .w p{font-size:13px} .w .tags{display:none} }
+</style>
+</head>
+<body>
+<nav id="nav"><div class="wrap in">
+  <a class="brand" href="#top"><img src="img/logo.png" alt="MX Studio"><b>MX Studio</b></a>
+  <div class="links"><a href="#trabajo" data-t="nWork"></a><a href="#servicios" data-t="nSvc"></a><a href="#proceso" data-t="nHow"></a><a href="#contacto" data-t="nContact"></a>
+    <button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button></div>
+</div></nav>
+
+<header class="hero" id="top">
+  <img src="img/hero.jpg" alt="">
+  <div class="wrap">
+    <div class="k micro" data-t="hk"></div>
+    <h1 data-h="h1"></h1>
+    <p data-t="hp"></p>
+    <div class="ctas"><a class="b1 wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg><span data-t="cta1"></span></a><a class="b2" href="#trabajo" data-t="cta2"></a></div>
+  </div>
+</header>
+
+<div class="wrap"><div class="stats rv" id="stats"></div></div>
+
+<section id="trabajo"><div class="wrap">
+  <div class="eb micro rv" data-t="wk"></div><h2 class="rv" data-h="wh"></h2><p class="lead rv" data-t="wp"></p>
+  <div class="work" id="work"></div>
+</div></section>
+
+<section id="servicios"><div class="wrap">
+  <div class="eb micro rv" data-t="sk"></div><h2 class="rv" data-h="sh"></h2>
+  <div class="svc rv" id="svc"></div>
+</div></section>
+
+<section id="proceso"><div class="wrap">
+  <div class="eb micro rv" data-t="pk"></div><h2 class="rv" data-h="ph"></h2>
+  <div class="steps rv" id="steps"></div>
+</div></section>
+
+<div class="band rv"><div class="wrap">
+  <div class="c"><div class="k micro" data-t="b1k"></div><h3 data-t="b1h"></h3><p data-t="b1p"></p><a class="lk" href="https://go.myjefetech.app/acapulco/precios/" target="_blank" rel="noopener"><span data-t="b1l"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  <div class="c"><div class="k micro" data-t="b2k"></div><h3 data-t="b2h"></h3><p data-t="b2p"></p><a class="lk wa" href="#" target="_blank" rel="noopener"><span data-t="b2l"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></div>
+
+<section class="contact" id="contacto"><div class="wrap">
+  <div class="eb micro rv" data-t="ck"></div><h2 class="rv" data-h="ch"></h2><p class="lead rv" data-t="cp"></p>
+  <div class="ctas rv"><a class="b1 wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg><span data-t="cta1"></span></a><a class="b2" href="mailto:brian@myjefetech.app" data-t="mail"></a></div>
+  <div class="meta rv">WhatsApp +52 744 193 0502 · brian@myjefetech.app<br><span data-t="loc"></span></div>
+</div></section>
+
+<footer><span class="mk">MX Studio ✝</span><span data-t="foot"></span></footer>
+<a class="wa-float wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg></a>
+
+<script>
+const T={
+ es:{nWork:'Trabajo',nSvc:'Servicios',nHow:'Cómo trabajamos',nContact:'Contacto',
+  hk:'MX Studio · Acapulco, Guerrero',h1:'Apps de <em>cinco estrellas</em> para su negocio',
+  hp:'Diseñamos apps con código QR para hoteles, restaurantes y cafés, inventario para cualquier negocio y dashboards para el dueño. Sin descargas, en español e inglés.',
+  cta1:'Escríbanos por WhatsApp',cta2:'Ver el trabajo',
+  stats:[['120+','apps de restaurantes construidas'],['32','países en JefeTech'],['ES · EN','en todas nuestras apps'],['0','descargas: solo escanear']],
+  wk:'Trabajo',wh:'Lo que hemos <em>construido</em>',wp:'Apps reales que funcionan en el teléfono de sus clientes, diseñadas una por una.',
+  sk:'Servicios',sh:'Lo que hacemos <em>por usted</em>',
+  ph:'Así <em>trabajamos</em>',pk:'Proceso',
+  b1k:'Restaurantes y cafés',b1h:'$8,000 MXN, primer año incluido',b1p:'Su app con menú en español e inglés, precios en dólares, botón de WiFi, reseñas de Google y tarjetas QR. O $3,000 hoy y el resto en pagos.',b1l:'Ver precios y lo que incluye',
+  b2k:'Hoteles y negocios',b2h:'A la medida',b2p:'Apps para huéspedes, paneles de dirección e inventario. Le construimos una muestra gratis antes de decidir.',b2l:'Pedir mi muestra gratis',
+  ck:'Contacto',ch:'Le hacemos una <em>muestra gratis</em> de su app',cp:'Cuéntenos de su negocio por WhatsApp. Le enseñamos cómo se vería su app, sin compromiso.',
+  mail:'Enviar un correo',loc:'Acapulco, Guerrero · Atendemos en persona',
+  foot:' Diseñado y construido en Acapulco · go.myjefetech.app',
+  wa:'Hola MX Studio, vi su página y me interesa una app para mi negocio.',
+  view:'Ver',concept:'Concepto',
+  work:[
+   ['hotel','Hoteles · Concepto','App para huéspedes de hotel','QR en cada habitación: actividades del día, show de la noche, restaurantes, albercas y excursiones.',['QR por habitación','ES / EN','Sin descargas'],''],
+   ['panel','Hoteles · Concepto','Panel de dirección','Escaneos, idiomas, horas de mayor uso, excursiones solicitadas y reseñas de Google en un solo lugar.',['Dashboard','Reseñas','Analytics'],''],
+   ['mansion','Hotel, restaurante y jardín','Mansión Sunset','Menú digital bilingüe en los colores del lugar, con menú de mesa impreso que coincide línea por línea.',['Menú digital','Menú de mesa','ES / EN'],'https://go.myjefetech.app/mansion-sunset/'],
+   ['tres','Restaurante y playa · desde 1968','Tres Marías','Menú con precios de temporada, ticket de WiFi para huéspedes y tarjeta de mesa a juego.',['Menú digital','Tarjeta de mesa','WiFi'],'https://go.myjefetech.app/tres-marias/'],
+   ['inventario','Tiendas y negocios','Inventario con escáner','Escanea productos con cualquier celular, controla piezas y ventas, y se conecta con la computadora de la tienda.',['Escáner','Inventario','Ventas'],''],
+   ['jefetech','Contratistas · 32 países','JefeTech','App para dirigir a todo el equipo: trabajos, medidas, cotizaciones y nómina, con moneda y reglas de cada país.',['32 países','Monedas','Equipos'],'https://myjefetech.app/'],
+   ['family','Familias · gratis','Family First','App familiar gratuita: check-ins, alertas SOS, ubicación y bóveda familiar, en muchos idiomas.',['Seguridad','Multilingüe','Gratis'],'https://myfamilyfirst.app/']
+  ],
+  svc:[['qr','Apps con código QR','Para hoteles, restaurantes y cafés: menú, actividades, WiFi, reseñas y reservas. El cliente escanea y listo.'],['box','Inventario','Para cualquier negocio: escanea con cualquier celular, cuenta piezas y lleva las ventas sin equipo especial.'],['chart','Dashboards','Para el dueño o la dirección: ventas, uso, reseñas y opiniones de clientes en una sola pantalla.'],['print','Diseño impreso','Tarjetas de mesa, tarjetas para habitación y stickers con el estilo de su app, listos para imprimir.']],
+  steps:[['Su muestra, gratis','Construimos una muestra de su app con su menú o sus servicios, antes de que pague nada.'],['La ajustamos juntos','Cambiamos fotos, precios y textos hasta que quede como usted quiere.'],['Lanzamos con sus QR','Le entregamos las tarjetas y stickers listos para mesas, habitaciones o mostrador.'],['Le acompañamos','Cambios de menú, horarios y promociones cuando los necesite, por WhatsApp.']]
+ },
+ en:{nWork:'Work',nSvc:'Services',nHow:'How we work',nContact:'Contact',
+  hk:'MX Studio · Acapulco, Guerrero',h1:'<em>Five-star</em> apps for your business',
+  hp:'We design QR-code apps for hotels, restaurants and cafés, inventory for any business, and dashboards for owners. No downloads, in Spanish and English.',
+  cta1:'Message us on WhatsApp',cta2:'See the work',
+  stats:[['120+','restaurant apps built'],['32','countries in JefeTech'],['ES · EN','in every app we make'],['0','downloads: just scan']],
+  wk:'Work',wh:'What we’ve <em>built</em>',wp:'Real apps that run on your customers’ phones, each one designed by hand.',
+  sk:'Services',sh:'What we do <em>for you</em>',
+  ph:'How we <em>work</em>',pk:'Process',
+  b1k:'Restaurants & cafés',b1h:'$8,000 MXN, first year included',b1p:'Your app with a menu in Spanish and English, dollar prices, WiFi button, Google reviews and QR cards. Or $3,000 today and the rest in payments.',b1l:'See prices and what’s included',
+  b2k:'Hotels & businesses',b2h:'Made to measure',b2p:'Guest apps, management dashboards and inventory. We build you a free sample before you decide.',b2l:'Request my free sample',
+  ck:'Contact',ch:'We’ll build you a <em>free sample</em> of your app',cp:'Tell us about your business on WhatsApp. We’ll show you what your app would look like, no obligation.',
+  mail:'Send an email',loc:'Acapulco, Guerrero · We meet in person',
+  foot:' Designed and built in Acapulco · go.myjefetech.app',
+  wa:'Hi MX Studio, I saw your page and I’m interested in an app for my business.',
+  view:'View',concept:'Concept',
+  work:[
+   ['hotel','Hotels · Concept','Hotel guest app','A QR in every room: today’s activities, tonight’s show, restaurants, pools and excursions.',['QR per room','ES / EN','No downloads'],''],
+   ['panel','Hotels · Concept','Management dashboard','Scans, guest languages, busiest hours, excursion requests and Google reviews in one place.',['Dashboard','Reviews','Analytics'],''],
+   ['mansion','Hotel, restaurant & garden','Mansión Sunset','A bilingual digital menu in the venue’s colors, with a printed table menu that matches it line for line.',['Digital menu','Table menu','ES / EN'],'https://go.myjefetech.app/mansion-sunset/'],
+   ['tres','Restaurant & beach · since 1968','Tres Marías','A menu with seasonal prices, a WiFi ticket for guests and a matching table card.',['Digital menu','Table card','WiFi'],'https://go.myjefetech.app/tres-marias/'],
+   ['inventario','Shops & businesses','Inventory with scanner','Scan products with any phone, track stock and sales, and connect it to the store’s computer.',['Scanner','Inventory','Sales'],''],
+   ['jefetech','Contractors · 32 countries','JefeTech','One app to run the whole crew: jobs, measurements, quotes and payroll, with each country’s currency and rules.',['32 countries','Currencies','Crews'],'https://myjefetech.app/'],
+   ['family','Families · free','Family First','A free family app: check-ins, SOS alerts, location and a family vault, in many languages.',['Safety','Multilingual','Free'],'https://myfamilyfirst.app/']
+  ],
+  svc:[['qr','QR-code apps','For hotels, restaurants and cafés: menu, activities, WiFi, reviews and reservations. Customers scan and they’re in.'],['box','Inventory','For any business: scan with any phone, count stock and track sales with no special equipment.'],['chart','Dashboards','For owners and management: sales, usage, reviews and customer feedback on one screen.'],['print','Print design','Table cards, room cards and stickers in your app’s style, ready to print.']],
+  steps:[['Your sample, free','We build a sample of your app with your menu or services before you pay anything.'],['We fine-tune it together','We change photos, prices and text until it’s exactly how you want it.'],['We launch with your QRs','You get table, room or counter cards and stickers, ready to place.'],['We stay with you','Menu, hours and promo changes whenever you need them, by WhatsApp.']]
+ }};
+const ICON={qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/>',box:'<path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',print:'<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/>'};
+const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+let lang=(()=>{try{return localStorage.getItem('mx-lang')}catch(e){return null}})()||((navigator.language||'es').startsWith('en')?'en':'es');
+const $=s=>document.querySelector(s);
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function render(){const t=T[lang];document.documentElement.lang=lang;$('#langSw').setAttribute('aria-checked',lang==='en');
+  document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t[e.dataset.t]);
+  document.querySelectorAll('[data-h]').forEach(e=>e.innerHTML=t[e.dataset.h]);
+  const wa='https://wa.me/527441930502?text='+encodeURIComponent(t.wa);document.querySelectorAll('a.wa').forEach(a=>a.href=wa);
+  const st=$('#stats');st.replaceChildren();t.stats.forEach(([a,b])=>{const d=el('div');d.append(el('b',null,a),el('span',null,b));st.append(d)});
+  const w=$('#work');w.replaceChildren();t.work.forEach(([img,cat,name,desc,tags,url])=>{const c=el('article','w rv on');
+    const ph=el('div','phone');const im=el('img');im.src='img/'+img+'.jpg';im.alt=name;im.loading='lazy';ph.append(im);
+    const tx=el('div','t');tx.append(el('div','cat micro',cat),el('h3',null,name),el('p',null,desc));const tg=el('div','tags');tags.forEach(x=>tg.append(el('span',null,x)));tx.append(tg);
+    c.append(ph,tx);if(url){const a=el('a','lk');a.href=url;a.target='_blank';a.rel='noopener';a.append(el('span',null,t.view));a.insertAdjacentHTML('beforeend',ARROW);c.append(a)}w.append(c)});
+  const s=$('#svc');s.replaceChildren();t.svc.forEach(([ic,h,p])=>{const d=el('div');d.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${ICON[ic]}</svg>`);d.append(el('h3',null,h),el('p',null,p));s.append(d)});
+  const sp=$('#steps');sp.replaceChildren();t.steps.forEach(([h,p],i)=>{const d=el('div');d.append(el('i',null,String(i+1).padStart(2,'0')),el('h3',null,h),el('p',null,p));sp.append(d)});
+  document.title=lang==='es'?'MX Studio · Apps y dashboards · Acapulco':'MX Studio · Apps & dashboards · Acapulco'}
+$('#langSw').onclick=()=>{lang=lang==='es'?'en':'es';try{localStorage.setItem('mx-lang',lang)}catch(e){}render()};
+addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>40),{passive:true});
+render();
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12}):null;
+document.querySelectorAll('.rv').forEach(e=>io?io.observe(e):e.classList.add('on'));
+</script>
+</body>
+</html>
