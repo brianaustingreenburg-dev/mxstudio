@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Casa Axolotl · Guía del huésped</title>
+<meta name="description" content="Todo Casa Axolotl en tu teléfono: actividades de hoy, kayaks, fogata, restaurante y tu habitación.">
+<meta name="theme-color" content="#0b2a2e">
+<meta property="og:title" content="Casa Axolotl · Guía del huésped">
+<meta property="og:description" content="Actividades de hoy, kayaks en la laguna, fogata a las 7:30 pm y el menú del restaurante.">
+<meta property="og:image" content="https://go.myjefetech.app/acapulco/c/casa-axolotl/hotel/img/cover.jpg">
+<link rel="manifest" href="manifest.json">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2')}
+:root{--ink:#14211f;--muted:#5d6b68;--bg:#f6f1e8;--card:#fffdf8;--line:#e6ddcc;--teal:#0e6b73;--deep:#0b2a2e;--brass:#b8782a;--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.hero{position:relative;height:78vh;min-height:520px;max-height:760px;color:#fff;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,20,22,.55) 0%,rgba(6,20,22,0) 30%,rgba(6,20,22,.15) 55%,rgba(6,20,22,.85) 100%)}
+.top{position:absolute;z-index:2;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 18px 0}
+.mark{font-size:12px;letter-spacing:.28em;font-weight:600}
+.lang{display:flex;border:1px solid rgba(255,255,255,.55);border-radius:99px;overflow:hidden;font-size:12px;font-weight:600}
+.lang button{background:none;border:0;color:#fff;padding:7px 12px;letter-spacing:.08em;cursor:pointer}
+.lang button.on{background:#fff;color:var(--deep)}
+.hero .txt{position:absolute;z-index:2;left:22px;right:22px;bottom:30px}
+.eyebrow{font-size:11px;letter-spacing:.3em;font-weight:600;opacity:.9}
+.hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:54px;line-height:1;margin:10px 0 10px}
+.hero h1 i{font-style:italic;color:#f1d39b}
+.hero p{font-size:16px;opacity:.92;max-width:30em}
+.demo{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:.2em;font-weight:600;border:1px solid rgba(255,255,255,.5);border-radius:99px;padding:5px 10px;opacity:.85}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:16px 16px 0;margin-top:-1px}
+.quick a,.quick button{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 4px 12px;text-align:center;font:600 12px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.quick i{display:block;font-style:normal;font-size:22px;margin-bottom:4px}
+section{padding:34px 20px 0}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:34px;line-height:1.05}
+h2 small{display:block;font-family:Inter,sans-serif;font-size:11px;letter-spacing:.28em;font-weight:600;color:var(--brass);margin-bottom:8px}
+.lead{color:var(--muted);margin-top:8px}
+.now{margin-top:16px;background:var(--deep);color:#fff;border-radius:20px;padding:18px 18px 16px;display:flex;gap:14px;align-items:center}
+.now .dot{width:10px;height:10px;border-radius:50%;background:#f1d39b;box-shadow:0 0 0 6px rgba(241,211,155,.18);flex:none}
+.now b{display:block;font-size:17px}
+.now span{font-size:13px;opacity:.8}
+.tl{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.tl div{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:14px 16px;border-top:1px solid var(--line)}
+.tl div:first-child{border-top:0}
+.tl div.past{opacity:.45}
+.tl time{font-weight:600;color:var(--teal);font-size:14px;padding-top:1px}
+.tl b{display:block;font-weight:600}
+.tl span{color:var(--muted);font-size:14px}
+.exp{margin-top:16px;display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.card img{display:block;width:100%;height:210px;object-fit:cover}
+.card .b{padding:16px 18px 18px}
+.card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;line-height:1.1}
+.card p{color:var(--muted);font-size:15px;margin-top:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font-size:12px;font-weight:600;background:#efe7d8;border-radius:99px;padding:5px 10px}
+.btn{display:block;text-align:center;margin-top:14px;border-radius:14px;padding:13px;font-weight:600;font-size:15px;background:var(--teal);color:#fff;border:0;width:100%;cursor:pointer;font-family:Inter,sans-serif}
+.btn.wa{background:var(--wa);color:#05301a}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.info{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:20px}
+.info div{display:flex;gap:14px;padding:14px 16px;border-top:1px solid var(--line)}
+.info div:first-child{border-top:0}
+.info i{font-style:normal;font-size:20px;width:26px;text-align:center;flex:none}
+.info b{display:block;font-weight:600}
+.info span{color:var(--muted);font-size:14px}
+.warn{margin-top:14px;border-radius:18px;padding:16px;background:#fbefd9;border:1px solid #ecd3a6;font-size:14px}
+.warn b{display:block;margin-bottom:2px}
+.near{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.near a{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 14px}
+.near i{font-style:normal;font-size:24px}
+.near b{display:block;font-weight:600;margin-top:6px;line-height:1.25}
+.near span{color:var(--muted);font-size:13px}
+.review{margin:34px 20px 0;background:var(--deep);color:#fff;border-radius:24px;padding:26px 22px;text-align:center}
+.review h2{font-size:30px}
+.review p{opacity:.8;margin-top:8px;font-size:15px}
+.stars{font-size:28px;letter-spacing:6px;color:#f1d39b;margin-top:12px}
+.review .btn{background:#f1d39b;color:var(--deep)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 20px 10px;letter-spacing:.06em}
+footer b{color:var(--ink)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:9;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(246,241,232,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.bar a{border-radius:14px;padding:13px 6px;text-align:center;font-weight:600;font-size:14px}
+.bar .m{background:var(--deep);color:#fff}
+.bar .w{background:var(--wa);color:#05301a}
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(6,20,22,.55);display:none;align-items:flex-end}
+.sheet.on{display:flex}
+.sheet .in{background:var(--bg);width:100%;border-radius:24px 24px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom))}
+.sheet h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:30px}
+.pw{margin-top:12px;background:var(--card);border:1px dashed var(--brass);border-radius:14px;padding:14px;font-size:15px}
+.pw b{font-size:20px;letter-spacing:.04em}
+@media(min-width:720px){.exp{grid-template-columns:1fr 1fr}.wrap{max-width:760px;margin:0 auto}.hero .txt{left:calc(50% - 360px)}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="img/cover.jpg" alt="Casa Axolotl frente al mar en Pie de la Cuesta">
+  <div class="top"><div class="mark">CASA AXOLOTL</div><div class="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div></div>
+  <div class="txt">
+    <div class="eyebrow" data-t="eyebrow"></div>
+    <h1>Casa <i>Axolotl</i></h1>
+    <p data-t="heroP"></p>
+    <span class="demo">DEMO · MX STUDIO</span>
+  </div>
+</header>
+<div class="wrap">
+<nav class="quick">
+  <a id="qWa" target="_blank" rel="noopener"><i>💬</i><span data-t="qDesk"></span></a>
+  <a href="../"><i>🍽️</i><span data-t="qMenu"></span></a>
+  <button id="qWifi"><i>📶</i><span>WiFi</span></button>
+  <a id="qMap" target="_blank" rel="noopener"><i>📍</i><span data-t="qMap"></span></a>
+</nav>
+
+<section id="hoy">
+  <h2><small data-t="todayS"></small><span data-t="todayH"></span></h2>
+  <div class="now"><div class="dot"></div><div><b id="nowT"></b><span id="nowS"></span></div></div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<section>
+  <h2><small data-t="expS"></small><span data-t="expH"></span></h2>
+  <div class="exp" id="exp"></div>
+</section>
+
+<section>
+  <h2><small data-t="roomS"></small><span data-t="roomH"></span></h2>
+  <div class="info" id="room"></div>
+  <div class="warn"><b data-t="seaB"></b><span data-t="seaP"></span></div>
+</section>
+
+<section>
+  <h2><small data-t="nearS"></small><span data-t="nearH"></span></h2>
+  <p class="lead" data-t="nearP"></p>
+  <div class="near" id="near"></div>
+</section>
+
+<div class="review">
+  <h2 data-t="revH"></h2>
+  <p data-t="revP"></p>
+  <div class="stars">★★★★★</div>
+  <a class="btn" id="revBtn" target="_blank" rel="noopener" data-t="revB"></a>
+</div>
+
+<footer><span data-t="foot"></span><br>Built by <b>MX Studio</b> · Acapulco</footer>
+</div>
+
+<div class="bar"><a class="m" href="../" data-t="barMenu"></a><a class="w" id="barWa" target="_blank" rel="noopener" data-t="barWa"></a></div>
+<div class="sheet" id="sheet"><div class="in"><h3>WiFi</h3><div class="pw" id="pw"></div><button class="btn ghost" id="closeS" data-t="close"></button></div></div>
+
+<script>
+// ==== Hotel data — the owner edits this from the panel; MX Studio publishes in ~2 minutes ====
+const H={
+  wa:"527474999032",
+  map:"https://www.google.com/maps/search/?api=1&query=Casa%20Axolotl%20Pie%20de%20la%20Cuesta&query_place_id=ChIJc5ctzaj5yoURdJRLN4c0FeE",
+  review:"https://search.google.com/local/writereview?placeid=ChIJc5ctzaj5yoURdJRLN4c0FeE",
+  wifi:{net:"CasaAxolotl",pass:""},
+  day:[
+    ["06:30",{es:"Amanecer desde tu balcón",en:"Sunrise from your balcony"},{es:"Pide tu café de olla a la habitación",en:"Ask for café de olla to your room"}],
+    ["07:00",{es:"Kayaks en la Laguna de Coyuca",en:"Kayaks on Coyuca Lagoon"},{es:"Hasta las 10:00 · el agua está quieta",en:"Until 10am · the water is calm"}],
+    ["08:00",{es:"Desayuno y brunch",en:"Breakfast & brunch"},{es:"Restaurante · hasta las 12:00",en:"Restaurant · until noon"}],
+    ["10:00",{es:"Alberca abierta",en:"Pool opens"},{es:"Toallas en recepción",en:"Towels at the front desk"}],
+    ["14:00",{es:"Comida: mariscos y sushi",en:"Lunch: seafood & sushi"},{es:"Prueba los camarones al mojo de ajo",en:"Try the garlic shrimp"}],
+    ["18:15",{es:"Atardecer sobre el Pacífico",en:"Sunset over the Pacific"},{es:"El mejor lugar: la terraza",en:"Best seat: the terrace"}],
+    ["19:30",{es:"Fogata en la playa · gratis",en:"Beach bonfire · free"},{es:"Todas las noches · #AcáFree",en:"Every night · #AcáFree"}],
+    ["20:00",{es:"Cena",en:"Dinner"},{es:"Restaurante · bajo la palapa",en:"Restaurant · under the palapa"}]
+  ],
+  exp:[
+    {img:"img/kayak.jpg",h:{es:"Kayaks en la laguna",en:"Kayaks on the lagoon"},p:{es:"Cruzando la calle está la Laguna de Coyuca. Al amanecer el agua es un espejo: garzas, manglares y la sierra al fondo.",en:"Coyuca Lagoon is right across the street. At sunrise the water is a mirror: herons, mangroves and mountains."},t:[{es:"Para huéspedes",en:"For guests"},{es:"Mejor de 7 a 10 am",en:"Best 7–10am"}],wa:{es:"Hola, quiero apartar kayaks",en:"Hi, I'd like to book kayaks"}},
+    {img:"img/fogata.jpg",h:{es:"Fogata #AcáFree",en:"#AcáFree bonfire"},p:{es:"Todas las noches a las 7:30 pm prendemos la fogata en la playa. Hamacas, estrellas y el sonido del mar. Gratis.",en:"Every night at 7:30 pm we light the bonfire on the beach. Hammocks, stars and the sound of the sea. Free."},t:[{es:"7:30 pm",en:"7:30 pm"},{es:"Gratis",en:"Free"}]},
+    {img:"img/comida.jpg",h:{es:"Restaurante frente al mar",en:"Beachfront restaurant"},p:{es:"Mariscos, sushi, cocina mexicana y brunch. Pide desde tu mesa o tu camastro con el menú en tu teléfono.",en:"Seafood, sushi, Mexican food and brunch. Order from your table or lounger with the menu on your phone."},t:[{es:"Menú ES / EN",en:"ES / EN menu"},{es:"Precios en MXN y US$",en:"Prices in MXN & US$"}],menu:true},
+    {img:"img/cuarto.jpg",h:{es:"Tu habitación",en:"Your room"},p:{es:"Abre el balcón, cuelga la hamaca y mira el amanecer con un café. Todo lo que necesitas saber está abajo.",en:"Open the balcony, hang the hammock and watch the sunrise with a coffee. Everything you need to know is below."},t:[{es:"Vista al mar",en:"Ocean view"},{es:"Aire acondicionado",en:"Air conditioning"}]}
+  ],
+  room:[
+    ["🔑",{es:"Check-in 3:00 pm · Check-out 12:00 pm",en:"Check-in 3pm · Check-out noon"},{es:"¿Salida tarde? Pregunta por WhatsApp",en:"Late check-out? Ask on WhatsApp"}],
+    ["📶",{es:"WiFi gratis",en:"Free WiFi"},{es:"Toca el botón WiFi arriba",en:"Tap the WiFi button above"}],
+    ["❄️",{es:"Aire acondicionado y ventilador",en:"A/C and ceiling fan"},{es:"Apágalo al salir, por favor",en:"Please turn it off when you leave"}],
+    ["🚿",{es:"Agua de la regadera",en:"Shower water"},{es:"Puede salir un poco salada por la cercanía del mar. Es normal.",en:"It may be a little salty because we're by the sea. That's normal."}],
+    ["🏖️",{es:"Toallas de playa y alberca",en:"Beach & pool towels"},{es:"En recepción",en:"At the front desk"}],
+    ["🛎️",{es:"Recepción",en:"Front desk"},{es:"Escríbenos por WhatsApp a cualquier hora",en:"Message us on WhatsApp anytime"}]
+  ],
+  near:[
+    ["🐢",{es:"Liberación de tortugas",en:"Turtle releases"},{es:"Barra de Coyuca · en temporada",en:"Barra de Coyuca · in season"}],
+    ["🛶",{es:"Paseo en lancha por la laguna",en:"Lagoon boat tour"},{es:"Manglares e islas",en:"Mangroves & islands"}],
+    ["🐴",{es:"Paseo a caballo",en:"Horseback riding"},{es:"Por la playa al atardecer",en:"On the beach at sunset"}],
+    ["🌅",{es:"Barra de Coyuca",en:"Barra de Coyuca"},{es:"Donde la laguna toca el mar",en:"Where the lagoon meets the sea"}]
+  ]
+};
+const T={
+ es:{eyebrow:"PIE DE LA CUESTA · ACAPULCO",heroP:"Entre la laguna y el mar abierto. Todo el hotel, en tu teléfono.",qDesk:"Recepción",qMenu:"Menú",qMap:"Cómo llegar",todayS:"HOY EN CASA AXOLOTL",todayH:"Tu día, hora por hora",now:"Ahora",next:"Sigue",done:"Por hoy terminamos. ¡Buenas noches!",expS:"EXPERIENCIAS",expH:"Lo que no te puedes perder",book:"Apartar por WhatsApp",seeMenu:"Ver el menú",roomS:"TU ESTANCIA",roomH:"Todo sobre tu habitación",seaB:"🌊 El mar aquí es abierto",seaP:"Pie de la Cuesta tiene oleaje y corrientes fuertes. Para nadar, usa la alberca o la laguna. Disfruta el mar desde la orilla.",nearS:"ALREDEDOR",nearH:"Para explorar",nearP:"Te ayudamos a organizarlo. Toca uno y escríbenos.",ask:"Hola, me interesa: ",revH:"¿Cómo va tu estancia?",revP:"Tu opinión ayuda a que más familias nos conozcan.",revB:"Dejar reseña en Google",foot:"Casa Axolotl · Hotel y restaurante familiar",barMenu:"🍽️ Menú",barWa:"💬 Recepción",close:"Cerrar",wifiP:"Contraseña: ",wifiAsk:"Pide la contraseña en recepción.",hi:"Hola, estoy hospedado en Casa Axolotl. "},
+ en:{eyebrow:"PIE DE LA CUESTA · ACAPULCO",heroP:"Between the lagoon and the open sea. The whole hotel, on your phone.",qDesk:"Front desk",qMenu:"Menu",qMap:"Directions",todayS:"TODAY AT CASA AXOLOTL",todayH:"Your day, hour by hour",now:"Now",next:"Next",done:"That's all for today. Good night!",expS:"EXPERIENCES",expH:"Don't miss these",book:"Book on WhatsApp",seeMenu:"See the menu",roomS:"YOUR STAY",roomH:"All about your room",seaB:"🌊 This is open sea",seaP:"Pie de la Cuesta has strong waves and currents. To swim, use the pool or the lagoon. Enjoy the ocean from the shore.",nearS:"AROUND US",nearH:"To explore",nearP:"We'll help you set it up. Tap one and message us.",ask:"Hi, I'm interested in: ",revH:"How's your stay?",revP:"Your review helps more families find us.",revB:"Leave a Google review",foot:"Casa Axolotl · Family-run hotel & restaurant",barMenu:"🍽️ Menu",barWa:"💬 Front desk",close:"Close",wifiP:"Password: ",wifiAsk:"Ask the front desk for the password.",hi:"Hi, I'm a guest at Casa Axolotl. "}
+};
+let lang;try{lang=localStorage.getItem("axo-lang")}catch(e){}
+if(lang!=="es"&&lang!=="en")lang=(navigator.language||"es").toLowerCase().startsWith("es")?"es":"en";
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const wa=t=>"https://wa.me/"+H.wa+"?text="+encodeURIComponent(T[lang].hi+(t||""));
+function nowMin(){const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Mexico_City"}));return d.getHours()*60+d.getMinutes()}
+const mins=s=>{const[a,b]=s.split(":");return +a*60+ +b};
+const fmt=s=>{if(lang==="es")return s;let[h,m]=s.split(":").map(Number);const ap=h>=12?"pm":"am";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap};
+function render(){
+  const t=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t[e.dataset.t]);
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
+  $("qWa").href=$("barWa").href=wa("");$("qMap").href=H.map;$("revBtn").href=H.review;
+  const n=nowMin();let cur=-1;H.day.forEach((d,i)=>{if(mins(d[0])<=n)cur=i});
+  $("tl").innerHTML=H.day.map((d,i)=>`<div class="${i<cur?"past":""}"><time>${fmt(d[0])}</time><p><b>${esc(d[1][lang])}</b><span>${esc(d[2][lang])}</span></p></div>`).join("");
+  const nx=H.day[cur+1];
+  if(cur>=0&&cur===H.day.length-1&&n>mins(H.day[cur][0])+150){$("nowT").textContent=t.done;$("nowS").textContent=""}
+  else if(nx){$("nowT").textContent=t.next+" · "+fmt(nx[0])+" — "+nx[1][lang];$("nowS").textContent=nx[2][lang]}
+  else{const c=H.day[cur];$("nowT").textContent=t.now+" · "+c[1][lang];$("nowS").textContent=c[2][lang]}
+  $("exp").innerHTML=H.exp.map(x=>`<article class="card"><img src="${x.img}" alt="" loading="lazy"><div class="b"><h3>${esc(x.h[lang])}</h3><p>${esc(x.p[lang])}</p><div class="tags">${x.t.map(g=>`<span>${esc(g[lang])}</span>`).join("")}</div>${x.wa?`<a class="btn wa" target="_blank" rel="noopener" href="${wa(x.wa[lang])}">💬 ${t.book}</a>`:""}${x.menu?`<a class="btn" href="../">🍽️ ${t.seeMenu}</a>`:""}</div></article>`).join("");
+  $("room").innerHTML=H.room.map(r=>`<div><i>${r[0]}</i><p><b>${esc(r[1][lang])}</b><span>${esc(r[2][lang])}</span></p></div>`).join("");
+  $("near").innerHTML=H.near.map(r=>`<a target="_blank" rel="noopener" href="${wa(t.ask+r[1][lang])}"><i>${r[0]}</i><b>${esc(r[1][lang])}</b><span>${esc(r[2][lang])}</span></a>`).join("");
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("axo-lang",lang)}catch(e){}render()});
+$("qWifi").onclick=()=>{const t=T[lang];$("pw").innerHTML=`📶 <b>${esc(H.wifi.net)}</b><br>`+(H.wifi.pass?t.wifiP+`<b>${esc(H.wifi.pass)}</b>`:t.wifiAsk);$("sheet").classList.add("on")};
+$("closeS").onclick=$("sheet").onclick=e=>{if(e.target.id==="sheet"||e.target.id==="closeS")$("sheet").classList.remove("on")};
+render();setInterval(render,60000);
+</script>
+</body>
+</html>
