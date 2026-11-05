@@ -1,0 +1,8 @@
+// MX Studio "My work" page: works offline after the first visit.
+const C="mx-work-v1";
+const FILES=["./","fonts/cormorant-garamond-latin-500-italic.woff2","fonts/cormorant-garamond-latin-500-normal.woff2","fonts/cormorant-garamond-latin-600-italic.woff2","fonts/cormorant-garamond-latin-600-normal.woff2","fonts/inter-latin-400-normal.woff2","fonts/inter-latin-500-normal.woff2","fonts/inter-latin-600-normal.woff2","fonts/inter-latin-700-normal.woff2","img/family.jpg","img/hero.jpg","img/hotel.jpg","img/inventario.jpg","img/jefetech.jpg","img/logo.png","img/mansion.jpg","img/panel.jpg","img/tres.jpg","index.html"].map(f=>f==="index.html"?"./index.html":f);
+self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith("mx-work-")&&x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
+self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET")return;const u=new URL(r.url);if(u.origin!==location.origin||!u.pathname.startsWith(new URL(self.registration.scope).pathname))return;
+ if(r.mode==="navigate"){e.respondWith(Promise.race([fetch(r).then(res=>{const cp=res.clone();caches.open(C).then(c=>c.put("./",cp));return res}),new Promise((_,no)=>setTimeout(no,5000))]).catch(()=>caches.match("./",{ignoreSearch:true}).then(m=>m||caches.match("./index.html"))));return}
+ e.respondWith(caches.match(r,{ignoreSearch:true}).then(m=>m||fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp))}return res})))});

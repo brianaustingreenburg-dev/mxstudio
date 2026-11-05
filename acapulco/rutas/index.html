@@ -733,5 +733,6 @@ if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.service
  setTimeout(()=>box.style.display="none",fail?6000:3000);
 }catch(e){}})();
 </script>
+<script>/* keep My work available offline */addEventListener("load",()=>setTimeout(()=>{if(!navigator.onLine)return;const f=document.createElement("iframe");f.src="../../mxstudio/";f.style.cssText="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0";f.setAttribute("aria-hidden","true");f.tabIndex=-1;document.body.appendChild(f);setTimeout(()=>f.remove(),20000)},4000));</script>
 </body>
 </html>
