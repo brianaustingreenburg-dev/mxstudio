@@ -674,7 +674,7 @@ $("bigger").onclick=()=>{st.fs=Math.min(28,st.fs+2);applyFs();save()};
 $("smaller").onclick=()=>{st.fs=Math.max(15,st.fs-2);applyFs();save()};
 function applyMode(){const m=st.mode||"r",Vm=m==="v",P=m==="$"||m==="w"||m==="g"||Vm,Gm=m==="g"||Vm;$("modes").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===m));
  $("tabs").style.display=P?"none":"";$("filters").style.display=P?"none":"";$("main").style.display=P?"none":"";$("pwrap").style.display=(P&&!Gm)?"block":"none";$("guion").style.display=(m==="g")?"block":"none";$("ventas").style.display=Vm?"block":"none";if(Vm)drawSales();
- if(P&&!Gm){const f=$("pframe"),W=m==="w";if(!f.src||f.src==="about:blank"||!f.src.includes(W?"mxstudio":"precios"))f.src=W?"../../mxstudio/":"../precios/?embed=1";f.title=W?"MX Studio":"Precios";$("pqr").textContent=W?L().wShare:L().pQr;$("pwrap").style.top=document.querySelector(".top").offsetHeight+"px"}}
+ if(P&&!Gm){const f=$("pframe"),W=m==="w";if(!f.src||f.src==="about:blank"||!f.src.includes(W?"trabajo":"precios"))f.src=W?"../trabajo/":"../precios/?embed=1";f.title=W?"MX Studio":"Precios";$("pqr").textContent=W?L().wShare:L().pQr;$("pwrap").style.top=document.querySelector(".top").offsetHeight+"px"}}
 $("modes").onclick=e=>{const b=e.target.closest("[data-m]");if(!b)return;const was=st.mode;st.mode=b.dataset.m;if(!["$","g","v"].includes(st.mode)&&was!==st.mode)st.route=1;save();applyMode();scrollTo({top:0});if(!["$","g","v"].includes(st.mode))render()};
 $("pqr").onclick=()=>st.mode==="w"?showWork():showPrices();
 addEventListener("resize",()=>{if(st.mode==="$"||st.mode==="w")$("pwrap").style.top=document.querySelector(".top").offsetHeight+"px"});
@@ -733,6 +733,5 @@ if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.service
  setTimeout(()=>box.style.display="none",fail?6000:3000);
 }catch(e){}})();
 </script>
-<script>/* keep My work available offline */addEventListener("load",()=>setTimeout(()=>{if(!navigator.onLine)return;const f=document.createElement("iframe");f.src="../../mxstudio/";f.style.cssText="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0";f.setAttribute("aria-hidden","true");f.tabIndex=-1;document.body.appendChild(f);setTimeout(()=>f.remove(),20000)},4000));</script>
 </body>
 </html>

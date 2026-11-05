@@ -41,6 +41,7 @@ jobs:
           cp -R mxstudio-site out/mxstudio
           cp -R acapulco out/acapulco
           rm -f out/acapulco/vercel.json out/acapulco/_headers
+          cp -R mxstudio-site out/acapulco/trabajo && rm -f out/acapulco/trabajo/sw.js
           cp jefetech-app/terms.html jefetech-app/privacy.html jefetech-app/refund.html jefetech-app/aviso-de-privacidad.html out/
           find out -name netlify.toml -delete
           rm -f out/brian/_redirects
