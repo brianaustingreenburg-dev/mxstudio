@@ -365,5 +365,6 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(renderCharts,150)});
 render();
 </script>
+<script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(()=>{}));</script>
 </body>
 </html>

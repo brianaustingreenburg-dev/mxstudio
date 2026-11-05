@@ -225,7 +225,7 @@
       <div class="eyebrow micro" id="e-dine"></div>
       <h2 id="h-dine"></h2>
       <p class="lead" id="p-dine"></p>
-      <div class="photo" style="margin-top:26px"><img src="img/dining.jpg" alt="" loading="lazy"><div class="cap" id="c-dine"></div></div>
+      <div class="photo" style="margin-top:26px"><img src="img/dining.jpg" alt=""><div class="cap" id="c-dine"></div></div>
       <div id="dine"></div>
     </section>
 
@@ -234,8 +234,8 @@
       <h2 id="h-relax"></h2>
       <p class="lead" id="p-relax"></p>
       <div class="split">
-        <figure><img src="img/pool.jpg" alt="" loading="lazy"><figcaption id="c-pool"></figcaption></figure>
-        <figure><img src="img/beach.jpg" alt="" loading="lazy"><figcaption id="c-beach"></figcaption></figure>
+        <figure><img src="img/pool.jpg" alt=""><figcaption id="c-pool"></figcaption></figure>
+        <figure><img src="img/beach.jpg" alt=""><figcaption id="c-beach"></figcaption></figure>
       </div>
       <div class="duo" id="relax"></div>
       <div class="venue" id="kids"></div>
@@ -479,7 +479,7 @@ function renderToday(){
   html('days', d);
 
   const sh = SHOWS[selDay][lang];
-  html('show', `<img src="img/show.jpg" alt="" loading="lazy"><div class="in"><div class="badge micro">${t.tonight}</div>
+  html('show', `<img src="img/show.jpg" alt=""><div class="in"><div class="badge micro">${t.tonight}</div>
     <div><h3>${sh[0]}</h3><p>${sh[1]}</p><div class="meta"><span>21:00</span><span>${t.theater}</span></div></div></div>`);
 
   html('chips', Object.entries(t.filters).map(([k,v])=>`<button class="${filter===k?'on':''}" data-f="${k}">${v}</button>`).join(''));
@@ -544,5 +544,6 @@ const hashTab = (location.hash||'').slice(1); if(['today','dine','relax','explor
 render();
 setInterval(()=>{ if(tab==='today') renderToday(); if(tab==='dine') renderDine(); }, 60000);
 </script>
+<script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
 </body>
 </html>
