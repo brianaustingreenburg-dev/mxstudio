@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14232c">
+<meta name="color-scheme" content="light">
+<title>Ritz Acapulco · Panel</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Ritz · Panel">
+<style>
+  @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url(../fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-weight:400;font-display:swap;src:url(../fonts/inter-latin-400-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-weight:500;font-display:swap;src:url(../fonts/inter-latin-500-normal.woff2) format('woff2')}
+  @font-face{font-family:'Inter';font-weight:600;font-display:swap;src:url(../fonts/inter-latin-600-normal.woff2) format('woff2')}
+  :root{
+    --bone:#f5f0e8; --paper:#fbf8f3; --line:#e3d9c8; --line-2:#d6c8b1;
+    --ink:#14232c; --ink-2:#3a4852; --muted:#6f777d;
+    --brass:#a8834f; --brass-2:#c9a46c;
+    --s1:#0083a3; --s2:#b8782a;            /* chart series (validated: light surface) */
+    --s1-soft:rgba(0,131,163,.10);
+    --good:#2e7d5b; --warn:#b26b00; --crit:#b3402a;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bone)}
+  body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums tabular-nums;padding-bottom:40px}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .micro{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:500}
+  .demo{background:#0c171d;color:#a9b4ba;font-size:11px;letter-spacing:.06em;text-align:center;padding:7px 12px}
+  .demo b{color:var(--brass-2);font-weight:600}
+
+  /* header */
+  .hd{position:relative;height:230px;overflow:hidden;color:#fff;background:#14232c}
+  .hd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+  .hd::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,23,29,.55),rgba(12,23,29,.35) 40%,rgba(12,23,29,.85))}
+  .hd .in{position:relative;z-index:1;max-width:1120px;margin:0 auto;height:100%;padding:18px 22px 22px;display:flex;flex-direction:column;justify-content:space-between}
+  .hd .top{display:flex;justify-content:space-between;align-items:center;color:#efe4d1}
+  .hd h1{font-family:var(--serif);font-weight:500;line-height:.9}
+  .hd h1 i{font-size:58px;color:#fdfaf4}
+  .hd h1 span{display:block;margin-top:10px;font-family:var(--sans);font-size:11.5px;letter-spacing:.42em;color:var(--brass-2)}
+  .sw{position:relative;display:grid;grid-template-columns:1fr 1fr;width:84px;height:30px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(12,23,29,.3);font-size:11px;font-weight:600;letter-spacing:.14em}
+  .sw .knob{position:absolute;top:2px;left:2px;width:39px;height:24px;border-radius:999px;background:#fbf8f3;transition:transform .3s cubic-bezier(.4,1.3,.6,1)}
+  .sw[aria-checked="true"] .knob{transform:translateX(41px)}
+  .sw span{position:relative;z-index:1;display:grid;place-items:center;color:#fff;padding-left:.14em;transition:color .3s}
+  .sw[aria-checked="false"] .es,.sw[aria-checked="true"] .en{color:var(--ink)}
+
+  main{max-width:1120px;margin:0 auto;padding:0 22px}
+  .filters{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:20px 0 6px}
+  .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:3px;background:var(--paper)}
+  .seg button{padding:7px 14px;border-radius:999px;font-size:12px;font-weight:500;color:var(--muted)}
+  .seg button[aria-pressed="true"]{background:var(--ink);color:#fbf8f3}
+  .note{font-size:12px;color:var(--muted)}
+  h2{font-family:var(--serif);font-weight:500;font-size:32px;line-height:1.05;margin:30px 0 4px}
+  h2 em{font-style:italic;color:var(--brass)}
+  .sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+
+  /* KPI tiles */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+  .kpi{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:16px 16px 14px}
+  .kpi .lab{color:var(--brass)}
+  .kpi .val{font-family:var(--serif);font-size:42px;font-weight:500;line-height:1;margin-top:10px;color:var(--ink)}
+  .kpi .val small{font-size:20px;color:var(--muted)}
+  .kpi .dl{font-size:12px;margin-top:8px;color:var(--ink-2)}
+  .kpi .dl b{font-weight:600}
+  .kpi .dl.up b{color:var(--good)} .kpi .dl.dn b{color:var(--crit)}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px 18px 16px;min-width:0}
+  .card .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
+  .card h3{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.1}
+  .card .ch small{display:block;font-size:12px;color:var(--muted);margin-top:3px;font-family:var(--sans)}
+  .tbtn{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--brass);white-space:nowrap;padding:4px 0}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  .tbl th,.tbl td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--line)}
+  .tbl th{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .tbl td:last-child,.tbl th:last-child{text-align:right}
+
+  /* line chart */
+  .lc{position:relative;height:220px}
+  .lc svg{display:block;width:100%;height:100%;overflow:visible}
+  .lc text{font-size:11px;fill:var(--muted);font-family:var(--sans)}
+
+  /* hbars */
+  .hb{display:grid;gap:9px}
+  .hb .r{display:grid;grid-template-columns:minmax(90px,38%) 1fr auto;gap:10px;align-items:center;font-size:13px;padding:2px 0;border-radius:3px}
+  .hb .r:hover,.hb .r:focus{background:rgba(0,0,0,.025);outline:none}
+  .hb .nm{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hb .tr{height:12px;background:#ece5d8;border-radius:0 4px 4px 0;overflow:hidden}
+  .hb .fl{height:100%;background:var(--s1);border-radius:0 4px 4px 0}
+  .hb .v{font-weight:600;color:var(--ink);min-width:44px;text-align:right}
+
+  /* split bar */
+  .split{display:flex;height:34px;gap:2px;border-radius:4px;overflow:hidden}
+  .split div{display:flex;align-items:center;padding:0 12px;color:#fff;font-size:13px;font-weight:600;white-space:nowrap}
+  .lg{display:flex;gap:18px;margin-top:10px;font-size:12.5px;color:var(--ink-2)}
+  .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+  /* hours */
+  .hrs{display:flex;align-items:flex-end;gap:2px;height:140px;padding-bottom:0}
+  .hrs div{flex:1;background:var(--s1);border-radius:3px 3px 0 0;min-height:2px;opacity:.9}
+  .hrs div:hover{opacity:1;outline:2px solid rgba(0,131,163,.25)}
+  .hrx{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px}
+
+  /* reviews */
+  .rv-top{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .rv-big{font-family:var(--serif);font-size:64px;line-height:.9}
+  .stars{color:var(--brass);letter-spacing:2px;font-size:15px}
+  .rv-list{margin-top:14px;border-top:1px solid var(--line)}
+  .rv{padding:13px 0;border-bottom:1px solid var(--line)}
+  .rv .h{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--muted)}
+  .rv .h b{color:var(--ink);font-weight:600}
+  .rv p{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-top:5px}
+  .rv .a{display:flex;gap:14px;margin-top:8px;align-items:center}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:3px 8px;border-radius:999px;border:1px solid currentColor}
+  .tag.ex{color:var(--muted)}
+  .tag.pend{color:var(--crit)} .tag.ok{color:var(--good)}
+  .lk{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ink);border-bottom:1px solid var(--brass);padding-bottom:2px}
+
+  /* actions + connections */
+  .acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+  .act{display:flex;gap:12px;align-items:center;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px}
+  .act:hover{border-color:var(--brass-2)}
+  .act svg{width:24px;height:24px;color:var(--brass);flex:none}
+  .act b{display:block;font-weight:600;font-size:14px}
+  .act small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .conn{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .conn:last-child{border-bottom:0}
+  .conn b{font-weight:600;font-size:14px}
+  .conn small{display:block;font-size:12px;color:var(--muted);margin-top:2px;max-width:46ch}
+  .btn{padding:10px 16px;background:var(--ink);color:#fbf8f3;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;border-radius:2px;white-space:nowrap}
+
+  .foot{text-align:center;font-size:11.5px;color:var(--muted);margin-top:36px;line-height:1.7}
+  .foot .mk{display:block;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink)}
+
+  #tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:#fbf8f3;padding:9px 12px;border-radius:4px;font-size:12px;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.2);opacity:0;transition:opacity .12s;max-width:240px}
+  #tip.on{opacity:1}
+  #tip .tv{font-size:15px;font-weight:600}
+  #tip .tk{display:inline-block;width:12px;height:2px;background:var(--s1-tip,#5fc3db);vertical-align:middle;margin-right:6px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:#fbf8f3;padding:13px 18px;border-radius:2px;font-size:13px;max-width:88%;text-align:center;transition:.3s;z-index:60;pointer-events:none}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  @media (max-width:520px){ .hb .r{grid-template-columns:1fr auto;row-gap:5px} .hb .nm{white-space:normal} .hb .tr{grid-column:1/-1;order:3} .kpi{padding:14px 12px} .kpi .lab{letter-spacing:.16em} .hd{height:200px} .hd h1 i{font-size:48px} h2{font-size:28px} .kpi .val{font-size:36px} }
+</style>
+</head>
+<body>
+<div class="demo" id="demo"></div>
+<header class="hd">
+  <img src="../img/hero.jpg" alt="">
+  <div class="in">
+    <div class="top"><span class="micro" id="crest"></span>
+      <button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button></div>
+    <h1><i>Ritz</i><span id="h1s"></span></h1>
+  </div>
+</header>
+
+<main>
+  <div class="filters">
+    <div class="seg" id="range"></div>
+    <span class="note" id="upd"></span>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <h2 id="h-use"></h2><p class="sub" id="s-use"></p>
+  <div class="grid">
+    <section class="card" data-chart="daily"></section>
+    <section class="card" data-chart="sections"></section>
+    <section class="card" data-chart="lang"></section>
+    <section class="card" data-chart="hours"></section>
+    <section class="card" data-chart="exc"></section>
+    <section class="card" data-chart="top"></section>
+  </div>
+
+  <h2 id="h-rev"></h2><p class="sub" id="s-rev"></p>
+  <div class="grid">
+    <section class="card" id="google"></section>
+    <section class="card" id="private"></section>
+  </div>
+
+  <h2 id="h-act"></h2><p class="sub" id="s-act"></p>
+  <div class="acts" id="acts"></div>
+
+  <h2 id="h-con"></h2><p class="sub" id="s-con"></p>
+  <section class="card" id="conns"></section>
+
+  <div class="foot" id="foot"></div>
+</main>
+<div id="tip"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const T={
+ es:{demo:'<b>DEMO · DATOS DE EJEMPLO</b> · Panel de muestra por MX Studio · Al conectarse, muestra los datos reales del hotel',
+  crest:'Playa Condesa · Acapulco',h1s:'PANEL DE DIRECCIÓN',days:'días',upd:'Actualizado: hoy',
+  range:[[7,'7 días'],[30,'30 días'],[90,'90 días']],
+  k:['Escaneos del QR','Huéspedes únicos','Solicitudes de excursiones','Calificación de la estancia'],
+  vs:'vs. periodo anterior',
+  hUse:'Uso de la <em>app</em>',sUse:'Cómo usan los huéspedes la app en sus habitaciones.',
+  c:{daily:['Escaneos por día','Cada vez que un huésped abre la app'],sections:['Lo más visto','Visitas por sección de la app'],lang:['Idioma de los huéspedes','Idioma elegido en la app'],hours:['Horas de mayor uso','Escaneos por hora del día'],exc:['Excursiones solicitadas','Solicitudes al concierge por WhatsApp'],top:['Actividades más consultadas','Toques en el programa del día']},
+  table:'Tabla',chart:'Gráfica',colA:'Concepto',colB:'Valor',date:'Fecha',scans:'escaneos',
+  sec:['Hoy','Comer','Relax','Explorar','Info'],
+  langs:['Español','Inglés'],
+  exc:['Clavadistas de La Quebrada','Paseo en yate por la bahía','Snorkel en La Roqueta','Atardecer en Pie de la Cuesta','Pesca deportiva','Fuerte de San Diego','Golf','Cabalgata en la playa'],
+  acts:['Show de esta noche','Aqua aerobics','Kids’ Club','Clase de baile','Waterpolo','Karaoke'],
+  hRev:'Reseñas y <em>opiniones</em>',sRev:'Lo que dicen en Google y lo que comparten en privado antes del check-out.',
+  gT:'Reseñas en Google',gS:'Se conecta con el perfil de Google del hotel',reviews:'reseñas',newR:'nuevas en el periodo',
+  reply:'Responder',replied:'Respondida',sample:'Ejemplo',
+  pT:'Opiniones privadas',pS:'Calificación en la app antes del check-out: se atiende antes de que llegue a Google',
+  pend:'Pendiente',ok:'Resuelta',solve:'Marcar resuelta',room:'Hab.',
+  hAct:'Actualizar <em>contenido</em>',sAct:'Los cambios se publican en la app al instante.',
+  actsL:[['Programa de hoy','Horarios y actividades'],['Show de esta noche','Nombre, hora y foto'],['Aviso para huéspedes','Mensaje destacado en la app'],['Restaurantes y bares','Horarios y menús']],
+  hCon:'Conexiones',sCon:'Al contratar, el panel muestra los datos reales del Ritz.',
+  conn:[['Google Analytics 4','Escaneos, visitas, idiomas y horas reales, desde la cuenta de Google del hotel.'],['Perfil de Google del hotel','Reseñas reales, calificación y respuestas desde este panel.'],['WhatsApp del concierge','Las solicitudes de excursiones llegan al equipo del hotel.']],
+  connect:'Conectar',
+  demoAct:'Demo: en la versión real, esto se conecta y actualiza al instante.',
+  foot:'Panel por MX Studio · Diseñado y construido en Acapulco<br>Datos de ejemplo para demostración. No son cifras reales del hotel.',
+  rvTxt:[[5,'Excelente ubicación en Playa Condesa y el show de la noche muy divertido. Los niños felices en el Kids’ Club.','hace 2 días'],[4,'Buena comida y personal muy amable. Me gustó poder ver el programa del día en el celular.','hace 4 días'],[3,'La habitación bien, pero el ruido de la calle en la noche. La alberca para adultos, muy tranquila.','hace 6 días'],[5,'Todo incluido muy completo, la vista al mar increíble. Regresaremos en diciembre.','hace 1 semana']],
+  pvTxt:[[2,'1204','El aire acondicionado hace ruido.',0],[3,'815','Faltaron toallas de alberca en la tarde.',0],[5,'1107','Todo excelente, gracias al equipo de animación.',1],[4,'602','Muy bien, solo el Wi-Fi lento en la noche.',1]]
+ },
+ en:{demo:'<b>DEMO · SAMPLE DATA</b> · Sample dashboard by MX Studio · Once connected, it shows the hotel’s real data',
+  crest:'Playa Condesa · Acapulco',h1s:'MANAGEMENT DASHBOARD',days:'days',upd:'Updated: today',
+  range:[[7,'7 days'],[30,'30 days'],[90,'90 days']],
+  k:['QR scans','Unique guests','Excursion requests','Stay rating'],
+  vs:'vs. previous period',
+  hUse:'App <em>usage</em>',sUse:'How guests use the app in their rooms.',
+  c:{daily:['Scans per day','Each time a guest opens the app'],sections:['Most viewed','Visits by app section'],lang:['Guest language','Language chosen in the app'],hours:['Busiest hours','Scans by hour of day'],exc:['Excursions requested','Concierge requests on WhatsApp'],top:['Most viewed activities','Taps on the daily program']},
+  table:'Table',chart:'Chart',colA:'Item',colB:'Value',date:'Date',scans:'scans',
+  sec:['Today','Dine','Relax','Explore','Info'],
+  langs:['Spanish','English'],
+  exc:['La Quebrada cliff divers','Bay cruise by yacht','Snorkeling at La Roqueta','Sunset at Pie de la Cuesta','Sport fishing','Fort San Diego','Golf','Horseback riding'],
+  acts:['Tonight’s show','Aqua aerobics','Kids’ Club','Dance class','Water polo','Karaoke'],
+  hRev:'Reviews & <em>feedback</em>',sRev:'What guests say on Google and what they share privately before check-out.',
+  gT:'Google reviews',gS:'Connects to the hotel’s Google profile',reviews:'reviews',newR:'new in this period',
+  reply:'Reply',replied:'Replied',sample:'Sample',
+  pT:'Private feedback',pS:'In-app rating before check-out: handled before it reaches Google',
+  pend:'Open',ok:'Resolved',solve:'Mark resolved',room:'Rm.',
+  hAct:'Update <em>content</em>',sAct:'Changes go live in the app instantly.',
+  actsL:[['Today’s program','Times and activities'],['Tonight’s show','Name, time and photo'],['Guest notice','Highlighted message in the app'],['Restaurants & bars','Hours and menus']],
+  hCon:'Connections',sCon:'Once signed, the dashboard shows the Ritz’s real data.',
+  conn:[['Google Analytics 4','Real scans, visits, languages and hours, from the hotel’s Google account.'],['Hotel Google profile','Real reviews, rating and replies from this dashboard.'],['Concierge WhatsApp','Excursion requests go to the hotel team.']],
+  connect:'Connect',
+  demoAct:'Demo: in the live version, this connects and updates instantly.',
+  foot:'Dashboard by MX Studio · Designed and built in Acapulco<br>Sample data for demonstration. Not the hotel’s real figures.',
+  rvTxt:[[5,'Great location on Condesa Beach and the nightly show was so much fun. Kids loved the Kids’ Club.','2 days ago'],[4,'Good food and very friendly staff. Loved seeing the daily program on my phone.','4 days ago'],[3,'Room was fine, but street noise at night. The adults-only pool was very quiet.','6 days ago'],[5,'Very complete all-inclusive, amazing ocean view. We’ll be back in December.','1 week ago']],
+  pvTxt:[[2,'1204','The air conditioning is noisy.',0],[3,'815','No pool towels left in the afternoon.',0],[5,'1107','Everything excellent, thanks to the entertainment team.',1],[4,'602','Very good, just slow Wi-Fi at night.',1]]
+ }
+};
+/* ---------- sample data (seeded, deterministic) ---------- */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(20261104);
+const DAYS=180, today=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Mexico_City'}));today.setHours(12,0,0,0);
+const daily=[];for(let i=DAYS-1;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);const wd=d.getDay();
+  const base=205+(DAYS-i)*0.25+(wd===5||wd===6?70:wd===0?45:0)+(R()-.5)*60;daily.push({d,v:Math.round(base)})}
+function slice(n,off=0){return daily.slice(DAYS-n-off,DAYS-off)}
+const SEC=[.31,.24,.17,.16,.12], LANG=[.58,.42], EXC=[.31,.22,.18,.12,.08,.04,.03,.02], TOP=[.29,.18,.17,.14,.12,.10];
+const HOURS=[0.2,0.1,0.05,0.05,0.1,0.4,1.6,4.2,7.6,8.4,6.1,4.8,5.2,6.3,5.7,4.6,4.4,5.1,6.8,8.9,9.6,7.3,3.9,1.4].map(x=>x/100);
+const GDIST=[.62,.21,.09,.04,.04];
+
+let lang=(()=>{try{return localStorage.getItem('ritz-lang')}catch(e){return null}})()||((navigator.language||'es').startsWith('en')?'en':'es');
+let range=30; const tableOn={};
+const $=id=>document.getElementById(id);
+const nf=v=>Math.round(v).toLocaleString(lang==='es'?'es-MX':'en-US');
+const pct=v=>Math.round(v*100)+'%';
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2600)}
+
+/* tooltip (text only, never innerHTML with data) */
+const tip=$('tip');
+function showTip(e,val,label){tip.replaceChildren();const v=document.createElement('div');v.className='tv';v.textContent=val;const l=document.createElement('div');l.textContent=label;tip.append(v,l);
+  const x=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-10),y=Math.max(10,e.clientY-tip.offsetHeight-12);tip.style.left=x+'px';tip.style.top=y+'px';tip.classList.add('on')}
+function hideTip(){tip.classList.remove('on')}
+
+function cardHead(el,key,rows){const t=T[lang],c=t.c[key];el.innerHTML='';const h=document.createElement('div');h.className='ch';
+  const a=document.createElement('div');const h3=document.createElement('h3');h3.textContent=c[0];const sm=document.createElement('small');sm.textContent=c[1];a.append(h3,sm);
+  const b=document.createElement('button');b.className='tbtn';b.textContent=tableOn[key]?t.chart:t.table;b.onclick=()=>{tableOn[key]=!tableOn[key];renderCharts()};h.append(a,b);el.append(h);
+  if(tableOn[key]){const tb=document.createElement('table');tb.className='tbl';const hr=tb.insertRow();[key==='daily'?t.date:t.colA,t.colB].forEach(x=>{const th=document.createElement('th');th.textContent=x;hr.append(th)});
+    rows.forEach(r=>{const tr=tb.insertRow();r.forEach(x=>{tr.insertCell().textContent=x})});el.append(tb);return null}
+  const body=document.createElement('div');el.append(body);return body}
+
+function lineChart(el,data){const W=Math.max(280,el.clientWidth||600),H=220,pl=40,pr=10,pt=10,pb=26;
+  const mv=Math.max(...data.map(d=>d.v))*1.05;const stp=[50,100,200,250,500,1000].find(v=>mv/v<=4)||1000;const max=Math.ceil(mv/stp)*stp,min=0,nT=max/stp;
+  const x=i=>pl+(W-pl-pr)*(data.length===1?0:i/(data.length-1)),y=v=>pt+(H-pt-pb)*(1-(v-min)/(max-min));
+  const loc=lang==='es'?'es-MX':'en-US';
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let k=0;k<=nT;k++){const v=k*stp,yy=y(v);s+=`<line x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}" stroke="#e3d9c8" stroke-width="1"/><text x="${pl-8}" y="${yy+4}" text-anchor="end">${nf(v)}</text>`}
+  const step=Math.ceil(data.length/6);data.forEach((d,i)=>{if(i%step===0||i===data.length-1)s+=`<text x="${x(i)}" y="${H-6}" text-anchor="middle">${d.d.toLocaleDateString(loc,{day:'numeric',month:'short'})}</text>`});
+  const pts=data.map((d,i)=>`${x(i)},${y(d.v)}`).join(' ');
+  s+=`<polygon points="${pl},${y(0)} ${pts} ${x(data.length-1)},${y(0)}" fill="rgba(0,131,163,.10)"/>`;
+  s+=`<polyline points="${pts}" fill="none" stroke="#0083a3" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  s+=`<line id="xh" x1="0" x2="0" y1="${pt}" y2="${H-pb}" stroke="#14232c" stroke-width="1" opacity="0"/><circle id="xd" r="5" fill="#0083a3" stroke="#fbf8f3" stroke-width="2" opacity="0"/>`;
+  s+=`<rect x="${pl}" y="0" width="${W-pl-pr}" height="${H}" fill="transparent" id="hit"/></svg>`;
+  el.className='lc';el.innerHTML=s;const sv=el.querySelector('svg'),xh=sv.querySelector('#xh'),xd=sv.querySelector('#xd');
+  sv.querySelector('#hit').addEventListener('pointermove',e=>{const r=sv.getBoundingClientRect(),px=(e.clientX-r.left)*W/r.width;let i=Math.round((px-pl)/((W-pl-pr)/(data.length-1||1)));i=Math.max(0,Math.min(data.length-1,i));
+    xh.setAttribute('x1',x(i));xh.setAttribute('x2',x(i));xh.setAttribute('opacity','.35');xd.setAttribute('cx',x(i));xd.setAttribute('cy',y(data[i].v));xd.setAttribute('opacity','1');
+    showTip(e,nf(data[i].v)+' '+T[lang].scans,data[i].d.toLocaleDateString(loc,{weekday:'long',day:'numeric',month:'long'}))});
+  sv.querySelector('#hit').addEventListener('pointerleave',()=>{xh.setAttribute('opacity','0');xd.setAttribute('opacity','0');hideTip()})}
+
+function hbars(el,items,fmt){const max=Math.max(...items.map(i=>i.v));const w=document.createElement('div');w.className='hb';
+  items.forEach(it=>{const r=document.createElement('div');r.className='r';r.tabIndex=0;const n=document.createElement('span');n.className='nm';n.textContent=it.label;
+    const tr=document.createElement('div');tr.className='tr';const f=document.createElement('div');f.className='fl';f.style.width=(it.v/max*100)+'%';tr.append(f);
+    const v=document.createElement('span');v.className='v';v.textContent=fmt(it.v);r.append(n,tr,v);
+    const sh=e=>showTip(e.clientX?e:{clientX:r.getBoundingClientRect().right-60,clientY:r.getBoundingClientRect().top},fmt(it.v)+(it.extra?' · '+it.extra:''),it.label);
+    r.addEventListener('pointermove',sh);r.addEventListener('pointerleave',hideTip);r.addEventListener('focus',sh);r.addEventListener('blur',hideTip);w.append(r)});
+  el.append(w)}
+
+function renderCharts(){const t=T[lang];const cur=slice(range);const total=cur.reduce((a,b)=>a+b.v,0);
+  const views=total*3.1, req=total*0.034, taps=total*1.4;
+  document.querySelectorAll('[data-chart]').forEach(card=>{const key=card.dataset.chart;let rows=[],body;
+    if(key==='daily'){rows=cur.map(d=>[d.d.toLocaleDateString(lang==='es'?'es-MX':'en-US',{day:'numeric',month:'short'}),nf(d.v)]);body=cardHead(card,key,rows);if(body)lineChart(body,cur)}
+    if(key==='sections'){const it=t.sec.map((s,i)=>({label:s,v:views*SEC[i],extra:pct(SEC[i])}));rows=it.map(i=>[i.label,nf(i.v)]);body=cardHead(card,key,rows);if(body)hbars(body,it,nf)}
+    if(key==='exc'){const it=t.exc.map((s,i)=>({label:s,v:req*EXC[i]}));rows=it.map(i=>[i.label,nf(i.v)]);body=cardHead(card,key,rows);if(body)hbars(body,it,nf)}
+    if(key==='top'){const it=t.acts.map((s,i)=>({label:s,v:taps*TOP[i]}));rows=it.map(i=>[i.label,nf(i.v)]);body=cardHead(card,key,rows);if(body)hbars(body,it,nf)}
+    if(key==='lang'){rows=t.langs.map((l,i)=>[l,pct(LANG[i])]);body=cardHead(card,key,rows);if(body){
+      const sp=document.createElement('div');sp.className='split';[0,1].forEach(i=>{const d=document.createElement('div');d.style.flex=LANG[i];d.style.background=i?'var(--s2)':'var(--s1)';d.textContent=t.langs[i]+' · '+pct(LANG[i]);
+        d.addEventListener('pointermove',e=>showTip(e,pct(LANG[i])+' · '+nf(total*0.58*LANG[i])+' '+(lang==='es'?'huéspedes':'guests'),t.langs[i]));d.addEventListener('pointerleave',hideTip);sp.append(d)});
+      const lg=document.createElement('div');lg.className='lg';t.langs.forEach((l,i)=>{const s=document.createElement('span');const k=document.createElement('i');k.style.background=i?'var(--s2)':'var(--s1)';s.append(k,document.createTextNode(l));lg.append(s)});
+      body.append(sp,lg)}}
+    if(key==='hours'){rows=HOURS.map((h,i)=>[String(i).padStart(2,'0')+':00',nf(total*h)]);body=cardHead(card,key,rows);if(body){
+      const hw=document.createElement('div');hw.className='hrs';const mx=Math.max(...HOURS);HOURS.forEach((h,i)=>{const b=document.createElement('div');b.style.height=(h/mx*100)+'%';b.tabIndex=0;
+        const sh=e=>showTip(e,nf(total*h)+' '+t.scans,String(i).padStart(2,'0')+':00 – '+String(i).padStart(2,'0')+':59');b.addEventListener('pointermove',sh);b.addEventListener('pointerleave',hideTip);hw.append(b)});
+      const ax=document.createElement('div');ax.className='hrx';['00:00','06:00','12:00','18:00','23:00'].forEach(s=>{const sp=document.createElement('span');sp.textContent=s;ax.append(sp)});body.append(hw,ax)}}
+  })}
+
+function renderKpis(){const t=T[lang];const cur=slice(range),prev=slice(range,range);const s=a=>a.reduce((x,y)=>x+y.v,0);
+  const c=s(cur),p=s(prev);const rate=4.6+(range===7?0.1:0),prate=4.5;
+  const K=[[nf(c),c/p-1],[nf(c*0.58),c/p-1+0.01],[nf(c*0.034),c/p-1+0.04],[rate.toFixed(1)+'<small> / 5</small>',(rate-prate)/prate]];
+  $('kpis').innerHTML='';K.forEach((k,i)=>{const d=document.createElement('div');d.className='kpi';const up=k[1]>=0;
+    d.innerHTML=`<div class="lab micro"></div><div class="val">${k[0]}</div><div class="dl ${up?'up':'dn'}"><b>${up?'▲':'▼'} ${Math.abs(Math.round(k[1]*100))}%</b> <span></span></div>`;
+    d.querySelector('.lab').textContent=t.k[i];d.querySelector('.dl span').textContent=t.vs;$('kpis').append(d)})}
+
+function stars(n){return '★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(0,5-n)}
+function renderReviews(){const t=T[lang];const g=$('google');const avg=GDIST.reduce((a,v,i)=>a+v*(5-i),0);const total=1840,newR=Math.round(range*0.9);
+  g.innerHTML=`<div class="ch"><div><h3></h3><small></small></div><span class="tag ex"></span></div>
+   <div class="rv-top"><div><div class="rv-big">${avg.toFixed(1)}</div><div class="stars">★★★★★</div><div style="font-size:12px;color:var(--muted);margin-top:4px">${nf(total)} ${t.reviews} · +${newR} ${t.newR}</div></div><div id="gdist" style="flex:1;min-width:200px"></div></div><div class="rv-list" id="glist"></div>`;
+  g.querySelector('h3').textContent=t.gT;g.querySelector('small').textContent=t.gS;g.querySelector('.tag').textContent=t.sample;
+  hbars(g.querySelector('#gdist'),GDIST.map((v,i)=>({label:(5-i)+' ★',v:Math.round(total*v)})),nf);
+  t.rvTxt.forEach((r,i)=>{const d=document.createElement('div');d.className='rv';d.innerHTML=`<div class="h"><span><span class="stars" style="font-size:13px"></span> &nbsp;<b></b></span><span class="when"></span></div><p></p><div class="a"><button class="lk" data-demo="1"></button><span class="tag ex"></span></div>`;
+    d.querySelector('.stars').textContent=stars(r[0]);d.querySelector('b').textContent=(lang==='es'?'Huésped':'Guest')+' '+String.fromCharCode(65+i)+'.';d.querySelector('.when').textContent=r[2];d.querySelector('p').textContent=r[1];
+    d.querySelector('.lk').textContent=i===1?t.replied:t.reply;d.querySelector('.tag').textContent=t.sample;g.querySelector('#glist').append(d)});
+  const p=$('private');p.innerHTML=`<div class="ch"><div><h3></h3><small></small></div><span class="tag ex"></span></div><div class="rv-list" style="margin-top:0"></div>`;
+  p.querySelector('h3').textContent=t.pT;p.querySelector('small').textContent=t.pS;p.querySelector('.tag').textContent=t.sample;
+  t.pvTxt.forEach((r,i)=>{const done=r[3]||resolved.has(i);const d=document.createElement('div');d.className='rv';
+    d.innerHTML=`<div class="h"><span><span class="stars" style="font-size:13px"></span> &nbsp;<b></b></span><span class="tag ${done?'ok':'pend'}"></span></div><p></p>${done?'':`<div class="a"><button class="lk" data-solve="${i}"></button></div>`}`;
+    d.querySelector('.stars').textContent=stars(r[0]);d.querySelector('b').textContent=t.room+' '+r[1];d.querySelector('.h .tag').textContent=done?('✓ '+t.ok):('● '+t.pend);d.querySelector('p').textContent=r[2];
+    if(!done)d.querySelector('[data-solve]').textContent=t.solve;p.querySelector('.rv-list').append(d)})}
+const resolved=new Set();
+
+const AIC=['<rect x="3.5" y="4.5" width="17" height="16" rx="1"/><path d="M16 2.5v4M8 2.5v4M3.5 10h17"/>','<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>','<path d="M4 10v4h3l5 4V6L7 10zM16 9a4 4 0 0 1 0 6"/>','<path d="M6 3v7a3 3 0 0 0 3 3v8M9 3v6M12 3v7a3 3 0 0 1-3 3M18 21V3c-2 1-3 3-3 6v5h3"/>'];
+function render(){const t=T[lang];document.documentElement.lang=lang;$('langSw').setAttribute('aria-checked',lang==='en');
+  $('demo').innerHTML=t.demo;$('crest').textContent=t.crest;$('h1s').textContent=t.h1s;$('upd').textContent=t.upd;
+  $('range').innerHTML='';t.range.forEach(([n,l])=>{const b=document.createElement('button');b.textContent=l;b.setAttribute('aria-pressed',range===n);b.onclick=()=>{range=n;render()};$('range').append(b)});
+  $('h-use').innerHTML=t.hUse;$('s-use').textContent=t.sUse;$('h-rev').innerHTML=t.hRev;$('s-rev').textContent=t.sRev;$('h-act').innerHTML=t.hAct;$('s-act').textContent=t.sAct;$('h-con').innerHTML=t.hCon;$('s-con').textContent=t.sCon;
+  $('acts').innerHTML='';t.actsL.forEach((a,i)=>{const b=document.createElement('button');b.className='act';b.dataset.demo=1;b.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">${AIC[i]}</svg><span><b></b><small></small></span>`;b.querySelector('b').textContent=a[0];b.querySelector('small').textContent=a[1];$('acts').append(b)});
+  $('conns').innerHTML='';t.conn.forEach(c=>{const d=document.createElement('div');d.className='conn';d.innerHTML='<div><b></b><small></small></div><button class="btn" data-demo="1"></button>';d.querySelector('b').textContent=c[0];d.querySelector('small').textContent=c[1];d.querySelector('.btn').textContent=t.connect;$('conns').append(d)});
+  $('foot').innerHTML=`<span class="mk">Ritz Acapulco</span>${t.foot}`;
+  renderKpis();renderCharts();renderReviews()}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.id==='langSw'){lang=lang==='es'?'en':'es';try{localStorage.setItem('ritz-lang',lang)}catch(_){}render()}
+  else if(b.dataset.demo){toast(T[lang].demoAct)}
+  else if(b.dataset.solve){resolved.add(+b.dataset.solve);renderReviews()}});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(renderCharts,150)});
+render();
+</script>
+</body>
+</html>
