@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Precios · MX Studio ✝️</title>
-<meta name="description" content="Tu app bilingüe con menú, ubicación y WhatsApp para reservas y para llevar. Paquete $8,000 o $3,000 de enganche y pagos bajos · soporte $1,000 al año.">
+<meta name="description" content="Tu app bilingüe con menú, ubicación y WhatsApp para reservas y para llevar. Restaurante o Hotel + Restaurante, todo incluido y el primer año incluido, o $3,000 hoy y pagos bajos.">
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MX Studio ✝">
@@ -54,6 +54,7 @@ h1 span{color:var(--gold)}
 .pbox .was{font-size:11.5px;color:var(--gold);margin-top:2px}.plans{margin:14px 0 4px;display:grid;gap:8px}.plh{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}.plb{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:30px 1fr;column-gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14)}.plb span{grid-row:span 2;font-size:22px}.plb b{font-size:15.5px}.plb small{opacity:.75;font-size:12.5px}.plb[aria-pressed=true]{border-color:#25d366;background:rgba(37,211,102,.12)}.pnote{font-size:11.5px;color:var(--gold);margin-top:2px}
 .was{text-decoration:line-through;text-decoration-thickness:2px;opacity:.85}
 .bonus{margin-top:10px;padding:10px 13px;border-radius:14px;border:1.5px dashed var(--gold);font-size:13px;font-weight:700;line-height:1.4}.bonus b{display:block;font-size:14.5px}
+.regp{display:block;font-size:13px;font-weight:700;opacity:.6;text-decoration:line-through}.pkgs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 0}.pkgs button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:11px 8px;border-radius:12px;font-weight:800;font-size:13px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05)}.pkgs button[aria-pressed=true]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border-color:transparent}.pkgs small{display:block;font-weight:600;font-size:11.5px;opacity:.8;margin-top:2px}
 .promo{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:99px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a}
 .feats{list-style:none;display:grid;gap:10px}
 .feats li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
@@ -151,9 +152,10 @@ body.is-off .off{display:block}
     <div class="promo" data-t="promo"></div>
     <div class="bonus" id="bonus" hidden></div>
     <div class="prices">
-      <div class="pbox"><b>$8,000</b><span data-t="once"></span><span class="pnote" data-t="wasO"></span></div>
-      <div class="pbox"><b>$300</b><span data-t="month"></span><span class="pnote" data-t="was"></span></div>
+      <div class="pbox"><span class="regp" id="pReg"></span><b id="pOnce">$8,000</b><span data-t="once"></span><span class="pnote" id="pSeason"></span><span class="pnote" data-t="wasO"></span></div>
+      <div class="pbox"><b id="pHost">$300</b><span data-t="month"></span><span class="pnote" data-t="was"></span></div>
      </div>
+     <div class="pkgs" id="pkgs"></div>
      <div class="plans" id="plans"></div>
      <div>
     </div>
@@ -187,12 +189,12 @@ const b64u=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/
 const ymd=x=>`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`;
 const addY=(d,n)=>{const x=new Date(d);x.setFullYear(x.getFullYear()+n);return x};
 function stripeBtns(es){return "";const L=[];const b=(url,txt)=>url?`<a style="display:block;text-decoration:none;margin:8px 0;padding:15px;border-radius:14px;background:#635bff;color:#fff;font-weight:800;font-size:15.5px" target="_blank" href="${url}">💳 ${txt}</a>`:"";
- if(plan==="full")L.push(b(PAY.full,(es?"Pagar $8,000 con tarjeta":"Pay $8,000 by card")));else if(plan==="p5"?PAY.m5:PAY.m10){L.push(`<p style="margin:6px 0;font-weight:700">💵 ${es?"Enganche de $3,000 en efectivo, hoy.":"$3,000 down payment in cash, today."}</p>`);L.push(b(plan==="p5"?PAY.m5:PAY.m10,(es?`Activar pagos de ${plan==="p5"?"$1,000 × 5":"$500 × 10"} al mes`:`Start ${plan==="p5"?"$1,000 × 5":"$500 × 10"} monthly payments`)))}
+ if(plan==="full")L.push(b(PAY.full,(es?"Pagar "+fmt(price())+" con tarjeta":"Pay "+fmt(price())+" by card")));else if(plan==="p5"?PAY.m5:PAY.m10){L.push(`<p style="margin:6px 0;font-weight:700">💵 ${es?"Enganche de $3,000 en efectivo, hoy.":"$3,000 down payment in cash, today."}</p>`);L.push(b(plan==="p5"?PAY.m5:PAY.m10,(es?`Activar pagos de ${plan==="p5"?"$1,000 × 5":"$500 × 10"} al mes`:`Start ${plan==="p5"?"$1,000 × 5":"$500 × 10"} monthly payments`)))}
  
  const any=L.join("");return any?`<p style="font-weight:800;margin:14px 0 4px">${es?"Pago con tarjeta:":"Card payment:"}</p>${any}`:(pay==="s"?`<p style="font-size:13px;color:#b5642f;font-weight:700">${es?"El link de pago con tarjeta todavía no está listo. Cobra en efectivo por ahora.":"The card payment link isn't set up yet. Take cash for now."}</p>`:"")}
 function icsFor(s){const p=n=>String(n).padStart(2,"0"),st=Date.now(),E=[];const f=new Date(s.date+"T12:00");f.setMonth(f.getMonth()+3);const d1=`${f.getFullYear()}${p(f.getMonth()+1)}${p(f.getDate())}`,stamp=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";
  if(s.n)E.push("BEGIN:VEVENT","UID:"+s.id+"-pay@mxstudio","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+d1,"RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT="+s.n,"SUMMARY:Cobrar MX Studio: "+s.biz+" ($"+(s.mo-(s.host?300:0))+" efectivo)","DESCRIPTION:Dueño: "+(s.name||"")+" · WhatsApp: "+(s.wa||""),"BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Cobrar pago: "+s.biz,"END:VALARM","END:VEVENT");
- if(s.renew){const r=new Date(s.renew+"T12:00"),dr=`${r.getFullYear()}${p(r.getMonth()+1)}${p(r.getDate())}`;E.push("BEGIN:VEVENT","UID:"+s.id+"-y2@mxstudio","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+dr,"RRULE:FREQ=MONTHLY;INTERVAL=3","SUMMARY:Cobrar MX Studio $900: "+s.biz,"BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Cobrar $900 (3 meses): "+s.biz,"END:VALARM","END:VEVENT")}
+ if(s.renew){const r=new Date(s.renew+"T12:00"),dr=`${r.getFullYear()}${p(r.getMonth()+1)}${p(r.getDate())}`;E.push("BEGIN:VEVENT","UID:"+s.id+"-y2@mxstudio","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+dr,"RRULE:FREQ=MONTHLY;INTERVAL=3","SUMMARY:Cobrar MX Studio $"+((s.pkg==="h"?500:300)*3).toLocaleString("en-US")+": "+s.biz,"BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Cobrar $"+((s.pkg==="h"?500:300)*3).toLocaleString("en-US")+" (3 meses): "+s.biz,"END:VALARM","END:VEVENT")}
  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//MX Studio//ES",...E,"END:VCALENDAR"].join("\r\n")}
 async function pushCfgP(slug,cfg){let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}if(!key||!navigator.onLine)return false;
  const body={whatsapp:cfg.w,wifi:cfg.n?{name:cfg.n,pass:cfg.p}:null,waiter:cfg.o.includes("m"),carryout:cfg.o.includes("c"),reservations:cfg.o.includes("r"),t:cfg.t};
@@ -202,7 +204,13 @@ function ownerWa(){try{const j=JSON.parse(decodeURIComponent(escape(atob(PA.repl
 function pkgText(A){A=A===undefined?PA:A;if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=A?"&a="+A:"",es=lang==="es";
  return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(A?"?a="+A:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"+"\n🧑‍🍳 "+(es?"Tu panel (reseñas, QR, cambios)":"Your panel (reviews, QRs, changes)")+": "+G+"dueno/?s="+PS+a+"\n🧰 "+(es?"Guías para configurar todo, paso a paso":"Step-by-step setup guides")+": "+G+"dueno/?s="+PS+a+"#setup"}
 const BASE={once:8000,down:3000,year:1000};let plan="full",host=false,PAY={};fetch("../lib/pay.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{PAY=j||{}}).catch(()=>{});
-const PL={full:{today:8000,mo:0,n:0},p5:{today:3000,mo:2500,n:2},p10:{today:3000,mo:1250,n:4}};const HOST=300;
+const LOW_END=new Date("2026-12-16T00:00:00-06:00"),lowOn=()=>Date.now()<LOW_END.getTime();
+const PK={r:{low:8000,reg:10000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},h:{low:12000,reg:15000,host:500,es:"🏨 Hotel + Restaurante",en:"🏨 Hotel + Restaurant"}};
+let pkg=(QS.get("pkg")==="h")?"h":"r";
+const price=()=>lowOn()?PK[pkg].low:PK[pkg].reg;
+function buildPL(){const P=price(),d=3000;return{full:{today:P,mo:0,n:0},p5:{today:d,mo:(P-d)/2,n:2},p10:{today:d,mo:(P-d)/4,n:4}}}
+let PL=buildPL(),HOST=PK[pkg].host;
+function setPkg(k){pkg=k;PL=buildPL();HOST=PK[pkg].host}
 const X=[];
 const T={
  es:{kicker:"Precios · Acapulco",h1a:"Tu app bilingüe",h1b:"$8,000 · o $3,000 y pagos bajos",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
@@ -217,7 +225,7 @@ const T={
   oT:"Tu orden",oNo:"Orden",oDate:"Fecha",oBiz:"Nombre de tu negocio",oName:"Tu nombre",oBase:"App MX Studio · instalación",oSup:"Soporte 1er año (cambios ilimitados)",oTables:"QR de mesa",oStk:"Stickers de menú (puerta, caja)",oRev:"Stickers de reseñas Google",oInc:"Incluidos",oExtraT:"Mesas extra",oToday:"Total a pagar hoy",oYear:"Después, cada año",
   pay:"Forma de pago",payC:"💵 Efectivo",payCs:"Sin comisiones · pagas en persona",payW:"💳 Tarjeta",payWs:"Tarjeta de crédito o débito (Stripe)",payCm:"Efectivo (sin comisiones, cobro en persona)",payWm:"Tarjeta (Stripe)",
   oNote:"Al confirmar se abre WhatsApp con tu orden. MX Studio te responde con la bienvenida y los detalles de tu pago.",oSend:"Confirmar y enviar por WhatsApp",oCancel:"Cerrar",oNeed:"Escribe el nombre de tu negocio",
-  msg:(o)=>`🧾 *ORDEN ${o.no} · MX Studio ✝*\nFecha: ${o.date}\nNegocio: ${o.biz}${o.name?"\nNombre: "+o.name:""}\n\n${o.lines}\n\n*Total a pagar hoy: ${o.today}*${o.mo?"\nDespués: "+o.mo:""}\nDesde el 2º año: $300/mes (hosting, soporte y cambios), se cobran $900 cada 3 meses\nForma de pago: ${o.pay}\n\nHola MX Studio, quiero mi app. 🙌`},
+  msg:(o)=>`🧾 *ORDEN ${o.no} · MX Studio ✝*\nFecha: ${o.date}\nNegocio: ${o.biz}${o.name?"\nNombre: "+o.name:""}\n\n${o.lines}\n\n*Total a pagar hoy: ${o.today}*${o.mo?"\nDespués: "+o.mo:""}\nDesde el 2º año: ${fmt(HOST)}/mes (hosting, soporte y cambios), se cobran ${fmt(HOST*3)} cada 3 meses\nForma de pago: ${o.pay}\n\nHola MX Studio, quiero mi app. 🙌`},
  en:{kicker:"Prices · Acapulco",h1a:"Your bilingual app",h1b:"$8,000 · or $3,000 and low payments",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
   pname:"MX Studio app",ptitle:"Everything your business needs",once:"everything included · 1st year included",month:"per month, from year 2",was:"Hosting, support and changes",wasO:"or $3,000 today + low payments",promo:"💵 Pay in parts: $3,000 today and the rest every 3 months, in cash · you control your app from your panel",
   feats:[["🔳","Unlimited QRs: tables, door, register, reviews (printing not included)"],["🧑‍🍳","Your panel: change menu, prices, dishes and today's special yourself"],["📶","WiFi button in the app, no typing the password"],["📖","Menu with photos and prices"],["📍","Location and directions"],["💬","WhatsApp reservations and carry-out"],["⭐","Google review button and stickers"],["🌎","Spanish and English, one tap"],["💵","Prices in dollars for tourists"],["🔥","Today's special you change yourself"],["🎮","Free family games: Acapulco trivia on everyone's phone, memory and coloring"],["🧰","Step-by-step guides to set up everything: Google, WiFi, printing, WhatsApp and your team. Rather I do it? See “Questions”."]],
@@ -230,7 +238,7 @@ const T={
   oT:"Your order",oNo:"Order",oDate:"Date",oBiz:"Your business name",oName:"Your name",oBase:"MX Studio app · setup",oSup:"1st year support (unlimited updates)",oTables:"QR table cards",oStk:"Menu stickers (door, counter)",oRev:"Google review stickers",oInc:"Included",oExtraT:"Extra tables",oToday:"Total due today",oYear:"Then, each year",
   pay:"Payment method",payC:"💵 Cash",payCs:"No fees · pay in person",payW:"💳 Card",payWs:"Credit or debit card (Stripe)",payCm:"Cash (no fees, collected in person)",payWm:"Card (Stripe)",
   oNote:"Confirming opens WhatsApp with your order. MX Studio replies with a welcome and your payment details.",oSend:"Confirm and send on WhatsApp",oCancel:"Close",oNeed:"Enter your business name",
-  msg:(o)=>`🧾 *ORDER ${o.no} · MX Studio ✝*\nDate: ${o.date}\nBusiness: ${o.biz}${o.name?"\nName: "+o.name:""}\n\n${o.lines}\n\n*Total due today: ${o.today}*${o.mo?"\nThen: "+o.mo:""}\nFrom year 2: $300/mo (hosting, support and changes), collected as $900 every 3 months\nPayment: ${o.pay}\n\nHi MX Studio, I want my app. 🙌`}
+  msg:(o)=>`🧾 *ORDER ${o.no} · MX Studio ✝*\nDate: ${o.date}\nBusiness: ${o.biz}${o.name?"\nName: "+o.name:""}\n\n${o.lines}\n\n*Total due today: ${o.today}*${o.mo?"\nThen: "+o.mo:""}\nFrom year 2: ${fmt(HOST)}/mo (hosting, support and changes), collected as ${fmt(HOST*3)} every 3 months\nPayment: ${o.pay}\n\nHi MX Studio, I want my app. 🙌`}
 };
 const $=id=>document.getElementById(id);
 let lang="es",sel={};
@@ -243,22 +251,30 @@ function bonusTxt(es){return es?["🎁 Activa antes del 11 de noviembre","Te con
 function render(){
  const u=T[lang];{const bx=document.getElementById("bonus");if(bx){if(bonusOn()){const b=bonusTxt(lang==="es");bx.innerHTML=`<b>${b[0]}</b>${b[1]}`;bx.hidden=false}else bx.hidden=true}}document.documentElement.lang=lang;
  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
+ {const es=lang==="es",lo=lowOn(),K=PK[pkg];
+  document.querySelector('[data-t="h1b"]').textContent=fmt(price())+(es?" · o $3,000 y pagos bajos":" · or $3,000 and low payments");
+  $("pOnce").textContent=fmt(price());$("pReg").textContent=lo?fmt(K.reg):"";$("pReg").style.display=lo?"":"none";
+  $("pSeason").textContent=lo?(es?"Precio de temporada baja · válido hasta el 15 de diciembre":"Low-season price · valid until December 15"):"";$("pSeason").style.display=lo?"":"none";
+  $("pHost").textContent=fmt(K.host);
+  $("pkgs").innerHTML=["r","h"].map(k=>`<button data-pkg="${k}" aria-pressed="${pkg===k}">${PK[k][lang]}<small>${lo?`<s>${fmt(PK[k].reg)}</s> `:""}${fmt(lo?PK[k].low:PK[k].reg)}</small></button>`).join("");}
  $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
  $("feats").innerHTML=u.feats.map(f=>`<li><i>${f[0]}</i>${f[1]}</li>`).join("");
  $("inc").innerHTML=u.inc.map(s=>`<span>✓ ${s}</span>`).join("");
  $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.year?"+"+fmt(x.year)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
- $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
- const es=lang==="es";$("plans").innerHTML=`<div class="plh">${es?"Elige cómo pagar":"Choose how to pay"}</div>`+[["full","💵",es?"Pago completo":"Pay in full","$8,000 "+(es?"hoy":"today")],["p5","📅","$3,000 + 2 × $2,500",es?"Cada 3 meses · meses 3 y 6":"Every 3 months · months 3 and 6"],["p10","📅","$3,000 + 4 × $1,250",es?"Cada 3 meses · meses 3, 6, 9 y 12":"Every 3 months · months 3, 6, 9 and 12"]].map(([k,i,a,b])=>`<button class="plb" data-plan="${k}" aria-pressed="${plan===k}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
+ const fx=x=>x.replace(/\$8,000/g,fmt(price())).replace(/\$2,500/g,fmt(PL.p5.mo)).replace(/\$1,250/g,fmt(PL.p10.mo)).replace(/\$300 al mes/g,fmt(HOST)+" al mes").replace(/\$300 a month/g,fmt(HOST)+" a month");
+ $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${fx(f[1])}</p></details>`).join("");
+ const es=lang==="es";$("plans").innerHTML=`<div class="plh">${es?"Elige cómo pagar":"Choose how to pay"}</div>`+[["full","💵",es?"Pago completo":"Pay in full",fmt(price())+" "+(es?"hoy":"today")],["p5","📅","$3,000 + 2 × "+fmt(PL.p5.mo),es?"Cada 3 meses · meses 3 y 6":"Every 3 months · months 3 and 6"],["p10","📅","$3,000 + 4 × "+fmt(PL.p10.mo),es?"Cada 3 meses · meses 3, 6, 9 y 12":"Every 3 months · months 3, 6, 9 and 12"]].map(([k,i,a,b])=>`<button class="plb" data-plan="${k}" aria-pressed="${plan===k}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
  
  const t=totals();$("tToday").textContent=fmt(t.o);$("tMonth").textContent=t.mo?fmt(t.mo)+(lang==="es"?" c/3 meses":" every 3 mo"):fmt(HOST)+(lang==="es"?"/mes":"/mo");document.querySelector('[data-t="monthly"]').textContent=t.mo?(lang==="es"?`LUEGO, ${t.n} PAGOS`:`THEN, ${t.n} PAYMENTS`):(lang==="es"?"DESDE EL 2º AÑO":"FROM YEAR 2");
  document.title=(lang==="es"?"Precios":"Prices")+" · MX Studio ✝️";
 }
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
 
+$("pkgs").onclick=e=>{const b=e.target.closest("[data-pkg]");if(!b)return;setPkg(b.dataset.pkg);render()};
 $("plans").onclick=e=>{const b=e.target.closest("[data-plan]");if(b){plan=b.dataset.plan;render();return}if(e.target.closest("[data-host]")){host=!host;render()}};
 $("extras").onclick=e=>{const b=e.target.closest(".x");if(!b)return;sel[b.dataset.k]=!sel[b.dataset.k];render()};
 let orderNo=null,pay="c";
-function orderLines(){const u=T[lang];const es=lang==="es",P=PL[plan];const L=[[es?"Paquete MX Studio · todo incluido, 1er año incluido":"MX Studio package · everything included, 1st year included",fmt(BASE.once)],
+function orderLines(){const u=T[lang];const es=lang==="es",P=PL[plan];const L=[[(es?"Paquete MX Studio · ":"MX Studio package · ")+PK[pkg][lang].replace(/^\S+\s/,"")+(es?" · todo incluido, 1er año incluido":" · everything included, 1st year included"),fmt(price())+(lowOn()?(es?` (temporada baja · regular ${fmt(PK[pkg].reg)})`:` (low season · regular ${fmt(PK[pkg].reg)})`):"")],
   [es?"Forma de pago":"Payment plan",plan==="full"?(es?"Pago completo hoy":"Paid in full today"):(es?`$3,000 hoy + ${P.n} × ${fmt(P.mo)} cada 3 meses`:`$3,000 today + ${P.n} × ${fmt(P.mo)} every 3 months`)],
   [es?"🧑‍🍳 Tu panel para cambios":"🧑‍🍳 Your editing panel",es?"Incluido":"Included"],
   [es?"Desde el 2º año (hosting, soporte, cambios)":"From year 2 (hosting, support, changes)",fmt(HOST)+(es?"/mes":"/mo")],[u.oTables,es?"Ilimitados (impresión aparte)":"Unlimited (printing extra)"],[u.oStk,es?"Ilimitados":"Unlimited"],[u.oRev,es?"Ilimitados":"Unlimited"]];
@@ -293,14 +309,14 @@ $("sheet").onclick=e=>{const u=T[lang];
  if(PS){const em=($("oEm").value||"").trim(),wn=($("oWn").value||"").trim(),wp=$("oWp").value||"",bw=ow.length>=10?(ow.length===10?"52"+ow:ow):"";
   const cfg={w:bw,n:wn,p:wn?wp:"",o:bw?"mcr":"m",t:Date.now()};A=b64u(cfg);
   try{localStorage.setItem("mx-act-"+PS,JSON.stringify(Object.assign({a:A},cfg)))}catch(_){}
-  const now=new Date();sale={id:orderNo,slug:PS,biz,name:nm,wa:bw,email:em,wifi:wn,date:ymd(now),renew:ymd(addY(now,1)),amount:t.o,year:t.m,pay:pay,plan,mo:t.mo,n:t.n,host};
+  const now=new Date();sale={id:orderNo,slug:PS,biz,name:nm,wa:bw,email:em,wifi:wn,date:ymd(now),renew:ymd(addY(now,1)),amount:t.o,year:t.m,pay:pay,plan,pkg,price:price(),mo:t.mo,n:t.n,host};
   try{const L=JSON.parse(localStorage.getItem("mx-sales")||"[]").filter(x=>x.slug!==PS);L.push(sale);localStorage.setItem("mx-sales",JSON.stringify(L));localStorage.setItem("mx-sales-dirty","1")}catch(_){}
   pushCfgP(PS,cfg)}
- let body=u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),mo:t.mo?(lang==="es"?`${t.n} pagos de ${fmt(t.inst)}, cada 3 meses, en efectivo (paso a cobrar en persona)`:`${t.n} payments of ${fmt(t.inst)}, every 3 months, in cash (collected in person)`):"",yr:t.m,year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:pay==="w"?u.payWm:(lang==="es"?"Tarjeta (Stripe)":"Card (Stripe)")})+(sale?(lang==="es"?`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 Desde ${sale.renew}: $300/mes, se cobran $900 cada 3 meses en efectivo`:`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 From ${sale.renew}: $300/mo, collected as $900 cash every 3 months`):"")+pkgText(A);
+ let body=u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),mo:t.mo?(lang==="es"?`${t.n} pagos de ${fmt(t.inst)}, cada 3 meses, en efectivo (paso a cobrar en persona)`:`${t.n} payments of ${fmt(t.inst)}, every 3 months, in cash (collected in person)`):"",yr:t.m,year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:pay==="w"?u.payWm:(lang==="es"?"Tarjeta (Stripe)":"Card (Stripe)")})+(sale?(lang==="es"?`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 Desde ${sale.renew}: ${fmt(HOST)}/mes, se cobran ${fmt(HOST*3)} cada 3 meses en efectivo`:`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 From ${sale.renew}: ${fmt(HOST)}/mo, collected as ${fmt(HOST*3)} cash every 3 months`):"")+pkgText(A);
  if(to!==PHONE)body=body.replace(/\n\n(Hola MX Studio, quiero mi app\. 🙌|Hi MX Studio, I want my app\. 🙌)/,"")+(lang==="es"?"\n\n¡Gracias por tu compra! 🙌\n— MX Studio ✝ · +52 744 193 0502":"\n\nThank you for your purchase! 🙌\n— MX Studio ✝ · +52 744 193 0502");
  open(`https://api.whatsapp.com/send?phone=${to}&text=${encodeURIComponent(body)}`,"_blank");
  if(sale){const es=lang==="es",url=URL.createObjectURL(new Blob([icsFor(sale)],{type:"text/calendar"}));
-  $("box").innerHTML=`<div style="text-align:center;padding:10px 4px"><div style="font-size:44px">✅</div><h3 style="margin:6px 0">${es?"Venta guardada":"Sale saved"}</h3><p>${esc2(biz)} · ${fmt(t.o)}</p><p style="font-weight:800">${t.n?(es?`📅 Luego ${t.n} pagos de ${fmt(t.inst)}, cada 3 meses`:`📅 Then ${t.n} payments of ${fmt(t.inst)}, every 3 months`):(es?"✅ Pagado completo":"✅ Paid in full")}<br>🔁 ${es?"Desde":"From"} ${sale.renew}: $300${es?"/mes · $900 cada 3 meses":"/mo · $900 every 3 months"}</p>
+  $("box").innerHTML=`<div style="text-align:center;padding:10px 4px"><div style="font-size:44px">✅</div><h3 style="margin:6px 0">${es?"Venta guardada":"Sale saved"}</h3><p>${esc2(biz)} · ${fmt(t.o)}</p><p style="font-weight:800">${t.n?(es?`📅 Luego ${t.n} pagos de ${fmt(t.inst)}, cada 3 meses`:`📅 Then ${t.n} payments of ${fmt(t.inst)}, every 3 months`):(es?"✅ Pagado completo":"✅ Paid in full")}<br>🔁 ${es?"Desde":"From"} ${sale.renew}: ${fmt(HOST)}${es?"/mes · "+fmt(HOST*3)+" cada 3 meses":"/mo · "+fmt(HOST*3)+" every 3 months"}</p>
   ${true?`<a style="display:block;text-decoration:none;margin:14px 0 8px;padding:16px;border-radius:14px;background:#25d366;color:#05301a;font-weight:800;font-size:16px" href="${url}" download="renovacion-${PS}.ics">📅 ${es?"Agregar recordatorios de pago a mi calendario":"Add payment reminders to my calendar"}</a>`:""}
   ${stripeBtns(es)}
   <p style="font-size:13px;opacity:.75">${es?"Te avisa un día antes de cada pago. ":"Alerts you the day before each payment. "}${es?"La app ya quedó activada con su WhatsApp y WiFi. Su panel para hacer cambios va en su WhatsApp.":"The app is already activated with their WhatsApp and WiFi. Their editing panel link is in their WhatsApp."}</p>
