@@ -94,6 +94,16 @@ footer b{color:var(--ink)}
 .sheet h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:30px}
 .pw{margin-top:12px;background:var(--card);border:1px dashed var(--brass);border-radius:14px;padding:14px;font-size:15px}
 .pw b{font-size:20px;letter-spacing:.04em}
+.mcats{display:flex;gap:8px;overflow-x:auto;margin:16px -20px 0;padding:0 20px 4px;scrollbar-width:none}
+.mcats button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:9px 14px;font:600 13px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.mcats button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.mlist{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.mi{display:flex;gap:14px;padding:14px 16px;border-top:1px solid var(--line);align-items:center}
+.mi:first-child{border-top:0}
+.mi img{width:74px;height:74px;border-radius:14px;object-fit:cover;flex:none}
+.mi div{flex:1;min-width:0}.mi b{display:block;font-weight:600}.mi span{display:block;color:var(--muted);font-size:13px;line-height:1.35;margin-top:2px}
+.mi em{font-style:normal;font-weight:600;color:var(--teal);white-space:nowrap}
+.mnote{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
 @media(min-width:720px){.exp{grid-template-columns:1fr 1fr}.wrap{max-width:760px;margin:0 auto}.hero .txt{left:calc(50% - 360px)}}
 </style>
 </head>
@@ -111,7 +121,7 @@ footer b{color:var(--ink)}
 <div class="wrap">
 <nav class="quick">
   <a id="qWa" target="_blank" rel="noopener"><i>💬</i><span data-t="qDesk"></span></a>
-  <a href="../"><i>🍽️</i><span data-t="qMenu"></span></a>
+  <a href="/acapulco/c/casa-axolotl/"><i>🍽️</i><span data-t="qMenu"></span></a>
   <button id="qWifi"><i>📶</i><span>WiFi</span></button>
   <a id="qMap" target="_blank" rel="noopener"><i>📍</i><span data-t="qMap"></span></a>
 </nav>
@@ -125,6 +135,15 @@ footer b{color:var(--ink)}
 <section>
   <h2><small data-t="expS"></small><span data-t="expH"></span></h2>
   <div class="exp" id="exp"></div>
+</section>
+
+<section id="rest">
+  <h2><small data-t="restS"></small><span data-t="restH"></span></h2>
+  <p class="lead" data-t="restP"></p>
+  <div class="mcats" id="mcats"></div>
+  <div class="mlist" id="mlist"></div>
+  <a class="btn" href="/acapulco/c/casa-axolotl/" data-t="restB"></a>
+  <p class="mnote" data-t="restN"></p>
 </section>
 
 <section>
@@ -149,7 +168,7 @@ footer b{color:var(--ink)}
 <footer><span data-t="foot"></span><br>Built by <b>MX Studio</b> · Acapulco</footer>
 </div>
 
-<div class="bar"><a class="m" href="../" data-t="barMenu"></a><a class="w" id="barWa" target="_blank" rel="noopener" data-t="barWa"></a></div>
+<div class="bar"><a class="m" href="/acapulco/c/casa-axolotl/" data-t="barMenu"></a><a class="w" id="barWa" target="_blank" rel="noopener" data-t="barWa"></a></div>
 <div class="sheet" id="sheet"><div class="in"><h3>WiFi</h3><div class="pw" id="pw"></div><button class="btn ghost" id="closeS" data-t="close"></button></div></div>
 
 <script>
@@ -191,8 +210,8 @@ const H={
   ]
 };
 const T={
- es:{eyebrow:"PIE DE LA CUESTA · ACAPULCO",heroP:"Entre la laguna y el mar abierto. Todo el hotel, en tu teléfono.",qDesk:"Recepción",qMenu:"Menú",qMap:"Cómo llegar",todayS:"HOY EN CASA AXOLOTL",todayH:"Tu día, hora por hora",now:"Ahora",next:"Sigue",done:"Por hoy terminamos. ¡Buenas noches!",expS:"EXPERIENCIAS",expH:"Lo que no te puedes perder",book:"Apartar por WhatsApp",seeMenu:"Ver el menú",roomS:"TU ESTANCIA",roomH:"Todo sobre tu habitación",seaB:"🌊 El mar aquí es abierto",seaP:"Pie de la Cuesta tiene oleaje y corrientes fuertes. Para nadar, usa la alberca o la laguna. Disfruta el mar desde la orilla.",nearS:"ALREDEDOR",nearH:"Para explorar",nearP:"Te ayudamos a organizarlo. Toca uno y escríbenos.",ask:"Hola, me interesa: ",revH:"¿Cómo va tu estancia?",revP:"Tu opinión ayuda a que más familias nos conozcan.",revB:"Dejar reseña en Google",foot:"Casa Axolotl · Hotel y restaurante familiar",barMenu:"🍽️ Menú",barWa:"💬 Recepción",close:"Cerrar",wifiP:"Contraseña: ",wifiAsk:"Pide la contraseña en recepción.",hi:"Hola, estoy hospedado en Casa Axolotl. "},
- en:{eyebrow:"PIE DE LA CUESTA · ACAPULCO",heroP:"Between the lagoon and the open sea. The whole hotel, on your phone.",qDesk:"Front desk",qMenu:"Menu",qMap:"Directions",todayS:"TODAY AT CASA AXOLOTL",todayH:"Your day, hour by hour",now:"Now",next:"Next",done:"That's all for today. Good night!",expS:"EXPERIENCES",expH:"Don't miss these",book:"Book on WhatsApp",seeMenu:"See the menu",roomS:"YOUR STAY",roomH:"All about your room",seaB:"🌊 This is open sea",seaP:"Pie de la Cuesta has strong waves and currents. To swim, use the pool or the lagoon. Enjoy the ocean from the shore.",nearS:"AROUND US",nearH:"To explore",nearP:"We'll help you set it up. Tap one and message us.",ask:"Hi, I'm interested in: ",revH:"How's your stay?",revP:"Your review helps more families find us.",revB:"Leave a Google review",foot:"Casa Axolotl · Family-run hotel & restaurant",barMenu:"🍽️ Menu",barWa:"💬 Front desk",close:"Close",wifiP:"Password: ",wifiAsk:"Ask the front desk for the password.",hi:"Hi, I'm a guest at Casa Axolotl. "}
+ es:{eyebrow:"PIE DE LA CUESTA · ACAPULCO",heroP:"Entre la laguna y el mar abierto. Todo el hotel, en tu teléfono.",qDesk:"Recepción",qMenu:"Menú",qMap:"Cómo llegar",todayS:"HOY EN CASA AXOLOTL",todayH:"Tu día, hora por hora",now:"Ahora",next:"Sigue",done:"Por hoy terminamos. ¡Buenas noches!",expS:"EXPERIENCIAS",expH:"Lo que no te puedes perder",book:"Apartar por WhatsApp",seeMenu:"Ver el menú",roomS:"TU ESTANCIA",roomH:"Todo sobre tu habitación",seaB:"🌊 El mar aquí es abierto",seaP:"Pie de la Cuesta tiene oleaje y corrientes fuertes. Para nadar, usa la alberca o la laguna. Disfruta el mar desde la orilla.",nearS:"ALREDEDOR",nearH:"Para explorar",nearP:"Te ayudamos a organizarlo. Toca uno y escríbenos.",ask:"Hola, me interesa: ",revH:"¿Cómo va tu estancia?",revP:"Tu opinión ayuda a que más familias nos conozcan.",revB:"Dejar reseña en Google",foot:"Casa Axolotl · Hotel y restaurante familiar",barMenu:"🍽️ Menú",barWa:"💬 Recepción",close:"Cerrar",restS:"RESTAURANTE",restH:"Nuestro menú",restP:"Mariscos, sushi, cocina mexicana y brunch frente al mar.",restB:"🛎️ Pedir a mi mesero o reservar",restN:"Precios en pesos mexicanos",wifiP:"Contraseña: ",wifiAsk:"Pide la contraseña en recepción.",hi:"Hola, estoy hospedado en Casa Axolotl. "},
+ en:{eyebrow:"PIE DE LA CUESTA · ACAPULCO",heroP:"Between the lagoon and the open sea. The whole hotel, on your phone.",qDesk:"Front desk",qMenu:"Menu",qMap:"Directions",todayS:"TODAY AT CASA AXOLOTL",todayH:"Your day, hour by hour",now:"Now",next:"Next",done:"That's all for today. Good night!",expS:"EXPERIENCES",expH:"Don't miss these",book:"Book on WhatsApp",seeMenu:"See the menu",roomS:"YOUR STAY",roomH:"All about your room",seaB:"🌊 This is open sea",seaP:"Pie de la Cuesta has strong waves and currents. To swim, use the pool or the lagoon. Enjoy the ocean from the shore.",nearS:"AROUND US",nearH:"To explore",nearP:"We'll help you set it up. Tap one and message us.",ask:"Hi, I'm interested in: ",revH:"How's your stay?",revP:"Your review helps more families find us.",revB:"Leave a Google review",foot:"Casa Axolotl · Family-run hotel & restaurant",barMenu:"🍽️ Menu",barWa:"💬 Front desk",close:"Close",restS:"RESTAURANT",restH:"Our menu",restP:"Seafood, sushi, Mexican food and brunch by the sea.",restB:"🛎️ Order from my waiter or reserve",restN:"Prices in Mexican pesos",wifiP:"Password: ",wifiAsk:"Ask the front desk for the password.",hi:"Hi, I'm a guest at Casa Axolotl. "}
 };
 let lang;try{lang=localStorage.getItem("axo-lang")}catch(e){}
 if(lang!=="es"&&lang!=="en")lang=(navigator.language||"es").toLowerCase().startsWith("es")?"es":"en";
@@ -201,7 +220,7 @@ const wa=t=>"https://wa.me/"+H.wa+"?text="+encodeURIComponent(T[lang].hi+(t||"")
 function nowMin(){const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Mexico_City"}));return d.getHours()*60+d.getMinutes()}
 const mins=s=>{const[a,b]=s.split(":");return +a*60+ +b};
 const fmt=s=>{if(lang==="es")return s;let[h,m]=s.split(":").map(Number);const ap=h>=12?"pm":"am";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap};
-function render(){
+var render=function(){
   const t=T[lang];document.documentElement.lang=lang;
   document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t[e.dataset.t]);
   document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
@@ -212,13 +231,21 @@ function render(){
   if(cur>=0&&cur===H.day.length-1&&n>mins(H.day[cur][0])+150){$("nowT").textContent=t.done;$("nowS").textContent=""}
   else if(nx){$("nowT").textContent=t.next+" · "+fmt(nx[0])+" — "+nx[1][lang];$("nowS").textContent=nx[2][lang]}
   else{const c=H.day[cur];$("nowT").textContent=t.now+" · "+c[1][lang];$("nowS").textContent=c[2][lang]}
-  $("exp").innerHTML=H.exp.map(x=>`<article class="card"><img src="${x.img}" alt="" loading="lazy"><div class="b"><h3>${esc(x.h[lang])}</h3><p>${esc(x.p[lang])}</p><div class="tags">${x.t.map(g=>`<span>${esc(g[lang])}</span>`).join("")}</div>${x.wa?`<a class="btn wa" target="_blank" rel="noopener" href="${wa(x.wa[lang])}">💬 ${t.book}</a>`:""}${x.menu?`<a class="btn" href="../">🍽️ ${t.seeMenu}</a>`:""}</div></article>`).join("");
+  $("exp").innerHTML=H.exp.map(x=>`<article class="card"><img src="${x.img}" alt="" loading="lazy"><div class="b"><h3>${esc(x.h[lang])}</h3><p>${esc(x.p[lang])}</p><div class="tags">${x.t.map(g=>`<span>${esc(g[lang])}</span>`).join("")}</div>${x.wa?`<a class="btn wa" target="_blank" rel="noopener" href="${wa(x.wa[lang])}">💬 ${t.book}</a>`:""}${x.menu?`<a class="btn" href="#rest">🍽️ ${t.seeMenu}</a>`:""}</div></article>`).join("");
   $("room").innerHTML=H.room.map(r=>`<div><i>${r[0]}</i><p><b>${esc(r[1][lang])}</b><span>${esc(r[2][lang])}</span></p></div>`).join("");
   $("near").innerHTML=H.near.map(r=>`<a target="_blank" rel="noopener" href="${wa(t.ask+r[1][lang])}"><i>${r[0]}</i><b>${esc(r[1][lang])}</b><span>${esc(r[2][lang])}</span></a>`).join("");
 }
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("axo-lang",lang)}catch(e){}render()});
 $("qWifi").onclick=()=>{const t=T[lang];$("pw").innerHTML=`📶 <b>${esc(H.wifi.net)}</b><br>`+(H.wifi.pass?t.wifiP+`<b>${esc(H.wifi.pass)}</b>`:t.wifiAsk);$("sheet").classList.add("on")};
 $("closeS").onclick=$("sheet").onclick=e=>{if(e.target.id==="sheet"||e.target.id==="closeS")$("sheet").classList.remove("on")};
+
+let MENU=[],mcat=0;const MB="/acapulco/c/casa-axolotl/";
+function renderMenu(){if(!MENU.length)return;
+ $("mcats").innerHTML=MENU.map((c,i)=>`<button class="${i===mcat?"on":""}" data-mc="${i}">${esc(c.cat[lang]||c.cat.es)}</button>`).join("");
+ $("mlist").innerHTML=MENU[mcat].items.map(x=>`<div class="mi">${x.img?`<img src="${MB+x.img}" alt="" loading="lazy">`:""}<div><b>${esc(x.name[lang]||x.name.es)}</b><span>${esc((x.desc&&(x.desc[lang]||x.desc.es))||"")}</span></div><em>$${esc(x.price)}</em></div>`).join("");
+ document.querySelectorAll("[data-mc]").forEach(b=>b.onclick=()=>{mcat=+b.dataset.mc;renderMenu()})}
+fetch(MB+"menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(m=>{MENU=m;renderMenu()}).catch(()=>{});
+const _r=render;render=function(){_r();renderMenu()};
 render();setInterval(render,60000);
 </script>
 </body>
