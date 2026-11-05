@@ -189,6 +189,7 @@
 
   .toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:#fbf8f3;padding:13px 18px;border-radius:2px;font-size:13px;max-width:88%;text-align:center;transition:.3s;z-index:20;pointer-events:none}
   .toast.on{opacity:1;transform:translate(-50%,0)}
+.rt{display:flex;gap:8px;align-items:center}.rf{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(12,23,29,.28);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.rf.spin svg{animation:rfs .8s linear infinite}@keyframes rfs{to{transform:rotate(360deg)}}.rf.off{border-color:#e8b4a0;color:#e8b4a0}
 </style>
 </head>
 <body>
@@ -198,7 +199,7 @@
     <img src="img/hero.jpg" alt="">
     <div class="bar">
       <div class="loc micro" id="crest"></div>
-      <button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button>
+      <span class="rt"><button class="rf" id="rf" aria-label="Actualizar / Refresh" title="Actualizar / Refresh"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button><button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button></span>
     </div>
     <div class="title">
       <div class="hello micro" id="hello"></div>
@@ -545,5 +546,8 @@ render();
 setInterval(()=>{ if(tab==='today') renderToday(); if(tab==='dine') renderDine(); }, 60000);
 </script>
 <script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
+<script>(function(){const b=document.getElementById("rf");if(!b)return;b.onclick=async()=>{if(!navigator.onLine){b.classList.add("off");b.title="Sin internet · Offline";setTimeout(()=>b.classList.remove("off"),1800);return}
+b.classList.add("spin");try{const r=await navigator.serviceWorker.getRegistration();if(r){await r.update().catch(()=>{});const w=navigator.serviceWorker.controller;if(w)await new Promise(ok=>{const t=setTimeout(ok,15000);navigator.serviceWorker.addEventListener("message",m=>{if(m.data==="refreshed"){clearTimeout(t);ok()}});w.postMessage("refresh")})}}catch(_){}
+location.replace(location.pathname+"?fresh="+Date.now())};try{if(new URLSearchParams(location.search).has("fresh"))history.replaceState(null,"",location.pathname)}catch(_){}})();</script>
 </body>
 </html>
