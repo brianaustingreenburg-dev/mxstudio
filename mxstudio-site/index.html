@@ -140,6 +140,7 @@
   @media (max-width:860px){ .links a{display:none} .stats{grid-template-columns:1fr 1fr} .stats div:nth-child(2){border-right:0} .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)} .band .wrap{grid-template-columns:1fr} .band .c + .c{border-left:0;border-top:1px solid rgba(201,164,108,.3)} section{padding-top:72px} }
   @media (max-width:520px){ .wrap{padding:0 18px} .brand b{font-size:19px} .hero .wrap{padding-bottom:52px} .stats b{font-size:36px} .work{grid-template-columns:1fr 1fr;gap:16px} .phone{border-width:5px;border-radius:22px} .w h3{font-size:21px} .w p{font-size:13px} .w .tags{display:none} }
   html.embed .wa-float{display:none}
+.rfb{all:unset;cursor:pointer;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.55);display:grid;place-items:center;color:#fff;margin-right:-14px}nav.solid .rfb{border-color:var(--ink);color:var(--ink)}.rfb.spin svg{animation:rfs .8s linear infinite}@keyframes rfs{to{transform:rotate(360deg)}}.rfb.off{border-color:#c0583c;color:#c0583c}html.embed .rfb{display:none}
 </style>
 </head>
 <body>
@@ -147,7 +148,7 @@
 <nav id="nav"><div class="wrap in">
   <a class="brand" href="#top" aria-label="MX Studio"><b>MX <i>Studio</i></b></a>
   <div class="links"><a href="#trabajo" data-t="nWork"></a><a href="#servicios" data-t="nSvc"></a><a href="#proceso" data-t="nHow"></a><a href="#contacto" data-t="nContact"></a>
-    <button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button></div>
+    <button class="rfb" id="rfb" type="button" aria-label="Actualizar / Refresh" title="Actualizar / Refresh"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button><button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button></div>
 </div></nav>
 
 <header class="hero" id="top">
@@ -284,6 +285,9 @@ document.querySelectorAll('.rv').forEach(e=>io?io.observe(e):e.classList.add('on
 
 
 
+<script>(function(){var b=document.getElementById("rfb");if(!b)return;b.onclick=async function(){if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+b.classList.add("spin");try{var r=await navigator.serviceWorker.getRegistration();if(r){await r.update().catch(function(){});var w=navigator.serviceWorker.controller;if(w)await new Promise(function(ok){var t=setTimeout(ok,15000);navigator.serviceWorker.addEventListener("message",function(m){if(m.data==="refreshed"){clearTimeout(t);ok()}});w.postMessage("refresh")})}}catch(e){}
+location.replace(location.pathname+"?fresh="+Date.now())};try{if(/[?&]fresh=/.test(location.search))history.replaceState(null,"",location.pathname)}catch(e){}})();</script>
 <!-- MX-LAUNCH:start · MX Studio open / share screen (shows when opened from the home-screen icon) -->
 <style>
 #mxl{position:fixed;inset:0;z-index:2147483646;display:none;background:radial-gradient(120% 80% at 50% 0%,#24303a 0%,#0d1216 70%);color:#f4efe6;font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:auto;-webkit-overflow-scrolling:touch}

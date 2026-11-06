@@ -135,5 +135,48 @@ document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.datas
 render();
 if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
+
+
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
 </body>
 </html>
