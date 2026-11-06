@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JefeTech · Propuesta</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f1117">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+:root{--bg:#0f1117;--s1:#1a1d27;--s2:#232735;--line:#2c3142;--ink:#F0EDE8;--mut:#94A3B8;--or:#FF6B2B;--gr:#22C55E;--am:#F59E0B;--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:radial-gradient(110% 40% at 50% 0%,#2a1c14 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:calc(20px + env(safe-area-inset-top)) 0 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.k{font-size:11px;letter-spacing:.24em;font-weight:800;color:var(--or)}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--s1)}
+.lang button{all:unset;cursor:pointer;font-size:12px;font-weight:800;letter-spacing:.08em;padding:7px 11px;border-radius:99px;color:var(--mut)}
+.lang button.on{background:var(--or);color:#140a04}
+h1{font-size:32px;line-height:1.08;font-weight:900;letter-spacing:-.02em;margin-top:16px}
+h1 em{font-style:normal;color:var(--or)}
+.lead{color:var(--mut);margin-top:8px;font-size:15px}
+section{margin-top:30px}
+h2{font-size:12px;letter-spacing:.2em;font-weight:900;color:var(--mut);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--or))}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:18px}
+.price{background:linear-gradient(135deg,#2b1a10,#1a1d27);border-color:#5a3418;text-align:center;padding:24px 18px}
+.price .l{font-size:12px;letter-spacing:.18em;font-weight:800;color:var(--am)}
+.price .v{font-size:40px;font-weight:900;letter-spacing:-.02em;margin:6px 0 2px;color:#fff}
+.price .s{color:var(--mut);font-size:13px}
+.steps{margin-top:12px;display:grid;gap:8px}
+.step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px}
+.step i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--or);color:#140a04;display:grid;place-items:center;font-weight:900;font-size:13px}
+.step b{display:block;font-size:15px}.step span{color:var(--mut);font-size:13.5px}
+sup a{color:var(--am);text-decoration:none;font-weight:800;font-size:11px;margin-left:2px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.st{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:14px}
+.st b{display:block;font-size:24px;font-weight:900;letter-spacing:-.01em}
+.st span{color:var(--mut);font-size:12.5px;line-height:1.35;display:block;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.12em;color:var(--mut);font-weight:800}
+td:last-child,th:last-child{text-align:right;white-space:nowrap}
+tr.me td{color:var(--or);font-weight:800}
+.tw{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:6px 10px;overflow-x:auto}
+ul.inc{list-style:none;display:grid;gap:8px}
+ul.inc li{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px}
+ul.inc li b{display:block}
+ul.inc li span{color:var(--mut);font-size:13px}
+.calc .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.calc .row:last-child{border:0}
+.calc .row b{font-size:16px}
+.calc .big{font-size:26px;color:var(--gr)}
+input[type=range]{width:100%;accent-color:var(--or);margin:12px 0 4px}
+.seg{display:flex;background:var(--s2);border-radius:12px;padding:3px;margin-top:6px}
+.seg button{all:unset;flex:1;text-align:center;cursor:pointer;padding:9px 6px;border-radius:10px;font-size:13px;font-weight:800;color:var(--mut)}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.ms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.ms div{background:var(--s2);border-radius:12px;padding:10px;text-align:center}
+.ms b{display:block;font-size:17px}.ms span{font-size:11.5px;color:var(--mut)}
+.note{margin-top:10px;font-size:12.5px;color:var(--mut)}
+.warn{margin-top:10px;background:#2a2412;border:1px solid #5b4a1a;border-radius:14px;padding:12px;font-size:13.5px;color:#f3e2b5}
+.cta{display:grid;gap:8px;margin-top:10px}
+.btn{all:unset;box-sizing:border-box;display:block;text-align:center;cursor:pointer;border-radius:14px;padding:15px 12px;font-weight:800;font-size:16px}
+.b-wa{background:var(--wa);color:#05301a}.b-mail{background:var(--s2);border:1px solid var(--line);color:var(--ink)}
+ol.src{padding-left:20px;display:grid;gap:8px;font-size:13px;color:var(--mut)}
+ol.src a{color:var(--ink)}
+.foot{text-align:center;color:#5d6678;font-size:11px;letter-spacing:.2em;margin-top:30px}
+</style>
+</head>
+<body>
+<header class="wrap">
+ <div class="top"><div class="k">JEFETECH · MX STUDIO ✝</div><div class="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div></div>
+ <h1 data-h="h1"></h1>
+ <p class="lead" data-t="lead"></p>
+</header>
+<main class="wrap" id="main"></main>
+<p class="foot">JEFETECH · MX STUDIO ✝</p>
+<script>
+const SRC=[
+ ["IBISWorld · Field Service Management Software in the US (2026)","https://www.ibisworld.com/united-states/market-research-reports/field-service-management-software-industry/"],
+ ["Field Service Software Pricing Index · junio/June 2026","https://fieldstackpro-site.pages.dev/field-service-software-pricing-index.html"],
+ ["RaftLabs · Cost to Build a Field Service App Like Jobber","https://www.raftlabs.com/blog/cost-to-build-app-like-jobber"],
+ ["Chop Dawg · App developer hourly rates in the U.S. in 2026","https://www.chopdawg.com/app-developer-hourly-rates-in-the-u-s-in-2026/"],
+ ["ExitBid · How to value a pre-revenue project","https://www.exitbid.io/blog/how-to-value-a-pre-revenue-project"],
+ ["Acquire.com · Biannual Acquisition Multiples Report (Jan 2026)","https://blog.acquire.com/acquire-com-biannual-acquisition-multiples-report-jan-2026/"],
+ ["Porkbun · .app domain cost (nov/Nov 6, 2026)","https://porkbun.com/about/domain-cost-calculator/app"],
+ ["PricingSaaS · Netlify Pro (2026)","https://pricingsaas.com/companies/netlify/diffs/2026Q2"],
+ ["Flexprice · Stripe pricing breakdown 2026","https://flexprice.io/blog/stripe-pricing-breakdown-2026"],
+ ["GitHub Docs · GitHub Pages limits","https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"]
+];
+const s=n=>`<sup><a href="#src${n}">[${n}]</a></sup>`;
+const NET={p:137-82.20-(137*.029+.30+137*.007),d:137-(137*.029+.30+137*.007)}; // per customer / month after Stripe (and 60% partner commission if p)
+const MULT=3.9;
+const T={
+ es:{h1:"Propuesta: <em>JefeTech</em>",lead:"Plataforma para contratistas lista para operar: app del equipo, dashboards y plataforma de ventas. Precio de mercado en Estados Unidos, con cada dato y su fuente.",
+  pH:"PRECIO DE MERCADO HOY",pL:"VALOR DE MERCADO EN EE.UU.",pS:"Plataforma lista para lanzar, aún sin clientes de pago. Cifras en dólares (USD).",
+  howH:"CÓMO SE CALCULA",
+  how:[["Costo de construirlo en EE.UU.: $120,000–$150,000+",`Una app de servicio en campo con varias sedes y reportes cuesta $120,000–$150,000+ con una agencia de EE.UU.${s(3)} JefeTech tiene 32 países, dashboards de dueño y de socios, así que entra en ese nivel. Las tarifas de desarrollo en EE.UU. van de $75 a $250 por hora.${s(4)}`],
+   ["Descuento del comprador: 40–70%",`Sin ingresos, los compradores pagan el costo de reconstruirlo menos un descuento del 40% al 70%.${s(5)}`],
+   ["Resultado: $36,000–$90,000",`30%–60% de $120,000–$150,000. El precio sube con cada cliente que paga (ver abajo).`]],
+  mkH:"EL MERCADO EN ESTADOS UNIDOS",
+  mk:[["$3.1 mil millones",`Software de servicio en campo en EE.UU., 2026${s(1)}`],["7.7% al año",`Crecimiento anual 2021–2026${s(1)}`],["85",`Empresas de este software en EE.UU.${s(1)}`],["$137/mes",`JefeTech: precio fijo para todo el equipo`]],
+  cpH:"PRECIOS DE LA COMPETENCIA",cpN:`Precios de lista mensuales, junio 2026${s(2)}`,cpCols:["Software","~5 usuarios","~15 usuarios"],
+  cp:[["Jobber","$169","$349–$599"],["Housecall Pro","$149","$299 + extras"],["Workiz","$225","$295–$600"],["FieldPulse","$340","$940"],["ServiceTitan","—","$300+ por técnico"],["JefeTech","$137","$137"]],
+  incH:"QUÉ INCLUYE",
+  inc:[["🧰 App del equipo","Trabajos, medidas, cotizaciones, seguridad y nómina, en 32 países con su moneda y reglas."],["🔥 La Forja · War Room","Trabajos activos, equipo en sitio, pipeline y cobranza en vivo."],["🖥️ Dashboard del dueño","Lo que ve el dueño de cada empresa cliente."],["🤝 Plataforma de socios","Páginas de socios por país, capacitación, metas, prospectos y comisiones."],["💳 Planes y cobro","Página de planes y suscripción con Stripe."],["📄 Legal","Términos, privacidad, aviso de privacidad y reembolsos."],["🌐 Dominio","myjefetech.app y go.myjefetech.app"]],
+  hoH:"CUÁNTO CUESTA MANTENERLO EN LÍNEA",hoCols:["Concepto","Costo"],
+  ho:[["Hosting (Netlify Pro)"+s(8),"$20 / mes"],["Dominio .app"+s(7),"$14–$23 / año"],["Stripe: tarjeta 2.9% + $0.30, suscripciones 0.7%"+s(9),"≈ $5.23 por cliente / mes"],["Total fijo","≈ $25 / mes"]],
+  hoW:`Hoy está en GitHub Pages, que es gratis pero no permite operar un negocio SaaS de pago${s(10)}. Para vender suscripciones conviene pasarlo a un hosting de pago como Netlify (≈ $20/mes).`,
+  vaH:"CÓMO SUBE EL VALOR CON CLIENTES",vaN:`Un SaaS pequeño se vende en una mediana de ${MULT} veces su ganancia anual${s(6)}.`,
+  cust:"Clientes que pagan",modeP:"Con socios (60%)",modeD:"Venta directa",
+  r1:"Ingreso mensual",r2:"Ganancia por año",r3:"Valor estimado",ms:"clientes",
+  vaF:"Ganancia por cliente al mes: $137 menos Stripe (≈ $5.23) y, con socios, menos la comisión del 60% ($82.20). No incluye otros gastos de operación.",
+  dlH:"HAGAMOS UN TRATO",dl:"Pago en efectivo, financiamiento del vendedor o pago con parte de los ingresos. Escríbanos y armamos la oferta.",wa:"💬 WhatsApp",mail:"✉️ Correo",
+  srcH:"FUENTES",disc:"Las cifras son datos públicos del mercado a noviembre de 2026, no una tasación formal ni asesoría financiera."},
+ en:{h1:"Proposal: <em>JefeTech</em>",lead:"A ready-to-run contractor platform: crew app, dashboards and sales platform. US market price, with every number and its source.",
+  pH:"MARKET PRICE TODAY",pL:"US MARKET VALUE",pS:"Launch-ready platform, no paying customers yet. Figures in US dollars.",
+  howH:"HOW IT'S CALCULATED",
+  how:[["Cost to build it in the US: $120,000–$150,000+",`A field service app with multiple locations and reporting costs $120,000–$150,000+ at a US agency.${s(3)} JefeTech has 32 countries plus owner and partner dashboards, so it sits in that tier. US development rates run $75 to $250 an hour.${s(4)}`],
+   ["Buyer discount: 40–70%",`With no revenue, buyers pay the cost to rebuild minus a 40% to 70% discount.${s(5)}`],
+   ["Result: $36,000–$90,000",`30%–60% of $120,000–$150,000. The price rises with every paying customer (see below).`]],
+  mkH:"THE US MARKET",
+  mk:[["$3.1 billion",`US field service management software, 2026${s(1)}`],["7.7% a year",`Annual growth 2021–2026${s(1)}`],["85",`Companies making this software in the US${s(1)}`],["$137/mo",`JefeTech: one flat price for the whole crew`]],
+  cpH:"WHAT COMPETITORS CHARGE",cpN:`Monthly list prices, June 2026${s(2)}`,cpCols:["Software","~5 users","~15 users"],
+  cp:[["Jobber","$169","$349–$599"],["Housecall Pro","$149","$299 + add-ons"],["Workiz","$225","$295–$600"],["FieldPulse","$340","$940"],["ServiceTitan","—","$300+ per tech"],["JefeTech","$137","$137"]],
+  incH:"WHAT'S INCLUDED",
+  inc:[["🧰 Crew app","Jobs, measurements, quotes, safety and payroll, in 32 countries with local currency and rules."],["🔥 La Forja · War Room","Live active jobs, crew on site, pipeline and collections."],["🖥️ Owner dashboard","What each customer company's owner sees."],["🤝 Partner platform","Country partner pages, training, goals, prospects and commissions."],["💳 Plans & checkout","Plans page and Stripe subscriptions."],["📄 Legal","Terms, privacy, Mexican privacy notice and refunds."],["🌐 Domain","myjefetech.app and go.myjefetech.app"]],
+  hoH:"WHAT IT COSTS TO KEEP IT ONLINE",hoCols:["Item","Cost"],
+  ho:[["Hosting (Netlify Pro)"+s(8),"$20 / mo"],[".app domain"+s(7),"$14–$23 / yr"],["Stripe: cards 2.9% + $0.30, subscriptions 0.7%"+s(9),"≈ $5.23 per customer / mo"],["Fixed total","≈ $25 / mo"]],
+  hoW:`It runs on GitHub Pages today, which is free but doesn't allow running a paid SaaS business${s(10)}. To sell subscriptions, move it to paid hosting such as Netlify (≈ $20/mo).`,
+  vaH:"HOW THE VALUE GROWS WITH CUSTOMERS",vaN:`Small SaaS businesses sell for a median of ${MULT} times yearly profit${s(6)}.`,
+  cust:"Paying customers",modeP:"With partners (60%)",modeD:"Direct sales",
+  r1:"Monthly revenue",r2:"Profit per year",r3:"Estimated value",ms:"customers",
+  vaF:"Profit per customer per month: $137 minus Stripe (≈ $5.23) and, with partners, minus the 60% commission ($82.20). Other operating costs not included.",
+  dlH:"LET'S MAKE A DEAL",dl:"Cash, seller financing or payment from a share of revenue. Message us and we'll put the offer together.",wa:"💬 WhatsApp",mail:"✉️ Email",
+  srcH:"SOURCES",disc:"Figures are public market data as of November 2026, not a formal appraisal or financial advice."}
+};
+const $=id=>document.getElementById(id),money=n=>"$"+Math.round(n).toLocaleString("en-US");
+let lang;try{lang=localStorage.getItem("jthq-lang")}catch(e){}
+if(lang!=="es"&&lang!=="en")lang=(navigator.language||"es").toLowerCase().startsWith("es")?"es":"en";
+let N=250,mode="p";
+function val(n,m){const net=NET[m];return{mrr:n*137,profit:n*net*12,value:n*net*12*MULT}}
+function calc(){const t=T[lang],v=val(N,mode);
+ $("cN").textContent=N;$("cMrr").textContent=money(v.mrr);$("cPr").textContent=money(v.profit);$("cVal").textContent=money(v.value);
+ $("ms").innerHTML=[100,250,560].map(n=>`<div><b>${money(val(n,mode).value)}</b><span>${n} ${t.ms}</span></div>`).join("");
+ document.querySelectorAll(".seg button").forEach(b=>b.classList.toggle("on",b.dataset.m===mode))}
+function render(){const t=T[lang];document.documentElement.lang=lang;
+ document.querySelector("h1").innerHTML=t.h1;document.querySelector(".lead").textContent=t.lead;
+ document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
+ const wa="https://wa.me/527441930502?text="+encodeURIComponent(lang==="es"?"Hola Brian, me interesa la propuesta de JefeTech.":"Hi Brian, I'm interested in the JefeTech proposal.");
+ $("main").innerHTML=`
+ <section><h2>${t.pH}</h2><div class="card price"><div class="l">${t.pL}</div><div class="v">$36,000 – $90,000</div><div class="s">${t.pS}</div></div>
+  <h2 style="margin-top:18px;--c:var(--am)">${t.howH}</h2><div class="steps">${t.how.map((h,i)=>`<div class="step"><i>${i+1}</i><div><b>${h[0]}</b><span>${h[1]}</span></div></div>`).join("")}</div></section>
+ <section><h2 style="--c:var(--gr)">${t.mkH}</h2><div class="stats">${t.mk.map(m=>`<div class="st"><b>${m[0]}</b><span>${m[1]}</span></div>`).join("")}</div></section>
+ <section><h2 style="--c:#60a5fa">${t.cpH}</h2><div class="tw"><table><tr>${t.cpCols.map(c=>`<th>${c}</th>`).join("")}</tr>${t.cp.map(r=>`<tr class="${r[0]==="JefeTech"?"me":""}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table></div><p class="note">${t.cpN}</p></section>
+ <section><h2>${t.incH}</h2><ul class="inc">${t.inc.map(i=>`<li><b>${i[0]}</b><span>${i[1]}</span></li>`).join("")}</ul></section>
+ <section><h2 style="--c:var(--gr)">${t.hoH}</h2><div class="tw"><table><tr>${t.hoCols.map(c=>`<th>${c}</th>`).join("")}</tr>${t.ho.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div><div class="warn">⚠️ ${t.hoW}</div></section>
+ <section><h2 style="--c:var(--am)">${t.vaH}</h2><div class="card calc">
+  <div class="row"><span>${t.cust}</span><b id="cN"></b></div>
+  <input type="range" id="slider" min="0" max="1000" step="10" value="${N}" aria-label="${t.cust}">
+  <div class="seg"><button data-m="p">${t.modeP}</button><button data-m="d">${t.modeD}</button></div>
+  <div class="row" style="margin-top:8px"><span>${t.r1}</span><b id="cMrr"></b></div>
+  <div class="row"><span>${t.r2}</span><b id="cPr"></b></div>
+  <div class="row"><span>${t.r3}</span><b class="big" id="cVal"></b></div>
+  <div class="ms" id="ms"></div>
+  <p class="note">${t.vaN} ${t.vaF}</p></div></section>
+ <section><h2 style="--c:var(--wa)">${t.dlH}</h2><div class="card"><p style="font-size:15px">${t.dl}</p><div class="cta"><a class="btn b-wa" href="${wa}" target="_blank" rel="noopener">${t.wa} · +52 744 193 0502</a><a class="btn b-mail" href="mailto:brian@myjefetech.app?subject=JefeTech">${t.mail} · brian@myjefetech.app</a></div></div></section>
+ <section><h2 style="--c:var(--mut)">${t.srcH}</h2><ol class="src">${SRC.map((x,i)=>`<li id="src${i+1}"><a href="${x[1]}" target="_blank" rel="noopener">${x[0]}</a></li>`).join("")}</ol><p class="note">${t.disc}</p></section>`;
+ $("slider").oninput=e=>{N=+e.target.value;calc()};
+ document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{mode=b.dataset.m;calc()});
+ calc()}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("jthq-lang",lang)}catch(e){}render()});
+render();
+if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script>
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
+</body>
+</html>
