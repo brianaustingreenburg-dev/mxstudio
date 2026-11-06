@@ -353,6 +353,7 @@ try{const jg=new URLSearchParams(location.search).get("jugar");if(jg){const go=(
 </script>
 
 
+
 <!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
 <style>
 .mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
@@ -389,6 +390,7 @@ try{const jg=new URLSearchParams(location.search).get("jugar");if(jg){const go=(
   }catch(e){}
   var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
  };
+ try{if("serviceWorker" in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.addEventListener("controllerchange",function(){if(window.__mxReloaded)return;window.__mxReloaded=1;location.reload()})}}catch(e){}
  try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
 })();
 </script>
