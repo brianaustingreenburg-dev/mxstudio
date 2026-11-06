@@ -88,5 +88,77 @@
   paint();
 })();
 </script>
+
+
+<!-- MX-I18N:start · ES / EN switch -->
+<style>
+.mxl18{position:fixed;z-index:2147483601;top:calc(10px + env(safe-area-inset-top));right:10px;display:flex;padding:3px;border-radius:99px;background:rgba(15,20,24,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);font:800 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.06em}
+.mxl18 button{all:unset;cursor:pointer;padding:8px 11px;border-radius:99px;color:rgba(255,255,255,.75)}
+.mxl18 button.on{background:#fff;color:#111}
+</style>
+<script>
+(function(){
+ var CFG={"key": "demo", "dict": {"JefeTech Live Demo": "JefeTech · Demo en vivo", "⚡ JefeTech Live Demo": "⚡ JefeTech · Demo en vivo", "Full ecosystem — app · owner dashboard · partner dashboard · pricing": "Todo el ecosistema: app · dashboard del dueño · dashboard de socios · precios", "💳 Get Started — $137/mo": "💳 Empezar: $137/mes", "📱 Crew App": "📱 App del equipo", "🖥️ Owner Dashboard": "🖥️ Dashboard del dueño", "🤝 Partner Dashboard": "🤝 Dashboard de socios", "💳 Pricing": "💳 Precios", "JefeTech App": "App JefeTech", "JefeTech Owner Dashboard": "JefeTech · Dashboard del dueño", "JefeTech Partner Dashboard": "JefeTech · Dashboard de socios", "JefeTech Pricing": "JefeTech · Precios"}, "mount": ".header", "css": "margin-left:8px"},D=CFG.dict,K="mxl18-"+CFG.key,orig=new Map(),origAttr=new Map(),tOrig=document.title;
+ try{if(window.self!==window.top&&!CFG.inFrame)return}catch(e){}
+ function nodes(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode&&n.parentNode.nodeName;return(p==="SCRIPT"||p==="STYLE")?2:1}}),a=[],n;while(n=w.nextNode())a.push(n);return a}
+ function apply(l){
+  nodes().forEach(function(n){if(!orig.has(n))orig.set(n,n.nodeValue);var o=orig.get(n),k=o.trim();if(!k)return;
+   n.nodeValue=(l==="es"&&D[k])?o.replace(k,D[k]):o});
+  [].slice.call(document.querySelectorAll("[title],[placeholder],[aria-label]")).forEach(function(e){["title","placeholder","aria-label"].forEach(function(at){var v=e.getAttribute(at);if(v==null)return;var id=at+"|";if(!origAttr.has(e))origAttr.set(e,{});var m=origAttr.get(e);if(!(at in m))m[at]=v;var o=m[at];e.setAttribute(at,(l==="es"&&D[o])?D[o]:o)})});
+  document.title=(l==="es"&&D[tOrig])?D[tOrig]:tOrig;document.documentElement.lang=l;
+  [].slice.call(sw.children).forEach(function(b){b.classList.toggle("on",b.dataset.l===l)});
+  try{localStorage.setItem(K,l)}catch(e){}
+ }
+ var sw=document.createElement("div");sw.className="mxl18";sw.innerHTML='<button type="button" data-l="es">ES</button><button type="button" data-l="en">EN</button>';
+ if(CFG.css)sw.style.cssText+=";"+CFG.css;
+ sw.onclick=function(e){var b=e.target.closest("button");if(b)apply(b.dataset.l)};
+ function start(){var m=CFG.mount&&document.querySelector(CFG.mount);if(m){sw.style.position="static";sw.style.flex="none";m.appendChild(sw)}else document.body.appendChild(sw);var l;try{l=localStorage.getItem(K)}catch(e){}if(l!=="es"&&l!=="en")l=(navigator.language||"es").toLowerCase().indexOf("es")===0?"es":"en";apply(l)}
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+})();
+</script>
+<!-- MX-I18N:end -->
+
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={"mount": ".mxl18", "color": "#fff", "gap": "6px"};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");if(CFG.css)b.style.cssText+=";"+CFG.css;document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{if("serviceWorker" in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.addEventListener("controllerchange",function(){if(window.__mxReloaded)return;window.__mxReloaded=1;location.reload()})}}catch(e){}
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
 </body>
 </html>

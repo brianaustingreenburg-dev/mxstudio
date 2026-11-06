@@ -1,5 +1,5 @@
 // jefetech-hq: newest version when online, saved copy when offline.
-const C="jthq-v6";
+const C="jthq-v7";
 const FILES=["./", "index.html", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png", "propuesta.html"];
 const key=u=>{const x=new URL(u,self.registration.scope);let p=x.pathname;if(p.endsWith("/index.html"))p=p.slice(0,-10);return x.origin+p};
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>Promise.all(FILES.map(f=>fetch(new Request(f,{cache:"reload"})).then(r=>r.ok&&c.put(key(f),r)).catch(()=>{})))).then(()=>self.skipWaiting()))});
