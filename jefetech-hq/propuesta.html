@@ -67,6 +67,7 @@ input[type=range]{width:100%;accent-color:var(--or);margin:12px 0 4px}
 .b-wa{background:var(--wa);color:#05301a}.b-mail{background:var(--s2);border:1px solid var(--line);color:var(--ink)}
 ol.src{padding-left:20px;display:grid;gap:8px;font-size:13px;color:var(--mut)}
 ol.src a{color:var(--ink)}
+.seg.mk button{font-size:14px;padding:11px 6px}
 .foot{text-align:center;color:#5d6678;font-size:11px;letter-spacing:.2em;margin-top:30px}
 </style>
 </head>
@@ -79,6 +80,7 @@ ol.src a{color:var(--ink)}
 <main class="wrap" id="main"></main>
 <p class="foot">JEFETECH · MX STUDIO ✝</p>
 <script>
+const FX=18.74; // Banxico: cierre interbancario 5 nov 2026
 const SRC=[
  ["IBISWorld · Field Service Management Software in the US (2026)","https://www.ibisworld.com/united-states/market-research-reports/field-service-management-software-industry/"],
  ["Field Service Software Pricing Index · junio/June 2026","https://fieldstackpro-site.pages.dev/field-service-software-pricing-index.html"],
@@ -86,78 +88,104 @@ const SRC=[
  ["Chop Dawg · App developer hourly rates in the U.S. in 2026","https://www.chopdawg.com/app-developer-hourly-rates-in-the-u-s-in-2026/"],
  ["ExitBid · How to value a pre-revenue project","https://www.exitbid.io/blog/how-to-value-a-pre-revenue-project"],
  ["Acquire.com · Biannual Acquisition Multiples Report (Jan 2026)","https://blog.acquire.com/acquire-com-biannual-acquisition-multiples-report-jan-2026/"],
- ["Porkbun · .app domain cost (nov/Nov 6, 2026)","https://porkbun.com/about/domain-cost-calculator/app"],
+ ["Porkbun · .app domain cost (Nov 6, 2026)","https://porkbun.com/about/domain-cost-calculator/app"],
  ["PricingSaaS · Netlify Pro (2026)","https://pricingsaas.com/companies/netlify/diffs/2026Q2"],
  ["Flexprice · Stripe pricing breakdown 2026","https://flexprice.io/blog/stripe-pricing-breakdown-2026"],
- ["GitHub Docs · GitHub Pages limits","https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"]
+ ["GitHub Docs · GitHub Pages limits","https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits"],
+ ["Fencode · ¿Cuánto cuesta un proyecto de software en México? (2026)","https://www.fencode.dev/blog/cuanto-cuesta-proyecto-software-mexico-2026"],
+ ["Axented · Mexico Software Developer Salaries 2026","https://www.axented.com/blog-posts/mexico-software-developer-salaries-2026"],
+ ["Publimetro · Dólar cierra en $18.74 (Banxico, 5 nov 2026)","https://www.publimetro.com.mx/noticias/2026/11/06/banxico-tumba-peso-dolar-rebota-18-pesos-con-74-centavos-recorte-tasa/"],
+ ["DataMéxico (Secretaría de Economía) · Construcción, 2026","https://www.economia.gob.mx/datamexico/es/profile/industry/construction"],
+ ["Salesforce México · Precios de Field Service","https://www.salesforce.com/mx/service/field-service-management/pricing/"],
+ ["Guía de Software · Stripe vs Mercado Pago (comisiones en México)","https://www.guiadesoftware.com/blog/stripe-vs-mercado-pago"]
 ];
 const s=n=>`<sup><a href="#src${n}">[${n}]</a></sup>`;
-const NET={p:137-82.20-(137*.029+.30+137*.007),d:137-(137*.029+.30+137*.007)}; // per customer / month after Stripe (and 60% partner commission if p)
-const MULT=3.9;
+const MULT=3.9,USD=137,MXN=USD*FX;
+// net per customer per month after payment fees (and 60% partner commission when partners)
+const FEE={us:USD*.029+.30+USD*.007,mx:MXN*.036+3+MXN*.007};
+const NET={us:{p:USD-USD*.6-FEE.us,d:USD-FEE.us},mx:{p:MXN-MXN*.6-FEE.mx,d:MXN-FEE.mx}};
+const fmt=(n,c)=>"$"+Math.round(n).toLocaleString("en-US")+(c==="mx"?" MXN":"");
+const usd=n=>"$"+Math.round(n).toLocaleString("en-US")+" USD", mxn=n=>"$"+Math.round(n).toLocaleString("en-US")+" MXN";
+const R={us:[36000,90000],mx:[90000,600000]};
+const M={
+ us:{
+  es:{pL:"VALOR DE MERCADO EN EE.UU.",price:`${usd(R.us[0])} – ${usd(R.us[1])}`,alt:`≈ ${mxn(R.us[0]*FX)} – ${mxn(R.us[1]*FX)} (tipo de cambio $${FX})${s(13)}`,
+   how:[["Costo de construirlo en EE.UU.: $120,000–$150,000+ USD",`Una app de servicio en campo con varias sedes y reportes cuesta $120,000–$150,000+ con una agencia de EE.UU.${s(3)} JefeTech tiene 32 países y dashboards de dueño y de socios, así que entra en ese nivel. Las tarifas en EE.UU. van de $75 a $250 USD por hora.${s(4)}`],["Descuento del comprador: 40–70%",`Sin ingresos, los compradores pagan el costo de reconstruirlo menos un descuento del 40% al 70%.${s(5)}`],["Resultado: $36,000–$90,000 USD","30%–60% de $120,000–$150,000."]],
+   mkH:"EL MERCADO EN ESTADOS UNIDOS",mk:[["$3.1 mil millones USD",`Software de servicio en campo en EE.UU., 2026${s(1)}`],["7.7% al año",`Crecimiento 2021–2026${s(1)}`],["85",`Empresas de este software en EE.UU.${s(1)}`],["$137 USD/mes",`JefeTech: precio fijo para todo el equipo`]],
+   cpN:`Precios de lista mensuales en EE.UU., junio 2026${s(2)}`,cpCols:["Software","~5 usuarios","~15 usuarios"],
+   cp:[["Jobber","$169","$349–$599"],["Housecall Pro","$149","$299 + extras"],["Workiz","$225","$295–$600"],["FieldPulse","$340","$940"],["ServiceTitan","—","$300+ por técnico"],["JefeTech","$137","$137"]],
+   ho:[["Hosting (Netlify Pro)"+s(8),"$20 USD / mes"],["Dominio .app"+s(7),"$14–$23 USD / año"],["Stripe EE.UU.: 2.9% + $0.30, suscripciones 0.7%"+s(9),"≈ $5.23 USD por cliente / mes"],["Total fijo","≈ $25 USD / mes"]]},
+  en:{pL:"US MARKET VALUE",price:`${usd(R.us[0])} – ${usd(R.us[1])}`,alt:`≈ ${mxn(R.us[0]*FX)} – ${mxn(R.us[1]*FX)} (rate $${FX})${s(13)}`,
+   how:[["Cost to build it in the US: $120,000–$150,000+ USD",`A field service app with multiple locations and reporting costs $120,000–$150,000+ at a US agency.${s(3)} JefeTech has 32 countries plus owner and partner dashboards, so it sits in that tier. US rates run $75 to $250 an hour.${s(4)}`],["Buyer discount: 40–70%",`With no revenue, buyers pay the cost to rebuild minus a 40% to 70% discount.${s(5)}`],["Result: $36,000–$90,000 USD","30%–60% of $120,000–$150,000."]],
+   mkH:"THE US MARKET",mk:[["$3.1 billion USD",`US field service management software, 2026${s(1)}`],["7.7% a year",`Growth 2021–2026${s(1)}`],["85",`Companies making this software in the US${s(1)}`],["$137 USD/mo",`JefeTech: one flat price for the whole crew`]],
+   cpN:`US monthly list prices, June 2026${s(2)}`,cpCols:["Software","~5 users","~15 users"],
+   cp:[["Jobber","$169","$349–$599"],["Housecall Pro","$149","$299 + add-ons"],["Workiz","$225","$295–$600"],["FieldPulse","$340","$940"],["ServiceTitan","—","$300+ per tech"],["JefeTech","$137","$137"]],
+   ho:[["Hosting (Netlify Pro)"+s(8),"$20 USD / mo"],[".app domain"+s(7),"$14–$23 USD / yr"],["Stripe US: 2.9% + $0.30, subscriptions 0.7%"+s(9),"≈ $5.23 USD per customer / mo"],["Fixed total","≈ $25 USD / mo"]]}},
+ mx:{
+  es:{pL:"VALOR DE MERCADO EN MÉXICO",price:`${mxn(R.mx[0])} – ${mxn(R.mx[1])}`,alt:`≈ ${usd(R.mx[0]/FX)} – ${usd(R.mx[1]/FX)} (tipo de cambio $${FX})${s(13)}`,
+   how:[["Costo de construirlo en México: $300,000–$1,000,000+ MXN",`Un SaaS o producto digital complejo cuesta $300,000–$1,000,000+ MXN con una agencia en México, en 6 a 18 meses.${s(11)} Un desarrollador senior mexicano cobra $65–$95 USD por hora vía agencia.${s(12)}`],["Descuento del comprador: 40–70%",`Sin ingresos, los compradores pagan el costo de reconstruirlo menos un descuento del 40% al 70%.${s(5)}`],["Resultado: $90,000–$600,000 MXN","30%–60% de $300,000–$1,000,000."]],
+   mkH:"EL MERCADO EN MÉXICO",mk:[["24,203",`Unidades económicas de construcción (DENUE, mayo 2026)${s(14)}`],["8.6 millones",`Personas ocupadas en construcción, 1er trimestre 2026${s(14)}`],["$175 USD",`Salesforce Field Service en México, por usuario al mes${s(15)}`],["$2,567 MXN/mes",`JefeTech ($137 USD): precio fijo para todo el equipo`]],
+   cpN:`Precios mensuales en México (Salesforce${s(15)}) y precios de lista de EE.UU. convertidos a pesos${s(2)}, tipo de cambio $${FX}${s(13)}`,cpCols:["Software","Precio","En pesos"],
+   cp:[["Salesforce Field Service","$175 USD por usuario",mxn(175*FX)],["Jobber (~5 usuarios)","$169 USD",mxn(169*FX)],["Housecall Pro (~5)","$149 USD",mxn(149*FX)],["Workiz (~5)","$225 USD",mxn(225*FX)],["ServiceTitan","$300+ USD por técnico",mxn(300*FX)+"+"],["JefeTech","$137 USD todo el equipo",mxn(MXN)]],
+   ho:[["Hosting (Netlify Pro)"+s(8),"≈ "+mxn(20*FX)+" / mes"],["Dominio .app"+s(7),"≈ "+mxn(14*FX)+"–"+mxn(23*FX).replace(" MXN","")+" MXN / año"],["Stripe México: 3.6% + $3 MXN"+s(16)+", suscripciones 0.7%"+s(9),"≈ "+mxn(FEE.mx)+" por cliente / mes"],["Mantenimiento con agencia (opcional)"+s(11),"$3,000–$15,000 MXN / mes"],["Total fijo","≈ "+mxn(25*FX)+" / mes"]]},
+  en:{pL:"MEXICO MARKET VALUE",price:`${mxn(R.mx[0])} – ${mxn(R.mx[1])}`,alt:`≈ ${usd(R.mx[0]/FX)} – ${usd(R.mx[1]/FX)} (rate $${FX})${s(13)}`,
+   how:[["Cost to build it in Mexico: $300,000–$1,000,000+ MXN",`A SaaS or complex digital product costs $300,000–$1,000,000+ MXN at a Mexican agency, over 6 to 18 months.${s(11)} A senior Mexican developer bills $65–$95 USD an hour through an agency.${s(12)}`],["Buyer discount: 40–70%",`With no revenue, buyers pay the cost to rebuild minus a 40% to 70% discount.${s(5)}`],["Result: $90,000–$600,000 MXN","30%–60% of $300,000–$1,000,000."]],
+   mkH:"THE MEXICO MARKET",mk:[["24,203",`Construction businesses (DENUE, May 2026)${s(14)}`],["8.6 million",`People working in construction, Q1 2026${s(14)}`],["$175 USD",`Salesforce Field Service in Mexico, per user per month${s(15)}`],["$2,567 MXN/mo",`JefeTech ($137 USD): one flat price for the whole crew`]],
+   cpN:`Monthly prices in Mexico (Salesforce${s(15)}) and US list prices converted to pesos${s(2)}, rate $${FX}${s(13)}`,cpCols:["Software","Price","In pesos"],
+   cp:[["Salesforce Field Service","$175 USD per user",mxn(175*FX)],["Jobber (~5 users)","$169 USD",mxn(169*FX)],["Housecall Pro (~5)","$149 USD",mxn(149*FX)],["Workiz (~5)","$225 USD",mxn(225*FX)],["ServiceTitan","$300+ USD per tech",mxn(300*FX)+"+"],["JefeTech","$137 USD whole crew",mxn(MXN)]],
+   ho:[["Hosting (Netlify Pro)"+s(8),"≈ "+mxn(20*FX)+" / mo"],[".app domain"+s(7),"≈ "+mxn(14*FX)+"–"+mxn(23*FX).replace(" MXN","")+" MXN / yr"],["Stripe Mexico: 3.6% + $3 MXN"+s(16)+", subscriptions 0.7%"+s(9),"≈ "+mxn(FEE.mx)+" per customer / mo"],["Agency maintenance (optional)"+s(11),"$3,000–$15,000 MXN / mo"],["Fixed total","≈ "+mxn(25*FX)+" / mo"]]}}
+};
 const T={
- es:{h1:"Propuesta: <em>JefeTech</em>",lead:"Plataforma para contratistas lista para operar: app del equipo, dashboards y plataforma de ventas. Precio de mercado en Estados Unidos, con cada dato y su fuente.",
-  pH:"PRECIO DE MERCADO HOY",pL:"VALOR DE MERCADO EN EE.UU.",pS:"Plataforma lista para lanzar, aún sin clientes de pago. Cifras en dólares (USD).",
-  howH:"CÓMO SE CALCULA",
-  how:[["Costo de construirlo en EE.UU.: $120,000–$150,000+",`Una app de servicio en campo con varias sedes y reportes cuesta $120,000–$150,000+ con una agencia de EE.UU.${s(3)} JefeTech tiene 32 países, dashboards de dueño y de socios, así que entra en ese nivel. Las tarifas de desarrollo en EE.UU. van de $75 a $250 por hora.${s(4)}`],
-   ["Descuento del comprador: 40–70%",`Sin ingresos, los compradores pagan el costo de reconstruirlo menos un descuento del 40% al 70%.${s(5)}`],
-   ["Resultado: $36,000–$90,000",`30%–60% de $120,000–$150,000. El precio sube con cada cliente que paga (ver abajo).`]],
-  mkH:"EL MERCADO EN ESTADOS UNIDOS",
-  mk:[["$3.1 mil millones",`Software de servicio en campo en EE.UU., 2026${s(1)}`],["7.7% al año",`Crecimiento anual 2021–2026${s(1)}`],["85",`Empresas de este software en EE.UU.${s(1)}`],["$137/mes",`JefeTech: precio fijo para todo el equipo`]],
-  cpH:"PRECIOS DE LA COMPETENCIA",cpN:`Precios de lista mensuales, junio 2026${s(2)}`,cpCols:["Software","~5 usuarios","~15 usuarios"],
-  cp:[["Jobber","$169","$349–$599"],["Housecall Pro","$149","$299 + extras"],["Workiz","$225","$295–$600"],["FieldPulse","$340","$940"],["ServiceTitan","—","$300+ por técnico"],["JefeTech","$137","$137"]],
+ es:{h1:"Propuesta: <em>JefeTech</em>",lead:"Plataforma para contratistas lista para operar: app del equipo, dashboards y plataforma de ventas. Precio de mercado en Estados Unidos y en México, con cada dato y su fuente.",
+  mkt:{us:"🇺🇸 Estados Unidos",mx:"🇲🇽 México"},pH:"PRECIO DE MERCADO HOY",pS:"Plataforma lista para lanzar, aún sin clientes de pago.",both:"Precio en el otro mercado",
+  howH:"CÓMO SE CALCULA",cpH:"PRECIOS DE LA COMPETENCIA",
   incH:"QUÉ INCLUYE",
   inc:[["🧰 App del equipo","Trabajos, medidas, cotizaciones, seguridad y nómina, en 32 países con su moneda y reglas."],["🔥 La Forja · War Room","Trabajos activos, equipo en sitio, pipeline y cobranza en vivo."],["🖥️ Dashboard del dueño","Lo que ve el dueño de cada empresa cliente."],["🤝 Plataforma de socios","Páginas de socios por país, capacitación, metas, prospectos y comisiones."],["💳 Planes y cobro","Página de planes y suscripción con Stripe."],["📄 Legal","Términos, privacidad, aviso de privacidad y reembolsos."],["🌐 Dominio","myjefetech.app y go.myjefetech.app"]],
   hoH:"CUÁNTO CUESTA MANTENERLO EN LÍNEA",hoCols:["Concepto","Costo"],
-  ho:[["Hosting (Netlify Pro)"+s(8),"$20 / mes"],["Dominio .app"+s(7),"$14–$23 / año"],["Stripe: tarjeta 2.9% + $0.30, suscripciones 0.7%"+s(9),"≈ $5.23 por cliente / mes"],["Total fijo","≈ $25 / mes"]],
-  hoW:`Hoy está en GitHub Pages, que es gratis pero no permite operar un negocio SaaS de pago${s(10)}. Para vender suscripciones conviene pasarlo a un hosting de pago como Netlify (≈ $20/mes).`,
+  hoW:`Hoy está en GitHub Pages, que es gratis pero no permite operar un negocio SaaS de pago${s(10)}. Para vender suscripciones conviene pasarlo a un hosting de pago como Netlify.`,
   vaH:"CÓMO SUBE EL VALOR CON CLIENTES",vaN:`Un SaaS pequeño se vende en una mediana de ${MULT} veces su ganancia anual${s(6)}.`,
-  cust:"Clientes que pagan",modeP:"Con socios (60%)",modeD:"Venta directa",
-  r1:"Ingreso mensual",r2:"Ganancia por año",r3:"Valor estimado",ms:"clientes",
-  vaF:"Ganancia por cliente al mes: $137 menos Stripe (≈ $5.23) y, con socios, menos la comisión del 60% ($82.20). No incluye otros gastos de operación.",
+  cust:"Clientes que pagan",modeP:"Con socios (60%)",modeD:"Venta directa",r1:"Ingreso mensual",r2:"Ganancia por año",r3:"Valor estimado",ms:"clientes",
+  vaF:{us:"Ganancia por cliente al mes: $137 USD menos Stripe (≈ $5.23) y, con socios, menos la comisión del 60%.",mx:`Ganancia por cliente al mes: ${mxn(MXN)} ($137 USD) menos Stripe México (≈ ${mxn(FEE.mx)}) y, con socios, menos la comisión del 60%.`},
   dlH:"HAGAMOS UN TRATO",dl:"Pago en efectivo, financiamiento del vendedor o pago con parte de los ingresos. Escríbanos y armamos la oferta.",wa:"💬 WhatsApp",mail:"✉️ Correo",
-  srcH:"FUENTES",disc:"Las cifras son datos públicos del mercado a noviembre de 2026, no una tasación formal ni asesoría financiera."},
- en:{h1:"Proposal: <em>JefeTech</em>",lead:"A ready-to-run contractor platform: crew app, dashboards and sales platform. US market price, with every number and its source.",
-  pH:"MARKET PRICE TODAY",pL:"US MARKET VALUE",pS:"Launch-ready platform, no paying customers yet. Figures in US dollars.",
-  howH:"HOW IT'S CALCULATED",
-  how:[["Cost to build it in the US: $120,000–$150,000+",`A field service app with multiple locations and reporting costs $120,000–$150,000+ at a US agency.${s(3)} JefeTech has 32 countries plus owner and partner dashboards, so it sits in that tier. US development rates run $75 to $250 an hour.${s(4)}`],
-   ["Buyer discount: 40–70%",`With no revenue, buyers pay the cost to rebuild minus a 40% to 70% discount.${s(5)}`],
-   ["Result: $36,000–$90,000",`30%–60% of $120,000–$150,000. The price rises with every paying customer (see below).`]],
-  mkH:"THE US MARKET",
-  mk:[["$3.1 billion",`US field service management software, 2026${s(1)}`],["7.7% a year",`Annual growth 2021–2026${s(1)}`],["85",`Companies making this software in the US${s(1)}`],["$137/mo",`JefeTech: one flat price for the whole crew`]],
-  cpH:"WHAT COMPETITORS CHARGE",cpN:`Monthly list prices, June 2026${s(2)}`,cpCols:["Software","~5 users","~15 users"],
-  cp:[["Jobber","$169","$349–$599"],["Housecall Pro","$149","$299 + add-ons"],["Workiz","$225","$295–$600"],["FieldPulse","$340","$940"],["ServiceTitan","—","$300+ per tech"],["JefeTech","$137","$137"]],
+  srcH:"FUENTES",disc:"Las cifras son datos públicos del mercado a noviembre de 2026, no una tasación formal ni asesoría financiera. Sin gastos de operación adicionales."},
+ en:{h1:"Proposal: <em>JefeTech</em>",lead:"A ready-to-run contractor platform: crew app, dashboards and sales platform. Market price in the United States and in Mexico, with every number and its source.",
+  mkt:{us:"🇺🇸 United States",mx:"🇲🇽 Mexico"},pH:"MARKET PRICE TODAY",pS:"Launch-ready platform, no paying customers yet.",both:"Price in the other market",
+  howH:"HOW IT'S CALCULATED",cpH:"WHAT COMPETITORS CHARGE",
   incH:"WHAT'S INCLUDED",
   inc:[["🧰 Crew app","Jobs, measurements, quotes, safety and payroll, in 32 countries with local currency and rules."],["🔥 La Forja · War Room","Live active jobs, crew on site, pipeline and collections."],["🖥️ Owner dashboard","What each customer company's owner sees."],["🤝 Partner platform","Country partner pages, training, goals, prospects and commissions."],["💳 Plans & checkout","Plans page and Stripe subscriptions."],["📄 Legal","Terms, privacy, Mexican privacy notice and refunds."],["🌐 Domain","myjefetech.app and go.myjefetech.app"]],
   hoH:"WHAT IT COSTS TO KEEP IT ONLINE",hoCols:["Item","Cost"],
-  ho:[["Hosting (Netlify Pro)"+s(8),"$20 / mo"],[".app domain"+s(7),"$14–$23 / yr"],["Stripe: cards 2.9% + $0.30, subscriptions 0.7%"+s(9),"≈ $5.23 per customer / mo"],["Fixed total","≈ $25 / mo"]],
-  hoW:`It runs on GitHub Pages today, which is free but doesn't allow running a paid SaaS business${s(10)}. To sell subscriptions, move it to paid hosting such as Netlify (≈ $20/mo).`,
+  hoW:`It runs on GitHub Pages today, which is free but doesn't allow running a paid SaaS business${s(10)}. To sell subscriptions, move it to paid hosting such as Netlify.`,
   vaH:"HOW THE VALUE GROWS WITH CUSTOMERS",vaN:`Small SaaS businesses sell for a median of ${MULT} times yearly profit${s(6)}.`,
-  cust:"Paying customers",modeP:"With partners (60%)",modeD:"Direct sales",
-  r1:"Monthly revenue",r2:"Profit per year",r3:"Estimated value",ms:"customers",
-  vaF:"Profit per customer per month: $137 minus Stripe (≈ $5.23) and, with partners, minus the 60% commission ($82.20). Other operating costs not included.",
+  cust:"Paying customers",modeP:"With partners (60%)",modeD:"Direct sales",r1:"Monthly revenue",r2:"Profit per year",r3:"Estimated value",ms:"customers",
+  vaF:{us:"Profit per customer per month: $137 USD minus Stripe (≈ $5.23) and, with partners, minus the 60% commission.",mx:`Profit per customer per month: ${mxn(MXN)} ($137 USD) minus Stripe Mexico (≈ ${mxn(FEE.mx)}) and, with partners, minus the 60% commission.`},
   dlH:"LET'S MAKE A DEAL",dl:"Cash, seller financing or payment from a share of revenue. Message us and we'll put the offer together.",wa:"💬 WhatsApp",mail:"✉️ Email",
-  srcH:"SOURCES",disc:"Figures are public market data as of November 2026, not a formal appraisal or financial advice."}
+  srcH:"SOURCES",disc:"Figures are public market data as of November 2026, not a formal appraisal or financial advice. Other operating costs not included."}
 };
-const $=id=>document.getElementById(id),money=n=>"$"+Math.round(n).toLocaleString("en-US");
-let lang;try{lang=localStorage.getItem("jthq-lang")}catch(e){}
+const $=id=>document.getElementById(id);
+let lang,mkt;try{lang=localStorage.getItem("jthq-lang");mkt=localStorage.getItem("jthq-mkt")}catch(e){}
 if(lang!=="es"&&lang!=="en")lang=(navigator.language||"es").toLowerCase().startsWith("es")?"es":"en";
+const qm=new URLSearchParams(location.search).get("m");if(qm==="us"||qm==="mx")mkt=qm;
+if(mkt!=="us"&&mkt!=="mx")mkt="us";
 let N=250,mode="p";
-function val(n,m){const net=NET[m];return{mrr:n*137,profit:n*net*12,value:n*net*12*MULT}}
+function val(n,m){const net=NET[mkt][m],price=mkt==="mx"?MXN:USD;return{mrr:n*price,profit:n*net*12,value:n*net*12*MULT}}
 function calc(){const t=T[lang],v=val(N,mode);
- $("cN").textContent=N;$("cMrr").textContent=money(v.mrr);$("cPr").textContent=money(v.profit);$("cVal").textContent=money(v.value);
- $("ms").innerHTML=[100,250,560].map(n=>`<div><b>${money(val(n,mode).value)}</b><span>${n} ${t.ms}</span></div>`).join("");
- document.querySelectorAll(".seg button").forEach(b=>b.classList.toggle("on",b.dataset.m===mode))}
-function render(){const t=T[lang];document.documentElement.lang=lang;
+ $("cN").textContent=N;$("cMrr").textContent=fmt(v.mrr,mkt);$("cPr").textContent=fmt(v.profit,mkt);$("cVal").textContent=fmt(v.value,mkt);
+ const cmp=(v,c)=>(v>=1e6?"$"+(v/1e6).toFixed(1)+"M":"$"+Math.round(v/1e3)+"K")+(c==="mx"?" MXN":"");
+ $("ms").innerHTML=[100,250,560].map(n=>`<div><b>${cmp(val(n,mode).value,mkt)}</b><span>${n} ${t.ms}</span></div>`).join("");
+ document.querySelectorAll(".seg button[data-m]").forEach(b=>b.classList.toggle("on",b.dataset.m===mode))}
+function render(){const t=T[lang],m=M[mkt][lang],o=M[mkt==="us"?"mx":"us"][lang];document.documentElement.lang=lang;
  document.querySelector("h1").innerHTML=t.h1;document.querySelector(".lead").textContent=t.lead;
  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
  const wa="https://wa.me/527441930502?text="+encodeURIComponent(lang==="es"?"Hola Brian, me interesa la propuesta de JefeTech.":"Hi Brian, I'm interested in the JefeTech proposal.");
  $("main").innerHTML=`
- <section><h2>${t.pH}</h2><div class="card price"><div class="l">${t.pL}</div><div class="v">$36,000 – $90,000</div><div class="s">${t.pS}</div></div>
-  <h2 style="margin-top:18px;--c:var(--am)">${t.howH}</h2><div class="steps">${t.how.map((h,i)=>`<div class="step"><i>${i+1}</i><div><b>${h[0]}</b><span>${h[1]}</span></div></div>`).join("")}</div></section>
- <section><h2 style="--c:var(--gr)">${t.mkH}</h2><div class="stats">${t.mk.map(m=>`<div class="st"><b>${m[0]}</b><span>${m[1]}</span></div>`).join("")}</div></section>
- <section><h2 style="--c:#60a5fa">${t.cpH}</h2><div class="tw"><table><tr>${t.cpCols.map(c=>`<th>${c}</th>`).join("")}</tr>${t.cp.map(r=>`<tr class="${r[0]==="JefeTech"?"me":""}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table></div><p class="note">${t.cpN}</p></section>
+ <div class="seg mk" style="margin-top:18px">${["us","mx"].map(k=>`<button data-k="${k}" class="${k===mkt?"on":""}">${t.mkt[k]}</button>`).join("")}</div>
+ <section style="margin-top:18px"><h2>${t.pH}</h2><div class="card price"><div class="l">${m.pL}</div><div class="v">${m.price}</div><div class="s">${m.alt}</div><div class="s" style="margin-top:6px">${t.pS}</div></div>
+  <div class="card" style="margin-top:8px;display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px"><span style="color:var(--mut);font-size:13px">${t.both} · ${t.mkt[mkt==="us"?"mx":"us"]}</span><b style="font-size:14px;text-align:right">${o.price}</b></div>
+  <h2 style="margin-top:18px;--c:var(--am)">${t.howH}</h2><div class="steps">${m.how.map((h,i)=>`<div class="step"><i>${i+1}</i><div><b>${h[0]}</b><span>${h[1]}</span></div></div>`).join("")}</div></section>
+ <section><h2 style="--c:var(--gr)">${m.mkH}</h2><div class="stats">${m.mk.map(x=>`<div class="st"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div></section>
+ <section><h2 style="--c:#60a5fa">${t.cpH}</h2><div class="tw"><table><tr>${m.cpCols.map(c=>`<th>${c}</th>`).join("")}</tr>${m.cp.map(r=>`<tr class="${r[0]==="JefeTech"?"me":""}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table></div><p class="note">${m.cpN}</p></section>
  <section><h2>${t.incH}</h2><ul class="inc">${t.inc.map(i=>`<li><b>${i[0]}</b><span>${i[1]}</span></li>`).join("")}</ul></section>
- <section><h2 style="--c:var(--gr)">${t.hoH}</h2><div class="tw"><table><tr>${t.hoCols.map(c=>`<th>${c}</th>`).join("")}</tr>${t.ho.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div><div class="warn">⚠️ ${t.hoW}</div></section>
+ <section><h2 style="--c:var(--gr)">${t.hoH}</h2><div class="tw"><table><tr>${t.hoCols.map(c=>`<th>${c}</th>`).join("")}</tr>${m.ho.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div><div class="warn">⚠️ ${t.hoW}</div></section>
  <section><h2 style="--c:var(--am)">${t.vaH}</h2><div class="card calc">
   <div class="row"><span>${t.cust}</span><b id="cN"></b></div>
   <input type="range" id="slider" min="0" max="1000" step="10" value="${N}" aria-label="${t.cust}">
@@ -166,11 +194,12 @@ function render(){const t=T[lang];document.documentElement.lang=lang;
   <div class="row"><span>${t.r2}</span><b id="cPr"></b></div>
   <div class="row"><span>${t.r3}</span><b class="big" id="cVal"></b></div>
   <div class="ms" id="ms"></div>
-  <p class="note">${t.vaN} ${t.vaF}</p></div></section>
+  <p class="note">${t.vaN} ${t.vaF[mkt]}</p></div></section>
  <section><h2 style="--c:var(--wa)">${t.dlH}</h2><div class="card"><p style="font-size:15px">${t.dl}</p><div class="cta"><a class="btn b-wa" href="${wa}" target="_blank" rel="noopener">${t.wa} · +52 744 193 0502</a><a class="btn b-mail" href="mailto:brian@myjefetech.app?subject=JefeTech">${t.mail} · brian@myjefetech.app</a></div></div></section>
  <section><h2 style="--c:var(--mut)">${t.srcH}</h2><ol class="src">${SRC.map((x,i)=>`<li id="src${i+1}"><a href="${x[1]}" target="_blank" rel="noopener">${x[0]}</a></li>`).join("")}</ol><p class="note">${t.disc}</p></section>`;
  $("slider").oninput=e=>{N=+e.target.value;calc()};
- document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{mode=b.dataset.m;calc()});
+ document.querySelectorAll(".seg button[data-m]").forEach(b=>b.onclick=()=>{mode=b.dataset.m;calc()});
+ document.querySelectorAll(".seg button[data-k]").forEach(b=>b.onclick=()=>{mkt=b.dataset.k;try{localStorage.setItem("jthq-mkt",mkt)}catch(e){}render()});
  calc()}
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("jthq-lang",lang)}catch(e){}render()});
 render();
