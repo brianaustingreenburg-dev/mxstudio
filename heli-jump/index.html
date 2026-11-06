@@ -1,0 +1,479 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Heli Jump Briefing</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: pre-jump briefing card. Sticky phase tabs, one phase on screen at a time, checklist + altitude ladder. EN/ES switch in header. */
+:root{
+  --bg:#eef1f4; --panel:#ffffff; --ink:#15202b; --muted:#5a6675; --line:#d5dbe2;
+  --accent:#e2571c; --accent-soft:#fbe5da; --ok:#2f7d4f; --warn:#b3261e; --warn-soft:#fbe4e2;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151b; --panel:#18212a; --ink:#e7ecf1; --muted:#97a3b0; --line:#2a3642;
+  --accent:#ff7a3d; --accent-soft:#3a2418; --ok:#5fc287; --warn:#ff6b60; --warn-soft:#3a1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --panel:#18212a; --ink:#e7ecf1; --muted:#97a3b0; --line:#2a3642;
+  --accent:#ff7a3d; --accent-soft:#3a2418; --ok:#5fc287; --warn:#ff6b60; --warn-soft:#3a1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{padding-block:20px 14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.eyebrow{font:500 11px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);min-width:0}
+.lang{display:inline-flex;flex:0 0 auto;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{border:0;background:transparent;color:var(--muted);font:600 13px/1 var(--mono);letter-spacing:.06em;padding:8px 12px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1{font:800 40px/1 var(--display);letter-spacing:.01em;margin:10px 0 6px;text-transform:uppercase;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-block:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+nav button{flex:0 0 auto;border:0;background:transparent;color:var(--muted);font:600 15px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;border-radius:6px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--accent);color:#fff}
+nav button:focus-visible,.check input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:18px 40px}
+section{display:flex;flex-direction:column;gap:16px}
+h2{font:800 28px/1.05 var(--display);text-transform:uppercase;margin:0;text-wrap:balance}
+h3{font:600 13px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+p{margin:0;max-width:65ch}
+.small{color:var(--muted);font-size:13px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+ul.pts{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.alert{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:6px;padding:12px 14px}
+.alert strong{color:var(--warn)}
+.note{background:var(--accent-soft);border-radius:6px;padding:12px 14px}
+.checks{display:flex;flex-direction:column;gap:2px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border-bottom:0}
+.check input{position:absolute;opacity:0}
+.check span.box{flex:0 0 22px;height:22px;border:2px solid var(--muted);border-radius:5px;display:grid;place-items:center;margin-top:1px}
+.check input:checked+span.box{background:var(--ok);border-color:var(--ok)}
+.check input:checked+span.box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check input:checked~.t{color:var(--muted);text-decoration:line-through}
+.progress{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--muted)}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .2s}
+.reset{border:1px solid var(--line);background:transparent;color:var(--muted);font:500 12px var(--mono);padding:6px 10px;border-radius:6px;cursor:pointer}
+.ladder{display:flex;flex-direction:column}
+.rung{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.rung:last-child{border-bottom:0}
+.alt{font:500 14px var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);text-align:right}
+.rung b{display:block}
+.rung small{color:var(--muted);font-size:13px}
+.rotor{width:100%;max-width:100%;height:auto;display:block}
+.rotor text{font:500 10px var(--mono);fill:var(--muted)}
+.rotor text.w{fill:var(--warn)}
+.rotor text.g{fill:var(--ok)}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px}
+.steps li::before{content:counter(s);font:800 22px/1 var(--display);color:var(--accent)}
+.wx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:10px}
+.wx-grid label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.wx-grid input{font:500 16px var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+.wx-grid input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.verdict{border-radius:6px;padding:10px 12px;font-weight:600;margin-bottom:8px}
+.verdict.go{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.verdict.caution{background:var(--accent-soft);color:var(--accent)}
+.verdict.nogo{background:var(--warn-soft);color:var(--warn)}
+.verdict.neutral{background:var(--bg);color:var(--ink);font-weight:500}
+.drift{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+footer{color:var(--muted);font-size:13px;padding-block:0 30px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+
+<header class="wrap">
+  <div class="top">
+    <div class="eyebrow" id="eyebrow"></div>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" id="lang-en" lang="en">EN</button>
+      <button type="button" id="lang-es" lang="es">ES</button>
+    </div>
+  </div>
+  <h1 id="h1"></h1>
+  <p class="lede" id="lede"></p>
+</header>
+
+<nav><div class="wrap" role="tablist" id="tabs"></div></nav>
+<main class="wrap" id="main"></main>
+<footer class="wrap" id="foot"></footer>
+
+<script>
+const rotorSvg = (L)=>`<div class="card">
+ <svg class="rotor" viewBox="0 0 340 205" role="img" aria-label="${L.aria}">
+  <circle cx="160" cy="105" r="80" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 5"/>
+  <path d="M160 105 L 91 65 A 80 80 0 0 0 91 145 Z" fill="color-mix(in srgb,var(--ok) 18%,transparent)"/>
+  <rect x="215" y="90" width="120" height="30" rx="4" fill="var(--warn-soft)"/>
+  <ellipse cx="160" cy="105" rx="38" ry="20" fill="var(--panel)" stroke="var(--ink)" stroke-width="2"/>
+  <circle cx="128" cy="105" r="6" fill="var(--line)"/>
+  <rect x="195" y="101" width="130" height="8" fill="var(--ink)"/>
+  <line x1="325" y1="89" x2="325" y2="121" stroke="var(--warn)" stroke-width="3"/>
+  <text x="4" y="14" class="g">${L.nose}</text>
+  <text x="212" y="84" class="w">${L.tail}</text>
+  <text x="96" y="200">${L.disc}</text>
+ </svg>
+ <p class="small" style="margin-top:8px">${L.cap}</p>
+</div>`;
+
+const T = {
+en:{
+ eyebrow:"Helicopter skydive · pre-jump briefing",
+ h1:"Heli Jump Briefing",
+ lede:"What changes when you jump from a helicopter instead of a plane. Work through each phase before your load, then tick off the gear check.",
+ foot:"This app is a memory aid, not training. Your drop zone's briefing, your instructor and your pilot always override anything here. Altitudes shown are typical examples; use the minimums for your license and your DZ.",
+ tabs:{ground:"Ground",weather:"Weather",board:"Climb",exit:"Exit",freefall:"Freefall",canopy:"Canopy",emergency:"Emergency",checklist:"Gear check"},
+ wind:{over:(g,l)=>`Over your limit: gusts of ${g} kt beat your ${l} kt max. Sit this load out.`,gusty:s=>`Gusty: ${s} kt spread between wind and gusts. Expect turbulence near the ground.`,close:"Close to your limit. Check the trend before you board.",ok:"Within your limit. Keep watching the sock and the sky."},
+ drift:(t,ft,mi)=>`About ${t} s of freefall. Drift ≈ ${ft} ft (${mi} mi) downwind.`,driftBad:"Exit must be above pull altitude.",
+ reset:"Reset",
+ items:["Ground wind and gusts within my limit","Winds aloft and exit spot briefed","Clear of clouds, no storms nearby","Dressed for the cold at altitude","Pin and closing loop checked","Reserve pin and seal checked","Three-ring assembly correct","Cutaway and reserve handles in place","Pilot chute handle clear","Chest and leg straps tight, no twists","Altimeter on and zeroed","AAD on (if fitted)","Helmet and goggles secured","Loose items stowed or left on the ground","Exit order and signals agreed","Pull altitude and hard deck known","Landing area and pattern briefed","Heli pad no-go area known"],
+ rotor:{aria:"Top view of helicopter: safe approach zone at the nose, no-go zone at the tail rotor",nose:"◄ NOSE · APPROACH HERE",tail:"TAIL ROTOR · NEVER",disc:"MAIN ROTOR DISC",cap:"Simplified top view. Approach from the front or front-side where the pilot can see you."},
+ html:{
+ground:L=>`<h2>Around the helicopter</h2>
+ <div class="alert"><strong>Rotors kill.</strong> The main rotor can dip low at the front and on sloped ground. The tail rotor is nearly invisible when spinning. Most heli injuries happen on the ground, not in the air.</div>
+ ${rotorSvg(L.rotor)}
+ <div class="card"><h3>Rules on the pad</h3><ul class="pts">
+  <li>Only approach when the pilot or ground crew signals you in.</li>
+  <li>Walk in crouched, from the front quarter, in the pilot's line of sight.</li>
+  <li>Never walk around the tail. Go around the nose.</li>
+  <li>On a slope, approach and leave on the downhill side.</li>
+  <li>Carry nothing above shoulder height. Hold helmets and goggles, don't wear them loose.</li>
+  <li>Secure loose items: hats, rig covers, cards, phones. Rotor wash throws them into the blades.</li>
+ </ul></div>`,
+weather:()=>`<h2>Weather and the elements</h2>
+ <p>Weather decides whether the load goes. The pilot, the DZ and your own limits each get a vote, and the most cautious one wins.</p>
+ <div class="card"><h3>Wind check</h3>
+  <div class="wx-grid">
+   <label for="wGround">Ground wind (kt)<input id="wGround" type="number" inputmode="decimal" min="0"></label>
+   <label for="wGust">Peak gust (kt)<input id="wGust" type="number" inputmode="decimal" min="0"></label>
+   <label for="wLimit">Your max wind (kt)<input id="wLimit" type="number" inputmode="decimal" min="0"></label>
+  </div>
+  <div id="wOut" class="verdict"></div>
+  <p class="small">Enter real readings from the windsock, the pilot or a forecast. Set "Your max" from your license, rig, canopy and DZ rules. Starting values are examples only.</p>
+ </div>
+ <div class="card"><h3>Wind on the ground</h3><ul class="pts">
+  <li><b>Steady wind</b> sets your landing speed over the ground. More wind means a faster, harder landing if you turn downwind by mistake.</li>
+  <li><b>Gusts</b> matter more than the average. A spread of about 9 knots between wind and gusts means unstable air; canopies can surge or collapse.</li>
+  <li><b>No wind</b> also makes landings fast, since there's no headwind to slow you. Flare well and be ready to PLF.</li>
+  <li>Watch the windsock and other canopies. Wind direction can swing during a load.</li>
+ </ul></div>
+ <div class="card"><h3>Winds aloft and spotting</h3><ul class="pts">
+  <li>Wind usually gets stronger and turns with height. Calm on the ground does not mean calm at 10,000 ft.</li>
+  <li>You drift with the upper winds in freefall and under canopy, so the exit point is usually <b>upwind</b> of the landing area.</li>
+  <li>A helicopter can hover and spot very precisely. Confirm the spot with the pilot and look down before you go.</li>
+  <li>Strong upper winds can carry you past the landing area. If you open long, pick an alternate field early.</li>
+ </ul>
+ <div class="drift">
+  <div class="wx-grid">
+   <label for="dWind">Avg wind aloft (kt)<input id="dWind" type="number" inputmode="decimal" min="0"></label>
+   <label for="dExit">Exit (ft)<input id="dExit" type="number" inputmode="numeric" min="0"></label>
+   <label for="dPull">Pull (ft)<input id="dPull" type="number" inputmode="numeric" min="0"></label>
+  </div>
+  <div id="dOut" class="verdict neutral"></div>
+  <p class="small">Rough freefall drift only. Assumes about 10 s to reach full speed, then roughly 105 knots (120 mph). Canopy drift comes on top.</p>
+ </div></div>
+ <div class="card"><h3>Clouds and visibility</h3><ul class="pts">
+  <li>You must see the ground and the landing area before exit. No jumping through or into clouds.</li>
+  <li>Cloud clearance rules apply to jumpers too. Your pilot knows the local limits.</li>
+  <li>Haze, fog and low sun can hide other canopies, power lines and the heli pad.</li>
+ </ul></div>
+ <div class="card"><h3>Temperature and air density</h3><ul class="pts">
+  <li>Air cools about 2°C per 1,000 ft (3.5°F). At 10,000 ft it can be near freezing on a warm day.</li>
+  <li>Cold hands fumble handles. Wear gloves you can still grip with.</li>
+  <li><b>Hot or high places</b> have thinner air. Canopies fly and land faster. Helicopters carry less, so loads may be smaller.</li>
+ </ul></div>
+ <div class="card"><h3>Turbulence</h3><ul class="pts">
+  <li><b>Thermals</b> on hot afternoons lift and drop canopies near the ground.</li>
+  <li><b>Behind obstacles:</b> wind over trees, buildings or hangars tumbles on the downwind side. Avoid landing there.</li>
+  <li><b>Mountains and coasts</b> make winds that change through the day, such as sea breezes in the afternoon.</li>
+  <li><b>Rotor wash</b> from the helicopter itself is turbulence. Stay clear of a running heli.</li>
+ </ul></div>
+ <div class="alert"><strong>Storms are a hard no.</strong> Thunderstorms within about 10 miles bring gust fronts, sudden wind shifts and lightning. Rain and hail at freefall speed hurt and can damage canopies. Wait it out.</div>`,
+board:()=>`<h2>Boarding and the climb</h2>
+ <div class="card"><h3>In the cabin</h3><ul class="pts">
+  <li>Seatbelt on until the pilot or jumpmaster says otherwise, usually near jump altitude.</li>
+  <li>Protect your handles. Know where your pilot chute, cutaway and reserve handles are relative to door edges, seats and belts.</li>
+  <li>Doors are often off. Keep hands and gear inside the frame until it is time.</li>
+  <li>Listen for the exit order. Heli loads are small, and exits are often one at a time from the skids.</li>
+  <li>Agree hand signals before takeoff. It is loud and headsets are limited.</li>
+ </ul></div>
+ <div class="note">The climb is slower than most jump planes. Use the time to visualise your exit and your pull altitude.</div>`,
+exit:()=>`<h2>The exit: dead air</h2>
+ <p>A plane gives you relative wind the moment you leave. A helicopter at jump altitude is moving slowly or hovering, so you exit into still air. You fall, but there is little airflow to fly against for the first several seconds.</p>
+ <div class="card"><h3>What it feels like</h3><ul class="pts">
+  <li>A drop, like stepping off a ledge, rather than a push sideways.</li>
+  <li>Your arch has nothing to bite on yet. Small asymmetries can roll or flip you.</li>
+  <li>Control returns as speed builds. You are near full speed around 10 to 12 seconds.</li>
+ </ul></div>
+ <div class="card"><h3>Exit sequence</h3><ol class="steps">
+  <li><div><b>Move to the door or skid on the signal.</b> Move deliberately. Keep handles clear of the door frame.</div></li>
+  <li><div><b>Look at the horizon,</b> not down at the ground. Head up sets your arch.</div></li>
+  <li><div><b>Leave cleanly.</b> Step or slide off as briefed. No big jump outward, no ducking toward the skid.</div></li>
+  <li><div><b>Hold a firm, symmetrical arch.</b> Hips forward, arms and legs even. Expect it to feel loose at first.</div></li>
+  <li><div><b>Be patient.</b> Wait for the air to arrive before turning or moving.</div></li>
+ </ol></div>
+ <div class="alert"><strong>Do not pull right after exit.</strong> You need separation from the aircraft and enough airspeed for a clean deployment. Follow your DZ's minimum delay.</div>`,
+freefall:()=>`<h2>Freefall</h2>
+ <div class="card"><h3>Altitude ladder (example, 10,000 ft exit)</h3><div class="ladder">
+  <div class="rung"><div class="alt">10,000 ft</div><div><b>Exit</b><small>Dead air. Arch and wait for speed.</small></div></div>
+  <div class="rung"><div class="alt">~9,500 ft</div><div><b>Air arrives</b><small>About 10 s in. Stability and control come back.</small></div></div>
+  <div class="rung"><div class="alt">~6,000 ft</div><div><b>Altitude awareness</b><small>Check your altimeter often. Finish any skills.</small></div></div>
+  <div class="rung"><div class="alt">~5,500 ft</div><div><b>Wave off</b><small>Signal and track away from others.</small></div></div>
+  <div class="rung"><div class="alt">Your pull</div><div><b>Deploy</b><small>Per your license and DZ minimum.</small></div></div>
+  <div class="rung"><div class="alt">Hard deck</div><div><b>Decision altitude</b><small>Below this, no more fixing. Act on emergencies.</small></div></div>
+ </div></div>
+ <div class="card"><h3>Heli-specific</h3><ul class="pts">
+  <li>Exits may be spread out in time. Know who is below you before you open.</li>
+  <li>The helicopter may descend after the drop. Never track under its path.</li>
+  <li>Low hop-and-pop exits are common from helis. Plan the whole jump around the lower height.</li>
+ </ul></div>`,
+canopy:()=>`<h2>Under canopy and landing</h2>
+ <div class="card"><h3>After opening</h3><ol class="steps">
+  <li><div><b>Check the canopy.</b> Is it there, is it square, is it steerable?</div></li>
+  <li><div><b>Look around.</b> Other canopies first, then the helicopter. It may be flying low near the landing area.</div></li>
+  <li><div><b>Find the landing area</b> and your holding point.</div></li>
+  <li><div><b>Fly your pattern</b> exactly as briefed.</div></li>
+ </ol></div>
+ <div class="alert"><strong>Stay away from the heli pad.</strong> Rotor wash can collapse a canopy. Never land near a running helicopter.</div>
+ <div class="card"><h3>Landing</h3><ul class="pts">
+  <li>Land facing into the wind, feet and knees together.</li>
+  <li>Flare at the height you trained for. Not early, not late.</li>
+  <li>Be ready to PLF (parachute landing fall) every time.</li>
+  <li>Unknown terrain: watch for power lines, trees, fences and water.</li>
+ </ul></div>`,
+emergency:()=>`<h2>Emergencies</h2>
+ <div class="alert"><strong>Decide by your hard deck.</strong> If the main is not fixed by then, act. Altitude is your time.</div>
+ <div class="card"><h3>Main malfunction</h3><ol class="steps">
+  <li><div><b>Look</b> at the cutaway handle, then the reserve handle.</div></li>
+  <li><div><b>Reach</b> and grab both firmly.</div></li>
+  <li><div><b>Pull cutaway</b> fully, then <b>pull reserve</b>.</div></li>
+  <li><div><b>Arch</b> and check the reserve canopy.</div></li>
+ </ol><p class="small" style="margin-top:10px">This is the common sequence. Use the exact procedure you were trained on for your rig.</p></div>
+ <div class="card"><h3>Inside the helicopter</h3><ul class="pts">
+  <li><b>Aircraft problem:</b> seatbelt on, follow the pilot and jumpmaster. Exit only when told.</li>
+  <li><b>Open container or pilot chute in the cabin:</b> contain it immediately and shout. If it goes out the door it can pull you out or hit the rotor.</li>
+  <li><b>Reserve opens in the cabin:</b> do not jump. Tell the pilot. Land with the aircraft.</li>
+ </ul></div>
+ <div class="card"><h3>Landing problems</h3><ul class="pts">
+  <li><b>Power lines:</b> feet together, look away, avoid touching two wires.</li>
+  <li><b>Water:</b> undo the chest strap and loosen gear before entry, if trained to.</li>
+  <li><b>Trees:</b> feet and knees tight, protect your face and neck.</li>
+ </ul></div>`,
+checklist:L=>`<h2>Gear check</h2>
+ <div class="progress"><div class="bar"><i id="bar"></i></div><span id="count">0/0</span><button class="reset" id="reset" type="button">${L.reset}</button></div>
+ <div class="card checks" id="checks"></div>`
+ }},
+es:{
+ eyebrow:"Salto desde helicóptero · briefing previo",
+ h1:"Salto desde Helicóptero",
+ lede:"Lo que cambia al saltar de un helicóptero en lugar de un avión. Repasa cada fase antes de tu carga y luego marca la revisión de equipo.",
+ foot:"Esta app es una ayuda de memoria, no un entrenamiento. El briefing de tu zona de salto, tu instructor y tu piloto siempre tienen prioridad sobre lo que dice aquí. Las altitudes son ejemplos típicos; usa los mínimos de tu licencia y de tu zona de salto.",
+ tabs:{ground:"En tierra",weather:"Clima",board:"Ascenso",exit:"Salida",freefall:"Caída libre",canopy:"Campana",emergency:"Emergencia",checklist:"Equipo"},
+ wind:{over:(g,l)=>`Sobre tu límite: ráfagas de ${g} kt superan tu máximo de ${l} kt. No saltes en esta carga.`,gusty:s=>`Con ráfagas: ${s} kt de diferencia entre viento y ráfagas. Espera turbulencia cerca del suelo.`,close:"Cerca de tu límite. Revisa la tendencia antes de abordar.",ok:"Dentro de tu límite. Sigue vigilando la manga y el cielo."},
+ drift:(t,ft,mi)=>`Unos ${t} s de caída libre. Deriva ≈ ${ft} ft (${mi} mi) a favor del viento.`,driftBad:"La salida debe estar arriba de la altitud de apertura.",
+ reset:"Reiniciar",
+ items:["Viento y ráfagas en tierra dentro de mi límite","Vientos en altura y punto de salida revisados","Sin nubes en el camino, sin tormentas cerca","Ropa para el frío en altura","Pin y loop de cierre revisados","Pin y sello de la reserva revisados","Sistema de tres anillos correcto","Manijas de liberación y reserva en su lugar","Manija del pilotín libre","Correas de pecho y piernas ajustadas, sin torceduras","Altímetro encendido y en cero","DAA encendido (si tiene)","Casco y goggles asegurados","Objetos sueltos guardados o en tierra","Orden de salida y señas acordados","Altitud de apertura y de decisión conocidas","Zona de aterrizaje y patrón revisados","Zona prohibida del helipuerto conocida"],
+ rotor:{aria:"Vista superior del helicóptero: zona segura de acercamiento por la nariz, zona prohibida en el rotor de cola",nose:"◄ NARIZ · ACÉRCATE AQUÍ",tail:"ROTOR COLA · NUNCA",disc:"DISCO DEL ROTOR",cap:"Vista superior simplificada. Acércate por el frente o frente-lateral, donde el piloto te vea."},
+ html:{
+ground:L=>`<h2>Alrededor del helicóptero</h2>
+ <div class="alert"><strong>Los rotores matan.</strong> El rotor principal puede bajar mucho al frente y en terreno inclinado. El rotor de cola casi no se ve cuando gira. La mayoría de las lesiones con helicópteros pasan en tierra, no en el aire.</div>
+ ${rotorSvg(L.rotor)}
+ <div class="card"><h3>Reglas en la plataforma</h3><ul class="pts">
+  <li>Acércate solo cuando el piloto o el personal de tierra te haga la seña.</li>
+  <li>Camina agachado, por el frente, a la vista del piloto.</li>
+  <li>Nunca rodees por la cola. Pasa por la nariz.</li>
+  <li>En pendiente, acércate y retírate por el lado de abajo.</li>
+  <li>No cargues nada arriba del hombro. Sostén casco y goggles, no los lleves sueltos.</li>
+  <li>Asegura objetos sueltos: gorras, cubiertas, tarjetas, teléfonos. El viento del rotor los lanza hacia las aspas.</li>
+ </ul></div>`,
+weather:()=>`<h2>El clima y los elementos</h2>
+ <p>El clima decide si la carga sale. El piloto, la zona de salto y tus propios límites votan, y gana el más prudente.</p>
+ <div class="card"><h3>Revisión de viento</h3>
+  <div class="wx-grid">
+   <label for="wGround">Viento en tierra (kt)<input id="wGround" type="number" inputmode="decimal" min="0"></label>
+   <label for="wGust">Ráfaga máxima (kt)<input id="wGust" type="number" inputmode="decimal" min="0"></label>
+   <label for="wLimit">Tu viento máximo (kt)<input id="wLimit" type="number" inputmode="decimal" min="0"></label>
+  </div>
+  <div id="wOut" class="verdict"></div>
+  <p class="small">Ingresa lecturas reales de la manga de viento, el piloto o un pronóstico. Fija "Tu máximo" según tu licencia, equipo, campana y reglas de la zona. Los valores iniciales son solo ejemplos.</p>
+ </div>
+ <div class="card"><h3>Viento en tierra</h3><ul class="pts">
+  <li><b>El viento constante</b> define tu velocidad de aterrizaje sobre el suelo. Más viento significa un aterrizaje más rápido y duro si giras a favor del viento por error.</li>
+  <li><b>Las ráfagas</b> importan más que el promedio. Unos 9 nudos de diferencia entre viento y ráfagas indican aire inestable; las campanas pueden adelantarse o colapsar.</li>
+  <li><b>Sin viento</b> también aterrizas rápido, porque no hay viento de frente que te frene. Haz buen flare y prepárate para el PLF.</li>
+  <li>Vigila la manga y otras campanas. La dirección del viento puede cambiar durante una carga.</li>
+ </ul></div>
+ <div class="card"><h3>Vientos en altura y punto de salida</h3><ul class="pts">
+  <li>El viento suele aumentar y cambiar de dirección con la altura. Calma en tierra no significa calma a 10,000 ft.</li>
+  <li>Derivas con los vientos de altura en caída libre y bajo campana, así que el punto de salida suele estar <b>contra el viento</b> de la zona de aterrizaje.</li>
+  <li>Un helicóptero puede quedarse en el aire y marcar el punto con precisión. Confírmalo con el piloto y mira abajo antes de salir.</li>
+  <li>Vientos fuertes en altura pueden llevarte más allá de la zona. Si abres lejos, elige pronto un campo alterno.</li>
+ </ul>
+ <div class="drift">
+  <div class="wx-grid">
+   <label for="dWind">Viento prom. en altura (kt)<input id="dWind" type="number" inputmode="decimal" min="0"></label>
+   <label for="dExit">Salida (ft)<input id="dExit" type="number" inputmode="numeric" min="0"></label>
+   <label for="dPull">Apertura (ft)<input id="dPull" type="number" inputmode="numeric" min="0"></label>
+  </div>
+  <div id="dOut" class="verdict neutral"></div>
+  <p class="small">Solo deriva aproximada en caída libre. Supone unos 10 s para llegar a velocidad máxima y luego unos 105 nudos (120 mph). La deriva bajo campana se suma.</p>
+ </div></div>
+ <div class="card"><h3>Nubes y visibilidad</h3><ul class="pts">
+  <li>Debes ver el suelo y la zona de aterrizaje antes de salir. No se salta a través de nubes ni hacia ellas.</li>
+  <li>Las reglas de separación de nubes también aplican a los paracaidistas. Tu piloto conoce los límites locales.</li>
+  <li>La bruma, la niebla y el sol bajo pueden ocultar campanas, cables eléctricos y el helipuerto.</li>
+ </ul></div>
+ <div class="card"><h3>Temperatura y densidad del aire</h3><ul class="pts">
+  <li>El aire se enfría unos 2°C por cada 1,000 ft. A 10,000 ft puede estar cerca de congelación en un día cálido.</li>
+  <li>Las manos frías fallan con las manijas. Usa guantes con los que aún puedas agarrar.</li>
+  <li><b>Lugares calientes o altos</b> tienen aire más delgado. Las campanas vuelan y aterrizan más rápido. Los helicópteros cargan menos, así que las cargas pueden ser más pequeñas.</li>
+ </ul></div>
+ <div class="card"><h3>Turbulencia</h3><ul class="pts">
+  <li><b>Térmicas</b> en tardes calurosas suben y bajan las campanas cerca del suelo.</li>
+  <li><b>Detrás de obstáculos:</b> el viento sobre árboles, edificios o hangares se arremolina del lado contrario. No aterrices ahí.</li>
+  <li><b>Montañas y costas</b> generan vientos que cambian durante el día, como la brisa marina por la tarde.</li>
+  <li><b>El viento del rotor</b> del propio helicóptero es turbulencia. Mantente lejos de un helicóptero encendido.</li>
+ </ul></div>
+ <div class="alert"><strong>Con tormenta no se salta.</strong> Las tormentas eléctricas a unas 10 millas traen frentes de ráfagas, cambios bruscos de viento y rayos. La lluvia y el granizo a velocidad de caída libre lastiman y pueden dañar campanas. Espera a que pase.</div>`,
+board:()=>`<h2>Abordaje y ascenso</h2>
+ <div class="card"><h3>En la cabina</h3><ul class="pts">
+  <li>Cinturón puesto hasta que el piloto o el jefe de salto diga lo contrario, normalmente cerca de la altitud de salto.</li>
+  <li>Protege tus manijas. Ubica el pilotín, la manija de liberación y la de reserva respecto a puertas, asientos y cinturones.</li>
+  <li>Muchas veces no hay puertas. Mantén manos y equipo dentro del marco hasta que sea hora.</li>
+  <li>Escucha el orden de salida. Las cargas en helicóptero son pequeñas y a menudo se sale de uno en uno desde los patines.</li>
+  <li>Acuerden las señas de mano antes de despegar. Hay mucho ruido y pocos audífonos.</li>
+ </ul></div>
+ <div class="note">El ascenso es más lento que en la mayoría de los aviones de salto. Usa el tiempo para visualizar tu salida y tu altitud de apertura.</div>`,
+exit:()=>`<h2>La salida: aire muerto</h2>
+ <p>Un avión te da viento relativo en cuanto sales. Un helicóptero a altitud de salto va lento o está suspendido, así que sales a aire quieto. Caes, pero durante los primeros segundos casi no hay aire contra el cual volar.</p>
+ <div class="card"><h3>Cómo se siente</h3><ul class="pts">
+  <li>Una caída, como bajar de una cornisa, en lugar de un empujón hacia un lado.</li>
+  <li>Tu arco todavía no tiene en qué apoyarse. Pequeñas asimetrías pueden hacerte girar o voltearte.</li>
+  <li>El control regresa al ganar velocidad. Llegas casi a velocidad máxima entre los 10 y 12 segundos.</li>
+ </ul></div>
+ <div class="card"><h3>Secuencia de salida</h3><ol class="steps">
+  <li><div><b>Ve a la puerta o al patín con la seña.</b> Muévete con calma. Mantén las manijas lejos del marco.</div></li>
+  <li><div><b>Mira al horizonte,</b> no al suelo. La cabeza arriba forma tu arco.</div></li>
+  <li><div><b>Sal limpio.</b> Baja o deslízate como se indicó. Sin brincar hacia afuera ni agacharte hacia el patín.</div></li>
+  <li><div><b>Mantén un arco firme y simétrico.</b> Cadera adelante, brazos y piernas parejos. Al principio se sentirá flojo.</div></li>
+  <li><div><b>Ten paciencia.</b> Espera a que llegue el aire antes de girar o moverte.</div></li>
+ </ol></div>
+ <div class="alert"><strong>No abras justo al salir.</strong> Necesitas separarte de la aeronave y tener velocidad suficiente para una apertura limpia. Sigue el retraso mínimo de tu zona de salto.</div>`,
+freefall:()=>`<h2>Caída libre</h2>
+ <div class="card"><h3>Escalera de altitud (ejemplo, salida a 10,000 ft)</h3><div class="ladder">
+  <div class="rung"><div class="alt">10,000 ft</div><div><b>Salida</b><small>Aire muerto. Arquéate y espera velocidad.</small></div></div>
+  <div class="rung"><div class="alt">~9,500 ft</div><div><b>Llega el aire</b><small>A unos 10 s. Vuelven la estabilidad y el control.</small></div></div>
+  <div class="rung"><div class="alt">~6,000 ft</div><div><b>Atención a la altitud</b><small>Revisa el altímetro seguido. Termina tus ejercicios.</small></div></div>
+  <div class="rung"><div class="alt">~5,500 ft</div><div><b>Señal de separación</b><small>Haz la seña y aléjate de los demás.</small></div></div>
+  <div class="rung"><div class="alt">Tu apertura</div><div><b>Abrir</b><small>Según tu licencia y el mínimo de la zona.</small></div></div>
+  <div class="rung"><div class="alt">Decisión</div><div><b>Altitud de decisión</b><small>Abajo de esto ya no se arregla nada. Actúa en emergencias.</small></div></div>
+ </div></div>
+ <div class="card"><h3>Propio del helicóptero</h3><ul class="pts">
+  <li>Las salidas pueden estar separadas en el tiempo. Sabe quién está abajo de ti antes de abrir.</li>
+  <li>El helicóptero puede descender después de soltarte. Nunca te desplaces bajo su trayectoria.</li>
+  <li>Los saltos bajos de apertura inmediata son comunes desde helicóptero. Planea todo el salto según esa altura menor.</li>
+ </ul></div>`,
+canopy:()=>`<h2>Bajo campana y aterrizaje</h2>
+ <div class="card"><h3>Después de abrir</h3><ol class="steps">
+  <li><div><b>Revisa la campana.</b> ¿Está ahí, está cuadrada, se puede dirigir?</div></li>
+  <li><div><b>Mira alrededor.</b> Primero otras campanas, luego el helicóptero. Puede volar bajo cerca de la zona de aterrizaje.</div></li>
+  <li><div><b>Ubica la zona de aterrizaje</b> y tu punto de espera.</div></li>
+  <li><div><b>Vuela tu patrón</b> tal como se indicó.</div></li>
+ </ol></div>
+ <div class="alert"><strong>Aléjate del helipuerto.</strong> El viento del rotor puede colapsar una campana. Nunca aterrices cerca de un helicóptero encendido.</div>
+ <div class="card"><h3>Aterrizaje</h3><ul class="pts">
+  <li>Aterriza de frente al viento, pies y rodillas juntos.</li>
+  <li>Haz el flare a la altura que entrenaste. Ni antes ni después.</li>
+  <li>Prepárate para el PLF (caída de aterrizaje) siempre.</li>
+  <li>Terreno desconocido: cuidado con cables eléctricos, árboles, cercas y agua.</li>
+ </ul></div>`,
+emergency:()=>`<h2>Emergencias</h2>
+ <div class="alert"><strong>Decide por tu altitud de decisión.</strong> Si la principal no está resuelta para entonces, actúa. La altitud es tu tiempo.</div>
+ <div class="card"><h3>Falla de la principal</h3><ol class="steps">
+  <li><div><b>Mira</b> la manija de liberación y luego la de reserva.</div></li>
+  <li><div><b>Alcanza</b> y agarra ambas con firmeza.</div></li>
+  <li><div><b>Jala la liberación</b> completa y luego <b>jala la reserva</b>.</div></li>
+  <li><div><b>Arquéate</b> y revisa la campana de reserva.</div></li>
+ </ol><p class="small" style="margin-top:10px">Esta es la secuencia común. Usa el procedimiento exacto con el que te entrenaron para tu equipo.</p></div>
+ <div class="card"><h3>Dentro del helicóptero</h3><ul class="pts">
+  <li><b>Problema con la aeronave:</b> cinturón puesto, sigue al piloto y al jefe de salto. Sal solo cuando te lo indiquen.</li>
+  <li><b>Contenedor o pilotín abierto en la cabina:</b> contenlo de inmediato y grita. Si sale por la puerta puede jalarte o golpear el rotor.</li>
+  <li><b>Reserva abierta en la cabina:</b> no saltes. Avisa al piloto. Aterriza con la aeronave.</li>
+ </ul></div>
+ <div class="card"><h3>Problemas al aterrizar</h3><ul class="pts">
+  <li><b>Cables eléctricos:</b> pies juntos, voltea la cara, evita tocar dos cables.</li>
+  <li><b>Agua:</b> suelta la correa de pecho y afloja el equipo antes de entrar, si te entrenaron para ello.</li>
+  <li><b>Árboles:</b> pies y rodillas juntos, protege cara y cuello.</li>
+ </ul></div>`,
+checklist:L=>`<h2>Revisión de equipo</h2>
+ <div class="progress"><div class="bar"><i id="bar"></i></div><span id="count">0/0</span><button class="reset" id="reset" type="button">${L.reset}</button></div>
+ <div class="card checks" id="checks"></div>`
+ }}
+};
+
+const order=["ground","weather","board","exit","freefall","canopy","emergency","checklist"];
+const tabs=document.getElementById("tabs"),main=document.getElementById("main");
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let saved=store.get("heliChecks",{});
+let wx=store.get("heliWxKt",{wGround:10,wGust:17,wLimit:12,dWind:25,dExit:10000,dPull:4000});
+let lang=store.get("heliLang",(navigator.language||"en").toLowerCase().startsWith("es")?"es":"en");
+let current=null;
+
+function setLang(l){
+  lang=l;store.set("heliLang",l);document.documentElement.lang=l;
+  const L=T[l];
+  document.getElementById("eyebrow").textContent=L.eyebrow;
+  document.getElementById("h1").textContent=L.h1;
+  document.getElementById("lede").textContent=L.lede;
+  document.getElementById("foot").textContent=L.foot;
+  document.getElementById("lang-en").setAttribute("aria-pressed",l==="en");
+  document.getElementById("lang-es").setAttribute("aria-pressed",l==="es");
+  tabs.innerHTML="";
+  order.forEach(id=>{const b=document.createElement("button");b.type="button";b.setAttribute("role","tab");b.textContent=L.tabs[id];b.id="t-"+id;b.onclick=()=>{location.hash=id};tabs.appendChild(b)});
+  show(current||location.hash.slice(1),true);
+}
+function show(id,keepScroll){
+  if(!order.includes(id))id=order[0];
+  current=id;const L=T[lang];
+  main.innerHTML=`<section>${L.html[id](L)}</section>`;
+  tabs.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.id==="t-"+id));
+  document.getElementById("t-"+id).scrollIntoView({inline:"nearest",block:"nearest"});
+  if(id==="checklist")buildChecks();
+  if(id==="weather")initWeather();
+  if(!keepScroll)window.scrollTo(0,0);
+}
+function buildChecks(){
+  const L=T[lang],box=document.getElementById("checks");
+  box.innerHTML=L.items.map((t,i)=>`<label class="check"><input type="checkbox" id="c${i}" ${saved[i]?"checked":""}><span class="box"></span><span class="t">${t}</span></label>`).join("");
+  box.querySelectorAll("input").forEach((el,i)=>el.onchange=()=>{saved[i]=el.checked;store.set("heliChecks",saved);upd()});
+  document.getElementById("reset").onclick=()=>{saved={};store.set("heliChecks",saved);buildChecks()};
+  upd();
+}
+function upd(){const n=T[lang].items.filter((_,i)=>saved[i]).length,total=T[lang].items.length;
+  document.getElementById("count").textContent=n+"/"+total;
+  document.getElementById("bar").style.width=(n/total*100)+"%";}
+function initWeather(){
+  const L=T[lang],ids=["wGround","wGust","wLimit","dWind","dExit","dPull"];
+  ids.forEach(id=>{const el=document.getElementById(id);el.value=wx[id];el.oninput=()=>{wx[id]=parseFloat(el.value)||0;store.set("heliWxKt",wx);calc()}});
+  function calc(){
+    const g=wx.wGround,gu=Math.max(wx.wGust,g),lim=wx.wLimit,spread=gu-g,o=document.getElementById("wOut");
+    if(lim>0&&gu>lim){o.className="verdict nogo";o.textContent=L.wind.over(gu,lim)}
+    else if(spread>=9){o.className="verdict caution";o.textContent=L.wind.gusty(spread)}
+    else if(lim>0&&gu>lim*0.85){o.className="verdict caution";o.textContent=L.wind.close}
+    else{o.className="verdict go";o.textContent=L.wind.ok}
+    const ff=Math.max(wx.dExit-wx.dPull,0),d=document.getElementById("dOut");
+    const t=ff<=1000?ff/100:10+(ff-1000)/176;
+    const ft=Math.round(wx.dWind*1.688*t/50)*50;
+    d.textContent=ff?L.drift(Math.round(t),ft.toLocaleString(lang==="es"?"es-MX":"en-US"),(ft/5280).toFixed(2)):L.driftBad;
+  }
+  calc();
+}
+document.getElementById("lang-en").onclick=()=>setLang("en");
+document.getElementById("lang-es").onclick=()=>setLang("es");
+addEventListener("hashchange",()=>show(location.hash.slice(1)));
+setLang(lang);
+</script>
+
+</body></html>
