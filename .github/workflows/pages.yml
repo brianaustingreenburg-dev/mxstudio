@@ -40,6 +40,7 @@ jobs:
           cp -R ritz-acapulco out/ritz-acapulco
           cp -R heli-jump out/heli-jump
           cp -R mis-apps out/mis-apps
+          cp -R jefetech-hq out/jefetech-hq
           cp -R mxstudio-site out/mxstudio
           cp -R acapulco out/acapulco
           rm -f out/acapulco/vercel.json out/acapulco/_headers
