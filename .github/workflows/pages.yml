@@ -41,6 +41,7 @@ jobs:
           cp -R heli-jump out/heli-jump
           cp -R mis-apps out/mis-apps
           cp -R jefetech-hq out/jefetech-hq
+          for d in hq jefetech JefeTech-HQ JefeTech jefetechhq; do mkdir -p out/$d && printf '<!doctype html><meta charset=utf-8><title>JefeTech HQ</title><meta http-equiv=refresh content="0;url=/jefetech-hq/"><script>location.replace("/jefetech-hq/"+location.search)</script><a href="/jefetech-hq/">JefeTech HQ</a>\n' > out/$d/index.html; done
           cp -R mxstudio-site out/mxstudio
           cp -R acapulco out/acapulco
           rm -f out/acapulco/vercel.json out/acapulco/_headers
