@@ -1,5 +1,5 @@
 // Ritz Acapulco guest app: saves itself (photos included) so it works offline.
-const C="ritz-v2";
+const C="ritz-v3";
 const FILES=["./","panel/","fonts/cormorant-garamond-latin-500-italic.woff2","fonts/cormorant-garamond-latin-500-normal.woff2","fonts/cormorant-garamond-latin-600-italic.woff2","fonts/cormorant-garamond-latin-600-normal.woff2","fonts/inter-latin-400-normal.woff2","fonts/inter-latin-500-normal.woff2","fonts/inter-latin-600-normal.woff2","fonts/inter-latin-700-normal.woff2","icons/favicon-32.png","icons/icon-180.png","icons/icon-192.png","icons/icon-512.png","img/beach.jpg","img/dining.jpg","img/hero.jpg","img/pool.jpg","img/show.jpg","index.html","manifest.webmanifest","panel/index.html"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>Promise.all(FILES.map(f=>c.add(f).catch(()=>{})))).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith("ritz-")&&x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
