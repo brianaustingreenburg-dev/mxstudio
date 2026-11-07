@@ -237,7 +237,7 @@ const DIA=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"]
 function fdTxt(d){const x=new Date(d+"T12:00");return x.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
 function addDays(n){const d=new Date();d.setDate(d.getDate()+n);if(d.getDay()===0)d.setDate(d.getDate()+1);return d}
 function leftMsg(slug,nm,who,fd){const G="https://go.myjefetech.app/acapulco/",dia=DIA[fd.getDay()]+" "+fd.getDate();
- return `¡Hola! Soy Brian, de MX Studio ✝\n\nHoy pasé a ${nm}${who?" y le dejé la información con "+who:""}. Le preparé una muestra de su app, con su menú completo en español e inglés, fotos, precios en dólares, botón de WiFi, cómo llegar y reseñas de Google:\n👉 ${G}c/${slug}/\n\nY aquí puede ver otros trabajos de MX Studio (hoteles, restaurantes, inventario):\n👉 https://go.myjefetech.app/mxstudio/\n\nAquí está todo lo que incluye y el precio:\n👉 ${G}precios/?s=${slug}&n=${encodeURIComponent(nm).replace(/'/g,"%27")}\n\n$10,000 con todo incluido y el primer año incluido. Pagos disponibles, en efectivo y sin comisiones, o $8,000 si paga completo (descuento por pago completo).${Date.now()<new Date("2026-11-12T00:00:00-06:00").getTime()?"\n\n🎁 Si la activa antes del 11 de noviembre, le configuro su perfil de Google gratis: fotos, horario, menú y reseñas (valor $1,500).":""}\n\nPaso de nuevo el ${dia} para enseñársela en persona. ¿A qué hora le queda bien?`}
+ return `¡Hola! Soy Brian, de MX Studio ✝\n\nHoy pasé a ${nm}${who?" y le dejé la información con "+who:""}. Le preparé una muestra de su app, con su menú completo en español e inglés, fotos, precios en dólares, botón de WiFi, cómo llegar y reseñas de Google:\n👉 ${G}c/${slug}/\n\nY aquí puede ver otros trabajos de MX Studio (hoteles, restaurantes, inventario):\n👉 https://go.myjefetech.app/mxstudio/\n\nAquí está todo lo que incluye y el precio:\n👉 ${G}precios/?s=${slug}&n=${encodeURIComponent(nm).replace(/'/g,"%27")}\n\n$12,000 con todo incluido y el primer año incluido. Pagos disponibles, en efectivo y sin comisiones, o $10,000 si paga completo (descuento por pago completo).${Date.now()<new Date("2026-11-12T00:00:00-06:00").getTime()?"\n\n🎁 Si la activa antes del 11 de noviembre, le configuro su perfil de Google gratis: fotos, horario, menú y reseñas (valor $1,500).":""}\n\nPaso de nuevo el ${dia} para enseñársela en persona. ¿A qué hora le queda bien?`}
 function openLeft(slug,sid,nm){const fd=addDays(2);
  $("sheetBox").innerHTML=`<h3 class="ah">📩 Owner not here</h3><div class="an">${esc(nm)}</div><p class="as">Sends the sample app and the price page on WhatsApp, and marks a follow-up for <b>${esc(fd.toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric"}))}</b>.</p>
  <label class="al">Who did you leave it with? (optional)</label><input class="ai" id="lwWho" placeholder="Ej: Carlos, el encargado">
@@ -275,7 +275,7 @@ function render(){
  $("main").innerHTML=`<div class="head"><h1>${t.route} ${r.num} · <span>${esc(F(r,"title"))}</span></h1><p>${esc(F(r,"span"))} · ${r.stops.length} ${t.visits}</p></div>
   <div class="prog"><i style="width:${Math.round(done/r.stops.length*100)}%"></i></div><div class="progt">${done} ${t.of} ${r.stops.length} ${t.visited}</div>
   <div class="info">${esc(F(r,"desc"))}<br><b>${t.when}</b> ${t.whenV} · <b>${t.ask}</b> ${t.askV}<br><b>${t.bring}</b> ${esc(F(r,"bring"))}</div>
-  ${st.mode==="p"?`<div class="navb" style="border-color:rgba(240,163,94,.6);background:rgba(240,163,94,.1)"><b>🛠️ Needs work — not the standard package</b><p style="margin:6px 0 0;font-size:.9em">These menus are estimated. Each needs about half a day to get the real menu and prices. Price is quoted separately — don't sell these as the standard package ($10,000, or $8,000 paid in full).</p></div>`:""}${(()=>{const wb=WK.r[r.title]?walkBlock(r):"";return cafeCard(r)+wb})()}${navBlock(r)}
+  ${st.mode==="p"?`<div class="navb" style="border-color:rgba(240,163,94,.6);background:rgba(240,163,94,.1)"><b>🛠️ Needs work — not the standard package</b><p style="margin:6px 0 0;font-size:.9em">These menus are estimated. Each needs about half a day to get the real menu and prices. Price is quoted separately — don't sell these as the standard package ($12,000, or $10,000 paid in full).</p></div>`:""}${(()=>{const wb=WK.r[r.title]?walkBlock(r):"";return cafeCard(r)+wb})()}${navBlock(r)}
   ${cards||`<div class="empty">${t.empty}</div>`}
   <button class="share" id="share">${t.share}</button>
   <div class="foot">${t.foot}</div>`;
@@ -649,7 +649,7 @@ function showWork(){const t=L(),u="https://go.myjefetech.app/mxstudio/";
 function showPrices(k){const es=false;
  const pk=k&&k.pkg||"r",nm=k&&k.nm||"",wa=k&&k.wa||"";
  const lo=Date.now()<new Date("2026-12-16T00:00:00-06:00").getTime(),bo=Date.now()<new Date("2026-11-12T00:00:00-06:00").getTime();
- const P={r:[8000,10000],h:[12000,15000]}[pk],f=n=>"$"+n.toLocaleString("en-US");
+ const P={r:[10000,12000],h:[15000,18000]}[pk],f=n=>"$"+n.toLocaleString("en-US");
  const url="https://go.myjefetech.app/acapulco/precios/?"+(pk==="h"?"pkg=h&":"")+(nm?"n="+encodeURIComponent(nm):"").replace(/&$/,"");
  const u=url.replace(/[?&]$/,"");
  const pline=pk==="h"?"Hotel + Restaurante: ":"Restaurante / Café: ";
