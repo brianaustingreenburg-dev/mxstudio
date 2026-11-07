@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guía de instalación · Pie de la Cuesta</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1C46B4">
+<meta property="og:title" content="Guía y solución de problemas / Setup & Troubleshooting · Pie de la Cuesta">
+<meta property="og:description" content="Cómo instalar la app, conectarla con Eleventa y resolver problemas. / How to install, connect to Eleventa, and fix problems.">
+<meta property="og:image" content="https://go.myjefetech.app/inventario/icon-512.png">
+<link rel="icon" href="../inventario/icon-192.png">
+<style>
+:root{--bg:#F3F5F9;--card:#fff;--ink:#141A2B;--muted:#5B6478;--line:#E1E5EE;--accent:#1C46B4;--accent-soft:#E7EDFB;--ok:#1E8A4C;--ok-soft:#E5F5EC;--warn:#A15C00;--warn-soft:#FFF4E2;--bad:#B42318;--bad-soft:#FDECEA}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1220;--card:#171C2E;--ink:#EEF1F8;--muted:#9AA3B8;--line:#2A3149;--accent:#6E93F5;--accent-soft:#1E2A4D;--ok:#4CC27F;--ok-soft:#14291D;--warn:#F2B04C;--warn-soft:#2E2412;--bad:#F27A6E;--bad-soft:#2E1614}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:600px;margin:0 auto;padding:16px 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:8px 0 16px}
+header img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:#fff}
+header b{display:block;font-size:1.1rem;line-height:1.2}
+header span{color:var(--muted);font-size:.9rem}
+h1{font-size:1.6rem;line-height:1.2;margin:4px 0 2px}
+.lead{color:var(--muted);margin:0 0 4px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 18px}
+nav.toc a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.85rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;scroll-margin-top:12px}
+.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+h2{font-size:1.2rem;margin:0}
+h3{font-size:1rem;margin:0}
+.sub{color:var(--muted);margin:6px 0 2px;font-size:.95rem}
+ol.steps{list-style:none;margin:14px 0 0;padding:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 18px 44px}
+ol.steps>li:last-child{padding-bottom:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:-1px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem}
+li>b{display:block}
+li p,.fix p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+ul.plain{margin:6px 0 0;padding-left:20px;color:var(--muted);font-size:.95rem}
+ul.plain li{margin:4px 0}
+/* English line under each Spanish line */
+.en{display:block;font-style:italic;font-size:.86em;color:var(--muted);opacity:.9;font-weight:500}
+h1 .en,h2 .en,h3 .en,li>b .en,summary .en{font-style:normal;font-weight:600;margin-top:1px}
+.btn{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;font-size:1rem;border-radius:14px;padding:12px 18px;margin:10px 0 4px;text-align:center}
+.btn .en{color:#fff;opacity:.85;font-style:normal;font-size:.8rem}
+.btn.alt{background:var(--accent-soft);color:var(--accent)}
+.btn.alt .en{color:var(--accent)}
+.note{border-radius:12px;padding:10px 12px;font-size:.92rem;margin-top:10px}
+.note .en{color:inherit}
+.note.warn{background:var(--warn-soft);color:var(--warn)}
+.note.ok{background:var(--ok-soft);color:var(--ok)}
+.note.bad{background:var(--bad-soft);color:var(--bad)}
+.os{display:grid;gap:8px;margin-top:8px}
+.os div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.92rem}
+.os strong{display:block}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 5px;color:var(--ink);word-break:break-word;font-style:normal}
+.fix{border-top:1px solid var(--line);padding:12px 0}
+.fix summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.fix summary::-webkit-details-marker{display:none}
+.fix summary::after{content:"+";color:var(--accent);font-weight:800;font-size:1.2rem;line-height:1}
+.fix[open] summary::after{content:"–"}
+.fix .body{margin-top:6px}
+.grp{margin:16px 0 0;padding-top:4px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="logo.webp" alt="MX Studio">
+    <div><b>Mercado Pie de la Cuesta</b><span>Guía y soluciones · Setup &amp; Troubleshooting</span></div>
+  </header>
+
+  <h1>Guía de instalación del inventario<span class="en">Inventory app setup guide</span></h1>
+  <p class="lead">Todo para instalar los teléfonos y la computadora de Eleventa, usarlo cada día y resolver problemas. La app ya trae los 2,438 productos de la tienda.
+    <span class="en">Everything to set up the phones and the Eleventa computer, use it every day, and fix problems. The app already has the store's 2,438 products.</span></p>
+  <nav class="toc"><a href="#before">Antes · Before</a><a href="#phones">1 · Teléfonos / Phones</a><a href="#computer">2 · Computadora / Computer</a><a href="#daily">3 · Cada día / Daily</a><a href="#trouble">Problemas / Troubleshooting</a></nav>
+
+  <section class="card" id="before">
+    <span class="tag">Antes de ir · Before you go</span>
+    <h2>Lo que necesitas<span class="en">What you need</span></h2>
+    <p class="sub">No hay que configurar nada en internet. La computadora de la tienda es el centro: los teléfonos se conectan a ella desde cualquier lugar, gratis.
+      <span class="en">Nothing to set up online. The store computer is the hub: phones connect to it from anywhere, for free.</span></p>
+    <h3 style="margin-top:16px">Qué llevar<span class="en">What to bring</span></h3>
+    <ul class="plain">
+      <li>El teléfono del dueño y de los empleados que van a contar.<span class="en">The owner's phone and any worker phones that will count.</span></li>
+      <li>Acceso a la computadora de Eleventa (Windows) con internet.<span class="en">Access to the Eleventa computer (Windows), with internet.</span></li>
+      <li>Un rato en que esa caja no esté ocupada (unos 15 minutos).<span class="en">A time when that register isn't busy (about 15 minutes).</span></li>
+    </ul>
+  </section>
+
+  <section class="card" id="phones">
+    <span class="tag">Paso 1 · Teléfonos / Phones</span>
+    <h2>Instala la app en cada teléfono<span class="en">Install the app on each phone</span></h2>
+    <p class="sub">Un minuto por teléfono. Funciona con Wi-Fi o datos.<span class="en">About 1 minute per phone. Works on Wi-Fi or mobile data.</span></p>
+    <ol class="steps">
+      <li><b>Abre la app<span class="en">Open the app</span></b>
+        <a class="btn" href="https://go.myjefetech.app/inventario/">Abrir Inventario<span class="en">Open Inventory</span></a>
+        <p>Si se abrió dentro de WhatsApp, toca ⋮ o compartir → «Abrir en Chrome» / «Abrir en Safari».
+          <span class="en">If it opened inside WhatsApp, tap ⋮ or share → «Open in Chrome» / «Open in Safari».</span></p></li>
+      <li><b>Ponla en la pantalla de inicio<span class="en">Add it to the home screen</span></b>
+        <div class="os">
+          <div><strong>iPhone (Safari)</strong>Compartir ⬆️ → «Agregar a inicio» → Agregar.<span class="en">Share ⬆️ → «Add to Home Screen» → Add.</span></div>
+          <div><strong>Android (Chrome)</strong>⋮ → «Instalar app» o «Agregar a pantalla principal».<span class="en">⋮ → «Install app» or «Add to Home screen».</span></div>
+        </div></li>
+      <li><b>Prueba un escaneo<span class="en">Try one scan</span></b>
+        <p>Toca «Escanear producto», permite la cámara y escanea cualquier producto. Sale su nombre y cantidad. Pon la cantidad real y toca Guardar.
+          <span class="en">Tap «Escanear producto», allow the camera, and scan any product. Its name and count show up. Enter the real count and tap Guardar (Save).</span></p></li>
+    </ol>
+  </section>
+
+  <section class="card" id="computer">
+    <span class="tag">Paso 2 · Computadora de Eleventa / Eleventa computer</span>
+    <h2>Conecta con Eleventa<span class="en">Connect to Eleventa</span></h2>
+    <p class="sub">Solo una vez. Después todo se sincroniza solo: las ventas de la caja bajan en la app y los conteos del teléfono entran solos a Eleventa en segundos.
+      <span class="en">Only once. After this everything syncs by itself: register sales come off the app, and phone counts go straight into Eleventa within seconds.</span></p>
+    <ol class="steps">
+      <li><b>Escoge la computadora correcta<span class="en">Pick the right computer</span></b>
+        <p>Si hay dos cajas, usa la <b>principal</b>: donde está la base de datos de Eleventa. La otra caja normalmente se conecta a esa. El paso 5 te dice si escogiste bien.
+          <span class="en">If there are two registers, use the <b>main</b> one: where Eleventa's database lives. The other register usually connects to it. Step 5 tells you if you picked right.</span></p></li>
+      <li><b>Descarga el programa en esa computadora<span class="en">Download the program on that computer</span></b>
+        <a class="btn" href="https://go.myjefetech.app/pie-de-la-cuesta/MX-Studio-Inventario.exe">Descargar programa (47 MB)<span class="en">Download program (47 MB)</span></a>
+        <p>Abre esta guía en la computadora y toca el botón. Es para Windows y no necesita instalación.
+          <span class="en">Open this guide on the computer and tap the button. It's for Windows and needs no installation.</span></p></li>
+      <li><b>Ábrelo<span class="en">Open it</span></b>
+        <p>Doble clic en <code>MX-Studio-Inventario.exe</code>. Si Windows dice «Windows protegió su PC», toca «Más información» → «Ejecutar de todas formas». Se abre una página en el navegador: ese es el programa.
+          <span class="en">Double-click <code>MX-Studio-Inventario.exe</code>. If Windows says «Windows protected your PC», click «More info» → «Run anyway». A page opens in the browser: that's the program.</span></p></li>
+      <li><b>Conecta cada teléfono<span class="en">Connect each phone</span></b>
+        <p>Abre la app desde el ícono de tu pantalla de inicio y toca <b>«Conectar con la tienda»</b>. Apunta la cámara al código QR que aparece en el programa, en «Teléfonos de la tienda». Arriba dirá en verde «Conectado con la tienda». Solo una vez por teléfono.
+          <span class="en">Open the app from your home screen icon and tap <b>«Conectar con la tienda»</b>. Point the camera at the QR code in the program, under «Teléfonos de la tienda». The top turns green: «Conectado con la tienda». Only once per phone.</span></p></li>
+      <li><b>Se conecta solo con Eleventa<span class="en">It connects to Eleventa by itself</span></b>
+        <p>En menos de un minuto el programa encuentra Eleventa y activa la sincronización. La pantalla del programa dice en verde «✓ Todo está automático». Si no, mira «Problemas» abajo.
+          <span class="en">Within a minute the program finds Eleventa and turns on sync. The program screen says in green «✓ Todo está automático». If not, see «Troubleshooting» below.</span></p></li>
+      <li><b>Revisa con un producto<span class="en">Check with one product</span></b>
+        <p>Cuenta un producto en el teléfono. En unos segundos, búscalo en Eleventa: debe mostrar la misma existencia. En el programa aparece en «Últimos conteos que entraron a Eleventa».
+          <span class="en">Count one product on the phone. Within a few seconds, look it up in Eleventa: it should show the same stock. The program lists it under «Últimos conteos que entraron a Eleventa».</span></p></li>
+    </ol>
+    <div class="note warn">Deja el programa abierto mientras la tienda esté abierta. Si la computadora se reinicia, ábrelo otra vez. Antes del primer cambio de cada día, el programa guarda una copia de seguridad de Eleventa.
+      <span class="en">Leave the program open while the store is open. If the computer restarts, open it again. Before the first change each day, the program saves a backup copy of Eleventa.</span></div>
+  </section>
+
+  <section class="card" id="daily">
+    <span class="tag">Paso 3 · Cada día / Every day</span>
+    <h2>Cómo lo usa el dueño<span class="en">How the owner uses it</span></h2>
+    <ol class="steps">
+      <li><b>Ver las ventas de la caja<span class="en">See register sales</span></b>
+        <p>Abre la pestaña <b>Ventas</b> y toca «Llegué» al llegar. Muestra todo lo vendido desde ese momento: piezas, dinero y cada producto. «Hoy» muestra todo el día. Se actualiza cada minuto.
+          <span class="en">Open the <b>Ventas</b> tab and tap «Llegué» on arrival. It shows everything sold since then: pieces, money and each product. «Hoy» shows the whole day. It updates about once a minute.</span></p></li>
+      <li><b>Ver o contar existencias<span class="en">Check or count stock</span></b>
+        <p>Escanea un producto para ver cuántos hay. Si no coincide con el anaquel, pon el número real y toca Guardar.
+          <span class="en">Scan a product to see how many there are. If the shelf doesn't match, enter the real number and tap Guardar.</span></p></li>
+      <li><b>Recibir mercancía<span class="en">Receive a delivery</span></b>
+        <p>Escanea cada producto, toca «+ Sumar», pon cuántos llegaron y Guardar.
+          <span class="en">Scan each product, tap «+ Sumar», enter how many came in, then Guardar.</span></p></li>
+      <li><b>Todo entra solo a Eleventa<span class="en">Everything goes into Eleventa by itself</span></b>
+        <p>Cada conteo y cada mercancía recibida en el teléfono cambia la existencia de Eleventa en segundos. La caja puede seguir vendiendo; no hay que tocar la computadora.
+          <span class="en">Every count and delivery entered on the phone changes Eleventa's stock within seconds. The register keeps selling; nobody touches the computer.</span></p></li>
+    </ol>
+    <div class="note ok">No necesitas estar en el Wi-Fi de la tienda. Puedes ver las ventas desde cualquier lugar con internet.
+      <span class="en">No need to be on the store Wi-Fi. You can check sales from anywhere with internet.</span></div>
+  </section>
+
+  <section class="card" id="trouble">
+    <span class="tag">Problemas · Troubleshooting</span>
+    <h2>Si algo no funciona<span class="en">If something doesn't work</span></h2>
+    <p class="sub">Toca un problema para ver la solución.<span class="en">Tap a problem to see the fix.</span></p>
+
+    <h3 class="grp">Teléfono y app<span class="en">Phone and app</span></h3>
+    <details class="fix"><summary><span>El enlace se abre dentro de WhatsApp / no sale «Agregar a inicio»<span class="en">Link opens inside WhatsApp / no «Add to Home Screen»</span></span></summary><div class="body">
+      <p>El navegador de WhatsApp no puede instalar apps. Toca ⋮ (Android) o compartir (iPhone) y elige «Abrir en Chrome» o «Abrir en Safari». Luego agrégala a inicio.
+        <span class="en">WhatsApp's browser can't install apps. Tap ⋮ (Android) or share (iPhone) and choose «Open in Chrome» or «Open in Safari». Then add it to the home screen.</span></p></div></details>
+    <details class="fix"><summary><span>La cámara no abre o se queda negra<span class="en">The camera doesn't open or stays black</span></span></summary><div class="body">
+      <ul class="plain">
+        <li><b>iPhone:</b> Ajustes → Safari → Cámara → Permitir. Luego recarga la app.<span class="en">Settings → Safari → Camera → Allow. Then reload the app.</span></li>
+        <li><b>Android:</b> en Chrome, toca el ícono a la izquierda de la dirección → Permisos → Cámara → Permitir.<span class="en">In Chrome, tap the icon left of the address → Permissions → Camera → Allow.</span></li>
+        <li>Cierra otras apps que usen la cámara (videollamada de WhatsApp, la cámara).<span class="en">Close other apps using the camera (WhatsApp video call, the camera app).</span></li>
+        <li>¿Sigue negra? Cierra la app por completo y ábrela otra vez.<span class="en">Still black? Close the app completely and open it again.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>No lee un código de barras<span class="en">It won't read a barcode</span></span></summary><div class="body">
+      <ul class="plain">
+        <li>Buena luz, teléfono a 15–20 cm y sin moverlo. Evita reflejos en empaques brillantes.<span class="en">Good light, phone 15–20 cm away and steady. Avoid glare on shiny packages.</span></li>
+        <li>O escribe el número debajo del código en «O escribe el código» en la pantalla Escanear.<span class="en">Or type the number under the barcode in «O escribe el código» on the Escanear screen.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>Dice «Producto nuevo» en algo que la tienda ya tiene<span class="en">It says «Producto nuevo» for something the store already has</span></span></summary><div class="body">
+      <p>Algunos productos en Eleventa usan una palabra como código en vez del código de barras (por ejemplo <code>BOLSA DE KILO</code>), o el código del empaque es distinto al de Eleventa. Cierra la ventana, ve a Inventario y búscalo por nombre.
+        <span class="en">Some products in Eleventa use a word as their code instead of the barcode (e.g. <code>BOLSA DE KILO</code>), or the package barcode differs from Eleventa's. Close the window, go to Inventario and search it by name.</span></p></div></details>
+    <details class="fix"><summary><span>No aparece «Ventas» / la app se ve vieja<span class="en">No «Ventas» tab / app looks old</span></span></summary><div class="body">
+      <p>Toca «Actualizar» arriba. Si sigue igual, cierra la app por completo y ábrela otra vez. Se actualiza sola cuando hay internet.
+        <span class="en">Tap «Actualizar» at the top. If it's still old, close the app completely and open it again. It updates itself when there's internet.</span></p></div></details>
+    <details class="fix"><summary><span>Arriba dice «Sin conexión con la tienda» o «N en espera»<span class="en">Top says «Sin conexión con la tienda» or «N en espera»</span></span></summary><div class="body">
+      <p>El teléfono no tiene internet ahorita. Los conteos se guardan en el teléfono y se mandan solos cuando vuelve la conexión. No se pierde nada.
+        <span class="en">The phone has no internet right now. Counts are saved on the phone and sent automatically when it reconnects. Nothing is lost.</span></p></div></details>
+    <details class="fix"><summary><span>Dos teléfonos muestran números distintos<span class="en">Two phones show different numbers</span></span></summary><div class="body">
+      <p>Espera unos 10 segundos o toca «Actualizar». Si dos personas cuentan el mismo producto, se queda el último que se guardó, y cada producto muestra quién lo contó.
+        <span class="en">Wait about 10 seconds or tap «Actualizar». If two people count the same product, the last one saved wins, and each product shows who counted it.</span></p></div></details>
+
+    <h3 class="grp">Computadora y Eleventa<span class="en">Computer and Eleventa</span></h3>
+    <details class="fix"><summary><span>Windows bloquea el programa<span class="en">Windows blocks the program</span></span></summary><div class="body">
+      <ul class="plain">
+        <li>«Windows protegió su PC» → «Más información» → «Ejecutar de todas formas».<span class="en">«Windows protected your PC» → «More info» → «Run anyway».</span></li>
+        <li>Si el antivirus lo borra, márcalo como permitido y descárgalo otra vez.<span class="en">If the antivirus deletes it, mark it as allowed and download it again.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>El programa abrió pero no salió la página<span class="en">The program opened but no page appeared</span></span></summary><div class="body">
+      <p>Abre Chrome o Edge en esa computadora y entra a <code>http://localhost:8080/pc</code>. La ventana negra del programa debe quedarse abierta: si la cierras, se cierra el programa.
+        <span class="en">Open Chrome or Edge on that computer and go to <code>http://localhost:8080/pc</code>. The program's black window must stay open: closing it closes the program.</span></p></div></details>
+    <details class="fix"><summary><span>La app de la pantalla de inicio dice «no está conectado»<span class="en">The home screen app says «not connected»</span></span></summary><div class="body">
+      <p>En iPhone, el ícono de la pantalla de inicio tiene su propia memoria. Ábrelo y toca «Conectar con la tienda», luego escanea el código QR del programa. Solo una vez.
+        <span class="en">On iPhone, the home screen icon has its own memory. Open it, tap «Conectar con la tienda», then scan the program's QR code. Only once.</span></p></div></details>
+    <details class="fix"><summary><span>El teléfono no se conecta después de escanear el QR<span class="en">Phone doesn't connect after scanning the QR</span></span></summary><div class="body">
+      <ul class="plain">
+        <li>En el programa, en «Teléfonos de la tienda», debe decir «Los teléfonos pueden conectarse desde cualquier lugar». Si dice «Preparando…», espera un minuto (la primera vez descarga la conexión gratuita).<span class="en">In the program, under «Teléfonos de la tienda», it should say «Los teléfonos pueden conectarse desde cualquier lugar». If it says «Preparando…», wait a minute (the first time it downloads the free connection).</span></li>
+        <li>Si el antivirus o Windows pregunta por <code>cloudflared.exe</code>, permítelo: es la conexión gratuita de Cloudflare para los teléfonos.<span class="en">If the antivirus or Windows asks about <code>cloudflared.exe</code>, allow it: it's Cloudflare's free connection for the phones.</span></li>
+        <li>Revisa que la computadora tenga internet.<span class="en">Make sure the computer has internet.</span></li>
+        <li>Escanea el QR otra vez con la cámara normal del teléfono.<span class="en">Scan the QR again with the phone's normal camera.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>Falla «Probar conexión con Eleventa»<span class="en">«Probar conexión con Eleventa» fails</span></span></summary><div class="body">
+      <ul class="plain">
+        <li><b>Computadora equivocada:</b> probablemente es la segunda caja. Instala el programa en la caja principal y prueba ahí.<span class="en"><b>Wrong computer:</b> probably the second register. Install the program on the main register and test there.</span></li>
+        <li><b>Eleventa cerrado:</b> abre Eleventa y prueba otra vez.<span class="en"><b>Eleventa closed:</b> open Eleventa and test again.</span></li>
+        <li><b>Contraseña o ubicación:</b> algunas instalaciones cambian la contraseña o carpeta de la base. En «Opciones avanzadas», pon la ruta del archivo <code>.FDB</code> y la contraseña si las sabes.<span class="en"><b>Password or location:</b> some installations change the database password or folder. Under «Opciones avanzadas», enter the <code>.FDB</code> file path and password if you know them.</span></li>
+        <li>En todo caso, toma captura del resultado y mándala a MX Studio.<span class="en">Either way, screenshot the result and send it to MX Studio.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>Ventas no muestra nada<span class="en">Ventas shows no sales</span></span></summary><div class="body">
+      <ul class="plain">
+        <li>La computadora de Eleventa debe estar prendida, con internet y el programa abierto.<span class="en">The Eleventa computer must be on, with internet and the program open.</span></li>
+        <li>En el programa, «Sincronizar con Eleventa automáticamente» debe estar activado.<span class="en">In the program, «Sincronizar con Eleventa automáticamente» must be on.</span></li>
+        <li>«Desde que llegué» solo cuenta ventas después de tocar «Llegué». Revisa «Hoy» para todo el día.<span class="en">«Desde que llegué» only counts sales after tapping «Llegué». Check «Hoy» for the whole day.</span></li>
+        <li>Las ventas nuevas tardan hasta un minuto en aparecer.<span class="en">New sales take up to about a minute to show up.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>El dinero en Ventas no coincide con la caja<span class="en">Money in Ventas doesn't match the register</span></span></summary><div class="body">
+      <p>La app calcula el dinero como piezas × el precio de la lista de Eleventa con que se cargó. Descuentos, cambios de precio y productos a granel no coinciden exacto. El corte de caja de Eleventa es el total oficial.
+        <span class="en">The app estimates money as pieces × the price from the Eleventa list it was loaded with. Discounts, price changes and products sold by weight won't match exactly. Eleventa's cash report is the official total.</span></p></div></details>
+    <details class="fix"><summary><span>Un conteo no cambió en Eleventa<span class="en">A count didn't change in Eleventa</span></span></summary><div class="body">
+      <ul class="plain">
+        <li>Espera unos 20 segundos: si la caja acaba de vender, primero lee esa venta y luego escribe.<span class="en">Wait about 20 seconds: if the register just sold something, it reads that sale first, then writes.</span></li>
+        <li>Revisa que la computadora esté prendida, con internet, el programa abierto y «Sincronizar con Eleventa automáticamente» activado.<span class="en">Check the computer is on, with internet, the program open and «Sincronizar con Eleventa automáticamente» on.</span></li>
+        <li>Si el programa dice «Estos códigos no existen en Eleventa», ese producto no está dado de alta en Eleventa con ese código. Dalo de alta en Eleventa con el mismo código y entra solo.<span class="en">If the program says «Estos códigos no existen en Eleventa», that product isn't in Eleventa with that code. Add it in Eleventa with the same code and it goes in by itself.</span></li>
+        <li>Si dice «No pude escribir en Eleventa», toma captura y mándala a MX Studio.<span class="en">If it says «No pude escribir en Eleventa», screenshot it and send it to MX Studio.</span></li>
+      </ul></div></details>
+    <details class="fix"><summary><span>Eleventa muestra un número raro después de un conteo<span class="en">Eleventa shows a strange number after a count</span></span></summary><div class="body">
+      <p>En el programa, «Últimos conteos que entraron a Eleventa» muestra cada cambio (antes → después) y quién contó. Corrige el número contando otra vez en el teléfono. Hay una copia de seguridad diaria de Eleventa en la carpeta <code>respaldos-eleventa</code>, junto al programa.
+        <span class="en">In the program, «Últimos conteos que entraron a Eleventa» shows each change (before → after) and who counted. Fix it by counting again on the phone. A daily backup of Eleventa is in the <code>respaldos-eleventa</code> folder next to the program.</span></p></div></details>
+    <details class="fix"><summary><span>Las devoluciones o ventas canceladas no aparecen<span class="en">Returns or cancelled sales don't show</span></span></summary><div class="body">
+      <p>Todavía no. Un producto devuelto no se suma de nuevo en la app. Si hace falta, vuelve a contar ese producto en el teléfono.
+        <span class="en">Not supported yet. A returned item isn't added back in the app. Recount that product on the phone if needed.</span></p></div></details>
+  </section>
+
+  <section class="card">
+    <h2>Enlaces rápidos<span class="en">Quick links</span></h2>
+    <a class="btn alt" href="https://go.myjefetech.app/inventario/">App de inventario<span class="en">Inventory app</span></a>
+    <a class="btn alt" href="https://go.myjefetech.app/pie-de-la-cuesta/">Página de instalación para el dueño<span class="en">Setup page for the owner</span></a>
+  </section>
+
+  <footer>MX Studio · Brian</footer>
+</div>
+</body>
+</html>

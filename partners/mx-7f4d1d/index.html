@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0a0a0a"><meta name="apple-mobile-web-app-title" content="MX Studio ✝️">
+<script>window.MXSYNC={"api": "/api/sync", "key": "p_UpB4gKw99ZcD3wXJYnS0kSSF", "space": "partner-mx", "prefix": "mx:"};</script>
+<script id="mx-sync">
+/* ===== ✝️ MX Studio live sync: same data on every device, within seconds ===== */
+(function(){
+  var C=window.MXSYNC;if(!C||!window.XMLHttpRequest||window.top!==window)return;
+  var LS;try{LS=window.localStorage;LS.setItem('mxs:test','1');LS.removeItem('mxs:test');}catch(e){return;}
+  var P=C.prefix||'';
+  var proto=Storage.prototype,_get=proto.getItem,_set=proto.setItem,_rem=proto.removeItem;
+  function rawGet(k){return _get.call(LS,k);} function rawSet(k,v){_set.call(LS,k,v);} function rawRem(k){_rem.call(LS,k);}
+  var REVK='mxs:rev:'+C.space, DEVK='mxs:dev';
+  var dev=rawGet(DEVK);if(!dev){dev=Math.random().toString(36).slice(2,12);rawSet(DEVK,dev);}
+  var rev=+rawGet(REVK)||0, pend={}, timer=null, applying=false, dirty=false;
+  function internal(k){return k.indexOf('mxs:')===0;}
+  function apply(items){
+    var n=0;applying=true;
+    for(var k in items){if(!items.hasOwnProperty(k)||internal(k))continue;var it=items[k];
+      if(it.t>rev)rev=it.t;
+      if(it.d===dev)continue;
+      var cur=rawGet(P+k);
+      if(it.v===null){if(cur!==null){rawRem(P+k);n++;}}
+      else if(cur!==it.v){rawSet(P+k,it.v);n++;}}
+    applying=false;rawSet(REVK,String(rev));return n;
+  }
+  function url(q){return C.api+'?space='+encodeURIComponent(C.space)+(q||'');}
+  /* 1) before the page reads anything: pull the latest from the cloud (fast, blocks ~0.3s) */
+  try{var x=new XMLHttpRequest();x.open('GET',url('&since='+rev),false);x.setRequestHeader('x-mx-key',C.key);x.send();
+    if(x.status===200){apply(JSON.parse(x.responseText).items||{});}}catch(e){}
+  /* 2) every save on this device goes to the cloud */
+  function push(){timer=null;var body=pend;pend={};if(!Object.keys(body).length)return;
+    fetch(url(),{method:'POST',headers:{'content-type':'application/json','x-mx-key':C.key},body:JSON.stringify({set:body,dev:dev}),keepalive:true})
+      .then(function(r){return r.json();}).then(function(j){if(j&&j.rev>rev){/* keep rev: our own writes are skipped on read */}})
+      .catch(function(){for(var k in body)if(!(k in pend))pend[k]=body[k];rawSet('mxs:pend:'+C.space,JSON.stringify(pend));setTimeout(push,5000);});
+  }
+  try{var old=JSON.parse(rawGet('mxs:pend:'+C.space)||'{}');for(var k0 in old)pend[k0]=old[k0];rawRem('mxs:pend:'+C.space);if(Object.keys(pend).length)setTimeout(push,1500);}catch(e){}
+  function queue(k,v){if(applying||internal(k))return;pend[k]=v;if(timer)clearTimeout(timer);timer=setTimeout(push,400);}
+  proto.getItem=function(k){if(this===LS&&!internal(String(k)))return _get.call(this,P+k);return _get.apply(this,arguments);};
+  proto.setItem=function(k,v){if(this===LS&&!internal(String(k))){_set.call(this,P+k,String(v));queue(String(k),String(v));return;}return _set.apply(this,arguments);};
+  proto.removeItem=function(k){if(this===LS&&!internal(String(k))){_rem.call(this,P+k);queue(String(k),null);return;}return _rem.apply(this,arguments);};
+  window.addEventListener('pagehide',function(){if(timer){clearTimeout(timer);push();}});
+  /* 3) changes from your other devices show up here within a few seconds */
+  function busy(){var a=document.activeElement;return a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable);}
+  function saveUI(){try{var tbs=[].slice.call(document.querySelectorAll('.tb'));var ai=tbs.findIndex(function(t){return t.classList.contains('active');});
+    sessionStorage.setItem('mxs:ui',JSON.stringify({tab:ai,sel:(typeof S!=='undefined'&&S&&S.sel!=null)?S.sel:null,y:window.scrollY,t:Date.now()}));}catch(e){}}
+  function refresh(){if(busy()||document.querySelector('dialog[open]')){dirty=true;return;}dirty=false;saveUI();location.reload();}
+  function poll(){
+    if(document.hidden)return;
+    fetch(url('&since='+rev),{headers:{'x-mx-key':C.key},cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+      if(j&&apply(j.items||{})>0)refresh();
+    }).catch(function(){});
+  }
+  setInterval(poll,4000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)poll();});
+  window.addEventListener('focus',poll);
+  document.addEventListener('focusout',function(){setTimeout(function(){if(dirty&&!busy())refresh();},300);});
+  /* after a sync refresh, put you back on the same tab, prospect and scroll spot */
+  function restore(){try{var u=JSON.parse(sessionStorage.getItem('mxs:ui')||'null');sessionStorage.removeItem('mxs:ui');if(!u||Date.now()-u.t>15000)return;
+    var tbs=document.querySelectorAll('.tb');if(u.tab>=0&&tbs[u.tab])tbs[u.tab].click();
+    if(u.sel!=null&&typeof window.selP==='function'){try{window.selP(u.sel);}catch(e){}}
+    setTimeout(function(){window.scrollTo(0,u.y||0);},60);}catch(e){}}
+  window.addEventListener('load',function(){setTimeout(restore,50);});
+  window.MXSYNC.status=function(){return {rev:rev,pending:Object.keys(pend).length,dev:dev};};
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MX Studio Partner ✝️</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090b10;--card:#12151e;--border:rgba(255,255,255,.07);
+  --orange:#FF6B2B;--green:#00E676;--wa:#25D366;
+  --white:#F8F8F6;--muted:#8896A8;
+  --gdim:rgba(0,230,118,.06);--gmid:rgba(0,230,118,.16)
+}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,sans-serif;min-height:100vh;padding-bottom:48px}
+
+/* HEADER */
+.hdr{padding:13px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,230,118,.12);position:sticky;top:0;background:rgba(9,11,16,.97);backdrop-filter:blur(14px);z-index:99}
+.logo{width:34px;height:34px;border-radius:9px;background:var(--green);color:#000;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0,230,118,.25);flex-shrink:0}
+.hdr-text{flex:1;min-width:0}
+.hdr-name{font-size:14px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-sub{font-size:10px;color:var(--green);font-weight:600}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.toggle-label{font-size:11px;font-weight:800;min-width:24px}
+.toggle-track{width:42px;height:22px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--border);cursor:pointer;position:relative;transition:.25s;flex-shrink:0}
+.toggle-knob{width:16px;height:16px;border-radius:8px;position:absolute;top:2px;left:2px;transition:.25s}
+.toggle-track.en .toggle-knob{left:22px}
+
+/* TABS */
+.tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--border);background:#0b0d14;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tb{flex-shrink:0;padding:11px 14px;font-size:11px;font-weight:800;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;letter-spacing:.2px;transition:.2s;white-space:nowrap}
+.tb.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,230,118,.04)}
+
+/* TAB PANES */
+.pane{display:none;padding:16px}
+.pane.active{display:block}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.clabel{font-size:9px;font-weight:800;color:var(--green);letter-spacing:.9px;text-transform:uppercase;margin-bottom:12px}
+
+/* GOALS */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.gc{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:16px;text-align:center}
+.gc-lbl{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.gc-n{font-size:48px;font-weight:900;line-height:1}
+.gc-s{font-size:10px;color:var(--muted);margin-top:3px}
+.btn{display:block;width:100%;padding:11px;border-radius:9px;border:1px solid var(--border);background:var(--gdim);color:var(--green);font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:8px;text-align:center}
+.btn-o{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn-wa{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.25);color:var(--wa)}
+.btn-stripe{background:var(--orange);border:none;color:#fff}
+
+/* PROGRESS */
+.prog{margin-bottom:12px}
+.prog-top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px}
+.prog-bar{height:7px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;transition:.4s}
+
+/* PROSPECTS */
+.srch{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:9px;padding:9px 13px;color:var(--white);font-size:13px;font-family:inherit;margin-bottom:10px;outline:none}
+.srch:focus{border-color:rgba(0,230,118,.3)}
+.pct{font-size:10px;color:var(--muted);text-align:center;margin-bottom:8px}
+.plist{display:flex;flex-direction:column;gap:7px;max-height:58vh;overflow-y:auto}
+.prow{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:9px}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pmeta{font-size:10px;color:var(--muted);margin-top:2px}
+.pbtns{display:flex;gap:5px;flex-shrink:0}
+.pbtns a{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;border:1px solid var(--border)}
+.pbcall{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.18)}
+.pbwa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.18)}
+
+/* SCRIPT */
+.step{border-radius:13px;padding:16px;margin-bottom:10px}
+.step-opener{background:var(--card);border:1px solid var(--border)}
+.step-pitch{background:var(--card);border:1px solid var(--border)}
+.step-close{background:rgba(255,107,43,.06);border:1px solid rgba(255,107,43,.18)}
+.step-fu{background:var(--card);border:1px solid var(--border)}
+.step-lbl{font-size:9px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;margin-bottom:10px;color:var(--orange)}
+.step-txt{font-size:13px;line-height:1.75;color:var(--white)}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.demo-a{display:block;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;padding:10px;text-decoration:none;text-align:center}
+.demo-icon{font-size:22px}
+.demo-lbl{font-size:11px;font-weight:800;color:var(--green);margin-top:4px}
+.copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.cbtn{background:var(--gdim);border:1px solid var(--gmid);color:var(--green);font-size:11px;font-weight:800;padding:8px;border-radius:8px;cursor:pointer;font-family:inherit}
+.close-btns{display:flex;gap:8px;margin-top:10px}
+.close-btns button{flex:1;padding:12px;border-radius:9px;border:none;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+
+/* EARNINGS */
+.earn-big{font-size:38px;font-weight:900;margin:6px 0 2px}
+.earn-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}
+.earn-row:last-child{border:none}
+.el{color:var(--muted)}
+.ev{font-weight:700}
+.slider-wrap{margin-top:10px}
+.slider-wrap input[type=range]{width:100%;accent-color:var(--green)}
+.calc-result{font-size:26px;font-weight:900;color:var(--green);text-align:center;margin-top:8px}
+.calc-sub{font-size:11px;color:var(--muted);text-align:center}
+
+/* JEFE */
+.jefe-card{background:linear-gradient(135deg,rgba(255,107,43,.07),rgba(0,230,118,.05));border:1px solid rgba(255,107,43,.18);border-radius:15px;padding:22px;text-align:center;margin-bottom:12px}
+.jefe-av{width:58px;height:58px;border-radius:14px;background:var(--orange);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.jefe-name{font-size:17px;font-weight:900;margin-bottom:3px}
+.jefe-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.wa-main{display:block;background:var(--wa);color:#fff;font-size:14px;font-weight:800;padding:13px;border-radius:11px;text-decoration:none;margin-bottom:8px}
+.wa-sec{display:block;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);color:var(--wa);font-size:12px;font-weight:700;padding:11px;border-radius:10px;text-decoration:none}
+
+/* RULES */
+.rule{font-size:12px;line-height:1.9;color:var(--white)}
+
+/* STATUS BADGES */
+.status-wrap{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.sbadge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;cursor:pointer;border:1px solid transparent;transition:.15s}
+.sbadge.new{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:var(--muted)}
+.sbadge.called{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.2);color:var(--green)}
+.sbadge.interested{background:rgba(255,200,0,.08);border-color:rgba(255,200,0,.2);color:#FFD600}
+.sbadge.closed{background:rgba(255,107,43,.12);border-color:rgba(255,107,43,.25);color:var(--orange)}
+.sbadge.skip{background:rgba(255,50,50,.08);border-color:rgba(255,50,50,.18);color:#FF5555}
+.sbadge.active{opacity:1;font-weight:900}
+.sbadge:not(.active){opacity:.4}
+
+/* NOTES */
+.p-note{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:7px;padding:6px 9px;color:var(--white);font-size:11px;font-family:inherit;margin-top:6px;resize:none;outline:none}
+.p-note:focus{border-color:rgba(0,230,118,.3)}
+
+/* PROW expanded */
+.prow{flex-direction:column;align-items:stretch;gap:0}
+.prow-top{display:flex;align-items:center;gap:9px}
+
+/* MOTIVATION */
+.motiv{background:linear-gradient(135deg,rgba(255,107,43,.08),rgba(0,230,118,.05));border:1px solid rgba(0,230,118,.12);border-radius:13px;padding:14px 16px;margin-bottom:12px;text-align:center}
+.motiv-quote{font-size:14px;font-weight:700;color:var(--white);line-height:1.5}
+.motiv-sub{font-size:10px;color:var(--orange);font-weight:800;margin-top:6px;letter-spacing:.5px}
+
+/* COUNTER */
+.p-counter{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.p-counter-left{font-size:10px;color:var(--muted)}
+.p-counter-right{font-size:10px;font-weight:800;color:var(--green)}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:12px;font-weight:800;padding:9px 20px;border-radius:18px;z-index:999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">P</div>
+  <div class="hdr-text">
+    <div class="hdr-name" id="h-title">MX Studio Partner 🇲🇽</div>
+    <div class="hdr-sub" id="h-sub">MX Studio · God Wins · myjefetech.app</div>
+  </div>
+  <div class="toggle-wrap">
+    <span class="toggle-label" id="tl-left" style="color:var(--green)">ES</span>
+    <div class="toggle-track" id="toggle-track" onclick="toggleLang()">
+      <div class="toggle-knob" id="toggle-knob" style="background:var(--green)"></div>
+    </div>
+    <span class="toggle-label" id="tl-right" style="color:var(--muted)">EN</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tb active" onclick="showTab('jefe',this)" id="tab-btn-jefe">👑 Jefe</button>
+  <button class="tb" onclick="showTab('goals',this)" id="tab-btn-goals">🎯 Goals</button>
+  <button class="tb" onclick="showTab('prospects',this)" id="tab-btn-prospects">👥 Prospects</button>
+  <button class="tb" onclick="showTab('script',this)" id="tab-btn-script">🤝 Help You, Help Me</button>
+  <button class="tb" onclick="showTab('earnings',this)" id="tab-btn-earnings">✝️ Loyalty Program</button>
+</div>
+
+<!-- JEFE TAB -->
+<div id="pane-jefe" class="pane active">
+  <div class="jefe-card">
+    <div class="jefe-av">BL</div>
+    <div class="jefe-name">Brian Lalo ✝️</div>
+    <div class="jefe-sub" id="j-sub">Owner · MX Studio · Acapulco, México </div>
+    <a href="https://wa.me/14084223505?text=Hola%20Brian%20Lalo%2C%20soy%20tu%20socio.%20Necesito%20ayuda." class="wa-main"  id="j-wa-es">💬 WhatsApp Brian — Español</a>
+    <a href="https://wa.me/14084223505?text=Hey%20Brian%20Lalo%2C%20it%27s%20your%20partner.%20Need%20some%20help." class="wa-sec"  id="j-wa-en">💬 WhatsApp Brian — English</a>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="j-links-lbl">📋 Links Rápidos</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <a href="https://myjefetech.app" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+        <span style="font-size:22px">📱</span>
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-app-lbl">Demo App</div>
+          <div style="font-size:10px;color:var(--muted)">myjefetech.app</div>
+        </div>
+      </a>
+      <a href="https://go.myjefetech.app/la-forja.html" style="display:flex;align-items:center;gap:10px;padding:11px;background:var(--gdim);border:1px solid var(--gmid);border-radius:9px;text-decoration:none">
+        <span style="font-size:22px">📊</span>
+        <div>
+          <div style="font-size:12px;font-weight:800;color:var(--green)" id="j-dash-lbl">Demo Dashboard — La Forja</div>
+          <div style="font-size:10px;color:var(--muted)">Sample data · opens in any browser</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" style="background:rgba(255,107,43,.05);border-color:rgba(255,107,43,.14)">
+    <div class="clabel" style="color:var(--orange)" id="j-rules-lbl">⚡ Reglas del Jefe</div>
+    <div class="rule" id="j-rules">
+      1. Siempre sé honesto — nunca prometas lo que no tenemos.<br>
+      2. Garantía de devolución de por vida — respáldala siempre.<br>
+      3. Manda el demo antes de pedir el cierre.<br>
+      4. Si estás atorado, WhatsApp al Jefe directo.<br>
+      5. Registra cada llamada. Cada cierre. Sin excepciones.<br>
+      6. <strong style="color:var(--orange)">Dios gana. ✝️</strong>
+    </div>
+  </div>
+</div>
+
+<!-- GOALS TAB -->
+<div id="pane-goals" class="pane">
+  <div class="motiv" id="motiv-card">
+    <div class="motiv-quote" id="motiv-quote">Dios ya puso el trabajo en ti. Solo tienes que marcar.</div>
+    <div class="motiv-sub" id="motiv-sub">✝️ DIOS GANA — MX STUDIO</div>
+  </div>
+  <div class="gg">
+    <div class="gc">
+      <div class="gc-lbl" id="g-calls-lbl">📞 Llamadas Hoy</div>
+      <div class="gc-n" style="color:var(--green)" id="g-calls-n">0</div>
+      <div class="gc-s" id="g-calls-goal">meta: 15</div>
+      <button class="btn" onclick="addCall()" id="g-log-call">+ Llamada</button>
+      <button class="btn" onclick="undoCall()" style="font-size:10px;color:var(--muted);margin-top:4px" id="g-undo">↩ Deshacer</button>
+    </div>
+    <div class="gc">
+      <div class="gc-lbl" id="g-closes-lbl">🔥 Cierres Hoy</div>
+      <div class="gc-n" style="color:var(--orange)" id="g-closes-n">0</div>
+      <div class="gc-s" id="g-earn-today">= $0 ganado</div>
+      <button class="btn btn-o" onclick="addClose()" id="g-log-close">+ Cierre 🔥</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="g-monthly-lbl">📊 Progreso Mensual</div>
+    <div class="prog">
+      <div class="prog-top"><span id="g-calls-prog-lbl">Llamadas</span><span id="g-calls-prog-ct">0 / 300</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="g-calls-bar" style="background:var(--green);width:0%"></div></div>
+    </div>
+    <div class="prog">
+      <div class="prog-top"><span id="g-closes-prog-lbl">Cierres</span><span id="g-closes-prog-ct">0 / 28</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="g-closes-bar" style="background:var(--orange);width:0%"></div></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px" id="g-pace"></div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="g-set-lbl">⚙️ Ajustar Metas</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px" id="g-daily-lbl">Meta diaria de llamadas</div>
+        <input id="g-call-goal" type="number" value="15" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:7px;color:var(--white);font-size:14px;font-weight:700;font-family:inherit;text-align:center" onchange="saveGoals()">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px" id="g-monthly-close-lbl">Meta mensual de cierres</div>
+        <input id="g-close-goal" type="number" value="28" style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:7px;color:var(--white);font-size:14px;font-weight:700;font-family:inherit;text-align:center" onchange="saveGoals()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROSPECTS TAB -->
+<div id="pane-prospects" class="pane">
+  <input class="srch" id="p-search" placeholder="🔍  Buscar empresa, ciudad, giro..." oninput="filterP(this.value)">
+  <div class="pct" id="p-count">632 prospectos</div>
+  <div class="plist" id="p-list"></div>
+</div>
+
+<!-- SCRIPT TAB -->
+<div id="pane-script" class="pane">
+  <div style="font-size:9px;font-weight:800;color:var(--muted);text-align:center;margin-bottom:14px;letter-spacing:.5px" id="sc-header">SCROLL · 15-20 MIN MAX</div>
+
+  <!-- OPENER -->
+  <div class="step step-opener">
+    <div class="step-lbl" id="sc-opener-lbl">🎯 PASO 1 — APERTURA</div>
+    <div class="step-txt" id="sc-opener-txt"></div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="step step-pitch">
+    <div class="step-lbl" id="sc-pitch-lbl">🌮 PASO 2 — PITCH</div>
+    <div class="step-txt" id="sc-pitch-txt"></div>
+    <div class="demo-grid">
+      <a href="https://myjefetech.app" class="demo-a">
+        <div class="demo-icon">📱</div>
+        <div class="demo-lbl" id="sc-app-lbl">Demo App</div>
+      </a>
+      <a href="https://go.myjefetech.app/la-forja.html" class="demo-a">
+        <div class="demo-icon">📊</div>
+        <div class="demo-lbl" id="sc-dash-lbl">Dashboard</div>
+      </a>
+    </div>
+    <div class="copy-grid">
+      <button class="cbtn" onclick="copyLink('https://myjefetech.app',this)" id="sc-copy-app">📋 Copiar App</button>
+      <button class="cbtn" onclick="copyLink('https://go.myjefetech.app/la-forja.html',this)" id="sc-copy-dash">📋 Copiar Dashboard</button>
+    </div>
+  </div>
+
+  <!-- CLOSE -->
+  <div class="step step-close">
+    <div class="step-lbl" id="sc-close-lbl">🤝 PASO 3 — CIERRE</div>
+    <div class="step-txt" id="sc-close-txt"></div>
+    <div class="close-btns">
+      <button onclick="copyStripe(this)" style="background:var(--orange);color:#fff" id="sc-stripe-btn">💳 Copiar Link de Pago</button>
+      <button onclick="sendStripeWA()" style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:var(--wa)" id="sc-wa-btn">💬 WhatsApp</button>
+    </div>
+  </div>
+
+
+  <!-- SETUP GUIDE -->
+  <div class="step step-fu">
+    <div class="step-lbl" id="sc-setup-lbl">📲 PASO 4 — CÓMO INSTALAR</div>
+    <div class="step-txt" id="sc-setup-txt"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+      <button onclick="copyLink('https://myjefetech.app',this)" class="cbtn" id="su-app-btn" style="text-align:left;padding:10px 12px">📋 <span id="su-app-lbl">Copiar Link App</span></button>
+      <button onclick="copyLink('https://go.myjefetech.app',this)" class="cbtn" id="su-dash-btn" style="text-align:left;padding:10px 12px">📋 <span id="su-dash-lbl">Copiar Link Dashboard</span></button>
+    </div>
+  </div>
+  <!-- FOLLOW UP -->
+  <div class="step step-fu">
+    <div class="step-lbl" id="sc-fu-lbl">📲 PASO 5 — SEGUIMIENTO</div>
+    <div class="step-txt" id="sc-fu-txt"></div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px">
+      <button onclick="copyFU(1,this)" class="cbtn" id="fu-btn-1" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #1</button>
+      <button onclick="copyFU(2,this)" class="cbtn" id="fu-btn-2" style="text-align:left;padding:10px 12px">📋 Copiar Mensaje WhatsApp #2</button>
+    </div>
+  </div>
+</div>
+
+<!-- EARNINGS TAB -->
+<div id="pane-earnings" class="pane">
+  <div class="card" style="text-align:center">
+    <div class="clabel" id="e-total-lbl">💰 Total Ganado Este Mes</div>
+    <div class="earn-big" style="color:var(--green)" id="e-total-usd">$0 USD</div>
+    <div style="font-size:14px;color:var(--muted);margin-bottom:4px" id="e-total-mxn">≈ $0 MXN</div>
+    <div style="font-size:10px;color:var(--muted)" id="e-rate-note">$1 USD ≈ $17.50 MXN</div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="e-breakdown-lbl">📊 Desglose</div>
+    <div class="earn-row"><span class="el" id="e-closes-lbl">Cierres este mes</span><span class="ev" id="e-closes-val">0</span></div>
+    <div class="earn-row"><span class="el" id="e-price-lbl">Precio por cierre</span><span class="ev">$137/mes</span></div>
+    <div class="earn-row"><span class="el" id="e-cut-lbl">Tu comisión (60%)</span><span class="ev" id="e-cut-val">$82.20 por cierre</span></div>
+    <div class="earn-row"><span class="el" id="e-upfront-lbl">Ganado en USD</span><span class="ev" id="e-upfront-val">$0</span></div>
+    <div class="earn-row"><span class="el" id="e-mxn-lbl">Equivalente en pesos</span><span class="ev" id="e-mxn-val">$0 MXN</span></div>
+    <div class="earn-row" style="border-top:1px solid rgba(0,230,118,.15);padding-top:10px;margin-top:4px">
+      <span style="color:var(--green);font-weight:800" id="e-6mo-lbl">Proyección 6 meses</span>
+      <span style="color:var(--green);font-weight:900" id="e-6mo-val">$0</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="clabel" id="e-calc-lbl">🧮 Calculadora</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px" id="e-calc-sub">¿Cuántos cierres este mes?</div>
+    <input type="range" id="e-slider" min="1" max="50" value="10" style="width:100%;accent-color:var(--green)" oninput="calcEarnings(this.value)">
+    <div style="text-align:center;margin-top:8px">
+      <span style="font-size:12px;color:var(--muted)" id="e-at">En </span>
+      <span style="font-size:16px;font-weight:900" id="e-slider-val">10</span>
+      <span style="font-size:12px;color:var(--muted)" id="e-closes-label"> cierres:</span>
+      <div class="calc-result" id="e-calc-result">$822 USD</div>
+      <div class="calc-sub" id="e-calc-mxn">≈ $14,385 MXN</div>
+      <div class="calc-sub" id="e-calc-residual">+ $822 USD/mes residual</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── PROSPECTS ──
+var PROSPECTS = [["HM Impermeabilizaciones Profesionales","+52 55 1816 8844","Ciudad de México","CDMX"],["Impermeabilizaciones Arga","+52 55 1715 2159","Tlalpan, Ciudad de México","CDMX"],["Impermeabilizaciones Confiables S.A. de C.V.","+52 55 5344 1193","Ciudad de México","CDMX"],["Plomería Especializada Moreno","+52 55 4646 3036","Benito Juárez, Ciudad de México","CDMX"],["SR Plomero","+52 55 6587 9653","Ciudad de México","CDMX"],["Paneles Solares Si Si Luz","+52 55 4319 6869","Iztacalco, Ciudad de México","CDMX"],["Abaco Solaris Systems","+52 55 5679 0232","Coyoacán, Ciudad de México","CDMX"],["Marsam Solar","+52 55 5272 1633","Ciudad de México","CDMX"],["Impermeabilizaciones CDMX","+52 55 7737 5729","Valle de Chalco Solidaridad","MEX"],["Servicios Martínez (Electricistas y Plomeros)","+52 55 5361 5362","Tlalnepantla de Baz","MEX"],["CDMX Solar","+52 729 672 0584","Tlalnepantla de Baz","MEX"],["Energía Solar Toluca","+52 722 297 3185","Toluca","MEX"],["ABCSolar","+52 722 622 0941","Toluca / Metepec","MEX"],["RuniSun","+52 722 221 9475","Toluca","MEX"],["Paneles Solares en Guadalajara (Grupo SEmS)","+52 33 3247 1706","Zapopan","JAL"],["Energía Solar México S.A. de C.V.","+52 33 3675 6838","Guadalajara","JAL"],["Impersa","+52 33 3810 0972","Guadalajara","JAL"],["Ecoimpermac","+52 33 3673 0765","Zapopan","JAL"],["Tres R del Norte S.A. de C.V.","+52 81 8375 2278","Monterrey","NL"],["RefriTecs","+52 81 1720 8112","Monterrey","NL"],["Climas MA","+52 81 2187 1741","Guadalupe","NL"],["AC Climas Monterrey y Refrigeración","+52 81 1816 6958","Monterrey","NL"],["Greenlux","+52 81 1467 4064","Monterrey","NL"],["Mty Solar (Monterrey Solar)","+52 81 8850 0685","Monterrey","NL"],["Don Pintor","+52 81 1973 9913","Monterrey","NL"],["Impermeabilizaciones Integrales","+52 81 8300 3166","Monterrey","NL"],["Concepto y Mantenimiento (Constructora)","+52 222 105 3699","Puebla","PUE"],["Imperquimia Centro Puebla","+52 222 435 3705","Puebla","PUE"],["Enpower","+52 222 715 1094","Amozoc","PUE"],["Bretcon Energía Solar","+52 222 237 2833","Puebla","PUE"],["Multitecnologías","+52 222 639 3968","Puebla","PUE"],["Paneles Solares Querétaro","+52 442 325 1150","Santiago de Querétaro","QRO"],["Impermeabilizaciones IDQ","+52 442 704 4268","Santiago de Querétaro","QRO"],["Impermat de Querétaro S.A. de C.V.","+52 442 213 4284","Santiago de Querétaro","QRO"],["RS Aire Acondicionado S.A. de C.V.","+52 442 140 7748","Santiago de Querétaro","QRO"],["Grupo Imper","+52 999 920 1212","Mérida","YUC"],["Panel Group Mérida","+52 999 106 9093","Mérida","YUC"],["Sunnyday","+52 999 495 3439","Mérida","YUC"],["Hogar & Climas","+52 999 285 4319","Mérida","YUC"],["IEMMSA","+52 999 179 2703","Mérida","YUC"],["Prisaire","+52 998 267 9291","Cancún","QROO"],["Mega Aire","+52 998 241 8243","Cancún","QROO"],["Aires Acondicionados Cancún","+52 998 130 8973","Cancún","QROO"],["Grupo Insolar","+52 998 211 0239","Cancún","QROO"],["La Panelería Solar","+52 998 220 6746","Cancún","QROO"],["Mantenimiento e Instalación IMAA","+52 744 124 8932","Acapulco","GRO"],["SEES Servicios Especializados","+52 744 449 1940","Acapulco","GRO"],["Friotecnia","+52 744 486 0666","Acapulco","GRO"],["Clim-Air","+52 744 134 0187","Acapulco","GRO"],["Econow Solar","+52 477 671 9715","León","GTO"],["Climas y Electrificaciones del Bajío","+52 477 148 7820","León","GTO"],["Luna Aire Acondicionado S.A. de C.V.","+52 477 780 3590","León","GTO"],["Climas y Mantenimientos del Bajío (Climaba)","+52 477 711 5993","León","GTO"],["Equipos y Climas de México SA de CV","+52 55 5341 1018","Miguel Hidalgo, Ciudad de México","CDMX"],["Mobilise","+52 722 153 8226","Ocoyoacac","MEX"],["Servicios Especializados en Laminación","+52 55 2617 8301","Nezahualcóyotl","MEX"],["JRG Pegaso SA de CV","+52 722 627 5836","Toluca","MEX"],["Clean Rey","+52 55 2917 9036","Nezahualcóyotl","MEX"],["Grupo Imperjuárez","+52 56 3316 4110","Nezahualcóyotl","MEX"],["Impermeabilizantes Santa Ana Miramontes","+52 55 5684 1246","Coyoacán, Ciudad de México","CDMX"],["Impermeabilización Profesional HM","+52 55 8961 2179","Tlalnepantla de Baz","MEX"],["TSI Tecnología en Sistemas de Impermeabilización","+52 55 1224 2762","Cuauhtémoc, Ciudad de México","CDMX"],["Albañilería Flamingos","+52 55 5510 0626","Cuauhtémoc, Ciudad de México","CDMX"],["AR Proyectos y Soluciones Eléctricas","+52 55 1327 6682","Benito Juárez, Ciudad de México","CDMX"],["Grupo Hermor Mantenimiento","+52 55 9304 5639","La Paz","MEX"],["Multiservicios Complejo B SA de CV","+52 722 327 4132","Metepec","MEX"],["Remodelaciones Castillo","+52 719 196 7148","Otzolotepec","MEX"],["Tres Rs Integral Architecture SA de CV","+52 55 5830 8065","Ecatepec de Morelos","MEX"],["Gotera Soluciones de Mantenimiento","+52 55 5683 0942","La Magdalena Contreras, Ciudad de México","CDMX"],["Imper-Pro","+52 55 5397 0826","Atizapán de Zaragoza","MEX"],["Servicios Integrales de Energía Eléctrica SA de CV","+52 55 5083 3218","Azcapotzalco, Ciudad de México","CDMX"],["Electricidad Plomería Gas RC","+52 55 5273 0637","Miguel Hidalgo, Ciudad de México","CDMX"],["IEMI Electric Force","+52 55 5551 5915","Venustiano Carranza, Ciudad de México","CDMX"],["Plomeros y Asociados Electric","+52 55 5260 7541","Miguel Hidalgo, Ciudad de México","CDMX"],["Plomería Residencial y Comercial Vences","+52 55 2013 0991","Cuauhtémoc, Ciudad de México","CDMX"],["Expertos en Plomería Ecatepec","+52 55 5839 0570","Ecatepec de Morelos","MEX"],["Plomería Gas y Electricidad Martínez","+52 722 544 4908","Toluca","MEX"],["Plomería y Caños Cervantes","+52 55 5881 8578","Cuautitlán Izcalli","MEX"],["Aire Acondicionado Integral","+52 55 5664 0051","Tlalpan, Ciudad de México","CDMX"],["Climas de Texcoco","+52 55 4350 1193","Texcoco","MEX"],["Aire Acondicionado Tecnoclima","+52 55 5532 7440","Benito Juárez, Ciudad de México","CDMX"],["Consorcio Ambiental de México SA de CV","+52 55 5549 1589","Coyoacán, Ciudad de México","CDMX"],["Aire Acondicionado Confort","+52 55 4066 4348","Tlalpan, Ciudad de México","CDMX"],["Cimjar Electricista","+52 722 698 1016","Nezahualcóyotl","MEX"],["Comercializadora Blitz Electric S.A. de C.V.","+52 55 5129 2137","Cuautitlán Izcalli","MEX"],["Electric Plus MYD","+52 55 3902 9315","Xochimilco, Ciudad de México","CDMX"],["Electricista Acero","+52 55 3873 4785","Nezahualcóyotl","MEX"],["Electricista Ruiz","+52 55 8646 8819","Nezahualcóyotl","MEX"],["Electricistas Especializados","+52 55 6207 7924","Tecámac","MEX"],["Electricistas Profesionales","+52 55 4639 4531","Coacalco de Berriozábal","MEX"],["Plomero Electricista Ferreira","+52 55 7923 8729","Coyoacán, Ciudad de México","CDMX"],["Plomero Electricista Rodríguez","+52 55 4231 1248","Valle de Chalco Solidaridad","MEX"],["Técnico Electricista CDMX y Área Metropolitana","+52 55 7341 4818","Chimalhuacán","MEX"],["Woman Electric","+52 55 4710 8796","Ecatepec de Morelos","MEX"],["Guardian Electric, S.A. de C.V.","+52 55 5396 6552","Azcapotzalco, Ciudad de México","CDMX"],["Conectabee","+52 55 8880 7611","Benito Juárez, Ciudad de México","CDMX"],["Desarrollo Profesional Integral en Ingeniería Eléctrica","+52 55 3402 2412","Zumpango","MEX"],["Electricidad y Plomería Valdez","+52 55 5870 1399","Cuautitlán","MEX"],["Caro Plomería","+52 55 5840 9096","Iztapalapa, Ciudad de México","CDMX"],["Instalaciones Colín","+52 55 5680 3481","Álvaro Obregón, Ciudad de México","CDMX"],["Plomería Alex","+52 55 5668 5149","La Magdalena Contreras, Ciudad de México","CDMX"],["Plomería Pava","+52 56 2631 1668","Benito Juárez, Ciudad de México","CDMX"],["Plomería Ramos Cruz","+52 55 1711 5775","Valle de Chalco Solidaridad","MEX"],["Plomería y Cerrajería Ramírez","+52 55 1520 0536","La Magdalena Contreras, Ciudad de México","CDMX"],["Plomería y Electricidad Rivero","+52 55 9130 8314","Cuauhtémoc, Ciudad de México","CDMX"],["Servicio de Plomería en General Zúñiga","+52 55 5858 7552","La Paz","MEX"],["Esimec México","+52 55 2606 6499","Ixtapaluca","MEX"],["Tecma","+52 55 2612 3308","Venustiano Carranza, Ciudad de México","CDMX"],["Aire Acondicionado Uribe","+52 55 5111 0181","Chimalhuacán","MEX"],["Invec Aire Acondicionado","+52 55 6960 3100","Iztapalapa, Ciudad de México","CDMX"],["Aire Acondicionado Criotek","+52 56 1312 7114","Iztacalco, Ciudad de México","CDMX"],["Control en Aire Acondicionado González","+52 55 5757 3075","Gustavo A. Madero, Ciudad de México","CDMX"],["Instalaciones Especiales Tecnología Aplicada en Sistemas de Aire Acondicionado","+52 55 2123 2960","Atizapán de Zaragoza","MEX"],["Air Global Comfort","+52 55 3870 6465","Nezahualcóyotl","MEX"],["Todito en Aire y Refrigeración SA de CV","+52 55 5398 9760","Tlalnepantla de Baz","MEX"],["AAYRSET","+52 55 1272 4023","Tláhuac, Ciudad de México","CDMX"],["Air Best de México SA de CV","+52 55 5362 1342","Tlalnepantla de Baz","MEX"],["ARE Instalaciones y Servicios","+52 55 5846 1359","Tlalpan, Ciudad de México","CDMX"],["Climas y Proyectos Sena SA de CV","+52 55 5556 4516","Tlalnepantla de Baz","MEX"],["Climatización y Control","+52 55 5834 5303","Tultitlán","MEX"],["Cool Comfort","+52 55 3604 1550","Naucalpan de Juárez","MEX"],["AFM Construcción de Interiores","+52 55 3221 6195","Iztapalapa, Ciudad de México","CDMX"],["Caños y Plomería Gardi","+52 55 5291 1624","Huixquilucan","MEX"],["CASYR","+52 55 1691 5544","Benito Juárez, Ciudad de México","CDMX"],["CIDYCO","+52 722 165 3051","Toluca","MEX"],["Gruposervimexico","+52 55 2360 3720","Tlalnepantla de Baz","MEX"],["Impermeabilizantes Ecológicos GP","+52 55 2465 0904","Cuauhtémoc, Ciudad de México","CDMX"],["Impermeabilizantes Rivero","+52 55 2691 5775","Huehuetoca","MEX"],["Mapco Mantenimientos en General","+52 55 4892 6676","Gustavo A. Madero, Ciudad de México","CDMX"],["Multiservicios Albert","+52 55 1240 4405","Tlalpan, Ciudad de México","CDMX"],["Pintores Aguilar","+52 55 4292 4034","Gustavo A. Madero, Ciudad de México","CDMX"],["Herrería de Ita","+52 55 5644 0477","Tlalpan, Ciudad de México","CDMX"],["Herrería Grupo Galicia Hermanos","+52 55 5602 4920","Álvaro Obregón, Ciudad de México","CDMX"],["Herrería García en Toluca","+52 722 296 7001","Toluca","MEX"],["Estructuras Metálicas y Herrería Metepec","+52 722 728 6433","Calimaya","MEX"],["Herrería Ibarra","+52 55 1648 8895","Coyoacán, Ciudad de México","CDMX"],["Taller de Herrería Castillo","+52 55 5762 5513","Venustiano Carranza, Ciudad de México","CDMX"],["Juanito el Pintor","+52 55 5187 8975","Tlalnepantla de Baz","MEX"],["Sánchez Pintores","+52 55 1142 5934","Cuauhtémoc, Ciudad de México","CDMX"],["Agencia CHC Pintores y Decoradores","+52 55 5733 5374","Álvaro Obregón, Ciudad de México","CDMX"],["Alce Grupo Pintores","+52 55 5761 9911","Cuauhtémoc, Ciudad de México","CDMX"],["Solaren Technologies SA de CV","+52 55 1739 1594","Álvaro Obregón, Ciudad de México","CDMX"],["Productos y Servicios Eléctricos Pascae SA de CV","+52 55 5358 0559","Azcapotzalco, Ciudad de México","CDMX"],["Ecoalo","+52 55 2044 4971","Tlalnepantla de Baz","MEX"],["RIE-JAR","+52 55 8888 4596","Tlalpan, Ciudad de México","CDMX"],["Herrería Artística","+52 55 1487 8057","Cuautitlán Izcalli","MEX"],["Herrería Ave Fénix","+52 55 5832 7243","Chicoloapan","MEX"],["Herrería Bravo","+52 55 1905 1823","Coyoacán, Ciudad de México","CDMX"],["Herrería El Farolito","+52 55 5635 8235","Álvaro Obregón, Ciudad de México","CDMX"],["Herrería El Lic","+52 55 4974 9294","Coyoacán, Ciudad de México","CDMX"],["Herrería en General Becerril","+52 55 5440 0902","Cuauhtémoc, Ciudad de México","CDMX"],["Herrería Gabriel","+52 55 4091 3261","Tlalpan, Ciudad de México","CDMX"],["Herrería Gaman","+52 55 7888 9144","Nezahualcóyotl","MEX"],["Herrería Gama","+52 55 5264 5690","Cuauhtémoc, Ciudad de México","CDMX"],["Herrería Hernández","+52 55 5696 5793","Iztacalco, Ciudad de México","CDMX"],["Herrería Jiménez Hermanos","+52 55 5211 3530","Cuauhtémoc, Ciudad de México","CDMX"],["Herrería Muñoz","+52 55 5008 3928","Cuautitlán","MEX"],["Herrería Sánchez","+52 55 2622 9176","Ecatepec de Morelos","MEX"],["Herrería Tepeyac","+52 55 5369 7807","Gustavo A. Madero, Ciudad de México","CDMX"],["Pintor de Brocha","+52 55 5986 7588","Valle de Chalco Solidaridad","MEX"],["Khione Soluciones en Clima","+52 221 691 8152","Iztapalapa, Ciudad de México","CDMX"],["Mantenimiento Zura","+52 55 6223 4414","La Magdalena Contreras, Ciudad de México","CDMX"],["Servicio Integral de Instalaciones Ramírez","+52 55 5522 9207","Cuauhtémoc, Ciudad de México","CDMX"],["Grupo HL Instalaciones","+52 55 1329 6965","Chimalhuacán","MEX"],["AAYR Aire Acondicionado y Refrigeración","+52 55 2562 0540","Gustavo A. Madero, Ciudad de México","CDMX"],["Acesam Aire Acondicionado SA de CV","+52 55 5859 4367","Tláhuac, Ciudad de México","CDMX"],["Aire Acondicionado Equipos y Confort","+52 55 5386 2002","Miguel Hidalgo, Ciudad de México","CDMX"],["Aire Acondicionado AXJE","+52 55 5719 0822","Gustavo A. Madero, Ciudad de México","CDMX"],["MIOS Mantenimiento Industrial Ortega","+52 55 6876 9585","Lerma","MEX"],["Ontu","+52 55 1237 9923","Benito Juárez, Ciudad de México","CDMX"],["Servite S.A.","+52 55 2096 9220","Tlalnepantla de Baz","MEX"],["Alarm & Son Electric","+52 55 5396 1199","Azcapotzalco, Ciudad de México","CDMX"],["Soluciones Dafca","+52 55 7491 3081","Cuauhtémoc, Ciudad de México","CDMX"],["Plomería y Gas del DF","+52 55 5689 3179","Coyoacán, Ciudad de México","CDMX"],["Plomería, Servicios y Mantenimiento Ulises","+52 55 6263 7127","Tlalnepantla de Baz","MEX"],["Caños y Drenajes Plomería Guss","+52 55 6259 9169","Ecatepec de Morelos","MEX"],["Caños y Plomería Acosta","+52 55 5579 2911","Iztacalco, Ciudad de México","CDMX"],["Congenir","+52 55 2792 2016","Xochimilco, Ciudad de México","CDMX"],["Home Plomer","+52 55 5673 2101","Tlalpan, Ciudad de México","CDMX"],["Instalaciones Hidrosanitarias","+52 55 3935 7934","Chimalhuacán","MEX"],["Mantenimiento Integral Vargas Plomería Herrería y Aluminio","+52 55 5865 4812","Coacalco de Berriozábal","MEX"],["Herrería Transformación y Arte","+52 55 3650 5137","Álvaro Obregón, Ciudad de México","CDMX"],["Herrería y Aluminio Ala Grande","+52 55 4625 5671","Nezahualcóyotl","MEX"],["Herrería y Aluminio Martínez","+52 55 2163 2739","Cuajimalpa de Morelos, Ciudad de México","CDMX"],["Herrería y Estructuras Neri","+52 55 5006 3112","Nicolás Romero","MEX"],["Herrería en General Bueno","+52 55 8908 1249","Naucalpan de Juárez","MEX"],["Remodelaciones García","+52 55 5465 3581","Ecatepec de Morelos","MEX"],["Rob Green Construcciones","+52 55 6856 6515","Lerma","MEX"],["TBS Verticales","+52 55 4106 6562","Huixquilucan","MEX"],["Andcar Impermeabilización y Mantenimiento Industrial SA de CV","+52 55 5602 4926","Ciudad de México","CDMX"],["GMAR Grupo Técnico en Electricidad Plomería Impermeabilización y Pintura","+52 55 5398 2753","Atizapán de Zaragoza","MEX"],["Grupo GL Impermeabilización y Mantenimiento","+52 55 6797 4894","Iztapalapa, Ciudad de México","CDMX"],["Impermeabilización César Rodríguez","+52 55 5512 2699","Xochimilco, Ciudad de México","CDMX"],["Grupo Ramz","+52 33 3827 5813","Guadalajara","JAL"],["Pasa Imperoccidente","+52 33 3825 3133","Guadalajara","JAL"],["Impermeabilizantes Guadalajara","+52 33 3225 2852","Zapopan","JAL"],["Vyar Soluciones","+52 33 1001 8244","Zapopan","JAL"],["Asedicon Ingeniería","+52 33 1256 5845","Zapopan","JAL"],["GH Technology","+52 33 3616 6447","Guadalajara","JAL"],["Sistemas de Bombeo IBSHI","+52 33 1653 0020","Guadalajara","JAL"],["Romar Construcciones","+52 33 3848 4833","Zapopan","JAL"],["Electrofon","+52 33 1137 9282","Guadalajara","JAL"],["Creo Construcciones y Remodelaciones","+52 33 3342 4704","Guadalajara","JAL"],["Electro Flash","+52 33 2138 7236","Zapopan","JAL"],["Reparainnova Servicios de Mantenimientos y Reparaciones","+52 33 1014 4231","Zapopan","JAL"],["Ultra Light Eléctrica","+52 33 1726 3784","Guadalajara","JAL"],["Obed Cool Solutions","+52 33 2608 9985","Tlaquepaque","JAL"],["Extraire","+52 33 3647 9647","Guadalajara","JAL"],["Proaire de Guadalajara","+52 33 3617 3350","Guadalajara","JAL"],["ACFrío","+52 33 1524 3042","Tlajomulco de Zúñiga","JAL"],["Refrigeración Mar","+52 33 3617 7344","Guadalajara","JAL"],["Plantas Eléctricas y Climas","+52 33 3336 6136","Guadalajara","JAL"],["Fontanería Santacruz","+52 33 3694 5608","Guadalajara","JAL"],["Fontanería y Caños Zapopan","+52 33 3833 3188","Zapopan","JAL"],["Agualuz","+52 33 3825 5530","Guadalajara","JAL"],["AML Mantenimiento y Más","+52 33 3656 5890","Guadalajara","JAL"],["Herrería Vallejo's","+52 33 1898 5548","Zapopan","JAL"],["Herrería Cheyenne","+52 33 1091 1281","Zapopan","JAL"],["Herrería e Inoxidable JM","+52 33 3474 5763","Guadalajara","JAL"],["Galu Herrería","+52 33 3135 1600","Zapopan","JAL"],["C05 Herrería","+52 33 3954 6649","Guadalajara","JAL"],["Herrería Puerta de Fierro","+52 33 1650 4929","Guadalajara","JAL"],["Vidrio Aluminio y Herrería Trejo","+52 33 3613 5205","Guadalajara","JAL"],["FG Herreros Fregoso","+52 33 3058 2340","Guadalajara","JAL"],["Industria Recio","+52 33 1178 7484","Tonalá","JAL"],["Apolo Alto Diseño en Herrería","+52 33 2080 4936","Tonalá","JAL"],["Aplicaciones Profesionales en Impermeabilizantes","+52 477 292 5837","León","GTO"],["Impermeabilizaciones El Más Recomendado","+52 477 772 0777","León","GTO"],["Impermeabilizantes León","+52 477 378 8949","León","GTO"],["Impermeabilizantes Seco","+52 477 761 2231","León","GTO"],["Impermeabilizantes y Acabados para la Construcción Gomex","+52 477 774 1383","León","GTO"],["Agalme","+52 477 104 4856","León","GTO"],["Climas y Refrigeración","+52 477 289 5384","León","GTO"],["General Instaladora S.A. de C.V.","+52 477 714 7658","León","GTO"],["Aire Acondicionado Díaz","+52 479 403 8273","León","GTO"],["FEGSA","+52 477 712 7534","León","GTO"],["Ingeniería en Ventilación y Equipos Ambientales","+52 477 222 0219","León","GTO"],["CEBSA","+52 477 711 1528","León","GTO"],["Innovatech Solar Energy","+52 477 779 6503","León","GTO"],["Kaizen Ingeniería","+52 477 311 4822","León","GTO"],["Industria Solar GTO","+52 477 724 9700","León","GTO"],["Ecowatt","+52 477 299 2060","León","GTO"],["Multiservicios del Centro","+52 477 188 7232","León","GTO"],["Imperqro San Juan","+52 427 274 9669","San Juan del Río","QRO"],["Servicios Integrales MIVI","+52 442 117 1243","Querétaro","QRO"],["Imper +Más","+52 442 482 1630","Corregidora","QRO"],["Imperquimia de Santiago S.A. de C.V.","+52 442 388 8837","Querétaro","QRO"],["Aplicadora de Impermeabilizantes y Pinturas","+52 442 217 6166","Querétaro","QRO"],["Impermeabilizaciones Coriza S.A. de C.V.","+52 442 248 2320","Querétaro","QRO"],["Impermeabilizantes Profesionales del Bajío","+52 442 291 1676","Querétaro","QRO"],["Impermeabilizantes y Acabados Industriales","+52 442 690 1320","Querétaro","QRO"],["Impermeabilizantes y Materiales del Centro","+52 449 917 1208","Aguascalientes","AGS"],["IMAC","+52 449 914 4435","Aguascalientes","AGS"],["Servicios MC","+52 449 978 1948","Aguascalientes","AGS"],["Constructora Repremich S.A. de C.V.","+52 443 314 5436","Morelia","MICH"],["IMPAC Impermeabilizantes","+52 443 326 4338","Morelia","MICH"],["Impermeabilizaciones y Aditivos de Michoacán","+52 443 324 2540","Morelia","MICH"],["Aire Hernández","+52 442 194 8677","Querétaro","QRO"],["HVAC & Construcción del Bajío","+52 442 243 4212","Querétaro","QRO"],["Clima y Refacciones del Centro","+52 442 248 5230","Querétaro","QRO"],["Aire Acondicionado TOSA","+52 442 110 1858","Querétaro","QRO"],["Romse Climatización Industrial y Refrigeración","+52 444 156 9954","San Luis Potosí","SLP"],["Climas Elsa","+52 322 127 6619","Puerto Vallarta","JAL"],["Servicios Electromecánicos del Puerto","+52 322 224 4788","Puerto Vallarta","JAL"],["Diproaire","+52 322 222 7419","Puerto Vallarta","JAL"],["Refri Mar","+52 322 224 9981","Puerto Vallarta","JAL"],["Confort Ing","+52 322 299 5355","Puerto Vallarta","JAL"],["Consorcio Ambiental en Aire Acondicionado","+52 322 224 8685","Puerto Vallarta","JAL"],["Reysap S.A. de C.V.","+52 444 820 6940","San Luis Potosí","SLP"],["Roman Air","+52 444 372 7275","San Luis Potosí","SLP"],["Climas Carey S.A. de C.V.","+52 444 567 5494","San Luis Potosí","SLP"],["Serviplus SEAAR","+52 481 381 7233","Ciudad Valles","SLP"],["Grupo Clirsa","+52 481 382 0749","Zaragoza","SLP"],["Aire Acondicionado STN","+52 444 257 4771","San Luis Potosí","SLP"],["Aire Acondicionado y Servicios Mardat","+52 444 386 1016","Soledad de Graciano Sánchez","SLP"],["Servicio Proyecto y Climas S.A. de C.V.","+52 312 313 5067","Colima","COL"],["Garantías y Servicios de Colima","+52 312 314 1414","Colima","COL"],["Servi Climas","+52 312 308 5981","Colima","COL"],["Aire Acondicionado y Refrigeración Iglú","+52 312 312 0259","Colima","COL"],["Aire Acondicionado de Colima S.A. de C.V.","+52 312 312 6731","Colima","COL"],["Aire Acondicionado SYMAAC","+52 312 159 4551","Villa de Álvarez","COL"],["Aire Acondicionado y Refrigeración del Valle","+52 311 160 8182","Tepic","NAY"],["INSA Instalaciones de Aire","+52 311 210 4145","Tepic","NAY"],["Aire Acondicionado Nava","+52 311 214 5704","Tepic","NAY"],["Climas y Proyectos Aire Acondicionado","+52 311 133 3088","Tepic","NAY"],["Clima y Control Dominicano","+52 311 133 6992","Tepic","NAY"],["Climas y Confort de Nayarit","+52 311 216 6889","Tepic","NAY"],["Frío & Calor Aire Acondicionado y Calefacción","+52 443 176 1111","Morelia","MICH"],["Soluciones Climáticas","+52 443 341 6339","Morelia","MICH"],["La Casa del Aire Acondicionado Morelia","+52 443 206 2275","Morelia","MICH"],["Aire Frío","+52 443 274 9216","Morelia","MICH"],["Sistemas de Aire","+52 443 327 5753","Morelia","MICH"],["Climas y Accesorios","+52 462 624 4173","Irapuato","GTO"],["Advanced Service in Air Conditioning","+52 462 625 4865","Irapuato","GTO"],["Aire Acondicionado de Irapuato","+52 462 627 0192","Irapuato","GTO"],["Aire Acondicionado Lebisa","+52 462 189 0839","Irapuato","GTO"],["Refrigeración y Aire Acondicionado Fonseca","+52 462 625 6192","Irapuato","GTO"],["Aire Acondicionado Sisair","+52 461 616 4202","Celaya","GTO"],["Airece Aire Acondicionado y Refrigeración de Celaya","+52 461 615 2252","Celaya","GTO"],["Conclima","+52 411 155 1898","Celaya","GTO"],["Tecno Bajío","+52 461 216 1621","Celaya","GTO"],["Aire Acondicionado y Refrigeración Industrial ARI","+52 461 612 3687","Celaya","GTO"],["Air Sistems","+52 461 215 0571","Celaya","GTO"],["Comaire","+52 461 615 8709","Celaya","GTO"],["Kinich Solaris","+52 442 864 8779","Aguascalientes","AGS"],["Aqua Solare México S.A. de C.V.","+52 449 917 1754","Aguascalientes","AGS"],["Soluciones Industriales R","+52 449 688 1309","Aguascalientes","AGS"],["Imper San Luis S.A. de C.V.","+52 444 820 2876","San Luis Potosí","SLP"],["Comercializadora Intemperie","+52 444 815 5623","San Luis Potosí","SLP"],["Impermeabilizantes de Potosí","+52 444 180 5913","Villa de Pozos","SLP"],["ASI Aislantes y Sistemas Impermeables","+52 444 822 3387","San Luis Potosí","SLP"],["Plomegas","+52 442 261 0469","Querétaro","QRO"],["Electricista 24/7 Querétaro","+52 442 492 7774","Querétaro","QRO"],["Van Electric","+52 442 135 7137","Querétaro","QRO"],["Soluciones Técnicas","+52 446 143 6893","Corregidora","QRO"],["Electric Mexicana","+52 442 135 5769","Querétaro","QRO"],["Electricista Comercial y Residencial Querétaro","+52 442 352 4523","Querétaro","QRO"],["Electricistas Asoc. Olvera","+52 442 222 3164","Querétaro","QRO"],["Electricistas Rodríguez","+52 442 333 2299","Querétaro","QRO"],["Climas Confort","+52 449 153 2520","Aguascalientes","AGS"],["Aire Acondicionado Dio","+52 449 975 4304","Aguascalientes","AGS"],["Climas del Centro","+52 449 107 9665","Aguascalientes","AGS"],["Cúbica Industrial","+52 449 963 4016","Aguascalientes","AGS"],["Aires Acondicionados y Suministros de Refrigeración","+52 449 929 3557","Aguascalientes","AGS"],["Mantenimiento Residencial Home Man","+52 442 219 7938","Querétaro","QRO"],["Paneles Solares MR","+52 442 338 9781","Querétaro","QRO"],["Ecosolaris Energy","+52 442 607 6605","Querétaro","QRO"],["Grupo Alfa","+52 442 422 7674","Querétaro","QRO"],["Calentadores Solares El Arca","+52 442 588 7691","Querétaro","QRO"],["Imper SIM","+52 311 212 3470","Tepic","NAY"],["Curacreto","+52 311 210 4825","Tepic","NAY"],["Impernay","+52 311 213 6085","Tepic","NAY"],["Imperquimia Tepic","+52 311 214 3700","Tepic","NAY"],["Imper Gama","+52 81 8376 1011","Monterrey","NL"],["NanoTop","+52 81 3143 0779","Monterrey","NL"],["Impermeabilizaciones Almex","+52 81 2635 0375","General Escobedo","NL"],["Silybe Construye S.A. de C.V.","+52 81 8318 0525","Monterrey","NL"],["Impertermo","+52 81 8340 3909","Monterrey","NL"],["Aisladec","+52 81 8343 1943","Monterrey","NL"],["Soluciones Constructivas HC3","+52 81 8190 3168","Monterrey","NL"],["Impermeabilizaciones y Multiservicios Alvasa","+52 81 8344 4497","Guadalupe","NL"],["Imper San Pedro","+52 81 8336 6562","San Pedro Garza García","NL"],["Coolroof","+52 81 2354 1244","Monterrey","NL"],["Imper Caluf","+52 81 8233 3856","Monterrey","NL"],["Imper-Pro Multiservicios","+52 81 2086 2680","Monterrey","NL"],["Regiotermik","+52 81 8310 1966","Monterrey","NL"],["Elyon Impermeabilizantes","+52 81 1763 9367","Monterrey","NL"],["Thempec","+52 81 8106 9643","San Pedro Garza García","NL"],["Impermeabilizaciones del Norte","+52 81 2010 2709","Guadalupe","NL"],["Hidrosoluciones Impermeables S.A. de C.V.","+52 81 1972 3369","Monterrey","NL"],["Aislatecho Poliuretano","+52 81 2322 5584","Guadalupe","NL"],["Construcciones y Recubrimientos Bremaco S.A. de C.V.","+52 81 1257 0982","Monterrey","NL"],["Instalaciones Profesionales MAVI","+52 81 1761 5656","Guadalupe","NL"],["Hermética Impermeabilizaciones S.A. de C.V.","+52 81 1133 5971","Monterrey","NL"],["Impermeabilizaciones y Aislamientos Térmicos Rivera","+52 81 8057 8204","San Nicolás de los Garza","NL"],["J&E Aislantes e Impermeabilizantes","+52 81 1476 5900","Monterrey","NL"],["Imper y Aislamientos de León","+52 81 2758 1516","Monterrey","NL"],["Impermeabilización y Aislamiento Roca S.A.","+52 81 8346 6170","Monterrey","NL"],["Aislamientos e Impermeabilizaciones Imperrey","+52 81 8335 5397","San Pedro Garza García","NL"],["Imperlluvia","+52 81 1687 4086","Monterrey","NL"],["Impermeabilizaciones Galarza","+52 81 8375 3635","Monterrey","NL"],["Imperseta","+52 81 1772 7156","Monterrey","NL"],["Climas Cantú MTY","+52 81 1611 2963","Monterrey","NL"],["Climas e Instalaciones","+52 81 8040 5927","Monterrey","NL"],["Aire & Confort","+52 81 8338 4242","Santa Catarina","NL"],["Servi Climas MTY","+52 81 1761 7540","Monterrey","NL"],["Climas Prime","+52 81 1133 6758","Monterrey","NL"],["Intensity Aire","+52 81 2351 1816","Monterrey","NL"],["Climahorro","+52 81 2472 9594","San Nicolás de los Garza","NL"],["Farenhom","+52 81 3427 6547","Monterrey","NL"],["MRM Servicios (Electricistas, Minisplits y Aire Acondicionado)","+52 81 1514 8554","Monterrey","NL"],["VINDI Aire Acondicionado","+52 81 1820 6032","Monterrey","NL"],["JG Climas","+52 81 2676 0006","Monterrey","NL"],["Joachin Solutions","+52 81 8469 0876","Monterrey","NL"],["Climas y Servicios Martínez","+52 81 8140 0724","Monterrey","NL"],["Proveedora de Climas y Servicios Saldaña S.A. de C.V.","+52 81 8338 0964","San Pedro Garza García","NL"],["Climeez del Norte","+52 81 8342 9573","Monterrey","NL"],["BMS Aire Acondicionado","+52 81 8344 0014","Monterrey","NL"],["Trabajo de Pinturas e Impermeabilizante","+52 844 765 9456","Saltillo","COAH"],["Impermeabilizantes Servicios Materiales Impersim S.A. de C.V.","+52 844 432 4094","Saltillo","COAH"],["Termikko","+52 844 415 4811","Saltillo","COAH"],["Poliuretano Espreado del Norte","+52 844 869 2353","Saltillo","COAH"],["MG Poliuretano Saltillo","+52 844 254 7138","Saltillo","COAH"],["Blindatec Master","+52 662 216 0079","Hermosillo","SON"],["Windys Soluciones","+52 662 170 7758","Hermosillo","SON"],["Dinámica de Techos","+52 662 210 8310","Hermosillo","SON"],["Grupo Carsa","+52 662 689 2955","Hermosillo","SON"],["Impermeabilización, Pintura y Más Hermosillo","+52 662 188 4137","Hermosillo","SON"],["Imperzone","+52 662 218 3676","Hermosillo","SON"],["Impermroof MUA Impermeabilizaciones","+52 662 106 3960","Hermosillo","SON"],["JR Ecotecnología","+52 662 264 3427","Hermosillo","SON"],["Simper Impermeabilizantes","+52 662 317 4274","Hermosillo","SON"],["TRUGAR Impermeabilizaciones","+52 662 412 1837","Hermosillo","SON"],["Techos y Paredes","+52 662 210 7050","Hermosillo","SON"],["Todotechos","+52 662 215 5382","Hermosillo","SON"],["Aislantes Térmicos del Desierto","+52 662 211 1621","Hermosillo","SON"],["Termoaislantes Noriega","+52 662 214 9038","Hermosillo","SON"],["Impermeabilizaciones Gómez","+52 664 623 3121","Tijuana","BCN"],["Impermeabilizaciones y Pintura Leyajav","+52 664 183 8970","Tijuana","BCN"],["Impermeabilizaciones Santillán S.A. de C.V.","+52 664 629 3690","Tijuana","BCN"],["Solfoam and Coatings S. de R.L. de C.V.","+52 664 621 4403","Tijuana","BCN"],["Impermeabilizaciones Decorex","+52 664 111 1319","Tijuana","BCN"],["Un Mundo de Techos","+52 664 979 3150","Tijuana","BCN"],["Impermeabilizaciones ImperCity","+52 664 815 2621","Tijuana","BCN"],["Impermeabilizaciones Cerrato","+52 664 629 9584","Tijuana","BCN"],["Superior Impermeabilizaciones","+52 664 210 5175","Tijuana","BCN"],["Impermeabilizadora de Baja California","+52 664 681 5370","Tijuana","BCN"],["Impermeabilizaciones Tijuana","+52 664 257 9288","Tijuana","BCN"],["Universal Roofing","+52 614 254 7414","Chihuahua","CHIH"],["Poly Spray Aislamiento Térmico e Impermeabilización","+52 614 199 2731","Chihuahua","CHIH"],["Impermeabilizado y Poliuretano Siqueiros","+52 614 152 0669","Chihuahua","CHIH"],["Poliuretano Macías","+52 614 335 9632","Chihuahua","CHIH"],["Impermeabilizaciones Imperplus","+52 614 409 7450","Chihuahua","CHIH"],["Chihuahua Roofing","+52 614 215 6003","Chihuahua","CHIH"],["Impermeabilizaciones Flores","+52 614 126 9601","Chihuahua","CHIH"],["Cano Roofing S.A. de C.V.","+52 614 158 8320","Chihuahua","CHIH"],["Impermeabilizaciones Rodríguez","+52 614 285 5152","Chihuahua","CHIH"],["Impermeabilizaciones Garman","+52 614 261 7584","Chihuahua","CHIH"],["Impermeabilizaciones y Construcciones La Sierra","+52 614 263 0039","Chihuahua","CHIH"],["Impermeabilización de Techos Imperquality","+52 614 397 6094","Chihuahua","CHIH"],["Impermeabilizaciones y Poliuretano Bonilla","+52 614 413 6247","Chihuahua","CHIH"],["Impermeabilización de Techos Imperclean","+52 614 125 5399","Chihuahua","CHIH"],["Impermeabilizaciones El Bigos","+52 614 118 5598","Chihuahua","CHIH"],["Grupo Sercon","+52 667 103 0899","Culiacán","SIN"],["Mantenimiento LoRey","+52 667 144 1276","Culiacán","SIN"],["Pintores y Rotulistas Barraza","+52 667 185 2050","Culiacán","SIN"],["Aco Pintores","+52 667 996 5245","Culiacán","SIN"],["Pintores Profesionales Navejas","+52 667 215 6077","Culiacán","SIN"],["El Fronterizo Pintura, Detalles e Impermeabilización","+52 667 463 3363","Culiacán","SIN"],["Imper Jara","+52 667 713 6291","Culiacán","SIN"],["Servicios Especializados Medina","+52 667 710 5880","Culiacán","SIN"],["Imper House","+52 667 163 0854","Culiacán","SIN"],["Aislafom Poliuretano Espreado","+52 667 750 3477","Culiacán","SIN"],["PIRCAM Proyectos de Ingeniería Responsables","+52 667 753 5211","Culiacán","SIN"],["Sellamientos e Impermeabilizaciones Profesionales","+52 871 721 6333","Torreón","COAH"],["Aislantes y Mantenimientos de La Laguna","+52 871 290 6257","Gómez Palacio","DGO"],["Poliuretano Laguna Térmico","+52 871 138 6093","Gómez Palacio","DGO"],["Aislantes e Impermeabilizantes Residenciales","+52 871 714 0811","Gómez Palacio","DGO"],["Total Termik","+52 871 366 7850","Torreón","COAH"],["Impertodo","+52 871 454 0022","Torreón","COAH"],["Construcciones y Aislamientos Térmicos","+52 871 763 1755","Torreón","COAH"],["Multiservicios MAC","+52 871 385 4267","Torreón","COAH"],["Poliuretano Express","+52 871 338 5082","Torreón","COAH"],["Sellos Impermeables del Norte S.A. de C.V.","+52 871 718 1812","Torreón","COAH"],["Aisla & Impermeabiliza Nanobarrera","+52 871 215 1218","Torreón","COAH"],["Recubrimientos Trujillo","+52 871 730 4372","Torreón","COAH"],["Climas Sánchez","+52 868 102 7463","Matamoros","TAM"],["Multiclimas del Norte","+52 868 818 0518","Matamoros","TAM"],["Kings Aire Acondicionado e Instalaciones Eléctricas","+52 868 111 7041","Matamoros","TAM"],["Servicios e Instalaciones Eléctricas y Aire Acondicionado Satélite","+52 868 819 6282","Matamoros","TAM"],["Climas Gutiérrez","+52 868 292 7498","Matamoros","TAM"],["Climas Chapa","+52 868 816 4323","Matamoros","TAM"],["Climas & Calefacción Villarreal","+52 868 218 4525","Matamoros","TAM"],["Aire del Golfo S.A. de C.V.","+52 868 817 7101","Matamoros","TAM"],["J.A.R. Aires Acondicionados y Refrigeración","+52 867 123 0746","Nuevo Laredo","TAM"],["Climas Lara","+52 867 745 1959","Nuevo Laredo","TAM"],["Tecno Climas","+52 867 109 4656","Nuevo Laredo","TAM"],["Climas y Proyectos Acuña","+52 867 454 0006","Nuevo Laredo","TAM"],["EcoClimas Nuevo Laredo","+52 867 688 1439","Nuevo Laredo","TAM"],["Norte Climas de Nuevo Laredo S.A. de C.V.","+52 867 714 1964","Nuevo Laredo","TAM"],["Climas y Proyectos Mar","+52 867 715 7345","Nuevo Laredo","TAM"],["Energía y Confort del Noroeste","+52 686 556 5362","Mexicali","BCN"],["Neo Climas","+52 686 556 5248","Mexicali","BCN"],["Climas Mexicali","+52 686 167 5824","Mexicali","BCN"],["Montes Aire Acondicionado y Refrigeración","+52 686 554 0839","Mexicali","BCN"],["Airetemp del Valle","+52 686 557 9858","Mexicali","BCN"],["Aire Acondicionado Klima-Tec","+52 686 558 7676","Mexicali","BCN"],["Grupo Soft Air","+52 686 557 9076","Mexicali","BCN"],["Climas y Ductos Laza","+52 656 349 1179","Ciudad Juárez","CHIH"],["Climas Paso del Norte S.A. de C.V.","+52 656 616 6969","Ciudad Juárez","CHIH"],["ABC Aire Balance y Control S.A. de C.V.","+52 656 614 3983","Ciudad Juárez","CHIH"],["Instalaciones Eléctricas de Juárez","+52 656 362 5884","Ciudad Juárez","CHIH"],["Clima Artificial Ramos","+52 656 620 4578","Ciudad Juárez","CHIH"],["Climas y Servicios Profesionales Vilmart S.A. de C.V.","+52 656 619 0330","Ciudad Juárez","CHIH"],["Climas e Instalaciones de la Frontera","+52 656 170 2118","Ciudad Juárez","CHIH"],["Herrelectric","+52 656 681 7802","Ciudad Juárez","CHIH"],["Plafones y Muros de Acapulco S.A. de C.V.","+52 744 466 4459","Acapulco","GRO"],["Constructora Imperplaza S.A. de C.V.","+52 744 482 4558","Acapulco","GRO"],["Impermeacreto & Chemical CEI","+52 744 254 5574","Acapulco","GRO"],["Imper Construcción","+52 744 487 8410","Acapulco","GRO"],["GNI S.A. de C.V.","+52 744 433 4188","Acapulco","GRO"],["Impermeabilizantes y Recubrimientos Costa Chica S.A. de C.V.","+52 744 441 9647","Acapulco","GRO"],["Al-koat Impermeabilizantes S.A. de C.V.","+52 744 488 3256","Acapulco","GRO"],["Acaimperpasa S.A. de C.V.","+52 744 443 1101","Acapulco","GRO"],["MCB Mantenimiento y Construcción Siglo XXI","+52 744 145 4823","Acapulco","GRO"],["Impermeabilizantes y Acabados de Acapulco S.A. de C.V.","+52 744 481 2959","Acapulco","GRO"],["Constructora de Canchas","+52 744 138 8538","Acapulco","GRO"],["DIPACSA (Distribuidora de Impermeabilizantes, Pinturas y Acabados de la Construcción)","+52 744 485 3225","Acapulco","GRO"],["ADICONSA S.A. de C.V.","+52 744 486 3731","Acapulco","GRO"],["Curacreto Impermeabilizantes Acapulco","+52 744 433 4100","Acapulco","GRO"],["Imperquímica S.A. de C.V.","+52 744 488 3845","Acapulco","GRO"],["A. Impermeabilizantes IMPAC Guerrero","+52 747 491 3209","Chilpancingo","GRO"],["Aire Acondicionado Guerrero","+52 747 494 6073","Chilpancingo","GRO"],["Servicio Técnico JunChris","+52 744 118 7207","Acapulco","GRO"],["Mantenimiento Chavarría","+52 744 427 4676","Acapulco","GRO"],["Electricistas de Acapulco","+52 744 473 0601","Acapulco","GRO"],["Industrias Térmicas del Sur S.A. de C.V.","+52 744 178 1811","Acapulco","GRO"],["Servicios Generales en Refrigeración y Aire Acondicionado","+52 744 177 1672","Acapulco","GRO"],["Instalación y Servicio Campos","+52 744 218 4196","Acapulco","GRO"],["Refrigeración del Puerto","+52 744 324 6503","Acapulco","GRO"],["Aire Acondicionado Adame","+52 744 210 8498","Tres Palos, Acapulco","GRO"],["Fríos Global","+52 744 339 4560","Acapulco","GRO"],["Confort Master","+52 744 375 6407","Acapulco","GRO"],["Climares Aires Acondicionados","+52 744 436 1251","Acapulco","GRO"],["El Mundo de la Refrigeración en Acapulco","+52 744 485 6166","Acapulco","GRO"],["Aires Acondicionados Especializado","+52 744 265 2751","Acapulco","GRO"],["Aire Acondicionado DUMEQ","+52 744 207 7718","Acapulco","GRO"],["Clima y Frío","+52 744 441 7393","Acapulco","GRO"],["PICSA Servicios S.A. de C.V.","+52 744 488 4302","Acapulco","GRO"],["Super Climas del Pacífico S.A. de C.V.","+52 744 431 9848","Acapulco","GRO"],["Aire Acondicionado Salmar","+52 744 419 2790","Acapulco","GRO"],["TECNIMAS S.A. de C.V.","+52 744 242 1579","Acapulco","GRO"],["PROYINS Paneles Solares y Aire Acondicionado","+52 744 170 4006","Acapulco","GRO"],["Grupo Muraasa Acapulco","+52 744 249 0090","Acapulco","GRO"],["Refrigeración Acapulco LO-GAR","+52 744 285 2230","Acapulco","GRO"],["Mirage Guerrero Instalación y Mantenimiento","+52 744 427 7968","Acapulco","GRO"],["Friotech Acapulco (Aire Acondicionado)","+52 744 392 8034","Acapulco","GRO"],["ALPER","+52 999 943 1132","Mérida","YUC"],["GAE Soluciones Constructivas","+52 999 636 4096","Mérida","YUC"],["Imperpeninsular","+52 999 926 2040","Mérida","YUC"],["Houses Buildings Impermeabilización de Casas y Edificios","+52 999 553 3742","Mérida","YUC"],["Servicio de Pintura Residencial e Impermeabilización","+52 999 495 0025","Mérida","YUC"],["Imperbasa Sureste Impermeabilización","+52 999 393 4443","Mérida","YUC"],["COP Recubrimientos S.A. de C.V.","+52 999 340 7427","Mérida","YUC"],["Multiservicios J.A. Ciudad Caucel","+52 999 100 6362","Mérida","YUC"],["Recudec","+52 999 195 5038","Mérida","YUC"],["Los Especialistas","+52 999 923 9349","Mérida","YUC"],["CCV Servicios","+52 999 195 6977","Mérida","YUC"],["Distribuciones Imperkon S.A. de C.V.","+52 999 454 9917","Mérida","YUC"],["SerProfTec (Servicios Profesionales Técnicos)","+52 999 266 4611","Mérida","YUC"],["Prothermica","+52 999 923 5766","Mérida","YUC"],["Permaner Impermeabilizaciones","+52 999 688 8060","Mérida","YUC"],["Imper Tec","+52 999 948 9879","Mérida","YUC"],["Impertherm","+52 999 169 8123","Mérida","YUC"],["Impershield Mérida","+52 999 611 7674","Mérida","YUC"],["Tecnoimper","+52 999 923 0779","Mérida","YUC"],["Aditimper","+52 999 944 8866","Mérida","YUC"],["Acabados Residenciales","+52 222 354 7853","Puebla","PUE"],["Pisos Epóxicos Álamo Acabados","+52 222 358 5123","Puebla","PUE"],["Techos Transparentes","+52 222 243 4350","Puebla","PUE"],["Impermeabilizaciones Profesionales CA.SA.A","+52 222 120 3986","Puebla","PUE"],["Impermeabilización y Acabados Rofa","+52 222 240 8287","Puebla","PUE"],["Techos Curvos y Estructuras de Acero","+52 222 179 6640","Puebla","PUE"],["Aislantes Esprayados de Puebla","+52 222 395 8128","Puebla","PUE"],["IMPERARVA S.A. de C.V.","+52 222 219 0762","Puebla","PUE"],["Impermeabilizantes CITOAN","+52 222 651 1411","Puebla","PUE"],["Construcción y Remodelación Puebla","+52 221 435 2919","Puebla","PUE"],["Impermeabilizaciones y Recubrimientos Especializados","+52 222 244 5606","Puebla","PUE"],["Impermeabilizantes Del Ángel","+52 222 596 2419","Puebla","PUE"],["Construcción, Mantenimiento y Acabados","+52 222 178 9411","Puebla","PUE"],["IMPERDUREX","+52 222 652 4085","Puebla","PUE"],["Impercon","+52 222 283 5022","Puebla","PUE"],["Impercaucho Puebla","+52 222 849 6995","Puebla","PUE"],["Apser Impermeabilizaciones Profesionales","+52 222 245 2020","Puebla","PUE"],["Fester Impermeabilizantes Italimper","+52 248 484 1271","San Martín Texmelucan","PUE"],["Soluciones Definitivas del Caribe","+52 984 110 5037","Playa del Carmen","QROO"],["Aislamientos Térmicos del Sureste","+52 998 704 1429","Cancún","QROO"],["Imper & More","+52 998 244 6532","Cancún","QROO"],["Pintores Cancún","+52 998 371 5238","Cancún","QROO"],["LCI Liners Canchas e Impermeabilizantes","+52 998 208 7117","Cancún","QROO"],["Impermas","+52 998 230 5364","Cancún","QROO"],["Revitalízate Grupo Empresarial","+52 998 380 2097","Cancún","QROO"],["Impermeabilizantes DEMACO","+52 998 132 8249","Cancún","QROO"],["CRC Construcciones","+52 998 884 4534","Cancún","QROO"],["Cosvek","+52 998 810 2187","Cancún","QROO"],["Performance Construcción","+52 998 882 1342","Cancún","QROO"],["GLI Impermeabilización","+52 998 882 0100","Cancún","QROO"],["Renobra","+52 998 321 1352","Cancún","QROO"],["Capping Proyectos","+52 998 224 9436","Cancún","QROO"],["Impermeabilización Cancún","+52 998 132 4252","Cancún","QROO"],["Mantenimiento y Construcción Express","+52 998 840 0431","Cancún","QROO"],["Imperhome","+52 998 884 9384","Cancún","QROO"],["Sistemas de Impermeabilización del Sureste (SIMPSUR)","+52 998 840 0789","Cancún","QROO"],["Impermeabilizantes Grupo BEGU","+52 998 605 0623","Cancún","QROO"],["Pintores en Cancún","+52 998 480 2571","Cancún","QROO"],["Imperlux de Cancún","+52 998 323 9772","Cancún","QROO"],["Eléctrica y Plomería Silva","+52 993 161 6145","Villahermosa","TAB"],["Atyjsa Construcciones y Equipamientos Especializados","+52 993 314 3969","Villahermosa","TAB"],["Impercasa","+52 993 354 6978","Villahermosa","TAB"],["Membranas Ecológicas de México","+52 993 380 2143","Villahermosa","TAB"],["Greenper Tabasco","+52 993 353 0902","Villahermosa","TAB"],["JR Ecotecnología","+52 993 324 1238","Villahermosa","TAB"],["Mantenimiento General e Integral en Obra Civil","+52 993 326 0588","Villahermosa","TAB"],["Impermeabilizantes y Pinturas de Tabasco","+52 993 315 2200","Villahermosa","TAB"],["Impermeabilizantes del Sureste","+52 993 131 2073","Villahermosa","TAB"],["Impermeabilizaciones y Acabados","+52 993 103 8990","Villahermosa","TAB"],["DC Remodelación","+52 228 107 5989","Xalapa","VER"],["Imper 20","+52 228 814 0447","Xalapa","VER"],["Protekt Impermeabilizantes","+52 228 236 3181","Xalapa","VER"],["Muplaxa Muros y Plafones de Xalapa","+52 228 200 0237","Xalapa","VER"],["Servicios Residenciales y de Oficina Castores","+52 229 250 1486","Veracruz","VER"],["Palacios Impermeabilizaciones","+52 229 922 8392","Veracruz","VER"],["Kefa Construcciones","+52 229 285 7348","Veracruz","VER"],["Herla Mantenimiento Veracruz","+52 228 104 3216","Coatepec","VER"],["Grupo ITA","+52 229 489 1978","Veracruz","VER"],["Servimax","+52 229 228 1789","Veracruz","VER"],["Servicios GM","+52 229 356 8854","Veracruz","VER"],["Toderos","+52 229 688 3920","Boca del Río","VER"],["Impermeabilizantes y Aislantes Térmicos Falcón","+52 229 932 3131","Veracruz","VER"],["Señor Imper","+52 229 935 1723","Veracruz","VER"],["Imperter Impermeabilización y Aislamiento Térmico","+52 782 823 1604","Poza Rica","VER"],["Impermeabilizaciones & Poliuretano Espreado","+52 777 560 0808","Temixco","MOR"],["Imper Smart Impermeabilizantes","+52 777 162 9221","Jiutepec","MOR"],["Procesos e Impermeabilizaciones S.A. de C.V.","+52 777 315 1860","Cuernavaca","MOR"],["ADR Arquitectura Integral","+52 777 102 0720","Cuernavaca","MOR"],["Termo Morelos S.A. de C.V.","+52 777 381 0484","Cuernavaca","MOR"],["Coimper Comercializadora de Impermeabilizantes","+52 777 313 6367","Cuernavaca","MOR"],["Mantenimiento de Casas en General y Pintores Profesionales","+52 777 334 2988","Cuernavaca","MOR"],["Impermeabilizantes Térmicos y Ecológicos CIMA","+52 777 311 9373","Cuernavaca","MOR"],["Impermeabilizantes y Pinturas PROTEKNO","+52 777 311 6367","Cuernavaca","MOR"],["Promotora de Impermeabilizantes CAPI S.A. de C.V.","+52 777 102 1473","Cuernavaca","MOR"],["Impermeabilizaciones Cuernavaca","+52 777 382 2922","Cuernavaca","MOR"],["A Dos Manos Remodelación y Acabados","+52 951 414 6974","Oaxaca","OAX"],["Nais Services Oaxaca","+52 951 115 8212","Oaxaca","OAX"],["Materiales Impermeables de Oaxaca","+52 951 516 3240","Oaxaca","OAX"],["Impermeabilizaciones Larios","+52 951 165 2696","Oaxaca","OAX"],["VESESE Impermeabilizantes y Acabados","+52 951 189 0482","Cuilápam de Guerrero","OAX"],["IMPEROAX Impermeabilizantes y Aditivos","+52 951 513 2926","Oaxaca","OAX"],["Don Sebe Impermeabilizantes, Pinturas y Acabados","+52 951 234 8384","Oaxaca","OAX"],["Hulegreen Arquitectos","+52 951 516 3773","Oaxaca","OAX"],["IMPER Oaxaca","+52 951 409 9303","Oaxaca","OAX"],["Imper-Duty","+52 771 569 2607","Pachuca","HGO"],["Tuzo Acabados","+52 771 473 3846","Pachuca","HGO"],["Roofsmart Co.","+52 771 212 2551","Pachuca","HGO"],["Wall Fine Soluciones Impermeables","+52 771 259 0497","Pachuca","HGO"],["Techos Acanalados de Hidalgo S. de R.L. de C.V.","+52 771 108 0001","Pachuca","HGO"],["Imperglobal Pachuca","+52 771 127 7747","Mineral de la Reforma","HGO"],["Servicios de Impermeabilizantes de Calidad","+52 771 135 4407","Pachuca","HGO"],["Vanguardia Arquitectónicas","+52 771 718 9632","Pachuca","HGO"],["Impermeabilizantes El Minero","+52 771 318 8072","Pachuca","HGO"],["Cielo Azul Impermeabilizantes","+52 771 713 2900","Pachuca","HGO"],["Impermeabilizantes Orión","+52 771 206 6721","Pachuca","HGO"]];
+
+// ── STATE ──
+var S = {
+  calls: 0, closes: 0,
+  mCalls: 0, mCloses: 0,
+  callGoal: 15, closeGoal: 28,
+  reset: ''
+};
+
+try {
+  S.calls     = +localStorage.getItem('p-calls')  || 0;
+  S.closes    = +localStorage.getItem('p-closes') || 0;
+  S.mCalls    = +localStorage.getItem('p-mc')     || 0;
+  S.mCloses   = +localStorage.getItem('p-ml')     || 0;
+  S.callGoal  = +localStorage.getItem('p-cg')     || 15;
+  S.closeGoal = +localStorage.getItem('p-lg')     || 28;
+  S.reset     =  localStorage.getItem('p-reset')  || '';
+} catch(e){}
+
+function save(){
+  try {
+    localStorage.setItem('p-calls',  S.calls);
+    localStorage.setItem('p-closes', S.closes);
+    localStorage.setItem('p-mc',     S.mCalls);
+    localStorage.setItem('p-ml',     S.mCloses);
+    localStorage.setItem('p-cg',     S.callGoal);
+    localStorage.setItem('p-lg',     S.closeGoal);
+    localStorage.setItem('p-reset',  S.reset);
+  } catch(e){}
+}
+
+function checkReset(){
+  var d = new Date().toDateString();
+  if(S.reset !== d){
+    S.mCalls  += S.calls;
+    S.mCloses += S.closes;
+    S.calls = 0; S.closes = 0;
+    S.reset = d;
+    save();
+  }
+}
+
+var MXN_RATE = 17.5;
+var PER_CLOSE = 137 * 0.6; // $82.20
+
+function render(){
+  var tc = S.mCalls + S.calls;
+  var cl = S.mCloses + S.closes;
+  var todayEarn = (S.closes * PER_CLOSE).toFixed(0);
+  var totalEarn = (cl * PER_CLOSE).toFixed(0);
+  var totalMXN  = Math.round(cl * PER_CLOSE * MXN_RATE).toLocaleString();
+
+  setText('g-calls-n',    S.calls);
+  setText('g-closes-n',   S.closes);
+  setText('g-earn-today', (LANG==='es'?'= $':'= $') + todayEarn + ' ' + (LANG==='es'?'ganado':'earned'));
+
+  var cp = Math.min(100,(tc/300)*100);
+  var lp = Math.min(100,(cl/S.closeGoal)*100);
+  document.getElementById('g-calls-bar').style.width  = cp+'%';
+  document.getElementById('g-closes-bar').style.width = lp+'%';
+  setText('g-calls-prog-ct',  tc+' / 300');
+  setText('g-closes-prog-ct', cl+' / '+S.closeGoal);
+
+  var day = new Date().getDate();
+  var left = 30 - day;
+  var pace = left > 0 ? Math.ceil((S.closeGoal-cl)/left) : 0;
+  setText('g-pace', pace>0 ? (LANG==='es'?'📈 Necesitas '+pace+' cierre(s)/día':'📈 Need '+pace+' close(s)/day') : (LANG==='es'?'🎉 ¡Al ritmo!':'🎉 On pace!'));
+
+  setText('g-calls-goal', (LANG==='es'?'meta: ':'goal: ') + S.callGoal);
+
+  // Earnings
+  setText('e-closes-val',  cl);
+  setText('e-upfront-val', '$'+totalEarn+' USD');
+  setText('e-mxn-val',     '$'+totalMXN+' MXN');
+  setText('e-total-usd',   '$'+totalEarn+' USD');
+  setText('e-total-mxn',   '≈ $'+totalMXN+' MXN');
+  var proj = (cl * PER_CLOSE + cl * PER_CLOSE * 5).toFixed(0);
+  setText('e-6mo-val', '$'+proj+' USD');
+}
+
+function setText(id, val){ var e=document.getElementById(id); if(e) e.textContent=val; }
+
+function addCall(){ S.calls++; save(); render(); toast('📞 '+(LANG==='es'?'¡Llamada registrada!':'Call logged!')); }
+function undoCall(){ if(S.calls>0){S.calls--;} save(); render(); }
+function addClose(){
+  S.calls++; S.closes++; save(); render();
+  toast('🔥 '+(LANG==='es'?'¡Cierre! $'+PER_CLOSE.toFixed(0)+' USD ganados!':'Close! $'+PER_CLOSE.toFixed(0)+' USD earned!'));
+}
+function saveGoals(){
+  S.callGoal  = +document.getElementById('g-call-goal').value  || 15;
+  S.closeGoal = +document.getElementById('g-close-goal').value || 28;
+  save(); render();
+}
+
+function calcEarnings(v){
+  var usd = (v * PER_CLOSE).toFixed(0);
+  var mxn = Math.round(v * PER_CLOSE * MXN_RATE).toLocaleString();
+  setText('e-slider-val',   v);
+  setText('e-calc-result',  '$'+usd+' USD');
+  setText('e-calc-mxn',     '≈ $'+mxn+' MXN');
+  setText('e-calc-residual','+ $'+usd+' USD/'+(LANG==='es'?'mes residual':'mo residual'));
+}
+
+// ── TABS ──
+function showTab(id, el){
+  document.querySelectorAll('.pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tb').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('pane-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── PROSPECTS ──
+// Prospect data store
+var PDATA = {};
+try { PDATA = JSON.parse(localStorage.getItem('p-data')||'{}'); } catch(e){}
+function savePData(){ try{ localStorage.setItem('p-data', JSON.stringify(PDATA)); }catch(e){} }
+
+var STATUSES = ['new','called','interested','closed','skip'];
+var STATUS_LABELS = {
+  es:{new:'Nuevo',called:'Llamado',interested:'Interesado',closed:'Cerrado',skip:'Saltar'},
+  en:{new:'New',called:'Called',interested:'Interested',closed:'Closed',skip:'Skip'}
+};
+
+function setStatus(el){
+  var status = el.dataset.s;
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'new',note:''};
+  PDATA[key].status = status;
+  savePData();
+  el.closest('.status-wrap').querySelectorAll('.sbadge').forEach(function(b){
+    b.classList.toggle('active', b.dataset.s===status);
+  });
+}
+
+function saveNote(el){
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'new',note:''};
+  PDATA[key].note = el.value;
+  savePData();
+}
+
+function callProspect(el){
+  var key = el.closest('[data-pkey]').dataset.pkey;
+  if(!PDATA[key]) PDATA[key]={status:'called',note:''};
+  PDATA[key].status = 'called';
+  savePData();
+  el.closest('.status-wrap').querySelectorAll('.sbadge').forEach(function(b){
+    b.classList.toggle('active', b.dataset.s==='called');
+  });
+}
+
+function renderProspects(list){
+  var sl = STATUS_LABELS[LANG];
+  var called = Object.values(PDATA).filter(function(d){ return d.status==='called'||d.status==='closed'||d.status==='skip'; }).length;
+  var left = PROSPECTS.length - called;
+  var h = '<div class="p-counter"><span class="p-counter-left">'+(LANG==='es'?'Restantes':'Remaining')+'</span><span class="p-counter-right">'+left+' / '+PROSPECTS.length+'</span></div>';
+
+  list.forEach(function(p){
+    var key = p[0]+'|'+p[1];
+    var pd = PDATA[key]||{status:'new',note:''};
+    var raw = p[1].replace(/\D/g,'');
+    var tel = 'tel:'+p[1];
+    var wa  = 'https://wa.me/'+(raw.indexOf('52')===0?raw:'52'+raw);
+    var badges = STATUSES.map(function(s){
+      var active = pd.status===s ? ' active' : '';
+      return '<span class="sbadge '+s+active+'" data-s="'+s+'" onclick="setStatus(this)">'+sl[s]+'</span>';
+    }).join('');
+    var noteVal = (pd.note||'').replace(/"/g,'&quot;');
+    h += '<div class="prow" data-pkey="'+key.replace(/"/g,'&quot;')+'">'
+      +'<div class="prow-top">'
+      +'<div class="pinfo"><div class="pname">'+p[0]+'</div>'
+      +'<div class="pmeta">'+p[1]+' · '+p[2]+', '+p[3]+'</div></div>'
+      +'<div class="pbtns">'
+      +'<a href="'+tel+'" class="pbcall" onclick="callProspect(this)">📞</a>'
+      +'<a href="'+wa+'" class="pbwa">💬</a>'
+      +'</div></div>'
+      +'<div class="status-wrap">'+badges+'</div>'
+      +'<textarea class="p-note" rows="1" placeholder="'+(LANG==='es'?'Notas...':'Notes...')+'" oninput="saveNote(this)">'+noteVal+'</textarea>'
+      +'</div>';
+  });
+  document.getElementById('p-list').innerHTML = h;
+  setText('p-count', list.length+' '+(LANG==='es'?'prospectos':'prospects'));
+}
+
+
+function filterP(q){
+  q=(q||'').toLowerCase().trim();
+  var list=!q?PROSPECTS:PROSPECTS.filter(function(p){return (p[0]+' '+p[2]+' '+p[3]).toLowerCase().indexOf(q)>-1;});
+  renderProspects(list);
+}
+
+// ── STRIPE ──
+var STRIPE = 'https://go.myjefetech.app/checkout.html?ref=mx';
+function copyStripe(btn){
+  navigator.clipboard.writeText(STRIPE).then(function(){
+    var o=btn.textContent; btn.textContent='✅ Copiado!';
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+function sendStripeWA(){
+  window.open('https://wa.me/?text='+encodeURIComponent('JefeTech — $137/mes o $1,344/año · '+STRIPE),'_blank');
+}
+function copyLink(url,btn){
+  navigator.clipboard.writeText(url).then(function(){
+    var o=btn.textContent; btn.textContent='✅';
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+
+// ── TOAST ──
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); },2500);
+}
+
+// ── LANGUAGE ──
+var LANG = 'es';
+
+var TX = {
+  es:{
+    'h-title':'MX Studio Partner 🇲🇽',
+    'h-sub':'MX Studio · Dios Gana · myjefetech.app',
+    'tl-left':'ES','tl-right':'EN',
+    'tab-btn-jefe':'👑 Jefe',
+    'tab-btn-goals':'🎯 Metas',
+    'tab-btn-prospects':'👥 Prospectos',
+    'tab-btn-script':'🤝 Ayúdame a Ayudarte',
+    'tab-btn-earnings':'✝️ Programa de Lealtad',
+    'j-sub':'Dueño · MX Studio · Acapulco, México ',
+    'j-links-lbl':'📋 Links Rápidos',
+    'j-app-lbl':'Demo App',
+    'j-dash-lbl':'Demo Dashboard — La Forja',
+    'j-rules-lbl':'⚡ Reglas del Jefe',
+    'j-rules':'1. Siempre sé honesto — nunca prometas lo que no tenemos.<br>2. Garantía de devolución de por vida — respáldala siempre.<br>3. Manda el demo antes de pedir el cierre.<br>4. Si estás atorado, WhatsApp al Jefe directo.<br>5. Registra cada llamada. Cada cierre. Sin excepciones.<br>6. <strong style="color:var(--orange)">Dios gana. ✝️</strong>',
+    'g-calls-lbl':'📞 Llamadas Hoy',
+    'g-closes-lbl':'🔥 Cierres Hoy',
+    'g-log-call':'+ Llamada',
+    'g-undo':'↩ Deshacer',
+    'g-log-close':'+ Cierre 🔥',
+    'g-monthly-lbl':'📊 Progreso Mensual',
+    'g-calls-prog-lbl':'Llamadas',
+    'g-closes-prog-lbl':'Cierres',
+    'g-set-lbl':'⚙️ Ajustar Metas',
+    'g-daily-lbl':'Meta diaria de llamadas',
+    'g-monthly-close-lbl':'Meta mensual de cierres',
+    'sc-header':'DESLIZA · MÁX 15-20 MIN POR CLIENTE',
+    'sc-opener-lbl':'🎯 PASO 1 — APERTURA',
+    'sc-pitch-lbl':'🌮 PASO 2 — PITCH',
+    'sc-close-lbl':'🤝 PASO 3 — CIERRE',
+    'sc-fu-lbl':'📲 PASO 5 — SEGUIMIENTO',
+    'sc-app-lbl':'Demo App',
+    'sc-dash-lbl':'Dashboard',
+    'sc-copy-app':'📋 Copiar App',
+    'sc-copy-dash':'📋 Copiar Dashboard',
+    'sc-stripe-btn':'💳 Copiar Link de Pago',
+    'sc-wa-btn':'💬 WhatsApp',
+    'e-total-lbl':'💰 Total Ganado Este Mes',
+    'e-rate-note':'$1 USD ≈ $17.50 MXN',
+    'e-breakdown-lbl':'📊 Desglose',
+    'e-closes-lbl':'Cierres este mes',
+    'e-price-lbl':'Precio por cierre',
+    'e-cut-lbl':'Tu comisión (60%)',
+    'e-cut-val':'$82.20 por cierre',
+    'e-upfront-lbl':'Ganado en USD',
+    'e-mxn-lbl':'Equivalente en pesos',
+    'e-6mo-lbl':'Proyección 6 meses',
+    'e-calc-lbl':'🧮 Calculadora',
+    'e-calc-sub':'¿Cuántos cierres este mes?',
+    'e-at':'En ',
+    'e-closes-label':' cierres:',
+    'p-search-ph':'🔍  Buscar empresa, ciudad, giro...',
+    'sc-opener-txt':'"Hola, mi nombre es [Tu Nombre]. Soy socio de MX Studio, basados en Acapulco, México. ¿Me regala un segundo?"<br><br><strong>Dicen que sí →</strong> Ir al Pitch.',
+    'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">🌮 El Pitch — Uno a la Vez</strong><br><br><strong>"Le pregunto algo — cuando le da hambre de tacos, ¿va al Taco Bell... o al taquero de la esquina con ingredientes frescos y carne asada recién salida del comal?"</strong><br><br><em>Deja que contesten. Escucha.</em><br><br><strong style="color:var(--orange)">↓ Suelta features uno por uno:</strong><br><br>🛡️ <strong>Feature 1</strong> — "Lo primero que hace su cuadrilla antes de cualquier trabajo — checklist de seguridad OSHA. No pueden empezar sin completarlo. Lo aprendí en 13 temporadas pescando en Alaska."<br><br><em>Deja que respondan...</em><br><br>📡 <strong>Feature 2</strong> — "Escribe cualquier dirección y las medidas del techo se llenan solas, para cada oficio."<br><br><em>Deja que respondan...</em><br><br>💼 <strong>Feature 3</strong> — "Tiene un tab de trabajos. Ve en tiempo real qué pasa en el campo — cuadrilla, materiales, progreso. Sin hacer cinco llamadas."<br><br><em>Deja que respondan...</em><br><br>📊 <strong>Feature 4</strong> — "Y un dashboard — La Forja. Clima, alertas, estado de cuadrilla, facturas. Todo en vivo."<br><br><em>Deja que respondan...</em><br><br>👥 <strong>Feature 5</strong> — "¿Cuánta gente tiene? No importa — 1 o 100, mismo precio. Sin cobros por usuario."<br><br><em>Deja que respondan...</em><br><br>🗣️ <strong>Feature 6</strong> — "Inglés y español para toda la cuadrilla. Cada quien la lee en su idioma."<br><br><em>Deja que respondan...</em><br><br>🎣 <strong>Feature 7</strong> — "Y tiene un tab de pesca. Porque trabajamos duro para pescar más tranquilos. 🎣"<br><br><em style="color:var(--green)">Cuando pregunten ¿cuánto cuesta? → Paso 3 ✅</em>',
+    'sc-close-txt':'"Te digo algo — son $137 dólares al mes. O paga el año completo — $1,344 dólares, y ahorras $300. Más de $300 de valor, y tu precio queda congelado de por vida. Usuarios ilimitados. Cancela cuando quieras. Garantía de devolución de por vida — si algún día no estás contento, cancelas y te devolvemos tu último mes. ¿Le entramos ahorita?"<br><br><strong>Dicen que sí →</strong> Manda el link de pago.',
+    'sc-setup-lbl':'📲 PASO 4 — CÓMO INSTALAR','sc-setup-txt':'<strong>Mientras pagan, explícales:</strong><br><br>1️⃣ <b>Abre el link de la app</b> → Safari → toca el ícono de compartir (cuadro con flecha ↑) → "Agregar a pantalla de inicio" → ya queda como app.<br><br>2️⃣ <b>Abre el link del dashboard</b> → mismo proceso → lo guardan como app también.<br><br>✅ En 2 minutos tienen las dos apps instaladas. Sin App Store, sin descarga.','su-app-lbl':'Copiar Link App','su-dash-lbl':'Copiar Link Dashboard',
+    'sc-fu-txt':'"Buen día [Nombre] — le escribo de MX Studio. ¿Tuvo oportunidad de ver el link? Cualquier duda con gusto le ayudo. 🤝"<br><br><strong>Segunda llamada:</strong><br>"Buenas — le llamo de MX Studio. ¿Tuvo alguna pregunta? Son 2 minutos — ¿lo vemos juntos ahorita?"'
+  },
+  en:{
+    'h-title':'MX Studio Partner 🇲🇽',
+    'h-sub':'MX Studio · God Wins · myjefetech.app',
+    'tl-left':'ES','tl-right':'EN',
+    'tab-btn-jefe':'👑 Jefe',
+    'tab-btn-goals':'🎯 Goals',
+    'tab-btn-prospects':'👥 Prospects',
+    'tab-btn-script':'🤝 Help You, Help Me',
+    'tab-btn-earnings':'✝️ Loyalty Program',
+    'j-sub':'Owner · MX Studio · Acapulco, Mexico ',
+    'j-links-lbl':'📋 Quick Links',
+    'j-app-lbl':'Demo App',
+    'j-dash-lbl':'Demo Dashboard — La Forja',
+    'j-rules-lbl':'⚡ Rules from the Jefe',
+    'j-rules':'1. Always be honest — never promise what we do not have.<br>2. Lifetime money-back guarantee — stand behind it always.<br>3. Send the demo before asking for the close.<br>4. If you are stuck, WhatsApp the Jefe directly.<br>5. Log every call. Every close. No exceptions.<br>6. <strong style="color:var(--orange)">God Wins. ✝️</strong>',
+    'g-calls-lbl':'📞 Calls Today',
+    'g-closes-lbl':'🔥 Closes Today',
+    'g-log-call':'+ Log a Call',
+    'g-undo':'↩ Undo',
+    'g-log-close':'+ Log a Close 🔥',
+    'g-monthly-lbl':'📊 Monthly Progress',
+    'g-calls-prog-lbl':'Calls',
+    'g-closes-prog-lbl':'Closes',
+    'g-set-lbl':'⚙️ Set Goals',
+    'g-daily-lbl':'Daily call goal',
+    'g-monthly-close-lbl':'Monthly close goal',
+    'sc-header':'SCROLL THROUGH · 15-20 MIN MAX',
+    'sc-opener-lbl':'🎯 STEP 1 — OPENER',
+    'sc-pitch-lbl':'🌮 STEP 2 — PITCH',
+    'sc-close-lbl':'🤝 STEP 3 — CLOSE',
+    'sc-fu-lbl':'📲 STEP 5 — FOLLOW UP',
+    'sc-app-lbl':'Demo App',
+    'sc-dash-lbl':'Dashboard',
+    'sc-copy-app':'📋 Copy App Link',
+    'sc-copy-dash':'📋 Copy Dashboard',
+    'sc-stripe-btn':'💳 Copy Payment Link',
+    'sc-wa-btn':'💬 WhatsApp',
+    'e-total-lbl':'💰 Total Earned This Month',
+    'e-rate-note':'$1 USD ≈ $17.50 MXN',
+    'e-breakdown-lbl':'📊 Breakdown',
+    'e-closes-lbl':'Closes this month',
+    'e-price-lbl':'Price per close',
+    'e-cut-lbl':'Your cut (60%)',
+    'e-cut-val':'$82.20 per close',
+    'e-upfront-lbl':'Earned in USD',
+    'e-mxn-lbl':'Equivalent in pesos',
+    'e-6mo-lbl':'6-Month projection',
+    'e-calc-lbl':'🧮 What-If Calculator',
+    'e-calc-sub':'How many closes this month?',
+    'e-at':'At ',
+    'e-closes-label':' closes:',
+    'p-search-ph':'🔍  Search company, city, trade...',
+    'sc-opener-txt':'"Hi, my name is [Your Name]. I am a partner with MX Studio out of Acapulco, Mexico. You got a second?"<br><br><strong>They say sure →</strong> Go to Pitch.',
+    'sc-pitch-txt':'<strong style="color:var(--green);font-size:14px">🌮 The Pitch — One Feature at a Time</strong><br><br><strong>"Let me ask you something — when you are craving tacos, do you go to Taco Bell... or the taco stand on the corner with fresh ingredients and carne asada right off the grill?"</strong><br><br><em>Let them answer. Listen.</em><br><br><strong style="color:var(--orange)">↓ Drop features one at a time:</strong><br><br>🛡️ <strong>Feature 1</strong> — "First thing your crew does before any job — OSHA safety checklist. Cannot skip it. I learned that in 13 seasons fishing in Alaska."<br><br><em>Let them respond...</em><br><br>📡 <strong>Feature 2</strong> — "Type any address and the roof measurements fill in by themselves, for every trade."<br><br><em>Let them respond...</em><br><br>💼 <strong>Feature 3</strong> — "Jobs tab. See everything in the field in real time — crew, materials, progress. Without making five calls."<br><br><em>Let them respond...</em><br><br>📊 <strong>Feature 4</strong> — "Command dashboard — La Forja. Weather, alerts, crew status, invoices. All live."<br><br><em>Let them respond...</em><br><br>👥 <strong>Feature 5</strong> — "How many people on your crew? 1 or 100 — same price. No per-seat fees."<br><br><em>Let them respond...</em><br><br>🗣️ <strong>Feature 6</strong> — "English and Spanish for the whole crew. Everybody reads it in their own language."<br><br><em>Let them respond...</em><br><br>🎣 <strong>Feature 7</strong> — "And I threw in a fishing tab. Because we work hard so we can fish harder. 🎣"<br><br><em style="color:var(--green)">When they ask how much? → Step 3 ✅</em>',
+    'sc-close-txt':'"$137 a month. Or pay for the year — $1,344, and save $300. Over $300 worth of tools, and your price is locked for life. Unlimited users. Cancel anytime. Lifetime money-back guarantee — not happy, ever? Cancel and get your most recent month back. Ready to get set up right now?"<br><br><strong>They say yes →</strong> Send payment link.',
+    'sc-setup-lbl':'📲 STEP 4 — HOW TO SET UP','sc-setup-txt':'<strong>While they pay, walk them through this:</strong><br><br>1️⃣ <b>Open the app link</b> → Safari → tap the Share icon (box with arrow ↑) → "Add to Home Screen" → done, it\'s on their phone like an app.<br><br>2️⃣ <b>Open the dashboard link</b> → same steps → saved as an app too.<br><br>✅ 2 minutes. No App Store, no download.','su-app-lbl':'Copy App Link','su-dash-lbl':'Copy Dashboard Link',
+    'sc-fu-txt':'"Hey [Name] — following up from MX Studio. Did you get a chance to check out the link? Happy to answer any questions. 🤝"<br><br><strong>Second call:</strong><br>"Hey — calling back from MX Studio. Any questions about the app? Takes 2 minutes — want to look at it together right now?"'
+  }
+};
+
+function applyLang(){
+  var t = TX[LANG];
+  // Update all text elements
+  Object.keys(t).forEach(function(id){
+    if(id==='sc-opener-txt'||id==='sc-pitch-txt'||id==='sc-close-txt'||id==='sc-setup-txt'||id==='sc-fu-txt'||id==='j-rules'){
+      var el=document.getElementById(id); if(el) el.innerHTML=t[id];
+    } else if(id==='p-search-ph'){
+      var el=document.getElementById('p-search'); if(el) el.placeholder=t[id];
+    } else {
+      var el=document.getElementById(id); if(el) el.textContent=t[id];
+    }
+  });
+  // Toggle visual
+  var track = document.getElementById('toggle-track');
+  var knob  = document.getElementById('toggle-knob');
+  var left  = document.getElementById('tl-left');
+  var right = document.getElementById('tl-right');
+  if(LANG==='en'){
+    track.classList.add('en');
+    knob.style.background = 'var(--orange)';
+    left.style.color  = 'var(--muted)';
+    right.style.color = 'var(--orange)';
+  } else {
+    track.classList.remove('en');
+    knob.style.background = 'var(--green)';
+    left.style.color  = 'var(--green)';
+    right.style.color = 'var(--muted)';
+  }
+  render();
+  filterP(document.getElementById('p-search').value);
+  updateMotiv();
+}
+
+function toggleLang(){
+  LANG = LANG==='es' ? 'en' : 'es';
+  applyLang();
+}
+
+// ── FOLLOW UP COPY ──
+var FU_MSGS = {
+  es:[
+    'Buen dia, le escribo de MX Studio. Tuve el gusto de hablarle. Queria saber si tuvo oportunidad de ver el link que le mande: https://myjefetech.app - Cualquier duda con gusto le ayudo. Saludos!',
+    'Buenas, le llamo de MX Studio. Queria ver si tuvo alguna pregunta sobre la app. Son 2 minutos y creo que le puede ayudar mucho a su cuadrilla. Cuando guste hablamos.'
+  ],
+  en:[
+    'Hey, following up from MX Studio. Wanted to see if you had a chance to check out the link I sent: https://myjefetech.app - Happy to answer any questions. Thanks!',
+    'Hey, calling back from MX Studio. Wanted to see if you had any questions about the app. Takes 2 minutes and I think it could really help your crew. Let me know when is a good time.'
+  ]
+};
+function copyFU(n, btn){
+  var msg = FU_MSGS[LANG][n-1];
+  navigator.clipboard.writeText(msg).then(function(){
+    var o=btn.textContent; btn.textContent='✅ '+(LANG==='es'?'Copiado!':'Copied!');
+    setTimeout(function(){ btn.textContent=o; },2000);
+  });
+}
+
+// ── MOTIVATION ──
+var MOTIVS = {
+  es:['Dios ya puso el trabajo en ti. Solo tienes que marcar.','Cada llamada es una oportunidad. Marca.','13 temporadas en Alaska. Tu jefe sabe lo que es trabajar duro. Hazlo por el.','No necesitas suerte. Necesitas marcar el telefono.','Un cierre mas. Eso es todo. Uno mas.','El que trabaja duro duerme sabroso. Marca.','Dios gana. Siempre. ✝️'],
+  en:['God already put the work in you. Just dial.','Every call is an opportunity. Make it.','Your Jefe fished 13 seasons in Alaska. Work hard for him.','You do not need luck. You need to dial.','One more close. That is all. One more.','Hard work sleeps well. Make the call.','God Wins. Always. ✝️']
+};
+function updateMotiv(){
+  var day = new Date().getDay();
+  var q = MOTIVS[LANG][day];
+  var el = document.getElementById('motiv-quote');
+  var sub = document.getElementById('motiv-sub');
+  if(el) el.textContent = q;
+  if(sub) sub.textContent = LANG==='es'?'✝️ DIOS GANA — MX STUDIO':'✝️ GOD WINS — MX STUDIO';
+}
+
+// ── INIT ──
+checkReset();
+renderProspects(PROSPECTS);
+applyLang();
+calcEarnings(10);
+updateMotiv();
+</script>
+<script>
+/* ===== ✝️ Loyalty Program (partner) ===== */
+(function(){
+  var PER=82.20, KEY='loy-start', KEYN='loy-closes';
+  var T={
+    en:{vt:'🌴 Vacation Bonus',vs:'Every 3 years with MX Studio, take up to 2 weeks off and get a bonus of <b>3% of everything you earned in those 3 years</b>. You keep everything you earned, plus the bonus. You pick when you go.',vn:'Next vacation bonus: {d} · in {n} days',vc:'At that pace: {c} in 3 years → <b>{b}</b> vacation bonus',title:'✝️ Loyalty Program',sub:'Every year on your start anniversary, you get a bonus on top of all the commissions you earned that year. The longer you stay, the bigger it gets.',t1:'Years 1–3',t2:'Years 4–7',t3:'Year 8 and beyond',start:'My start date',year:'You\'re in year {y} · {r}% bonus',next:'Next bonus: {d} · in {n} days',nostart:'Enter your start date to see your countdown.',calc:'If I close',pm:'a month',res:'{c} a year in commissions → <b>{b}</b> loyalty bonus',tier:'At {r}% ({t}): {b}',fine:'Paid through Stripe on your anniversary while you\'re an active Partner. Refunded sales don\'t count.',earn:'💰 Earnings',now:'you are here'},
+    es:{vt:'🌴 Bono de Vacaciones',vs:'Cada 3 años con MX Studio, toma hasta 2 semanas libres y recibe un bono del <b>3% de todo lo que ganaste en esos 3 años</b>. Te quedas con todo lo que ganaste, más el bono. Tú eliges cuándo.',vn:'Próximo bono de vacaciones: {d} · en {n} días',vc:'A ese ritmo: {c} en 3 años → <b>{b}</b> de bono de vacaciones',title:'✝️ Programa de Lealtad',sub:'Cada año, en tu aniversario, recibes un bono extra sobre todas las comisiones que ganaste ese año. Mientras más tiempo te quedes, más grande es.',t1:'Años 1–3',t2:'Años 4–7',t3:'Año 8 en adelante',start:'Mi fecha de inicio',year:'Vas en el año {y} · bono de {r}%',next:'Próximo bono: {d} · en {n} días',nostart:'Pon tu fecha de inicio para ver tu cuenta regresiva.',calc:'Si cierro',pm:'al mes',res:'{c} al año en comisiones → <b>{b}</b> de bono de lealtad',tier:'Con {r}% ({t}): {b}',fine:'Se paga por Stripe en tu aniversario mientras sigas activo como Socio. Las ventas reembolsadas no cuentan.',earn:'💰 Ganancias',now:'aquí estás'},
+    fil:{vt:'🌴 Vacation Bonus',vs:'Kada 3 taon sa MX Studio, mag-day off ka hanggang 2 linggo at may bonus kang <b>3% ng lahat ng kinita mo sa 3 taong iyon</b>. Sa iyo pa rin lahat ng kinita mo, plus ang bonus. Ikaw ang pipili kung kailan.',vn:'Susunod na vacation bonus: {d} · {n} araw pa',vc:'Sa ganyang bilis: {c} sa 3 taon → <b>{b}</b> vacation bonus',title:'✝️ Loyalty Program',sub:'Taon-taon, sa anniversary mo, may bonus ka pa sa ibabaw ng lahat ng commission mo sa taong iyon. Mas matagal ka, mas malaki.',t1:'Taon 1–3',t2:'Taon 4–7',t3:'Taon 8 pataas',start:'Petsa ng simula ko',year:'Nasa taon {y} ka · {r}% bonus',next:'Susunod na bonus: {d} · {n} araw pa',nostart:'Ilagay ang petsa ng simula mo para makita ang countdown.',calc:'Kung makaka-close ako ng',pm:'kada buwan',res:'{c} kada taon na commission → <b>{b}</b> loyalty bonus',tier:'Sa {r}% ({t}): {b}',fine:'Binabayaran sa Stripe tuwing anniversary mo habang aktibo kang Partner. Hindi kasama ang na-refund na benta.',earn:'💰 Kita',now:'nandito ka'}
+  };
+  function lang(){var ph=/Philippines/.test(document.title);if(typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  function rate(y){return y<=3?3:(y<=7?7:13);}
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function f(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k];});}
+  function get(k,d){try{return localStorage.getItem(k)||d;}catch(e){return d;}}
+  function put(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  function addY(d,n){var x=new Date(d);x.setFullYear(x.getFullYear()+n);return x;}
+  var box=null;
+  function vac(t,n){var c=n*36*PER;return f(t.vc,{c:money(c),b:money(c*.03)});}
+  function calc(t,n,cur){var yr=n*12*PER;return '<div style="font-size:13px;margin-top:8px;line-height:1.6">'+f(t.res,{c:money(yr),b:money(yr*(cur||3)/100)})+'</div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.7">'+f(t.tier,{r:7,t:t.t2,b:money(yr*.07)})+'<br>'+f(t.tier,{r:13,t:t.t3,b:money(yr*.13)})+'</div>';}
+
+  function render(){
+    if(!box)return;var t=T[lang()],st=get(KEY,''),n=+get(KEYN,'10')||0,y=0,nx=null;
+    if(st){var s=new Date(st+'T12:00:00'),now=new Date();y=1;while(addY(s,y)<=now)y++;nx=addY(s,y);}
+    var cur=y?rate(y):0;
+    function row(lbl,r,on){return '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:9px;margin-bottom:6px;'+(on?'background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.4)':'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)')+'"><span style="font-size:13px;font-weight:700">'+lbl+(on?' <span style="font-size:10px;color:var(--green)">← '+t.now+'</span>':'')+'</span><span style="font-size:18px;font-weight:900;color:'+(r===13?'#FFC53D':'var(--green)')+'">'+r+'%'+(r===13?' 👑':'')+'</span></div>';}
+    var h='<div style="font-size:18px;font-weight:900;margin-bottom:4px">'+t.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">'+t.sub+'</div>'
+      +row(t.t1,3,cur===3)+row(t.t2,7,cur===7)+row(t.t3,13,cur===13)
+      +'<label style="display:block;font-size:11px;color:var(--muted);margin:14px 0 4px">'+t.start+'</label>'
+      +'<input type="date" id="loy-start" value="'+st+'" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:14px;color-scheme:dark">'
+      +'<div style="margin-top:10px;font-size:13px;line-height:1.7">'+(y?('<b style="color:var(--green)">'+f(t.year,{y:y,r:cur})+'</b><br>'+f(t.next,{d:nx.toLocaleDateString(),n:Math.ceil((nx-new Date())/864e5)})):'<span style="color:var(--muted)">'+t.nostart+'</span>')+'</div>'
+      +'<div style="margin-top:14px;background:rgba(255,255,255,.04);border-radius:10px;padding:12px">'
+      +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px">'+t.calc+' <input type="number" id="loy-n" min="0" value="'+n+'" inputmode="numeric" style="width:64px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:6px;color:var(--white);font-size:15px;font-weight:800;text-align:center;font-family:inherit"> '+t.pm+'</div>'
+      +'<div id="loy-calc">'+calc(t,n,cur)+'</div></div>'
+      +'<div style="margin-top:14px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.35);border-radius:11px;padding:12px">'
+      +'<div style="font-size:15px;font-weight:900;margin-bottom:4px">'+t.vt+'</div><div style="font-size:12px;line-height:1.6;color:var(--muted)">'+t.vs+'</div>'
+      +(st?'<div style="font-size:12px;margin-top:8px;color:#22D3EE;font-weight:700">'+(function(){var s0=new Date(st+'T12:00:00'),k=3;while(addY(s0,k)<=new Date())k+=3;var d=addY(s0,k);return f(t.vn,{d:d.toLocaleDateString(),n:Math.ceil((d-new Date())/864e5)});})()+'</div>':'')
+      +'<div id="loy-vac" style="font-size:12px;margin-top:6px">'+vac(t,n)+'</div></div>'
+      +'<div style="font-size:10px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.fine+'</div>';
+    box.innerHTML=h;
+    var lab=document.getElementById('loy-earn-lbl');if(lab)lab.textContent=t.earn;
+    document.getElementById('loy-start').onchange=function(){put(KEY,this.value);render();};
+    document.getElementById('loy-n').oninput=function(){put(KEYN,this.value);document.getElementById('loy-calc').innerHTML=calc(t,+this.value||0,cur);document.getElementById('loy-vac').innerHTML=vac(t,+this.value||0);};
+  }
+
+  function init(){
+    var pane=document.getElementById('pane-earnings')||document.getElementById('tab-earnings');if(!pane)return;
+    box=document.createElement('div');box.id='loyalty';
+    box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.07),rgba(255,197,61,.06));border:1px solid rgba(0,230,118,.25);border-radius:14px;padding:18px;margin-bottom:16px';
+    var lab=document.createElement('div');lab.id='loy-earn-lbl';
+    lab.style.cssText='font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:6px 0 10px';
+    pane.insertBefore(lab,pane.firstChild);pane.insertBefore(box,lab);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 💼 JefeTech Packages ✝️ ===== */
+(function(){
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph;
+  var half=ph||mx, BRIAN=!!document.getElementById('tab-script')&&/Brian Lalo/.test(document.title);
+  var P=half?{s:1497,p:2497}:{s:2997,p:4997};
+  function m(n){return '$'+n.toLocaleString('en-US');}
+  var T={
+    en:{title:'💼 JefeTech Packages ✝️',sub:'Subscription is still the main offer. Some owners want their own app with their company name on it. Now we can do that too.',
+      mo:'Monthly',moD:'Over $300/mo of value for $137. Your price is locked for life. Cancel anytime, lifetime money-back guarantee (terms apply).',yrN:'Yearly',yrD:'$112/mo paid once a year. They save $300 (2+ months free). Price locked for life. Cancel anytime, one month ($112) back.',yrE:'$806.40 once, 30 days after the sale (again each renewal)',
+      st:'🔨 Custom App: Starter',stD:'Their company name, logo and colors, their own web address, all features, 1 year of updates.',
+      pr:'👑 Custom App',prD:'Their company name, logo and colors, their own web address, all features, 1 year of updates, plus Spanish/country setup, a live training session for their crew, and priority WhatsApp support for 1 year.',
+      up:'Updates after year 1 (optional)',upD:'New features, fixes and support.',once:'once',yr:'/year',you:'You earn',
+      note:'<b>Plus a flat yearly Hosting & AI fee</b>, set per customer by Brian. No usage bills, one simple price. They get a <b>license</b> to use their app. They don\'t own the code and can\'t resell it.',
+      say:'Say it like this',line:'"Some owners want their own app, with their company name on it for their crew and their customers. We can do that. One payment, your name on it, all the same features."',
+      how:'No payment link yet for Custom App. When someone wants it, WhatsApp Brian and he\'ll set it up.',wa:'💬 WhatsApp Brian: I have a Custom App lead'},
+    es:{title:'💼 Paquetes JefeTech ✝️',sub:'La suscripción sigue siendo la oferta principal. Algunos dueños quieren su propia app con el nombre de su empresa. Ahora también podemos hacer eso.',
+      mo:'Mensual',moD:'Más de $300/mes de valor por $137. Tu precio queda congelado de por vida. Cancela cuando quieras, garantía de devolución de por vida (aplican términos).',yrN:'Anual',yrD:'$112/mes pagado una vez al año. Ahorran $300 (más de 2 meses gratis). Precio congelado de por vida. Cancelan cuando quieran y reciben un mes ($112) de vuelta.',yrE:'$806.40 en un pago, 30 días después de la venta (y otra vez cada renovación)',
+      st:'🔨 Tu Propia App: Básica',stD:'El nombre, logo y colores de su empresa, su propia dirección web, todas las funciones, 1 año de actualizaciones.',
+      pr:'👑 Tu Propia App',prD:'El nombre, logo y colores de su empresa, su propia dirección web, todas las funciones, 1 año de actualizaciones, más configuración en español/por país, una capacitación en vivo para su cuadrilla y soporte prioritario por WhatsApp por 1 año.',
+      up:'Actualizaciones después del año 1 (opcional)',upD:'Nuevas funciones, correcciones y soporte.',once:'un pago',yr:'/año',you:'Tú ganas',
+      note:'<b>Más una cuota anual fija de Hosting e IA</b>, que Brian define por cliente. Sin cobros por uso, un solo precio. Reciben una <b>licencia</b> para usar su app. No son dueños del código y no pueden revenderla.',
+      say:'Dilo así',line:'"Algunos dueños quieren su propia app, con el nombre de su empresa para su cuadrilla y sus clientes. Eso lo podemos hacer. Un solo pago, con tu nombre, las mismas funciones."',
+      how:'Todavía no hay link de pago para Tu Propia App. Cuando alguien la quiera, manda WhatsApp a Brian y él la configura.',wa:'💬 WhatsApp a Brian: tengo un cliente para Tu Propia App'},
+    fil:{title:'💼 JefeTech Packages ✝️',sub:'Subscription pa rin ang main offer. May mga owner na gusto ng sariling app na may pangalan ng kumpanya nila. Kaya na rin natin iyon.',
+      mo:'Monthly',moD:'Higit $300/mo na value sa $137. Hindi na tataas ang presyo habambuhay. Cancel anytime, lifetime money-back guarantee (may terms).',yrN:'Yearly',yrD:'$112/mo, bayad isang beses kada taon. Makakatipid sila ng $300 (2+ buwang libre). Hindi tataas ang presyo habambuhay. Cancel anytime, isang buwan ($112) ang ibabalik.',yrE:'$806.40 isang bayad, 30 araw pagkatapos ng benta (ulit tuwing renewal)',
+      st:'🔨 Custom App: Starter',stD:'Pangalan, logo at kulay ng kumpanya nila, sariling web address, lahat ng features, 1 taon ng updates.',
+      pr:'👑 Custom App',prD:'Pangalan, logo at kulay ng kumpanya nila, sariling web address, lahat ng features, 1 taon ng updates, plus country setup, live training para sa crew nila, at priority WhatsApp support sa loob ng 1 taon.',
+      up:'Updates pagkatapos ng taon 1 (optional)',upD:'Bagong features, fixes at support.',once:'isang bayad',yr:'/taon',you:'Kita mo',
+      note:'<b>Plus flat na yearly Hosting & AI fee</b>, na itatakda ni Brian kada customer. Walang usage bill, isang presyo lang. <b>License</b> ang makukuha nila para gamitin ang app. Hindi nila pag-aari ang code at hindi nila puwedeng ibenta ulit.',
+      say:'Sabihin ito',line:'"May mga owner na gusto ng sariling app, may pangalan ng kumpanya nila para sa crew at customers nila. Kaya namin iyon. Isang bayad, pangalan mo, parehong features."',
+      how:'Wala pang payment link para sa Custom App. Kapag may gusto, i-WhatsApp si Brian at siya ang mag-se-set up.',wa:'💬 WhatsApp kay Brian: may lead ako para sa Custom App'}
+  };
+  function lang(){if(BRIAN||typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  var box=null;
+  function row(name,price,desc,earn,hl,t){
+    return '<div style="border-radius:11px;padding:12px 13px;margin-bottom:8px;'+(hl?'background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.35)':'background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)')+'">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b style="font-size:14px">'+name+'</b><b style="font-size:17px;color:'+(hl?'#FFC53D':'var(--green)')+';white-space:nowrap">'+price+'</b></div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:3px">'+desc+'</div>'
+      +(earn?'<div style="font-size:11px;font-weight:800;color:var(--green);margin-top:5px">'+(BRIAN?'Partner earns':t.you)+': '+earn+'</div>':'')+'</div>';
+  }
+  function render(){
+    if(!box)return;var t=T[lang()];
+    var h='<div style="font-size:17px;font-weight:900;margin-bottom:4px">'+t.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px">'+t.sub+(BRIAN&&!half?'<br><span style="color:#FFC53D">Mexico & Philippines: $2,497.</span>':'')+'</div>'
+      +row(t.mo,'$137/mo',t.moD,'$82.20/mo',false,t)
+      +row(t.yrN,'$1,344/yr',t.yrD,t.yrE,false,t)
+      +row(t.pr,m(P.p)+' <span style="font-size:11px;font-weight:600">'+t.once+'</span>',t.prD,m(Math.round(P.p*.2))+' (20%)',true,t)
+      +row(t.up,'$497'+t.yr,t.upD,'',false,t)
+      +'<div style="font-size:12px;line-height:1.6;background:rgba(255,197,61,.07);border-radius:9px;padding:10px 12px;margin:10px 0">'+t.note+'</div>'
+      +'<div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px">'+t.say+'</div>'
+      +'<div style="font-size:13px;line-height:1.7;background:rgba(0,230,118,.07);border-left:3px solid var(--green);border-radius:8px;padding:10px 12px">'+t.line+'</div>';
+    if(!BRIAN)h+='<div style="font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5">'+t.how+'</div>'
+      +'<a href="https://wa.me/14084223505?text='+encodeURIComponent(t.wa.replace(/^💬 [^:]+: /,''))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:9px;padding:11px;font-weight:800;font-size:13px;text-decoration:none;margin-top:8px">'+t.wa+'</a>';
+    box.innerHTML=h;
+  }
+  function init(){
+    var host=document.getElementById('pane-script')||document.getElementById('tab-goals');
+    if(BRIAN)host=document.getElementById('tab-script');
+    if(!host)return;
+    box=document.createElement('div');box.id='packages';
+    box.style.cssText='background:var(--card);border:1px solid rgba(255,197,61,.3);border-radius:14px;padding:16px;margin:0 0 14px';
+    if(BRIAN)host.insertBefore(box,host.firstChild);else host.appendChild(box);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 🤝 Partner benefits banner ✝️ ===== */
+(function(){
+  var ph=/Philippines/.test(document.title), mx=/Partner 1/.test(document.title)&&!ph, half=ph||mx;
+  var own=half?'$249':'$499';
+  var T={
+    en:{h:'🤝 What you get as an MX Studio Partner ✝️',items:[
+      ['💵','60% commission','$82.20/mo per $137 sale · $806.40 per $1,344 yearly'],
+      ['👑','Custom App sales',own+' on every one (20%)'],
+      ['✝️','Loyalty Bonus every year','3% → 7% → 13% of your commissions'],
+      ['🌴','Vacation Bonus every 3 years','3% of everything you earned'],
+      ['🤝','Refer a Partner','3% of their sales, every month'],
+      ['📋','Verified prospect lists','600+ real, verified numbers to call'],
+      ['🎓','Training & coaching','Learn to sell with your own story'],
+      ['🌎','Your hours, anywhere','Your own dashboard and scripts'],
+      ['💳','Paid by Stripe','Straight to your bank, in your currency']],f:'God wins. ✝️'},
+    es:{h:'🤝 Lo que recibes como Socio de MX Studio ✝️',items:[
+      ['💵','60% de comisión','$82.20/mes por venta de $137 · $806.40 por anual de $1,344'],
+      ['👑','Ventas de Tu Propia App',own+' por cada una (20%)'],
+      ['✝️','Bono de Lealtad cada año','3% → 7% → 13% de tus comisiones'],
+      ['🌴','Bono de Vacaciones cada 3 años','3% de todo lo que ganaste'],
+      ['🤝','Recomienda a un Socio','3% de sus ventas, cada mes'],
+      ['📋','Listas de prospectos verificadas','600+ números reales y verificados'],
+      ['🎓','Capacitación y coaching','Aprende a vender con tu propia historia'],
+      ['🌎','Tus horarios, desde donde sea','Tu propio dashboard y guiones'],
+      ['💳','Pago por Stripe','Directo a tu banco, en tu moneda']],f:'Dios gana. ✝️'},
+    fil:{h:'🤝 Ang makukuha mo bilang MX Studio Partner ✝️',items:[
+      ['💵','60% commission','$82.20/buwan sa $137 na benta · $806.40 sa $1,344 yearly'],
+      ['👑','Custom App sales',own+' sa bawat isa (20%)'],
+      ['✝️','Loyalty Bonus taon-taon','3% → 7% → 13% ng commission mo'],
+      ['🌴','Vacation Bonus kada 3 taon','3% ng lahat ng kinita mo'],
+      ['🤝','Mag-refer ng Partner','7% ng benta nila, buwan-buwan'],
+      ['📋','Verified na prospect lists','600+ totoo at verified na numero'],
+      ['🎓','Training at coaching','Matutong magbenta gamit ang sariling kuwento'],
+      ['🌎','Sariling oras, kahit saan','Sariling dashboard at scripts'],
+      ['💳','Bayad sa Stripe','Diretso sa bangko mo, sa currency mo']],f:'God wins. ✝️'}
+  };
+  function lang(){if(typeof LANG==='undefined')return 'en';return LANG==='es'?(ph?'fil':'es'):'en';}
+  var box=null;
+  function render(){
+    if(!box)return;var t=T[lang()];
+    box.innerHTML='<div style="font-size:16px;font-weight:900;margin-bottom:10px;text-align:center">'+t.h+'</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px">'
+      +t.items.map(function(x){return '<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:9px 10px;display:flex;gap:8px;align-items:flex-start"><span style="font-size:18px;line-height:1.2">'+x[0]+'</span><span><b style="font-size:12px;display:block;line-height:1.3">'+x[1]+'</b><span style="font-size:11px;color:var(--muted);line-height:1.35;display:block">'+x[2]+'</span></span></div>';}).join('')
+      +'</div><div style="text-align:center;font-size:11px;color:var(--green);font-weight:800;margin-top:10px">'+t.f+'</div>'
+      +'<a href="https://wa.me/?text='+encodeURIComponent(waText(t))+'" target="_blank" rel="noopener" style="display:block;background:#25D366;color:#fff;text-align:center;border-radius:10px;padding:11px;font-weight:900;font-size:13px;text-decoration:none;margin-top:10px">'+W[lang()]+'</a>';
+  }
+  var W={en:'💬 Share on WhatsApp',es:'💬 Compartir por WhatsApp',fil:'💬 I-share sa WhatsApp'};
+  var J={en:'Want in? WhatsApp Brian Lalo:',es:'¿Te interesa? Escríbele a Brian Lalo:',fil:'Interesado? I-WhatsApp si Brian Lalo:'};
+  function waText(t){var l=lang();return '*'+t.h+'*\n\n'+t.items.map(function(x){return x[0]+' *'+x[1]+'*: '+x[2];}).join('\n')+'\n\n'+J[l]+' https://wa.me/14084223505\n'+t.f;}
+  function init(){
+    var host=document.getElementById('pane-jefe')||(/Brian Lalo/.test(document.title)?document.getElementById('tab-team'):null)||document.getElementById('tab-goals');if(!host)return;
+    box=document.createElement('div');box.id='partner-perks';
+    box.style.cssText='background:linear-gradient(135deg,rgba(0,230,118,.10),rgba(255,197,61,.08));border:1px solid rgba(0,230,118,.35);border-radius:15px;padding:14px;margin-bottom:14px';
+    host.insertBefore(box,host.firstChild);render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== 🎓 Stories Sell, Facts Tell — Partner Training (EN + ES) ✝️ ===== */
+(function(){
+  var KEY='trn-v1', st;
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){st={};}
+  st.done=st.done||[];st.s=st.s||{};st.today=st.today||[];st.p=st.p||{n:0,friend:false,brian:false};
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+  var open=null;
+
+  var L_en=[
+   {t:'Why stories win',m:'3 min',
+    body:'<p>Every call center on earth sounds the same:</p>'
+     +'<div class="tr-bad">"Hi, my name is Mike from MX Studio. We have the best contractor app on the market. Do you have a minute?"</div>'
+     +'<p style="text-align:center;font-size:12px;color:var(--muted)">…click. 📵</p>'
+     +'<p>Here\'s Brian\'s story opener:</p>'
+     +'<div class="tr-good">"Before I did this, I fished 13 seasons on the Bering Sea. Long days, hard work, and every man on that boat had to know the plan. Now I talk to contractors every day and I hear the same thing: crews spread out on job sites and the owner stuck on the phone. That\'s why I\'m calling you. How are you keeping track of your crew right now?"</div>'
+     +'<p>The first one is a pitch. The second one is a <b>person</b>. People hang up on pitches. They listen to people.</p>'
+     +'<div class="tr-rule">✝️ <b>Stories sell. Facts tell.</b> We are not a robotic call center. Every Partner has their own story.</div>',
+    q:[{q:'What makes a contractor keep listening?',a:['The best product on the market','A real person with a real story','Talking fast so they can\'t hang up'],c:1}]},
+   {t:'Find YOUR story',m:'10 min',
+    body:'<p>Everybody has a story. Answer these honestly. Short answers are fine. Nobody sees this but you.</p>'
+     +'<div class="tr-f"><label>Where are you from? Where did you grow up?</label><input data-s="from" placeholder="I grew up in…"></div>'
+     +'<div class="tr-f"><label>What\'s a hard thing you\'ve been through or worked through?</label><input data-s="hard" placeholder="I spent years…"></div>'
+     +'<div class="tr-f"><label>What work have you (or your family) done with your hands?</label><input data-s="work" placeholder="My dad ran a…"></div>'
+     +'<div class="tr-f"><label>Why did you say yes to MX Studio?</label><input data-s="why" placeholder="Because I…"></div>'
+     +'<button type="button" class="tr-btn" data-act="build">✨ Build my 30-second story</button>'
+     +'<div class="tr-f" style="margin-top:12px"><label>My story (edit it until it sounds like YOU talking)</label><textarea data-s="story" rows="6" placeholder="Tap the button above, then make it yours."></textarea></div>'
+     +'<button type="button" class="tr-btn tr-sec" data-act="timer">⏱️ Read it out loud: start 30-second timer</button><div class="tr-timer" id="tr-timer"></div>'
+     +'<div class="tr-rule">Only true stories. If it didn\'t happen to you, it doesn\'t go in.</div>',
+    q:[{q:'Your story should be…',a:['Made up so it sounds exciting','True, short, and in your own words','Read word-for-word from the pitch'],c:1}]},
+   {t:'The 4 beats of a story',m:'5 min',
+    body:'<p>Every good story on a call has four beats:</p>'
+     +'<div class="tr-beat"><b>1. Hook</b> Grab them in one line.<br><i>"Crazy thing happened to me this morning…"</i></div>'
+     +'<div class="tr-beat"><b>2. Struggle</b> A problem the contractor feels too.<br><i>"…a roofer told me he drives 40 minutes out to every job just to measure the roof for a quote."</i></div>'
+     +'<div class="tr-beat"><b>3. Turn</b> What changed.<br><i>"…so I showed him how to type in the address, pull the roof up by satellite, and measure it right from his phone."</i></div>'
+     +'<div class="tr-beat"><b>4. Point</b> Bring it to them.<br><i>"…and that\'s why I\'m calling you. How are you doing your measurements now?"</i></div>'
+     +'<p style="font-size:12px;color:var(--muted)">These examples show the shape. Use a moment that really happened to you.</p>',
+    q:[{q:'"…and that\'s why I\'m calling you." Which beat is that?',a:['Hook','Struggle','Point'],c:2},
+       {q:'The Struggle beat should be…',a:['A problem the contractor feels too','How great our app is','Your sales numbers'],c:0}]},
+   {t:'The story of today',m:'2 min a day',
+    body:'<p>Your best opener is something that happened to you <b>today</b>: the gym, your kid, traffic, a call you made. Write one true thing every day before you start dialing. Then no two of your calls ever sound the same.</p>'
+     +'<div class="tr-f"><label>What happened to you today?</label><textarea id="tr-today" rows="3" placeholder="This morning I…"></textarea></div>'
+     +'<button type="button" class="tr-btn" data-act="today">💾 Save today\'s story</button>'
+     +'<div id="tr-opener"></div><div id="tr-hist"></div>',
+    q:[{q:'Where does "the story of today" come from?',a:['Something that really happened to you today','A story another Partner told','Something you invent to sound interesting'],c:0}]},
+   {t:'Get THEIR story',m:'5 min',
+    body:'<p>A contractor telling you their story is halfway to buying. Ask, then <b>stop talking and listen</b>. Aim for them talking 70% of the call.</p>'
+     +'<div class="tr-beat">🔨 "How\'d you get into roofing?"</div>'
+     +'<div class="tr-beat">😤 "What\'s the hardest part of running your crew right now?"</div>'
+     +'<div class="tr-beat">🌧️ "What does a bad day look like for you?"</div>'
+     +'<div class="tr-beat">🪄 "If you could fix one thing tomorrow, what would it be?"</div>'
+     +'<p>Then <b>repeat their words back</b>: "So you\'re losing an hour a day chasing timesheets." Now they feel heard, and you know exactly which fact to share.</p>',
+    q:[{q:'After you ask a question, you should…',a:['Jump in with the pitch','Stop talking and listen','Ask three more questions fast'],c:1}]},
+   {t:'THEN the facts',m:'3 min',
+    body:'<p>Facts come <b>after</b> the stories, and only two or three of them. Pick the ones that match what <b>they</b> told you:</p>'
+     +'<div class="tr-beat">💵 <b>$137 a month for the whole crew</b>, or <b>$1,344 a year</b> (save $300). 1 or 100 people, same price. No per-seat fees.</div>'
+     +'<div class="tr-beat">📡 <b>Measures from the address</b>. Type it in and the roof measurements fill in by themselves.</div>'
+     +'<div class="tr-beat">🛡️ <b>Lifetime money-back guarantee</b> (terms apply). Not happy, ever? Cancel and get your most recent month back.</div>'
+     +'<p>Connect it to their story: <i>"You said you drive out to every job just to measure. Type in the address and the satellite pulls up the roof so you can measure it on the spot. It\'s $137 for your whole crew, and if it ever stops saving you time, cancel and get your most recent month back."</i></p>'
+     +'<div class="tr-rule">Never promise what we don\'t have. If you don\'t know, say "Let me find out" and WhatsApp Brian.</div>',
+    q:[{q:'When do the facts come?',a:['First thing, before they hang up','After the stories, and only the ones that match their problem','All of them, every call'],c:1}]},
+   {t:'Practice & get certified',m:'1 day',
+    body:'<p>Stories get good by telling them. Check these off:</p>'
+     +'<div class="tr-chk"><span>🗣️ Tell your story out loud 5 times</span><span><button type="button" class="tr-mini" data-act="rep">+1</button> <b id="tr-reps">0</b>/5</span></div>'
+     +'<label class="tr-chk"><span>👨‍👩‍👧 Tell it to a friend or family member</span><input type="checkbox" data-p="friend"></label>'
+     +'<label class="tr-chk"><span>📲 Send Brian a voice note of your story on WhatsApp</span><input type="checkbox" data-p="brian"></label>'
+     +'<a class="tr-btn tr-wa" href="https://wa.me/14084223505?text=Hey%20Brian%2C%20here%27s%20my%20story%20for%20training%20%E2%9C%9D%EF%B8%8F" target="_blank" rel="noopener">💬 Open WhatsApp to Brian</a>'
+     +'<div class="tr-f" style="margin-top:12px"><label>Your name for the certificate</label><input data-s="name" placeholder="First and last name"></div>'
+     +'<div id="tr-cert"></div>',
+    q:null}
+  ];
+
+
+  var L_es=[
+   {t:'Por qué ganan las historias',m:'3 min',
+    body:'<p>Todos los call centers del mundo suenan igual:</p>'
+     +'<div class="tr-bad">"Hola, mi nombre es Miguel de MX Studio. Tenemos la mejor app para contratistas del mercado. ¿Tiene un minuto?"</div>'
+     +'<p style="text-align:center;font-size:12px;color:var(--muted)">…clic. 📵</p>'
+     +'<p>Así abre Brian con su historia:</p>'
+     +'<div class="tr-good">"Antes de esto, pesqué 13 temporadas en el Mar de Bering. Días largos, trabajo duro, y cada hombre en ese barco tenía que saber el plan. Hoy hablo con contratistas todos los días y escucho lo mismo: cuadrillas repartidas en las obras y el dueño pegado al teléfono. Por eso le llamo. ¿Cómo lleva el control de su cuadrilla ahorita?"</div>'
+     +'<p>La primera es un pitch. La segunda es una <b>persona</b>. La gente le cuelga a los pitches. A las personas las escucha.</p>'
+     +'<div class="tr-rule">✝️ <b>Las historias venden. Los datos informan.</b> No somos un call center de robots. Cada Socio tiene su propia historia.</div>',
+    q:[{q:'¿Qué hace que un contratista siga escuchando?',a:['El mejor producto del mercado','Una persona real con una historia real','Hablar rápido para que no cuelgue'],c:1}]},
+   {t:'Encuentra TU historia',m:'10 min',
+    body:'<p>Todos tenemos una historia. Contesta con honestidad. Respuestas cortas están bien. Nadie más ve esto.</p>'
+     +'<div class="tr-f"><label>¿De dónde eres? ¿Dónde creciste?</label><input data-s="from" placeholder="Crecí en…"></div>'
+     +'<div class="tr-f"><label>¿Qué cosa difícil has vivido o sacado adelante?</label><input data-s="hard" placeholder="Pasé años…"></div>'
+     +'<div class="tr-f"><label>¿Qué trabajo has hecho tú (o tu familia) con las manos?</label><input data-s="work" placeholder="Mi papá tenía un…"></div>'
+     +'<div class="tr-f"><label>¿Por qué le dijiste que sí a MX Studio?</label><input data-s="why" placeholder="Porque yo…"></div>'
+     +'<button type="button" class="tr-btn" data-act="build">✨ Arma mi historia de 30 segundos</button>'
+     +'<div class="tr-f" style="margin-top:12px"><label>Mi historia (edítala hasta que suene a TI hablando)</label><textarea data-s="story" rows="6" placeholder="Toca el botón de arriba y hazla tuya."></textarea></div>'
+     +'<button type="button" class="tr-btn tr-sec" data-act="timer">⏱️ Léela en voz alta: cronómetro de 30 segundos</button><div class="tr-timer" id="tr-timer"></div>'
+     +'<div class="tr-rule">Solo historias verdaderas. Si no te pasó a ti, no va.</div>',
+    q:[{q:'Tu historia debe ser…',a:['Inventada para que suene emocionante','Verdadera, corta y en tus propias palabras','Leída palabra por palabra del guion'],c:1}]},
+   {t:'Los 4 tiempos de una historia',m:'5 min',
+    body:'<p>Toda buena historia en una llamada tiene cuatro tiempos:</p>'
+     +'<div class="tr-beat"><b>1. Gancho</b> Atrápalos en una frase.<br><i>"Me pasó algo curioso esta mañana…"</i></div>'
+     +'<div class="tr-beat"><b>2. Problema</b> Algo que el contratista también siente.<br><i>"…un techero me contó que maneja 40 minutos a cada obra solo para medir el techo y cotizar."</i></div>'
+     +'<div class="tr-beat"><b>3. Cambio</b> Qué cambió.<br><i>"…así que le enseñé a escribir la dirección, ver el techo por satélite y medirlo desde su teléfono."</i></div>'
+     +'<div class="tr-beat"><b>4. Punto</b> Llévalo a ellos.<br><i>"…y por eso le llamo. ¿Cómo hace sus medidas ahorita?"</i></div>'
+     +'<p style="font-size:12px;color:var(--muted)">Estos ejemplos muestran la forma. Usa un momento que de verdad te haya pasado.</p>',
+    q:[{q:'"…y por eso le llamo." ¿Qué tiempo es ese?',a:['Gancho','Problema','Punto'],c:2},
+       {q:'El tiempo del Problema debe ser…',a:['Algo que el contratista también siente','Lo buena que es nuestra app','Tus números de ventas'],c:0}]},
+   {t:'La historia de hoy',m:'2 min al día',
+    body:'<p>Tu mejor apertura es algo que te pasó <b>hoy</b>: el gimnasio, tus hijos, el tráfico, una llamada que hiciste. Escribe una cosa verdadera cada día antes de empezar a marcar. Así ninguna de tus llamadas suena igual.</p>'
+     +'<div class="tr-f"><label>¿Qué te pasó hoy?</label><textarea id="tr-today" rows="3" placeholder="Esta mañana…"></textarea></div>'
+     +'<button type="button" class="tr-btn" data-act="today">💾 Guardar la historia de hoy</button>'
+     +'<div id="tr-opener"></div><div id="tr-hist"></div>',
+    q:[{q:'¿De dónde sale "la historia de hoy"?',a:['De algo que de verdad te pasó hoy','De una historia que contó otro Socio','De algo que inventas para sonar interesante'],c:0}]},
+   {t:'Consigue SU historia',m:'5 min',
+    body:'<p>Un contratista que te cuenta su historia ya va a medio camino de comprar. Pregunta, y luego <b>deja de hablar y escucha</b>. La meta: que ellos hablen el 70% de la llamada.</p>'
+     +'<div class="tr-beat">🔨 "¿Cómo empezó en la construcción?"</div>'
+     +'<div class="tr-beat">😤 "¿Qué es lo más difícil de manejar su cuadrilla ahorita?"</div>'
+     +'<div class="tr-beat">🌧️ "¿Cómo es un mal día para usted?"</div>'
+     +'<div class="tr-beat">🪄 "Si pudiera arreglar una sola cosa mañana, ¿cuál sería?"</div>'
+     +'<p>Luego <b>repite sus palabras</b>: "O sea que pierde una hora al día persiguiendo las horas de su gente." Así se sienten escuchados, y tú sabes exactamente qué dato compartir.</p>',
+    q:[{q:'Después de hacer una pregunta, debes…',a:['Meter el pitch de inmediato','Dejar de hablar y escuchar','Hacer tres preguntas más, rápido'],c:1}]},
+   {t:'DESPUÉS los datos',m:'3 min',
+    body:'<p>Los datos van <b>después</b> de las historias, y solo dos o tres. Escoge los que van con lo que <b>ellos</b> te contaron:</p>'
+     +'<div class="tr-beat">💵 <b>$137 dólares al mes para toda la cuadrilla</b>, o <b>$1,344 al año</b> (ahorra $300). 1 o 100 personas, mismo precio. Sin cobro por usuario.</div>'
+     +'<div class="tr-beat">📡 <b>Mide desde la dirección</b>. La escribes y las medidas del techo se llenan solas.</div>'
+     +'<div class="tr-beat">🛡️ <b>Garantía de devolución de por vida</b> (aplican términos). ¿Algún día no está contento? Cancela y le devolvemos su último mes.</div>'
+     +'<p>Conéctalo con su historia: <i>"Me dijo que maneja a cada obra solo para medir. Escribe la dirección y el satélite le muestra el techo para medirlo ahí mismo. Son $137 dólares al mes para toda su cuadrilla, y si algún día deja de ahorrarle tiempo, cancela y le devolvemos su último mes."</i></p>'
+     +'<div class="tr-rule">Nunca prometas lo que no tenemos. Si no sabes, di "Déjeme averiguarlo" y mándale WhatsApp a Brian.</div>',
+    q:[{q:'¿Cuándo van los datos?',a:['Primero, antes de que cuelguen','Después de las historias, y solo los que van con su problema','Todos, en cada llamada'],c:1}]},
+   {t:'Practica y certifícate',m:'1 día',
+    body:'<p>Las historias mejoran contándolas. Marca estos pasos:</p>'
+     +'<div class="tr-chk"><span>🗣️ Cuenta tu historia en voz alta 5 veces</span><span><button type="button" class="tr-mini" data-act="rep">+1</button> <b id="tr-reps">0</b>/5</span></div>'
+     +'<label class="tr-chk"><span>👨‍👩‍👧 Cuéntasela a un amigo o familiar</span><input type="checkbox" data-p="friend"></label>'
+     +'<label class="tr-chk"><span>📲 Mándale a Brian una nota de voz con tu historia por WhatsApp</span><input type="checkbox" data-p="brian"></label>'
+     +'<a class="tr-btn tr-wa" href="https://wa.me/14084223505?text=Hola%20Brian%2C%20aqu%C3%AD%20va%20mi%20historia%20para%20la%20capacitaci%C3%B3n%20%E2%9C%9D%EF%B8%8F" target="_blank" rel="noopener">💬 Abrir WhatsApp con Brian</a>'
+     +'<div class="tr-f" style="margin-top:12px"><label>Tu nombre para el certificado</label><input data-s="name" placeholder="Nombre y apellido"></div>'
+     +'<div id="tr-cert"></div>',
+    q:null}
+  ];
+  var TX={
+   en:{tab:'🎓 Training',title:'Stories Sell, Facts Tell ✝️',sub:'MX Studio Partner Training. We\'re not a robotic call center. You win with <b style="color:var(--white)">your</b> story.',prog:'{n} of {t} lessons done',qc:'Quick check',chk:'Check my answers',chk2:'✓ Passed, check again',ok:'✅ Nailed it. Next lesson unlocked.',bad:'Not quite. Read it one more time and try again.',need:'Answer at least one question first.',restart:'⏱️ Restart timer',time:' ⏰ Time! Shorter is stronger.',opener:'TODAY\'S OPENER',mine:'MY STORIES',
+       b1:'Real quick about me: ',b4:', and that\'s why I\'m calling you.',op:function(n,t){return '"Hey, it\'s '+n+' with MX Studio. Real quick, '+t+'. Made me think about how busy you guys must be. How\'s your week going?"';},yn:'[your name]',
+       c1:'Finish the 3 practice steps to unlock your certificate.',c2:'Pass lessons 1–6 and finish the practice steps to unlock your certificate.',cp:'MX STUDIO · CERTIFIED PARTNER',cd:'completed',cn:'Your Name',own:'Brian Lalo, Owner',vs:'"I can do all things through Christ who strengthens me." Phil 4:13',ss:'Screenshot this and send it to Brian. You\'re cleared to dial. 🔥',loc:'en-US'},
+   es:{tab:'🎓 Capacitación',title:'Las historias venden, los datos informan ✝️',sub:'Capacitación de Socios MX Studio. No somos un call center de robots. Ganas con <b style="color:var(--white)">tu</b> historia.',prog:'{n} de {t} lecciones completadas',qc:'Repaso rápido',chk:'Revisar mis respuestas',chk2:'✓ Aprobado, revisar otra vez',ok:'✅ ¡Excelente! Siguiente lección desbloqueada.',bad:'Todavía no. Léela una vez más e inténtalo de nuevo.',need:'Primero contesta al menos una pregunta.',restart:'⏱️ Reiniciar cronómetro',time:' ⏰ ¡Tiempo! Más corto es más fuerte.',opener:'APERTURA DE HOY',mine:'MIS HISTORIAS',
+       b1:'Rápido sobre mí: ',b4:', y por eso le llamo.',op:function(n,t){return '"Hola, habla '+n+' de MX Studio. Rápido: '+t+'. Me hizo pensar en lo ocupados que deben andar ustedes. ¿Cómo va su semana?"';},yn:'[tu nombre]',
+       c1:'Termina los 3 pasos de práctica para desbloquear tu certificado.',c2:'Aprueba las lecciones 1–6 y termina los pasos de práctica para desbloquear tu certificado.',cp:'MX STUDIO · SOCIO CERTIFICADO',cd:'completó',cn:'Tu Nombre',own:'Brian Lalo, Dueño',vs:'"Todo lo puedo en Cristo que me fortalece." Filipenses 4:13',ss:'Toma captura y mándasela a Brian. Ya puedes empezar a marcar. 🔥',loc:'es-MX'}
+  };
+  function lg(){return (typeof LANG!=='undefined'&&LANG==='es'&&!/Philippines/.test(document.title))?'es':'en';}
+  function X(){return TX[lg()];}
+  var L=L_en;
+
+  function unlocked(i){return i===0||st.done.indexOf(i)>-1||st.done.indexOf(i-1)>-1;}
+  function isDone(i){return st.done.indexOf(i)>-1;}
+  function practiceDone(){return st.p.n>=5&&st.p.friend&&st.p.brian;}
+
+  function render(){
+    var pane=document.getElementById('pane-training');if(!pane)return;
+    L=lg()==='es'?L_es:L_en;var x=X();var tb=document.getElementById('tab-btn-training');if(tb)tb.textContent=x.tab;
+    var n=st.done.length,total=L.length;
+    var h='<div class="tr-hero"><div style="font-size:30px">🎓</div><div style="font-size:19px;font-weight:900;margin:4px 0">'+x.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);line-height:1.6">'+x.sub+'</div>'
+      +'<div style="background:rgba(255,255,255,.06);border-radius:6px;height:8px;overflow:hidden;margin-top:12px"><div style="height:100%;width:'+Math.round(n/total*100)+'%;background:var(--green)"></div></div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:5px">'+x.prog.replace('{n}',n).replace('{t}',total)+'</div></div>';
+    L.forEach(function(l,i){
+      var u=unlocked(i),d=isDone(i),o=open===i;
+      h+='<div class="tr-card'+(d?' tr-done':'')+(u?'':' tr-lock')+'">'
+        +'<button type="button" class="tr-head" data-i="'+i+'"'+(u?'':' disabled')+'><span class="tr-num">'+(d?'✓':(u?i+1:'🔒'))+'</span><span style="flex:1;text-align:left"><b>'+l.t+'</b><br><span style="font-size:11px;color:var(--muted)">'+l.m+'</span></span><span style="color:var(--muted)">'+(o?'▾':'▸')+'</span></button>';
+      if(o&&u){
+        h+='<div class="tr-body">'+l.body;
+        if(l.q){h+='<div class="tr-quiz"><div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">'+x.qc+'</div>';
+          l.q.forEach(function(q,qi){h+='<div style="font-size:13px;font-weight:700;margin:8px 0 6px">'+q.q+'</div>';
+            q.a.forEach(function(a,ai){h+='<label class="tr-opt"><input type="radio" name="q'+i+'_'+qi+'" value="'+ai+'"> '+a+'</label>';});});
+          h+='<button type="button" class="tr-btn" data-act="check" data-i="'+i+'">'+(d?x.chk2:x.chk)+'</button><div class="tr-res" id="tr-res"></div></div>';}
+        h+='</div>';
+      }
+      h+='</div>';
+    });
+    pane.innerHTML=h;wire(pane);
+  }
+
+  function wire(pane){
+    pane.querySelectorAll('.tr-head').forEach(function(b){b.onclick=function(){var i=+b.dataset.i;open=open===i?null:i;render();var c=pane.querySelectorAll('.tr-card')[i];if(c&&open===i)c.scrollIntoView({block:'start',behavior:'smooth'});};});
+    pane.querySelectorAll('[data-s]').forEach(function(el){el.value=st.s[el.dataset.s]||'';el.oninput=function(){st.s[el.dataset.s]=el.value;save();if(el.dataset.s==='name')cert();};});
+    pane.querySelectorAll('[data-p]').forEach(function(el){el.checked=!!st.p[el.dataset.p];el.onchange=function(){st.p[el.dataset.p]=el.checked;save();cert();};});
+    var r=document.getElementById('tr-reps');if(r)r.textContent=Math.min(st.p.n,5);
+    pane.querySelectorAll('[data-act]').forEach(function(b){b.onclick=function(){act(b.dataset.act,b);};});
+    history();cert();
+  }
+
+  function act(a,b){
+    if(a==='build'){var s=st.s,parts=[];
+      var x=X();if(s.from)parts.push(x.b1+s.from.replace(/\.$/,'')+'.');
+      if(s.hard)parts.push(s.hard.replace(/\.$/,'')+'.');
+      if(s.work)parts.push(s.work.replace(/\.$/,'')+'.');
+      if(s.why)parts.push(s.why.replace(/\.$/,'')+x.b4);
+      if(!parts.length){alert(x.need);return;}
+      st.s.story=parts.join(' ');save();var t=document.querySelector('[data-s="story"]');if(t)t.value=st.s.story;}
+    if(a==='timer'){var el=document.getElementById('tr-timer'),sec=0;clearInterval(window.__trT);el.textContent='0s';
+      window.__trT=setInterval(function(){sec++;el.textContent=sec+'s'+(sec>=30?X().time:'');if(sec>=45)clearInterval(window.__trT);},1000);
+      b.textContent=X().restart;}
+    if(a==='today'){var v=(document.getElementById('tr-today').value||'').trim();if(!v)return;
+      var d=new Date().toLocaleDateString(X().loc,{month:'short',day:'numeric'});st.today.unshift({d:d,t:v});st.today=st.today.slice(0,14);save();document.getElementById('tr-today').value='';history();}
+    if(a==='rep'){st.p.n=(st.p.n||0)+1;save();document.getElementById('tr-reps').textContent=Math.min(st.p.n,5);cert();}
+    if(a==='check'){var i=+b.dataset.i,ok=true,l=L[i];
+      l.q.forEach(function(q,qi){var s=document.querySelector('input[name="q'+i+'_'+qi+'"]:checked');if(!s||+s.value!==q.c)ok=false;});
+      var res=document.getElementById('tr-res');
+      if(ok){if(!isDone(i))st.done.push(i);save();res.innerHTML='<span style="color:var(--green)">'+X().ok+'</span>';setTimeout(function(){open=i+1<L.length?i+1:i;render();},900);}
+      else res.innerHTML='<span style="color:#FF5555">'+X().bad+'</span>';}
+  }
+
+  function history(){
+    var h=document.getElementById('tr-hist'),o=document.getElementById('tr-opener');if(!h)return;
+    if(st.today.length){var t=st.today[0].t;
+      o.innerHTML='<div class="tr-good" style="margin-top:12px"><div style="font-size:10px;font-weight:800;color:var(--green);letter-spacing:1px;margin-bottom:4px">'+X().opener+'</div>'+X().op(esc((st.s.name||'').split(' ')[0]||X().yn),esc(t.charAt(0).toLowerCase()+t.slice(1).replace(/\.$/,'')))+'</div>';}
+    h.innerHTML=st.today.length?'<div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;margin:12px 0 6px">'+X().mine+'</div>'+st.today.map(function(x){return '<div style="font-size:12px;padding:7px 0;border-bottom:1px solid var(--border)"><b style="color:var(--green)">'+esc(x.d)+'</b> · '+esc(x.t)+'</div>';}).join(''):'';
+  }
+
+  function cert(){
+    var c=document.getElementById('tr-cert');if(!c)return;
+    var allQ=[0,1,2,3,4,5].every(isDone),ready=allQ&&practiceDone();
+    if(ready&&!isDone(6)){st.done.push(6);save();setTimeout(render,0);return;}
+    if(!ready){c.innerHTML='<div style="font-size:12px;color:var(--muted);margin-top:10px">'+(allQ?X().c1:X().c2)+'</div>';return;}
+    var x=X();var nm=esc(st.s.name||x.cn);
+    c.innerHTML='<div class="tr-certbox"><div style="font-size:34px">✝️</div><div style="font-size:11px;letter-spacing:2px;color:#FFC53D;font-weight:800">'+x.cp+'</div>'
+      +'<div style="font-size:22px;font-weight:900;margin:8px 0">'+nm+'</div><div style="font-size:12px;color:var(--muted)">'+x.cd+' <b style="color:var(--white)">'+x.title.replace(' ✝️','')+'</b></div>'
+      +'<div style="font-size:11px;color:var(--muted);margin-top:6px">'+new Date().toLocaleDateString(x.loc,{month:'long',day:'numeric',year:'numeric'})+' · '+x.own+'</div>'
+      +'<div style="font-size:12px;color:var(--green);margin-top:10px;font-style:italic">'+x.vs+'</div></div>'
+      +'<div style="font-size:12px;color:var(--muted);margin-top:8px;text-align:center">'+x.ss+'</div>';
+  }
+
+  function init(){
+    var tabs=document.querySelector('.tabs');if(!tabs)return;
+    var css=document.createElement('style');css.textContent=
+      '.tr-hero{background:linear-gradient(135deg,rgba(0,230,118,.08),rgba(255,197,61,.06));border:1px solid rgba(0,230,118,.25);border-radius:14px;padding:18px;text-align:center;margin-bottom:12px}'
+     +'.tr-card{background:var(--card);border:1px solid var(--border);border-radius:13px;margin-bottom:9px;overflow:hidden}.tr-card.tr-done{border-color:rgba(0,230,118,.3)}.tr-card.tr-lock{opacity:.5}'
+     +'.tr-head{width:100%;display:flex;align-items:center;gap:12px;padding:13px 14px;background:none;border:none;color:var(--white);font-family:inherit;font-size:14px;cursor:pointer}.tr-head:disabled{cursor:default}'
+     +'.tr-num{width:30px;height:30px;border-radius:8px;background:rgba(0,230,118,.12);color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}'
+     +'.tr-body{padding:4px 16px 16px;font-size:14px;line-height:1.7}.tr-body p{margin:8px 0}'
+     +'.tr-bad{background:rgba(255,80,80,.08);border-left:3px solid #FF5555;border-radius:8px;padding:10px 12px;font-style:italic;margin:8px 0}'
+     +'.tr-good{background:rgba(0,230,118,.07);border-left:3px solid var(--green);border-radius:8px;padding:10px 12px;margin:8px 0}'
+     +'.tr-rule{background:rgba(255,197,61,.08);border:1px solid rgba(255,197,61,.3);border-radius:9px;padding:10px 12px;font-size:13px;margin-top:12px}'
+     +'.tr-beat{background:rgba(255,255,255,.04);border-radius:9px;padding:10px 12px;margin:7px 0;font-size:13px}.tr-beat b{color:var(--green);margin-right:6px}'
+     +'.tr-f{margin:10px 0}.tr-f label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}.tr-f input,.tr-f textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;color:var(--white);font-family:inherit;font-size:15px;outline:none;resize:vertical}'
+     +'.tr-btn{display:block;width:100%;background:var(--green);color:#000;border:none;border-radius:9px;padding:12px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit;text-align:center;text-decoration:none;margin-top:8px}.tr-sec{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.3)}.tr-wa{background:#25D366;color:#fff}'
+     +'.tr-timer{font-size:22px;font-weight:900;color:var(--green);text-align:center;margin-top:6px;min-height:28px}'
+     +'.tr-quiz{border-top:1px solid var(--border);margin-top:14px;padding-top:12px}.tr-opt{display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.04);border-radius:8px;padding:9px 10px;margin:5px 0;font-size:13px;cursor:pointer}.tr-res{font-size:13px;margin-top:8px;min-height:18px;font-weight:700}'
+     +'.tr-chk{display:flex;justify-content:space-between;align-items:center;gap:10px;background:rgba(255,255,255,.04);border-radius:9px;padding:11px 12px;margin:7px 0;font-size:13px;cursor:pointer}.tr-chk input{width:20px;height:20px;accent-color:var(--green)}'
+     +'.tr-mini{background:var(--green);color:#000;border:none;border-radius:6px;padding:4px 10px;font-weight:900;cursor:pointer;font-family:inherit}'
+     +'.tr-certbox{margin-top:14px;text-align:center;border:2px solid #FFC53D;border-radius:14px;padding:20px;background:linear-gradient(135deg,rgba(255,197,61,.1),rgba(0,230,118,.06))}';
+    document.head.appendChild(css);
+    var btn=document.createElement('button');btn.className='tb';btn.id='tab-btn-training';btn.textContent='🎓 Training';
+    btn.onclick=function(){showTab('training',btn);render();};
+    var ref=document.getElementById('tab-btn-goals');tabs.insertBefore(btn,ref||null);
+    var pane=document.createElement('div');pane.id='pane-training';pane.className='pane';
+    var after=document.getElementById('pane-jefe');after.parentNode.insertBefore(pane,after.nextSibling);
+    render();
+    if(typeof window.applyLang==='function'){var _a=window.applyLang;window.applyLang=function(){var r=_a.apply(this,arguments);render();return r;};}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script id="wa-app">
+/* ===== 💬📞💜 Call buttons open the apps on any device ✝️ ===== */
+(function(){
+  var _open=window.open;
+  var UA=navigator.userAgent||'';
+  var MOBILE=/Android|iPhone|iPad|iPod|Mobile/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var FRAMED=window.top!==window;
+  function parseWa(u){
+    var m=String(u||'').match(/^(?:https?:\/\/(?:wa\.me|api\.whatsapp\.com\/send)\/?(\d*)\/?|whatsapp:\/\/send\/?)(?:\?(.*))?$/i);
+    if(!m)return null;var ph=m[1]||'',txt='';
+    if(m[2]){try{var q=new URLSearchParams(m[2]);ph=ph||(q.get('phone')||'').replace(/\D/g,'');txt=q.get('text')||'';}catch(e){}}
+    if(/^\d{10}$/.test(ph))ph='1'+ph;
+    return {ph:ph,txt:txt};
+  }
+  function waUrls(w){
+    var q=[];if(w.ph)q.push('phone='+w.ph);if(w.txt)q.push('text='+encodeURIComponent(w.txt));var qs=q.length?'?'+q.join('&'):'';
+    return {app:'whatsapp://send'+qs,
+            uni:'https://wa.me/'+(w.ph||'')+(w.txt?'?text='+encodeURIComponent(w.txt):''),
+            web:'https://web.whatsapp.com/send'+qs};
+  }
+  function norm(u){return String(u).replace(/^(tel:\+?)(\d{10})$/i,'tel:+1$2').replace(/(number=%2B)(\d{10})$/i,'$11$2');}
+  function isProto(u){return /^(tel|sms|mailto|viber|facetime|facetime-audio):/i.test(String(u||''));}
+  function go(url){var l=document.createElement('a');l.href=url;l.setAttribute('data-mx','1');l.style.display='none';document.body.appendChild(l);l.click();setTimeout(function(){l.remove();},500);}
+  var helper=null,ht=null;
+  function viaHelper(url){ /* inside claude.ai only: frame can't open apps itself */
+    try{helper=_open.call(window,url,'mxcall','width=360,height=200,left=40,top=40');}catch(e){helper=null;}
+    if(ht)clearTimeout(ht);ht=setTimeout(function(){try{if(helper&&!helper.closed)helper.close();}catch(e){}},12000);
+  }
+  function openWa(w){
+    var u=waUrls(w);
+    if(MOBILE){ if(FRAMED)_open.call(window,u.uni,'_blank'); else location.href=u.uni; return; }
+    if(FRAMED){viaHelper(u.app);return;}
+    /* computer: try the desktop app; if nothing takes over in 1.8s, use WhatsApp Web in one reused tab */
+    var left=false;function lv(){left=true;}
+    window.addEventListener('blur',lv,{once:true});document.addEventListener('visibilitychange',lv,{once:true});
+    go(u.app);
+    setTimeout(function(){window.removeEventListener('blur',lv);document.removeEventListener('visibilitychange',lv);if(!left)_open.call(window,u.web,'mxwhatsapp');},1800);
+  }
+  function openProto(u){u=norm(u);if(FRAMED&&!MOBILE)viaHelper(u);else go(u);}
+  function handle(u){var w=parseWa(u);if(w){openWa(w);return true;}if(isProto(u)){openProto(u);return true;}return false;}
+  window.mxLaunch=handle;
+  window.open=function(u){if(handle(u))return null;return _open.apply(window,arguments);};
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.hasAttribute('data-mx'))return;
+    var h=a.getAttribute('href');if(!parseWa(h)&&!isProto(h))return;
+    e.preventDefault();e.stopPropagation();handle(h);
+  },true);
+  function fixViber(){
+    if(typeof window.viberP!=='function'||window.viberP._mx)return;
+    var f=function(i){var p=(typeof P!=='undefined')&&P[i];if(!p)return;handle('viber://chat?number=%2B'+String(p[1]).replace(/\D/g,''));};
+    f._mx=1;window.viberP=f;
+  }
+  fixViber();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fixViber);
+})();
+</script>
+</body>
+</html>

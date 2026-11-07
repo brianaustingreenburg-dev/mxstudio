@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JefeTech Live Demo</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+  .header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#0d0f14;border-bottom:1px solid rgba(0,230,118,.15);flex-shrink:0;}
+  .header-logo{font-size:15px;font-weight:900;color:#00e676}
+  .header-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
+  .layout{display:flex;height:calc(100vh - 94px);height:calc(100dvh - 94px);}
+  .pane{flex:1;display:flex;flex-direction:column;border-right:1px solid rgba(0,230,118,.1);}
+  .pane:last-child{border-right:none;}
+  .pane-label{background:#111318;padding:8px 14px;font-size:11px;font-weight:800;color:rgba(0,230,118,.7);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid rgba(0,230,118,.1);flex-shrink:0;}
+  .pane iframe{flex:1;width:100%;border:none;background:#0d0f14;}
+
+  /* Desktop tab bar */
+  .dtabs{display:flex;gap:0;border-bottom:1px solid rgba(0,230,118,.15);background:#0b0d13;flex-shrink:0;}
+  .dtab{flex:1;border:none;background:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:800;padding:11px 8px;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;letter-spacing:.3px;transition:.15s;white-space:nowrap;}
+  .dtab[aria-pressed="true"]{color:#00e676;border-bottom-color:#00e676;background:rgba(0,230,118,.04);}
+
+  /* Mobile: single visible pane at a time */
+  @media(max-width:700px){
+    .header-sub{display:none}
+    .layout{height:calc(100vh - 94px);height:calc(100dvh - 94px);}
+    .pane{position:absolute;top:94px;left:0;right:0;bottom:0;flex:none;}
+    .pane[hidden]{display:none!important}
+    .pane-label{display:none}
+    .layout{position:relative;}
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="header-logo">⚡ JefeTech Live Demo</div>
+    <div class="header-sub">Full ecosystem — app · owner dashboard · partner dashboard · pricing</div>
+  </div>
+  <a href="https://go.myjefetech.app/checkout.html?ref=brian" target="_blank" style="background:#ff6b2b;color:#fff;font-size:12px;font-weight:900;padding:9px 16px;border-radius:9px;text-decoration:none;white-space:nowrap">💳 Get Started — $137/mo</a>
+</div>
+
+<!-- Tab bar (desktop + mobile) -->
+<div class="dtabs" role="tablist">
+  <button type="button" class="dtab" data-p="app"     aria-pressed="true" >📱 Crew App</button>
+  <button type="button" class="dtab" data-p="dash"    aria-pressed="false">🖥️ Owner Dashboard</button>
+  <button type="button" class="dtab" data-p="partner" aria-pressed="false">🤝 Partner Dashboard</button>
+  <button type="button" class="dtab" data-p="pricing" aria-pressed="false">💳 Pricing</button>
+</div>
+
+<div class="layout">
+  <div class="pane" data-pane="app">
+    <div class="pane-label">📱 Crew App</div>
+    <iframe src="https://myjefetech.app" title="JefeTech App" allow="clipboard-write"></iframe>
+  </div>
+  <div class="pane" data-pane="dash">
+    <div class="pane-label">🖥️ Owner Dashboard</div>
+    <iframe src="https://go.myjefetech.app/la-forja.html" title="JefeTech Owner Dashboard" allow="clipboard-write"></iframe>
+  </div>
+  <div class="pane" data-pane="partner">
+    <div class="pane-label">🤝 Partner Dashboard</div>
+    <iframe src="https://go.myjefetech.app/partner-demo.html" title="JefeTech Partner Dashboard" allow="clipboard-write"></iframe>
+  </div>
+  <div class="pane" data-pane="pricing">
+    <div class="pane-label">💳 Pricing</div>
+    <iframe src="https://go.myjefetech.app/checkout.html?ref=demo" title="JefeTech Pricing" allow="clipboard-write"></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cur = 'app';
+
+  function paint(){
+    document.querySelectorAll('.pane').forEach(function(p){
+      p.hidden = p.dataset.pane !== cur;
+    });
+    document.querySelectorAll('.dtab').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.p === cur ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('.dtab').forEach(function(b){
+    b.addEventListener('click', function(){ cur = b.dataset.p; paint(); });
+  });
+
+  paint();
+})();
+</script>
+
+
+<!-- MX-I18N:start · ES / EN switch -->
+<style>
+.mxl18{position:fixed;z-index:2147483601;top:calc(10px + env(safe-area-inset-top));right:10px;display:flex;padding:3px;border-radius:99px;background:rgba(15,20,24,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);font:800 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.06em}
+.mxl18 button{all:unset;cursor:pointer;padding:8px 11px;border-radius:99px;color:rgba(255,255,255,.75)}
+.mxl18 button.on{background:#fff;color:#111}
+</style>
+<script>
+(function(){
+ var CFG={"key": "demo", "dict": {"JefeTech Live Demo": "JefeTech · Demo en vivo", "⚡ JefeTech Live Demo": "⚡ JefeTech · Demo en vivo", "Full ecosystem — app · owner dashboard · partner dashboard · pricing": "Todo el ecosistema: app · dashboard del dueño · dashboard de socios · precios", "💳 Get Started — $137/mo": "💳 Empezar: $137/mes", "📱 Crew App": "📱 App del equipo", "🖥️ Owner Dashboard": "🖥️ Dashboard del dueño", "🤝 Partner Dashboard": "🤝 Dashboard de socios", "💳 Pricing": "💳 Precios", "JefeTech App": "App JefeTech", "JefeTech Owner Dashboard": "JefeTech · Dashboard del dueño", "JefeTech Partner Dashboard": "JefeTech · Dashboard de socios", "JefeTech Pricing": "JefeTech · Precios"}, "mount": ".header", "css": "margin-left:8px"},D=CFG.dict,K="mxl18-"+CFG.key,orig=new Map(),origAttr=new Map(),tOrig=document.title;
+ try{if(window.self!==window.top&&!CFG.inFrame)return}catch(e){}
+ function nodes(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode&&n.parentNode.nodeName;return(p==="SCRIPT"||p==="STYLE")?2:1}}),a=[],n;while(n=w.nextNode())a.push(n);return a}
+ function apply(l){
+  nodes().forEach(function(n){if(!orig.has(n))orig.set(n,n.nodeValue);var o=orig.get(n),k=o.trim();if(!k)return;
+   n.nodeValue=(l==="es"&&D[k])?o.replace(k,D[k]):o});
+  [].slice.call(document.querySelectorAll("[title],[placeholder],[aria-label]")).forEach(function(e){["title","placeholder","aria-label"].forEach(function(at){var v=e.getAttribute(at);if(v==null)return;var id=at+"|";if(!origAttr.has(e))origAttr.set(e,{});var m=origAttr.get(e);if(!(at in m))m[at]=v;var o=m[at];e.setAttribute(at,(l==="es"&&D[o])?D[o]:o)})});
+  document.title=(l==="es"&&D[tOrig])?D[tOrig]:tOrig;document.documentElement.lang=l;
+  [].slice.call(sw.children).forEach(function(b){b.classList.toggle("on",b.dataset.l===l)});
+  try{localStorage.setItem(K,l)}catch(e){}
+ }
+ var sw=document.createElement("div");sw.className="mxl18";sw.innerHTML='<button type="button" data-l="es">ES</button><button type="button" data-l="en">EN</button>';
+ if(CFG.css)sw.style.cssText+=";"+CFG.css;
+ sw.onclick=function(e){var b=e.target.closest("button");if(b)apply(b.dataset.l)};
+ function start(){var m=CFG.mount&&document.querySelector(CFG.mount);if(m){sw.style.position="static";sw.style.flex="none";m.appendChild(sw)}else document.body.appendChild(sw);var l;try{l=localStorage.getItem(K)}catch(e){}if(l!=="es"&&l!=="en")l=(navigator.language||"es").toLowerCase().indexOf("es")===0?"es":"en";apply(l)}
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+})();
+</script>
+<!-- MX-I18N:end -->
+
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={"mount": ".mxl18", "color": "#fff", "gap": "6px"};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");if(CFG.css)b.style.cssText+=";"+CFG.css;document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{if("serviceWorker" in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.addEventListener("controllerchange",function(){if(window.__mxReloaded)return;window.__mxReloaded=1;location.reload()})}}catch(e){}
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
+</body>
+</html>
