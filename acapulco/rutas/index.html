@@ -706,7 +706,7 @@ function drawOwner(){const es=st.lang!=="en",q=(window.__owq||"").normalize("NFD
  <div class="zb"><button data-ow="../dueno/?s=${encodeURIComponent(exSlug)}&ej=1#stc">👀 ${es?"Enseñar ejemplo":"Show example"}</button><button data-ow="../dueno/?s=${encodeURIComponent(exSlug)}">🧑‍🍳 ${es?"Panel de muestra":"Sample panel"}</button></div></div>
  <div class="zs"><input id="owq" type="search" placeholder="${es?"Buscar restaurante…":"Search restaurant…"}" value="${esc(window.__owq||"")}" autocomplete="off"><small style="color:var(--muted);display:block;margin-top:6px">${list.length} ${es?"paneles · ✅ = activado":"panels · ✅ = activated"}</small></div>${rows}`}
 $("owner").addEventListener("input",e=>{if(e.target.id!=="owq")return;window.__owq=e.target.value;const pos=e.target.selectionStart;drawOwner();const i=$("owq");i.focus();try{i.setSelectionRange(pos,pos)}catch(_){}});
-$("owner").addEventListener("click",e=>{const b=e.target.closest("[data-ow]");if(b)window.open(b.dataset.ow,"_blank")});
+$("owner").addEventListener("click",e=>{const b=e.target.closest("[data-ow]");if(!b)return;const u=b.dataset.ow,i=u.indexOf("#");location.href=(i<0?u+"&r=1":u.slice(0,i)+"&r=1"+u.slice(i))});
 
 // 🔤 All restaurants A–Z (both sections), with search
 function azList(){const out=[];[["r",DATA],["p",PEND]].forEach(([sec,X])=>X.routes.forEach(r=>r.stops.forEach(s=>out.push({s,sec,r}))));
