@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Propuesta · Boutique de Belleza · MX Studio</title>
+<meta name="description" content="Propuesta de MX Studio: app con códigos QR para boutique de belleza en Pie de la Cuesta. Uñas, pelo y ropa.">
+<meta property="og:title" content="Propuesta para su Boutique de Belleza · MX Studio">
+<meta property="og:description" content="Reservas por WhatsApp, catálogo de ropa, galería de diseños y reseñas en Google. Español e inglés.">
+<meta name="theme-color" content="#14110f">
+<link rel="icon" href="../../icon-192.png">
+<style>
+@font-face{font-family:M;src:url(../../lib/fonts/m500.woff2) format("woff2");font-weight:500}
+@font-face{font-family:M;src:url(../../lib/fonts/m700.woff2) format("woff2");font-weight:700}
+@font-face{font-family:M;src:url(../../lib/fonts/m800.woff2) format("woff2");font-weight:800}
+:root{--bg:#14110f;--card:#1f1a16;--line:#3a3028;--ink:#f6ece0;--mut:#c8b8a6;--gold:#d9a35f;--sun:#e07a3f;--wa:#25d366}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.5 M,system-ui,sans-serif}
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:rgba(20,17,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar b{flex:1;font-weight:800;letter-spacing:.08em;font-size:13px;color:var(--gold)}
+.pill{display:flex;background:#2a231d;border-radius:999px;padding:3px}.pill button{border:0;background:none;color:var(--mut);font:800 13px M,sans-serif;padding:7px 12px;border-radius:999px;cursor:pointer}.pill button[aria-pressed=true]{background:var(--ink);color:#14110f}
+.rf{border:0;width:36px;height:36px;border-radius:50%;background:#2a231d;color:var(--ink);font-size:17px;cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 120px}
+.hero{padding:34px 0 18px}.hero small{color:var(--gold);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.12;margin:8px 0 10px;font-weight:800}
+.hero p{color:var(--mut);margin:0;font-size:17px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.tags span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;color:var(--ink)}
+h2{font-size:22px;margin:30px 0 12px;font-weight:800}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:12px 0}
+.card h3{margin:0 0 8px;font-size:18px;font-weight:800}
+.card ul{margin:0;padding-left:20px}.card li{margin:6px 0;color:var(--ink)}.card li b{color:var(--gold)}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
+.quote{border-left:3px solid var(--gold);padding:10px 14px;margin:16px 0;font-size:18px;font-style:italic;color:var(--ink);background:#1b1612;border-radius:0 12px 12px 0}
+.price{background:linear-gradient(135deg,#2a1f15,#1f1a16);border:1px solid rgba(217,163,95,.5)}
+.big{font-size:34px;font-weight:800;color:var(--gold);line-height:1.1}.sub{color:var(--mut);font-size:15px;margin-top:4px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}.row:last-child{border:0}.row span:last-child{font-weight:800;text-align:right}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}.steps li{counter-increment:s;position:relative;padding:4px 0 10px 42px}.steps li:before{content:counter(s);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#14110f;font-weight:800;display:grid;place-items:center}
+.cta{position:fixed;left:0;right:0;bottom:0;z-index:6;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(20,17,15,.95);border-top:1px solid var(--line)}
+.btn{display:block;text-align:center;text-decoration:none;border:0;border-radius:14px;padding:13px 10px;font:800 15px M,sans-serif;cursor:pointer}
+.btn.wa{background:var(--wa);color:#06290f}.btn.gh{background:#2a231d;color:var(--ink)}
+footer{text-align:center;color:var(--mut);font-size:13px;margin-top:30px}footer b{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="bar"><b>MX STUDIO ✝</b><div class="pill" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div><button class="rf" id="rf" aria-label="Actualizar">↻</button></div>
+<div class="wrap" id="app"></div>
+<div class="cta"><a class="btn wa" id="ctaWa" target="_blank" rel="noopener"></a><button class="btn gh" id="ctaSh"></button></div>
+<script>
+const WA="527441930502";
+const T={
+es:{title:"Propuesta para su Boutique de Belleza",kick:"Propuesta · Pie de la Cuesta",lead:"Una app con códigos QR donde sus clientas reservan uñas y pelo por WhatsApp, ven su ropa nueva mientras esperan y le dejan reseña en Google. Sin descargar nada.",
+tags:["💅 Uñas","💇‍♀️ Pelo","👗 Ropa","🌎 Español e inglés","📶 Funciona sin internet"],
+h1:"Qué incluye su app",
+blocks:[["💅 Uñas y pelo",["<b>Menú de servicios</b> con fotos y precios: manicure, pedicure, gel, acrílico, corte, color, peinado, trenzas.","<b>Reservas por WhatsApp:</b> la clienta elige servicio, día y hora y le llega el mensaje listo.","<b>Galería de diseños:</b> fotos de sus trabajos reales para que digan “quiero este”.","<b>Su equipo:</b> quién hace qué, para que pidan a su estilista favorita.","<b>Recordatorio de retoque:</b> “¿Ya te toca?” a las 2–3 semanas del gel o el color."]],
+["👗 Ropa",["<b>Catálogo</b> con fotos, tallas y precios.","<b>Botón “Lo quiero”</b> en cada prenda que abre WhatsApp con el nombre de la prenda.","<b>“Llegó nuevo”:</b> usted actualiza la ropa nueva desde su panel.","<b>Agotado o apartado</b> para que nadie pregunte por lo que ya se vendió."]],
+["📲 Códigos QR donde venden",["<b>En el espejo de cada estación:</b> mientras se secan las uñas, ven la ropa. Venta mientras esperan.","<b>En la bolsa o el ticket:</b> reservar la próxima cita y dejar reseña en Google.","<b>En la puerta:</b> ven servicios y precios aunque esté cerrado.","<b>En el probador:</b> “¿Otra talla? Avísanos por WhatsApp”."]],
+["🎁 Para que regresen",["<b>Regalo para la próxima visita:</b> por ejemplo 10% en su próximo servicio, con código.","<b>Estilista Estrella de la Semana:</b> sus clientas califican en privado y su equipo compite por atender mejor.","<b>Combos:</b> uñas + pelo, o servicio + prenda, con descuento.","<b>Mes de cumpleaños:</b> un detalle si reservan ese mes."]],
+["🌴 Extra para Pie de la Cuesta",["<b>Español e inglés y precios en dólares</b> para turistas y extranjeros.","<b>Paquetes de playa y bodas:</b> novias, damas y quinceañeras reservan con anticipación.","<b>Perfil de Google y cómo llegar,</b> para que la encuentren junto a la laguna."]],
+["🧑‍💼 Su panel de dueña",["Cambia precios, servicios, fotos y ropa nueva desde su teléfono.","Su código QR listo para imprimir, ilimitado.","Ve quién es su Estilista Estrella cada semana."]]],
+quote:"“Sus clientas reservan por WhatsApp, ven su ropa mientras esperan y la recomiendan en Google.”",
+hP:"Inversión",pk:"Ecosistema digital",from:"Desde $18,000 MXN",sub:"Todo incluido · primer año incluido",
+rows:[["Pagos","Disponibles, desde $7,000"],["Forma de pago","En efectivo, sin comisiones"],["Desde el 2º año","$300 al mes"],["Códigos QR","Ilimitados (impresión aparte)"],["Idiomas","Español e inglés · MXN, US$, CA$"]],
+hS:"Cómo empezamos",steps:["Me manda su lista de servicios, precios y fotos (o se las tomo yo).","En pocos días le enseño su app funcionando con su nombre y sus colores.","Imprimimos sus QR para espejos, puerta, probador y bolsas. ¡Lista para vender!"],
+wa:"💬 Me interesa",share:"📤 Compartir",copied:"✓ Link copiado",waMsg:"Hola Brian, vi la propuesta de la app para mi boutique de belleza y me interesa.",
+foot:"Hecho por <b>MX Studio</b> · Acapulco · WhatsApp +52 744 193 0502"},
+en:{title:"Proposal for your Beauty Boutique",kick:"Proposal · Pie de la Cuesta",lead:"An app with QR codes where your clients book nails and hair on WhatsApp, browse your new clothes while they wait, and leave you a Google review. Nothing to download.",
+tags:["💅 Nails","💇‍♀️ Hair","👗 Clothes","🌎 Spanish & English","📶 Works offline"],
+h1:"What your app includes",
+blocks:[["💅 Nails and hair",["<b>Service menu</b> with photos and prices: manicure, pedicure, gel, acrylic, cut, color, styling, braids.","<b>Book on WhatsApp:</b> the client picks the service, day and time, and the message arrives ready.","<b>Design gallery:</b> photos of your real work so clients can say “I want this one.”","<b>Your team:</b> who does what, so clients can ask for their favorite stylist.","<b>Touch-up reminder:</b> “Time for a refill?” 2–3 weeks after gel or color."]],
+["👗 Clothes",["<b>Catalog</b> with photos, sizes and prices.","<b>“I want it” button</b> on each item that opens WhatsApp with the item's name.","<b>“Just arrived”:</b> you update new arrivals from your panel.","<b>Sold out or reserved</b> tags so nobody asks for what's gone."]],
+["📲 QR codes where they sell",["<b>On every station mirror:</b> while nails dry, clients browse the clothes. A sale while they wait.","<b>On the bag or receipt:</b> book the next appointment and leave a Google review.","<b>On the door:</b> services and prices even when you're closed.","<b>In the fitting room:</b> “Another size? Message us on WhatsApp.”"]],
+["🎁 To bring them back",["<b>Gift for the next visit:</b> for example 10% off the next service, with a code.","<b>Stylist of the Week:</b> clients rate privately and your team competes to serve better.","<b>Combos:</b> nails + hair, or service + clothing, with a discount.","<b>Birthday month:</b> a small gift if they book that month."]],
+["🌴 Extras for Pie de la Cuesta",["<b>Spanish and English, prices in dollars</b> for tourists and expats.","<b>Beach and wedding packages:</b> brides, bridesmaids and quinceañeras book ahead.","<b>Google profile and directions,</b> so people find you by the lagoon."]],
+["🧑‍💼 Your owner panel",["Change prices, services, photos and new clothes from your phone.","Your QR code ready to print, unlimited.","See your Stylist of the Week every week."]]],
+quote:"“Your clients book on WhatsApp, shop your clothes while they wait, and recommend you on Google.”",
+hP:"Investment",pk:"Digital ecosystem",from:"From $18,000 MXN",sub:"Everything included · first year included",
+rows:[["Payments","Available, from $7,000"],["Payment method","Cash, no fees"],["From year 2","$300 a month"],["QR codes","Unlimited (printing separate)"],["Languages","Spanish & English · MXN, US$, CA$"]],
+hS:"How we start",steps:["Send me your list of services, prices and photos (or I'll take them).","In a few days I show you your app working, with your name and colors.","We print your QR codes for mirrors, door, fitting room and bags. Ready to sell!"],
+wa:"💬 I'm interested",share:"📤 Share",copied:"✓ Link copied",waMsg:"Hi Brian, I saw the app proposal for my beauty boutique and I'm interested.",
+foot:"Made by <b>MX Studio</b> · Acapulco · WhatsApp +52 744 193 0502"}};
+let lang=(new URLSearchParams(location.search).get("l")==="en")?"en":"es";try{const s=localStorage.getItem("mx-prop-lang");if(s&&!new URLSearchParams(location.search).get("l"))lang=s}catch(_){}
+const $=id=>document.getElementById(id);
+function render(){const t=T[lang];document.documentElement.lang=lang;document.title=t.title+" · MX Studio";
+ document.querySelectorAll("#lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("app").innerHTML=`<div class="hero"><small>${t.kick}</small><h1>${t.title}</h1><p>${t.lead}</p><div class="tags">${t.tags.map(x=>`<span>${x}</span>`).join("")}</div></div>
+ <h2>${t.h1}</h2><div class="grid">${t.blocks.map(([h,l])=>`<div class="card"><h3>${h}</h3><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>
+ <div class="quote">${t.quote}</div>
+ <h2>${t.hP}</h2><div class="card price"><div style="font-weight:800;color:var(--mut);font-size:14px;letter-spacing:.06em;text-transform:uppercase">${t.pk}</div><div class="big">${t.from}</div><div class="sub">${t.sub}</div><div style="margin-top:10px">${t.rows.map(([a,b])=>`<div class="row"><span>${a}</span><span>${b}</span></div>`).join("")}</div></div>
+ <h2>${t.hS}</h2><div class="card"><ol class="steps">${t.steps.map(x=>`<li>${x}</li>`).join("")}</ol></div>
+ <footer>${t.foot}</footer>`;
+ $("ctaWa").textContent=t.wa;$("ctaWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(t.waMsg);$("ctaSh").textContent=t.share}
+$("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-prop-lang",lang)}catch(_){}render()};
+$("ctaSh").onclick=async()=>{const t=T[lang],u=location.origin+location.pathname+(lang==="en"?"?l=en":"");try{if(navigator.share){await navigator.share({title:t.title,text:t.lead,url:u});return}}catch(_){return}
+ try{await navigator.clipboard.writeText(u);const b=$("ctaSh");b.textContent=t.copied;setTimeout(()=>b.textContent=t.share,1800)}catch(_){location.href="https://wa.me/?text="+encodeURIComponent(t.title+"\n"+u)}};
+$("rf").onclick=async()=>{$("rf").textContent="⏳";try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.update()}catch(_){}location.replace(location.pathname+location.search.replace(/([?&])fresh=\d+&?/,"$1")+(location.search?"&":"?")+"fresh="+Date.now())};
+render();
+if("serviceWorker"in navigator&&location.protocol==="https:")navigator.serviceWorker.register("../../sw.js").catch(()=>{});
+</script>
+</body>
+</html>
