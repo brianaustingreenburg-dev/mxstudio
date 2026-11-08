@@ -277,7 +277,8 @@ document.addEventListener("click",e=>{
  const x=e.target.closest("[data-x]");if(!x)return;const u=U[lang];
  if(x.dataset.x==="close")return $("sheet").classList.remove("on");
  if(x.dataset.x==="bill")return billStart();
- if(x.dataset.x==="stf")return billIssue(+x.dataset.i);
+ if(x.dataset.x==="stf"){const i=+x.dataset.i;return i>=0?billRate(i):billIssue(-1,0)}
+ if(x.dataset.x==="rate")return billIssue(+x.dataset.i,+x.dataset.s);
  if(x.dataset.x==="cpn"){const c=cpnGet();if(c)cpnView(c,false);return}
  if(x.dataset.x==="clear"){cart={};render();$("sheet").classList.remove("on");return}
  if(x.dataset.x==="show"){const u=U[lang],its=items().filter(it=>cart[it.id]),m=new URLSearchParams(location.search).get("mesa");
@@ -324,7 +325,7 @@ function cpnView(c,fresh){const en=lang==="en",pid=(String(D.map||"").match(/que
  $("box").innerHTML=`<div style="text-align:center"><div style="font-size:44px">🎁</div><h3 style="margin:4px 0">${fresh?(en?"Thank you!":"¡Gracias!"):(en?"Your gift":"Tu regalo")}</h3>
  <div style="border:2px dashed var(--acc,#d9a35f);border-radius:16px;padding:14px;margin:10px 0"><b style="font-size:1.25em;line-height:1.2;display:block">${esc(c.g)}</b><small>${en?"on your next visit":"en tu próxima visita"} · ${esc(D.name||"")}</small>
  <div style="font:800 26px/1.2 ui-monospace,monospace;letter-spacing:3px;margin:10px 0 2px">${esc(c.c)}</div><small style="opacity:.75">${en?"Valid until":"Válido hasta"} ${exp.toLocaleDateString(en?"en-US":"es-MX",{day:"numeric",month:"long"})}${c.s?` · ${en?"Served by":"Te atendió"}: ${esc(c.s)}`:""}</small></div>
- ${fresh?`<p style="margin:6px 0">${en?"It's saved on your phone. Next time, open this app and show it to your waiter.":"Ya quedó guardado en tu teléfono. La próxima vez abre esta app y enséñaselo a tu mesero."}</p>`:`<p style="margin:6px 0">${en?"Show this screen to your waiter.":"Enséñale esta pantalla a tu mesero."}</p>`}
+ ${fresh&&c.r?`<p style="margin:6px 0;font-weight:800">🧾 ${en?"Show this code when you pay so your rating counts.":"Enséñale este código a tu mesero o en caja al pagar para que cuente tu calificación."}</p>`:""}${fresh?`<p style="margin:6px 0">${en?"It's saved on your phone. Next time, open this app and show it to your waiter.":"Ya quedó guardado en tu teléfono. La próxima vez abre esta app y enséñaselo a tu mesero."}</p>`:`<p style="margin:6px 0">${en?"Show this screen to your waiter.":"Enséñale esta pantalla a tu mesero."}</p>`}
  ${fresh&&pid?`<a class="revb" style="margin-top:12px;background:#fff6e5" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${en?"Enjoyed it? Help us with a Google review — 1 minute":"¿Te gustó? Ayúdanos con una reseña en Google — 1 minuto"}</a>`:""}
  <button class="revb" style="width:100%;margin-top:10px" data-x="close">${en?"Close":"Cerrar"}</button></div>`;$("sheet").classList.add("on")}
 function billStart(){const en=lang==="en",st=(LY&&Array.isArray(LY.staff)?LY.staff:[]).filter(Boolean);
@@ -333,8 +334,12 @@ function billStart(){const en=lang==="en",st=(LY&&Array.isArray(LY.staff)?LY.sta
  $("box").innerHTML=`<h3>🧾 ${en?"Ask for the bill":"Pedir la cuenta"}</h3><p>${en?"Who served you today? There's a gift for you.":"¿Quién te atendió hoy? Hay un regalo para ti."}</p>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">${st.map((n,i)=>`<button class="revb" style="margin:0" data-x="stf" data-i="${i}">${esc(n)}</button>`).join("")}</div>
  <button class="revb" style="width:100%;margin:0;opacity:.8" data-x="stf" data-i="-1">${en?"Not sure":"No sé"}</button>`;$("sheet").classList.add("on")}
-function billIssue(i){if(!window.MXL)return setTimeout(()=>billIssue(i),300);const st=(LY.staff||[]),days=+LY.days||30;
- const c={c:MXL.make(D.slug||"x",i),s:i>=0?st[i]:"",g:lyT(LY.gift)||(lang==="en"?"10% off":"10% de descuento"),i:Date.now(),e:Date.now()+days*864e5};cpnSet(c);cpnView(c,true);render()}
+function billRate(i){const en=lang==="en",st=(LY.staff||[]).filter(Boolean),n=st[i]||"";
+ $("box").innerHTML=`<h3>⭐ ${en?"How did "+esc(n)+" do?":"¿Cómo te atendió "+esc(n)+"?"}</h3><p style="font-size:.9em;opacity:.8">🔒 ${en?"Private: only the owner sees it. Nothing is posted.":"Privado: solo lo ve el dueño. No se publica."}</p>
+ <div style="display:grid;gap:8px;margin:10px 0">${[5,4,3,2,1].map(k=>`<button class="revb" style="margin:0;font-size:20px;letter-spacing:2px" data-x="rate" data-i="${i}" data-s="${k}" aria-label="${k}">${"⭐".repeat(k)}</button>`).join("")}</div>
+ <button class="revb" style="width:100%;margin:0;opacity:.8" data-x="rate" data-i="${i}" data-s="0">${en?"Skip":"Omitir"}</button>`;$("sheet").classList.add("on")}
+function billIssue(i,k){if(!window.MXL)return setTimeout(()=>billIssue(i,k),300);const st=(LY.staff||[]).filter(Boolean),days=+LY.days||30;
+ const c={c:MXL.make(D.slug||"x",i,k||0),r:k||0,s:i>=0?st[i]:"",g:lyT(LY.gift)||(lang==="en"?"10% off":"10% de descuento"),i:Date.now(),e:Date.now()+days*864e5};cpnSet(c);cpnView(c,true);render()}
 function lyBanner(){if(!LY)return "";const c=cpnGet(),en=lang==="en";if(!c||Date.now()>c.e||Date.now()-c.i<4*36e5)return "";
  return `<button data-x="cpn" style="all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;margin:10px 0;padding:12px 14px;border-radius:14px;background:#fff6e5;border:2px dashed #d9a35f;color:#3a2700;font-weight:800">🎁 ${en?"You have a gift":"Tienes un regalo"}: ${esc(c.g)} — ${en?"tap and show your waiter":"tócalo y enséñaselo a tu mesero"}</button>`}
 function lyBill(){if(!LY)return "";const en=lang==="en";return `<button class="revb" style="width:100%;background:#1f7a46;color:#fff;border-color:#1f7a46" data-x="bill">🧾 ${en?"Ask for the bill":"Pedir la cuenta"} · 🎁 ${esc(lyT(LY.gift)||(en?"gift":"regalo"))} ${en?"for your next visit":"para tu próxima visita"}</button>`}

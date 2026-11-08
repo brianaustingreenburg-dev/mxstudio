@@ -50,12 +50,68 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <div class="card"><h2>${lang==="es"?"✏️ Edita tu menú":"✏️ Edit your menu"}</h2><p>${lang==="es"?"Cambia precios, agrega platillos, toma foto de tu menú o cambia el especial de hoy. Al terminar, toca Publicar.":"Change prices, add dishes, snap a photo of your menu or change today's special. When you're done, tap Publish."}</p><button class="b" id="edOpen">${lang==="es"?"✏️ Abrir editor":"✏️ Open editor"}</button></div>
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
  ${lyCard()}
+ ${starCard()}
  ${setupCard()}
  <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
  <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
  $("edOpen").onclick=openEd;if(location.hash==="#setup"&&!window.__sj){window.__sj=1;setTimeout(()=>{const s=$("setup");if(s)s.scrollIntoView({behavior:"smooth"})},300)}$("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
 
 
+
+// ---------- ⭐ Mesero Estrella de la Semana (private ratings, Google-safe) ----------
+const EJ=new URLSearchParams(location.search).get("ej")==="1";
+const wsGet=()=>{try{return JSON.parse(localStorage.getItem("mx-star-"+slug)||"[]")}catch(_){return []}},wsSet=a=>{try{localStorage.setItem("mx-star-"+slug,JSON.stringify(a))}catch(_){}};
+const stCfgGet=()=>{try{return JSON.parse(localStorage.getItem("mx-starcfg-"+slug)||"{}")}catch(_){return {}}},stCfgSet=o=>{try{localStorage.setItem("mx-starcfg-"+slug,JSON.stringify(o))}catch(_){}};
+const stMon=d=>{const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x};
+const stYmd=d=>{const x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+const ST_FUT=[["🗓️ Elige primero sus turnos de la próxima semana","🗓️ First pick of next week's shifts"],["📈 Mérito para ascenso (Capitán, Encargado, Gerente)","📈 Merit toward promotion (Captain, Shift lead, Manager)"],["🎓 Curso o certificación pagada","🎓 A paid course or certification"],["🎟️ Boleto extra para el sorteo trimestral","🎟️ Extra ticket for the quarterly raffle"]];
+function stStaff(){if(EJ)return ["Sarah M.","Alex R.","Carlos T."];return (LYC&&Array.isArray(LYC.staff)?LYC.staff:[]).filter(Boolean)}
+function stData(){if(!EJ)return wsGet();const m=stMon(Date.now()),P=[[1,0,2,1,3,2,1],[0,1,1,2,2,1,0],[1,1,0,0,1,1,1]],o=[];
+ P.forEach((row,s)=>row.forEach((n,d)=>{for(let k=0;k<n;k++)o.push({c:"EJ"+s+d+k,s,n:["Sarah M.","Alex R.","Carlos T."][s],st:5,at:new Date(m.getTime()+d*864e5+12*36e5).toISOString()})}));
+ o.push({c:"EJx1",s:1,n:"Alex R.",st:4,at:new Date(m.getTime()+36e5*14).toISOString()});
+ const pm=new Date(m.getTime()-7*864e5);[5,3,2].forEach((n,s)=>{for(let k=0;k<n;k++)o.push({c:"EJp"+s+k,s,n:["Sarah M.","Alex R.","Carlos T."][s],st:5,at:new Date(pm.getTime()+k*864e5+12*36e5).toISOString()})});return o}
+function stWeek(all,mon,names){const end=mon.getTime()+7*864e5,W=all.filter(x=>{const t=new Date(x.at).getTime();return t>=mon.getTime()&&t<end});
+ const rows=names.map((n,i)=>{const mine=W.filter(x=>x.s===i),days=[0,0,0,0,0,0,0];mine.filter(x=>x.st===5).forEach(x=>{days[(new Date(x.at).getDay()+6)%7]++});
+  const five=days.reduce((a,b)=>a+b,0),avg=mine.length?mine.reduce((a,x)=>a+x.st,0)/mine.length:0;return {n,i,days,five,avg,cnt:mine.length}});
+ const rk=rows.slice().sort((a,b)=>b.five-a.five||b.avg-a.avg||b.cnt-a.cnt),w=rk[0]&&rk[0].five>=3?rk[0]:null;return {rows,w}}
+function starCard(){const es=lang==="es",names=stStaff(),all=stData(),cfg=stCfgGet(),bono=cfg.b||"$500",fut=+cfg.f||0,mon=stMon(Date.now()),{rows,w}=stWeek(all,mon,names);
+ const prev=stWeek(all,new Date(mon.getTime()-7*864e5),names).w;
+ const q0=new Date(mon.getFullYear(),Math.floor(mon.getMonth()/3)*3,1),tk={};for(let m=stMon(q0);m<mon;m=new Date(m.getTime()+7*864e5)){const r=stWeek(all,m,names).w;if(r)tk[r.n]=(tk[r.n]||0)+1}
+ const D7=es?["L","M","M","J","V","S","D"]:["M","T","W","T","F","S","S"],th="padding:6px 2px;border-bottom:1px solid #eadfd3;text-align:center";
+ const lead=rows.slice().sort((a,b)=>b.five-a.five||b.avg-a.avg)[0];
+ const status=!names.length?"":w?`🏆 <b>${esc(w.n)}</b> ${es?"va ganando":"is winning"} · ${w.five} × 5⭐`:lead&&lead.five?`${es?"Va adelante":"In the lead"}: <b>${esc(lead.n)}</b> · ${es?"le faltan":"needs"} ${3-lead.five} ${es?"para el mínimo de 3":"more to reach the minimum of 3"}`:(es?"Todavía no hay calificaciones esta semana.":"No ratings this week yet.");
+ const share=(es?"⭐ Mesero Estrella de la Semana · ":"⭐ Waiter of the Week · ")+(D.name||slug)+"\n"+rows.slice().sort((a,b)=>b.five-a.five||b.avg-a.avg).map((r,i)=>`${i+1}. ${r.n}: ${r.five} × 5⭐${w&&w.i===r.i?" 🏆":""}`).join("\n")+"\n🎁 "+(es?"Premio":"Prize")+": "+bono+" + "+ST_FUT[fut][es?0:1];
+ const tbl=names.length?`<div style="overflow-x:auto;margin:8px 0"><table style="width:100%;border-collapse:collapse;font-size:13px"><tr><th style="${th};text-align:left">${es?"Mesero":"Waiter"}</th>${D7.map(d=>`<th style="${th}">${d}</th>`).join("")}<th style="${th}">5⭐</th><th style="${th}">${es?"Prom.":"Avg"}</th></tr>
+  ${rows.map(r=>`<tr style="${w&&w.i===r.i?"background:#fff6e5;font-weight:800":""}"><td style="${th};text-align:left">${esc(r.n)}${w&&w.i===r.i?" 🏆":""}</td>${r.days.map(n=>`<td style="${th}">${n}</td>`).join("")}<td style="${th};font-weight:800">${r.five}</td><td style="${th}">${r.cnt?r.avg.toFixed(1):"–"}</td></tr>`).join("")}</table></div>`:"";
+ const det=(t,b)=>`<details style="margin-top:8px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff"><summary style="cursor:pointer;font-weight:800">${t}</summary>${b}</details>`;
+ const rules=es?["Cuenta cada calificación de 5⭐ que el cliente da en la app al pedir la cuenta y que se registra al cobrar.","Cada código se registra una sola vez, el mismo día o al día siguiente.","Mínimo 3 calificaciones de 5⭐ en la semana para ganar.","Empate: gana el mejor promedio; si sigue el empate, quien atendió más mesas.","Códigos hechos por el propio mesero o sin una cuenta real = descalificación.","Las reseñas de Google NO cuentan para el concurso: se piden a todos los clientes, sin pedir 5 estrellas ni nombres, y nunca a cambio de nada (reglas de Google)."]:["Every 5⭐ rating a guest gives in the app when asking for the bill, registered at checkout, counts.","Each code is registered once, the same day or the next day.","At least 3 five-star ratings in the week to win.","Tie: best average wins; if still tied, whoever served more tables.","Codes made by the waiter or without a real bill = disqualified.","Google reviews do NOT count for the contest: ask every guest, never ask for 5 stars or names, and never in exchange for anything (Google rules)."];
+ const steps=es?[["⭐ Servicio de excelencia","Atención amable, rápida y atenta durante toda la visita."],["🧾 Al llevar la cuenta","“¡Fue un gusto atenderle! Si pide la cuenta en la app le sale un regalo para su próxima visita y puede calificar el servicio. Y si le gustó, una reseña en Google nos ayuda mucho.”"],["✅ En caja","El cliente enseña su código y se registra aquí arriba."]]:[["⭐ Excellent service","Friendly, fast, attentive service the whole visit."],["🧾 With the bill","“It was a pleasure! If you ask for the bill in the app you get a gift for your next visit and you can rate the service. And if you enjoyed it, a Google review helps us a lot.”"],["✅ At checkout","The guest shows their code and you register it above."]];
+ const ben=es?["⭐ Mejor servicio todos los días: tus meseros compiten por atender mejor.","🧑‍🍳 Menos rotación: bonos, mejores turnos y crecimiento retienen a tu equipo.","📍 Más reseñas en Google sin riesgo: se piden a todos y de forma permitida.","📊 Sabes quién atiende mejor, con datos reales de tus clientes."]:["⭐ Better service every day: your waiters compete to serve better.","🧑‍🍳 Less turnover: bonuses, better shifts and growth keep your team.","📍 More Google reviews with no risk: asked of everyone, the allowed way.","📊 You know who serves best, from real guest data."];
+ return `<div class="card" id="stc"><h2>⭐ ${es?"Mesero Estrella de la Semana":"Waiter of the Week"}</h2>
+ ${EJ?`<p style="background:#fff6e5;border-radius:10px;padding:8px 10px;font-weight:700">👀 ${es?"Ejemplo con datos de muestra":"Example with sample data"}</p>`:""}
+ <p style="font-size:.92em">${es?"Al pedir la cuenta en tu app, el cliente elige quién lo atendió y lo califica <b>en privado</b> (solo lo ves tú, no se publica en Google). El mesero con más calificaciones de 5⭐ en la semana gana.":"When guests ask for the bill in your app, they pick who served them and rate them <b>privately</b> (only you see it, nothing is posted on Google). The waiter with the most 5⭐ ratings in the week wins."}</p>
+ ${!names.length?`<p class="tip">${es?"Primero agrega a tus meseros en 🎁 Regalo para clientes → ⚙️ Configurar, y envíalo a MX Studio para activarlo.":"First add your waiters in 🎁 Guest gift → ⚙️ Settings and send it to MX Studio to turn it on."}</p>`:`
+ ${EJ?"":`<h3 style="margin:12px 0 4px">🧾 ${es?"Al cobrar: registra el código":"At checkout: register the code"}</h3>
+ <input id="stCode" placeholder="ABC-1234" autocapitalize="characters" autocomplete="off" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:800 20px ui-monospace,monospace;letter-spacing:2px;text-align:center"><button class="b" id="stAdd">${es?"Registrar calificación":"Register rating"}</button><div id="stRes"></div>`}
+ <h3 style="margin:14px 0 2px">📊 ${es?"Esta semana":"This week"} · ${mon.toLocaleDateString(es?"es-MX":"en-US",{day:"numeric",month:"short"})}</h3>${tbl}
+ <p style="margin:4px 0">${status}</p>${prev?`<p class="tip" style="margin-top:2px">${es?"Ganador de la semana pasada":"Last week's winner"}: 🏆 ${esc(prev.n)}</p>`:""}
+ ${Object.keys(tk).length?`<p class="tip" style="margin-top:2px">🎟️ ${es?"Boletos para el sorteo del trimestre":"Quarterly raffle tickets"}: ${Object.entries(tk).map(([n,c])=>esc(n)+" "+c).join(" · ")}</p>`:""}
+ <h3 style="margin:14px 0 4px">🎁 ${es?"Premio de la semana":"This week's prize"}</h3>
+ <label style="font-weight:700;font-size:.9em">💵 ${es?"Bono en efectivo (sugerido $500 – $1,000)":"Cash bonus (suggested $500 – $1,000)"}</label><input id="stBono" value="${esc(bono)}" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin:5px 0 8px;font:inherit">
+ <label style="font-weight:700;font-size:.9em">🌱 ${es?"Incentivo a futuro":"Future incentive"}</label><select id="stFut" style="width:100%;padding:11px;border-radius:10px;margin-top:5px;font:inherit">${ST_FUT.map((f,i)=>`<option value="${i}" ${i===fut?"selected":""}>${es?f[0]:f[1]}</option>`).join("")}</select>
+ <a class="b g" target="_blank" href="https://api.whatsapp.com/send?text=${encodeURIComponent(share)}">📤 ${es?"Compartir resultados con tu equipo":"Share results with your team"}</a>`}
+ ${det("📋 "+(es?"Reglas":"Rules"),`<ol style="margin:8px 0;padding-left:20px">${rules.map(r=>`<li style="margin:4px 0">${r}</li>`).join("")}</ol>`)}
+ ${det("🗣️ "+(es?"Guion para meseros (3 pasos)":"Waiter script (3 steps)"),steps.map(([a,b])=>`<p style="margin:8px 0"><b>${a}</b><br>${b}</p>`).join(""))}
+ ${det("💡 "+(es?"Beneficios para tu negocio":"Benefits for your business"),`<ul style="margin:8px 0;padding-left:20px">${ben.map(r=>`<li style="margin:4px 0">${r}</li>`).join("")}</ul>`)}
+ <p class="tip">${es?"Las calificaciones se guardan en este teléfono: usa siempre el mismo teléfono del negocio.":"Ratings are saved on this phone: always use the same business phone."}</p></div>`}
+document.addEventListener("change",e=>{if(e.target.id==="stBono"||e.target.id==="stFut"){const o=stCfgGet();o.b=$("stBono").value.trim();o.f=+$("stFut").value;stCfgSet(o);const y=scrollY;render();scrollTo(0,y)}});
+document.addEventListener("click",e=>{if(e.target.id!=="stAdd")return;const es=lang==="es",box=$("stRes"),r=window.MXL&&MXL.read(slug,$("stCode").value),names=stStaff();
+ if(!r){box.innerHTML=`<p style="color:#b3261e;font-weight:800">❌ ${es?"Código no válido":"Invalid code"}</p>`;return}
+ if(r.staff<0||!names[r.staff]||!r.stars){box.innerHTML=`<p style="color:#b5642f;font-weight:800">ℹ️ ${es?"Este código no trae calificación de mesero.":"This code has no waiter rating."}</p>`;return}
+ const a=wsGet();if(a.find(x=>x.c===r.code)){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⚠️ ${es?"Este código ya se registró":"This code was already registered"}</p>`;return}
+ if(MXL.today()-r.day>1){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⌛ ${es?"Se registra el mismo día o al día siguiente":"Must be registered the same day or the next day"}</p>`;return}
+ a.push({c:r.code,s:r.staff,n:names[r.staff],st:r.stars,at:new Date().toISOString()});wsSet(a);const y=scrollY;render();scrollTo(0,y);
+ const b2=$("stRes");if(b2)b2.innerHTML=`<p style="color:#1f7a46;font-weight:800">✅ ${esc(names[r.staff])} · ${"⭐".repeat(r.stars)}</p>`});
 
 // ---------- 🎁 Guest gift + 🏆 waiter credit ----------
 let LYC=null,LYD=null;const GIFTS=[["10% de descuento","10% off"],["Postre gratis","Free dessert"],["Bebida gratis","Free drink"],["Café gratis","Free coffee"]];

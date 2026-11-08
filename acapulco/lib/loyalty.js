@@ -10,12 +10,12 @@
  window.MXL={
   today,
   dayToDate:(d)=>new Date(EP+d*DAY),
-  /* staff: index in the owner's list (0–14), or 15 = not chosen */
-  make(slug,staff){const s=(staff>=0&&staff<15)?staff:15,d=today()&4095,r=Math.floor(Math.random()*512);
+  /* staff: index in the owner's list (0–14), or 15 = not chosen; stars: private 1–5 rating (0 = none) */
+  make(slug,staff,stars){const s=(staff>=0&&staff<15)?staff:15,d=today()&4095,k=(stars>=1&&stars<=5)?stars:0,r=k*64+Math.floor(Math.random()*64);
    const p=s*2097152+d*512+r;const c=h10(slug+":"+p);const code=enc(p,5)+enc(c,2);return code.slice(0,3)+"-"+code.slice(3)},
   read(slug,code){const k=String(code||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/O/g,"0").replace(/I/g,"1");
    if(k.length!==7)return null;const p=dec(k.slice(0,5)),c=dec(k.slice(5));if(p<0||c<0||h10(slug+":"+p)!==c)return null;
    const s=Math.floor(p/2097152),d=Math.floor(p/512)%4096,t=today();let day=t-((t-d)&4095);
-   return {staff:s===15?-1:s,day,code:k.slice(0,3)+"-"+k.slice(3)}}
+   const q=Math.floor((p%512)/64);return {staff:s===15?-1:s,day,stars:q>=1&&q<=5?q:0,code:k.slice(0,3)+"-"+k.slice(3)}}
  };
 })();
