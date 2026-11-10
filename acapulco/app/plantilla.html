@@ -177,20 +177,21 @@ const mapUrl=()=>D.map||("https://www.google.com/maps/search/?api=1&query="+enco
 function render(){
  const u=U[lang];document.documentElement.lang=lang;
  if(D.color){document.documentElement.style.setProperty("--c",D.color);const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=D.color}
+ $("lang").style.display=D.features?.lang_toggle!==false?"":"none";
  $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
  $("cur").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cur===cur));
  $("spec").innerHTML=lyBanner()+(SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"");
  const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
- $("rvtop").innerHTML=pid&&!D.demo&&OP.revTop!==false?`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(D.name||"")}&query_place_id=${esc(pid)}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:inherit;text-decoration:none;font-weight:800"><span style="font-size:20px">⭐</span><span style="flex:1">${lang==="en"?"See our Google reviews":"Ver nuestras reseñas en Google"}<br><small style="font-weight:600;opacity:.7">${lang==="en"?"What our guests say about the food":"Lo que dicen nuestros clientes de la comida"}</small></span><span style="opacity:.6">›</span></a>`:"";
- $("rev").innerHTML=lyBill()+(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
+ $("rvtop").innerHTML=pid&&!D.demo&&D.features?.reviews!==false&&OP.revTop!==false?`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(D.name||"")}&query_place_id=${esc(pid)}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:inherit;text-decoration:none;font-weight:800"><span style="font-size:20px">⭐</span><span style="flex:1">${lang==="en"?"See our Google reviews":"Ver nuestras reseñas en Google"}<br><small style="font-weight:600;opacity:.7">${lang==="en"?"What our guests say about the food":"Lo que dicen nuestros clientes de la comida"}</small></span><span style="opacity:.6">›</span></a>`:"";
+ $("rev").innerHTML=lyBill()+(pid&&!D.demo&&D.features?.reviews!==false?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
  const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
  $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
  const q=[];
- if(D.reservations)q.push(`<button class="q" data-a="res"><i>📅</i>${u.res}</button>`);
+ if(D.features?.reservations_feature!==false&&D.reservations)q.push(`<button class="q" data-a="res"><i>📅</i>${u.res}</button>`);
  q.push(`<a class="q" href="${esc(mapUrl())}" target="_blank" rel="noopener"><i>📍</i>${u.go}</a>`);
  if(D.phone||D.whatsapp)q.push(`<a class="q" href="tel:+${esc(String(D.phone||D.whatsapp).replace(/\D/g,""))}"><i>📞</i>${u.call}</a>`);
- if(!D.reservations&&D.carryout)q.unshift(`<a class="q" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener"><i>💬</i>WhatsApp</a>`);
- q.unshift(`<button class="q" data-a="wifi"><i>📶</i>${u.wifi}</button>`);
+ if(D.features?.ordering!==false&&!D.reservations&&D.carryout)q.unshift(`<a class="q" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener"><i>💬</i>WhatsApp</a>`);
+ if(D.features?.wifi!==false)q.unshift(`<button class="q" data-a="wifi"><i>📶</i>${u.wifi}</button>`);
  const qs=q.slice(0,4);$("quick").style.gridTemplateColumns=`repeat(${qs.length},1fr)`;$("quick").innerHTML=qs.join("");
  const inf=[];
  if(tx(D.hours))inf.push(`<div><b>🕒</b><span><strong>${u.hours}:</strong> ${esc(tx(D.hours))}</span></div>`);
@@ -212,8 +213,8 @@ function render(){
   <div class="row"><span class="price">${it.price?money(it.price):""}</span>${canOrder()&&it.price?`<div class="qty">${n?`<button class="m" data-d="${id}">−</button><span>${n}</span>`:""}<button data-a="${id}">+</button></div>`:""}</div></div></div>`}).join("")).join("");
  const cnt=Object.values(cart).reduce((a,b)=>a+b,0),tot=items().reduce((s,it)=>s+(cart[it.id]||0)*(+it.price||0),0);
  const bb=[];
- if(canOrder())bb.push(`<button class="btn b-c" data-a="cart">${D.carryout&&!D.waiter?"🛍️ "+u.order:"📝 "+u.myList}${cnt?` (${cnt}) · ${money(tot)}`:""}</button>`);
- if(D.reservations)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
+ if(D.features?.ordering!==false&&canOrder())bb.push(`<button class="btn b-c" data-a="cart">${D.carryout&&!D.waiter?"🛍️ "+u.order:"📝 "+u.myList}${cnt?` (${cnt}) · ${money(tot)}`:""}</button>`);
+ if(D.features?.reservations_feature!==false&&D.reservations)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
  $("bar").innerHTML=bb.join("");$("bar").style.display=bb.length?"":"none";
  $("inst").style.display=standalone?"none":"";
  $("inst").innerHTML=`<h3>${u.iT}</h3><p>${u.iP}</p><div class="os"><button data-os="ios" class="${os==="ios"?"on":""}">iPhone</button><button data-os="and" class="${os==="and"?"on":""}">Android</button></div>
@@ -318,7 +319,7 @@ fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json(
 let OP={};try{OP=JSON.parse(localStorage.getItem(KEY+"-op")||"{}")||{}}catch(_){}
 if(!D.demo)fetch("opts.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{OP=j||{};try{localStorage.setItem(KEY+"-op",JSON.stringify(OP))}catch(_){}render()}).catch(()=>{});
 let LY=null;try{LY=JSON.parse(localStorage.getItem(KEY+"-ly")||"null")}catch(_){}
-if(!D.demo)fetch("loyalty.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{LY=j&&j.on?j:null;try{localStorage.setItem(KEY+"-ly",JSON.stringify(LY))}catch(_){}render()}).catch(()=>{});
+if(!D.demo&&D.features?.loyalty!==false)fetch("loyalty.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{LY=j&&j.on?j:null;try{localStorage.setItem(KEY+"-ly",JSON.stringify(LY))}catch(_){}render()}).catch(()=>{});
 const cpnGet=()=>{try{return JSON.parse(localStorage.getItem(KEY+"-cpn")||"null")}catch(_){return null}},cpnSet=o=>{try{localStorage.setItem(KEY+"-cpn",JSON.stringify(o))}catch(_){}};
 const lyT=o=>o?(lang==="en"?(o.en||o.es):(o.es||o.en)):"";
 function cpnView(c,fresh){const en=lang==="en",pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1],exp=new Date(c.e);

@@ -34,12 +34,13 @@ let lang="es";try{lang=localStorage.getItem("mx-dueno-lang")||((navigator.langua
 const T={es:{panel:"Panel del dueño",sub:"Todo lo de tu app en un lugar",app:"📱 Tu app",appP:"Este es el QR de tu app. Tus clientes lo escanean con la cámara.",open:"Abrir mi app",shareApp:"📲 Compartir mi app por WhatsApp",rev:"⭐ Más reseñas de 5 estrellas",revP:"Más reseñas = más arriba en Google Maps, donde te buscan los turistas.",revQR:"Que el cliente escanee este QR antes de irse:",revMsg:"📲 Mandar link de reseña a un cliente",revTip:"Tip: pídela cuando el cliente diga que le gustó. Pon los stickers ⭐ en la caja y en el ticket.",print:"🖨️ Imprimir",mesa:"🍽️ Tarjetas de mesa",stk:"🏷️ Stickers de menú",rvs:"⭐ Stickers de reseñas",chg:"✏️ Cambios",chgP:"Cambios ilimitados incluidos. Mándanos lo que quieras cambiar y lo hacemos.",spec:"🔥 Cambiar especial de hoy",menu:"📷 Mandar foto del menú o precios nuevos",help:"💬 Hablar con MX Studio",tipsH:"💡 Para vender más",tips:"Pon el link de tu app en tu Instagram, Facebook y en la respuesta automática de WhatsApp. Ponlo como “Menú” en tu perfil de Google.",copy:"📋 Copiar link de mi app",copied:"✓ Copiado",shareMsg:"¡Mira nuestro menú con fotos, en español e inglés! ",revAsk:"¡Gracias por visitarnos! ¿Nos regalas una reseña de 5 ⭐? Nos ayuda muchísimo: ",specMsg:"Hola MX Studio, quiero cambiar el especial de hoy de ",menuMsg:"Hola MX Studio, te mando cambios del menú de ",helpMsg:"Hola MX Studio, soy de ",none:"Falta el restaurante en el link."},
  en:{panel:"Owner panel",sub:"Everything about your app in one place",app:"📱 Your app",appP:"This is your app's QR. Customers scan it with their camera.",open:"Open my app",shareApp:"📲 Share my app on WhatsApp",rev:"⭐ More 5-star reviews",revP:"More reviews = higher on Google Maps, where tourists search.",revQR:"Have the customer scan this QR before leaving:",revMsg:"📲 Send the review link to a customer",revTip:"Tip: ask when the customer says they liked it. Put the ⭐ stickers at the register and on receipts.",print:"🖨️ Print",mesa:"🍽️ Table cards",stk:"🏷️ Menu stickers",rvs:"⭐ Review stickers",chg:"✏️ Changes",chgP:"Unlimited changes included. Send us what you want changed and we'll do it.",spec:"🔥 Change today's special",menu:"📷 Send a menu photo or new prices",help:"💬 Talk to MX Studio",tipsH:"💡 Sell more",tips:"Put your app link on Instagram, Facebook and your WhatsApp auto-reply. Add it as the “Menu” on your Google profile.",copy:"📋 Copy my app link",copied:"✓ Copied",shareMsg:"See our menu with photos, in Spanish and English! ",revAsk:"Thanks for visiting! Would you leave us a 5 ⭐ review? It helps us a lot: ",specMsg:"Hi MX Studio, I want to change today's special for ",menuMsg:"Hi MX Studio, here are menu changes for ",helpMsg:"Hi MX Studio, this is ",none:"The restaurant is missing from the link."}};
 function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 ${n+6} ${n+6}" shape-rendering="crispEdges"><path d="${d}" fill="#000"/></svg>`}
-let D=null,pid="";
+let D=null,pid="",CFG_RAW={};
 async function load(){if(!slug){$("w").innerHTML=`<div class="card">${T[lang].none}</div>`;return}
  try{D=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){D={name:slug}}
  try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
  try{const r=await fetch("../c/"+slug+"/loyalty.json?t="+Date.now(),{cache:"no-store"});LYC=r.ok?await r.json():null}catch(_){LYC=null}
  try{const r=await fetch("../c/"+slug+"/opts.json?t="+Date.now(),{cache:"no-store"});OPC=r.ok?await r.json():{}}catch(_){OPC={}}
+ try{const r=await fetch("../c/"+slug+"/config.json?t="+Date.now(),{cache:"no-store"});CFG_RAW=r.ok?await r.json():{}}catch(_){CFG_RAW={}}
  if(D.color)document.documentElement.style.setProperty("--c",D.color);render()}
 function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:""),rv=pid?"https://search.google.com/local/writereview?placeid="+pid:"",tj="../tarjeta/?s="+slug+(A?"&a="+A:""),wa=(m,to)=>"https://api.whatsapp.com/send?"+(to?"phone="+to+"&":"")+"text="+encodeURIComponent(m);
  document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(e=>e.textContent=u[e.dataset.t]);$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
@@ -53,6 +54,7 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
  ${lyCard()}
  ${starCard()}
+ ${featuresCard()}
  ${setupCard()}
  <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
  <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
@@ -176,7 +178,50 @@ function revIdeas(){const L=window.MX_REV||[];if(!L.length)return "";const es=la
 // ---------- 🧰 Setup guides ----------
 function stGet(){try{return JSON.parse(localStorage.getItem("mx-setup-"+slug)||"{}")}catch(_){return {}}}
 function stSet(o){try{localStorage.setItem("mx-setup-"+slug,JSON.stringify(o))}catch(_){}}
-function setupCard(){const L=window.MX_SETUP||[];if(!L.length)return "";const es=lang==="es",done=stGet(),n=L.filter(x=>done[x.k]).length,nm=D.name||slug;
+
+// ---------- ⚙️ Feature toggles ----------
+const FEAT_DEFS=[
+ {k:"wifi",        es:"📶 WiFi",             en:"📶 WiFi",              esP:"Muestra el botón de WiFi en la app.",                        enP:"Shows the WiFi button in the app."},
+ {k:"ordering",    es:"📝 Pedidos / Mesero",  en:"📝 Ordering / Waiter", esP:"Permite ordenar al mesero o pedir para llevar.",              enP:"Lets guests order to the table or carry-out."},
+ {k:"reservations_feature",es:"📅 Reservaciones",en:"📅 Reservations",  esP:"Muestra el botón de reservar mesa.",                         enP:"Shows the reserve-a-table button."},
+ {k:"reviews",     es:"⭐ Reseñas Google",    en:"⭐ Google Reviews",    esP:"Muestra los links y QR de reseñas de Google.",               enP:"Shows Google review links and QR codes."},
+ {k:"lang_toggle", es:"🌐 Toggle ES/EN",      en:"🌐 ES/EN toggle",      esP:"El botón para cambiar el idioma de la app.",                  enP:"The language-switch button in the app."},
+ {k:"loyalty",     es:"🎁 Regalo y meseros",  en:"🎁 Gift & waiters",    esP:"El sistema de regalo para clientes y Mesero Estrella.",       enP:"The guest gift and Waiter of the Week system."},
+];
+function getFeat(k){const f=CFG_RAW.features;if(!f||f[k]===undefined)return true;return !!f[k]}
+function featuresCard(){
+ const es=lang==="es";
+ const rows=FEAT_DEFS.map(f=>{
+  const on=getFeat(f.k);
+  return `<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #eadfd2">
+   <div style="flex:1"><b style="font-size:15px">${f[es?"es":"en"]}</b><br><small style="color:#776a63">${f[es?"esP":"enP"]}</small></div>
+   <button class="feat-tog" data-fk="${f.k}" data-on="${on?1:0}" style="all:unset;cursor:pointer;width:52px;height:30px;border-radius:999px;background:${on?"#25d366":"#cdbfb2"};position:relative;flex:0 0 auto;transition:background .2s" aria-label="${on?(es?"Apagar":"Turn off"):(es?"Encender":"Turn on")}">
+    <span style="position:absolute;top:3px;${on?"right:3px":"left:3px"};width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:all .2s"></span>
+   </button>
+  </div>`}).join("");
+ return `<div class="card" id="featCard"><h2>⚙️ ${es?"Funciones de tu app":"App features"}</h2>
+  <p style="font-size:.9em;opacity:.8">${es?"Enciende o apaga funciones. Los cambios se envían a MX Studio por WhatsApp para aplicarlos.":"Turn features on or off. Changes are sent to MX Studio via WhatsApp to apply them."}</p>
+  ${rows}
+  <button id="featSend" class="b" style="margin-top:14px;display:none">📲 ${es?"Enviar cambios":"Send changes"}</button>
+ </div>`}
+let _featPending={};
+function featToggleSetup(){
+ document.addEventListener("click",e=>{
+  const t=e.target.closest(".feat-tog");if(!t)return;
+  const k=t.dataset.fk,wasOn=t.dataset.on==="1",nowOn=!wasOn;
+  t.dataset.on=nowOn?1:0;t.style.background=nowOn?"#25d366":"#cdbfb2";
+  t.querySelector("span").style.left=nowOn?"":"3px";t.querySelector("span").style.right=nowOn?"3px":"";
+  _featPending[k]=nowOn;const btn=$("featSend");if(btn)btn.style.display="";
+ });
+ document.addEventListener("click",e=>{
+  if(!e.target.matches("#featSend"))return;
+  const es=lang==="es",nm=D.name||slug;
+  const lines=Object.entries(_featPending).map(([k,v])=>{const def=FEAT_DEFS.find(f=>f.k===k);return `${def?def[es?"es":"en"]:k}: ${v?(es?"ON":"ON"):(es?"OFF":"OFF")}`}).join("\n");
+  const msg=es?`Hola Brian, cambios de funciones para ${nm}:\n${lines}`:`Hi Brian, feature changes for ${nm}:\n${lines}`;
+  window.open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");
+  _featPending={};const btn=$("featSend");if(btn)btn.style.display="none";
+ });
+}const L=window.MX_SETUP||[];if(!L.length)return "";const es=lang==="es",done=stGet(),n=L.filter(x=>done[x.k]).length,nm=D.name||slug;
  const money=v=>"$"+v.toLocaleString("en-US");
  return `<div class="card" id="setup"><h2>🧰 ${es?"Configura todo, paso a paso":"Set up everything, step by step"}</h2>
  <p>${es?`<b>${n} de ${L.length}</b> listos. Hazlo tú con estas guías, o pídeme que lo haga yo.`:`<b>${n} of ${L.length}</b> done. Do it yourself with these guides, or ask me to do it for you.`}</p>
@@ -239,6 +284,7 @@ async function publish(){const es=lang==="es";const clean=EM.map(c=>({cat:c.cat,
  open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");try{localStorage.removeItem("mx-dueno-draft-"+slug)}catch(_){}
  $("w").innerHTML=`<div class="card" style="text-align:center"><div style="font-size:42px">✅</div><h2>${es?"Cambios enviados":"Changes sent"}</h2><p>${es?"Toca Enviar en WhatsApp. Tu app se actualiza en unos minutos.":"Tap Send in WhatsApp. Your app updates in a few minutes."}</p><button class="b l" id="bk">← ${es?"Volver":"Back"}</button></div>`;$("bk").onclick=render}
 load();
+featToggleSetup();
 if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
 </script>
 

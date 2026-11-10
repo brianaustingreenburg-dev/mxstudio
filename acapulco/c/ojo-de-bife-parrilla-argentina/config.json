@@ -1,8 +1,1 @@
-{
- "whatsapp": "",
- "wifi": null,
- "waiter": true,
- "carryout": false,
- "reservations": false,
- "t": 1793664169549
-}
+{"whatsapp":"","wifi":null,"waiter":true,"carryout":false,"reservations":false,"t":1793664169549,"features":{"wifi":true,"reviews":true,"lang_toggle":true,"owner_dashboard":true,"loyalty":true,"ordering":true,"reservations_feature":true}}
