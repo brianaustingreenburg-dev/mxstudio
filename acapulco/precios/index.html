@@ -175,7 +175,7 @@ body.is-off .off{display:block}
 
 <div class="sheet" id="sheet"><div class="box" id="box"></div></div>
 <div class="total"><div class="in">
-  <div class="trow"><div><small data-t="today"></small><b id="tToday">$3,000</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$1,000</b></div></div>
+  <div class="trow"><div><small data-t="today"></small><b id="tToday">$18,000</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$300/mo</b></div></div>
   <button class="cta" id="cta"><span style="font-size:20px">🛒</span><span data-t="cta"></span></button>
 </div></div>
 
@@ -202,7 +202,7 @@ async function pushCfgP(slug,cfg){let key="";try{key=localStorage.getItem("crear
 function ownerWa(){try{const j=JSON.parse(decodeURIComponent(escape(atob(PA.replace(/-/g,"+").replace(/_/g,"/")))));return (j.w||"").replace(/^52/,"")}catch(_){return ""}}
 function pkgText(A){A=A===undefined?PA:A;if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=A?"&a="+A:"",es=lang==="es";
  return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(A?"?a="+A:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"+"\n🧑‍🍳 "+(es?"Tu panel (reseñas, QR, cambios)":"Your panel (reviews, QRs, changes)")+": "+G+"dueno/?s="+PS+a+"\n🧰 "+(es?"Guías para configurar todo, paso a paso":"Step-by-step setup guides")+": "+G+"dueno/?s="+PS+a+"#setup"}
-const BASE={once:8000,down:3000,year:1000};let plan="full",host=false,PAY={};fetch("../lib/pay.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{PAY=j||{}}).catch(()=>{});
+const BASE={once:18000,down:7000,year:300};let plan="full",host=false,PAY={};fetch("../lib/pay.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{PAY=j||{}}).catch(()=>{});
 const LOW_END=new Date("2026-12-16T00:00:00-06:00"),lowOn=()=>Date.now()<LOW_END.getTime();
 const PK={r:{low:18000,reg:18000,down:7000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},h:{low:23000,reg:23000,down:13000,host:500,es:"🏨 Hotel + Restaurante",en:"🏨 Hotel + Restaurant"}};
 let pkg=(QS.get("pkg")==="h")?"h":"r";
