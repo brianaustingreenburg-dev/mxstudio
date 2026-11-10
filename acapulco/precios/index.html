@@ -92,6 +92,13 @@ h1 span{color:var(--gold)}
 .faq summary:after{content:"+";color:var(--gold);font-size:20px;line-height:1}
 .faq details[open] summary:after{content:"−"}
 .faq p{padding:0 16px 14px;color:var(--muted);font-size:14px}
+.mkt-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:10px}
+.mkt-row>div{padding:10px 12px;font-size:13.5px;border-right:1px solid var(--line);background:var(--s1)}
+.mkt-row>div:last-child{border-right:none;background:rgba(37,211,102,.08)}
+.mkt-row>div b{display:block;font-size:15px;margin-bottom:2px}
+.mkt-row>div small{color:var(--muted);font-size:12px}
+.mkt-head{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;padding:8px 12px;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.mkt-save{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:12px;padding:12px 14px;margin-bottom:10px;font-size:13.5px;color:#25d366;font-weight:700}
 .foot{text-align:center;color:var(--muted);font-size:12px;padding:26px 0 0}
 .foot b{color:var(--gold)}
 .total{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(10,8,9,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line2);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
@@ -170,6 +177,9 @@ body.is-off .off{display:block}
 
   <div class="sec"><small data-t="fK"></small><h2 data-t="fH"></h2></div>
   <div class="faq" id="faq"></div>
+
+  <div class="sec"><small data-t="mK"></small><h2 data-t="mH"></h2></div>
+  <div id="mktcmp"></div>
 
   <footer class="foot"><b>MX Studio ✝</b> · Acapulco, Guerrero<br>WhatsApp +52 744 193 0502</footer>
 </div>
@@ -263,6 +273,16 @@ function render(){
  $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.year?"+"+fmt(x.year)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
  const fx=x=>x.replace(/\$18,000/g,"§REG§").replace(/\$7,000/g,fmt(PK[pkg].down)).replace(/§REG§/g,fmt(regP())).replace(/\$2,500/g,fmt(PL.p5.mo)).replace(/\$1,250/g,fmt(PL.p10.mo)).replace(/\$300 al mes/g,fmt(HOST)+" al mes").replace(/\$300 a month/g,fmt(HOST)+" a month");
  $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${fx(f[1])}</p></details>`).join("");
+ // Market comparison
+ {const es=lang==="es";
+  document.querySelector('[data-t="mK"]').textContent=es?"Comparativa de mercado":"Market comparison";
+  document.querySelector('[data-t="mH"]').textContent=es?"Acapulco: lo que cobra el mercado vs MX Studio":"Acapulco: what the market charges vs MX Studio";
+  const rows=[
+   {tier:es?"Restaurante / Café":"Restaurant / Café",mkt:"$16,000",jefe:"$18,000",mktmo:"$2,200/mo",jefemo:"$300/mo",save:es?"Ahorra $1,900/mes · recuperas en 2 meses":"Save $1,900/mo · break even in 2 months"},
+   {tier:es?"Hotel / Resort":"Hotel / Resort",mkt:"$38,000–$65,000",jefe:"$23,000",mktmo:"$4,500–$8,500/mo",jefemo:"$500/mo",save:es?"Ahorra hasta $42,000 en setup + $8,000/mes":"Save up to $42,000 on setup + $8,000/mo"},
+  ];
+  $("mktcmp").innerHTML=`<div class="mkt-head"><div>${es?"Paquete":"Package"}</div><div>${es?"Mercado":"Market"}</div><div>MX Studio</div></div>`+rows.map(r=>`<div class="mkt-row"><div><b>${r.tier}</b><small>${es?"Setup":"Setup"}</small></div><div><b>${r.mkt}</b><small>${r.mktmo}</small></div><div><b>${r.jefe}</b><small>${r.jefemo}</small></div></div><div class="mkt-save">✅ ${r.save}</div>`).join("")+`<p style="font-size:12px;color:var(--muted);margin-top:8px">${es?"Precios de mercado: cotizaciones locales Acapulco nov 2026.":"Market prices: local Acapulco quotes Nov 2026."}</p>`;
+ }
  const es=lang==="es";$("plans").innerHTML=`<div class="plh">${es?"Elige cómo pagar":"Choose how to pay"}</div>`+[["full","💵",es?"Pago completo":"Pay in full",fmt(price())+" · "+(es?"un solo pago":"one payment"),plan==="full"],["pay","📅",es?"Pagos disponibles":"Payments available",(es?"Desde ":"From ")+fmt(PK[pkg].down)+" · "+(es?"te explico las opciones en persona":"I'll walk you through the options"),plan!=="full"]].map(([k,i,a,b,on])=>`<button class="plb" data-plan="${k}" aria-pressed="${on}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
  
  const t=totals(),es2=lang==="es";if(plan==="full"){$("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PAGO COMPLETO":"PAY IN FULL";$("tMonth").textContent=fmt(HOST)+(es2?"/mes":"/mo");document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º AÑO":"FROM YEAR 2"}else{$("tToday").textContent=fmt(regP()+X.reduce((a,x)=>a+(sel[x.k]?x.once:0),0));document.querySelector('[data-t="today"]').textContent="TOTAL";$("tMonth").textContent=es2?"Pagos disponibles":"Payments available";document.querySelector('[data-t="monthly"]').textContent=es2?"EN EFECTIVO":"IN CASH"}
