@@ -59,9 +59,21 @@ h1 span{color:var(--gold)}
 .pkg-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:0}
 .pkgs button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:9px 6px;border-radius:12px;font-weight:800;font-size:12.5px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05)}.pkgs button[aria-pressed=true]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border-color:transparent}.pkgs small{display:block;font-weight:600;font-size:11px;opacity:.8;margin-top:2px}
 .promo{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:99px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a}
-.feats{list-style:none;display:grid;gap:10px}
-.feats li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
-.feats i{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:18px}
+.feats{list-style:none;display:grid;gap:0}
+.cmp-wrap{overflow-x:auto;margin:0 -4px 14px}
+.cmp{width:100%;border-collapse:collapse;font-size:13px}
+.cmp th,.cmp td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center}
+.cmp th:first-child,.cmp td:first-child{text-align:left;font-weight:600}
+.cmp thead th{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cmp .th-sel{color:var(--sun);border-bottom:2px solid var(--sun)}
+.cmp .tf{display:flex;gap:7px;align-items:center;font-size:13px;font-weight:600;padding-right:8px}
+.cmp .tf i{flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:14px}
+.cmp .tc-y{color:#4caf50;font-weight:800;font-size:15px}
+.cmp .tc-n{color:var(--muted);opacity:.45}
+.feat-list{list-style:none;display:grid;gap:10px;margin-top:4px}
+.feat-list li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
+.feat-list i{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:18px}
+.feat-more{margin:12px 0 4px;font-size:13px;color:var(--muted);padding:9px 12px;border-radius:10px;background:var(--s2);border:1px solid var(--line)}
 .inc{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:6px}
 .inc span{font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:99px;background:rgba(37,211,102,.12);color:#7fe9aa;border:1px solid rgba(37,211,102,.3)}
 .tables{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:14px;padding:12px;border-radius:16px;background:#000;border:1px solid var(--line)}
@@ -262,6 +274,22 @@ function setPkg(k,t){
  if(!pkgPayable(pkg,tier))plan="full";
 }
 const X=[];
+// Tier feature breakdown: each row = {icon, es, en, tiers:[1,2,3 or subset], hotel:true if hotel-only}
+const TIER_FEATS=[
+ {ic:"📱",es:"App + menú con fotos",en:"App + menu with photos",tiers:[1,2,3]},
+ {ic:"🔳",es:"QR ilimitados (mesas, puerta, caja, stickers)",en:"Unlimited QR codes (tables, door, counter, stickers)",tiers:[1,2,3]},
+ {ic:"📶",es:"Botón de WiFi en la app",en:"WiFi button in the app",tiers:[1,2,3]},
+ {ic:"🌎",es:"Español e inglés (un botón)",en:"Spanish + English (one tap)",tiers:[1,2,3]},
+ {ic:"💵",es:"Precios en dólares para turistas",en:"Dollar prices for tourists",tiers:[1,2,3]},
+ {ic:"🔥",es:"Especial de hoy (tú lo cambias)",en:"Today's special (you change it)",tiers:[1,2,3]},
+ {ic:"🎮",es:"Juegos en familia gratis",en:"Free family games",tiers:[1,2,3]},
+ {ic:"🧑‍🍳",es:"Tu panel para editar el menú",en:"Owner panel to edit menu",tiers:[1,2,3]},
+ {ic:"🔎",es:"Perfil de Google + reseñas",en:"Google profile setup + reviews",tiers:[2,3]},
+ {ic:"💬",es:"Reservas y para llevar por WhatsApp",en:"WhatsApp reservations + carry-out",tiers:[2,3]},
+ {ic:"🏨",es:"Guía del huésped",en:"Guest guide",tiers:[2,3],hotel:true},
+ {ic:"🎁",es:"Regalo de lealtad (visitas repetidas)",en:"Guest loyalty gift (return visits)",tiers:[3]},
+ {ic:"🏆",es:"Concurso Mesero de la Semana",en:"Waiter of the Week contest",tiers:[3]},
+];
 const T={
  es:{kicker:"Precios · Acapulco",h1a:"Tu ecosistema digital",h1b:"Desde $18,000 · pagos desde $7,000",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
   pname:"App MX Studio",ptitle:"Todo lo que tu negocio necesita",once:"todo incluido · 1er año incluido",month:"al mes, desde el 2º año",was:"Hosting, soporte y cambios",wasO:"📅 Pagos disponibles",promo:"📅 Pagos disponibles desde $7,000, en efectivo · tú controlas tu ecosistema con tu panel",
@@ -315,7 +343,22 @@ function render(){
   const tierBtns=TIERS.map(t=>{const disabled=!availTiers.includes(t.k);const p=pkgPrice(pkg,t.k)||"—";return `<button data-tier="${t.k}" aria-pressed="${tier===t.k}" ${disabled?"disabled style='opacity:.4'":""}>${es?t.es:t.en}<small>${disabled?"–":fmt(p)}</small></button>`}).join("");
   $("pkgs").innerHTML=`<div class="pkg-types">${typeBtns}</div><div class="pkg-tiers">${tierBtns}</div>`;}
  $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
- $("feats").innerHTML=u.feats.map(f=>`<li><i>${f[0]}</i>${f[1]}</li>`).join("");
+ // Tier comparison table + tier-aware features list
+ {const es=lang==="es";
+  // Filter features relevant to this business type (hotel features only for h/hr)
+  const isHotel=pkg==="h"||pkg==="hr";
+  const relevantFeats=TIER_FEATS.filter(f=>!f.hotel||isHotel);
+  // Comparison table (always shown)
+  const tierLabels=TIERS.map(t=>es?t.es:t.en);
+  const tableRows=relevantFeats.map(f=>{
+   const cols=TIERS.map(t=>{const has=f.tiers.includes(t.k);return`<td class="tc${has?" tc-y":" tc-n"}">${has?"✓":"–"}</td>`;}).join("");
+   return`<tr><td class="tf"><i>${f.ic}</i>${es?f.es:f.en}</td>${cols}</tr>`;
+  }).join("");
+  const tableHead=`<thead><tr><th></th>${TIERS.map((t,i)=>`<th class="th${i===tier-1?" th-sel":""}">${es?t.es:t.en}</th>`).join("")}</tr></thead>`;
+  $("feats").innerHTML=`<div class="cmp-wrap"><table class="cmp">${tableHead}<tbody>${tableRows}</tbody></table></div>`+
+   `<ul class="feat-list">${relevantFeats.filter(f=>f.tiers.includes(tier)).map(f=>`<li><i>${f.ic}</i>${es?f.es:f.en}</li>`).join("")}</ul>`+
+   (tier<3?`<p class="feat-more">${es?`<b>+${3-tier} nivel${3-tier>1?"es":""} disponible${3-tier>1?"s":""}</b> — `:`<b>More included</b> — `}${tier===1?(es?"Negocio agrega Google + WhatsApp · Ecosistema agrega lealtad y equipo":"Negocio adds Google + WhatsApp · Ecosistema adds loyalty + staff tools"):(es?"Ecosistema agrega regalo de lealtad y Mesero de la Semana":"Ecosistema adds loyalty gift + Waiter of the Week")}</p>`:"");}
+
  $("inc").innerHTML=u.inc.map(s=>`<span>✓ ${s}</span>`).join("");
  $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.year?"+"+fmt(x.year)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
  const fx=x=>x.replace(/\$18,000/g,"§REG§").replace(/\$7,000/g,fmt(PK[pkg].down)).replace(/§REG§/g,fmt(regP())).replace(/\$300 al mes/g,fmt(HOST)+" al mes").replace(/\$300 a month/g,fmt(HOST)+" a month");
