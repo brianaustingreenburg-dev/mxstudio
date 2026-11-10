@@ -54,6 +54,7 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
  ${lyCard()}
  ${starCard()}
+ ${tierSetupCard()}
  ${featuresCard()}
  ${setupCard()}
  <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
@@ -189,6 +190,104 @@ const FEAT_DEFS=[
  {k:"loyalty",     es:"🎁 Regalo y meseros",  en:"🎁 Gift & waiters",    esP:"El sistema de regalo para clientes y Mesero Estrella.",       enP:"The guest gift and Waiter of the Week system."},
 ];
 function getFeat(k){const f=CFG_RAW.features;if(!f||f[k]===undefined)return true;return !!f[k]}
+// ---------- 🏗️ Tier setup card (Brian's activation tool) ----------
+const TIER_KEY=s=>"mx-tier-"+s;
+function getTierSel(){try{return JSON.parse(localStorage.getItem(TIER_KEY(slug))||"{}")}catch(_){return {}}}
+function setTierSel(o){try{localStorage.setItem(TIER_KEY(slug),JSON.stringify(o))}catch(_){}}
+const TIER_TYPES={
+ r:{es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
+ h:{es:"🏨 Hotel (sin restaurante)",en:"🏨 Hotel (no restaurant)"},
+ hr:{es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
+};
+const TIER_PRICES={r:{1:8000,2:13000,3:18000},h:{1:10000,2:15000,3:20000},hr:{3:28000}};
+const TIER_HOST={r:300,h:400,hr:500};
+function tierSteps(type,tier,es){
+ // Core steps every client gets
+ const base=[
+  {k:"app",i:"📱",es:"Crear y lanzar la app",en:"Create and launch the app",
+   esS:["Crea la carpeta del cliente en GitHub (c/<slug>/)","Sube config.json con sus datos","Verifica que la app abre en go.myjefetech.app/acapulco/c/<slug>/","Manda el link al cliente por WhatsApp","Confirma que el QR funciona"],
+   enS:["Create the client's folder on GitHub (c/<slug>/)","Upload config.json with their info","Verify the app opens at go.myjefetech.app/acapulco/c/<slug>/","Send the link to the client on WhatsApp","Confirm the QR works"]},
+  {k:"menu",i:"🍽️",es:"Cargar el menú",en:"Upload the menu",
+   esS:["Recibe foto o PDF del menú","Transcribe a menu.json (nombre, precio, sección)","Publica en GitHub","Verifica en la app del cliente"],
+   enS:["Receive menu photo or PDF","Transcribe to menu.json (name, price, section)","Publish to GitHub","Verify in the client's app"]},
+  {k:"qr",i:"🔳",es:"Preparar tarjetas y stickers QR",en:"Prepare QR cards and stickers",
+   esS:["Genera los QR para mesas en /tarjeta/?s=<slug>&f=m","Genera stickers de menú en /tarjeta/?s=<slug>&f=st","Genera stickers de reseñas en /tarjeta/?s=<slug>&f=rv","Manda los archivos al cliente (PDF o imagen para imprimir)"],
+   enS:["Generate table QRs at /tarjeta/?s=<slug>&f=m","Generate menu stickers at /tarjeta/?s=<slug>&f=st","Generate review stickers at /tarjeta/?s=<slug>&f=rv","Send the files to the client (PDF or image to print)"]},
+  {k:"wifi",i:"📶",es:"Configurar WiFi en la app",en:"Set up WiFi in the app",
+   esS:["Pide al cliente el nombre exacto de la red WiFi","Pide la contraseña","Actualiza wifi.name y wifi.pass en config.json","Verifica que el botón WiFi funciona en la app"],
+   enS:["Ask the client for the exact WiFi network name","Ask for the password","Update wifi.name and wifi.pass in config.json","Verify the WiFi button works in the app"]},
+ ];
+ // Tier 2+ steps
+ const negocio=[
+  {k:"google",i:"🔎",es:"Ecosistema Google",en:"Google Ecosystem",
+   esS:["Vincula el perfil de Google Business del cliente","Activa reseñas: añade query_place_id al index.html del cliente","Revisa que el QR de reseñas aparece en su panel","Ayuda al cliente a pedir las primeras 5 reseñas"],
+   enS:["Link the client's Google Business profile","Activate reviews: add query_place_id to the client's index.html","Confirm the reviews QR shows in their panel","Help the client get their first 5 reviews"]},
+  {k:"whatsapp",i:"💬",es:"WhatsApp Business",en:"WhatsApp Business",
+   esS:["Verifica que tiene WhatsApp Business (no personal)","Activa mensaje de bienvenida automático","Activa respuesta de ausencia (fuera de horario)","Añade el link de la app como respuesta rápida"],
+   enS:["Verify they have WhatsApp Business (not personal)","Turn on automatic welcome message","Turn on away message (outside hours)","Add the app link as a quick reply"]},
+ ];
+ // Tier 3 (Ecosistema) steps
+ const ecosistema=[
+  {k:"loyalty",i:"🎁",es:"Regalo para clientes",en:"Guest gift",
+   esS:["Activa loyalty.json (gifts, días de validez, staff)","Verifica que el botón 🧾 Pedir cuenta aparece en la app","Prueba el flujo completo: pedir cuenta → QR → canjear","Explica al cliente cómo funciona el sistema de puntos"],
+   enS:["Activate loyalty.json (gifts, validity days, staff)","Verify the 🧾 Ask for the bill button shows in the app","Test the full flow: ask bill → QR → redeem","Explain to the client how the points system works"]},
+  {k:"mesero",i:"⭐",es:"Mesero Estrella de la Semana",en:"Waiter of the Week",
+   esS:["Añade los nombres del equipo a loyalty.json (staff[])","Verifica que aparecen en su panel del dueño","Explica las reglas del concurso al cliente","Define el bono semanal con el cliente ($500 – $1,000)"],
+   enS:["Add team names to loyalty.json (staff[])","Verify they appear in the owner's panel","Explain the contest rules to the client","Set the weekly bonus with the client ($500 – $1,000)"]},
+  {k:"reservas",i:"📅",es:"Reservas y para llevar",en:"Reservations and carry-out",
+   esS:["Activa reservations:true y carryout:true en config.json","Verifica que los botones aparecen en la app del cliente","Prueba una reserva de prueba por WhatsApp","Confirma que llega al número del cliente"],
+   enS:["Set reservations:true and carryout:true in config.json","Verify the buttons show in the client's app","Test a trial reservation via WhatsApp","Confirm it arrives at the client's number"]},
+ ];
+ // Hotel extras
+ const hotel=[
+  {k:"guia",i:"🏨",es:"Guía del huésped",en:"Guest guide",
+   esS:["Activa la sección PROGRAMA en la app","Carga los servicios del hotel (horarios, piscina, restaurante, etc.)","Activa el modo hotel (eSchedule, horarios)","Verifica la guía en un teléfono de huésped"],
+   enS:["Activate the PROGRAM section in the app","Load hotel services (hours, pool, restaurant, etc.)","Turn on hotel mode (eSchedule, hours)","Verify the guide on a guest phone"]},
+ ];
+ let steps=[...base];
+ if(tier>=2)steps=[...steps,...negocio];
+ if(tier===3)steps=[...steps,...ecosistema];
+ if((type==="h"||type==="hr")&&tier>=2)steps=[...steps,...hotel];
+ return steps.map(x=>({...x,s:es?x.esS:x.enS,t:es?x.es:x.en}))}
+function tierSetupCard(){
+ const es=lang==="es";
+ const sel=getTierSel();
+ const type=sel.type||"r";
+ const tier=sel.tier||1;
+ const steps=tierSteps(type,tier,es);
+ const done=sel.done||{};
+ const doneCount=steps.filter(s=>done[s.k]).length;
+ const price=TIER_PRICES[type]&&TIER_PRICES[type][tier];
+ const pLabel=price?"$"+price.toLocaleString("en-US"):"—";
+ const typeBtns=Object.entries(TIER_TYPES).map(([k,v])=>`<button class="ts-type" data-tst="${k}" style="all:unset;box-sizing:border-box;cursor:pointer;padding:8px 10px;border-radius:12px;font-weight:800;font-size:12.5px;border:1.5px solid ${type===k?"#b5642f":"#eadfd2"};background:${type===k?"#b5642f":"#f7f2ec"};color:${type===k?"#fff":"var(--ink)"};text-align:center">${v[es?"es":"en"]}</button>`).join("");
+ const availTiers=type==="hr"?[3]:[1,2,3];
+ const tierNames=es?["Básico","Negocio","Ecosistema"]:["Basic","Business","Ecosystem"];
+ const tierBtns=availTiers.map(t=>`<button class="ts-tier" data-tsr="${t}" style="all:unset;box-sizing:border-box;cursor:pointer;padding:8px 10px;border-radius:12px;font-weight:800;font-size:13px;border:1.5px solid ${tier===t?"#b5642f":"#eadfd2"};background:${tier===t?"#b5642f":"#f7f2ec"};color:${tier===t?"#fff":"var(--ink)"};text-align:center">${tierNames[t-1]}<small style="display:block;font-weight:600;font-size:11px;opacity:.85;margin-top:1px">${TIER_PRICES[type]?("$"+(TIER_PRICES[type][t]||"—").toLocaleString("en-US")):"—"}</small></button>`).join("");
+ const stepHtml=steps.map(x=>{const ok=!!done[x.k];return `<details style="border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;margin:8px 0;background:${ok?"#eef9f1":"#fff"}"><summary style="cursor:pointer;font-weight:800;list-style:none;display:flex;gap:8px;align-items:center"><span>${x.i}</span><span style="flex:1">${x.t}</span><span style="font-size:18px">${ok?"✅":"◻️"}</span></summary><ol style="margin:10px 0 6px;padding-left:20px;line-height:1.6;font-size:14.5px">${x.s.map(s=>`<li style="margin:4px 0">${s}</li>`).join("")}</ol><label style="display:flex;gap:10px;align-items:center;font-weight:800;margin:10px 0 4px;cursor:pointer"><input type="checkbox" class="ts-check" data-tsk="${x.k}" ${ok?"checked":""} style="width:22px;height:22px;cursor:pointer"> ${es?"✅ Listo":"✅ Done"}</label></details>`}).join("");
+ return `<div class="card" id="tierCard"><h2>🏗️ ${es?"Configurar cliente":"Client setup"}</h2>
+ <p style="font-size:.9em;opacity:.8;margin-bottom:12px">${es?`Elige el tipo y tier del cliente para ver su checklist de activación. <b>${doneCount}/${steps.length}</b> pasos listos.`:`Pick the client's type and tier to see their activation checklist. <b>${doneCount}/${steps.length}</b> steps done.`}</p>
+ <div style="font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:6px">${es?"Tipo de negocio":"Business type"}</div>
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px">${typeBtns}</div>
+ <div style="font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:6px">${es?"Nivel (tier)":"Level (tier)"}</div>
+ <div style="display:grid;grid-template-columns:repeat(${availTiers.length},1fr);gap:7px;margin-bottom:14px">${tierBtns}</div>
+ <div style="padding:10px 13px;border-radius:14px;background:#faf6f0;border:1.5px solid #eadfd2;margin-bottom:12px;font-weight:800;font-size:14px">
+  ${es?"Cliente paga":""Client pays"}: <span style="color:#b5642f">${pLabel}</span> · ${es?"Hosting año 2":""Year 2 hosting"}: <span style="color:#b5642f">$${TIER_HOST[type]}/mes</span>
+  ${tier===3?`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#fff3e0;color:#b5642f;font-size:12px">📅 $10k ahora · resto al completar</span>`:`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#eef9f1;color:#1b5e20;font-size:12px">${es?"💵 Pago completo":"💵 Paid in full"}</span>`}
+ </div>
+ ${stepHtml}
+ <p class="tip" style="margin-top:8px">${es?"Los ✅ se guardan en este dispositivo para este cliente.":"✅ marks are saved on this device for this client."}</p></div>`}
+document.addEventListener("click",e=>{
+ const bt=e.target.closest(".ts-type");
+ if(bt){const sel=getTierSel();sel.type=bt.dataset.tst;if(sel.type==="hr")sel.tier=3;else if(sel.tier===undefined)sel.tier=1;setTierSel(sel);const y=scrollY;render();scrollTo(0,y);return;}
+ const br=e.target.closest(".ts-tier");
+ if(br){const sel=getTierSel();sel.tier=parseInt(br.dataset.tsr);setTierSel(sel);const y=scrollY;render();scrollTo(0,y);return;}
+});
+document.addEventListener("change",e=>{
+ const c=e.target.closest(".ts-check");if(!c)return;
+ const sel=getTierSel();if(!sel.done)sel.done={};
+ if(c.checked)sel.done[c.dataset.tsk]=1;else delete sel.done[c.dataset.tsk];
+ setTierSel(sel);const y=scrollY;render();scrollTo(0,y);
+});
 function featuresCard(){
  const es=lang==="es";
  const rows=FEAT_DEFS.map(f=>{
