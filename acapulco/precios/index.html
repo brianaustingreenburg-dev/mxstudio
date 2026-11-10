@@ -140,7 +140,6 @@ body.is-off .off{display:block}
   <section class="hero">
     <div class="glow"></div>
     <img class="logo" src="../logo.png" alt="MX Studio">
-    <div class="sec"><small data-t="mK"></small><h2 data-t="mH"></h2></div>
     <div id="mktcmp"></div>
     <div class="off" data-t="off"></div>
   </section>
@@ -175,7 +174,7 @@ body.is-off .off{display:block}
 
 <div class="sheet" id="sheet"><div class="box" id="box"></div></div>
 <div class="total"><div class="in">
-  <div class="trow"><div><small data-t="today"></small><b id="tToday">$18,000</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$300/mo</b></div></div>
+  <div class="trow"><div><small data-t="today"></small><b id="tToday">$18,000</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$300</b></div></div>
   <button class="cta" id="cta"><span style="font-size:20px">🛒</span><span data-t="cta"></span></button>
 </div></div>
 
@@ -264,14 +263,12 @@ function render(){
  $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${fx(f[1])}</p></details>`).join("");
  // Market comparison
  {const es=lang==="es";
-  document.querySelector('[data-t="mK"]').textContent=es?"Comparativa":"Comparison";
-  document.querySelector('[data-t="mH"]').textContent=es?"Mercado vs MX Studio":"Market vs MX Studio";
-  $("mktcmp").innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr>${["",es?"Mercado":"Market","MX Studio"].map(h=>`<th style="padding:8px 10px;text-align:${h?'center':'left'};font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">${h}</th>`).join("")}</tr></thead><tbody>${[
+  $("mktcmp").innerHTML=`<div style="margin-bottom:16px"><small style="font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">${es?"Comparativa":"Comparison"}</small><h2 style="margin:4px 0 12px;font-size:22px">${es?"Mercado vs MX Studio":"Market vs MX Studio"}</h2><table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr>${["",es?"Mercado":"Market","MX Studio"].map(h=>`<th style="padding:8px 6px;text-align:${h?'center':'left'};font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted);text-transform:uppercase">${h}</th>`).join("")}</tr></thead><tbody>${[
    [es?"Restaurante · setup":"Restaurant · setup","$16,000","$18,000"],
    [es?"Restaurante · mensual":"Restaurant · monthly","$2,200","$300"],
    [es?"Hotel · setup":"Hotel · setup","$38,000+","$23,000"],
    [es?"Hotel · mensual":"Hotel · monthly","$4,500+","$500"],
-  ].map((r,i)=>`<tr style="border-top:1px solid var(--line)">${r.map((c,j)=>`<td style="padding:10px;${j===0?'color:var(--muted);font-size:13px':'text-align:center;font-weight:800;font-size:15px'+(j===2?';color:#25d366':'')}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  ].map(r=>`<tr style="border-top:1px solid var(--line)">${r.map((c,j)=>`<td style="padding:10px 6px;${j===0?'color:var(--muted);font-size:13px':'text-align:center;font-weight:800;font-size:15px'+(j===2?';color:#25d366':'')}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
  }
  const es=lang==="es";$("plans").innerHTML=`<div class="plh">${es?"Elige cómo pagar":"Choose how to pay"}</div>`+[["full","💵",es?"Pago completo":"Pay in full",fmt(price())+" · "+(es?"un solo pago":"one payment"),plan==="full"],["pay","📅",es?"Pagos disponibles":"Payments available",(es?"Desde ":"From ")+fmt(PK[pkg].down)+" · "+(es?"te explico las opciones en persona":"I'll walk you through the options"),plan!=="full"]].map(([k,i,a,b,on])=>`<button class="plb" data-plan="${k}" aria-pressed="${on}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
  
