@@ -34,6 +34,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:44px}
 .topbar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:0;right:0}
 .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 16px}
+.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);flex-shrink:0}
 .demo{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#f3d9a8;font-weight:800;font-size:11px;letter-spacing:.08em;padding:8px 12px;border-radius:999px;text-decoration:none;border:1px solid rgba(243,217,168,.35)}
 .pop{margin-top:18px}
 .pop h2{font-size:19px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -119,7 +120,7 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span id="demoPill"></span><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button><button data-cur="cad" aria-pressed="false">CA$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
+<div class="topbar"><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><a class="back" href="/acapulco/c/casa-axolotl/">‹</a><span id="demoPill"></span></div><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button><button data-cur="cad" aria-pressed="false">CA$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
