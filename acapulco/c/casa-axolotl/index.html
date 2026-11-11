@@ -21,9 +21,10 @@
   --btn-ac:#1a3a4a;
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
+.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--bg);box-shadow:0 0 60px rgba(0,0,0,.5)}
 
 /* ── SLIDESHOW ── */
-.slides{position:relative;width:100%;height:52vw;max-height:320px;min-height:200px;overflow:hidden;background:#0a1515}
+.slides{position:relative;width:100%;height:320px;overflow:hidden;background:#0a1515}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;background-size:cover;background-position:center}
 .slide.active{opacity:1}
 .slide-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
@@ -72,6 +73,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
 </style>
 </head>
 <body>
+<div class="page">
 
 <!-- Logo bar -->
 <div class="logo-bar">
@@ -182,5 +184,6 @@ function setLang(l){
   document.getElementById('enBtn').classList.toggle('active',l==='en');
 }
 </script>
+</div><!-- /page -->
 </body>
 </html>
