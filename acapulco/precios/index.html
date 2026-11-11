@@ -332,7 +332,7 @@ function render(){
  {const es=lang==="es",K=PK[pkg];
   const tierName=TIERS.find(t=>t.k===tier);
   const tierLabel=tierName?(es?tierName.es:tierName.en):"";
-  document.querySelector('[data-t="h1b"]').textContent=(es?"Desde ":"From ")+fmt(8000)+(es?" · Ecosistema desde $18,000":" · Ecosystem from $18,000");
+  document.querySelector('[data-t="h1b"]').textContent=(es?"Desde "+fmt(8000)+" – "+fmt(28000):"From "+fmt(8000)+" – "+fmt(28000));
   $("pOnce").textContent=fmt(K.reg);$("pReg").textContent="";$("pReg").style.display="none";
   // pSeason: only for Tier 3
   if(pkgPayable(pkg,tier)){$("pSeason").textContent=(es?"📅 $10,000 ahora · resto al completar":"📅 $10,000 now · rest on completion");$("pSeason").style.display="";}else{$("pSeason").style.display="none";}
