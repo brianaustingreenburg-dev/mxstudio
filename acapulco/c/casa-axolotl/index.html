@@ -193,6 +193,15 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 
 /* ── CREDIT ── */
 .credit{text-align:center;padding:0 0 32px;opacity:.3}
+.pwa-hint{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;margin:0 0 4px;position:relative}
+.pwa-icon{font-size:1.4rem;flex-shrink:0}
+.pwa-text{flex:1;font-size:.8rem;line-height:1.4;color:var(--muted)}
+.pwa-es,.pwa-en{color:rgba(255,255,255,.65);font-weight:500}
+.pwa-sep{color:var(--muted)}
+.pwa-sub{font-size:.72rem;color:var(--muted)}
+.pwa-sub strong{color:rgba(255,255,255,.5);font-weight:600}
+.pwa-x{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:.7rem;cursor:pointer;padding:4px;line-height:1;opacity:.6}
+.pwa-x:hover{opacity:1}
 .credit a{color:var(--muted);font-size:.62rem;text-decoration:none;letter-spacing:.06em}
 .credit strong{color:var(--gold-lt)}
 </style>
@@ -284,6 +293,19 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 
 </div>
 
+<!-- Save to home screen hint -->
+<div class="pwa-hint" id="pwaHint">
+  <span class="pwa-icon">📲</span>
+  <div class="pwa-text">
+    <span class="pwa-es">Guárdalo en tu teléfono</span>
+    <span class="pwa-sep"> · </span>
+    <span class="pwa-en">Save to your phone</span>
+    <br>
+    <span class="pwa-sub" id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
+  </div>
+  <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
+</div>
+
 <div class="divider"></div>
 
 <!-- WhatsApp -->
@@ -335,6 +357,13 @@ function setLang(l){
   document.getElementById('esBtn').classList.toggle('active',l==='es');
   document.getElementById('enBtn').classList.toggle('active',l==='en');
 }
+
+// PWA hint dismiss
+try{if(localStorage.getItem('pwa-hint-dismissed')==='1'){document.getElementById('pwaHint').style.display='none'}}catch(e){}
+document.getElementById('pwaClose').addEventListener('click',function(){
+  document.getElementById('pwaHint').style.display='none';
+  try{localStorage.setItem('pwa-hint-dismissed','1')}catch(e){}
+});
 </script>
 </body>
 </html>
