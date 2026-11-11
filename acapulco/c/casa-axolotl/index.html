@@ -4,72 +4,98 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Casa Axolotl</title>
-<meta name="theme-color" content="#0d1a1a">
+<meta name="theme-color" content="#1a1030">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d1a1a;
-  --card:#132020;
-  --gold:#c9963a;
-  --gold2:#e8b84b;
-  --text:#f0ede6;
-  --muted:#8ca8a0;
-  --btn-r:#1a3a2a;
-  --btn-h:#1f4a30;
-  --btn-ho:#2a5a35;
-  --btn-a:#0d2535;
-  --btn-ac:#1a3a4a;
+  --sunset1:#f5a623;
+  --sunset2:#e8607a;
+  --purple:#6b3fa0;
+  --navy:#1a2457;
+  --ocean:#2563a8;
+  --wave:#4ba3d9;
+  --bg:#120e1e;
+  --card:#1c1530;
+  --text:#f5f0ea;
+  --muted:#a09ab8;
+  --border:rgba(245,166,35,.18);
 }
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
-.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--bg);box-shadow:0 0 60px rgba(0,0,0,.5)}
-
-/* ── SLIDESHOW ── */
-.slides{position:relative;width:100%;height:320px;overflow:hidden;background:#0a1515}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;background-size:cover;background-position:center}
-.slide.active{opacity:1}
-.slide-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s}
-.dot.on{background:var(--gold)}
+html{background:var(--bg)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidden;background:var(--bg)}
+.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--bg);box-shadow:0 0 80px rgba(0,0,0,.6)}
 
 /* ── LOGO BAR ── */
-.logo-bar{display:flex;align-items:center;gap:12px;background:#0a1515;padding:12px 20px;border-bottom:1px solid rgba(201,150,58,.2)}
-.logo-bar img{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;flex-shrink:0}
-.logo-bar-text h2{font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.2}
-.logo-bar-text p{font-size:.72rem;color:var(--muted);margin-top:2px}
+.logo-bar{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px;
+  background:linear-gradient(135deg,#1a1030 0%,#1e1545 100%);
+  border-bottom:1px solid var(--border);
+}
+.logo-bar img{width:56px;height:56px;border-radius:50%;border:2px solid var(--sunset1);object-fit:cover;flex-shrink:0;box-shadow:0 0 12px rgba(245,166,35,.3)}
+.logo-bar-text h1{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;color:var(--text);line-height:1.1}
+.logo-bar-text p{font-size:.72rem;color:var(--sunset1);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
 
-/* ── HEADER ── */
-.header{margin-top:16px;text-align:center;padding:0 20px 8px}
-.header h1{font-size:1.55rem;font-weight:700;letter-spacing:.02em;color:var(--text)}
-.header p{color:var(--muted);font-size:.82rem;margin-top:4px}
+/* ── SLIDESHOW ── */
+.slides{position:relative;width:100%;height:300px;overflow:hidden;background:#0a0818}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;background-size:cover;background-position:center}
+.slide.active{opacity:1}
+/* gradient overlay bottom for dots legibility */
+.slides::after{content:'';position:absolute;inset:auto 0 0;height:60px;background:linear-gradient(to top,rgba(18,14,30,.7),transparent);pointer-events:none}
+.slide-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:2}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .3s,transform .3s}
+.dot.on{background:var(--sunset1);transform:scale(1.3)}
 
-/* ── BUTTONS ── */
-.btns{display:flex;flex-direction:column;gap:12px;padding:18px 20px 8px}
-.btn{display:flex;align-items:center;gap:14px;padding:17px 20px;border-radius:14px;text-decoration:none;font-size:1rem;font-weight:600;color:var(--text);transition:background .18s,transform .12s;-webkit-tap-highlight-color:transparent}
+/* ── TAGLINE ── */
+.tagline{text-align:center;padding:16px 20px 4px;font-size:.8rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+/* ── SECTION BUTTONS ── */
+.btns{display:flex;flex-direction:column;gap:10px;padding:10px 16px 6px}
+.btn{
+  display:flex;align-items:center;gap:0;
+  border-radius:14px;overflow:hidden;
+  text-decoration:none;color:var(--text);
+  transition:transform .13s,box-shadow .13s;
+  -webkit-tap-highlight-color:transparent;
+  box-shadow:0 2px 12px rgba(0,0,0,.35);
+}
 .btn:active{transform:scale(.97)}
-.btn-r{background:var(--btn-r)}
-.btn-r:hover{background:var(--btn-h)}
-.btn-h{background:var(--btn-a)}
-.btn-h:hover{background:var(--btn-ac)}
-.btn-a{background:#1f1a0d}
-.btn-a:hover{background:#2a2410}
-.btn-icon{font-size:1.6rem;width:40px;text-align:center;flex-shrink:0}
-.btn-text{display:flex;flex-direction:column;line-height:1.25}
-.btn-sub{font-size:.72rem;font-weight:400;color:var(--muted);margin-top:2px}
-.btn-arr{margin-left:auto;color:var(--gold);font-size:1.1rem;opacity:.7}
+.btn-accent{width:6px;flex-shrink:0;align-self:stretch}
+.btn-r .btn-accent{background:linear-gradient(to bottom,var(--sunset1),var(--sunset2))}
+.btn-h .btn-accent{background:linear-gradient(to bottom,var(--ocean),var(--wave))}
+.btn-a .btn-accent{background:linear-gradient(to bottom,var(--purple),#9b6dd4)}
+.btn-body{flex:1;display:flex;align-items:center;gap:14px;padding:16px 16px;background:var(--card)}
+.btn-icon{font-size:1.7rem;width:38px;text-align:center;flex-shrink:0}
+.btn-text{display:flex;flex-direction:column;line-height:1.3}
+.btn-label{font-size:1rem;font-weight:600;font-family:'Playfair Display',Georgia,serif}
+.btn-sub{font-size:.72rem;color:var(--muted);margin-top:2px;font-weight:400}
+.btn-arr{margin-left:auto;color:var(--sunset1);font-size:1.2rem;opacity:.7;padding-left:8px}
 
 /* ── DIVIDER ── */
-.divider{height:1px;background:linear-gradient(to right,transparent,rgba(201,150,58,.25),transparent);margin:4px 20px}
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:8px 16px}
 
 /* ── WA BUTTON ── */
-.wa-wrap{padding:12px 20px 32px;display:flex;justify-content:center}
-.wa-btn{display:flex;align-items:center;gap:10px;background:#1a3320;border:1px solid #2a5235;color:#72e09a;padding:12px 24px;border-radius:50px;font-size:.9rem;font-weight:600;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.wa-wrap{padding:12px 16px 24px}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,#1a3a22,#1f4a2a);
+  border:1px solid rgba(100,220,130,.2);
+  color:#72e09a;padding:14px;border-radius:14px;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
+  box-shadow:0 2px 12px rgba(0,0,0,.3);
+}
 .wa-btn:active{opacity:.8}
-.wa-icon{font-size:1.3rem}
 
 /* ── LANG ── */
-.lang-row{display:flex;justify-content:flex-end;padding:6px 20px 0}
-.lang-btn{background:none;border:1px solid rgba(201,150,58,.3);color:var(--muted);font-size:.72rem;padding:3px 10px;border-radius:20px;cursor:pointer}
-.lang-btn.active{color:var(--gold);border-color:var(--gold)}
+.lang-row{display:flex;justify-content:flex-end;padding:4px 16px 0;gap:2px}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:3px 10px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif}
+.lang-btn.active{color:var(--sunset1);border-color:var(--sunset1)}
+
+/* ── CREDIT ── */
+.credit{text-align:center;padding:0 0 28px;opacity:.35}
+.credit a{color:var(--muted);font-size:.65rem;text-decoration:none;letter-spacing:.05em}
+.credit strong{color:var(--sunset1)}
 </style>
 </head>
 <body>
@@ -79,8 +105,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
 <div class="logo-bar">
   <img src="img/logo.png" alt="Casa Axolotl">
   <div class="logo-bar-text">
-    <h2>Casa Axolotl</h2>
-    <p>Pie de la Cuesta · Acapulco</p>
+    <h1>Casa Axolotl</h1>
+    <p>Hotel &amp; Restaurante · Acapulco</p>
   </div>
 </div>
 
@@ -95,40 +121,52 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
   <div class="slide-dots" id="dots"></div>
 </div>
 
+<!-- Tagline -->
+<p class="tagline" id="tagline">Pie de la Cuesta · Paraíso frente al mar</p>
+
 <!-- Lang toggle -->
 <div class="lang-row">
   <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
-  <span style="color:#333;padding:0 4px;font-size:.7rem">|</span>
+  <span style="color:#333;padding:0 3px;font-size:.7rem;line-height:1.8">|</span>
   <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
 </div>
 
 <!-- Buttons -->
 <div class="btns">
   <a class="btn btn-r" href="menu/" id="linkMenu">
-    <span class="btn-icon">🍽️</span>
-    <span class="btn-text">
-      <span id="lblMenu">Restaurante</span>
-      <span class="btn-sub" id="subMenu">Menú · Bar · Desayunos</span>
+    <span class="btn-accent"></span>
+    <span class="btn-body">
+      <span class="btn-icon">🍽️</span>
+      <span class="btn-text">
+        <span class="btn-label" id="lblMenu">Restaurante</span>
+        <span class="btn-sub" id="subMenu">Menú · Bar · Desayunos</span>
+      </span>
+      <span class="btn-arr">›</span>
     </span>
-    <span class="btn-arr">›</span>
   </a>
 
   <a class="btn btn-h" href="hotel/" id="linkHotel">
-    <span class="btn-icon">🏨</span>
-    <span class="btn-text">
-      <span id="lblHotel">Hotel</span>
-      <span class="btn-sub" id="subHotel">Habitaciones · Servicios · Guía</span>
+    <span class="btn-accent"></span>
+    <span class="btn-body">
+      <span class="btn-icon">🏨</span>
+      <span class="btn-text">
+        <span class="btn-label" id="lblHotel">Hotel</span>
+        <span class="btn-sub" id="subHotel">Habitaciones · Servicios · Guía</span>
+      </span>
+      <span class="btn-arr">›</span>
     </span>
-    <span class="btn-arr">›</span>
   </a>
 
   <a class="btn btn-a" href="https://wa.me/527474999032?text=Hola%2C%20me%20gustar%C3%ADa%20info%20sobre%20actividades%20en%20Acapulco" target="_blank" id="linkAct">
-    <span class="btn-icon">🎯</span>
-    <span class="btn-text">
-      <span id="lblAct">Actividades</span>
-      <span class="btn-sub" id="subAct">Kayak · Tours · Aventura</span>
+    <span class="btn-accent"></span>
+    <span class="btn-body">
+      <span class="btn-icon">🎯</span>
+      <span class="btn-text">
+        <span class="btn-label" id="lblAct">Actividades</span>
+        <span class="btn-sub" id="subAct">Kayak · Tours · Aventura</span>
+      </span>
+      <span class="btn-arr">›</span>
     </span>
-    <span class="btn-arr">›</span>
   </a>
 </div>
 
@@ -137,17 +175,17 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
 <!-- WhatsApp -->
 <div class="wa-wrap">
   <a class="wa-btn" href="https://wa.me/527474999032" target="_blank">
-    <span class="wa-icon">💬</span>
+    <span style="font-size:1.3rem">💬</span>
     <span id="waLabel">Contactar por WhatsApp</span>
   </a>
 </div>
 
-<!-- MX Studio credit -->
-<div style="text-align:center;padding:0 0 20px;opacity:.45">
-  <a href="https://myjefetech.app" target="_blank" style="color:#8ca8a0;font-size:.68rem;text-decoration:none;letter-spacing:.04em">
-    ✦ App by <strong style="color:#c9963a">MX Studio</strong> · myjefetech.app
-  </a>
+<!-- Credit -->
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
 </div>
+
+</div><!-- /page -->
 
 <script>
 // Slideshow
@@ -158,16 +196,15 @@ slides.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+
 const dots=dotsEl.querySelectorAll('.dot');
 function go(n){slides[cur].classList.remove('active');dots[cur].classList.remove('on');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('on')}
 function next(){go(cur+1)}
-timer=setInterval(next,3500);
-// swipe
+timer=setInterval(next,3800);
 let sx=0;
 document.getElementById('slides').addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-document.getElementById('slides').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){clearInterval(timer);go(dx<0?cur+1:cur-1);timer=setInterval(next,3500)}},{passive:true});
+document.getElementById('slides').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){clearInterval(timer);go(dx<0?cur+1:cur-1);timer=setInterval(next,3800)}},{passive:true});
 
 // Lang
 const T={
-  es:{tagline:'Acapulco · Hotel & Restaurante',lblMenu:'Restaurante',subMenu:'Menú · Bar · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía',lblAct:'Actividades',subAct:'Kayak · Tours · Aventura',wa:'Contactar por WhatsApp',linkAct:'https://wa.me/527474999032?text=Hola%2C%20me%20gustar%C3%ADa%20info%20sobre%20actividades%20en%20Acapulco'},
-  en:{tagline:'Acapulco · Hotel & Restaurant',lblMenu:'Restaurant',subMenu:'Menu · Bar · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Adventure',wa:'Contact via WhatsApp',linkAct:'https://wa.me/527474999032?text=Hello%2C%20I%27d%20like%20info%20about%20activities%20in%20Acapulco'}
+  es:{tagline:'Pie de la Cuesta · Paraíso frente al mar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía',lblAct:'Actividades',subAct:'Kayak · Tours · Aventura',wa:'Contactar por WhatsApp',linkAct:'https://wa.me/527474999032?text=Hola%2C%20me%20gustar%C3%ADa%20info%20sobre%20actividades%20en%20Acapulco'},
+  en:{tagline:'Pie de la Cuesta · Oceanfront Paradise',lblMenu:'Restaurant',subMenu:'Menu · Bar · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Adventure',wa:'Contact via WhatsApp',linkAct:'https://wa.me/527474999032?text=Hello%2C%20I%27d%20like%20info%20about%20activities%20in%20Acapulco'}
 };
 function setLang(l){
   const t=T[l];
@@ -184,6 +221,5 @@ function setLang(l){
   document.getElementById('enBtn').classList.toggle('active',l==='en');
 }
 </script>
-</div><!-- /page -->
 </body>
 </html>
