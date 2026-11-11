@@ -36,7 +36,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   border-bottom:1px solid var(--border);
   gap:12px;
 }
-.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;line-height:1;text-decoration:none;flex-shrink:0}
+.refresh{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px;line-height:1;cursor:pointer;flex-shrink:0}
 .hero-logo{
   width:54px;height:54px;border-radius:50%;
   border:2px solid var(--gold);
@@ -212,7 +212,6 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 
 <!-- Header bar -->
 <div class="header">
-  <a class="back" href="../../rutas/">&#8249;</a>
   <img class="hero-logo" src="img/logo.png" alt="Casa Axolotl">
   <div class="header-info">
     <h1>Casa Axolotl</h1>
@@ -225,6 +224,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
     </div>
     <small id="acaSub">Turismo de Aventura</small>
   </div>
+  <button class="refresh" onclick="location.reload(true)" title="Refresh">↻</button>
 </div>
 
 <!-- Slideshow -->
