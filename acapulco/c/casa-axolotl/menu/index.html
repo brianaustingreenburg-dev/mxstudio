@@ -34,7 +34,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:44px}
 .topbar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:0;right:0}
 .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 16px}
-.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);flex-shrink:0}
 .demo{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#f3d9a8;font-weight:800;font-size:11px;letter-spacing:.08em;padding:8px 12px;border-radius:999px;text-decoration:none;border:1px solid rgba(243,217,168,.35)}
 .pop{margin-top:18px}
 .pop h2{font-size:19px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -116,7 +115,8 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .steps li{counter-increment:s;display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
 .steps li:before{content:counter(s);flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f0e6da;color:var(--ink)}
 .ibtn{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;padding:13px;border-radius:14px;background:var(--c);color:#fff;font-weight:800}
-.topbar .lang button{padding:7px 10px}.topbar .demo{white-space:nowrap}@media(max-width:380px){.topbar .lang button{padding:6px 7px;font-size:11px}}
+.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);flex-shrink:0}
+.topbar .lang button{padding:7px 10px}@media(max-width:400px){.topbar .lang button{padding-left:7px;padding-right:7px;white-space:nowrap}.topbar .wrap{gap:6px}}
 </style>
 </head>
 <body>
@@ -166,8 +166,7 @@ let SP=null,cur="mxn",FX=18.8;try{cur=localStorage.getItem("mx-cur")||"mxn"}catc
 let FXC=12.4;try{const c=+localStorage.getItem("mx-fxc");if(c>5)FXC=c}catch(_){}
 const money=n=>cur==="usd"||cur==="cad"?(cur==="usd"?"US$":"CA$")+(Math.round(Number(n||0)/(cur==="usd"?FX:FXC)*2)/2).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:1}):"$"+Number(n||0).toLocaleString("en-US");
 const KEY="app-"+(D.slug||"x");
-// v179: clear any corrupted cached menu so HTML data takes over
-try{if(!localStorage.getItem(KEY+"-menu-v179")){localStorage.removeItem(KEY+"-menu");localStorage.setItem(KEY+"-menu-v179","1")}}catch(_){}
+try{if(!localStorage.getItem(KEY+"-menu-v180")){localStorage.removeItem(KEY+"-menu");localStorage.setItem(KEY+"-menu-v180","1")}}catch(_){}
 let lang="es",cart={},how="p",where="t",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
 const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;os="and";if(typeof render==="function")render()});
