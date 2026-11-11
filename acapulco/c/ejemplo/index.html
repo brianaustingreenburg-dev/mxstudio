@@ -98,10 +98,11 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .steps li:before{content:counter(s);flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f0e6da;color:var(--ink)}
 .ibtn{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;padding:13px;border-radius:14px;background:var(--c);color:#fff;font-weight:800}
 .topbar .demo{white-space:nowrap}@media(max-width:400px){.topbar .lang button{padding-left:7px;padding-right:7px;white-space:nowrap}.topbar .wrap{gap:6px}}
+.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);flex-shrink:0}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span id="demoPill"></span><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div>
+<div class="topbar"><div class="wrap"><a class="back" href="../../rutas/">&#8249;</a><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div>
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
@@ -169,7 +170,7 @@ function render(){
  const popular=items().filter(it=>it.img).slice(0,6);
  $("pop").style.display=popular.length>=3?"":"none";
  $("pop").innerHTML=`<h2>${u.pop}</h2><div class="rail">${popular.map(it=>{const n=cart[it.id]||0;return `<div class="pc"><img src="${esc(it.img)}" alt="" loading="lazy"><div class="pb"><b>${esc(tx(it.name))}</b><div class="row"><span class="price">${it.price?money(it.price):""}</span>${D.carryout&&it.price?`<div class="qty">${n?`<button class="m" data-d="${it.id}">−</button><span>${n}</span>`:""}<button data-a="${it.id}">+</button></div>`:""}</div></div></div>`}).join("")}</div>`;
- $("demoPill").innerHTML=D.demo?`<a class="demo" href="${esc(D.back||"#")}">${D.back?"← ":""}${u.demo}</a>`:"";
+ {const _dp=$("demoPill");if(_dp)_dp.innerHTML=D.demo?`<a class="demo" href="${esc(D.back||"#")}">${D.back?"← ":""}${u.demo}</a>`:"";
  $("foot").textContent=D.demo?u.demoFoot:"App por MX Studio ✝ · Acapulco";
  $("cats").innerHTML=D.menu.map((c,i)=>`<button class="cat" data-c="${i}">${esc(tx(c.cat))}</button>`).join("");
  $("menu").innerHTML=D.menu.map((c,ci)=>`<h2 class="sec" id="c${ci}">${esc(tx(c.cat))}</h2>`+c.items.map((it,ii)=>{const id=ci+"-"+ii,n=cart[id]||0;
@@ -219,7 +220,7 @@ document.addEventListener("click",e=>{
  if(x.dataset.x==="send"){const its=items().filter(it=>cart[it.id]);const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
   const ls=its.map(it=>`• ${cart[it.id]} × ${tx(it.name)} (${money(cart[it.id]*(+it.price||0))})`).join("\n");
   const n=($("fName")||{}).value||"",del=how==="d"&&D.delivery;
-  const extra=del?u.delA+(($("fAddr")||{}).value||""):(($("fTime")||{}).value?u.pickT+$("fTime").value:"");
+  const extra=del?u.delA+(($("fAddr")||{}).value||""):(($("fTime")||{}).value?u.pickT+$("fTime").value:"");}
   open(wa(u.mOrder(n,ls,money(tot),del?u.howD:u.howP,extra,($("fNotes")||{}).value||"")),"_blank");return}
  if(x.dataset.x==="rsend"){const dt=$("rD").value?new Date($("rD").value+"T12:00").toLocaleDateString(lang==="es"?"es-MX":"en-US",{weekday:"long",day:"numeric",month:"long"}):"";
   open(wa(u.mRes($("rP").value,dt,$("rT").value,$("rN").value)),"_blank");}
