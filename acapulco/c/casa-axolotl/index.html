@@ -30,9 +30,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s}
 .dot.on{background:var(--gold)}
 
-/* ── LOGO BADGE ── */
-.logo-wrap{position:absolute;bottom:12px;right:14px;z-index:3}
-.logo-wrap img{width:88px;height:88px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;background:#0d1a1a;box-shadow:0 2px 20px rgba(0,0,0,.7)}
+/* ── LOGO BAR ── */
+.logo-bar{display:flex;align-items:center;gap:12px;background:#0a1515;padding:12px 20px;border-bottom:1px solid rgba(201,150,58,.2)}
+.logo-bar img{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;flex-shrink:0}
+.logo-bar-text h2{font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.2}
+.logo-bar-text p{font-size:.72rem;color:var(--muted);margin-top:2px}
 
 /* ── HEADER ── */
 .header{margin-top:16px;text-align:center;padding:0 20px 8px}
@@ -71,6 +73,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
 </head>
 <body>
 
+<!-- Logo bar -->
+<div class="logo-bar">
+  <img src="img/logo.png" alt="Casa Axolotl">
+  <div class="logo-bar-text">
+    <h2>Casa Axolotl</h2>
+    <p>Pie de la Cuesta · Acapulco</p>
+  </div>
+</div>
+
 <!-- Slideshow -->
 <div class="slides" id="slides">
   <div class="slide active" style="background-image:url('img/hub1.jpg')"></div>
@@ -80,15 +91,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-
   <div class="slide" style="background-image:url('img/hub5.jpg')"></div>
   <div class="slide" style="background-image:url('img/hub6.jpg')"></div>
   <div class="slide-dots" id="dots"></div>
-  <div class="logo-wrap">
-    <img src="img/logo.png" alt="Casa Axolotl">
-  </div>
-</div>
-
-<!-- Header -->
-<div class="header">
-  <h1>Casa Axolotl</h1>
-  <p id="tagline">Acapulco · Hotel &amp; Restaurante</p>
 </div>
 
 <!-- Lang toggle -->
