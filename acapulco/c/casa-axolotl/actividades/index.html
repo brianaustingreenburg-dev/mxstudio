@@ -74,38 +74,10 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(-
 <script>
 const WA = '527474999032';
 const ACT = [
-  {ic:'🚣',col:'#2563a8',pr:'$',
-   n:{es:'Kayak en Pie de la Cuesta',en:'Kayak at Pie de la Cuesta'},
-   d:{es:'Rema entre la laguna de Coyuca y el Pacífico. Uno de los mejores spots de kayak en Acapulco, justo aquí.',en:'Paddle between Coyuca Lagoon and the Pacific. One of the best kayak spots in Acapulco, right here.'},
-   msg:{es:'Hola, me gustaría reservar un kayak en Casa Axolotl',en:'Hello, I\'d like to book a kayak at Casa Axolotl'}},
-  {ic:'🌅',col:'#e8607a',pr:'$',
+  {ic:'🔥',col:'#e8607a',
    n:{es:'Fogata AcáFree · 7:30 pm',en:'AcáFree Bonfire · 7:30 pm'},
-   d:{es:'Reúnete con otros viajeros alrededor de la fogata cada noche. Música, cerveza y el atardecer más famoso de México.',en:'Join fellow travelers around the bonfire every evening. Music, drinks and Mexico\'s most famous sunset.'},
-   msg:{es:'Hola, ¿a qué hora es la fogata esta noche?',en:'Hello, what time is the bonfire tonight?'}},
-  {ic:'🏄',col:'#f5a623',pr:'$$',
-   n:{es:'Surf y tabla en la playa',en:'Surf & board rental'},
-   d:{es:'Las olas de Pie de la Cuesta son perfectas para principiantes. Tablas disponibles, instructor opcional.',en:'The waves at Pie de la Cuesta are perfect for beginners. Boards available, instructor optional.'},
-   msg:{es:'Hola, me gustaría rentar una tabla de surf',en:'Hello, I\'d like to rent a surfboard'}},
-  {ic:'🤿',col:'#16495e',pr:'$$',
-   n:{es:'Snorkel en Isla La Roqueta',en:'Snorkeling at La Roqueta Island'},
-   d:{es:'Lancha con fondo de cristal, la Virgen de los Mares bajo el agua y arrecife de coral. Incluye equipo.',en:'Glass-bottom boat, the underwater Virgin statue and coral reef. Equipment included.'},
-   msg:{es:'Hola, me gustaría info sobre el snorkel en La Roqueta',en:'Hello, I\'d like info about snorkeling at La Roqueta'}},
-  {ic:'⚡',col:'#9b6dd4',pr:'$$',
-   n:{es:'Paseo en lancha por la laguna',en:'Boat tour of Coyuca Lagoon'},
-   d:{es:'Recorre la laguna de Coyuca entre manglares, aves y el canal que separa el Pacífico de la laguna.',en:'Cruise Coyuca Lagoon through mangroves, birds and the channel separating the Pacific from the lagoon.'},
-   msg:{es:'Hola, me gustaría reservar un paseo en lancha por la laguna',en:'Hello, I\'d like to book a boat tour of the lagoon'}},
-  {ic:'🤸',col:'#b85a3c',pr:'$$$',
-   n:{es:'Clavadistas de La Quebrada',en:'La Quebrada Cliff Divers'},
-   d:{es:'El espectáculo más famoso de Acapulco: clavados de 35 m al atardecer o de noche. Transporte disponible.',en:'Acapulco\'s most famous show: 35m cliff dives at sunset or after dark. Transport available.'},
-   msg:{es:'Hola, me gustaría ir a ver los clavadistas de La Quebrada',en:'Hello, I\'d like to go see the La Quebrada cliff divers'}},
-  {ic:'⛵',col:'#0d3446',pr:'$$',
-   n:{es:'Paseo en yate por la bahía',en:'Bay cruise by yacht'},
-   d:{es:'Recorre la bahía de Acapulco con música, bebidas y vistas a las mansiones de la Costera.',en:'Cruise Acapulco bay with music, drinks and views of the Costera mansions.'},
-   msg:{es:'Hola, me gustaría info sobre el paseo en yate',en:'Hello, I\'d like info about the yacht cruise'}},
-  {ic:'🏰',col:'#8a6a45',pr:'$',
-   n:{es:'Fuerte de San Diego',en:'Fort San Diego'},
-   d:{es:'Museo Histórico de Acapulco dentro de una fortaleza del siglo XVII. Media hora en taxi desde aquí.',en:'Acapulco History Museum inside a 17th-century fortress. Half hour by taxi from here.'},
-   msg:{es:'Hola, ¿cómo llego al Fuerte de San Diego?',en:'Hello, how do I get to Fort San Diego?'}},
+   d:{es:'Reúnete con otros viajeros alrededor de la fogata cada noche. Música, buena compañía y el atardecer más famoso de México. Entrada gratuita.',en:'Join fellow travelers around the bonfire every evening. Music, good company and Mexico\'s most famous sunset. Free entry.'},
+   msg:{es:'Hola, ¿a qué hora es la fogata esta noche en Casa Axolotl?',en:'Hello, what time is the bonfire tonight at Casa Axolotl?'}},
 ];
 
 let lang = (navigator.language||'es').startsWith('en') ? 'en' : 'es';
@@ -116,8 +88,8 @@ function render(){
   const es = lang==='es';
   document.getElementById('hSub').textContent = es ? 'Turismo de Aventura' : 'Adventure Tourism';
   document.getElementById('intro').textContent = es
-    ? 'Descubre lo mejor de Pie de la Cuesta y Acapulco. Pregúntanos en recepción para reservar cualquier actividad.'
-    : 'Discover the best of Pie de la Cuesta and Acapulco. Ask at the front desk to book any activity.';
+    ? 'Eventos gratuitos para huéspedes y visitantes. Próximamente más actividades.'
+    : 'Free events for guests and visitors. More activities coming soon.';
   document.getElementById('esBtn').className = 'lang-btn'+(lang==='es'?' on':'');
   document.getElementById('enBtn').className = 'lang-btn'+(lang==='en'?' on':'');
   document.documentElement.lang = lang;
@@ -131,7 +103,7 @@ function render(){
           <span class="card-icon">${a.ic}</span>
           <div class="card-info">
             <div class="card-name">${es?a.n.es:a.n.en}</div>
-            <div class="card-pr">${a.pr} · ${a.pr==='$'?(es?'Económico':'Budget'):a.pr==='$$'?(es?'Precio medio':'Mid-range'):(es?'Premium':'Premium')}</div>
+            <div class="card-pr">🎟 ${es?'Entrada gratuita':'Free entry'}</div>
           </div>
         </div>
         <p class="card-desc">${es?a.d.es:a.d.en}</p>
