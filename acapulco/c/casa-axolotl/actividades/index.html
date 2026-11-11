@@ -43,6 +43,11 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(-
 .card-wa{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(232,64,122,.12);border:1px solid rgba(232,64,122,.35);color:#f07aa8;font-size:.75rem;font-weight:600;padding:7px 14px;border-radius:50px;text-decoration:none;-webkit-tap-highlight-color:transparent}
 .card-wa:active{opacity:.7}
 
+/* section header */
+.section-hd{padding:16px 16px 4px;display:flex;align-items:center;gap:8px}
+.section-hd span{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.section-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+
 /* credit */
 .credit{text-align:center;padding:0 0 28px;opacity:.35}
 .credit a{color:var(--muted);font-size:.65rem;text-decoration:none;letter-spacing:.05em}
@@ -61,7 +66,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(-
   <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
 </div>
 
-<p class="intro" id="intro">Descubre lo mejor de Pie de la Cuesta y Acapulco. Pregúntanos en recepción para reservar cualquier actividad.</p>
+<p class="intro" id="intro">Eventos y actividades gratuitas en Pie de la Cuesta y Acapulco.</p>
 
 <div class="cards" id="cards"></div>
 
@@ -78,6 +83,27 @@ const ACT = [
    n:{es:'Fogata AcáFree · 7:30 pm',en:'AcáFree Bonfire · 7:30 pm'},
    d:{es:'Reúnete con otros viajeros alrededor de la fogata cada noche. Música, buena compañía y el atardecer más famoso de México. Entrada gratuita.',en:'Join fellow travelers around the bonfire every evening. Music, good company and Mexico\'s most famous sunset. Free entry.'},
    msg:{es:'Hola, ¿a qué hora es la fogata esta noche en Casa Axolotl?',en:'Hello, what time is the bonfire tonight at Casa Axolotl?'}},
+  {ic:'🌅',col:'#c9922a',
+   n:{es:'Mejor atardecer de México',en:'Best Sunset in Mexico'},
+   d:{es:'Pie de la Cuesta es el único lugar donde el sol cae directo al mar entre el Pacífico y la laguna de Coyuca. Sal a la playa frente al hotel alrededor de las 6 pm.',en:'Pie de la Cuesta is the only place the sun drops straight into the ocean between the Pacific and Coyuca Lagoon. Head to the beach in front of the hotel around 6 pm.'}},
+  {ic:'🏖',col:'#2563a8',
+   n:{es:'Playa Pie de la Cuesta',en:'Pie de la Cuesta Beach'},
+   d:{es:'La playa larga y salvaje frente al hotel. Olas fuertes del Pacífico — ideal para caminar, correr o sentarse a ver el mar. No recomendada para nadar.',en:'The long, wild Pacific beach right in front of the hotel. Strong Pacific waves — perfect for walking, jogging or watching the ocean. Not recommended for swimming.'}},
+  {ic:'🦅',col:'#16495e',
+   n:{es:'Aves en la laguna de Coyuca',en:'Birds on Coyuca Lagoon'},
+   d:{es:'Garzas, pelícanos, fragatas y más de 200 especies viven en los manglares. Sal al muelle al amanecer para verlas de cerca, gratis.',en:'Herons, pelicans, frigatebirds and over 200 species live in the lagoon mangroves. Walk to the dock at sunrise for free up-close views.'}},
+  {ic:'🌿',col:'#2d7a4f',
+   n:{es:'Parque Nacional El Veladero',en:'El Veladero National Park'},
+   d:{es:'Bosque tropical a 15 min en taxi. Senderos con vistas al Pacífico, iguanas silvestres y vegetación nativa. Entrada gratuita.',en:'Tropical forest 15 min by taxi. Trails with Pacific viewpoints, wild iguanas and native vegetation. Free entry.'}},
+  {ic:'🚶',col:'#6b3fa0',
+   n:{es:'Costera Miguel Alemán',en:'Costera Miguel Alemán'},
+   d:{es:'El malecón más famoso de Acapulco: 10 km frente al mar con la escultura de Diana Cazadora, parques y vistas a la bahía. Libre y abierto todo el día.',en:'Acapulco\'s most famous promenade: 10 km along the ocean with the Diana the Huntress sculpture, parks and bay views. Free and open all day.'}},
+  {ic:'🌺',col:'#b85a3c',
+   n:{es:'Jardín Botánico de Acapulco',en:'Acapulco Botanical Garden'},
+   d:{es:'Más de 2,000 especies de plantas tropicales, caminos sombreados y áreas de picnic. Entrada gratuita. A 25 min en taxi.',en:'Over 2,000 tropical plant species, shaded paths and picnic areas. Free admission. About 25 min by taxi.'}},
+  {ic:'⛪',col:'#8a6a45',
+   n:{es:'Zócalo y Catedral',en:'Zócalo & Cathedral'},
+   d:{es:'El corazón histórico de Acapulco con la Catedral de Nuestra Señora de la Soledad, cafés y vida local. Gratis, a 30 min en taxi.',en:'Acapulco\'s historic heart with the Cathedral of Our Lady of Solitude, cafés and local life. Free, about 30 min by taxi.'}},
 ];
 
 let lang = (navigator.language||'es').startsWith('en') ? 'en' : 'es';
@@ -88,8 +114,8 @@ function render(){
   const es = lang==='es';
   document.getElementById('hSub').textContent = es ? 'Turismo de Aventura' : 'Adventure Tourism';
   document.getElementById('intro').textContent = es
-    ? 'Eventos gratuitos para huéspedes y visitantes. Próximamente más actividades.'
-    : 'Free events for guests and visitors. More activities coming soon.';
+    ? 'Actividades y eventos gratuitos en Pie de la Cuesta y Acapulco.'
+    : 'Free activities and events in Pie de la Cuesta and Acapulco.';
   document.getElementById('esBtn').className = 'lang-btn'+(lang==='es'?' on':'');
   document.getElementById('enBtn').className = 'lang-btn'+(lang==='en'?' on':'');
   document.documentElement.lang = lang;
