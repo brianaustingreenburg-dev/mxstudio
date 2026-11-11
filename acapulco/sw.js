@@ -1,5 +1,5 @@
 // MX Studio ✝ Acapulco — offline support for MX Dashboard, Precios and every restaurant app
-const CACHE="mx-acapulco-v165";   // app shells (replaced on each update)
+const CACHE="mx-acapulco-v166";   // app shells (replaced on each update)
 const APPC="mx-apps";            // restaurant apps + photos (kept across updates; filled by MX Dashboard)
 const SCOPE=self.registration.scope;
 const CORE=["","index.html","logo.png","icon-192.png","icon-512.png","manifest.json","la-bahia/","la-bahia/index.html","hotel-caleta/","hotel-caleta/index.html","rutas/","rutas/index.html","rutas/manifest.json","precios/","precios/index.html","precios/manifest.json","crear/","crear/index.html","crear/manifest.json","app/plantilla.html","demo/","demo/index.html","demo/manifest.json","tarjeta/","tarjeta/index.html","dueno/","dueno/index.html","lib/qrcode.js","lib/fx.json","lib/html2canvas.min.js","lib/jspdf.umd.min.js","lib/games.js","lib/setup.js","lib/reviews.js","lib/loyalty.js","lib/peerjs.min.js","lib/fonts/m500.woff2","lib/fonts/m700.woff2","lib/fonts/m800.woff2","pendientes/","pendientes/index.html","pendientes/manifest.json","propuestas/belleza/","propuestas/belleza/index.html"].map(p=>new URL(p,SCOPE).href);
