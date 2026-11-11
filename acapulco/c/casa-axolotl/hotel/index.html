@@ -56,6 +56,10 @@ h2 small{display:block;font-family:Inter,sans-serif;font-size:11px;letter-spacin
 .exp{margin-top:16px;display:grid;gap:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
 .card img{display:block;width:100%;height:210px;object-fit:cover}
+.card-strip{display:flex;gap:6px;overflow-x:auto;padding:0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.card-strip::-webkit-scrollbar{display:none}
+.card-strip img{width:76%;max-width:300px;height:210px;object-fit:cover;flex:none;scroll-snap-align:start;border-radius:0}
+.card-strip img:last-child{padding-right:0}
 .card .b{padding:16px 18px 18px}
 .card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;line-height:1.1}
 .card p{color:var(--muted);font-size:15px;margin-top:6px}
@@ -189,7 +193,7 @@ const H={
     ["20:00",{es:"Cena",en:"Dinner"},{es:"Restaurante · bajo la palapa",en:"Restaurant · under the palapa"}]
   ],
   exp:[
-    {img:"img/cuarto.jpg",h:{es:"Tu habitación",en:"Your room"},p:{es:"Abre el balcón, cuelga la hamaca y mira el amanecer con un café. Todo lo que necesitas saber está abajo.",en:"Open the balcony, hang the hammock and watch the sunrise with a coffee. Everything you need to know is below."},t:[{es:"Vista al mar",en:"Ocean view"},{es:"Aire acondicionado",en:"Air conditioning"}]},
+    {img:"img/cuarto.jpg",imgs:["img/room1.jpg","img/room2.jpg","img/room3.jpg","img/room4.jpg"],h:{es:"Tu habitación",en:"Your room"},p:{es:"Abre el balcón, cuelga la hamaca y mira el amanecer con un café. Todo lo que necesitas saber está abajo.",en:"Open the balcony, hang the hammock and watch the sunrise with a coffee. Everything you need to know is below."},t:[{es:"Vista al mar",en:"Ocean view"},{es:"Aire acondicionado",en:"Air conditioning"}]},
     {img:"img/kayak.jpg",h:{es:"Kayaks en la laguna",en:"Kayaks on the lagoon"},p:{es:"Cruzando la calle está la Laguna de Coyuca. Al amanecer el agua es un espejo: garzas, manglares y la sierra al fondo.",en:"Coyuca Lagoon is right across the street. At sunrise the water is a mirror: herons, mangroves and mountains."},t:[{es:"Para huéspedes",en:"For guests"},{es:"Mejor de 7 a 10 am",en:"Best 7–10am"}],wa:{es:"Hola, quiero apartar kayaks",en:"Hi, I'd like to book kayaks"}},
     {img:"img/fogata.jpg",h:{es:"Fogata #AcáFree",en:"#AcáFree bonfire"},p:{es:"Todas las noches a las 7:30 pm prendemos la fogata en la playa. Hamacas, estrellas y el sonido del mar. Gratis.",en:"Every night at 7:30 pm we light the bonfire on the beach. Hammocks, stars and the sound of the sea. Free."},t:[{es:"7:30 pm",en:"7:30 pm"},{es:"Gratis",en:"Free"}]},
     {img:"img/comida.jpg",h:{es:"Restaurante frente al mar",en:"Beachfront restaurant"},p:{es:"Mariscos, sushi, cocina mexicana y brunch. Pide desde tu mesa o tu camastro con el menú en tu teléfono.",en:"Seafood, sushi, Mexican food and brunch. Order from your table or lounger with the menu on your phone."},t:[{es:"Menú ES / EN",en:"ES / EN menu"},{es:"Precios en MXN y US$",en:"Prices in MXN & US$"}],menu:true}
@@ -231,7 +235,7 @@ var render=function(){
   if(cur>=0&&cur===H.day.length-1&&n>mins(H.day[cur][0])+150){$("nowT").textContent=t.done;$("nowS").textContent=""}
   else if(nx){$("nowT").textContent=t.next+" · "+fmt(nx[0])+" — "+nx[1][lang];$("nowS").textContent=nx[2][lang]}
   else{const c=H.day[cur];$("nowT").textContent=t.now+" · "+c[1][lang];$("nowS").textContent=c[2][lang]}
-  $("exp").innerHTML=H.exp.map(x=>`<article class="card"><img src="${x.img}" alt="" loading="lazy"><div class="b"><h3>${esc(x.h[lang])}</h3><p>${esc(x.p[lang])}</p><div class="tags">${x.t.map(g=>`<span>${esc(g[lang])}</span>`).join("")}</div>${x.wa?`<a class="btn wa" target="_blank" rel="noopener" href="${wa(x.wa[lang])}">💬 ${t.book}</a>`:""}${x.menu?`<a class="btn" href="#rest">🍽️ ${t.seeMenu}</a>`:""}</div></article>`).join("");
+  $("exp").innerHTML=H.exp.map(x=>`<article class="card">${x.imgs?`<div class="card-strip">${x.imgs.map(i=>`<img src="${i}" alt="" loading="lazy">`).join("")}</div>`:`<img src="${x.img}" alt="" loading="lazy">`}<div class="b"><h3>${esc(x.h[lang])}</h3><p>${esc(x.p[lang])}</p><div class="tags">${x.t.map(g=>`<span>${esc(g[lang])}</span>`).join("")}</div>${x.wa?`<a class="btn wa" target="_blank" rel="noopener" href="${wa(x.wa[lang])}">💬 ${t.book}</a>`:""}${x.menu?`<a class="btn" href="#rest">🍽️ ${t.seeMenu}</a>`:""}</div></article>`).join("");
   $("room").innerHTML=H.room.map(r=>`<div><i>${r[0]}</i><p><b>${esc(r[1][lang])}</b><span>${esc(r[2][lang])}</span></p></div>`).join("");
   $("near").innerHTML=H.near.map(r=>`<a target="_blank" rel="noopener" href="${wa(t.ask+r[1][lang])}"><i>${r[0]}</i><b>${esc(r[1][lang])}</b><span>${esc(r[2][lang])}</span></a>`).join("");
 }
