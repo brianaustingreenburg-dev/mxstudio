@@ -166,6 +166,8 @@ let SP=null,cur="mxn",FX=18.8;try{cur=localStorage.getItem("mx-cur")||"mxn"}catc
 let FXC=12.4;try{const c=+localStorage.getItem("mx-fxc");if(c>5)FXC=c}catch(_){}
 const money=n=>cur==="usd"||cur==="cad"?(cur==="usd"?"US$":"CA$")+(Math.round(Number(n||0)/(cur==="usd"?FX:FXC)*2)/2).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:1}):"$"+Number(n||0).toLocaleString("en-US");
 const KEY="app-"+(D.slug||"x");
+// v179: clear any corrupted cached menu so HTML data takes over
+try{if(!localStorage.getItem(KEY+"-menu-v179")){localStorage.removeItem(KEY+"-menu");localStorage.setItem(KEY+"-menu-v179","1")}}catch(_){}
 let lang="es",cart={},how="p",where="t",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
 const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;os="and";if(typeof render==="function")render()});
