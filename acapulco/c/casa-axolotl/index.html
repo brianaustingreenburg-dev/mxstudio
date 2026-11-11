@@ -160,10 +160,10 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   <a class="btn btn-a" href="actividades/" id="linkAct">
     <span class="btn-accent"></span>
     <span class="btn-body">
-      <span class="btn-icon">🎯</span>
+      <img src="img/acafree-logo.png" alt="AcaFree" style="width:44px;height:44px;object-fit:contain;flex-shrink:0;border-radius:8px;background:#f5e94a">
       <span class="btn-text">
-        <span class="btn-label" id="lblAct">Actividades</span>
-        <span class="btn-sub" id="subAct">Kayak · Tours · Aventura</span>
+        <span class="btn-label" id="lblAct">Actividades · AcaFree</span>
+        <span class="btn-sub" id="subAct">Kayak · Tours · Fogata · Laguna</span>
       </span>
       <span class="btn-arr">›</span>
     </span>
@@ -203,8 +203,8 @@ document.getElementById('slides').addEventListener('touchend',e=>{const dx=e.cha
 
 // Lang
 const T={
-  es:{tagline:'Pie de la Cuesta · Paraíso frente al mar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía',lblAct:'Actividades',subAct:'Kayak · Tours · Fogata · Laguna',wa:'Contactar por WhatsApp',linkAct:'actividades/'},
-  en:{tagline:'Pie de la Cuesta · Oceanfront Paradise',lblMenu:'Restaurant',subMenu:'Menu · Bar · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Bonfire · Lagoon',wa:'Contact via WhatsApp',linkAct:'actividades/'}
+  es:{tagline:'Pie de la Cuesta · Paraíso frente al mar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía',lblAct:'Actividades · AcaFree',subAct:'Kayak · Tours · Fogata · Laguna',wa:'Contactar por WhatsApp',linkAct:'actividades/'},
+  en:{tagline:'Pie de la Cuesta · Oceanfront Paradise',lblMenu:'Restaurant',subMenu:'Menu · Bar · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities · AcaFree',subAct:'Kayak · Tours · Bonfire · Lagoon',wa:'Contact via WhatsApp',linkAct:'actividades/'}
 };
 function setLang(l){
   const t=T[l];
