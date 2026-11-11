@@ -133,9 +133,7 @@ function render(){
           </div>
         </div>
         <p class="card-desc">${es?a.d.es:a.d.en}</p>
-        <a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">
-          💬 ${es?'Reservar por WhatsApp':'Book via WhatsApp'} ›
-        </a>
+        ${a.msg?`<a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">💬 ${es?'Preguntar por WhatsApp':'Ask via WhatsApp'} ›</a>`:''}
       </div>
     </div>
   `).join('');
