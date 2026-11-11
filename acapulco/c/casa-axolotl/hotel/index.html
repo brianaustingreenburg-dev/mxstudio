@@ -25,6 +25,7 @@ a{color:inherit;text-decoration:none}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,20,22,.55) 0%,rgba(6,20,22,0) 30%,rgba(6,20,22,.15) 55%,rgba(6,20,22,.85) 100%)}
 .top{position:absolute;z-index:2;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 18px 0}
+.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:18px;line-height:1;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .mark{font-size:12px;letter-spacing:.28em;font-weight:600}
 .lang{display:flex;border:1px solid rgba(255,255,255,.55);border-radius:99px;overflow:hidden;font-size:12px;font-weight:600}
 .lang button{background:none;border:0;color:#fff;padding:7px 12px;letter-spacing:.08em;cursor:pointer}
@@ -114,7 +115,7 @@ footer b{color:var(--ink)}
 <body>
 <header class="hero">
   <img src="img/cover.jpg" alt="Casa Axolotl frente al mar en Pie de la Cuesta">
-  <div class="top"><div class="mark">CASA AXOLOTL</div><div class="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div></div>
+  <div class="top"><a class="back" href="/acapulco/c/casa-axolotl/">‹</a><div class="mark">CASA AXOLOTL</div><div class="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div></div>
   <div class="txt">
     <div class="eyebrow" data-t="eyebrow"></div>
     <h1>Casa <i>Axolotl</i></h1>
