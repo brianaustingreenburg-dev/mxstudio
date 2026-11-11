@@ -116,11 +116,11 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .steps li{counter-increment:s;display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
 .steps li:before{content:counter(s);flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f0e6da;color:var(--ink)}
 .ibtn{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;padding:13px;border-radius:14px;background:var(--c);color:#fff;font-weight:800}
-.topbar .demo{white-space:nowrap}@media(max-width:400px){.topbar .lang button{padding-left:7px;padding-right:7px;white-space:nowrap}.topbar .wrap{gap:6px}.topbar .demo .dl{display:none}}
+.topbar .lang button{padding:7px 10px}.topbar .demo{white-space:nowrap}@media(max-width:380px){.topbar .lang button{padding:6px 7px;font-size:11px}}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><a class="back" href="/acapulco/c/casa-axolotl/">‹</a><span id="demoPill"></span></div><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button><button data-cur="cad" aria-pressed="false">CA$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
+<div class="topbar"><div class="wrap"><a class="back" href="/acapulco/c/casa-axolotl/">‹</a><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">MXN</button><button data-cur="usd" aria-pressed="false">USD</button><button data-cur="cad" aria-pressed="false">CAD</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
 <header class="hero" id="hero"></header>
 <div class="wrap">
   <div class="quick" id="quick"></div>
