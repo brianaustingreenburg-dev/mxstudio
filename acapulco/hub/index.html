@@ -27,8 +27,8 @@ a{color:inherit;text-decoration:none}
   border-bottom:1px solid var(--line)}
 .toprow{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .brand{font-size:.7em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-.lang-sw{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;height:36px;align-items:center;position:relative}
-.lang-sw button{all:unset;cursor:pointer;font-weight:800;font-size:.7em;padding:0 10px;height:28px;display:grid;place-items:center;border-radius:999px;color:var(--muted);position:relative;z-index:1}
+.lang-sw{display:flex;background:var(--s2);border:1px solid rgba(232,196,140,.35);border-radius:999px;padding:3px;height:40px;align-items:center;position:relative}
+.lang-sw button{all:unset;cursor:pointer;font-weight:900;font-size:.8em;letter-spacing:.05em;padding:0 14px;height:32px;display:grid;place-items:center;border-radius:999px;color:var(--muted);position:relative;z-index:1}
 .lang-sw button[aria-pressed=true]{color:#1a0f0a}
 .lang-sw .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s}
 .lang-sw.en .knob{transform:translateX(100%)}
@@ -559,7 +559,7 @@ a{color:inherit;text-decoration:none}
 <script>
 // ── LANGUAGE ──
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
-let lang=store.get('hub-lang')||((navigator.language||'es').startsWith('en')?'en':'es');
+let lang=store.get('hub-lang')||'es';
 
 const T={
   es:{
