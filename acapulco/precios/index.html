@@ -219,19 +219,21 @@ function ownerWa(){try{const j=JSON.parse(decodeURIComponent(escape(atob(PA.repl
 function pkgText(A){A=A===undefined?PA:A;if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=A?"&a="+A:"",es=lang==="es";
  return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(A?"?a="+A:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"+"\n🧑‍🍳 "+(es?"Tu panel (reseñas, QR, cambios)":"Your panel (reviews, QRs, changes)")+": "+G+"dueno/?s="+PS+a+"\n🧰 "+(es?"Guías para configurar todo, paso a paso":"Step-by-step setup guides")+": "+G+"dueno/?s="+PS+a+"#setup"}
 const BASE={once:8000,down:3000,year:1000};let plan="full",host=false,PAY={};fetch("../lib/pay.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{PAY=j||{}}).catch(()=>{});
-// One flat price per package type — no tiers
+// Package types
 const TYPES={
  r:{es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
  h:{es:"🏨 Hotel",en:"🏨 Hotel"},
  hr:{es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
 };
-// Flat prices and monthly hosting
+// Prices: r and h are fixed; hr is a range (quote-based)
 const PK={
- r:{low:18000,reg:18000,down:10000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
- h:{low:20000,reg:20000,down:10000,host:400,es:"🏨 Hotel",en:"🏨 Hotel"},
- hr:{low:23000,reg:23000,down:10000,host:500,es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
+ r:{low:18000,reg:18000,down:7000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
+ h:{low:23000,reg:23000,down:10000,host:400,es:"🏨 Hotel",en:"🏨 Hotel"},
+ hr:{low:38000,reg:65000,down:13000,host:500,es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
 };
 const HOST_MO={r:300,h:400,hr:500};
+// hr is a range — show $38k–$65k, CTA goes to WhatsApp quote (not order form)
+const isRange=()=>pkg==="hr";
 // Payment plan available for Hotel+Restaurante only — terms agreed in person
 function pkgPayable(type){return type==="hr"}
 let pkg=(()=>{const t=QS.get("pkg")||"r";return["r","h","hr"].includes(t)?t:"r"})();
@@ -302,13 +304,19 @@ function bonusTxt(es){return es?["🎁 Activa antes del 11 de noviembre","Te con
 function render(){
  const u=T[lang];{const bx=document.getElementById("bonus");if(bx){if(bonusOn()){const b=bonusTxt(lang==="es");bx.innerHTML=`<b>${b[0]}</b>${b[1]}`;bx.hidden=false}else bx.hidden=true}}document.documentElement.lang=lang;
  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
- {const es=lang==="es",K=PK[pkg];
-  document.querySelector('[data-t="h1b"]').textContent=(es?"Desde "+fmt(18000):"From "+fmt(18000));
-  $("pOnce").textContent=fmt(K.reg);$("pReg").textContent="";$("pReg").style.display="none";
-  if(pkgPayable(pkg)){$("pSeason").textContent=(es?"📅 Planes de pago disponibles":"📅 Payment plans available");$("pSeason").style.display="";}else{$("pSeason").style.display="none";}
+ {const es=lang==="es",K=PK[pkg],rng=isRange();
+  document.querySelector('[data-t="h1b"]').textContent=(es?"Restaurante desde "+fmt(18000):"Restaurant from "+fmt(18000));
+  // Price box: range for hr, fixed for r/h
+  $("pOnce").textContent=rng?(fmt(K.low)+" – "+fmt(K.reg)):fmt(K.low);
+  $("pReg").textContent="";$("pReg").style.display="none";
+  if(rng){$("pSeason").textContent=(es?"📅 Cotización a tu medida · plazo y pagos en persona":"📅 Custom quote · terms set in person");$("pSeason").style.display="";}
+  else if(pkgPayable(pkg)){$("pSeason").textContent=(es?"📅 Planes de pago disponibles":"📅 Payment plans available");$("pSeason").style.display="";}
+  else{$("pSeason").style.display="none";}
   $("pHost").textContent=fmt(K.host);
-  // Type selector (3 types, one price each)
-  const typeBtns=Object.entries(TYPES).map(([k,v])=>`<button data-pkg="${k}" aria-pressed="${pkg===k}">${v[lang]}<small>${fmt(PK[k].reg)}</small></button>`).join("");
+  // Type selector — show range label for hr
+  const typeBtns=Object.entries(TYPES).map(([k,v])=>{
+   const lbl=k==="hr"?(fmt(PK[k].low)+"–"+fmt(PK[k].reg)):fmt(PK[k].low);
+   return`<button data-pkg="${k}" aria-pressed="${pkg===k}">${v[lang]}<small>${lbl}</small></button>`;}).join("");
   $("pkgs").innerHTML=`<div class="pkg-types">${typeBtns}</div>`;}
  $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
  // Features list (flat — all included)
@@ -326,7 +334,20 @@ function render(){
  if(pkgPayable(pkg))planOpts.push(["pay","📅",es?"Plan de pagos":"Payment plan",(es?"Lo acordamos en persona":"We set it up together in person"),plan==="pay"]);
  $("plans").innerHTML=`<div class="plh">${es?"Forma de pago":"Payment"}</div>`+planOpts.map(([k,i,a,b,on])=>`<button class="plb" data-plan="${k}" aria-pressed="${on}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
  
- const t=totals(),es2=lang==="es";if(plan==="full"){$("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PAGO COMPLETO":"PAY IN FULL";$("tMonth").textContent=fmt(HOST)+(es2?"/mes":"/mo");document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º MES":"FROM MONTH 2"}else{$("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PRECIO TOTAL":"TOTAL PRICE";$("tMonth").textContent=es2?"A acordar":"To agree";document.querySelector('[data-t="monthly"]').textContent=es2?"PAGOS":"PAYMENTS"}
+ const t=totals(),es2=lang==="es",rng2=isRange();
+ if(rng2){
+  $("tToday").textContent=fmt(PK.hr.low)+" – "+fmt(PK.hr.reg);
+  document.querySelector('[data-t="today"]').textContent=es2?"COTIZACIÓN":"QUOTE";
+  $("tMonth").textContent=fmt(HOST_MO.hr)+(es2?"/mes":"/mo");
+  document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º MES":"FROM MONTH 2";
+  $("cta").querySelector("span:last-child").textContent=es2?"Pedir cotización por WhatsApp":"Request quote on WhatsApp";
+ } else if(plan==="full"){
+  $("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PAGO COMPLETO":"PAY IN FULL";$("tMonth").textContent=fmt(HOST)+(es2?"/mes":"/mo");document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º MES":"FROM MONTH 2";
+  $("cta").querySelector("span:last-child").textContent=u.cta;
+ } else{
+  $("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PRECIO TOTAL":"TOTAL PRICE";$("tMonth").textContent=es2?"A acordar":"To agree";document.querySelector('[data-t="monthly"]').textContent=es2?"PAGOS":"PAYMENTS";
+  $("cta").querySelector("span:last-child").textContent=u.cta;
+ }
  document.title=(lang==="es"?"Precios":"Prices")+" · MX Studio ✝️";
 }
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
@@ -360,7 +381,15 @@ ${plan==="pay"?`<div style="margin-top:10px;padding:11px 13px;border-radius:14px
  <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;line-height:1.5">${(lang==="es"?["Sin comisiones de tarjeta ni de banco: pagas el precio exacto.","No necesitas cuenta, app del banco ni ir a ninguna tienda: paso yo a tu negocio.","Recibo por WhatsApp en el momento, para tus cuentas.","Cada visita incluye revisión de tu app y los cambios que necesites.","Mismo precio todo el año, sin cargos sorpresa."]:["No card or bank fees: you pay the exact price.","No account, bank app or store trips: I come to your business.","WhatsApp receipt on the spot, for your records.","Every visit includes a check-up of your app and any changes you need.","Same price all year, no surprise charges."]).map(x=>`<li>${x}</li>`).join("")}</ul></div>
  <p class="onote">${u.oNote}</p><div class="oacts"><button class="ob1" id="oClose">${u.oCancel}</button><button class="ob2" id="oSend">${u.oSend}</button></div>`;
  $("sheet").classList.add("on");d&&0}
-$("cta").onclick=()=>openOrder();
+$("cta").onclick=()=>{
+ if(isRange()){
+  const es=lang==="es";
+  const msg=es
+   ?"Hola MX Studio ✝ · Me interesa el paquete Hotel + Restaurante. ¿Pueden darme una cotización?"
+   :"Hi MX Studio ✝ · I'm interested in the Hotel + Restaurant package. Can you give me a quote?";
+  open("https://api.whatsapp.com/send?phone="+PHONE+"&text="+encodeURIComponent(msg),"_blank");
+ } else openOrder();
+};
 $("sheet").onclick=e=>{const u=T[lang];
  const op=e.target.closest("[data-oplan]");if(op){/* legacy – no-op */return}
  const ol=e.target.closest("[data-ol]");if(ol){const k=[$("oBiz").value,$("oName").value];lang=ol.dataset.ol;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render();openOrder(k);return}
