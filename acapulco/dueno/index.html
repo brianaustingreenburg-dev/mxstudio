@@ -54,6 +54,7 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
  ${lyCard()}
  ${starCard()}
+ ${hablaCard()}
  ${tierSetupCard()}
  ${featuresCard()}
  ${setupCard()}
@@ -121,6 +122,15 @@ document.addEventListener("click",e=>{if(e.target.id!=="stAdd")return;const es=l
 // ---------- 🎁 Guest gift + 🏆 waiter credit ----------
 let LYC=null,LYD=null;const GIFTS=[["10% de descuento","10% off"],["Postre gratis","Free dessert"],["Bebida gratis","Free drink"],["Café gratis","Free coffee"]];
 const redGet=()=>{try{return JSON.parse(localStorage.getItem("mx-red-"+slug)||"[]")}catch(_){return []}},redSet=a=>{try{localStorage.setItem("mx-red-"+slug,JSON.stringify(a))}catch(_){}};
+function hablaOn(){return !!(CFG_RAW.features&&CFG_RAW.features.habla===true)||getTierSel().tier===3}
+// 🗣️ Habla (Ecosystem): language app the owner shares with the team
+function hablaCard(){if(!hablaOn())return "";const es=lang==="es",nm=D&&D.name||slug,
+ base="https://go.myjefetech.app/acapulco/habla/",staff=base+"?d=en",open="../habla/?d=en&back="+encodeURIComponent("../dueno/"+location.search)+"&n="+encodeURIComponent(es?"Panel":"Panel"),
+ msg=es?`🗣️ Equipo de ${nm}: practiquen inglés para atender a los turistas con Habla. Palabras, frases y conversación con audio, en 3 niveles. Ábranlo en su teléfono:\n`:`🗣️ ${nm} team: practice English to serve our guests with Habla. Words, phrases and conversation with audio, in 3 levels. Open it on your phone:\n`;
+ return `<div class="card" id="habla"><h2>🗣️ ${es?"Habla · inglés para tu equipo":"Habla · English for your team"}</h2>
+ <p>${es?"Incluido en tu Ecosistema. Tu equipo practica inglés para atender turistas, con audio y en 3 niveles: palabras, frases útiles y conversación. Tus clientes también lo encuentran en tu app para aprender español.":"Included in your Ecosystem. Your team practices English to serve tourists, with audio and 3 levels: words, useful phrases and conversation. Your guests also find it in your app to learn Spanish."}</p>
+ <div class="qr">${qrSvg(staff)}</div><p class="tip">${es?"Pon este QR en la cocina o el área del personal.":"Put this QR in the kitchen or staff area."}</p>
+ <a class="b g" target="_blank" href="https://api.whatsapp.com/send?text=${encodeURIComponent(msg+staff)}">📤 ${es?"Compartir con tu equipo":"Share with your team"}</a><a class="b l" href="${open}">${es?"Abrir Habla":"Open Habla"}</a></div>`}
 function lyCard(){const es=lang==="es",L=LYC&&LYC.on?LYC:null,g=L?(es?L.gift.es:L.gift.en):"",ym=d=>{const x=new Date(d);return x.getFullYear()+"-"+x.getMonth()},mo=ym(Date.now()),R=redGet().filter(x=>x.at&&ym(x.at)===mo);
  const cnt={};R.forEach(x=>{const n=x.n||(es?"Sin nombre":"No name");cnt[n]=(cnt[n]||0)+1});const rk=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
  let prize="";try{prize=localStorage.getItem("mx-prize-"+slug)||""}catch(_){}
@@ -231,6 +241,9 @@ function tierSteps(type,tier,es){
   {k:"loyalty",i:"🎁",es:"Regalo para clientes",en:"Guest gift",
    esS:["Activa loyalty.json (gifts, días de validez, staff)","Verifica que el botón 🧾 Pedir cuenta aparece en la app","Prueba el flujo completo: pedir cuenta → QR → canjear","Explica al cliente cómo funciona el sistema de puntos"],
    enS:["Activate loyalty.json (gifts, validity days, staff)","Verify the 🧾 Ask for the bill button shows in the app","Test the full flow: ask bill → QR → redeem","Explain to the client how the points system works"]},
+  {k:"habla",i:"🗣️",es:"Habla (app de idiomas)",en:"Habla (language app)",
+   esS:["Pon features.habla:true en config.json","Agrega la tarjeta de Habla en la app del cliente, junto a Guárdalo en tu teléfono","Verifica la tarjeta 🗣️ Habla en su panel del dueño","Enséñale al dueño a compartirlo con su equipo por WhatsApp"],
+   enS:["Set features.habla:true in config.json","Add the Habla card to the client's app, next to Save to your phone","Check the 🗣️ Habla card shows in their owner panel","Show the owner how to share it with the team on WhatsApp"]},
   {k:"mesero",i:"⭐",es:"Mesero Estrella de la Semana",en:"Waiter of the Week",
    esS:["Añade los nombres del equipo a loyalty.json (staff[])","Verifica que aparecen en su panel del dueño","Explica las reglas del concurso al cliente","Define el bono semanal con el cliente ($500 – $1,000)"],
    enS:["Add team names to loyalty.json (staff[])","Verify they appear in the owner's panel","Explain the contest rules to the client","Set the weekly bonus with the client ($500 – $1,000)"]},
@@ -271,7 +284,7 @@ function tierSetupCard(){
  <div style="font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:6px">${es?"Nivel (tier)":"Level (tier)"}</div>
  <div style="display:grid;grid-template-columns:repeat(${availTiers.length},1fr);gap:7px;margin-bottom:14px">${tierBtns}</div>
  <div style="padding:10px 13px;border-radius:14px;background:#faf6f0;border:1.5px solid #eadfd2;margin-bottom:12px;font-weight:800;font-size:14px">
-  ${es?"Cliente paga":""Client pays"}: <span style="color:#b5642f">${pLabel}</span> · ${es?"Hosting año 2":""Year 2 hosting"}: <span style="color:#b5642f">$${TIER_HOST[type]}/mes</span>
+  ${es?"Cliente paga":"Client pays"}: <span style="color:#b5642f">${pLabel}</span> · ${es?"Hosting año 2":"Year 2 hosting"}: <span style="color:#b5642f">$${TIER_HOST[type]}/mes</span>
   ${tier===3?`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#fff3e0;color:#b5642f;font-size:12px">📅 $10k ahora · resto al completar</span>`:`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#eef9f1;color:#1b5e20;font-size:12px">${es?"💵 Pago completo":"💵 Paid in full"}</span>`}
  </div>
  ${stepHtml}
@@ -320,7 +333,8 @@ function featToggleSetup(){
   window.open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");
   _featPending={};const btn=$("featSend");if(btn)btn.style.display="none";
  });
-}const L=window.MX_SETUP||[];if(!L.length)return "";const es=lang==="es",done=stGet(),n=L.filter(x=>done[x.k]).length,nm=D.name||slug;
+}
+function setupCard(){const L=window.MX_SETUP||[];if(!L.length)return "";const es=lang==="es",done=stGet(),n=L.filter(x=>done[x.k]).length,nm=D.name||slug;
  const money=v=>"$"+v.toLocaleString("en-US");
  return `<div class="card" id="setup"><h2>🧰 ${es?"Configura todo, paso a paso":"Set up everything, step by step"}</h2>
  <p>${es?`<b>${n} de ${L.length}</b> listos. Hazlo tú con estas guías, o pídeme que lo haga yo.`:`<b>${n} of ${L.length}</b> done. Do it yourself with these guides, or ask me to do it for you.`}</p>

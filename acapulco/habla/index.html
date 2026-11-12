@@ -181,6 +181,7 @@ const TIPS={
 
 let S={dir:"es",level:1,mode:"learn",idx:0,seen:{1:new Set(),2:new Set(),3:new Set()},quiz:null};
 try{const sv=JSON.parse(localStorage.getItem("habla")||"null");if(sv){S.dir=sv.dir||"es";S.level=sv.level||1;}}catch(e){}
+try{const d=new URLSearchParams(location.search).get("d");if(d==="en"||d==="es")S.dir=d;}catch(e){}
 function save(){try{localStorage.setItem("habla",JSON.stringify({dir:S.dir,level:S.level}))}catch(e){}}
 
 /* ---------- audio ---------- */
