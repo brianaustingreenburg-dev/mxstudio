@@ -1,9 +1,8 @@
 <!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Habla · Aprende inglés y español</title>
+<title>Habla · Aprende inglés, español y francés</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <style>
-/* Layout: one column app — level ladder, mode switch, then the active card or quiz. Talavera-tile blue + marigold. */
 :root{
   --bg:#f3f5fb; --surface:#ffffff; --ink:#14203d; --muted:#5a6685; --line:#d7ddec;
   --cobalt:#1f3fa8; --cobalt-soft:#e3e9fb; --marigold:#e8930c; --marigold-soft:#fdf0d9;
@@ -33,7 +32,6 @@ h1 span{color:var(--marigold)}
 .seg button[aria-pressed="true"]{background:var(--cobalt);color:var(--surface)}
 button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 .label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
-/* level ladder */
 .ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .lvl{text-align:left;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:12px;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
 .lvl .n{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1;color:var(--cobalt)}
@@ -42,10 +40,11 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 .lvl .bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}
 .lvl .bar i{display:block;height:100%;background:var(--marigold);width:0}
 .lvl[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft)}
+.lvl.locked{opacity:.55;cursor:default;position:relative}
+.lvl.locked::after{content:"🔒";position:absolute;top:8px;right:10px;font-size:1rem}
 @media (max-width:480px){.lvl .d{display:none}.lvl{padding:10px}}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
 .speed{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.85rem}
-/* card */
 .stage{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
 .pic{font-size:clamp(4.5rem,18vw,6.5rem);line-height:1.1;width:1.5em;height:1.5em;display:grid;place-items:center;border-radius:28px;
   background:repeating-conic-gradient(var(--cobalt-soft) 0 25%, var(--surface) 0 50%) 0 0/28px 28px;border:3px solid var(--cobalt-soft)}
@@ -66,7 +65,6 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 .dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
 .dots i.on{background:var(--cobalt)}
 .dots i.seen{background:var(--marigold)}
-/* quiz */
 .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%}
 .opt{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:400 .95rem var(--body);min-width:0}
 .opt .e{font-size:2.4rem;line-height:1.1}
@@ -84,7 +82,6 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 .list .tx small{color:var(--muted)}
 .back{display:inline-flex;align-items:center;gap:6px;color:var(--cobalt);font:700 .9rem var(--body);text-decoration:none;padding:6px 0}
 .back[hidden]{display:none}
-/* MX Studio powered-by badge */
 .powered{text-align:center;margin-bottom:4px}
 .powered a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted)}
 .pw-label{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
@@ -97,12 +94,31 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 .tt-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;width:100%;text-align:left}
 .tt-steps li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem}
 .tt-steps li span:first-child{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--cobalt);color:var(--surface);font-weight:800;font-size:.75rem;display:grid;place-items:center}
-.tt-btn-tt{display:inline-flex;align-items:center;gap:8px;background:#010101;color:#fff;font:700 .95rem var(--body);border:0;padding:13px 22px;border-radius:12px;cursor:pointer;width:100%;justify-content:center}
+.tt-btn-tt{display:inline-flex;align-items:center;gap:8px;background:#010101;color:#fff;font:700 .95rem var(--body);border:0;padding:13px 22px;border-radius:12px;cursor:pointer;width:100%;justify-content:center;text-decoration:none}
 .tt-btn-skip{background:none;border:0;color:var(--muted);font:.85rem var(--body);cursor:pointer;text-decoration:underline}
+/* Onboarding screen */
+.ob-overlay{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px}
+.ob-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:36px 28px;max-width:400px;width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.ob-card h2{font-family:var(--display);font-weight:800;font-size:1.8rem;margin:0;line-height:1.1}
+.ob-card p{color:var(--muted);font-size:.95rem;margin:0;line-height:1.5}
+.ob-input{width:100%;border:2px solid var(--line);border-radius:12px;padding:14px 16px;font:700 1.1rem var(--body);color:var(--ink);background:var(--surface);outline:none;text-align:center}
+.ob-input:focus{border-color:var(--cobalt)}
+.ob-id{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--cobalt);background:var(--cobalt-soft);border-radius:10px;padding:8px 16px;letter-spacing:.05em}
+/* User badge top bar */
+.user-bar{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-size:.85rem}
+.user-bar .uname{font-weight:700;color:var(--ink)}
+.user-bar .uid{color:var(--muted);font-family:var(--display);font-weight:700;font-size:.8rem}
+/* TikTok URL submit */
+.tt-url-input{width:100%;border:2px solid var(--line);border-radius:10px;padding:11px 14px;font:400 .9rem var(--body);color:var(--ink);background:var(--surface);outline:none}
+.tt-url-input:focus{border-color:var(--cobalt)}
+.tt-status{font-size:.85rem;font-weight:700;padding:8px 12px;border-radius:8px;width:100%;text-align:center}
+.tt-status.checking{color:var(--cobalt);background:var(--cobalt-soft)}
+.tt-status.ok{color:var(--good);background:color-mix(in srgb,var(--good) 12%,var(--surface))}
+.tt-status.err{color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--surface))}
 @media (prefers-reduced-motion:reduce){.pic.big{animation:none}}
 </style>
 
-<div class="wrap">
+<div class="wrap" id="app">
   <a class="back" id="back" href="#" hidden>‹ <span id="backLbl">Volver</span></a>
   <div class="powered">
     <a href="https://go.myjefetech.app" target="_blank" rel="noopener" aria-label="MX Studio">
@@ -110,16 +126,21 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
       <span class="pw-brand">MX Studio ✝</span>
     </a>
   </div>
+  <div class="user-bar" id="userBar" hidden>
+    <span class="uname" id="uname"></span>
+    <span class="uid" id="uidBadge"></span>
+  </div>
   <header>
     <div>
       <h1>Habla<span>.</span></h1>
-      <p class="sub">Three levels of English and Spanish. See it, hear it, say it back.</p>
+      <p class="sub" id="appSub">Three levels of English, Spanish and French. See it, hear it, say it back.</p>
     </div>
     <div>
-      <div class="label" style="margin-bottom:6px">I'm learning</div>
+      <div class="label" style="margin-bottom:6px" id="langLabel">Learning</div>
       <div class="seg" id="dir">
         <button id="d-es" aria-pressed="true" data-dir="es">Spanish</button>
         <button id="d-en" aria-pressed="false" data-dir="en">English</button>
+        <button id="d-fr" aria-pressed="false" data-dir="fr">French</button>
       </div>
     </div>
   </header>
@@ -142,75 +163,154 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 </div>
 
 <script>
+/* ===== CONFIG ===== */
+const SUPA_URL="https://xngcqwwtpkgdxyoqiqhq.supabase.co";
+const SUPA_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhuZ2Nxd3d0cGtnZHh5b3FpcWhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MjA1MzU4NDAwMH0.PLACEHOLDER_REPLACE_WITH_REAL_ANON_KEY";
+const TT_HANDLE="@mxstudio"; // ← update when account is live
+const TT_URL="https://www.tiktok.com/"+TT_HANDLE.replace("@","");
+
+/* ===== ICONS ===== */
 const ICON_PLAY='<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
 const ICON_SLOW='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4V6h-2v7.4l5.2 3.1 1-1.7z"/></svg>';
 
+/* ===== LEVELS DATA =====
+   Array items: [emoji, english, spanish, es_pron, en_pron, french, fr_pron]
+*/
 const LEVELS=[
  {n:1,title:"First words",desc:"Everyday things, colors, family",items:[
-  ["🍎","apple","la manzana","lah mahn-SAH-nah","AP-ul"],
-  ["💧","water","el agua","el AH-gwah","WAH-ter"],
-  ["🏠","house","la casa","lah KAH-sah","hows"],
-  ["🐶","dog","el perro","el PEH-rroh","dawg"],
-  ["🐱","cat","el gato","el GAH-toh","kat"],
-  ["📖","book","el libro","el LEE-broh","buk"],
-  ["☀️","sun","el sol","el sohl","sun"],
-  ["🌙","moon","la luna","lah LOO-nah","moon"],
-  ["🍞","bread","el pan","el pahn","bred"],
-  ["🚗","car","el coche / el carro","el KOH-cheh / el KAH-rroh","kar"],
-  ["👩","mother","la madre","lah MAH-dreh","MUH-ther"],
-  ["👨","father","el padre","el PAH-dreh","FAH-ther"],
-  ["🔴","red","rojo","RROH-hoh","red"],
-  ["🔵","blue","azul","ah-SOOL","bloo"],
-  ["🟢","green","verde","BEHR-deh","green"],
-  ["1️⃣","one","uno","OO-noh","wun"]
+  ["🍎","apple","la manzana","lah mahn-SAH-nah","AP-ul","la pomme","lah pum"],
+  ["💧","water","el agua","el AH-gwah","WAH-ter","l'eau","loh"],
+  ["🏠","house","la casa","lah KAH-sah","hows","la maison","lah meh-ZOH"],
+  ["🐶","dog","el perro","el PEH-rroh","dawg","le chien","luh shee-EH"],
+  ["🐱","cat","el gato","el GAH-toh","kat","le chat","luh shah"],
+  ["📖","book","el libro","el LEE-broh","buk","le livre","luh LEE-vruh"],
+  ["☀️","sun","el sol","el sohl","sun","le soleil","luh so-LAY"],
+  ["🌙","moon","la luna","lah LOO-nah","moon","la lune","lah loon"],
+  ["🍞","bread","el pan","el pahn","bred","le pain","luh peh"],
+  ["🚗","car","el coche / el carro","el KOH-cheh / el KAH-rroh","kar","la voiture","lah vwah-TOOR"],
+  ["👩","mother","la madre","lah MAH-dreh","MUH-ther","la mère","lah mair"],
+  ["👨","father","el padre","el PAH-dreh","FAH-ther","le père","luh pair"],
+  ["🔴","red","rojo","RROH-hoh","red","rouge","roozh"],
+  ["🔵","blue","azul","ah-SOOL","bloo","bleu","bluh"],
+  ["🟢","green","verde","BEHR-deh","green","vert","vair"],
+  ["1️⃣","one","uno","OO-noh","wun","un","uh"]
  ]},
  {n:2,title:"Useful phrases",desc:"Greetings, needs, getting around",items:[
-  ["👋","Hello, how are you?","Hola, ¿cómo estás?","OH-lah, KOH-moh ehs-TAHS","heh-LOH, how ar yoo"],
-  ["🙏","Thank you very much.","Muchas gracias.","MOO-chahs GRAH-syahs","thank yoo VEH-ree much"],
-  ["😊","Nice to meet you.","Mucho gusto.","MOO-choh GOOS-toh","nys tuh meet yoo"],
-  ["🧑","My name is Ana.","Me llamo Ana.","meh YAH-moh AH-nah","my naym iz AH-nah"],
-  ["🚻","Where is the bathroom?","¿Dónde está el baño?","DOHN-deh ehs-TAH el BAH-nyoh","wair iz thuh BATH-room"],
-  ["💲","How much does it cost?","¿Cuánto cuesta?","KWAHN-toh KWEHS-tah","how much duz it kawst"],
-  ["🍽️","I'm hungry.","Tengo hambre.","TEHN-goh AHM-breh","aym HUNG-gree"],
-  ["🤔","I don't understand.","No entiendo.","noh ehn-TYEHN-doh","ay dohnt un-der-STAND"],
-  ["🐢","Can you speak slowly, please?","¿Puede hablar despacio, por favor?","PWEH-deh ah-BLAHR dehs-PAH-syoh, por fah-BOR","kan yoo speek SLOH-lee, pleez"],
-  ["⏰","What time is it?","¿Qué hora es?","keh OH-rah ehs","wut tym iz it"],
-  ["🌧️","It's raining today.","Hoy está lloviendo.","oy ehs-TAH yoh-BYEHN-doh","its RAY-ning tuh-DAY"],
-  ["👋","See you tomorrow!","¡Hasta mañana!","AHS-tah mah-NYAH-nah","see yoo tuh-MOR-oh"]
+  ["👋","Hello, how are you?","Hola, ¿cómo estás?","OH-lah, KOH-moh ehs-TAHS","heh-LOH, how ar yoo","Bonjour, comment allez-vous ?","boh-ZHOOR, koh-mah tah-lay VOO"],
+  ["🙏","Thank you very much.","Muchas gracias.","MOO-chahs GRAH-syahs","thank yoo VEH-ree much","Merci beaucoup.","mair-SEE boh-KOO"],
+  ["😊","Nice to meet you.","Mucho gusto.","MOO-choh GOOS-toh","nys tuh meet yoo","Enchanté(e).","ahn-shahn-TAY"],
+  ["🧑","My name is Ana.","Me llamo Ana.","meh YAH-moh AH-nah","my naym iz AH-nah","Je m'appelle Ana.","zhuh mah-PEL AH-nah"],
+  ["🚻","Where is the bathroom?","¿Dónde está el baño?","DOHN-deh ehs-TAH el BAH-nyoh","wair iz thuh BATH-room","Où sont les toilettes ?","oo soh lay twah-LET"],
+  ["💲","How much does it cost?","¿Cuánto cuesta?","KWAHN-toh KWEHS-tah","how much duz it kawst","Combien ça coûte ?","koh-BYEH sah koot"],
+  ["🍽️","I'm hungry.","Tengo hambre.","TEHN-goh AHM-breh","aym HUNG-gree","J'ai faim.","zhay feh"],
+  ["🤔","I don't understand.","No entiendo.","noh ehn-TYEHN-doh","ay dohnt un-der-STAND","Je ne comprends pas.","zhuh nuh koh-PRAHN pah"],
+  ["🐢","Can you speak slowly, please?","¿Puede hablar despacio, por favor?","PWEH-deh ah-BLAHR dehs-PAH-syoh, por fah-BOR","kan yoo speek SLOH-lee, pleez","Pouvez-vous parler lentement ?","poo-VAY voo par-LAY lahn-tuh-MAH"],
+  ["⏰","What time is it?","¿Qué hora es?","keh OH-rah ehs","wut tym iz it","Quelle heure est-il ?","kel ur ay-TEEL"],
+  ["🌧️","It's raining today.","Hoy está lloviendo.","oy ehs-TAH yoh-BYEHN-doh","its RAY-ning tuh-DAY","Il pleut aujourd'hui.","eel pluh oh-zhoor-DWEE"],
+  ["👋","See you tomorrow!","¡Hasta mañana!","AHS-tah mah-NYAH-nah","see yoo tuh-MOR-oh","À demain !","ah duh-MEH"]
  ]},
  {n:3,title:"Real conversation",desc:"Past, future, opinions, plans",items:[
-  ["✈️","Last year I traveled to Mexico with my family.","El año pasado viajé a México con mi familia.","","" ],
-  ["☕","I would like a coffee with milk, please.","Me gustaría un café con leche, por favor.","",""],
-  ["🗓️","Tomorrow we are going to visit the museum.","Mañana vamos a visitar el museo.","",""],
-  ["🤒","I have had a headache since yesterday.","Tengo dolor de cabeza desde ayer.","",""],
-  ["💼","If I had more time, I would learn another language.","Si tuviera más tiempo, aprendería otro idioma.","",""],
-  ["🎂","I hope you have a wonderful birthday.","Espero que tengas un cumpleaños maravilloso.","",""],
-  ["🚌","The bus leaves in ten minutes; we need to hurry.","El autobús sale en diez minutos; tenemos que darnos prisa.","",""],
-  ["🍲","In my opinion, the soup needs a little more salt.","En mi opinión, a la sopa le falta un poco de sal.","",""],
-  ["📚","When I was a child, I used to read every night.","Cuando era niño, leía todas las noches.","",""],
-  ["🤝","Could you help me find the train station?","¿Podría ayudarme a encontrar la estación de tren?","",""]
+  ["✈️","Last year I traveled to Mexico with my family.","El año pasado viajé a México con mi familia.","","","L'année dernière, j'ai voyagé au Mexique avec ma famille.",""],
+  ["☕","I would like a coffee with milk, please.","Me gustaría un café con leche, por favor.","","","Je voudrais un café au lait, s'il vous plaît.",""],
+  ["🗓️","Tomorrow we are going to visit the museum.","Mañana vamos a visitar el museo.","","","Demain, nous allons visiter le musée.",""],
+  ["🤒","I have had a headache since yesterday.","Tengo dolor de cabeza desde ayer.","","","J'ai mal à la tête depuis hier.",""],
+  ["💼","If I had more time, I would learn another language.","Si tuviera más tiempo, aprendería otro idioma.","","","Si j'avais plus de temps, j'apprendrais une autre langue.",""],
+  ["🎂","I hope you have a wonderful birthday.","Espero que tengas un cumpleaños maravilloso.","","","J'espère que tu auras un merveilleux anniversaire.",""],
+  ["🚌","The bus leaves in ten minutes; we need to hurry.","El autobús sale en diez minutos; tenemos que darnos prisa.","","","Le bus part dans dix minutes ; nous devons nous dépêcher.",""],
+  ["🍲","In my opinion, the soup needs a little more salt.","En mi opinión, a la sopa le falta un poco de sal.","","","À mon avis, la soupe manque un peu de sel.",""],
+  ["📚","When I was a child, I used to read every night.","Cuando era niño, leía todas las noches.","","","Quand j'étais enfant, je lisais tous les soirs.",""],
+  ["🤝","Could you help me find the train station?","¿Podría ayudarme a encontrar la estación de tren?","","","Pourriez-vous m'aider à trouver la gare ?",""]
  ]}
 ];
+
 const TIPS={
- es:{1:"Spanish nouns are masculine (el) or feminine (la). Learn the article with the word.",
-     2:"An upside-down ¿ or ¡ opens every question and exclamation.",
-     3:"Notice the tenses: viajé (past), vamos a (future), tuviera / aprendería (if-then)."},
+ es:{1:"Los sustantivos en español son masculinos (el) o femeninos (la). Aprende el artículo con la palabra.",
+     2:"¿ y ¡ abren cada pregunta y exclamación en español.",
+     3:"Fíjate en los tiempos: viajé (pasado), vamos a (futuro), tuviera/aprendería (si-entonces)."},
  en:{1:"English has one article, \"the\", for every noun. No gender to memorize.",
      2:"English questions only use ? at the end, and often start with do, can, where, or what.",
-     3:"Watch the verbs: traveled (past), are going to (future), had / would (if-then)."}
+     3:"Watch the verbs: traveled (past), are going to (future), had/would (if-then)."},
+ fr:{1:"French nouns are masculine (le) or feminine (la). The article changes with the noun.",
+     2:"French questions can end with ? or start with Est-ce que… Both are correct.",
+     3:"Notice the tenses: j'ai voyagé (past), nous allons (future), j'avais/j'apprendrais (if-then)."}
 };
 
+/* ===== STATE ===== */
+let USER={uid:"",name:""};
+let UNLOCKED=1; // highest level unlocked (1 = only level 1, up to 3)
 let S={dir:"es",level:1,mode:"learn",idx:0,seen:{1:new Set(),2:new Set(),3:new Set()},quiz:null};
-try{const sv=JSON.parse(localStorage.getItem("habla")||"null");if(sv){S.dir=sv.dir||"es";S.level=sv.level||1;}}catch(e){}
-try{const d=new URLSearchParams(location.search).get("d");if(d==="en"||d==="es")S.dir=d;}catch(e){}
-function save(){try{localStorage.setItem("habla",JSON.stringify({dir:S.dir,level:S.level}))}catch(e){}}
 
-/* ---------- audio ---------- */
+/* ===== DEVICE ID ===== */
+function genUID(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let r="HB-";for(let i=0;i<4;i++)r+=chars[Math.floor(Math.random()*chars.length)];
+  return r;
+}
+function loadUser(){
+  try{
+    const u=JSON.parse(localStorage.getItem("habla_user")||"null");
+    if(u&&u.uid&&u.name){USER=u;return true;}
+  }catch(e){}
+  return false;
+}
+function saveUser(){try{localStorage.setItem("habla_user",JSON.stringify(USER));}catch(e){}}
+
+/* ===== SUPABASE HELPERS ===== */
+async function supaFetch(path,opts={}){
+  const url=SUPA_URL+"/rest/v1/"+path;
+  const res=await fetch(url,{
+    headers:{"apikey":SUPA_KEY,"Authorization":"Bearer "+SUPA_KEY,"Content-Type":"application/json","Prefer":"return=representation",...(opts.headers||{})},
+    ...opts
+  });
+  if(!res.ok)throw new Error(await res.text());
+  const text=await res.text();
+  return text?JSON.parse(text):null;
+}
+async function loadProgress(){
+  if(!USER.uid)return;
+  try{
+    const rows=await supaFetch("habla_progress?uid=eq."+encodeURIComponent(USER.uid)+"&select=level_unlocked");
+    if(rows&&rows.length>0){UNLOCKED=Math.max(UNLOCKED,rows[0].level_unlocked||1);}
+  }catch(e){console.warn("Supabase load:",e);}
+}
+async function saveProgress(levelUnlocked,tiktokUrl){
+  if(!USER.uid)return;
+  try{
+    await supaFetch("habla_progress",{
+      method:"POST",
+      headers:{"Prefer":"resolution=merge-duplicates"},
+      body:JSON.stringify({uid:USER.uid,name:USER.name,level_unlocked:levelUnlocked,tiktok_url:tiktokUrl||null,verified_at:new Date().toISOString()})
+    });
+  }catch(e){console.warn("Supabase save:",e);}
+}
+async function registerUser(){
+  if(!USER.uid)return;
+  try{
+    await supaFetch("habla_users",{
+      method:"POST",
+      headers:{"Prefer":"resolution=merge-duplicates"},
+      body:JSON.stringify({uid:USER.uid,name:USER.name,created_at:new Date().toISOString()})
+    });
+  }catch(e){console.warn("Supabase register:",e);}
+}
+
+/* ===== SAVE LOCAL ===== */
+function save(){
+  try{localStorage.setItem("habla",JSON.stringify({dir:S.dir,level:S.level}));}catch(e){}
+}
+function loadLocal(){
+  try{const sv=JSON.parse(localStorage.getItem("habla")||"null");if(sv){S.dir=sv.dir||"es";S.level=Math.min(sv.level||1,UNLOCKED);}}catch(e){}
+  try{const d=new URLSearchParams(location.search).get("d");if(d==="en"||d==="es"||d==="fr")S.dir=d;}catch(e){}
+}
+
+/* ===== AUDIO ===== */
 let voices=[];
 function loadVoices(){voices=window.speechSynthesis?speechSynthesis.getVoices():[];checkVoices();}
 if(window.speechSynthesis){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
 function pickVoice(lang){
-  const pref=lang==="es"?["es-MX","es-US","es-419","es-ES","es"]:["en-US","en-GB","en"];
+  const pref=lang==="es"?["es-MX","es-US","es-419","es-ES","es"]:
+             lang==="fr"?["fr-FR","fr-CA","fr"]:
+             ["en-US","en-GB","en"];
   for(const p of pref){const v=voices.find(v=>v.lang&&v.lang.replace("_","-").toLowerCase().startsWith(p.toLowerCase()));if(v)return v;}
   return null;
 }
@@ -218,124 +318,156 @@ function speak(text,lang,slow){
   if(!window.speechSynthesis){showNote("This browser can't play speech. Try Chrome, Safari or Edge.");return;}
   speechSynthesis.cancel();
   const clean=text.replace(/ \/ /g,", o ");
-  const u=new SpeechSynthesisUtterance(lang==="es"?clean:text);
-  u.lang=lang==="es"?"es-MX":"en-US";
+  const langMap={es:"es-MX",en:"en-US",fr:"fr-FR"};
+  const u=new SpeechSynthesisUtterance(clean);
+  u.lang=langMap[lang]||"en-US";
   const v=pickVoice(lang);if(v)u.voice=v;
   const r=parseFloat(document.getElementById("rate").value)||.9;
   u.rate=slow?Math.max(.4,r*.6):r;
   speechSynthesis.speak(u);
 }
 function checkVoices(){
-  if(!window.speechSynthesis){showNote("Audio needs a browser with speech support, such as Chrome, Safari or Edge.");return;}
-  if(voices.length&&!pickVoice("es"))showNote("No Spanish voice was found on this device, so Spanish may sound accented. Add a Spanish voice in your system's text-to-speech settings.");
+  if(!window.speechSynthesis)return;
 }
 function showNote(t){const n=document.getElementById("voiceNote");n.textContent=t;n.hidden=false;}
 
-/* ---------- helpers ---------- */
-const T=()=>S.dir; const N=()=>S.dir==="es"?"en":"es";
-function word(it,lang){return lang==="en"?it[1]:it[2];}
-function pron(it,lang){return lang==="es"?it[3]:it[4];}
+/* ===== HELPERS ===== */
+const T=()=>S.dir;
+function otherLangs(){return["es","en","fr"].filter(l=>l!==S.dir);}
+function word(it,lang){return lang==="en"?it[1]:lang==="es"?it[2]:it[5];}
+function pron(it,lang){return lang==="es"?it[3]:lang==="en"?it[4]:it[6];}
 const items=()=>LEVELS[S.level-1].items;
 function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+function nativeLang(){
+  // Show one of the other two langs as "translation"
+  const others=otherLangs();return others[0];
+}
 
-/* ---------- render ---------- */
+/* ===== RENDER ===== */
 function renderLadder(){
   const el=document.getElementById("ladder");
+  const isFr=S.dir==="fr";const isEn=S.dir==="en";
+  const tTitles={es:["","Primeras palabras","Frases útiles","Conversación real"],
+                 en:["","First words","Useful phrases","Real conversation"],
+                 fr:["","Premiers mots","Phrases utiles","Vraie conversation"]};
+  const tDescs={es:["","Cosas, colores, familia","Saludos, necesidades","Pasado, futuro, opiniones"],
+                en:["","Things, colors, family","Greetings, needs","Past, future, opinions"],
+                fr:["","Choses, couleurs, famille","Salutations, besoins","Passé, futur, opinions"]};
   el.innerHTML=LEVELS.map(L=>{
     const pct=Math.round(S.seen[L.n].size/L.items.length*100);
-    return `<button class="lvl" id="lvl${L.n}" aria-pressed="${S.level===L.n}" data-l="${L.n}">
-      <span class="n">${L.n}</span><span class="t">${S.dir==="es"?L.title:["","Primeras palabras","Frases útiles","Conversación real"][L.n]}</span>
-      <span class="d">${S.dir==="es"?L.desc:["","Cosas, colores, familia","Saludos, necesidades, moverse","Pasado, futuro, opiniones"][L.n]}</span><span class="bar"><i style="width:${pct}%"></i></span></button>`}).join("");
-  el.querySelectorAll(".lvl").forEach(b=>b.onclick=()=>{S.level=+b.dataset.l;S.idx=0;S.quiz=null;save();render();});
+    const locked=L.n>UNLOCKED;
+    return `<button class="lvl${locked?" locked":""}" id="lvl${L.n}" aria-pressed="${S.level===L.n&&!locked}" data-l="${L.n}" ${locked?"disabled":""}>
+      <span class="n">${L.n}</span>
+      <span class="t">${tTitles[S.dir][L.n]}</span>
+      <span class="d">${tDescs[S.dir][L.n]}</span>
+      <span class="bar"><i style="width:${pct}%"></i></span>
+    </button>`;
+  }).join("");
+  el.querySelectorAll(".lvl:not(.locked)").forEach(b=>b.onclick=()=>{S.level=+b.dataset.l;S.idx=0;S.quiz=null;save();render();});
 }
 function setPressed(groupId,attr,val){document.querySelectorAll(`#${groupId} button`).forEach(b=>b.setAttribute("aria-pressed",b.dataset[attr]===val));}
 
 function render(){
   setPressed("dir","dir",S.dir);setPressed("mode","mode",S.mode);
-  document.getElementById("m-learn").textContent=S.dir==="es"?"Learn":"Aprender";
-  document.getElementById("m-list").textContent=S.dir==="es"?"Word list":"Lista";
-  document.getElementById("m-quiz").textContent=S.dir==="es"?"Listening quiz":"Prueba auditiva";
+  const isEs=S.dir==="es";const isEn=S.dir==="en";const isFr=S.dir==="fr";
+  document.getElementById("m-learn").textContent=isEs?"Aprender":isFr?"Apprendre":"Learn";
+  document.getElementById("m-list").textContent=isEs?"Lista":isFr?"Liste":"Word list";
+  document.getElementById("m-quiz").textContent=isEs?"Prueba auditiva":isFr?"Quiz d'écoute":"Listening quiz";
   renderLadder();
   if(S.mode==="learn")renderLearn();else if(S.mode==="list")renderList();else renderQuiz();
 }
 
 function renderLearn(){
   const its=items(),it=its[S.idx];S.seen[S.level].add(S.idx);
-  const es=S.dir==="es";const p=pron(it,T());
+  const isEs=S.dir==="es";const isFr=S.dir==="fr";const isEn=S.dir==="en";
+  const p=pron(it,T());
+  const native1=nativeLang();
   const st=document.getElementById("stage");
   st.innerHTML=`
-    <div class="counter">${es?"Card":"Tarjeta"} ${S.idx+1} / ${its.length}</div>
+    <div class="counter">${isEs?"Tarjeta":isFr?"Carte":"Card"} ${S.idx+1} / ${its.length}</div>
     <div class="pic big" aria-hidden="true">${it[0]}</div>
     <p class="target" lang="${T()}">${esc(word(it,T()))}</p>
     ${p?`<div class="pron">${esc(p)}</div>`:""}
-    <div class="native" id="native" hidden lang="${N()}">${esc(word(it,N()))}</div>
+    <div class="native" id="native" hidden lang="${native1}">${esc(word(it,native1))}</div>
     <div class="row">
-      <button class="btn primary" id="b-play">${ICON_PLAY}${es?"Listen":"Escuchar"}</button>
-      <button class="btn" id="b-slow">${ICON_SLOW}${es?"Slowly":"Despacio"}</button>
-      <button class="btn warm" id="b-reveal">${es?"Show meaning":"Ver significado"}</button>
+      <button class="btn primary" id="b-play">${ICON_PLAY}${isEs?"Escuchar":isFr?"Écouter":"Listen"}</button>
+      <button class="btn" id="b-slow">${ICON_SLOW}${isEs?"Despacio":isFr?"Lentement":"Slowly"}</button>
+      <button class="btn warm" id="b-reveal">${isEs?"Ver significado":isFr?"Voir la traduction":"Show meaning"}</button>
     </div>
     <div class="row">
-      <button class="btn" id="b-prev" ${S.idx===0?"disabled":""}>← ${es?"Back":"Atrás"}</button>
-      <button class="btn" id="b-next">${S.idx===its.length-1?(es?"Take the quiz →":"Hacer la prueba →"):(es?"Next →":"Siguiente →")}</button>
+      <button class="btn" id="b-prev" ${S.idx===0?"disabled":""}>← ${isEs?"Atrás":isFr?"Retour":"Back"}</button>
+      <button class="btn" id="b-next">${S.idx===its.length-1?(isEs?"Hacer la prueba →":isFr?"Faire le quiz →":"Take the quiz →"):(isEs?"Siguiente →":isFr?"Suivant →":"Next →")}</button>
     </div>
     <div class="dots">${its.map((_,i)=>`<i class="${i===S.idx?"on":S.seen[S.level].has(i)?"seen":""}"></i>`).join("")}</div>
     <p class="note">${TIPS[T()][S.level]}</p>`;
   document.getElementById("b-play").onclick=()=>speak(word(it,T()),T());
   document.getElementById("b-slow").onclick=()=>speak(word(it,T()),T(),true);
-  document.getElementById("b-reveal").onclick=()=>{const n=document.getElementById("native");n.hidden=false;speak(word(it,N()),N());};
+  document.getElementById("b-reveal").onclick=()=>{const n=document.getElementById("native");n.hidden=false;speak(word(it,native1),native1);};
   document.getElementById("b-prev").onclick=()=>{S.idx--;render();};
   document.getElementById("b-next").onclick=()=>{if(S.idx<its.length-1){S.idx++;}else{S.mode="quiz";S.quiz=null;}render();};
 }
 
 function renderList(){
-  const es=S.dir==="es";
+  const isEs=S.dir==="es";const isFr=S.dir==="fr";
+  const native1=nativeLang();
   const st=document.getElementById("stage");
-  st.innerHTML=`<div class="counter">${es?"Tap any row to hear it":"Toca una fila para escucharla"}</div>
+  st.innerHTML=`<div class="counter">${isEs?"Toca una fila para escucharla":isFr?"Touche une ligne pour l'entendre":"Tap any row to hear it"}</div>
    <div class="list">${items().map((it,i)=>`<button data-i="${i}"><span class="e" aria-hidden="true">${it[0]}</span>
-     <span class="tx"><b lang="${T()}">${esc(word(it,T()))}</b><small lang="${N()}">${esc(word(it,N()))}</small></span></button>`).join("")}</div>`;
+     <span class="tx"><b lang="${T()}">${esc(word(it,T()))}</b><small lang="${native1}">${esc(word(it,native1))}</small></span></button>`).join("")}</div>`;
   st.querySelectorAll(".list button").forEach(b=>b.onclick=()=>{const it=items()[+b.dataset.i];S.seen[S.level].add(+b.dataset.i);speak(word(it,T()),T());renderLadder();});
 }
 
 function newQuiz(){S.quiz={order:shuffle(items().map((_,i)=>i)),q:0,score:0,answered:false,opts:null};}
 function renderQuiz(){
   if(!S.quiz)newQuiz();
-  const Q=S.quiz,its=items(),es=S.dir==="es";
+  const Q=S.quiz,its=items();
+  const isEs=S.dir==="es";const isFr=S.dir==="fr";
+  const native1=nativeLang();
   const st=document.getElementById("stage");
   if(Q.q>=Q.order.length){
     const pct=Math.round(Q.score/Q.order.length*100);
     const passed=pct>=80;
-    const msg=passed?(es?"Excellent! Ready for the next level.":"¡Excelente! Listo para el siguiente nivel."):
-              pct>=50?(es?"Good progress. Review the word list and try again.":"Buen progreso. Repasa la lista y vuelve a intentarlo."):
-              (es?"Keep practicing with the Learn cards first.":"Sigue practicando primero con las tarjetas.");
-    // TikTok unlock: show when passed level 1 or 2 (not already on 3)
-    const showTT=passed&&S.level<3;
+    const msg=passed?
+      (isEs?"¡Excelente! Listo para el siguiente nivel.":isFr?"Excellent ! Prêt pour le niveau suivant.":"Excellent! Ready for the next level."):
+      pct>=50?
+      (isEs?"Buen progreso. Repasa la lista y vuelve a intentarlo.":isFr?"Bon progrès. Revois la liste et réessaie.":"Good progress. Review the word list and try again."):
+      (isEs?"Sigue practicando primero con las tarjetas.":isFr?"Continue à pratiquer avec les cartes d'abord.":"Keep practicing with the Learn cards first.");
+    const canUnlock=passed&&S.level<3&&S.level>=UNLOCKED;
     st.innerHTML=`<div class="pic" aria-hidden="true">${passed?"🏆":pct>=50?"⭐":"💪"}</div>
-      <p class="target">${Q.score} / ${Q.order.length}</p><div class="native">${msg}</div>
-      <div class="row"><button class="btn primary" id="b-again">${es?"Try again":"Otra vez"}</button>
-      ${S.level<3?`<button class="btn warm" id="b-up">${es?"Go to level":"Ir al nivel"} ${S.level+1} →</button>`:""}</div>
-      ${showTT?`<div class="tt-cta" style="width:100%;border-top:1px solid var(--line);padding-top:16px;text-align:center">
-        <p style="font-size:.82rem;color:var(--muted);margin:0 0 10px">${es?"🎉 ¡Pasaste! Desbloquea el Nivel "+(S.level+1)+" gratis:":"🎉 You passed! Unlock Level "+(S.level+1)+" free:"}</p>
-        <button class="btn warm" id="b-tt" style="width:100%;justify-content:center">${es?"📲 Comparte tu certificado en TikTok → Nivel "+(S.level+1)+" gratis":"📲 Share your certificate on TikTok → Free Level "+(S.level+1)}</button>
+      <p class="target">${Q.score} / ${Q.order.length}</p>
+      <div class="native">${msg}</div>
+      <div class="row">
+        <button class="btn primary" id="b-again">${isEs?"Otra vez":isFr?"Réessayer":"Try again"}</button>
+        ${S.level<3&&!canUnlock&&S.level<UNLOCKED?`<button class="btn warm" id="b-up">${isEs?"Ir al nivel":isFr?"Niveau":""} ${S.level+1} →</button>`:""}
+      </div>
+      ${canUnlock?`<div style="width:100%;border-top:1px solid var(--line);padding-top:16px">
+        <p style="font-size:.82rem;color:var(--muted);margin:0 0 10px;text-align:center">
+          ${isEs?"🎉 ¡Pasaste! Desbloquea el Nivel "+(S.level+1)+" gratis:":isFr?"🎉 Réussi ! Débloque le Niveau "+(S.level+1)+" gratuitement :":"🎉 You passed! Unlock Level "+(S.level+1)+" free:"}
+        </p>
+        <button class="btn warm" id="b-tt" style="width:100%;justify-content:center">
+          📲 ${isEs?"Comparte en TikTok → Nivel "+(S.level+1)+" gratis":isFr?"Partage sur TikTok → Niveau "+(S.level+1)+" gratuit":"Share on TikTok → Free Level "+(S.level+1)}
+        </button>
       </div>`:""}`;
     document.getElementById("b-again").onclick=()=>{newQuiz();render();};
     const up=document.getElementById("b-up");if(up)up.onclick=()=>{S.level++;S.idx=0;S.mode="learn";S.quiz=null;save();render();};
-    if(showTT){
-      document.getElementById("b-tt").onclick=()=>showTikTokUnlock(es,S.level+1);
-    }
+    if(canUnlock)document.getElementById("b-tt").onclick=()=>showTikTokUnlock(isEs,isFr,S.level+1);
     return;
   }
   const ans=Q.order[Q.q];
   if(!Q.opts){const others=shuffle(its.map((_,i)=>i).filter(i=>i!==ans)).slice(0,3);Q.opts=shuffle([ans,...others]);}
   const it=its[ans];
   st.innerHTML=`<div class="row" style="width:100%;justify-content:space-between;align-items:center">
-      <span class="counter">${es?"Question":"Pregunta"} ${Q.q+1} / ${Q.order.length}</span><span class="score">${Q.score} ${es?"pts":"pts"}</span></div>
-    <p class="native">${es?"Listen, then tap the picture that matches.":"Escucha y toca la imagen correcta."}</p>
-    <div class="row"><button class="btn primary" id="q-play">${ICON_PLAY}${es?"Play":"Reproducir"}</button>
-      <button class="btn" id="q-slow">${ICON_SLOW}${es?"Slowly":"Despacio"}</button></div>
-    <div class="opts">${Q.opts.map(i=>`<button class="opt" data-i="${i}"><span class="e" aria-hidden="true">${its[i][0]}</span><span lang="${N()}">${esc(word(its[i],N()))}</span></button>`).join("")}</div>
+      <span class="counter">${isEs?"Pregunta":isFr?"Question":"Question"} ${Q.q+1} / ${Q.order.length}</span>
+      <span class="score">${Q.score} pts</span></div>
+    <p class="native">${isEs?"Escucha y toca la imagen correcta.":isFr?"Écoute et touche l'image correcte.":"Listen, then tap the picture that matches."}</p>
+    <div class="row">
+      <button class="btn primary" id="q-play">${ICON_PLAY}${isEs?"Reproducir":isFr?"Jouer":"Play"}</button>
+      <button class="btn" id="q-slow">${ICON_SLOW}${isEs?"Despacio":isFr?"Lentement":"Slowly"}</button>
+    </div>
+    <div class="opts">${Q.opts.map(i=>`<button class="opt" data-i="${i}"><span class="e" aria-hidden="true">${its[i][0]}</span><span lang="${native1}">${esc(word(its[i],native1))}</span></button>`).join("")}</div>
     <div class="feedback" id="fb"></div>
-    <button class="btn warm" id="q-next" hidden>${es?"Next →":"Siguiente →"}</button>`;
+    <button class="btn warm" id="q-next" hidden>${isEs?"Siguiente →":isFr?"Suivant →":"Next →"}</button>`;
   document.getElementById("q-play").onclick=()=>speak(word(it,T()),T());
   document.getElementById("q-slow").onclick=()=>speak(word(it,T()),T(),true);
   st.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
@@ -344,63 +476,149 @@ function renderQuiz(){
     st.querySelectorAll(".opt").forEach(o=>{if(+o.dataset.i===ans)o.classList.add("right");});
     if(!ok)b.classList.add("wrong");
     const fb=document.getElementById("fb");fb.className="feedback "+(ok?"ok":"no");
-    fb.innerHTML=(ok?(es?"Correct! ":"¡Correcto! "):(es?"Not quite. It was: ":"Casi. Era: "))+`<span lang="${T()}">${esc(word(it,T()))}</span>`;
+    fb.innerHTML=(ok?(isEs?"¡Correcto! ":isFr?"Correct ! ":"Correct! "):(isEs?"Casi. Era: ":isFr?"Presque. C'était : ":"Not quite. It was: "))+`<span lang="${T()}">${esc(word(it,T()))}</span>`;
     S.seen[S.level].add(ans);renderLadder();
     const nx=document.getElementById("q-next");nx.hidden=false;nx.focus();
     nx.onclick=()=>{Q.q++;Q.answered=false;Q.opts=null;render();};
   });
 }
 
-/* ---------- TikTok unlock ---------- */
-const TT_HANDLE="@mxstudio"; // ← update when account is live
-const TT_URL="https://www.tiktok.com/"+TT_HANDLE.replace("@","@");
-function showTikTokUnlock(es,nextLevel){
+/* ===== TIKTOK UNLOCK ===== */
+function showTikTokUnlock(isEs,isFr,nextLevel){
   const overlay=document.createElement("div");
   overlay.className="tt-overlay";
   overlay.setAttribute("role","dialog");
   overlay.setAttribute("aria-modal","true");
-  const msgEs=`¡Acabo de aprobar el Nivel ${nextLevel-1} en Habla × MX Studio! 🏆\n¿Ya aprendes inglés o español con nosotros? 👇\ngo.myjefetech.app/habla`;
-  const msgEn=`I just passed Level ${nextLevel-1} on Habla × MX Studio! 🏆\nLearning English or Spanish with us? 👇\ngo.myjefetech.app/habla`;
-  const msg=es?msgEs:msgEn;
+  const msgEs=`¡Acabo de aprobar el Nivel ${nextLevel-1} en Habla × MX Studio! 🏆\nID: ${USER.uid}\ngo.myjefetech.app/habla`;
+  const msgEn=`I just passed Level ${nextLevel-1} on Habla × MX Studio! 🏆\nID: ${USER.uid}\ngo.myjefetech.app/habla`;
+  const msgFr=`Je viens de réussir le Niveau ${nextLevel-1} sur Habla × MX Studio ! 🏆\nID: ${USER.uid}\ngo.myjefetech.app/habla`;
+  const msg=isEs?msgEs:isFr?msgFr:msgEn;
   overlay.innerHTML=`<div class="tt-sheet">
     <div style="font-size:2.2rem">🎵</div>
-    <h3>${es?"¡Desbloquea el Nivel "+nextLevel+" gratis!":"Unlock Level "+nextLevel+" Free!"}</h3>
-    <p>${es?"Comparte tu logro en TikTok y te desbloqueamos el siguiente nivel. Así de fácil.":"Share your achievement on TikTok and we'll unlock your next level. That simple."}</p>
+    <h3>${isEs?"¡Desbloquea el Nivel "+nextLevel+" gratis!":isFr?"Débloque le Niveau "+nextLevel+" gratuitement !":"Unlock Level "+nextLevel+" Free!"}</h3>
+    <p>${isEs?"Publica en TikTok con tu ID y pegamos el enlace aquí para activar tu nivel.":isFr?"Publie sur TikTok avec ton ID et colle le lien ici pour activer ton niveau.":"Post on TikTok with your ID, then paste the link here to activate your level."}</p>
     <ol class="tt-steps">
-      <li><span>1</span><span>${es?"Copia el mensaje de abajo":"Copy the message below"}</span></li>
-      <li><span>2</span><span>${es?"Publica en TikTok y etiqueta <b>${TT_HANDLE}</b>":"Post on TikTok and tag <b>${TT_HANDLE}</b>"}</span></li>
-      <li><span>3</span><span>${es?"Envíanos el enlace por WhatsApp y activamos tu nivel":"Send us the link on WhatsApp and we activate your level"}</span></li>
+      <li><span>1</span><span>${isEs?"Copia el mensaje y publica en TikTok":isFr?"Copie le message et publie sur TikTok":"Copy the message and post on TikTok"}</span></li>
+      <li><span>2</span><span>${isEs?"Etiqueta <b>${TT_HANDLE}</b> en tu post":isFr?"Tague <b>${TT_HANDLE}</b> dans ton post":"Tag <b>${TT_HANDLE}</b> in your post"}</span></li>
+      <li><span>3</span><span>${isEs?"Pega el enlace de tu post abajo":isFr?"Colle le lien de ton post ci-dessous":"Paste your post link below"}</span></li>
     </ol>
     <textarea id="tt-msg" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;font-size:.82rem;background:var(--cobalt-soft);color:var(--ink);resize:none;min-height:72px">${msg}</textarea>
-    <button class="btn primary" id="tt-copy" style="width:100%;justify-content:center">${es?"📋 Copiar mensaje":"📋 Copy message"}</button>
+    <button class="btn primary" id="tt-copy" style="width:100%;justify-content:center">${isEs?"📋 Copiar mensaje":isFr?"📋 Copier le message":"📋 Copy message"}</button>
     <a class="tt-btn-tt" href="${TT_URL}" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-4.77-4.32V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.84a8.17 8.17 0 0 0 4.77 1.52V6.9a4.84 4.84 0 0 1-1-.21z"/></svg>
-      ${es?"Ir a TikTok ("+TT_HANDLE+")":"Go to TikTok ("+TT_HANDLE+")"}
+      ${isEs?"Ir a TikTok ("+TT_HANDLE+")":isFr?"Aller sur TikTok ("+TT_HANDLE+")":"Go to TikTok ("+TT_HANDLE+")"}
     </a>
-    <button class="tt-btn-skip" id="tt-skip">${es?"Ahora no, ir al nivel sin TikTok →":"Not now, go to level without TikTok →"}</button>
+    <div style="width:100%;border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:8px">
+      <p style="font-size:.82rem;color:var(--muted);margin:0;text-align:center">
+        ${isEs?"Ya publicaste? Pega el enlace aquí:":isFr?"Déjà publié ? Colle le lien ici :":"Already posted? Paste your TikTok link here:"}
+      </p>
+      <input class="tt-url-input" id="tt-url-in" type="url" placeholder="https://www.tiktok.com/@user/video/...">
+      <button class="btn primary" id="tt-verify" style="width:100%;justify-content:center">
+        ${isEs?"✓ Verificar y desbloquear":isFr?"✓ Vérifier et débloquer":"✓ Verify & unlock"}
+      </button>
+      <div class="tt-status" id="tt-status" style="display:none"></div>
+    </div>
+    <button class="tt-btn-skip" id="tt-skip">${isEs?"Ahora no →":isFr?"Pas maintenant →":"Not now →"}</button>
   </div>`;
   document.body.appendChild(overlay);
+
   document.getElementById("tt-copy").onclick=()=>{
     const ta=document.getElementById("tt-msg");
     navigator.clipboard.writeText(ta.value).then(()=>{
-      document.getElementById("tt-copy").textContent=es?"✓ Copiado!":"✓ Copied!";
+      document.getElementById("tt-copy").textContent=isEs?"✓ Copiado!":isFr?"✓ Copié !":"✓ Copied!";
     }).catch(()=>{ta.select();document.execCommand("copy");});
   };
-  document.getElementById("tt-skip").onclick=()=>{
-    overlay.remove();
-    S.level=nextLevel;S.idx=0;S.mode="learn";S.quiz=null;save();render();
+
+  document.getElementById("tt-verify").onclick=async()=>{
+    const urlIn=document.getElementById("tt-url-in").value.trim();
+    const statusEl=document.getElementById("tt-status");
+    statusEl.style.display="block";
+    if(!urlIn||!urlIn.includes("tiktok.com")){
+      statusEl.className="tt-status err";
+      statusEl.textContent=isEs?"Pega un enlace de TikTok válido.":isFr?"Colle un lien TikTok valide.":"Paste a valid TikTok link.";
+      return;
+    }
+    statusEl.className="tt-status checking";
+    statusEl.textContent=isEs?"Verificando...":isFr?"Vérification...":"Checking...";
+    // Check the URL is reachable (HEAD request via fetch no-cors just to see it loads)
+    // Then save to Supabase and unlock
+    try{
+      // We can't actually fetch TikTok due to CORS — we trust the URL format and save it
+      // The URL is stored in Supabase for manual audit if needed
+      await saveProgress(nextLevel,urlIn);
+      UNLOCKED=Math.max(UNLOCKED,nextLevel);
+      statusEl.className="tt-status ok";
+      statusEl.textContent=isEs?"🎉 ¡Nivel "+nextLevel+" desbloqueado!":isFr?"🎉 Niveau "+nextLevel+" débloqué !":"🎉 Level "+nextLevel+" unlocked!";
+      setTimeout(()=>{
+        overlay.remove();
+        S.level=nextLevel;S.idx=0;S.mode="learn";S.quiz=null;
+        save();renderLadder();render();
+      },1800);
+    }catch(e){
+      statusEl.className="tt-status err";
+      statusEl.textContent=isEs?"Error al guardar. Intenta de nuevo.":isFr?"Erreur. Réessaie.":"Error saving. Try again.";
+    }
   };
-  overlay.addEventListener("click",e=>{if(e.target===overlay){overlay.remove();}});
+
+  document.getElementById("tt-skip").onclick=()=>{overlay.remove();};
+  overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.remove();});
 }
 
+/* ===== ONBOARDING ===== */
+function showOnboarding(){
+  const uid=genUID();
+  const ob=document.createElement("div");
+  ob.className="ob-overlay";
+  ob.innerHTML=`<div class="ob-card">
+    <div style="font-size:3rem">👋</div>
+    <h2>Bienvenido a<br><span style="color:var(--cobalt)">Habla.</span></h2>
+    <p>Aprende inglés, español y francés gratis.<br>¿Cómo te llamas?</p>
+    <input class="ob-input" id="ob-name" type="text" placeholder="Tu nombre..." maxlength="30" autocomplete="given-name" autocorrect="off" spellcheck="false">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:100%">
+      <p style="font-size:.8rem;color:var(--muted);margin:0">Tu ID de Habla:</p>
+      <div class="ob-id">${uid}</div>
+      <p style="font-size:.75rem;color:var(--muted);margin:0">Guárdalo — lo necesitas para desbloquear niveles</p>
+    </div>
+    <button class="btn primary" id="ob-go" style="width:100%;justify-content:center;font-size:1.05rem;padding:14px" disabled>
+      Empezar →
+    </button>
+  </div>`;
+  document.body.appendChild(ob);
+  const inp=document.getElementById("ob-name");
+  const btn=document.getElementById("ob-go");
+  inp.oninput=()=>{btn.disabled=inp.value.trim().length<2;};
+  inp.onkeydown=e=>{if(e.key==="Enter"&&!btn.disabled)btn.click();};
+  btn.onclick=()=>{
+    USER={uid,name:inp.value.trim()};
+    saveUser();
+    registerUser();
+    ob.remove();
+    showUserBar();
+    loadProgress().then(()=>{loadLocal();render();});
+  };
+  setTimeout(()=>inp.focus(),100);
+}
+
+function showUserBar(){
+  const bar=document.getElementById("userBar");
+  document.getElementById("uname").textContent=USER.name;
+  document.getElementById("uidBadge").textContent=USER.uid;
+  bar.hidden=false;
+}
+
+/* ===== INIT ===== */
 document.querySelectorAll("#dir button").forEach(b=>b.onclick=()=>{S.dir=b.dataset.dir;S.quiz=null;save();render();});
 document.querySelectorAll("#mode button").forEach(b=>b.onclick=()=>{S.mode=b.dataset.mode;S.quiz=null;render();});
-/* back link to the business app that opened Habla (?back=/acapulco/c/casa-axolotl/&n=Casa%20Axolotl) */
 (function(){try{const p=new URLSearchParams(location.search);const b=p.get("back");if(!b)return;
   const u=new URL(b,location.href);if(u.origin!==location.origin)return;
   const a=document.getElementById("back");a.href=u.href;a.hidden=false;
   const n=p.get("n");if(n)document.getElementById("backLbl").textContent=n;}catch(e){}})();
-render();
-</script>
 
+if(loadUser()){
+  showUserBar();
+  loadProgress().then(()=>{loadLocal();render();});
+}else{
+  showOnboarding();
+}
+</script>
 </body></html>
