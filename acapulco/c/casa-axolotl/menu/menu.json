@@ -15,7 +15,7 @@
           "en": "With fried egg, crema, fresh cheese and beans"
         },
         "price": "140",
-        "img": "img/huevos-real.jpg"
+        "img": "img/cover-real.jpg"
       },
       {
         "name": {
@@ -38,8 +38,7 @@
           "es": "Tortillas bañadas en frijol, rellenas de pollo o queso",
           "en": "Tortillas in bean sauce, filled with chicken or cheese"
         },
-        "price": "130",
-        "img": "img/huevos-real.jpg"
+        "price": "130"
       },
       {
         "name": {
@@ -50,8 +49,7 @@
           "es": "Papaya, piña, melón y sandía con limón y chile",
           "en": "Papaya, pineapple, melon and watermelon with lime and chile"
         },
-        "price": "90",
-        "img": "img/waffle-real.jpg"
+        "price": "90"
       },
       {
         "name": {
@@ -74,8 +72,7 @@
           "es": "Café con canela y piloncillo",
           "en": "Coffee with cinnamon and piloncillo"
         },
-        "price": "45",
-        "img": "img/waffle-real.jpg"
+        "price": "45"
       }
     ]
   },
@@ -94,8 +91,7 @@
           "es": "Estilo Acapulco, con tostadas",
           "en": "Acapulco style, with tostadas"
         },
-        "price": "170",
-        "img": "img/camarones-real.jpg"
+        "price": "170"
       },
       {
         "name": {
@@ -130,8 +126,7 @@
           "es": "Atún fresco, aguacate y mayonesa de chipotle",
           "en": "Fresh tuna, avocado and chipotle mayo"
         },
-        "price": "160",
-        "img": "img/coctel-real.jpg"
+        "price": "160"
       },
       {
         "name": {
@@ -142,8 +137,7 @@
           "es": "Hecho al momento",
           "en": "Made to order"
         },
-        "price": "120",
-        "img": "img/camarones-real.jpg"
+        "price": "120"
       }
     ]
   },
@@ -162,8 +156,7 @@
           "es": "Atún, aguacate y queso crema, con salsa de chipotle y serrano",
           "en": "Tuna, avocado and cream cheese, chipotle sauce and serrano"
         },
-        "price": "180",
-        "img": "img/camarones-real.jpg"
+        "price": "180"
       },
       {
         "name": {
@@ -174,8 +167,7 @@
           "es": "Camarón tempura, pepino y aguacate",
           "en": "Tempura shrimp, cucumber and avocado"
         },
-        "price": "170",
-        "img": "img/camarones-real.jpg"
+        "price": "170"
       },
       {
         "name": {
@@ -186,8 +178,7 @@
           "es": "Surimi, pepino, aguacate y queso crema",
           "en": "Surimi, cucumber, avocado and cream cheese"
         },
-        "price": "150",
-        "img": "img/camarones-real.jpg"
+        "price": "150"
       },
       {
         "name": {
@@ -198,8 +189,7 @@
           "es": "Por fuera de mango, por dentro camarón y aguacate",
           "en": "Mango on top, shrimp and avocado inside"
         },
-        "price": "185",
-        "img": "img/coctel-real.jpg"
+        "price": "185"
       }
     ]
   },
@@ -230,8 +220,7 @@
           "es": "Salsa picante de chiles secos, con arroz",
           "en": "Spicy dried-chile sauce, with rice"
         },
-        "price": "240",
-        "img": "img/camarones-real.jpg"
+        "price": "240"
       },
       {
         "name": {
@@ -254,8 +243,7 @@
           "es": "Con verduras y mantequilla de ajo",
           "en": "With vegetables and garlic butter"
         },
-        "price": "220",
-        "img": "img/caldo-real.jpg"
+        "price": "220"
       },
       {
         "name": {
@@ -266,8 +254,7 @@
           "es": "Tres tacos capeados con col y salsa de la casa",
           "en": "Three battered tacos with cabbage and house salsa"
         },
-        "price": "170",
-        "img": "img/camarones-real.jpg"
+        "price": "170"
       }
     ]
   },
@@ -286,8 +273,7 @@
           "es": "De pollo, en salsa verde con crema y queso gratinado",
           "en": "Chicken, green salsa, crema and melted cheese"
         },
-        "price": "160",
-        "img": "img/quesadillas-real.jpg"
+        "price": "160"
       },
       {
         "name": {
@@ -330,8 +316,7 @@
           "es": "Jamaica, horchata o fruta de temporada",
           "en": "Hibiscus, horchata or seasonal fruit"
         },
-        "price": "45",
-        "img": ""
+        "price": "45"
       },
       {
         "name": {
@@ -342,8 +327,7 @@
           "es": "Natural o preparado",
           "en": "Plain or with chile and lime"
         },
-        "price": "70",
-        "img": ""
+        "price": "70"
       },
       {
         "name": {
@@ -354,8 +338,7 @@
           "es": "Pregunta por las marcas",
           "en": "Ask your server for brands"
         },
-        "price": "50",
-        "img": ""
+        "price": "50"
       },
       {
         "name": {
@@ -366,8 +349,7 @@
           "es": "Con limón, sal y salsas",
           "en": "With lime, salt and sauces"
         },
-        "price": "80",
-        "img": ""
+        "price": "80"
       },
       {
         "name": {
@@ -378,8 +360,7 @@
           "es": "Clásica o de mango",
           "en": "Classic or mango"
         },
-        "price": "130",
-        "img": ""
+        "price": "130"
       },
       {
         "name": {
@@ -390,8 +371,7 @@
           "es": "Con o sin alcohol",
           "en": "With or without alcohol"
         },
-        "price": "130",
-        "img": ""
+        "price": "130"
       }
     ]
   }
