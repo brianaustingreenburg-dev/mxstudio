@@ -285,7 +285,7 @@ function tierSetupCard(){
  <div style="display:grid;grid-template-columns:repeat(${availTiers.length},1fr);gap:7px;margin-bottom:14px">${tierBtns}</div>
  <div style="padding:10px 13px;border-radius:14px;background:#faf6f0;border:1.5px solid #eadfd2;margin-bottom:12px;font-weight:800;font-size:14px">
   ${es?"Cliente paga":"Client pays"}: <span style="color:#b5642f">${pLabel}</span> · ${es?"Hosting año 2":"Year 2 hosting"}: <span style="color:#b5642f">$${TIER_HOST[type]}/mes</span>
-  ${tier===3?`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#fff3e0;color:#b5642f;font-size:12px">📅 $10k ahora · resto al completar</span>`:`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#eef9f1;color:#1b5e20;font-size:12px">${es?"💵 Pago completo":"💵 Paid in full"}</span>`}
+  ${tier===3?`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#fff3e0;color:#b5642f;font-size:12px">📅 Plan de pagos a acordar</span>`:`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#eef9f1;color:#1b5e20;font-size:12px">${es?"💵 Pago completo":"💵 Paid in full"}</span>`}
  </div>
  ${stepHtml}
  <p class="tip" style="margin-top:8px">${es?"Los ✅ se guardan en este dispositivo para este cliente.":"✅ marks are saved on this device for this client."}</p></div>`}
