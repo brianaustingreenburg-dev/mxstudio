@@ -567,20 +567,24 @@ function showTikTokUnlock(isEs,isFr,nextLevel){
 /* ===== ONBOARDING ===== */
 function showOnboarding(){
   const uid=genUID();
+  // Detect phone language — default to English unless phone is set to Spanish or French
+  const lang=(navigator.language||"en").toLowerCase();
+  const isEs=lang.startsWith("es");
+  const isFr=lang.startsWith("fr");
   const ob=document.createElement("div");
   ob.className="ob-overlay";
   ob.innerHTML=`<div class="ob-card">
     <div style="font-size:3rem">👋</div>
-    <h2>Bienvenido a<br><span style="color:var(--cobalt)">Habla.</span></h2>
-    <p>Aprende inglés, español y francés gratis.<br>¿Cómo te llamas?</p>
-    <input class="ob-input" id="ob-name" type="text" placeholder="Tu nombre..." maxlength="30" autocomplete="given-name" autocorrect="off" spellcheck="false">
+    <h2>${isEs?"Bienvenido a":isFr?"Bienvenue sur":"Welcome to"}<br><span style="color:var(--cobalt)">Habla.</span></h2>
+    <p>${isEs?"Aprende inglés, español y francés gratis.<br>¿Cómo te llamas?":isFr?"Apprends l'anglais, l'espagnol et le français gratuitement.<br>Comment tu t'appelles ?":"Learn English, Spanish and French for free.<br>What's your name?"}</p>
+    <input class="ob-input" id="ob-name" type="text" placeholder="${isEs?"Tu nombre...":isFr?"Ton prénom...":"Your name..."}" maxlength="30" autocomplete="given-name" autocorrect="off" spellcheck="false">
     <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:100%">
-      <p style="font-size:.8rem;color:var(--muted);margin:0">Tu ID de Habla:</p>
+      <p style="font-size:.8rem;color:var(--muted);margin:0">${isEs?"Tu ID de Habla:":isFr?"Ton ID Habla :":"Your Habla ID:"}</p>
       <div class="ob-id">${uid}</div>
-      <p style="font-size:.75rem;color:var(--muted);margin:0">Guárdalo — lo necesitas para desbloquear niveles</p>
+      <p style="font-size:.75rem;color:var(--muted);margin:0">${isEs?"Guárdalo — lo necesitas para desbloquear niveles":isFr?"Sauvegarde-le — tu en auras besoin pour débloquer les niveaux":"Save it — you'll need it to unlock levels"}</p>
     </div>
     <button class="btn primary" id="ob-go" style="width:100%;justify-content:center;font-size:1.05rem;padding:14px" disabled>
-      Empezar →
+      ${isEs?"Empezar →":isFr?"Commencer →":"Let's go →"}
     </button>
   </div>`;
   document.body.appendChild(ob);
