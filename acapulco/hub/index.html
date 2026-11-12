@@ -4,189 +4,510 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Acapulco Hub ✝️</title>
-<meta name="theme-color" content="#0d0a1a">
+<meta name="theme-color" content="#06080f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--gold:#c9922a;--gold-lt:#f5c46a;--bg:#0d0a1a;--card:#181228;--text:#f5f0ea;--muted:#8a84a2;--border:rgba(201,146,42,.2);--green:#25d366;--wave:#4ba3d9;--sun:#e0703a}
+:root{
+  --bg:#06080f;
+  --card:#0e1118;
+  --card2:#131720;
+  --gold:#c9922a;
+  --gold-lt:#f5c46a;
+  --gold-dim:rgba(201,146,42,.18);
+  --border:rgba(201,146,42,.18);
+  --border-lt:rgba(201,146,42,.32);
+  --text:#f0ebe2;
+  --text-2:#c4bdb0;
+  --muted:#7a7490;
+  --green:#25d366;
+  --sea:#2f8fa0;
+  --coral:#c8664a;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
 html{background:var(--bg)}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
-/* HEADER */
-.hdr{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:linear-gradient(135deg,#0d0a1a,#131028);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
-.hdr-icon{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;font-size:1.4em;flex-shrink:0;background:linear-gradient(135deg,#1a0f30,#0d0a1a)}
-.hdr-info{flex:1;min-width:0}
-.hdr-info h1{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:700;line-height:1.1}
-.hdr-info p{font-size:.58rem;color:var(--gold-lt);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
-.lang-row{display:flex;gap:5px;flex-shrink:0}
-.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;font-weight:700;padding:5px 11px;border-radius:99px;transition:all .2s}
-.lang-btn.active{color:var(--gold-lt);border-color:var(--gold);background:rgba(201,146,42,.12)}
+/* ══════════════════════════════════════
+   CINEMATIC HERO SLIDESHOW
+══════════════════════════════════════ */
+.hero{
+  position:relative;
+  height:100svh;
+  min-height:580px;
+  max-height:780px;
+  overflow:hidden;
+  background:#06080f;
+}
 
-/* SLIDESHOW */
-.slides{position:relative;height:220px;overflow:hidden;background:#0a0814}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;background-size:cover;background-position:center}
+/* Each slide: full-bleed image with Ken Burns */
+.slide{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity 1.4s ease;
+  background-size:cover;
+  background-position:center;
+  animation:none;
+  will-change:transform,opacity;
+}
 .slide.on{opacity:1}
-.slide-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,10,26,.2) 0%,rgba(13,10,26,.72) 100%)}
-.slide-caption{position:absolute;bottom:14px;left:16px;right:16px}
-.slide-caption h2{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:700;line-height:1.15;text-shadow:0 2px 8px rgba(0,0,0,.7)}
-.slide-caption p{font-size:.68rem;color:rgba(245,240,234,.75);margin-top:4px;text-shadow:0 1px 4px rgba(0,0,0,.8)}
-.dots{position:absolute;bottom:8px;right:14px;display:flex;gap:5px}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s}
-.dot.on{background:var(--gold-lt)}
+.slide.kb{animation:kb 9s ease-out forwards}
 
-/* TABS */
-.tabs{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid var(--border);background:var(--bg)}
-.tab{padding:13px 6px;text-align:center;font-size:.75rem;font-weight:700;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;letter-spacing:.02em}
+@keyframes kb{
+  0%  {transform:scale(1.08) translate(0,0)}
+  100%{transform:scale(1)    translate(0,0)}
+}
+.slide:nth-child(2).kb{animation-name:kb2}
+@keyframes kb2{0%{transform:scale(1.1) translate(2%,1%)}100%{transform:scale(1) translate(0,0)}}
+.slide:nth-child(3).kb{animation-name:kb3}
+@keyframes kb3{0%{transform:scale(1.08) translate(-1%,2%)}100%{transform:scale(1) translate(0,0)}}
+.slide:nth-child(4).kb{animation-name:kb4}
+@keyframes kb4{0%{transform:scale(1.12) translate(1%,-1%)}100%{transform:scale(1) translate(0,0)}}
+.slide:nth-child(5).kb{animation-name:kb5}
+@keyframes kb5{0%{transform:scale(1.09) translate(-2%,1%)}100%{transform:scale(1) translate(0,0)}}
+
+/* Cinema-grade gradient overlay — fades bottom for legibility */
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to bottom,
+      rgba(6,8,15,.52) 0%,
+      rgba(6,8,15,0)   22%,
+      rgba(6,8,15,0)   42%,
+      rgba(6,8,15,.65) 72%,
+      rgba(6,8,15,.92) 100%
+    );
+  pointer-events:none;
+}
+
+/* Top bar: logo + lang */
+.hero-bar{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(14px + env(safe-area-inset-top)) 20px 14px;
+}
+.hero-brand{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--text);
+}
+.hero-brand small{
+  display:block;
+  font-family:var(--sans);
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold-lt);
+  margin-top:1px;
+}
+.lang-sw{
+  position:relative;
+  display:grid;grid-template-columns:1fr 1fr;
+  width:80px;height:28px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.4);
+  background:rgba(6,8,15,.3);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  font-size:11px;font-weight:600;letter-spacing:.12em;
+}
+.lang-sw .knob{
+  position:absolute;top:2px;left:2px;
+  width:38px;height:22px;
+  border-radius:999px;
+  background:rgba(201,146,42,.85);
+  transition:transform .3s cubic-bezier(.4,1.3,.6,1);
+}
+.lang-sw[data-l="en"] .knob{transform:translateX(38px)}
+.lang-sw span{
+  position:relative;z-index:1;
+  display:grid;place-items:center;
+  color:rgba(255,255,255,.75);
+  transition:color .2s;
+}
+.lang-sw[data-l="es"] .es-lbl,
+.lang-sw[data-l="en"] .en-lbl{color:#fff;font-weight:700}
+
+/* Hero content — bottom */
+.hero-content{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:0 22px calc(28px + env(safe-area-inset-bottom));
+}
+.hero-eyebrow{
+  font-size:.6rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:14px;
+}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(52px,14vw,80px);
+  font-weight:500;
+  line-height:.92;
+  color:#fdf9f2;
+  letter-spacing:-.01em;
+}
+.hero-title em{font-style:italic;color:var(--gold-lt)}
+.hero-caption{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(201,146,42,.3);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.hero-caption-text{
+  font-size:.72rem;color:rgba(240,235,226,.72);line-height:1.5;
+  max-width:70%;
+}
+/* dots */
+.hero-dots{display:flex;gap:7px;align-items:center;flex-shrink:0}
+.hero-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.3);
+  transition:all .4s;cursor:pointer;
+}
+.hero-dot.on{width:18px;border-radius:999px;background:var(--gold-lt)}
+
+/* Scroll hint */
+.scroll-hint{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  z-index:3;padding-bottom:8px;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(245,196,106,.5);
+  animation:bob 2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+.scroll-hint svg{width:14px;height:14px}
+
+/* ══════════════════════════════════════
+   TABS
+══════════════════════════════════════ */
+.tabs{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:10;
+}
+.tab{
+  padding:14px 4px;text-align:center;
+  font-family:var(--sans);
+  font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px;
+  transition:all .2s;
+}
+.tab .ico{font-size:1.5em;display:block;margin-bottom:4px}
 .tab.on{color:var(--gold-lt);border-bottom-color:var(--gold)}
-.tab .ico{font-size:1.3em;display:block;margin-bottom:3px}
 
-/* SECTION LABEL */
-.sec-label{padding:18px 16px 10px;display:flex;align-items:center;gap:10px}
-.sec-label span{font-size:.6rem;color:var(--sun);letter-spacing:.12em;text-transform:uppercase;font-weight:800;white-space:nowrap}
+/* ══════════════════════════════════════
+   SECTION LABELS
+══════════════════════════════════════ */
+.sec-label{
+  display:flex;align-items:center;gap:14px;
+  padding:28px 22px 12px;
+}
+.sec-label span{
+  font-family:var(--sans);
+  font-size:.58rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* FEATURED */
+/* ══════════════════════════════════════
+   FEATURED DEMO (swaps on tab tap)
+══════════════════════════════════════ */
 .featured{background:var(--card);border-bottom:1px solid var(--border)}
 
-/* cover photo */
-.feat-cover{height:160px;background-size:cover;background-position:center;position:relative}
-.feat-cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.85))}
-.feat-cover-info{position:absolute;bottom:12px;left:14px;right:14px}
-.feat-cover-info .demo-tag{font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:4px}
-.feat-cover-info h3{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:700}
-.feat-cover-info .meta{font-size:.65rem;color:rgba(245,240,234,.75);margin-top:3px}
-.stars{color:#f5ca60}
+/* photo cover */
+.feat-photo{
+  height:220px;
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+}
+.feat-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(6,8,15,.1) 0%,rgba(6,8,15,.85) 100%);
+}
+.feat-photo-info{position:absolute;bottom:0;left:0;right:0;padding:14px 20px 16px}
+.feat-demo-tag{
+  font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:6px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.feat-demo-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-lt);flex-shrink:0}
+.feat-name{
+  font-family:var(--serif);
+  font-size:1.6rem;font-weight:500;line-height:1.05;
+  color:#fdf9f2;
+}
+.feat-meta{font-size:.65rem;color:rgba(240,235,226,.65);margin-top:5px}
+.feat-stars{color:#f5ca60}
 
-/* action buttons */
-.feat-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 14px}
-.feat-action{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:10px 4px;text-align:center;font-size:.65rem;font-weight:700}
+/* action strip */
+.feat-actions{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-bottom:1px solid var(--border);
+}
+.feat-action{
+  padding:14px 4px;text-align:center;
+  font-size:.62rem;font-weight:600;letter-spacing:.06em;
+  border-right:1px solid var(--border);
+}
+.feat-action:last-child{border-right:none}
 .feat-action .ico{font-size:1.4em;display:block;margin-bottom:4px}
-.feat-action.wa{border-color:rgba(37,211,102,.3);color:var(--green)}
-.feat-action.map{border-color:rgba(75,163,217,.3);color:var(--wave)}
+.feat-action.wa{color:var(--green)}
+.feat-action.map{color:var(--sea)}
 
 /* menu */
-.menu-preview{border-top:1px solid var(--border)}
-.menu-sec{padding:8px 14px 4px;font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sun)}
-.menu-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.04);gap:10px}
+.menu-cat{
+  padding:10px 20px 5px;
+  font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--coral);
+  border-top:1px solid var(--border);
+}
+.menu-row{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:11px 20px;border-bottom:1px solid rgba(255,255,255,.04);gap:12px;
+}
 .menu-row:last-child{border-bottom:none}
-.menu-name{font-weight:600;font-size:.82rem}
-.menu-desc{font-size:.68rem;color:var(--muted);margin-top:2px;line-height:1.35}
-.menu-price{font-weight:700;color:var(--gold-lt);font-size:.82rem;white-space:nowrap;flex-shrink:0}
-.demo-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(201,146,42,.1);border:1px solid rgba(201,146,42,.3);border-radius:99px;padding:5px 12px;font-size:.65rem;font-weight:700;color:var(--gold-lt);margin:10px 14px 14px}
+.menu-name{font-weight:500;font-size:.82rem;color:var(--text)}
+.menu-desc{font-size:.68rem;color:var(--muted);margin-top:2px;line-height:1.4}
+.menu-price{
+  font-family:var(--serif);
+  font-size:1rem;font-weight:500;
+  color:var(--gold-lt);white-space:nowrap;flex-shrink:0;
+}
+.demo-pill{
+  display:flex;align-items:center;gap:7px;
+  background:var(--gold-dim);border:1px solid var(--border-lt);
+  border-radius:2px;padding:7px 16px;
+  font-size:.62rem;font-weight:600;letter-spacing:.06em;
+  color:var(--gold-lt);margin:12px 20px 16px;
+}
 
-/* hotel/resort rooms */
-.room-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px}
-.room-card{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.room-img{height:80px;background-size:cover;background-position:center}
-.room-info{padding:8px 10px}
-.room-name{font-weight:700;font-size:.78rem}
-.room-price{font-size:.7rem;color:var(--gold-lt);margin-top:2px}
+/* room grid */
+.room-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.room-card{background:var(--card2);overflow:hidden}
+.room-img{height:100px;background-size:cover;background-position:center}
+.room-info{padding:10px 12px 12px}
+.room-name{font-family:var(--serif);font-size:1rem;font-weight:500}
+.room-price{font-size:.65rem;color:var(--gold-lt);margin-top:3px;font-weight:500}
 
-/* amenities */
-.amenity-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px}
-.amenity{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:12px 10px;text-align:center;font-size:.7rem;font-weight:600}
-.amenity .ico{font-size:1.4em;display:block;margin-bottom:4px;line-height:1}
+/* amenity grid */
+.amenity-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.amenity{background:var(--card2);padding:16px 14px;text-align:center}
+.amenity .ico{font-size:1.6em;display:block;margin-bottom:6px;line-height:1}
+.amenity span{font-size:.72rem;font-weight:500;color:var(--text-2)}
 
-/* 2-button row */
-.feat-2btn{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 14px}
-.feat-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:11px;text-align:center;font-size:.7rem;font-weight:700}
-.feat-btn .ico{font-size:1.3em;display:block;margin-bottom:3px}
-.feat-btn.wa{border-color:rgba(37,211,102,.3);color:var(--green)}
+/* 2-col button strip */
+.feat-2btn{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.feat-btn{padding:14px 4px;text-align:center;font-size:.62rem;font-weight:600;letter-spacing:.06em;border-right:1px solid var(--border)}
+.feat-btn:last-child{border-right:none}
+.feat-btn .ico{font-size:1.4em;display:block;margin-bottom:4px}
+.feat-btn.wa{color:var(--green)}
 
-/* CONTEXT — places to stay / dining */
-.ctx-cards{display:flex;flex-direction:column;gap:10px;padding:0 14px 4px}
-.ctx-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex}
-.ctx-emo{font-size:2.4em;padding:14px 10px;background:rgba(255,255,255,.03);display:grid;place-items:center;flex-shrink:0}
-.ctx-info{padding:12px 12px 12px 4px;flex:1;min-width:0}
-.ctx-zone{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--sun)}
-.ctx-name{font-weight:700;font-size:.88rem;margin-top:2px}
-.ctx-desc{font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.4}
-.ctx-detail{font-size:.72rem;color:var(--gold-lt);font-weight:700;margin-top:5px}
+/* ══════════════════════════════════════
+   CONTEXT CARDS (places to stay / dining)
+══════════════════════════════════════ */
+.ctx-cards{display:flex;flex-direction:column;padding:0 22px 4px;gap:0}
+.ctx-card{
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;
+}
+.ctx-card:last-child{border-bottom:none}
+.ctx-emo{
+  font-size:1.6em;
+  width:48px;height:48px;
+  border-radius:2px;
+  background:var(--gold-dim);
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  flex-shrink:0;
+}
+.ctx-zone{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--coral)}
+.ctx-name{font-family:var(--serif);font-size:1.3rem;font-weight:500;line-height:1.1;margin-top:3px}
+.ctx-desc{font-size:.72rem;color:var(--muted);margin-top:5px;line-height:1.5}
+.ctx-detail{font-size:.7rem;color:var(--gold-lt);margin-top:7px;font-weight:500}
 
-/* ACTIVITIES */
-.act-cards{display:flex;flex-direction:column;gap:10px;padding:0 14px 4px}
-.act-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
-.act-tag{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--wave);margin-bottom:5px}
-.act-title{font-weight:700;font-size:.9rem;margin-bottom:5px}
-.act-desc{font-size:.72rem;color:var(--muted);line-height:1.45}
-.act-detail{font-size:.68rem;color:var(--gold-lt);margin-top:6px;font-weight:600}
+/* ══════════════════════════════════════
+   ACTIVITIES
+══════════════════════════════════════ */
+.act-cards{padding:0 22px 4px}
+.act-card{
+  padding:22px 0;
+  border-bottom:1px solid var(--border);
+}
+.act-card:last-child{border-bottom:none;padding-bottom:4px}
+.act-no{
+  font-family:var(--serif);font-style:italic;
+  font-size:1.1rem;color:var(--gold);
+  margin-bottom:4px;
+}
+.act-title{font-family:var(--serif);font-size:1.5rem;font-weight:500;line-height:1.1;margin-bottom:8px}
+.act-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+.act-detail{
+  display:inline-block;margin-top:10px;
+  font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-lt);padding-bottom:3px;border-bottom:1px solid var(--border-lt);
+}
 
-/* TRIVIA */
-.trivia-wrap{padding:0 14px 4px}
-.trivia-intro{background:linear-gradient(135deg,rgba(201,146,42,.12),rgba(201,146,42,.06));border:1px solid rgba(201,146,42,.25);border-radius:14px;padding:14px;margin-bottom:10px;text-align:center}
-.trivia-intro .t-icon{font-size:2em;margin-bottom:6px}
-.trivia-intro h3{font-weight:800;font-size:.9rem;color:var(--gold-lt)}
-.trivia-intro p{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.4}
-.q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px}
-.q-num{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--sun);margin-bottom:7px}
-.q-text{font-size:.88rem;font-weight:700;line-height:1.4;margin-bottom:12px}
-.q-opts{display:flex;flex-direction:column;gap:7px}
-.q-opt{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 13px;font-size:.82rem;font-weight:600;text-align:left;transition:all .2s;cursor:pointer}
-.q-opt.correct{background:rgba(37,211,102,.12);border-color:var(--green);color:var(--green)}
-.q-opt.wrong{background:rgba(229,75,75,.1);border-color:#e54b4b;color:#e54b4b}
+/* ══════════════════════════════════════
+   TRIVIA
+══════════════════════════════════════ */
+.trivia-wrap{padding:0 22px 4px}
+.trivia-intro{
+  padding:22px;
+  background:var(--card);
+  border:1px solid var(--border);
+  margin-bottom:1px;
+  text-align:center;
+}
+.trivia-intro .t-ico{font-size:2em;margin-bottom:10px;display:block}
+.trivia-intro h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--gold-lt)}
+.trivia-intro p{font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5}
+.q-card{
+  background:var(--card);border:1px solid var(--border);
+  padding:18px 20px;margin-bottom:1px;
+}
+.q-num{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:8px}
+.q-text{font-family:var(--serif);font-size:1.15rem;font-weight:500;line-height:1.4;margin-bottom:14px}
+.q-opts{display:flex;flex-direction:column;gap:1px}
+.q-opt{
+  background:var(--card2);
+  padding:12px 16px;
+  font-size:.8rem;font-weight:500;text-align:left;
+  transition:all .15s;cursor:pointer;
+  border:1px solid transparent;
+}
+.q-opt:hover:not(:disabled){background:rgba(201,146,42,.08);border-color:var(--border)}
+.q-opt.correct{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.4);color:var(--green)}
+.q-opt.wrong{background:rgba(200,102,74,.1);border-color:rgba(200,102,74,.4);color:var(--coral)}
 .q-opt:disabled{cursor:default}
-.trivia-win{background:linear-gradient(135deg,rgba(201,146,42,.15),rgba(201,146,42,.07));border:1px solid rgba(201,146,42,.3);border-radius:14px;padding:18px;text-align:center;margin-bottom:10px}
-.trivia-win .t-icon{font-size:2.2em;margin-bottom:8px}
-.trivia-win h3{font-weight:800;font-size:.95rem;color:var(--gold-lt);margin-bottom:6px}
-.trivia-win p{font-size:.75rem;color:var(--muted);line-height:1.5}
-.trivia-reset{display:block;width:100%;padding:13px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;font-weight:700;font-size:.82rem;text-align:center;margin-bottom:10px;cursor:pointer}
+.trivia-win{
+  background:linear-gradient(135deg,rgba(201,146,42,.12),rgba(201,146,42,.06));
+  border:1px solid var(--border-lt);
+  padding:24px 20px;text-align:center;margin-bottom:1px;
+}
+.trivia-win .t-ico{font-size:2em;display:block;margin-bottom:10px}
+.trivia-win h3{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--gold-lt)}
+.trivia-win p{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.trivia-reset{
+  display:block;width:100%;padding:14px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-2);margin-top:1px;cursor:pointer;
+  transition:border-color .2s;
+}
+.trivia-reset:hover{border-color:var(--gold)}
 
-/* SURVIVAL SPANISH */
-.phrase-cards{display:flex;flex-direction:column;gap:8px;padding:0 14px 4px}
-.phrase-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 14px;cursor:pointer;transition:border-color .2s;user-select:none}
-.phrase-card:active{border-color:var(--gold)}
-.phrase-es{font-weight:700;font-size:.88rem}
+/* ══════════════════════════════════════
+   SURVIVAL SPANISH
+══════════════════════════════════════ */
+.phrase-cards{padding:0 22px 4px;display:flex;flex-direction:column;gap:0}
+.phrase-card{
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  transition:padding-left .15s;
+}
+.phrase-card:hover{padding-left:4px}
+.phrase-card:last-child{border-bottom:none}
+.phrase-es{font-family:var(--serif);font-size:1.2rem;font-weight:500}
 .phrase-en{font-size:.72rem;color:var(--muted);margin-top:3px}
-.phrase-pron{font-size:.68rem;color:var(--gold-lt);font-style:italic;margin-top:3px}
-.phrase-tap{font-size:.6rem;color:var(--wave);margin-top:5px;font-weight:700}
+.phrase-pron{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--gold-lt);margin-top:3px}
+.phrase-tap{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-top:7px}
 
-/* WA CTA */
-.wa-wrap{padding:16px 14px calc(32px + env(safe-area-inset-bottom))}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:linear-gradient(135deg,rgba(22,58,34,.9),rgba(28,74,42,.9));border:1px solid rgba(37,211,102,.3);border-radius:16px;font-weight:700;font-size:.9rem;color:var(--green);cursor:pointer}
+/* ══════════════════════════════════════
+   WA CTA
+══════════════════════════════════════ */
+.wa-wrap{padding:28px 22px calc(32px + env(safe-area-inset-bottom))}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:12px;width:100%;
+  padding:17px;
+  background:linear-gradient(135deg,rgba(18,46,27,.95),rgba(24,60,34,.95));
+  border:1px solid rgba(37,211,102,.25);
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);cursor:pointer;
+  transition:border-color .2s;
+}
+.wa-btn:hover{border-color:rgba(37,211,102,.5)}
+.wa-btn .wa-ico{font-size:1.4em}
 
-.foot{text-align:center;font-size:.58rem;color:#3a3450;padding:0 14px 20px;line-height:1.8}
+.foot{
+  text-align:center;
+  font-size:.6rem;letter-spacing:.06em;
+  color:rgba(122,116,144,.5);
+  padding:0 20px 32px;
+  line-height:2;
+}
+.foot .mark{
+  display:block;
+  font-family:var(--serif);font-style:italic;
+  font-size:1.2rem;color:var(--muted);
+  margin-bottom:4px;letter-spacing:0;
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="hdr">
-  <div class="hdr-icon">🌊</div>
-  <div class="hdr-info">
-    <h1 id="hdrTitle">Acapulco Hub ✝️</h1>
-    <p id="hdrSub">MX Studio · Demo</p>
+<!-- ══════════════════════════════════════
+     CINEMATIC HERO
+══════════════════════════════════════ -->
+<div class="hero" id="hero">
+
+  <!-- SLIDES (Ken Burns per slide) -->
+  <div class="slide on kb" id="sl0" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85')"></div>
+  <div class="slide" id="sl1" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=85')"></div>
+  <div class="slide" id="sl2" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85')"></div>
+  <div class="slide" id="sl3" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=85')"></div>
+  <div class="slide" id="sl4" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=85')"></div>
+
+  <!-- gradient overlay -->
+  <div class="hero-overlay"></div>
+
+  <!-- top bar -->
+  <div class="hero-bar">
+    <div class="hero-brand">
+      Acapulco Hub ✝️
+      <small id="hdrSub">MX Studio · Demo</small>
+    </div>
+    <div class="lang-sw" id="langSw" data-l="es" onclick="toggleLang()">
+      <div class="knob"></div>
+      <span class="es-lbl">ES</span>
+      <span class="en-lbl">EN</span>
+    </div>
   </div>
-  <div class="lang-row">
-    <button class="lang-btn active" data-l="es" id="btnES">ES</button>
-    <button class="lang-btn" data-l="en" id="btnEN">EN</button>
+
+  <!-- bottom content -->
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="heroEyebrow">La Perla del Pacífico</div>
+    <div class="hero-title">
+      <span id="heroLine1">Acapulco</span><br>
+      <em id="heroLine2">Guerrero</em>
+    </div>
+    <div class="hero-caption">
+      <div class="hero-caption-text" id="heroCaption">La bahía más icónica de México. Clavadistas, mariscos, atardeceres y vida nocturna.</div>
+      <div class="hero-dots" id="heroDots"></div>
+    </div>
+  </div>
+
+  <!-- scroll hint -->
+  <div class="scroll-hint" id="scrollHint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </div>
 
-<!-- SLIDESHOW -->
-<div class="slides" id="slides">
-  <div class="slide on" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80')">
-    <div class="slide-overlay"></div>
-    <div class="slide-caption"><h2 id="s0h">Acapulco, Guerrero</h2><p id="s0p">La Perla del Pacífico</p></div>
-  </div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80')">
-    <div class="slide-overlay"></div>
-    <div class="slide-caption"><h2 id="s1h">Bahía de Acapulco</h2><p id="s1p">La bahía más famosa de México</p></div>
-  </div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80')">
-    <div class="slide-overlay"></div>
-    <div class="slide-caption"><h2 id="s2h">Mariscos frescos del Pacífico</h2><p id="s2p">La mejor cocina de mar en México</p></div>
-  </div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80')">
-    <div class="slide-overlay"></div>
-    <div class="slide-caption"><h2 id="s3h">Hoteles & Resorts</h2><p id="s3p">Diamante, Brisas y Costa Azul</p></div>
-  </div>
-  <div class="dots" id="dots"></div>
-</div>
-
-<!-- TABS -->
-<div class="tabs">
+<!-- ══════════════════════════════════════
+     TABS
+══════════════════════════════════════ -->
+<div class="tabs" id="tabsEl">
   <button class="tab on" data-tab="rest" onclick="setTab('rest')">
     <span class="ico">🍽️</span><span id="tabRest">Restaurante</span>
   </button>
@@ -198,17 +519,19 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   </button>
 </div>
 
-<!-- FEATURED (swaps on tab) -->
+<!-- ══════════════════════════════════════
+     FEATURED (inline swap)
+══════════════════════════════════════ -->
 <div class="featured" id="featured">
 
   <!-- RESTAURANT -->
   <div id="feat-rest">
-    <div class="feat-cover" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80')">
-      <div class="feat-cover-overlay"></div>
-      <div class="feat-cover-info">
-        <div class="demo-tag" id="demoTagR">✨ DEMO — ASÍ SE VE TU APP</div>
-        <h3>Mariscos La Perla Azul</h3>
-        <div class="meta">Costa Azul, Acapulco · <span class="stars">★ 4.8</span> <span id="reviewCount">(640 reseñas)</span></div>
+    <div class="feat-photo" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85')">
+      <div class="feat-photo-overlay"></div>
+      <div class="feat-photo-info">
+        <div class="feat-demo-tag" id="demoTagR">DEMO — ASÍ SE VE TU APP</div>
+        <div class="feat-name">Mariscos La Perla Azul</div>
+        <div class="feat-meta">Costa Azul, Acapulco &nbsp;·&nbsp; <span class="feat-stars">★ 4.8</span> &nbsp;<span id="reviewCount">(640 reseñas)</span></div>
       </div>
     </div>
     <div class="feat-actions">
@@ -216,29 +539,27 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
       <div class="feat-action wa"><span class="ico">💬</span><span id="actWA">WhatsApp</span></div>
       <div class="feat-action map"><span class="ico">⭐</span><span id="actRate">Calificar</span></div>
     </div>
-    <div class="menu-preview">
-      <div class="menu-sec" id="catStarters">🥗 Entradas</div>
-      <div class="menu-row"><div><div class="menu-name" id="e1n">Ceviche Clásico</div><div class="menu-desc" id="e1d">Camarón, pulpo, jitomate, cebolla, chile</div></div><div class="menu-price">$145</div></div>
-      <div class="menu-row"><div><div class="menu-name" id="e2n">Tostadas de Marlin</div><div class="menu-desc" id="e2d">Marlin ahumado, aguacate, chile, crema</div></div><div class="menu-price">$125</div></div>
-      <div class="menu-sec" id="catMains">🍤 Platillos</div>
-      <div class="menu-row"><div><div class="menu-name" id="p1n">Camarones a la Diabla</div><div class="menu-desc" id="p1d">Camarones jumbo, arroz, frijoles</div></div><div class="menu-price">$245</div></div>
-      <div class="menu-row"><div><div class="menu-name" id="p2n">Mojarra Frita</div><div class="menu-desc" id="p2d">Entera, frita, arroz, ensalada, tortillas</div></div><div class="menu-price">$195</div></div>
-      <div class="menu-row"><div><div class="menu-name" id="p3n">Pulpo a las Brasas</div><div class="menu-desc" id="p3d">A la parrilla, aceite de oliva, papas</div></div><div class="menu-price">$265</div></div>
-      <div class="menu-sec" id="catDrinks">🥤 Bebidas</div>
-      <div class="menu-row"><div><div class="menu-name" id="b1n">Michelada de Camarón</div><div class="menu-desc" id="b1d">Cerveza, clamato, camarones, limón</div></div><div class="menu-price">$125</div></div>
-      <div class="menu-row"><div><div class="menu-name" id="b2n">Margarita de Mango</div><div class="menu-desc" id="b2d">Tequila, mango, limón, sal de gusano</div></div><div class="menu-price">$145</div></div>
-    </div>
-    <div class="demo-pill" id="demoPillR">✨ Tu menú va aquí · Your menu goes here</div>
+    <div class="menu-cat" id="catStarters">Entradas</div>
+    <div class="menu-row"><div><div class="menu-name" id="e1n">Ceviche Clásico</div><div class="menu-desc" id="e1d">Camarón, pulpo, jitomate, cebolla, chile</div></div><div class="menu-price">$145</div></div>
+    <div class="menu-row"><div><div class="menu-name" id="e2n">Tostadas de Marlin</div><div class="menu-desc" id="e2d">Marlin ahumado, aguacate, chile, crema</div></div><div class="menu-price">$125</div></div>
+    <div class="menu-cat" id="catMains">Platillos</div>
+    <div class="menu-row"><div><div class="menu-name" id="p1n">Camarones a la Diabla</div><div class="menu-desc" id="p1d">Camarones jumbo, arroz, frijoles negros</div></div><div class="menu-price">$245</div></div>
+    <div class="menu-row"><div><div class="menu-name" id="p2n">Mojarra Frita</div><div class="menu-desc" id="p2d">Entera, frita, arroz, ensalada, tortillas</div></div><div class="menu-price">$195</div></div>
+    <div class="menu-row"><div><div class="menu-name" id="p3n">Pulpo a las Brasas</div><div class="menu-desc" id="p3d">A la parrilla, aceite de oliva, papas</div></div><div class="menu-price">$265</div></div>
+    <div class="menu-cat" id="catDrinks">Bebidas</div>
+    <div class="menu-row"><div><div class="menu-name" id="b1n">Michelada de Camarón</div><div class="menu-desc" id="b1d">Cerveza, clamato, camarones, limón</div></div><div class="menu-price">$125</div></div>
+    <div class="menu-row"><div><div class="menu-name" id="b2n">Margarita de Mango</div><div class="menu-desc" id="b2d">Tequila, mango fresco, limón, sal de gusano</div></div><div class="menu-price">$145</div></div>
+    <div class="demo-pill" id="demoPillR">✦ &nbsp;Tu menú va aquí &nbsp;·&nbsp; Your menu goes here</div>
   </div>
 
   <!-- HOTEL -->
   <div id="feat-hotel" style="display:none">
-    <div class="feat-cover" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80')">
-      <div class="feat-cover-overlay"></div>
-      <div class="feat-cover-info">
-        <div class="demo-tag" id="demoTagH">✨ DEMO — ASÍ SE VE TU APP</div>
-        <h3>Hotel Mirador del Pacífico</h3>
-        <div class="meta">Las Brisas · Acapulco · <span class="stars">★ 4.6</span></div>
+    <div class="feat-photo" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=85')">
+      <div class="feat-photo-overlay"></div>
+      <div class="feat-photo-info">
+        <div class="feat-demo-tag" id="demoTagH">DEMO — ASÍ SE VE TU APP</div>
+        <div class="feat-name">Hotel Mirador del Pacífico</div>
+        <div class="feat-meta">Las Brisas · Acapulco &nbsp;·&nbsp; <span class="feat-stars">★ 4.6</span></div>
       </div>
     </div>
     <div class="room-grid">
@@ -255,17 +576,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
       <div class="feat-btn"><span class="ico">📅</span><span id="hactBook">Reservar</span></div>
       <div class="feat-btn wa"><span class="ico">💬</span><span id="hactWA">WhatsApp</span></div>
     </div>
-    <div class="demo-pill" id="demoPillH">✨ Tu hotel va aquí · Your hotel goes here</div>
+    <div class="demo-pill" id="demoPillH">✦ &nbsp;Tu hotel va aquí &nbsp;·&nbsp; Your hotel goes here</div>
   </div>
 
   <!-- RESORT -->
   <div id="feat-resort" style="display:none">
-    <div class="feat-cover" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80')">
-      <div class="feat-cover-overlay"></div>
-      <div class="feat-cover-info">
-        <div class="demo-tag" id="demoTagRS">✨ DEMO — ASÍ SE VE TU APP</div>
-        <h3>Resort Diamante Acapulco</h3>
-        <div class="meta">Punta Diamante · Todo Incluido · <span class="stars">★ 4.9</span></div>
+    <div class="feat-photo" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=85')">
+      <div class="feat-photo-overlay"></div>
+      <div class="feat-photo-info">
+        <div class="feat-demo-tag" id="demoTagRS">DEMO — ASÍ SE VE TU APP</div>
+        <div class="feat-name">Resort Diamante Acapulco</div>
+        <div class="feat-meta">Punta Diamante · Todo Incluido &nbsp;·&nbsp; <span class="feat-stars">★ 4.9</span></div>
       </div>
     </div>
     <div class="amenity-grid">
@@ -278,192 +599,259 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
       <div class="feat-btn"><span class="ico">📅</span><span id="ractBook">Reservar</span></div>
       <div class="feat-btn wa"><span class="ico">💬</span><span id="ractWA">WhatsApp</span></div>
     </div>
-    <div class="demo-pill" id="demoPillRS">✨ Tu resort va aquí · Your resort goes here</div>
+    <div class="demo-pill" id="demoPillRS">✦ &nbsp;Tu resort va aquí &nbsp;·&nbsp; Your resort goes here</div>
   </div>
 
 </div><!-- /featured -->
 
-<!-- CONTEXT SECTION (auto-swaps) -->
+<!-- CONTEXT (auto-swaps) -->
 <div id="ctx"></div>
 
-<!-- ACTIVITIES -->
-<div class="sec-label"><span id="secAct">🌊 Actividades</span></div>
+<!-- ══════════════════════════════════════
+     ACTIVITIES
+══════════════════════════════════════ -->
+<div class="sec-label"><span id="secAct">Actividades</span></div>
 <div class="act-cards">
   <div class="act-card">
-    <div class="act-tag" id="a1tag">🏆 TRADICIÓN</div>
-    <div class="act-title" id="a1title">🤿 Clavadistas de La Quebrada</div>
-    <div class="act-desc" id="a1desc">Los clavadistas más famosos del mundo saltan 35 metros al océano. Espectáculo de día y noche con antorchas.</div>
-    <div class="act-detail">1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM</div>
+    <div class="act-no">01</div>
+    <div class="act-title" id="a1title">Clavadistas de La Quebrada</div>
+    <div class="act-desc" id="a1desc">Los clavadistas más famosos del mundo saltan 35 metros al océano. Un espectáculo de día y de noche con antorchas encendidas.</div>
+    <div class="act-detail" id="a1detail">1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM</div>
   </div>
   <div class="act-card">
-    <div class="act-tag" id="a2tag">🌿 ECO & SNORKEL</div>
-    <div class="act-title" id="a2title">🐠 Isla La Roqueta</div>
-    <div class="act-desc" id="a2desc">Lancha de fondo de cristal desde Playa Caleta. Ve la Virgen submarina y haz snorkel en arrecifes naturales.</div>
+    <div class="act-no">02</div>
+    <div class="act-title" id="a2title">Isla La Roqueta</div>
+    <div class="act-desc" id="a2desc">Lancha de fondo de cristal desde Playa Caleta. Observa la Virgen submarina y haz snorkel en arrecifes naturales.</div>
     <div class="act-detail" id="a2detail">Playa Caleta · ~45 min · $200–250 MXN</div>
   </div>
   <div class="act-card">
-    <div class="act-tag" id="a3tag">🌅 ATARDECER</div>
-    <div class="act-title" id="a3title">⛵ Catamárán Bahía de Acapulco</div>
-    <div class="act-desc" id="a3desc">2.5 horas por la bahía con barra libre y música en vivo al atardecer.</div>
+    <div class="act-no">03</div>
+    <div class="act-title" id="a3title">Catamárán al Atardecer</div>
+    <div class="act-desc" id="a3desc">2.5 horas recorriendo la bahía con barra libre y música en vivo durante la hora dorada del Pacífico.</div>
     <div class="act-detail" id="a3detail">Sale 5:30 PM · desde $650 MXN</div>
   </div>
 </div>
 
-<!-- TRIVIA -->
-<div class="sec-label"><span id="secTrivia">🎯 Trivia de Acapulco</span></div>
+<!-- ══════════════════════════════════════
+     TRIVIA
+══════════════════════════════════════ -->
+<div class="sec-label"><span id="secTrivia">Trivia</span></div>
 <div class="trivia-wrap" id="triviaWrap"></div>
 
-<!-- SURVIVAL SPANISH -->
-<div class="sec-label"><span id="secSpanish">🗣️ Español de Sobrevivencia</span></div>
+<!-- ══════════════════════════════════════
+     SURVIVAL SPANISH
+══════════════════════════════════════ -->
+<div class="sec-label"><span id="secSpanish">Español de Sobrevivencia</span></div>
 <div class="phrase-cards">
   <div class="phrase-card" onclick="speak('La cuenta, por favor')">
     <div class="phrase-es">La cuenta, por favor</div>
     <div class="phrase-en" id="ph1en">The check, please</div>
     <div class="phrase-pron">lah KWEN-tah, por fah-VOR</div>
-    <div class="phrase-tap" id="ph1tap">👆 Toca para escuchar</div>
+    <div class="phrase-tap" id="ph1tap">↑ Toca para escuchar</div>
   </div>
   <div class="phrase-card" onclick="speak('¿Me recomienda algo?')">
     <div class="phrase-es">¿Me recomienda algo?</div>
     <div class="phrase-en" id="ph2en">What do you recommend?</div>
     <div class="phrase-pron">meh reh-koh-MYEN-dah AL-go</div>
-    <div class="phrase-tap" id="ph2tap">👆 Toca para escuchar</div>
+    <div class="phrase-tap" id="ph2tap">↑ Toca para escuchar</div>
   </div>
   <div class="phrase-card" onclick="speak('Dos cervezas, por favor')">
     <div class="phrase-es">Dos cervezas, por favor</div>
     <div class="phrase-en" id="ph3en">Two beers, please</div>
     <div class="phrase-pron">dos ser-VEH-sahs, por fah-VOR</div>
-    <div class="phrase-tap" id="ph3tap">👆 Toca para escuchar</div>
+    <div class="phrase-tap" id="ph3tap">↑ Toca para escuchar</div>
   </div>
   <div class="phrase-card" onclick="speak('¡Está delicioso!')">
     <div class="phrase-es">¡Está delicioso!</div>
     <div class="phrase-en" id="ph4en">This is delicious!</div>
     <div class="phrase-pron">es-TAH deh-lee-SYOH-so</div>
-    <div class="phrase-tap" id="ph4tap">👆 Toca para escuchar</div>
+    <div class="phrase-tap" id="ph4tap">↑ Toca para escuchar</div>
   </div>
 </div>
 
 <!-- WA CTA -->
 <div class="wa-wrap">
   <button class="wa-btn" onclick="window.open('https://api.whatsapp.com/send?phone=527441930502&text='+encodeURIComponent('Hola Brian, quiero saber más sobre MX Studio ✝️'),'_blank')">
-    <span style="font-size:1.3em">💬</span>
+    <span class="wa-ico">💬</span>
     <span id="waBtn">Quiero mi app · MX Studio ✝️</span>
   </button>
 </div>
 
-<div class="foot">Digital Architecture by <strong>mx.studio</strong> ✝️ · Acapulco 2026<br>Demo · No real orders processed</div>
+<div class="foot">
+  <span class="mark">mx.studio</span>
+  Digital Architecture ✝️ · Acapulco 2026<br>
+  Demo · No real orders processed
+</div>
 
 <script>
-// ── TRANSLATIONS ──
+// ════════════════════════════════
+// TRANSLATIONS
+// ════════════════════════════════
 const T={
   es:{
+    hdrSub:'MX Studio · Demo',
+    heroEyebrow:'La Perla del Pacífico',
+    heroLine1:'Acapulco',heroLine2:'Guerrero',
+    heroCaption:'La bahía más icónica de México. Clavadistas, mariscos, atardeceres y vida nocturna.',
     tabRest:'Restaurante',tabHotel:'Hotel',tabResort:'Resort',
-    demoTagR:'✨ DEMO — ASÍ SE VE TU APP',demoTagH:'✨ DEMO — ASÍ SE VE TU APP',demoTagRS:'✨ DEMO — ASÍ SE VE TU APP',
+    demoTagR:'DEMO — ASÍ SE VE TU APP',demoTagH:'DEMO — ASÍ SE VE TU APP',demoTagRS:'DEMO — ASÍ SE VE TU APP',
     reviewCount:'(640 reseñas)',
     actMenu:'Ver Menú',actWA:'WhatsApp',actRate:'Calificar',
-    catStarters:'🥗 Entradas',catMains:'🍤 Platillos',catDrinks:'🥤 Bebidas',
+    catStarters:'Entradas',catMains:'Platillos',catDrinks:'Bebidas',
     e1n:'Ceviche Clásico',e1d:'Camarón, pulpo, jitomate, cebolla, chile',
     e2n:'Tostadas de Marlin',e2d:'Marlin ahumado, aguacate, chile, crema',
-    p1n:'Camarones a la Diabla',p1d:'Camarones jumbo, arroz, frijoles',
+    p1n:'Camarones a la Diabla',p1d:'Camarones jumbo, arroz, frijoles negros',
     p2n:'Mojarra Frita',p2d:'Entera, frita, arroz, ensalada, tortillas',
     p3n:'Pulpo a las Brasas',p3d:'A la parrilla, aceite de oliva, papas',
     b1n:'Michelada de Camarón',b1d:'Cerveza, clamato, camarones, limón',
-    b2n:'Margarita de Mango',b2d:'Tequila, mango, limón, sal de gusano',
-    demoPillR:'✨ Tu menú va aquí',demoPillH:'✨ Tu hotel va aquí',demoPillRS:'✨ Tu resort va aquí',
+    b2n:'Margarita de Mango',b2d:'Tequila, mango fresco, limón, sal de gusano',
+    demoPillR:'✦  Tu menú va aquí · Your menu goes here',
+    demoPillH:'✦  Tu hotel va aquí · Your hotel goes here',
+    demoPillRS:'✦  Tu resort va aquí · Your resort goes here',
     r1n:'Habitación Estándar',r1p:'desde $850 MXN / noche',
     r2n:'Suite Vista Mar',r2p:'desde $1,400 MXN / noche',
     hactBook:'Reservar',hactWA:'WhatsApp',
     am1:'Alberca infinity',am2:'Bar en la playa',am3:'Playa privada',am4:'Spa & wellness',
     ractBook:'Reservar',ractWA:'WhatsApp',
-    secStay:'🏨 Dónde Quedarse',secDining:'🍽️ Dónde Comer',
+    secStay:'Dónde Quedarse',secDining:'Dónde Comer',
     h1z:'Punta Diamante',h1n:'Banyan Tree Cabo Marqués',h1d:'Villas privadas con alberca en el acantilado con vista al Océano Pacífico.',h1p:'desde $420 USD / noche',
     h2z:'Zona Dorada',h2n:'Hotel Emporio Acapulco',h2d:'Frente al mar sobre la Costera Miguel Alemán, acceso directo a la bahía.',h2p:'desde $135 USD / noche',
     h3z:'Las Brisas',h3n:'Las Brisas Acapulco',h3d:'Casitas rosas y blancas en la colina con club de playa privado y jeep rosado.',h3p:'desde $210 USD / noche',
-    d1t:'MARISCOS',d1n:'Mariscos El Sirenito',d1d:'Especialidad en camarones, pulpo y pescado fresco de Playa Caleta.',d1dt:'Playa Caleta · Abierto 10am–8pm',
-    d2t:'RESTAURANTE MEXICANO',d2n:'El Amigo Miguel',d2d:'Cocina tradicional guerrerense con vista a la bahía. Un clásico desde 1980.',d2dt:'Hornos · Reservas por WhatsApp',
-    d3t:'MARISCOS & BAR',d3n:'Wahoo Costera',d3d:'Ambiente playero, coctelería de mariscos y botanas perfectas con vista al océano.',d3dt:'Costa Azul · Abierto desde las 12pm',
-    secAct:'🌊 Actividades',
-    a1tag:'🏆 TRADICIÓN',a1title:'🤿 Clavadistas de La Quebrada',a1desc:'Los clavadistas más famosos del mundo saltan 35 metros al océano. Espectáculo de día y noche con antorchas.',
-    a2tag:'🌿 ECO & SNORKEL',a2title:'🐠 Isla La Roqueta',a2desc:'Lancha de fondo de cristal desde Playa Caleta. Ve la Virgen submarina y haz snorkel en arrecifes naturales.',a2detail:'Playa Caleta · ~45 min · $200–250 MXN',
-    a3tag:'🌅 ATARDECER',a3title:'⛵ Catamárán Bahía de Acapulco',a3desc:'2.5 horas por la bahía con barra libre y música en vivo al atardecer.',a3detail:'Sale 5:30 PM · desde $650 MXN',
-    secTrivia:'🎯 Trivia de Acapulco',secSpanish:'🗣️ Español de Sobrevivencia',
-    ph1en:'La cuenta',ph2en:'¿Me recomienda algo?',ph3en:'Dos cervezas',ph4en:'¡Está delicioso!',
-    ph1tap:'👆 Toca para escuchar',ph2tap:'👆 Toca para escuchar',ph3tap:'👆 Toca para escuchar',ph4tap:'👆 Toca para escuchar',
+    d1t:'Mariscos',d1n:'Mariscos El Sirenito',d1d:'Especialidad en camarones, pulpo y pescado fresco de Playa Caleta.',d1dt:'Playa Caleta · Abierto 10 am–8 pm',
+    d2t:'Cocina Mexicana',d2n:'El Amigo Miguel',d2d:'Cocina tradicional guerrerense con vista a la bahía. Un clásico de Acapulco desde 1980.',d2dt:'Hornos · Reservas por WhatsApp',
+    d3t:'Mariscos & Bar',d3n:'Wahoo Costera',d3d:'Ambiente playero, coctelería de mariscos y botanas perfectas con vista al océano.',d3dt:'Costa Azul · Abierto desde las 12 pm',
+    secAct:'Actividades',
+    a1title:'Clavadistas de La Quebrada',a1desc:'Los clavadistas más famosos del mundo saltan 35 metros al océano. Un espectáculo de día y de noche con antorchas encendidas.',a1detail:'1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM',
+    a2title:'Isla La Roqueta',a2desc:'Lancha de fondo de cristal desde Playa Caleta. Observa la Virgen submarina y haz snorkel en arrecifes naturales.',a2detail:'Playa Caleta · ~45 min · $200–250 MXN',
+    a3title:'Catamárán al Atardecer',a3desc:'2.5 horas recorriendo la bahía con barra libre y música en vivo durante la hora dorada del Pacífico.',a3detail:'Sale 5:30 PM · desde $650 MXN',
+    secTrivia:'Trivia',secSpanish:'Español de Sobrevivencia',
+    ph1en:'La cuenta, por favor',ph2en:'¿Me recomienda algo?',ph3en:'Dos cervezas',ph4en:'¡Está delicioso!',
+    ph1tap:'↑ Toca para escuchar',ph2tap:'↑ Toca para escuchar',ph3tap:'↑ Toca para escuchar',ph4tap:'↑ Toca para escuchar',
     waBtn:'Quiero mi app · MX Studio ✝️',
     trivQ:[
       {q:'¿Cuántos metros saltan los Clavadistas de La Quebrada?',opts:['20 metros','35 metros','50 metros','15 metros'],ans:1},
       {q:'¿En qué océano está la Bahía de Acapulco?',opts:['Atlántico','Índico','Pacífico','Caribe'],ans:2},
       {q:'¿Cuál es el plato más famoso de Acapulco?',opts:['Tacos de pescado','Pozole de mar','Pescado a la talla','Caldo de camarón'],ans:2},
     ],
-    trivTitle:'🏆 ¿Cuánto sabes de Acapulco?',trivSub:'Responde 3 preguntas y gana un shot gratis 🥃',
-    trivWinTitle:'¡Ganaste! 🥃',trivWinSub:'Muéstrale esto a tu mesero para canjear tu shot gratis.',trivReset:'🔄 Jugar de nuevo',
+    trivTitle:'¿Cuánto sabes de Acapulco?',trivSub:'Responde 3 preguntas y gana un shot gratis 🥃',
+    trivWinTitle:'¡Ganaste un shot! 🥃',trivWinSub:'Muéstrale esto a tu mesero para canjear tu shot gratis.',trivReset:'Jugar de nuevo',
   },
   en:{
+    hdrSub:'MX Studio · Demo',
+    heroEyebrow:'Pearl of the Pacific',
+    heroLine1:'Acapulco',heroLine2:'Guerrero',
+    heroCaption:"Mexico's most iconic bay. Cliff divers, fresh seafood, golden sunsets and legendary nightlife.",
     tabRest:'Restaurant',tabHotel:'Hotel',tabResort:'Resort',
-    demoTagR:'✨ DEMO — THIS IS HOW YOUR APP LOOKS',demoTagH:'✨ DEMO — THIS IS HOW YOUR APP LOOKS',demoTagRS:'✨ DEMO — THIS IS HOW YOUR APP LOOKS',
+    demoTagR:'DEMO — THIS IS HOW YOUR APP LOOKS',demoTagH:'DEMO — THIS IS HOW YOUR APP LOOKS',demoTagRS:'DEMO — THIS IS HOW YOUR APP LOOKS',
     reviewCount:'(640 reviews)',
     actMenu:'View Menu',actWA:'WhatsApp',actRate:'Rate Us',
-    catStarters:'🥗 Starters',catMains:'🍤 Mains',catDrinks:'🥤 Drinks',
+    catStarters:'Starters',catMains:'Mains',catDrinks:'Drinks',
     e1n:'Classic Ceviche',e1d:'Shrimp, octopus, tomato, onion, chili',
     e2n:'Smoked Marlin Tostadas',e2d:'Smoked marlin, avocado, chili, cream',
-    p1n:'Shrimp Diabla Style',p1d:'Jumbo shrimp, rice, beans',
+    p1n:'Shrimp Diabla Style',p1d:'Jumbo shrimp, rice, black beans',
     p2n:'Whole Fried Mojarra',p2d:'Whole fish, fried, rice, salad, tortillas',
     p3n:'Grilled Octopus',p3d:'Grilled, olive oil, lemon, potatoes',
     b1n:'Shrimp Michelada',b1d:'Beer, clamato, shrimp, lemon',
     b2n:'Mango Margarita',b2d:'Tequila, fresh mango, lemon, worm salt',
-    demoPillR:'✨ Your menu goes here',demoPillH:'✨ Your hotel goes here',demoPillRS:'✨ Your resort goes here',
+    demoPillR:'✦  Your menu goes here',
+    demoPillH:'✦  Your hotel goes here',
+    demoPillRS:'✦  Your resort goes here',
     r1n:'Standard Room',r1p:'from $850 MXN / night',
     r2n:'Ocean View Suite',r2p:'from $1,400 MXN / night',
     hactBook:'Book Now',hactWA:'WhatsApp',
     am1:'Infinity pool',am2:'Beach bar',am3:'Private beach',am4:'Spa & wellness',
     ractBook:'Book Now',ractWA:'WhatsApp',
-    secStay:'🏨 Where to Stay',secDining:'🍽️ Where to Eat',
-    h1z:'Punta Diamante',h1n:'Banyan Tree Cabo Marqués',h1d:'Private cliffside pool villas overlooking the Pacific Ocean.',h1p:'from $420 USD / night',
+    secStay:'Where to Stay',secDining:'Where to Eat',
+    h1z:'Punta Diamante',h1n:'Banyan Tree Cabo Marqués',h1d:'Private cliffside pool villas overlooking the Pacific Ocean. Ultra-luxury.',h1p:'from $420 USD / night',
     h2z:'Golden Zone',h2n:'Hotel Emporio Acapulco',h2d:'Beachfront on Costera Miguel Alemán with direct bay access.',h2p:'from $135 USD / night',
-    h3z:'Las Brisas',h3n:'Las Brisas Acapulco',h3d:'Iconic pink-and-white hillside casitas with private beach club and complimentary pink jeep.',h3p:'from $210 USD / night',
-    d1t:'SEAFOOD',d1n:'Mariscos El Sirenito',d1d:'Fresh shrimp, octopus and fish straight from Caleta Beach.',d1dt:'Playa Caleta · Open 10am–8pm',
-    d2t:'MEXICAN RESTAURANT',d2n:'El Amigo Miguel',d2d:'Traditional Guerrero cuisine with bay views. An Acapulco classic since 1980.',d2dt:'Hornos · WhatsApp reservations',
-    d3t:'SEAFOOD & BAR',d3n:'Wahoo Costera',d3d:'Beach atmosphere, seafood cocktails and perfect snacks with ocean views.',d3dt:'Costa Azul · Open from 12pm',
-    secAct:'🌊 Activities',
-    a1tag:'🏆 MUST-SEE',a1title:'🤿 La Quebrada Cliff Divers',a1desc:"The world's most famous cliff divers leap 35 meters into the ocean. Day and torch-lit night shows.",
-    a2tag:'🌿 ECO & SNORKEL',a2title:'🐠 Isla La Roqueta',a2desc:'Glass-bottom boat from Caleta Beach. See the underwater Virgen statue and snorkel on natural reefs.',a2detail:'Playa Caleta · ~45 min · $200–250 MXN',
-    a3tag:'🌅 SUNSET',a3title:'⛵ Acapulco Bay Catamaran',a3desc:'2.5-hour bay tour with open bar and live music at golden-hour.',a3detail:'Departs 5:30 PM · from $650 MXN',
-    secTrivia:'🎯 Acapulco Trivia',secSpanish:'🗣️ Survival Spanish',
+    h3z:'Las Brisas',h3n:'Las Brisas Acapulco',h3d:'Iconic pink-and-white hillside casitas with a private beach club and complimentary pink jeep.',h3p:'from $210 USD / night',
+    d1t:'Seafood',d1n:'Mariscos El Sirenito',d1d:'Fresh shrimp, octopus and fish straight from Caleta Beach.',d1dt:'Playa Caleta · Open 10 am–8 pm',
+    d2t:'Mexican Cuisine',d2n:'El Amigo Miguel',d2d:'Traditional Guerrero cuisine with bay views. An Acapulco classic since 1980.',d2dt:'Hornos · WhatsApp reservations',
+    d3t:'Seafood & Bar',d3n:'Wahoo Costera',d3d:'Beach atmosphere, seafood cocktails and perfect snacks with ocean views.',d3dt:'Costa Azul · Open from 12 pm',
+    secAct:'Activities',
+    a1title:'La Quebrada Cliff Divers',a1desc:"The world's most famous cliff divers leap 35 meters into the ocean. Day shows and torch-lit performances at night.",a1detail:'1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM',
+    a2title:'Isla La Roqueta',a2desc:'Glass-bottom boat from Caleta Beach. See the underwater Virgen statue and snorkel on natural reefs.',a2detail:'Playa Caleta · ~45 min · $200–250 MXN',
+    a3title:'Sunset Catamaran',a3desc:'2.5 hours across the bay with open bar and live music during the Pacific golden hour.',a3detail:'Departs 5:30 PM · from $650 MXN',
+    secTrivia:'Trivia',secSpanish:'Survival Spanish',
     ph1en:'The check, please',ph2en:'What do you recommend?',ph3en:'Two beers, please',ph4en:'This is delicious!',
-    ph1tap:'👆 Tap to hear',ph2tap:'👆 Tap to hear',ph3tap:'👆 Tap to hear',ph4tap:'👆 Tap to hear',
+    ph1tap:'↑ Tap to hear',ph2tap:'↑ Tap to hear',ph3tap:'↑ Tap to hear',ph4tap:'↑ Tap to hear',
     waBtn:'I want my app · MX Studio ✝️',
     trivQ:[
       {q:'How many meters do La Quebrada cliff divers jump?',opts:['20 meters','35 meters','50 meters','15 meters'],ans:1},
       {q:'Which ocean is Acapulco Bay on?',opts:['Atlantic','Indian','Pacific','Caribbean'],ans:2},
       {q:"What is Acapulco's most famous dish?",opts:['Fish tacos','Seafood pozole','Pescado a la talla','Shrimp broth'],ans:2},
     ],
-    trivTitle:"🏆 How well do you know Acapulco?",trivSub:'Answer 3 questions and win a free shot 🥃',
-    trivWinTitle:'You won! 🥃',trivWinSub:'Show this to your server to claim your free shot.',trivReset:'🔄 Play again',
+    trivTitle:'How well do you know Acapulco?',trivSub:'Answer 3 questions and win a free shot 🥃',
+    trivWinTitle:'You won a shot! 🥃',trivWinSub:'Show this to your server to claim your free shot.',trivReset:'Play again',
   }
 };
 
+// ════════════════════════════════
+// LANG
+// ════════════════════════════════
 let lang='es';
-function t(k){return T[lang][k]!==undefined?T[lang][k]:T.es[k]||''}
-
+function t(k){return T[lang]&&T[lang][k]!==undefined?T[lang][k]:(T.es[k]||'')}
+function toggleLang(){lang=lang==='es'?'en':'es';document.getElementById('langSw').dataset.l=lang;applyLang()}
 function applyLang(){
   document.documentElement.lang=lang;
-  document.getElementById('btnES').classList.toggle('active',lang==='es');
-  document.getElementById('btnEN').classList.toggle('active',lang==='en');
-  const ids=['tabRest','tabHotel','tabResort','demoTagR','demoTagH','demoTagRS','reviewCount',
+  const ids=['hdrSub','heroEyebrow','heroLine1','heroLine2','heroCaption',
+    'tabRest','tabHotel','tabResort','demoTagR','demoTagH','demoTagRS','reviewCount',
     'actMenu','actWA','actRate','catStarters','catMains','catDrinks',
     'e1n','e1d','e2n','e2d','p1n','p1d','p2n','p2d','p3n','p3d','b1n','b1d','b2n','b2d',
     'demoPillR','demoPillH','demoPillRS','r1n','r1p','r2n','r2p','hactBook','hactWA',
     'am1','am2','am3','am4','ractBook','ractWA',
-    'secAct','a1tag','a1title','a1desc','a2tag','a2title','a2desc','a2detail','a3tag','a3title','a3desc','a3detail',
-    'secTrivia','secSpanish','ph1en','ph2en','ph3en','ph4en','ph1tap','ph2tap','ph3tap','ph4tap','waBtn'];
-  ids.forEach(id=>{const el=document.getElementById(id);if(el){const v=t(id);if(v!==undefined&&v!=='')el.textContent=v}});
-  drawCtx();
-  drawTrivia();
+    'secAct','a1title','a1desc','a1detail','a2title','a2desc','a2detail','a3title','a3desc','a3detail',
+    'secTrivia','secSpanish',
+    'ph1en','ph2en','ph3en','ph4en','ph1tap','ph2tap','ph3tap','ph4tap','waBtn'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el){const v=t(id);if(v!=='')el.textContent=v}});
+  drawCtx();drawTrivia();
 }
 
-document.getElementById('btnES').onclick=()=>{lang='es';applyLang()};
-document.getElementById('btnEN').onclick=()=>{lang='en';applyLang()};
+// ════════════════════════════════
+// SLIDESHOW — cinematic
+// ════════════════════════════════
+(function(){
+  const slides=document.querySelectorAll('.slide');
+  const dotsEl=document.getElementById('heroDots');
+  slides.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='hero-dot'+(i===0?' on':'');
+    d.onclick=()=>go(i);
+    dotsEl.appendChild(d);
+  });
+  let cur=0,timer;
+  function go(n){
+    // remove KB class so we can re-add it cleanly
+    slides[cur].classList.remove('on');
+    slides[cur].classList.remove('kb');
+    dotsEl.children[cur].classList.remove('on');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('on');
+    // force reflow so animation restarts
+    void slides[cur].offsetWidth;
+    slides[cur].classList.add('kb');
+    dotsEl.children[cur].classList.add('on');
+  }
+  function next(){go(cur+1)}
+  timer=setInterval(next,5500);
+  // swipe
+  let sx=0;
+  const h=document.getElementById('hero');
+  h.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+  h.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>50){clearInterval(timer);go(cur+(dx<0?1:-1));timer=setInterval(next,5500)}
+  },{passive:true});
+  // hide scroll hint after first scroll
+  window.addEventListener('scroll',()=>{
+    const sh=document.getElementById('scrollHint');
+    if(sh&&scrollY>60){sh.style.opacity='0';sh.style.pointerEvents='none'}
+  },{passive:true,once:true});
+})();
 
-// ── TABS ──
+// ════════════════════════════════
+// TABS
+// ════════════════════════════════
 let activeTab='rest';
 function setTab(tab){
   activeTab=tab;
@@ -472,55 +860,47 @@ function setTab(tab){
   document.getElementById('feat-hotel').style.display=tab==='hotel'?'block':'none';
   document.getElementById('feat-resort').style.display=tab==='resort'?'block':'none';
   drawCtx();
-  document.getElementById('featured').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('tabsEl').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ── CONTEXT SECTION ──
+// ════════════════════════════════
+// CONTEXT SECTION
+// ════════════════════════════════
 function drawCtx(){
   const c=document.getElementById('ctx');
   if(activeTab==='rest'){
-    c.innerHTML=`<div class="sec-label"><span>${t('secStay')}</span></div>
+    c.innerHTML=`
+    <div class="sec-label"><span>${t('secStay')}</span></div>
     <div class="ctx-cards">
-      <div class="ctx-card"><div class="ctx-emo">🌊</div><div class="ctx-info"><div class="ctx-zone">${t('h1z')}</div><div class="ctx-name">${t('h1n')}</div><div class="ctx-desc">${t('h1d')}</div><div class="ctx-detail">${t('h1p')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🏖️</div><div class="ctx-info"><div class="ctx-zone">${t('h2z')}</div><div class="ctx-name">${t('h2n')}</div><div class="ctx-desc">${t('h2d')}</div><div class="ctx-detail">${t('h2p')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🌺</div><div class="ctx-info"><div class="ctx-zone">${t('h3z')}</div><div class="ctx-name">${t('h3n')}</div><div class="ctx-desc">${t('h3d')}</div><div class="ctx-detail">${t('h3p')}</div></div></div>
+      <div class="ctx-card"><div class="ctx-emo">🌊</div><div><div class="ctx-zone">${t('h1z')}</div><div class="ctx-name">${t('h1n')}</div><div class="ctx-desc">${t('h1d')}</div><div class="ctx-detail">${t('h1p')}</div></div></div>
+      <div class="ctx-card"><div class="ctx-emo">🏖️</div><div><div class="ctx-zone">${t('h2z')}</div><div class="ctx-name">${t('h2n')}</div><div class="ctx-desc">${t('h2d')}</div><div class="ctx-detail">${t('h2p')}</div></div></div>
+      <div class="ctx-card"><div class="ctx-emo">🌺</div><div><div class="ctx-zone">${t('h3z')}</div><div class="ctx-name">${t('h3n')}</div><div class="ctx-desc">${t('h3d')}</div><div class="ctx-detail">${t('h3p')}</div></div></div>
     </div>`;
   } else {
-    c.innerHTML=`<div class="sec-label"><span>${t('secDining')}</span></div>
+    c.innerHTML=`
+    <div class="sec-label"><span>${t('secDining')}</span></div>
     <div class="ctx-cards">
-      <div class="ctx-card"><div class="ctx-emo">🦐</div><div class="ctx-info"><div class="ctx-zone">${t('d1t')}</div><div class="ctx-name">${t('d1n')}</div><div class="ctx-desc">${t('d1d')}</div><div class="ctx-detail">${t('d1dt')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🌮</div><div class="ctx-info"><div class="ctx-zone">${t('d2t')}</div><div class="ctx-name">${t('d2n')}</div><div class="ctx-desc">${t('d2d')}</div><div class="ctx-detail">${t('d2dt')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🍹</div><div class="ctx-info"><div class="ctx-zone">${t('d3t')}</div><div class="ctx-name">${t('d3n')}</div><div class="ctx-desc">${t('d3d')}</div><div class="ctx-detail">${t('d3dt')}</div></div></div>
+      <div class="ctx-card"><div class="ctx-emo">🦐</div><div><div class="ctx-zone">${t('d1t')}</div><div class="ctx-name">${t('d1n')}</div><div class="ctx-desc">${t('d1d')}</div><div class="ctx-detail">${t('d1dt')}</div></div></div>
+      <div class="ctx-card"><div class="ctx-emo">🌮</div><div><div class="ctx-zone">${t('d2t')}</div><div class="ctx-name">${t('d2n')}</div><div class="ctx-desc">${t('d2d')}</div><div class="ctx-detail">${t('d2dt')}</div></div></div>
+      <div class="ctx-card"><div class="ctx-emo">🍹</div><div><div class="ctx-zone">${t('d3t')}</div><div class="ctx-name">${t('d3n')}</div><div class="ctx-desc">${t('d3d')}</div><div class="ctx-detail">${t('d3dt')}</div></div></div>
     </div>`;
   }
 }
 
-// ── SLIDESHOW ──
-(function(){
-  const slides=document.querySelectorAll('.slide');
-  const dotsEl=document.getElementById('dots');
-  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');dotsEl.appendChild(d)});
-  let cur=0;
-  function go(n){slides[cur].classList.remove('on');dotsEl.children[cur].classList.remove('on');cur=(n+slides.length)%slides.length;slides[cur].classList.add('on');dotsEl.children[cur].classList.add('on')}
-  setInterval(()=>go(cur+1),3500);
-  let sx=0;
-  const sl=document.getElementById('slides');
-  sl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-  sl.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1))},{passive:true});
-})();
-
-// ── TRIVIA ──
+// ════════════════════════════════
+// TRIVIA
+// ════════════════════════════════
 let trivAnswers={},trivDone=false,trivWrong={};
 function drawTrivia(){
   const wrap=document.getElementById('triviaWrap');
   const qs=t('trivQ');
-  let html=`<div class="trivia-intro"><div class="t-icon">🏆</div><h3>${t('trivTitle')}</h3><p>${t('trivSub')}</p></div>`;
+  let html=`<div class="trivia-intro"><span class="t-ico">🏆</span><h3>${t('trivTitle')}</h3><p>${t('trivSub')}</p></div>`;
   if(trivDone&&Object.values(trivAnswers).filter(Boolean).length===3){
-    html+=`<div class="trivia-win"><div class="t-icon">🥃</div><h3>${t('trivWinTitle')}</h3><p>${t('trivWinSub')}</p></div>`;
+    html+=`<div class="trivia-win"><span class="t-ico">🥃</span><h3>${t('trivWinTitle')}</h3><p>${t('trivWinSub')}</p></div>`;
   }
   qs.forEach((q,qi)=>{
     const answered=trivAnswers[qi]!==undefined;
-    html+=`<div class="q-card"><div class="q-num">${qi+1} / 3</div><div class="q-text">${q.q}</div><div class="q-opts">`;
+    html+=`<div class="q-card"><div class="q-num">${qi+1} &nbsp;/&nbsp; 3</div><div class="q-text">${q.q}</div><div class="q-opts">`;
     q.opts.forEach((opt,oi)=>{
       let cls='q-opt';
       if(answered){if(oi===q.ans)cls+=' correct';else if(trivWrong[qi]===oi)cls+=' wrong';}
@@ -540,7 +920,9 @@ function answerTrivia(qi,chosen,correct){
 }
 function resetTrivia(){trivAnswers={};trivDone=false;trivWrong={};drawTrivia();}
 
-// ── SPEECH ──
+// ════════════════════════════════
+// SPEECH
+// ════════════════════════════════
 function speak(text){
   if(!window.speechSynthesis)return;
   const u=new SpeechSynthesisUtterance(text);
@@ -548,9 +930,7 @@ function speak(text){
 }
 
 // init
-drawCtx();
-drawTrivia();
-applyLang();
+drawCtx();drawTrivia();applyLang();
 </script>
 </body>
 </html>
