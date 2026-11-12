@@ -44,31 +44,18 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   background:#06080f;
 }
 
-/* Each slide: full-bleed image with Ken Burns */
-.slide{
+/* Hero photo — single full-bleed image */
+.hero-photo{
   position:absolute;inset:0;
-  opacity:0;
-  transition:opacity 1.4s ease;
   background-size:cover;
-  background-position:center;
-  animation:none;
-  will-change:transform,opacity;
+  background-position:center 40%;
+  animation:kb 14s ease-out forwards;
+  will-change:transform;
 }
-.slide.on{opacity:1}
-.slide.kb{animation:kb 9s ease-out forwards}
-
 @keyframes kb{
-  0%  {transform:scale(1.08) translate(0,0)}
-  100%{transform:scale(1)    translate(0,0)}
+  0%  {transform:scale(1.06)}
+  100%{transform:scale(1)}
 }
-.slide:nth-child(2).kb{animation-name:kb2}
-@keyframes kb2{0%{transform:scale(1.1) translate(2%,1%)}100%{transform:scale(1) translate(0,0)}}
-.slide:nth-child(3).kb{animation-name:kb3}
-@keyframes kb3{0%{transform:scale(1.08) translate(-1%,2%)}100%{transform:scale(1) translate(0,0)}}
-.slide:nth-child(4).kb{animation-name:kb4}
-@keyframes kb4{0%{transform:scale(1.12) translate(1%,-1%)}100%{transform:scale(1) translate(0,0)}}
-.slide:nth-child(5).kb{animation-name:kb5}
-@keyframes kb5{0%{transform:scale(1.09) translate(-2%,1%)}100%{transform:scale(1) translate(0,0)}}
 
 /* Cinema-grade gradient overlay — fades bottom for legibility */
 .hero-overlay{
@@ -163,8 +150,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   font-size:.72rem;color:rgba(240,235,226,.72);line-height:1.5;
   max-width:70%;
 }
-/* dots */
-.hero-dots{display:flex;gap:7px;align-items:center;flex-shrink:0}
+/* dots — hidden, kept for compat */
+.hero-dots{display:none}
 .hero-dot{
   width:5px;height:5px;border-radius:50%;
   background:rgba(255,255,255,.3);
@@ -585,12 +572,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 ══════════════════════════════════════ -->
 <div class="hero" id="hero">
 
-  <!-- SLIDES: Acapulco water activities — parasailing, snorkeling, cliff/ocean, sunset sailboat -->
-  <div class="slide on kb" id="sl0" style="background-image:url('https://images.pexels.com/photos/1178448/pexels-photo-1178448.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
-  <div class="slide" id="sl1" style="background-image:url('https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
-  <div class="slide" id="sl2" style="background-image:url('https://images.pexels.com/photos/2132003/pexels-photo-2132003.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
-  <div class="slide" id="sl3" style="background-image:url('https://images.pexels.com/photos/3369578/pexels-photo-3369578.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
-  <div class="slide" id="sl4" style="background-image:url('https://images.pexels.com/photos/1004409/pexels-photo-1004409.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
+  <!-- HERO: Acapulco Bay — confirmed photo, city + bay + Pacific sunset -->
+  <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1725122931912-2d67dd1f5076?auto=format&fit=crop&w=1600&q=90')"></div>
 
   <!-- gradient overlay -->
   <div class="hero-overlay"></div>
@@ -1050,46 +1033,12 @@ function applyLang(){
 }
 
 // ════════════════════════════════
-// SLIDESHOW — cinematic
+// SCROLL HINT — hide on scroll
 // ════════════════════════════════
-(function(){
-  const slides=document.querySelectorAll('.slide');
-  const dotsEl=document.getElementById('heroDots');
-  slides.forEach((_,i)=>{
-    const d=document.createElement('div');
-    d.className='hero-dot'+(i===0?' on':'');
-    d.onclick=()=>go(i);
-    dotsEl.appendChild(d);
-  });
-  let cur=0,timer;
-  function go(n){
-    // remove KB class so we can re-add it cleanly
-    slides[cur].classList.remove('on');
-    slides[cur].classList.remove('kb');
-    dotsEl.children[cur].classList.remove('on');
-    cur=(n+slides.length)%slides.length;
-    slides[cur].classList.add('on');
-    // force reflow so animation restarts
-    void slides[cur].offsetWidth;
-    slides[cur].classList.add('kb');
-    dotsEl.children[cur].classList.add('on');
-  }
-  function next(){go(cur+1)}
-  timer=setInterval(next,5500);
-  // swipe
-  let sx=0;
-  const h=document.getElementById('hero');
-  h.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-  h.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].clientX-sx;
-    if(Math.abs(dx)>50){clearInterval(timer);go(cur+(dx<0?1:-1));timer=setInterval(next,5500)}
-  },{passive:true});
-  // hide scroll hint after first scroll
-  window.addEventListener('scroll',()=>{
-    const sh=document.getElementById('scrollHint');
-    if(sh&&scrollY>60){sh.style.opacity='0';sh.style.pointerEvents='none'}
-  },{passive:true,once:true});
-})();
+window.addEventListener('scroll',()=>{
+  const sh=document.getElementById('scrollHint');
+  if(sh&&scrollY>60){sh.style.opacity='0';sh.style.pointerEvents='none'}
+},{passive:true,once:true});
 
 // ════════════════════════════════
 // TABS
