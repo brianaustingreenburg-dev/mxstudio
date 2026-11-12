@@ -255,6 +255,13 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   <div class="hero-dots" id="dots"></div>
 </div>
 
+<!-- Lang toggle -->
+<div class="lang-row">
+  <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
+  <span style="color:var(--border);padding:0 2px;font-size:.8rem">|</span>
+  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+</div>
+
 <!-- Section label -->
 <div class="section-label">
   <span id="sectionLbl">Explorar</span>
@@ -305,6 +312,16 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 
 </div>
 
+<!-- Habla: learn English / Spanish -->
+<a class="habla-card" id="linkHabla" href="../../habla/?back=../c/casa-axolotl/&amp;n=Casa%20Axolotl">
+  <span class="habla-ic">🗣️</span>
+  <div class="habla-tx">
+    <b id="lblHabla">Habla · Aprende inglés</b>
+    <span id="subHabla">Palabras y frases con audio · Learn Spanish too</span>
+  </div>
+  <span class="habla-arr">›</span>
+</a>
+
 <div class="divider"></div>
 
 <!-- WhatsApp -->
@@ -315,42 +332,22 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   </a>
 </div>
 
-<!-- Setup bottom section: lang + Habla + save hint + credit -->
-<div class="setup-section">
-  <!-- Language toggle -->
-  <div class="lang-row">
-    <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
-    <span style="color:var(--border);padding:0 2px;font-size:.8rem">|</span>
-    <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+<!-- Save to home screen hint -->
+<div class="pwa-hint" id="pwaHint">
+  <span class="pwa-icon">📲</span>
+  <div class="pwa-text">
+    <span class="pwa-es">Guárdalo en tu teléfono</span>
+    <span class="pwa-sep"> · </span>
+    <span class="pwa-en">Save to your phone</span>
+    <br>
+    <span class="pwa-sub" id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
   </div>
+  <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
+</div>
 
-  <!-- Habla: learn English / Spanish -->
-  <a class="habla-card" id="linkHabla" href="../../habla/?back=../c/casa-axolotl/&amp;n=Casa%20Axolotl">
-    <span class="habla-ic">🗣️</span>
-    <div class="habla-tx">
-      <b id="lblHabla">Habla · Aprende inglés</b>
-      <span id="subHabla">Palabras y frases con audio · Learn Spanish too</span>
-    </div>
-    <span class="habla-arr">›</span>
-  </a>
-
-  <!-- Save to home screen hint -->
-  <div class="pwa-hint" id="pwaHint">
-    <span class="pwa-icon">📲</span>
-    <div class="pwa-text">
-      <span class="pwa-es">Guárdalo en tu teléfono</span>
-      <span class="pwa-sep"> · </span>
-      <span class="pwa-en">Save to your phone</span>
-      <br>
-      <span class="pwa-sub" id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
-    </div>
-    <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
-  </div>
-
-  <!-- Credit -->
-  <div class="credit">
-    <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
-  </div>
+<!-- Credit -->
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
 </div>
 
 </div><!-- /page -->
