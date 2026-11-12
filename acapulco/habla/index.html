@@ -1,0 +1,332 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Habla · Aprende inglés y español</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: one column app — level ladder, mode switch, then the active card or quiz. Talavera-tile blue + marigold. */
+:root{
+  --bg:#f3f5fb; --surface:#ffffff; --ink:#14203d; --muted:#5a6685; --line:#d7ddec;
+  --cobalt:#1f3fa8; --cobalt-soft:#e3e9fb; --marigold:#e8930c; --marigold-soft:#fdf0d9;
+  --good:#1d8a55; --bad:#c2373a;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1326; --surface:#16203b; --ink:#e9edf8; --muted:#9aa6c6; --line:#2a3658;
+  --cobalt:#8fa9ff; --cobalt-soft:#1f2c55; --marigold:#f5ad3d; --marigold-soft:#3a2a10;
+  --good:#4fcf8e; --bad:#ff7a7d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1326; --surface:#16203b; --ink:#e9edf8; --muted:#9aa6c6; --line:#2a3658;
+  --cobalt:#8fa9ff; --cobalt-soft:#1f2c55; --marigold:#f5ad3d; --marigold-soft:#3a2a10;
+  --good:#4fcf8e; --bad:#ff7a7d; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-block:20px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1;margin:0;letter-spacing:-.02em}
+h1 span{color:var(--marigold)}
+.sub{color:var(--muted);margin:6px 0 0;font-size:.95rem}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px}
+.seg button{border:0;background:transparent;color:var(--muted);font:700 .9rem var(--body);padding:8px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--cobalt);color:var(--surface)}
+button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
+.label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+/* level ladder */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.lvl{text-align:left;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:12px;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
+.lvl .n{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1;color:var(--cobalt)}
+.lvl .t{font-weight:700}
+.lvl .d{font-size:.8rem;color:var(--muted)}
+.lvl .bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}
+.lvl .bar i{display:block;height:100%;background:var(--marigold);width:0}
+.lvl[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft)}
+@media (max-width:480px){.lvl .d{display:none}.lvl{padding:10px}}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.speed{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.85rem}
+/* card */
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.pic{font-size:clamp(4.5rem,18vw,6.5rem);line-height:1.1;width:1.5em;height:1.5em;display:grid;place-items:center;border-radius:28px;
+  background:repeating-conic-gradient(var(--cobalt-soft) 0 25%, var(--surface) 0 50%) 0 0/28px 28px;border:3px solid var(--cobalt-soft)}
+.pic.big{animation:pop .35s ease}
+@keyframes pop{50%{transform:scale(1.08)}}
+.target{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,6vw,2.3rem);line-height:1.15;margin:0;text-wrap:balance}
+.pron{color:var(--muted);font-size:.9rem;margin-top:-8px}
+.native{font-size:1.05rem;color:var(--muted);text-wrap:balance}
+.native[hidden]{display:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{border:2px solid var(--cobalt);background:var(--surface);color:var(--cobalt);font:700 .95rem var(--body);padding:10px 16px;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--cobalt);color:var(--surface)}
+.btn.warm{border-color:var(--marigold);background:var(--marigold);color:#1b1404}
+.btn svg{width:18px;height:18px;fill:currentColor}
+.btn:disabled{opacity:.45;cursor:default}
+.counter{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.9rem}
+.dots{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--cobalt)}
+.dots i.seen{background:var(--marigold)}
+/* quiz */
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%}
+.opt{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:400 .95rem var(--body);min-width:0}
+.opt .e{font-size:2.4rem;line-height:1.1}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface))}
+.feedback{min-height:1.5em;font-weight:700}
+.feedback.ok{color:var(--good)} .feedback.no{color:var(--bad)}
+.score{font-family:var(--display);font-weight:800;font-size:1.3rem;font-variant-numeric:tabular-nums;color:var(--marigold)}
+.note{font-size:.85rem;color:var(--muted);background:var(--marigold-soft);border-radius:12px;padding:10px 14px;text-align:left}
+.list{width:100%;display:flex;flex-direction:column;gap:6px;text-align:left}
+.list button{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 12px;cursor:pointer;font:400 1rem var(--body);text-align:left;min-width:0}
+.list .e{font-size:1.6rem}
+.list .tx{display:flex;flex-direction:column;min-width:0}
+.list .tx b{overflow-wrap:anywhere}
+.list .tx small{color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--cobalt);font:700 .9rem var(--body);text-decoration:none;padding:6px 0}
+.back[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.pic.big{animation:none}}
+</style>
+
+<div class="wrap">
+  <a class="back" id="back" href="#" hidden>‹ <span id="backLbl">Volver</span></a>
+  <header>
+    <div>
+      <h1>Habla<span>.</span></h1>
+      <p class="sub">Three levels of English and Spanish. See it, hear it, say it back.</p>
+    </div>
+    <div>
+      <div class="label" style="margin-bottom:6px">I'm learning</div>
+      <div class="seg" id="dir">
+        <button id="d-es" aria-pressed="true" data-dir="es">Spanish</button>
+        <button id="d-en" aria-pressed="false" data-dir="en">English</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="ladder" id="ladder"></div>
+
+  <div class="toolbar">
+    <div class="seg" id="mode">
+      <button id="m-learn" aria-pressed="true" data-mode="learn">Learn</button>
+      <button id="m-list" aria-pressed="false" data-mode="list">Word list</button>
+      <button id="m-quiz" aria-pressed="false" data-mode="quiz">Listening quiz</button>
+    </div>
+    <label class="speed" for="rate">Voice speed
+      <input type="range" id="rate" min="0.5" max="1.2" step="0.1" value="0.9">
+    </label>
+  </div>
+
+  <section class="stage" id="stage" aria-live="polite"></section>
+  <p class="note" id="voiceNote" hidden></p>
+</div>
+
+<script>
+const ICON_PLAY='<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+const ICON_SLOW='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4V6h-2v7.4l5.2 3.1 1-1.7z"/></svg>';
+
+const LEVELS=[
+ {n:1,title:"First words",desc:"Everyday things, colors, family",items:[
+  ["🍎","apple","la manzana","lah mahn-SAH-nah","AP-ul"],
+  ["💧","water","el agua","el AH-gwah","WAH-ter"],
+  ["🏠","house","la casa","lah KAH-sah","hows"],
+  ["🐶","dog","el perro","el PEH-rroh","dawg"],
+  ["🐱","cat","el gato","el GAH-toh","kat"],
+  ["📖","book","el libro","el LEE-broh","buk"],
+  ["☀️","sun","el sol","el sohl","sun"],
+  ["🌙","moon","la luna","lah LOO-nah","moon"],
+  ["🍞","bread","el pan","el pahn","bred"],
+  ["🚗","car","el coche / el carro","el KOH-cheh / el KAH-rroh","kar"],
+  ["👩","mother","la madre","lah MAH-dreh","MUH-ther"],
+  ["👨","father","el padre","el PAH-dreh","FAH-ther"],
+  ["🔴","red","rojo","RROH-hoh","red"],
+  ["🔵","blue","azul","ah-SOOL","bloo"],
+  ["🟢","green","verde","BEHR-deh","green"],
+  ["1️⃣","one","uno","OO-noh","wun"]
+ ]},
+ {n:2,title:"Useful phrases",desc:"Greetings, needs, getting around",items:[
+  ["👋","Hello, how are you?","Hola, ¿cómo estás?","OH-lah, KOH-moh ehs-TAHS","heh-LOH, how ar yoo"],
+  ["🙏","Thank you very much.","Muchas gracias.","MOO-chahs GRAH-syahs","thank yoo VEH-ree much"],
+  ["😊","Nice to meet you.","Mucho gusto.","MOO-choh GOOS-toh","nys tuh meet yoo"],
+  ["🧑","My name is Ana.","Me llamo Ana.","meh YAH-moh AH-nah","my naym iz AH-nah"],
+  ["🚻","Where is the bathroom?","¿Dónde está el baño?","DOHN-deh ehs-TAH el BAH-nyoh","wair iz thuh BATH-room"],
+  ["💲","How much does it cost?","¿Cuánto cuesta?","KWAHN-toh KWEHS-tah","how much duz it kawst"],
+  ["🍽️","I'm hungry.","Tengo hambre.","TEHN-goh AHM-breh","aym HUNG-gree"],
+  ["🤔","I don't understand.","No entiendo.","noh ehn-TYEHN-doh","ay dohnt un-der-STAND"],
+  ["🐢","Can you speak slowly, please?","¿Puede hablar despacio, por favor?","PWEH-deh ah-BLAHR dehs-PAH-syoh, por fah-BOR","kan yoo speek SLOH-lee, pleez"],
+  ["⏰","What time is it?","¿Qué hora es?","keh OH-rah ehs","wut tym iz it"],
+  ["🌧️","It's raining today.","Hoy está lloviendo.","oy ehs-TAH yoh-BYEHN-doh","its RAY-ning tuh-DAY"],
+  ["👋","See you tomorrow!","¡Hasta mañana!","AHS-tah mah-NYAH-nah","see yoo tuh-MOR-oh"]
+ ]},
+ {n:3,title:"Real conversation",desc:"Past, future, opinions, plans",items:[
+  ["✈️","Last year I traveled to Mexico with my family.","El año pasado viajé a México con mi familia.","","" ],
+  ["☕","I would like a coffee with milk, please.","Me gustaría un café con leche, por favor.","",""],
+  ["🗓️","Tomorrow we are going to visit the museum.","Mañana vamos a visitar el museo.","",""],
+  ["🤒","I have had a headache since yesterday.","Tengo dolor de cabeza desde ayer.","",""],
+  ["💼","If I had more time, I would learn another language.","Si tuviera más tiempo, aprendería otro idioma.","",""],
+  ["🎂","I hope you have a wonderful birthday.","Espero que tengas un cumpleaños maravilloso.","",""],
+  ["🚌","The bus leaves in ten minutes; we need to hurry.","El autobús sale en diez minutos; tenemos que darnos prisa.","",""],
+  ["🍲","In my opinion, the soup needs a little more salt.","En mi opinión, a la sopa le falta un poco de sal.","",""],
+  ["📚","When I was a child, I used to read every night.","Cuando era niño, leía todas las noches.","",""],
+  ["🤝","Could you help me find the train station?","¿Podría ayudarme a encontrar la estación de tren?","",""]
+ ]}
+];
+const TIPS={
+ es:{1:"Spanish nouns are masculine (el) or feminine (la). Learn the article with the word.",
+     2:"An upside-down ¿ or ¡ opens every question and exclamation.",
+     3:"Notice the tenses: viajé (past), vamos a (future), tuviera / aprendería (if-then)."},
+ en:{1:"English has one article, \"the\", for every noun. No gender to memorize.",
+     2:"English questions only use ? at the end, and often start with do, can, where, or what.",
+     3:"Watch the verbs: traveled (past), are going to (future), had / would (if-then)."}
+};
+
+let S={dir:"es",level:1,mode:"learn",idx:0,seen:{1:new Set(),2:new Set(),3:new Set()},quiz:null};
+try{const sv=JSON.parse(localStorage.getItem("habla")||"null");if(sv){S.dir=sv.dir||"es";S.level=sv.level||1;}}catch(e){}
+function save(){try{localStorage.setItem("habla",JSON.stringify({dir:S.dir,level:S.level}))}catch(e){}}
+
+/* ---------- audio ---------- */
+let voices=[];
+function loadVoices(){voices=window.speechSynthesis?speechSynthesis.getVoices():[];checkVoices();}
+if(window.speechSynthesis){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
+function pickVoice(lang){
+  const pref=lang==="es"?["es-MX","es-US","es-419","es-ES","es"]:["en-US","en-GB","en"];
+  for(const p of pref){const v=voices.find(v=>v.lang&&v.lang.replace("_","-").toLowerCase().startsWith(p.toLowerCase()));if(v)return v;}
+  return null;
+}
+function speak(text,lang,slow){
+  if(!window.speechSynthesis){showNote("This browser can't play speech. Try Chrome, Safari or Edge.");return;}
+  speechSynthesis.cancel();
+  const clean=text.replace(/ \/ /g,", o ");
+  const u=new SpeechSynthesisUtterance(lang==="es"?clean:text);
+  u.lang=lang==="es"?"es-MX":"en-US";
+  const v=pickVoice(lang);if(v)u.voice=v;
+  const r=parseFloat(document.getElementById("rate").value)||.9;
+  u.rate=slow?Math.max(.4,r*.6):r;
+  speechSynthesis.speak(u);
+}
+function checkVoices(){
+  if(!window.speechSynthesis){showNote("Audio needs a browser with speech support, such as Chrome, Safari or Edge.");return;}
+  if(voices.length&&!pickVoice("es"))showNote("No Spanish voice was found on this device, so Spanish may sound accented. Add a Spanish voice in your system's text-to-speech settings.");
+}
+function showNote(t){const n=document.getElementById("voiceNote");n.textContent=t;n.hidden=false;}
+
+/* ---------- helpers ---------- */
+const T=()=>S.dir; const N=()=>S.dir==="es"?"en":"es";
+function word(it,lang){return lang==="en"?it[1]:it[2];}
+function pron(it,lang){return lang==="es"?it[3]:it[4];}
+const items=()=>LEVELS[S.level-1].items;
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+
+/* ---------- render ---------- */
+function renderLadder(){
+  const el=document.getElementById("ladder");
+  el.innerHTML=LEVELS.map(L=>{
+    const pct=Math.round(S.seen[L.n].size/L.items.length*100);
+    return `<button class="lvl" id="lvl${L.n}" aria-pressed="${S.level===L.n}" data-l="${L.n}">
+      <span class="n">${L.n}</span><span class="t">${S.dir==="es"?L.title:["","Primeras palabras","Frases útiles","Conversación real"][L.n]}</span>
+      <span class="d">${S.dir==="es"?L.desc:["","Cosas, colores, familia","Saludos, necesidades, moverse","Pasado, futuro, opiniones"][L.n]}</span><span class="bar"><i style="width:${pct}%"></i></span></button>`}).join("");
+  el.querySelectorAll(".lvl").forEach(b=>b.onclick=()=>{S.level=+b.dataset.l;S.idx=0;S.quiz=null;save();render();});
+}
+function setPressed(groupId,attr,val){document.querySelectorAll(`#${groupId} button`).forEach(b=>b.setAttribute("aria-pressed",b.dataset[attr]===val));}
+
+function render(){
+  setPressed("dir","dir",S.dir);setPressed("mode","mode",S.mode);
+  document.getElementById("m-learn").textContent=S.dir==="es"?"Learn":"Aprender";
+  document.getElementById("m-list").textContent=S.dir==="es"?"Word list":"Lista";
+  document.getElementById("m-quiz").textContent=S.dir==="es"?"Listening quiz":"Prueba auditiva";
+  renderLadder();
+  if(S.mode==="learn")renderLearn();else if(S.mode==="list")renderList();else renderQuiz();
+}
+
+function renderLearn(){
+  const its=items(),it=its[S.idx];S.seen[S.level].add(S.idx);
+  const es=S.dir==="es";const p=pron(it,T());
+  const st=document.getElementById("stage");
+  st.innerHTML=`
+    <div class="counter">${es?"Card":"Tarjeta"} ${S.idx+1} / ${its.length}</div>
+    <div class="pic big" aria-hidden="true">${it[0]}</div>
+    <p class="target" lang="${T()}">${esc(word(it,T()))}</p>
+    ${p?`<div class="pron">${esc(p)}</div>`:""}
+    <div class="native" id="native" hidden lang="${N()}">${esc(word(it,N()))}</div>
+    <div class="row">
+      <button class="btn primary" id="b-play">${ICON_PLAY}${es?"Listen":"Escuchar"}</button>
+      <button class="btn" id="b-slow">${ICON_SLOW}${es?"Slowly":"Despacio"}</button>
+      <button class="btn warm" id="b-reveal">${es?"Show meaning":"Ver significado"}</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="b-prev" ${S.idx===0?"disabled":""}>← ${es?"Back":"Atrás"}</button>
+      <button class="btn" id="b-next">${S.idx===its.length-1?(es?"Take the quiz →":"Hacer la prueba →"):(es?"Next →":"Siguiente →")}</button>
+    </div>
+    <div class="dots">${its.map((_,i)=>`<i class="${i===S.idx?"on":S.seen[S.level].has(i)?"seen":""}"></i>`).join("")}</div>
+    <p class="note">${TIPS[T()][S.level]}</p>`;
+  document.getElementById("b-play").onclick=()=>speak(word(it,T()),T());
+  document.getElementById("b-slow").onclick=()=>speak(word(it,T()),T(),true);
+  document.getElementById("b-reveal").onclick=()=>{const n=document.getElementById("native");n.hidden=false;speak(word(it,N()),N());};
+  document.getElementById("b-prev").onclick=()=>{S.idx--;render();};
+  document.getElementById("b-next").onclick=()=>{if(S.idx<its.length-1){S.idx++;}else{S.mode="quiz";S.quiz=null;}render();};
+}
+
+function renderList(){
+  const es=S.dir==="es";
+  const st=document.getElementById("stage");
+  st.innerHTML=`<div class="counter">${es?"Tap any row to hear it":"Toca una fila para escucharla"}</div>
+   <div class="list">${items().map((it,i)=>`<button data-i="${i}"><span class="e" aria-hidden="true">${it[0]}</span>
+     <span class="tx"><b lang="${T()}">${esc(word(it,T()))}</b><small lang="${N()}">${esc(word(it,N()))}</small></span></button>`).join("")}</div>`;
+  st.querySelectorAll(".list button").forEach(b=>b.onclick=()=>{const it=items()[+b.dataset.i];S.seen[S.level].add(+b.dataset.i);speak(word(it,T()),T());renderLadder();});
+}
+
+function newQuiz(){S.quiz={order:shuffle(items().map((_,i)=>i)),q:0,score:0,answered:false,opts:null};}
+function renderQuiz(){
+  if(!S.quiz)newQuiz();
+  const Q=S.quiz,its=items(),es=S.dir==="es";
+  const st=document.getElementById("stage");
+  if(Q.q>=Q.order.length){
+    const pct=Math.round(Q.score/Q.order.length*100);
+    const msg=pct>=80?(es?"Excellent! Ready for the next level.":"¡Excelente! Listo para el siguiente nivel."):
+              pct>=50?(es?"Good progress. Review the word list and try again.":"Buen progreso. Repasa la lista y vuelve a intentarlo."):
+              (es?"Keep practicing with the Learn cards first.":"Sigue practicando primero con las tarjetas.");
+    st.innerHTML=`<div class="pic" aria-hidden="true">${pct>=80?"🏆":pct>=50?"⭐":"💪"}</div>
+      <p class="target">${Q.score} / ${Q.order.length}</p><div class="native">${msg}</div>
+      <div class="row"><button class="btn primary" id="b-again">${es?"Try again":"Otra vez"}</button>
+      ${S.level<3?`<button class="btn warm" id="b-up">${es?"Go to level":"Ir al nivel"} ${S.level+1} →</button>`:""}</div>`;
+    document.getElementById("b-again").onclick=()=>{newQuiz();render();};
+    const up=document.getElementById("b-up");if(up)up.onclick=()=>{S.level++;S.idx=0;S.mode="learn";S.quiz=null;save();render();};
+    return;
+  }
+  const ans=Q.order[Q.q];
+  if(!Q.opts){const others=shuffle(its.map((_,i)=>i).filter(i=>i!==ans)).slice(0,3);Q.opts=shuffle([ans,...others]);}
+  const it=its[ans];
+  st.innerHTML=`<div class="row" style="width:100%;justify-content:space-between;align-items:center">
+      <span class="counter">${es?"Question":"Pregunta"} ${Q.q+1} / ${Q.order.length}</span><span class="score">${Q.score} ${es?"pts":"pts"}</span></div>
+    <p class="native">${es?"Listen, then tap the picture that matches.":"Escucha y toca la imagen correcta."}</p>
+    <div class="row"><button class="btn primary" id="q-play">${ICON_PLAY}${es?"Play":"Reproducir"}</button>
+      <button class="btn" id="q-slow">${ICON_SLOW}${es?"Slowly":"Despacio"}</button></div>
+    <div class="opts">${Q.opts.map(i=>`<button class="opt" data-i="${i}"><span class="e" aria-hidden="true">${its[i][0]}</span><span lang="${N()}">${esc(word(its[i],N()))}</span></button>`).join("")}</div>
+    <div class="feedback" id="fb"></div>
+    <button class="btn warm" id="q-next" hidden>${es?"Next →":"Siguiente →"}</button>`;
+  document.getElementById("q-play").onclick=()=>speak(word(it,T()),T());
+  document.getElementById("q-slow").onclick=()=>speak(word(it,T()),T(),true);
+  st.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    if(Q.answered)return;Q.answered=true;
+    const ok=+b.dataset.i===ans;if(ok)Q.score++;
+    st.querySelectorAll(".opt").forEach(o=>{if(+o.dataset.i===ans)o.classList.add("right");});
+    if(!ok)b.classList.add("wrong");
+    const fb=document.getElementById("fb");fb.className="feedback "+(ok?"ok":"no");
+    fb.innerHTML=(ok?(es?"Correct! ":"¡Correcto! "):(es?"Not quite. It was: ":"Casi. Era: "))+`<span lang="${T()}">${esc(word(it,T()))}</span>`;
+    S.seen[S.level].add(ans);renderLadder();
+    const nx=document.getElementById("q-next");nx.hidden=false;nx.focus();
+    nx.onclick=()=>{Q.q++;Q.answered=false;Q.opts=null;render();};
+  });
+}
+
+document.querySelectorAll("#dir button").forEach(b=>b.onclick=()=>{S.dir=b.dataset.dir;S.quiz=null;save();render();});
+document.querySelectorAll("#mode button").forEach(b=>b.onclick=()=>{S.mode=b.dataset.mode;S.quiz=null;render();});
+/* back link to the business app that opened Habla (?back=/acapulco/c/casa-axolotl/&n=Casa%20Axolotl) */
+(function(){try{const p=new URLSearchParams(location.search);const b=p.get("back");if(!b)return;
+  const u=new URL(b,location.href);if(u.origin!==location.origin)return;
+  const a=document.getElementById("back");a.href=u.href;a.hidden=false;
+  const n=p.get("n");if(n)document.getElementById("backLbl").textContent=n;}catch(e){}})();
+render();
+</script>
+
+</body></html>

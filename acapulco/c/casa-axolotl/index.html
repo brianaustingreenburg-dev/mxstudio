@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Casa Axolotl</title>
 <meta name="theme-color" content="#0d0a1a">
+<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-title" content="Casa Axolotl">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
@@ -203,6 +208,14 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 .pwa-sub strong{color:rgba(255,255,255,.5);font-weight:600}
 .pwa-x{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:.7rem;cursor:pointer;padding:4px;line-height:1;opacity:.6}
 .pwa-x:hover{opacity:1}
+/* Habla language card, sits with the save-to-phone card */
+.habla-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(75,163,217,.35);border-left:3px solid var(--wave);border-radius:14px;padding:14px 16px;margin:8px 0 4px;text-decoration:none;color:var(--text);-webkit-tap-highlight-color:transparent}
+.habla-card:active{transform:scale(.985)}
+.habla-ic{font-size:1.4rem;flex-shrink:0}
+.habla-tx{flex:1;min-width:0;font-size:.8rem;line-height:1.4}
+.habla-tx b{display:block;font-family:'Playfair Display',Georgia,serif;font-size:1rem;color:#fff}
+.habla-tx span{color:var(--muted);font-size:.72rem}
+.habla-arr{font-size:1.3rem;color:rgba(255,255,255,.5);flex-shrink:0}
 .credit a{color:var(--muted);font-size:.62rem;text-decoration:none;letter-spacing:.06em}
 .credit strong{color:var(--gold-lt)}
 </style>
@@ -308,6 +321,16 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
 </div>
 
+<!-- Habla: learn English / Spanish -->
+<a class="habla-card" id="linkHabla" href="../../habla/?back=../c/casa-axolotl/&amp;n=Casa%20Axolotl">
+  <span class="habla-ic">🗣️</span>
+  <div class="habla-tx">
+    <b id="lblHabla">Habla · Aprende inglés</b>
+    <span id="subHabla">Palabras y frases con audio · Learn Spanish too</span>
+  </div>
+  <span class="habla-arr">›</span>
+</a>
+
 <div class="divider"></div>
 
 <!-- WhatsApp -->
@@ -341,8 +364,8 @@ document.getElementById('slides').addEventListener('touchend',e=>{const dx=e.cha
 
 // Lang
 const T={
-  es:{acaSub:'Turismo de Aventura',sectionLbl:'Explorar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Coctelería · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía del huésped',lblAct:'Actividades',subAct:'Kayak · Tours · Fogata · Laguna · Surf',wa:'Contactar por WhatsApp',linkAct:'actividades/'},
-  en:{acaSub:'Adventure Tourism',sectionLbl:'Explore',lblMenu:'Restaurant',subMenu:'Menu · Bar · Cocktails · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Bonfire · Lagoon · Surf',wa:'Contact via WhatsApp',linkAct:'actividades/'}
+  es:{acaSub:'Turismo de Aventura',sectionLbl:'Explorar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Coctelería · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía del huésped',lblAct:'Actividades',subAct:'Kayak · Tours · Fogata · Laguna · Surf',wa:'Contactar por WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Aprende inglés',subHabla:'Palabras y frases con audio · Learn Spanish too'},
+  en:{acaSub:'Adventure Tourism',sectionLbl:'Explore',lblMenu:'Restaurant',subMenu:'Menu · Bar · Cocktails · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Bonfire · Lagoon · Surf',wa:'Contact via WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Learn Spanish',subHabla:'Words and phrases with audio · Aprende inglés'}
 };
 function setLang(l){
   const t=T[l];
@@ -355,6 +378,8 @@ function setLang(l){
   document.getElementById('lblAct').textContent=t.lblAct;
   document.getElementById('subAct').textContent=t.subAct;
   document.getElementById('waLabel').textContent=t.wa;
+  document.getElementById('lblHabla').textContent=t.lblHabla;
+  document.getElementById('subHabla').textContent=t.subHabla;
   document.getElementById('linkAct').href=t.linkAct;
   document.getElementById('esBtn').classList.toggle('active',l==='es');
   document.getElementById('enBtn').classList.toggle('active',l==='en');
