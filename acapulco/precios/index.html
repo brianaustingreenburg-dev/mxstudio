@@ -219,59 +219,31 @@ function ownerWa(){try{const j=JSON.parse(decodeURIComponent(escape(atob(PA.repl
 function pkgText(A){A=A===undefined?PA:A;if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=A?"&a="+A:"",es=lang==="es";
  return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(A?"?a="+A:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"+"\n🧑‍🍳 "+(es?"Tu panel (reseñas, QR, cambios)":"Your panel (reviews, QRs, changes)")+": "+G+"dueno/?s="+PS+a+"\n🧰 "+(es?"Guías para configurar todo, paso a paso":"Step-by-step setup guides")+": "+G+"dueno/?s="+PS+a+"#setup"}
 const BASE={once:8000,down:3000,year:1000};let plan="full",host=false,PAY={};fetch("../lib/pay.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{PAY=j||{}}).catch(()=>{});
-const LOW_END=new Date("2026-12-16T00:00:00-06:00"),lowOn=()=>Date.now()<LOW_END.getTime();
-// 3-tier × 3-type pricing
-// tier: 1=Básico, 2=Negocio, 3=Ecosistema
-// type: r=Restaurante, h=Hotel solo, hr=Hotel+Restaurante
-const TIERS=[
- {k:1,es:"Básico",en:"Basic"},
- {k:2,es:"Negocio",en:"Business"},
- {k:3,es:"Ecosistema",en:"Ecosystem"},
-];
+// One flat price per package type — no tiers
 const TYPES={
  r:{es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
- h:{es:"🏨 Hotel (sin restaurante)",en:"🏨 Hotel (no restaurant)"},
+ h:{es:"🏨 Hotel",en:"🏨 Hotel"},
  hr:{es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
 };
-// price[type][tier]
-const PRICES={
- r:{1:8000, 2:13000, 3:18000},
- h:{1:10000,2:15000, 3:20000},
- hr:{3:28000}, // only Ecosistema for Hotel+Restaurant
-};
-// hosting per month from month 2 (1st month included)
-const HOST_MO={r:300,h:400,hr:500};
-// payment plan: Hotel + Restaurante only — terms agreed in person
-function pkgPrice(type,tier){return PRICES[type]&&PRICES[type][tier]||null}
-function pkgPayable(type,tier){return type==="hr"} // only Hotel + Restaurante gets a payment plan (terms set in person)
+// Flat prices and monthly hosting
 const PK={
- r:{low:8000,reg:8000,down:10000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
- h:{low:10000,reg:10000,down:10000,host:400,es:"🏨 Hotel",en:"🏨 Hotel"},
- hr:{low:28000,reg:28000,down:10000,host:500,es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
+ r:{low:18000,reg:18000,down:10000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
+ h:{low:20000,reg:20000,down:10000,host:400,es:"🏨 Hotel",en:"🏨 Hotel"},
+ hr:{low:23000,reg:23000,down:10000,host:500,es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
 };
-let tier=parseInt(QS.get("tier")||"1")||1;if(tier<1||tier>3)tier=1;
-// Make sure hr only allows tier 3
+const HOST_MO={r:300,h:400,hr:500};
+// Payment plan available for Hotel+Restaurante only — terms agreed in person
+function pkgPayable(type){return type==="hr"}
 let pkg=(()=>{const t=QS.get("pkg")||"r";return["r","h","hr"].includes(t)?t:"r"})();
-if(pkg==="hr")tier=3; // Hotel+Restaurant only at tier 3
-// Update PK based on selected tier/pkg
-function syncPK(){
- const p=pkgPrice(pkg,tier)||PRICES[pkg]&&PRICES[pkg][3]||18000;
- PK[pkg].low=p;PK[pkg].reg=p;PK[pkg].host=HOST_MO[pkg];
-}
-// Call syncPK() before price reads to set PK[pkg] to the correct tier price
-syncPK();
 const price=()=>PK[pkg].low,regP=()=>PK[pkg].reg;
-// Hotel + Restaurante only: payment plan, terms agreed in person (no amounts shown)
-function buildPL(){const F=price(),d=PK[pkg].down;
- if(pkgPayable(pkg,tier))return{full:{today:F,mo:0,n:0},pay:{today:F,mo:0,n:0}};
- return{full:{today:F,mo:0,n:0}};} // non-Tier-3: full payment only
+function buildPL(){const F=price();
+ if(pkgPayable(pkg))return{full:{today:F,mo:0,n:0},pay:{today:F,mo:0,n:0}};
+ return{full:{today:F,mo:0,n:0}};}
 let PL=buildPL(),HOST=PK[pkg].host;
-function setPkg(k,t){
- pkg=k;if(t!==undefined)tier=t;
- if(pkg==="hr")tier=3;
- syncPK();PL=buildPL();HOST=PK[pkg].host;
- // Reset plan to full if switching to a tier that doesn't allow payment plans
- if(!pkgPayable(pkg,tier))plan="full";
+function setPkg(k){
+ pkg=k;
+ PL=buildPL();HOST=PK[pkg].host;
+ if(!pkgPayable(pkg))plan="full";
 }
 const X=[];
 // Tier feature breakdown: each row = {icon, es, en, tiers:[1,2,3 or subset], hotel:true if hotel-only}
@@ -331,34 +303,19 @@ function render(){
  const u=T[lang];{const bx=document.getElementById("bonus");if(bx){if(bonusOn()){const b=bonusTxt(lang==="es");bx.innerHTML=`<b>${b[0]}</b>${b[1]}`;bx.hidden=false}else bx.hidden=true}}document.documentElement.lang=lang;
  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
  {const es=lang==="es",K=PK[pkg];
-  const tierName=TIERS.find(t=>t.k===tier);
-  const tierLabel=tierName?(es?tierName.es:tierName.en):"";
-  document.querySelector('[data-t="h1b"]').textContent=(es?"Desde "+fmt(8000)+" – "+fmt(28000):"From "+fmt(8000)+" – "+fmt(28000));
+  document.querySelector('[data-t="h1b"]').textContent=(es?"Desde "+fmt(18000):"From "+fmt(18000));
   $("pOnce").textContent=fmt(K.reg);$("pReg").textContent="";$("pReg").style.display="none";
-  // pSeason: only for Tier 3
-  if(pkgPayable(pkg,tier)){$("pSeason").textContent=(es?"📅 Planes de pago disponibles":"📅 Payment plans available");$("pSeason").style.display="";}else{$("pSeason").style.display="none";}
+  if(pkgPayable(pkg)){$("pSeason").textContent=(es?"📅 Planes de pago disponibles":"📅 Payment plans available");$("pSeason").style.display="";}else{$("pSeason").style.display="none";}
   $("pHost").textContent=fmt(K.host);
-  // Type selector (3 types) + Tier selector (1-2-3, hr only allows 3)
-  const typeBtns=Object.entries(TYPES).map(([k,v])=>`<button data-pkg="${k}" aria-pressed="${pkg===k}">${v[lang]}<small>${pkg===k?fmt(K.reg):(k==="hr"?fmt(PRICES.hr[3]):"")}</small></button>`).join("");
-  const availTiers=pkg==="hr"?[3]:[1,2,3];
-  const tierBtns=TIERS.map(t=>{const disabled=!availTiers.includes(t.k);const p=pkgPrice(pkg,t.k)||"—";return `<button data-tier="${t.k}" aria-pressed="${tier===t.k}" ${disabled?"disabled style='opacity:.4'":""}>${es?t.es:t.en}<small>${disabled?"–":fmt(p)}</small></button>`}).join("");
-  $("pkgs").innerHTML=`<div class="pkg-types">${typeBtns}</div><div class="pkg-tiers">${tierBtns}</div>`;}
+  // Type selector (3 types, one price each)
+  const typeBtns=Object.entries(TYPES).map(([k,v])=>`<button data-pkg="${k}" aria-pressed="${pkg===k}">${v[lang]}<small>${fmt(PK[k].reg)}</small></button>`).join("");
+  $("pkgs").innerHTML=`<div class="pkg-types">${typeBtns}</div>`;}
  $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
- // Tier comparison table + tier-aware features list
+ // Features list (flat — all included)
  {const es=lang==="es";
-  // Filter features relevant to this business type (hotel features only for h/hr)
   const isHotel=pkg==="h"||pkg==="hr";
   const relevantFeats=TIER_FEATS.filter(f=>!f.hotel||isHotel);
-  // Comparison table (always shown)
-  const tierLabels=TIERS.map(t=>es?t.es:t.en);
-  const tableRows=relevantFeats.map(f=>{
-   const cols=TIERS.map(t=>{const has=f.tiers.includes(t.k);return`<td class="tc${has?" tc-y":" tc-n"}">${has?"✓":"–"}</td>`;}).join("");
-   return`<tr><td class="tf"><i>${f.ic}</i>${es?f.es:f.en}</td>${cols}</tr>`;
-  }).join("");
-  const tableHead=`<thead><tr><th></th>${TIERS.map((t,i)=>`<th class="th${i===tier-1?" th-sel":""}">${es?t.es:t.en}</th>`).join("")}</tr></thead>`;
-  $("feats").innerHTML=`<div class="cmp-wrap"><table class="cmp">${tableHead}<tbody>${tableRows}</tbody></table></div>`+
-   `<ul class="feat-list">${relevantFeats.filter(f=>f.tiers.includes(tier)).map(f=>`<li><i>${f.ic}</i>${es?f.es:f.en}</li>`).join("")}</ul>`+
-   (tier<3?`<p class="feat-more">${es?`<b>+${3-tier} nivel${3-tier>1?"es":""} disponible${3-tier>1?"s":""}</b> — `:`<b>More included</b> — `}${tier===1?(es?"Negocio agrega Google + WhatsApp · Ecosistema agrega lealtad, equipo y la app Habla":"Negocio adds Google + WhatsApp · Ecosistema adds loyalty, staff tools + the Habla learning app"):(es?"Ecosistema agrega regalo de lealtad, Mesero de la Semana y la app Habla":"Ecosistema adds loyalty gift, Waiter of the Week + the Habla learning app")}</p>`:"");}
+  $("feats").innerHTML=`<ul class="feat-list">${relevantFeats.map(f=>`<li><i>${f.ic}</i>${es?f.es:f.en}</li>`).join("")}</ul>`;}
 
  $("inc").innerHTML=u.inc.map(s=>`<span>✓ ${s}</span>`).join("");
  $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.year?"+"+fmt(x.year)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
@@ -366,7 +323,7 @@ function render(){
  $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${fx(f[1])}</p></details>`).join("");
  const es=lang==="es";
  const planOpts=[["full","💵",es?"Pago completo":"Pay in full",fmt(price())+" · "+(es?"un solo pago":"one payment"),plan==="full"]];
- if(pkgPayable(pkg,tier))planOpts.push(["pay","📅",es?"Plan de pagos":"Payment plan",(es?"Lo acordamos en persona":"We set it up together in person"),plan==="pay"]);
+ if(pkgPayable(pkg))planOpts.push(["pay","📅",es?"Plan de pagos":"Payment plan",(es?"Lo acordamos en persona":"We set it up together in person"),plan==="pay"]);
  $("plans").innerHTML=`<div class="plh">${es?"Forma de pago":"Payment"}</div>`+planOpts.map(([k,i,a,b,on])=>`<button class="plb" data-plan="${k}" aria-pressed="${on}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
  
  const t=totals(),es2=lang==="es";if(plan==="full"){$("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PAGO COMPLETO":"PAY IN FULL";$("tMonth").textContent=fmt(HOST)+(es2?"/mes":"/mo");document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º MES":"FROM MONTH 2"}else{$("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PRECIO TOTAL":"TOTAL PRICE";$("tMonth").textContent=es2?"A acordar":"To agree";document.querySelector('[data-t="monthly"]').textContent=es2?"PAGOS":"PAYMENTS"}
@@ -375,16 +332,14 @@ function render(){
 $("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
 
 $("pkgs").onclick=e=>{
- const bp=e.target.closest("[data-pkg]");if(bp){setPkg(bp.dataset.pkg);render();return;}
- const bt=e.target.closest("[data-tier]");if(bt&&!bt.disabled){setPkg(pkg,parseInt(bt.dataset.tier));render();}
+ const bp=e.target.closest("[data-pkg]");if(bp){setPkg(bp.dataset.pkg);render();}
 };
 $("plans").onclick=e=>{const b=e.target.closest("[data-plan]");if(b){plan=b.dataset.plan;render();return}if(e.target.closest("[data-host]")){host=!host;render()}};
 $("extras").onclick=e=>{const b=e.target.closest(".x");if(!b)return;sel[b.dataset.k]=!sel[b.dataset.k];render()};
 let orderNo=null,pay="c";
 function orderLines(){const u=T[lang];const es=lang==="es",P=PL[plan];
- const tierN=TIERS.find(t=>t.k===tier);const tierLabel=tierN?(es?tierN.es:tierN.en):"";
  const typeLabel=TYPES[pkg]?(es?TYPES[pkg].es:TYPES[pkg].en):"";
- const L=[[(es?"Paquete MX Studio · ":"MX Studio package · ")+typeLabel+" · "+tierLabel+(es?" · todo incluido, 1er mes incluido":" · everything included, 1st month included"),fmt(price())],
+ const L=[[(es?"Paquete MX Studio · ":"MX Studio package · ")+typeLabel+(es?" · todo incluido, 1er mes incluido":" · everything included, 1st month included"),fmt(price())],
   [es?"Forma de pago":"Payment",plan==="full"?(es?"Pago completo hoy":"Paid in full today"):(es?`Plan de pagos · lo acordamos en persona`:`Payment plan · set up together in person`)],
   [es?"🧑‍🍳 Tu panel para cambios":"🧑‍🍳 Your editing panel",es?"Incluido":"Included"],
   [es?"Desde el 2º mes (hosting, soporte, cambios)":"From month 2 (hosting, support, changes)",fmt(HOST)+(es?"/mes":"/mo")],[u.oTables,es?"Ilimitados (impresión aparte)":"Unlimited (printing extra)"],[u.oStk,es?"Ilimitados":"Unlimited"],[u.oRev,es?"Ilimitados":"Unlimited"]];
@@ -421,7 +376,7 @@ $("sheet").onclick=e=>{const u=T[lang];
  if(PS){const em=($("oEm").value||"").trim(),wn=($("oWn").value||"").trim(),wp=$("oWp").value||"",bw=ow.length>=10?(ow.length===10?"52"+ow:ow):"";
   const cfg={w:bw,n:wn,p:wn?wp:"",o:bw?"mcr":"m",t:Date.now()};A=b64u(cfg);
   try{localStorage.setItem("mx-act-"+PS,JSON.stringify(Object.assign({a:A},cfg)))}catch(_){}
-  const now=new Date();sale={id:orderNo,slug:PS,biz,name:nm,wa:bw,email:em,wifi:wn,date:ymd(now),renew:ymd((d=>(d.setMonth(d.getMonth()+1),d))(new Date(now))),amount:t.o,year:t.m,pay:pay,plan,pkg,tier,price:price(),mo:t.mo,n:1,host};
+  const now=new Date();sale={id:orderNo,slug:PS,biz,name:nm,wa:bw,email:em,wifi:wn,date:ymd(now),renew:ymd((d=>(d.setMonth(d.getMonth()+1),d))(new Date(now))),amount:t.o,year:t.m,pay:pay,plan,pkg,price:price(),mo:t.mo,n:1,host};
   try{const L=JSON.parse(localStorage.getItem("mx-sales")||"[]").filter(x=>x.slug!==PS);L.push(sale);localStorage.setItem("mx-sales",JSON.stringify(L));localStorage.setItem("mx-sales-dirty","1")}catch(_){}
   pushCfgP(PS,cfg)}
  let body=u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),mo:t.mo?(lang==="es"?`${fmt(t.mo)} al completar (efectivo · paso a cobrar en persona)`:`${fmt(t.mo)} on completion (cash · collected in person)`):"",yr:t.m,year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:pay==="w"?u.payWm:(lang==="es"?"Tarjeta (Stripe)":"Card (Stripe)")})+(sale?(lang==="es"?`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 Desde ${sale.renew}: ${fmt(HOST)}/mes, se cobran ${fmt(HOST*3)} cada 3 meses en efectivo`:`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 From ${sale.renew}: ${fmt(HOST)}/mo, collected as ${fmt(HOST*3)} cash every 3 months`):"")+pkgText(A);
