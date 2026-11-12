@@ -92,9 +92,13 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 .dot.on{background:var(--gold-lt);transform:scale(1.4)}
 
 /* ── LANG TOGGLE ── */
+.setup-section{
+  padding:0 14px 0;
+  display:flex;flex-direction:column;gap:6px;
+}
 .lang-row{
   display:flex;justify-content:flex-end;align-items:center;
-  padding:10px 18px 0;gap:4px;
+  padding:6px 4px 2px;gap:4px;
 }
 .lang-btn{
   background:none;border:1px solid var(--border);
@@ -199,7 +203,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 
 /* ── CREDIT ── */
 .credit{text-align:center;padding:0 0 32px;opacity:.3}
-.pwa-hint{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;margin:0 0 4px;position:relative}
+.pwa-hint{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;margin:0;position:relative}
 .pwa-icon{font-size:1.4rem;flex-shrink:0}
 .pwa-text{flex:1;font-size:.8rem;line-height:1.4;color:var(--muted)}
 .pwa-es,.pwa-en{color:rgba(255,255,255,.65);font-weight:500}
@@ -249,13 +253,6 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   <div class="slide" style="background-image:url('img/hub5.jpg')"></div>
   <div class="slide" style="background-image:url('img/hub6.jpg')"></div>
   <div class="hero-dots" id="dots"></div>
-</div>
-
-<!-- Lang toggle -->
-<div class="lang-row">
-  <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
-  <span style="color:var(--border);padding:0 2px;font-size:.8rem">|</span>
-  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
 </div>
 
 <!-- Section label -->
@@ -308,29 +305,6 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 
 </div>
 
-<!-- Save to home screen hint -->
-<div class="pwa-hint" id="pwaHint">
-  <span class="pwa-icon">📲</span>
-  <div class="pwa-text">
-    <span class="pwa-es">Guárdalo en tu teléfono</span>
-    <span class="pwa-sep"> · </span>
-    <span class="pwa-en">Save to your phone</span>
-    <br>
-    <span class="pwa-sub" id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
-  </div>
-  <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
-</div>
-
-<!-- Habla: learn English / Spanish -->
-<a class="habla-card" id="linkHabla" href="../../habla/?back=../c/casa-axolotl/&amp;n=Casa%20Axolotl">
-  <span class="habla-ic">🗣️</span>
-  <div class="habla-tx">
-    <b id="lblHabla">Habla · Aprende inglés</b>
-    <span id="subHabla">Palabras y frases con audio · Learn Spanish too</span>
-  </div>
-  <span class="habla-arr">›</span>
-</a>
-
 <div class="divider"></div>
 
 <!-- WhatsApp -->
@@ -341,9 +315,42 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   </a>
 </div>
 
-<!-- Credit -->
-<div class="credit">
-  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
+<!-- Setup bottom section: lang + Habla + save hint + credit -->
+<div class="setup-section">
+  <!-- Language toggle -->
+  <div class="lang-row">
+    <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
+    <span style="color:var(--border);padding:0 2px;font-size:.8rem">|</span>
+    <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+  </div>
+
+  <!-- Habla: learn English / Spanish -->
+  <a class="habla-card" id="linkHabla" href="../../habla/?back=../c/casa-axolotl/&amp;n=Casa%20Axolotl">
+    <span class="habla-ic">🗣️</span>
+    <div class="habla-tx">
+      <b id="lblHabla">Habla · Aprende inglés</b>
+      <span id="subHabla">Palabras y frases con audio · Learn Spanish too</span>
+    </div>
+    <span class="habla-arr">›</span>
+  </a>
+
+  <!-- Save to home screen hint -->
+  <div class="pwa-hint" id="pwaHint">
+    <span class="pwa-icon">📲</span>
+    <div class="pwa-text">
+      <span class="pwa-es">Guárdalo en tu teléfono</span>
+      <span class="pwa-sep"> · </span>
+      <span class="pwa-en">Save to your phone</span>
+      <br>
+      <span class="pwa-sub" id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
+    </div>
+    <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">
+    <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
+  </div>
 </div>
 
 </div><!-- /page -->
