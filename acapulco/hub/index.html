@@ -337,6 +337,53 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .ctx-detail{font-size:.7rem;color:var(--gold-lt);margin-top:7px;font-weight:500}
 
 /* ══════════════════════════════════════
+   ROUTE STOPS
+══════════════════════════════════════ */
+.route-header{
+  padding:20px 22px 0;
+  display:flex;align-items:baseline;gap:10px;
+}
+.route-num{
+  font-family:var(--serif);font-style:italic;
+  font-size:.85rem;color:var(--gold);
+  letter-spacing:.04em;
+}
+.route-title{
+  font-family:var(--serif);font-size:1.55rem;font-weight:500;
+  color:var(--text);
+}
+.route-sub{font-size:.62rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;padding:4px 22px 16px}
+.route-stops{display:flex;flex-direction:column;padding:0 22px 4px;gap:0}
+.route-stop{
+  padding:18px 0;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;
+}
+.route-stop:last-child{border-bottom:none}
+.stop-icon{
+  width:48px;height:48px;
+  border-radius:2px;
+  background:var(--gold-dim);
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  font-size:1.4em;
+  flex-shrink:0;
+}
+.stop-type{font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.stop-type.cafe{color:#8fc9b8}
+.stop-type.rest{color:var(--coral)}
+.stop-type.hotel{color:var(--gold-lt)}
+.stop-name{font-family:var(--serif);font-size:1.25rem;font-weight:500;line-height:1.1;margin-top:3px}
+.stop-desc{font-size:.72rem;color:var(--muted);margin-top:5px;line-height:1.5}
+.stop-detail{font-size:.68rem;color:var(--gold-lt);margin-top:7px;font-weight:500}
+.stop-dist{
+  display:inline-block;margin-top:9px;
+  font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);padding:3px 7px;
+  background:var(--card2);border:1px solid var(--border);border-radius:1px;
+}
+
+/* ══════════════════════════════════════
    ACTIVITIES
 ══════════════════════════════════════ */
 .act-cards{padding:0 22px 4px}
@@ -539,11 +586,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 <div class="hero" id="hero">
 
   <!-- SLIDES: Acapulco water activities — parasailing, snorkeling, cliff/ocean, sunset sailboat -->
-  <div class="slide on kb" id="sl0" style="background-image:url('img/cliff-diving.jpg')"></div>
-  <div class="slide" id="sl1" style="background-image:url('img/sunset-sailing.jpg')"></div>
-  <div class="slide" id="sl2" style="background-image:url('img/snorkeling-boat.jpg')"></div>
-  <div class="slide" id="sl3" style="background-image:url('img/cliffside-pool.jpg')"></div>
-  <div class="slide" id="sl4" style="background-image:url('https://images.pexels.com/photos/2132003/pexels-photo-2132003.jpeg?auto=compress&cs=tinysrgb&w=1200')"></div>
+  <div class="slide on kb" id="sl0" style="background-image:url('https://images.pexels.com/photos/1178448/pexels-photo-1178448.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
+  <div class="slide" id="sl1" style="background-image:url('https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
+  <div class="slide" id="sl2" style="background-image:url('https://images.pexels.com/photos/2132003/pexels-photo-2132003.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
+  <div class="slide" id="sl3" style="background-image:url('https://images.pexels.com/photos/3369578/pexels-photo-3369578.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
+  <div class="slide" id="sl4" style="background-image:url('https://images.pexels.com/photos/1004409/pexels-photo-1004409.jpeg?auto=compress&cs=tinysrgb&w=1400')"></div>
 
   <!-- gradient overlay -->
   <div class="hero-overlay"></div>
@@ -682,6 +729,84 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 <!-- CONTEXT (auto-swaps) -->
 <div id="ctx"></div>
+
+<!-- ══════════════════════════════════════
+     ROUTE 1
+══════════════════════════════════════ -->
+<div class="sec-label"><span id="secRoutes">Rutas</span></div>
+<div class="route-header">
+  <span class="route-num">Ruta 01</span>
+  <span class="route-title" id="r1name">Costa Azul</span>
+</div>
+<div class="route-sub" id="r1sub">Playa · Café · Restaurante · Hotel · 1.4 km</div>
+<div class="route-stops">
+
+  <div class="route-stop">
+    <div class="stop-icon">☕</div>
+    <div>
+      <div class="stop-type cafe" id="s1type">Café</div>
+      <div class="stop-name" id="s1name">Café Bahía</div>
+      <div class="stop-desc" id="s1desc">Terraza con vista a la bahía. Desayunos, café de especialidad y jugos frescos frente al mar.</div>
+      <div class="stop-detail" id="s1detail">Costera Miguel Alemán 22 · 7 AM – 2 PM</div>
+    </div>
+  </div>
+
+  <div class="route-stop">
+    <div class="stop-icon">🏨</div>
+    <div>
+      <div class="stop-type hotel" id="s2type">Hotel</div>
+      <div class="stop-name" id="s2name">Hotel Costa Azul</div>
+      <div class="stop-desc" id="s2desc">Hotel boutique frente a la playa. Habitaciones con balcón y vista directa al Pacífico. Alberca en la azotea.</div>
+      <div class="stop-detail" id="s2detail">desde $950 MXN · Costera 48</div>
+      <span class="stop-dist" id="s2dist">↑ 180 m</span>
+    </div>
+  </div>
+
+  <div class="route-stop">
+    <div class="stop-icon">🍽️</div>
+    <div>
+      <div class="stop-type rest" id="s3type">Restaurante</div>
+      <div class="stop-name" id="s3name">Mariscos El Farallon</div>
+      <div class="stop-desc" id="s3desc">Mariscos frescos del día, ceviches y pescado a la talla. Mesas con vista al mar sobre la roca.</div>
+      <div class="stop-detail" id="s3detail">Costera 95 · 11 AM – 9 PM · ★ 4.7</div>
+      <span class="stop-dist" id="s3dist">↑ 350 m</span>
+    </div>
+  </div>
+
+  <div class="route-stop">
+    <div class="stop-icon">☕</div>
+    <div>
+      <div class="stop-type cafe" id="s4type">Café</div>
+      <div class="stop-name" id="s4name">Pastelería La Costera</div>
+      <div class="stop-desc" id="s4desc">Panadería artesanal y café expresso. Perfecta parada de media tarde con pan dulce y aguas frescas.</div>
+      <div class="stop-detail" id="s4detail">Costera 112 · 8 AM – 8 PM</div>
+      <span class="stop-dist" id="s4dist">↑ 220 m</span>
+    </div>
+  </div>
+
+  <div class="route-stop">
+    <div class="stop-icon">🏨</div>
+    <div>
+      <div class="stop-type hotel" id="s5type">Hotel</div>
+      <div class="stop-name" id="s5name">Hotel Emporio Acapulco</div>
+      <div class="stop-desc" id="s5desc">Referencia de la Zona Dorada. Playa privada, 3 albercas, restaurante en la terraza y acceso directo a la bahía.</div>
+      <div class="stop-detail" id="s5detail">desde $1,350 MXN · Costera 75 · ★ 4.5</div>
+      <span class="stop-dist" id="s5dist">↑ 290 m</span>
+    </div>
+  </div>
+
+  <div class="route-stop">
+    <div class="stop-icon">🍽️</div>
+    <div>
+      <div class="stop-type rest" id="s6type">Restaurante</div>
+      <div class="stop-name" id="s6name">Restaurante Blackbeard's</div>
+      <div class="stop-desc" id="s6desc">Steakhouse y mariscos con vista panorámica de la bahía. Cena frente al Pacífico con música en vivo los viernes.</div>
+      <div class="stop-detail" id="s6detail">Costera 162 · 1 PM – 11 PM · ★ 4.6</div>
+      <span class="stop-dist" id="s6dist">↑ 400 m</span>
+    </div>
+  </div>
+
+</div>
 
 <!-- ══════════════════════════════════════
      ACTIVITIES
