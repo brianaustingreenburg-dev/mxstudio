@@ -1,538 +1,806 @@
 <!doctype html>
-<title>Acapulco MX Hub</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<html lang="es">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070b14">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Acapulco Hub ✝️</title>
+<meta name="theme-color" content="#06080f">
 <style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#070b14;
-  --surface:#0e1627;
-  --card:#111d30;
-  --border:rgba(255,255,255,.07);
-  --text:#f0eee8;
-  --muted:rgba(240,238,232,.5);
-  --gold:#d4a843;
-  --gold-lt:#f5ca60;
-  --coral:#e8775a;
-  --wave:#3fa8d8;
-  --teal:#2ec4a0;
-  --purple:#9b7fd4;
-  color-scheme:dark;
+  --bg:#06080f;--s1:#0d1120;--s2:#141928;--card:#181f30;
+  --line:rgba(255,255,255,.08);--gold:#e8c48c;--gold2:#d9a35f;
+  --sun:#e0703a;--wave:#3a9fd8;--green:#25d366;
+  --text:#f0ede6;--muted:#9a9590;--red:#e54b4b;
 }
-*,*::before,*::after{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:'Inter',system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-.page{max-width:480px;margin:0 auto;min-height:100vh}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--text);font-size:16px;line-height:1.4;
+  min-height:100vh;padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
 
-/* ── HEADER ── */
-.header{
-  position:sticky;top:0;z-index:20;
-  display:flex;align-items:center;gap:10px;
-  padding:14px max(16px,env(safe-area-inset-left,0px)) 14px;
-  background:rgba(7,11,20,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-.header-mark{
-  width:34px;height:34px;border-radius:10px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,var(--gold),var(--coral));
-  font-family:'Playfair Display',serif;
-  font-size:1rem;font-weight:800;color:#fff;
-}
-.header-info{flex:1;min-width:0}
-.header-info h1{
-  margin:0;font-family:'Playfair Display',Georgia,serif;
-  font-size:1.1rem;font-weight:800;color:#fff;line-height:1.1;
-}
-.header-info p{margin:0;font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.lang-row{display:flex;gap:3px;flex-shrink:0}
-.lang-btn{
-  all:unset;cursor:pointer;font-size:.62rem;font-weight:700;
-  padding:4px 9px;border-radius:20px;letter-spacing:.06em;
-  border:1px solid var(--border);color:var(--muted);
-  font-family:'Inter',sans-serif;transition:all .18s;
-}
-.lang-btn.on{color:var(--gold-lt);border-color:var(--gold);background:rgba(212,168,67,.12)}
+/* ── TOP BAR ── */
+.top{position:sticky;top:0;z-index:10;
+  background:rgba(6,8,15,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  border-bottom:1px solid var(--line)}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{font-size:.7em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.lang-sw{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;height:36px;align-items:center;position:relative}
+.lang-sw button{all:unset;cursor:pointer;font-weight:800;font-size:.7em;padding:0 10px;height:28px;display:grid;place-items:center;border-radius:999px;color:var(--muted);position:relative;z-index:1}
+.lang-sw button[aria-pressed=true]{color:#1a0f0a}
+.lang-sw .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s}
+.lang-sw.en .knob{transform:translateX(100%)}
 
-/* ── HERO SLIDESHOW ── */
-.hero{
-  position:relative;height:58vw;max-height:320px;min-height:200px;
-  overflow:hidden;
-}
-.slide{
-  position:absolute;inset:0;opacity:0;
-  transition:opacity 1.6s ease;
-}
-.slide.on{opacity:1}
-.hero::after{
-  content:'';position:absolute;inset:auto 0 0;height:80px;
-  background:linear-gradient(to top,var(--bg),transparent);
-  pointer-events:none;z-index:2;
-}
-.hero-overlay{
-  position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(7,11,20,.25) 0%,rgba(7,11,20,.05) 50%,rgba(7,11,20,.5) 100%);
-}
-.hero-title{
-  position:absolute;bottom:28px;left:0;right:0;z-index:3;
-  text-align:center;padding:0 20px;
-}
-.hero-title h2{
-  margin:0 0 4px;
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(1.5rem,6vw,2rem);font-weight:800;
-  color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.7);
-  line-height:1.15;
-}
-.hero-title p{
-  margin:0;font-size:.72rem;color:rgba(255,255,255,.75);
-  letter-spacing:.1em;text-transform:uppercase;
-  text-shadow:0 1px 8px rgba(0,0,0,.6);
-}
-.hero-dots{
-  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
-  display:flex;gap:5px;z-index:4;
-}
-.dot{
-  width:4px;height:4px;border-radius:50%;
-  background:rgba(255,255,255,.25);transition:all .3s;
-}
-.dot.on{background:var(--gold-lt);transform:scale(1.5)}
+/* ── RESTAURANT HERO ── */
+.hero{background:linear-gradient(160deg,#0a1428 0%,#071320 50%,#060c1a 100%);
+  padding:24px 16px 20px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::before{content:"🌊";position:absolute;right:-10px;top:-10px;font-size:120px;opacity:.04;pointer-events:none}
+.table-badge{display:inline-flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--gold2);border-radius:99px;padding:5px 12px;font-size:.7em;font-weight:800;color:var(--gold);margin-bottom:12px;letter-spacing:.06em}
+.rest-name{font-size:1.5em;font-weight:900;line-height:1.1;margin-bottom:4px}
+.rest-name span{color:var(--gold)}
+.rest-meta{font-size:.75em;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.stars{color:#f5ca60}
+.hero-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.hbtn{background:var(--s2);border:1px solid var(--line);border-radius:14px;padding:12px 6px;text-align:center;font-size:.7em;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:5px}
+.hbtn .ico{font-size:1.6em}
+.hbtn.g{border-color:rgba(245,202,96,.3);color:var(--gold)}
+.hbtn.w{border-color:rgba(37,211,102,.3);color:var(--green)}
+.hbtn.r{border-color:rgba(58,159,216,.3);color:var(--wave)}
 
-/* ── SECTION LABEL ── */
-.sec-label{
-  display:flex;align-items:center;gap:10px;
-  padding:18px max(16px,env(safe-area-inset-left,0px)) 10px;
-}
-.sec-label span{
-  font-size:.6rem;color:var(--muted);letter-spacing:.12em;
-  text-transform:uppercase;font-weight:600;white-space:nowrap;
-}
-.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* ── SECTION HEADER ── */
+.sec-head{padding:20px 16px 10px;display:flex;align-items:center;justify-content:space-between}
+.sec-title{font-size:.65em;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
+.wrap{padding:0 16px}
 
-/* ── ANCHOR CARD (restaurant or hotel) ── */
-.anchor-card{
-  margin:0 max(16px,env(safe-area-inset-left,0px)) 4px;
-  border-radius:20px;overflow:hidden;position:relative;
-  min-height:130px;
-  box-shadow:0 6px 32px rgba(0,0,0,.55);
-  -webkit-tap-highlight-color:transparent;
-  cursor:pointer;text-decoration:none;display:block;
-  border:1px solid rgba(212,168,67,.2);
-  transition:transform .15s;
-}
-.anchor-card:active{transform:scale(.975)}
-.anchor-bg{
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,#1a0d04,#3a2010,#1a0d04);
-  background-size:cover;background-position:center;
-}
-.anchor-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(7,11,20,.92) 0%,rgba(7,11,20,.6) 55%,rgba(7,11,20,.2) 100%);
-}
-.anchor-body{
-  position:relative;z-index:1;
-  display:flex;align-items:center;gap:16px;
-  padding:24px 20px;
-}
-.anchor-ic{
-  width:56px;height:56px;border-radius:16px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:2rem;
-  background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.3);
-}
-.anchor-tx{flex:1;min-width:0}
-.anchor-name{
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:1.25rem;font-weight:800;color:#fff;
-  line-height:1.15;text-shadow:0 1px 8px rgba(0,0,0,.5);
-}
-.anchor-sub{font-size:.74rem;color:rgba(240,238,232,.6);margin-top:4px}
-.anchor-cta{
-  display:inline-flex;align-items:center;gap:6px;margin-top:8px;
-  background:var(--gold);border-radius:30px;
-  padding:5px 14px;
-  font-size:.7rem;font-weight:700;color:#1a0d04;letter-spacing:.04em;
-}
-.anchor-arr{font-size:1.4rem;color:rgba(255,255,255,.4);flex-shrink:0}
+/* ── MODULE GRID ── */
+.modules{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 16px}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;transition:transform .15s,border-color .15s;position:relative;overflow:hidden}
+.mod:active{transform:scale(.97)}
+.mod.full{grid-column:1/-1}
+.mod-icon{font-size:2em;margin-bottom:8px;line-height:1}
+.mod-label{font-size:.6em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sun);margin-bottom:3px}
+.mod-title{font-size:.95em;font-weight:800;line-height:1.2}
+.mod-sub{font-size:.72em;color:var(--muted);margin-top:4px;line-height:1.4}
+.mod-badge{position:absolute;top:10px;right:10px;background:var(--gold);color:#1a0f0a;font-size:.58em;font-weight:900;padding:3px 8px;border-radius:99px}
+.mod.blue{border-color:rgba(58,159,216,.2)}
+.mod.blue .mod-label{color:var(--wave)}
+.mod.green{border-color:rgba(37,211,102,.2)}
+.mod.green .mod-label{color:var(--green)}
+.mod.gold{border-color:rgba(232,196,140,.25)}
 
-/* ── LISTING CARDS (hotels / places to stay) ── */
-.cards{
-  display:flex;flex-direction:column;gap:11px;
-  padding:0 max(16px,env(safe-area-inset-left,0px)) 6px;
-}
-.lcard{
-  display:block;text-decoration:none;color:var(--text);
-  border-radius:16px;overflow:hidden;position:relative;
-  min-height:90px;
-  box-shadow:0 3px 18px rgba(0,0,0,.45);
-  -webkit-tap-highlight-color:transparent;
-  transition:transform .15s;
-  border-left:3px solid var(--wave);
-}
-.lcard:active{transform:scale(.975)}
-.lcard-bg{
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,#0a1a3a,#0d2a4a,#061420);
-  background-size:cover;background-position:center;
-}
-.lcard-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(7,11,20,.92) 0%,rgba(7,11,20,.55) 55%,rgba(7,11,20,.15) 100%);
-}
-.lcard-body{
-  position:relative;z-index:1;
-  display:flex;align-items:center;gap:14px;
-  padding:18px 16px;
-}
-.lcard-ic{
-  width:46px;height:46px;border-radius:13px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
-  background:rgba(63,168,216,.1);border:1px solid rgba(63,168,216,.2);
-}
-.lcard-tx{flex:1;min-width:0}
-.lcard-name{
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:1rem;font-weight:700;color:#fff;line-height:1.2;
-}
-.lcard-sub{font-size:.7rem;color:rgba(240,238,232,.55);margin-top:3px;line-height:1.4}
-.lcard-arr{font-size:1.3rem;color:rgba(255,255,255,.35);flex-shrink:0}
-
-/* placeholder listing */
-.lcard-ph{
-  border-radius:16px;overflow:hidden;
-  border:1px dashed rgba(255,255,255,.1);
-  background:var(--card);
-  display:flex;align-items:center;gap:14px;
-  padding:16px 16px;
-  border-left:3px dashed rgba(63,168,216,.25);
-}
-.lcard-ph .lcard-ic{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.07)}
-.lcard-ph .lcard-name{color:rgba(240,238,232,.3)}
-.lcard-ph .lcard-sub{color:rgba(240,238,232,.2)}
-
-/* ── MX STUDIO CARDS ── */
-.mxcard{
-  display:block;text-decoration:none;color:var(--text);
-  border-radius:16px;overflow:hidden;position:relative;min-height:90px;
-  box-shadow:0 3px 18px rgba(0,0,0,.45);
-  -webkit-tap-highlight-color:transparent;
-  transition:transform .15s;
-}
-.mxcard:active{transform:scale(.975)}
-.mxcard-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.mxcard-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(7,11,20,.92) 0%,rgba(7,11,20,.55) 55%,rgba(7,11,20,.15) 100%);
-}
-.mxcard-body{
-  position:relative;z-index:1;
-  display:flex;align-items:center;gap:14px;padding:18px 16px;
-}
-.mxcard-ic{
-  width:46px;height:46px;border-radius:13px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
-}
-.mxcard-tx{flex:1;min-width:0}
-.mxcard-name{
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:1rem;font-weight:700;color:#fff;line-height:1.2;
-}
-.mxcard-sub{font-size:.7rem;color:rgba(240,238,232,.55);margin-top:3px}
-.mxcard-arr{font-size:1.3rem;color:rgba(255,255,255,.35);flex-shrink:0}
-.mx-badge{
-  display:inline-flex;align-items:center;gap:4px;margin-top:5px;
-  background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.22);
-  border-radius:30px;padding:2px 7px;
-}
-.mx-badge span{font-size:.58rem;font-weight:700;color:var(--gold);letter-spacing:.05em}
-.c-games{border-left:3px solid var(--purple)}
-.c-habla{border-left:3px solid var(--wave)}
-
-/* ── ACTIVITIES ── */
-.act-card{
-  margin:0 max(16px,env(safe-area-inset-left,0px));
-  background:var(--card);border-radius:16px;
-  border:1px solid var(--border);border-left:3px solid var(--teal);
-  overflow:hidden;
-}
-.act-list{list-style:none;margin:0;padding:0}
-.act-list li{
-  display:flex;align-items:center;gap:12px;
-  padding:13px 16px;border-bottom:1px solid var(--border);
-  font-size:.82rem;color:var(--text);
-}
-.act-list li:last-child{border-bottom:none}
-.act-list li .ic{font-size:1.1rem;flex-shrink:0;width:24px;text-align:center}
-.act-list li .nm{flex:1;font-weight:500}
-.act-list li .loc{font-size:.65rem;color:var(--muted);letter-spacing:.03em}
-
-/* ── DIVIDER ── */
-.div{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:14px 18px}
-
-/* ── WHATSAPP ── */
-.wa-wrap{padding:4px max(16px,env(safe-area-inset-left,0px)) 10px}
-.wa-btn{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:linear-gradient(135deg,rgba(18,52,30,.95),rgba(24,66,38,.95));
-  border:1px solid rgba(80,200,110,.2);
-  color:#72e09a;padding:15px;border-radius:16px;
-  font-size:.88rem;font-weight:600;text-decoration:none;
-  letter-spacing:.02em;-webkit-tap-highlight-color:transparent;
-  box-shadow:0 2px 16px rgba(0,0,0,.35);
-}
-.wa-btn:active{opacity:.8}
+/* ── INSTALL BANNER ── */
+.install-banner{margin:0 16px 16px;background:linear-gradient(135deg,rgba(232,196,140,.12),rgba(217,163,95,.06));border:1px solid rgba(232,196,140,.25);border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer}
+.install-icon{font-size:2.2em;flex:none}
+.install-text{flex:1}
+.install-title{font-weight:800;font-size:.9em}
+.install-sub{font-size:.72em;color:var(--muted);margin-top:2px}
+.install-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-weight:800;font-size:.75em;padding:8px 14px;border-radius:99px;white-space:nowrap;flex:none}
 
 /* ── FOOTER ── */
-.mx-footer{
-  text-align:center;padding:20px max(16px,env(safe-area-inset-left,0px)) 36px;
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-}
-.mx-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.22);
-  border-radius:40px;padding:7px 16px;text-decoration:none;
-  -webkit-tap-highlight-color:transparent;
-}
-.mx-pill .mx-cross{color:var(--gold-lt);font-size:1rem}
-.mx-pill .mx-name{
-  font-family:'Playfair Display',Georgia,serif;
-  font-size:.8rem;font-weight:700;color:var(--gold-lt);letter-spacing:.08em;
-}
-.mx-tagline{font-size:.6rem;color:var(--muted);letter-spacing:.06em}
+.foot{text-align:center;font-size:.6em;color:#4a4540;padding:16px;line-height:1.8}
+
+/* ══════════════════════════════════════
+   OVERLAY PANELS
+══════════════════════════════════════ */
+.panel{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;background:var(--bg);transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.panel.open{transform:translateY(0)}
+.phead{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 16px 14px;border-bottom:1px solid var(--line);background:var(--s1)}
+.phead h2{font-size:1em;font-weight:800}
+.phead .close{font-size:1.5em;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--s2)}
+.pbody{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* ── MENU PANEL ── */
+.menu-hero{background:linear-gradient(135deg,#0a1a10,#06100a);padding:20px 16px;text-align:center;border-bottom:1px solid var(--line)}
+.menu-hero .emo{font-size:3em}
+.menu-hero h3{font-size:1.1em;font-weight:900;margin-top:8px;color:var(--gold)}
+.menu-hero p{font-size:.75em;color:var(--muted);margin-top:4px}
+.menu-cat{padding:16px 16px 4px;font-size:.65em;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
+.menu-item{display:flex;align-items:flex-start;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);gap:12px}
+.menu-item:last-child{border-bottom:none}
+.mi-info{flex:1}
+.mi-name{font-weight:700;font-size:.9em}
+.mi-desc{font-size:.72em;color:var(--muted);margin-top:2px;line-height:1.4}
+.mi-price{font-weight:800;color:var(--gold);font-size:.9em;white-space:nowrap;flex:none}
+.order-bar{padding:14px 16px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--s1)}
+.order-btn{display:block;width:100%;padding:16px;text-align:center;background:linear-gradient(135deg,var(--green),#1aad4e);color:#05301a;font-weight:900;font-size:.95em;border-radius:14px}
+
+/* ── REVIEW PANEL ── */
+.review-body{padding:24px 16px;text-align:center}
+.review-body h3{font-size:1.1em;font-weight:800;margin-bottom:8px}
+.review-body p{font-size:.8em;color:var(--muted);margin-bottom:24px;line-height:1.5}
+.star-row{display:flex;justify-content:center;gap:12px;margin-bottom:24px}
+.star-btn{font-size:2.4em;background:none;border:none;cursor:pointer;transition:transform .15s;opacity:.35}
+.star-btn.on{opacity:1}
+.star-btn:active{transform:scale(1.3)}
+.review-hint{font-size:.72em;color:var(--muted);margin-top:-12px;margin-bottom:20px}
+.review-hint.pub{color:var(--green)}
+.review-hint.priv{color:var(--wave)}
+.review-submit{display:block;width:100%;padding:16px;text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-weight:900;font-size:.95em;border-radius:14px;margin-top:16px}
+
+/* ── HOTELS PANEL ── */
+.hotel-card{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 16px;overflow:hidden}
+.hotel-emo{font-size:3.5em;text-align:center;padding:20px;background:linear-gradient(135deg,var(--s2),var(--s1))}
+.hotel-info{padding:14px 16px}
+.hotel-zone{font-size:.6em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sun)}
+.hotel-name{font-size:1em;font-weight:800;margin:3px 0}
+.hotel-desc{font-size:.75em;color:var(--muted);line-height:1.4}
+.hotel-price{font-weight:800;color:var(--gold);font-size:.85em;margin-top:8px}
+
+/* ── ACTIVITIES PANEL ── */
+.act-card{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 16px;padding:16px}
+.act-tag{font-size:.6em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--wave);margin-bottom:6px}
+.act-title{font-size:1em;font-weight:800;margin-bottom:6px}
+.act-title span{font-size:1.3em;margin-right:6px}
+.act-desc{font-size:.78em;color:var(--muted);line-height:1.5}
+.act-detail{font-size:.72em;color:var(--gold);margin-top:8px;font-weight:700}
+
+/* ── TRIVIA PANEL ── */
+.trivia-wrap{padding:16px}
+.trivia-score{text-align:center;padding:16px 0 20px}
+.trivia-score .sc{font-size:2.4em;font-weight:900;color:var(--gold)}
+.trivia-score .sc-label{font-size:.75em;color:var(--muted)}
+.q-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:12px}
+.q-num{font-size:.6em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sun);margin-bottom:8px}
+.q-text{font-size:.95em;font-weight:700;line-height:1.4;margin-bottom:14px}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:var(--s2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.85em;font-weight:600;text-align:left;transition:background .2s,border-color .2s}
+.q-opt.correct{background:rgba(37,211,102,.15);border-color:var(--green);color:var(--green)}
+.q-opt.wrong{background:rgba(229,75,75,.12);border-color:var(--red);color:var(--red)}
+.q-opt:disabled{cursor:default}
+.trivia-prize{background:linear-gradient(135deg,rgba(232,196,140,.15),rgba(217,163,95,.08));border:1px solid rgba(232,196,140,.3);border-radius:18px;padding:20px;text-align:center;margin:8px 0 16px}
+.trivia-prize .trophy{font-size:2.4em;margin-bottom:8px}
+.trivia-prize h3{font-size:1em;font-weight:800;color:var(--gold);margin-bottom:6px}
+.trivia-prize p{font-size:.78em;color:var(--muted);line-height:1.5}
+.trivia-reset{display:block;width:100%;padding:14px;text-align:center;background:var(--s2);border:1px solid var(--line);border-radius:14px;font-weight:800;font-size:.85em;margin-top:8px}
+
+/* ── SPANISH PANEL ── */
+.spanish-intro{padding:16px 16px 8px;font-size:.78em;color:var(--muted);line-height:1.5}
+.phrase-cat{padding:14px 16px 6px;font-size:.62em;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
+.phrase-card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:6px 16px;padding:14px 16px;cursor:pointer;transition:border-color .2s}
+.phrase-card:active{border-color:var(--gold2)}
+.phrase-es{font-size:1em;font-weight:800;color:var(--text)}
+.phrase-en{font-size:.78em;color:var(--muted);margin-top:3px}
+.phrase-pron{font-size:.72em;color:var(--gold);margin-top:4px;font-style:italic}
+.phrase-tap{font-size:.62em;color:var(--wave);margin-top:5px;font-weight:700}
+
+/* ── INSTALL PANEL ── */
+.install-steps{padding:16px}
+.install-os{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.install-os h3{font-size:.9em;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.install-step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start}
+.step-num{background:var(--gold);color:#1a0f0a;font-weight:900;font-size:.7em;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;margin-top:1px}
+.step-txt{font-size:.8em;color:var(--muted);line-height:1.4}
+.step-txt b{color:var(--text)}
+.install-dismiss{display:block;width:100%;padding:14px;text-align:center;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-weight:900;font-size:.9em;border-radius:14px;margin:16px 0 0}
 </style>
+</head>
+<body>
 
-<!-- PAGE -->
-<div class="page">
-
-<!-- HEADER -->
-<div class="header">
-  <div class="header-mark">✦</div>
-  <div class="header-info">
-    <h1 id="hTitle">Acapulco MX</h1>
-    <p id="hSub">Powered by MX Studio</p>
-  </div>
-  <div class="lang-row">
-    <button class="lang-btn on" id="esBtn" onclick="setLang('es')">ES</button>
-    <span style="color:var(--border);font-size:.8rem;padding:0 1px">|</span>
-    <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
-  </div>
-</div>
-
-<!-- HERO SLIDESHOW -->
-<div class="hero" id="hero">
-  <!-- Slide backgrounds use CSS gradients — photos drop in at deploy -->
-  <div class="slide on" style="background:linear-gradient(160deg,#061830 0%,#0d3060 50%,#071a3a 100%)">
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.18;font-size:5rem">🌊</div>
-  </div>
-  <div class="slide" style="background:linear-gradient(160deg,#1a0a06 0%,#3d1a08 50%,#1a0806 100%)">
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.18;font-size:5rem">🌅</div>
-  </div>
-  <div class="slide" style="background:linear-gradient(160deg,#061a0e 0%,#0d3a1a 50%,#071a0a 100%)">
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.18;font-size:5rem">🏝️</div>
-  </div>
-  <div class="slide" style="background:linear-gradient(160deg,#1a0d1a 0%,#3a1a3a 50%,#180d18 100%)">
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.18;font-size:5rem">🌃</div>
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-title">
-    <h2 id="heroH">Acapulco, México ✝️</h2>
-    <p id="heroP">Bienvenidos · Welcome</p>
-  </div>
-  <div class="hero-dots" id="dots"></div>
-</div>
-
-<!-- RESTAURANT ANCHOR -->
-<div class="sec-label"><span id="secRest">Restaurante</span></div>
-<a class="anchor-card" href="#menu">
-  <div class="anchor-bg" style="background:linear-gradient(135deg,#1a0d04,#3a2010,#1a1004)"></div>
-  <div class="anchor-overlay"></div>
-  <div class="anchor-body">
-    <div class="anchor-ic">🍽️</div>
-    <div class="anchor-tx">
-      <div class="anchor-name" id="restName">El Rincón del Mar</div>
-      <div class="anchor-sub" id="restSub">Mariscos · Vista al mar · Acapulco</div>
-      <div class="anchor-cta"><span id="restCta">Ver menú · See menu</span></div>
+<!-- TOP BAR -->
+<div class="top">
+  <div class="toprow">
+    <div class="brand">MX Studio ✝ · Acapulco Hub</div>
+    <div class="lang-sw" id="langSw">
+      <span class="knob"></span>
+      <button data-l="es" aria-pressed="true">ES</button>
+      <button data-l="en" aria-pressed="false">EN</button>
     </div>
-    <span class="anchor-arr">›</span>
   </div>
-</a>
+</div>
 
-<!-- PLACES TO STAY -->
-<div class="sec-label"><span id="secStay">Dónde quedarse</span></div>
-<div class="cards">
+<!-- RESTAURANT HERO -->
+<div class="hero">
+  <div class="table-badge">📍 <span id="tableLabel">Mesa 07 · You Are Here</span></div>
+  <div class="rest-name"><span>Mariscos La Perla Azul</span></div>
+  <div class="rest-meta">
+    <span>Costa Azul, Acapulco</span>
+    <span>·</span>
+    <span class="stars">★ 4.8</span>
+    <span id="reviewCount">(640 reseñas Google)</span>
+  </div>
+  <div class="hero-actions">
+    <button class="hbtn g" onclick="openPanel('menu')">
+      <span class="ico">🍽️</span>
+      <span id="btnMenu">Ver Menú</span>
+    </button>
+    <button class="hbtn w" onclick="openPanel('whatsapp')">
+      <span class="ico">💬</span>
+      <span id="btnWA">WhatsApp</span>
+    </button>
+    <button class="hbtn r" onclick="openPanel('review')">
+      <span class="ico">⭐</span>
+      <span id="btnReview">Calificar</span>
+    </button>
+  </div>
+</div>
 
-  <!-- Example hotel listing -->
-  <a class="lcard" href="#hotel1">
-    <div class="lcard-bg" style="background:linear-gradient(135deg,#061830,#0d3060,#071a3a)"></div>
-    <div class="lcard-overlay"></div>
-    <div class="lcard-body">
-      <div class="lcard-ic">🏨</div>
-      <div class="lcard-tx">
-        <div class="lcard-name" id="hotel1Name">Hotel Mirador Acapulco</div>
-        <div class="lcard-sub" id="hotel1Sub">Frente al mar · Zona Dorada · desde $850 MXN</div>
+<!-- EXPLORE HEADER -->
+<div class="sec-head">
+  <div class="sec-title" id="exploreTitle">🌊 Explorar Acapulco</div>
+</div>
+<div style="padding:0 16px 4px;font-size:.75em;color:var(--muted)" id="exploreSub">Toca cualquier módulo</div>
+
+<!-- MODULES -->
+<div class="modules">
+
+  <div class="mod blue" onclick="openPanel('hotels')">
+    <div class="mod-icon">🏨</div>
+    <div class="mod-label" id="modHotLabel">Dónde quedarse</div>
+    <div class="mod-title" id="modHotTitle">Hoteles &amp; Resorts</div>
+    <div class="mod-sub" id="modHotSub">Boutique, Diamante &amp; villas</div>
+  </div>
+
+  <div class="mod blue" onclick="openPanel('activities')">
+    <div class="mod-icon">⛵</div>
+    <div class="mod-label" id="modActLabel">Qué hacer</div>
+    <div class="mod-title" id="modActTitle">Actividades</div>
+    <div class="mod-sub" id="modActSub">Clavadistas, yates &amp; tours</div>
+  </div>
+
+  <div class="mod gold full" onclick="openPanel('trivia')">
+    <div class="mod-badge" id="trivBadge">🎯 Gana un shot</div>
+    <div class="mod-icon">🏆</div>
+    <div class="mod-label" id="modTrivLabel">Mini juego</div>
+    <div class="mod-title" id="modTrivTitle">Trivia de Acapulco</div>
+    <div class="mod-sub" id="modTrivSub">3 preguntas · responde todo y gana un shot gratis</div>
+  </div>
+
+  <div class="mod green full" onclick="openPanel('spanish')">
+    <div class="mod-icon">🗣️</div>
+    <div class="mod-label" id="modSpLabel">Aprende en la mesa</div>
+    <div class="mod-title" id="modSpTitle">Español de Sobrevivencia</div>
+    <div class="mod-sub" id="modSpSub">Toca para escuchar pronunciación real</div>
+  </div>
+
+</div>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" onclick="openPanel('install')">
+  <div class="install-icon">📲</div>
+  <div class="install-text">
+    <div class="install-title" id="installTitle">Guarda el Hub en tu teléfono</div>
+    <div class="install-sub" id="installSub">Sin App Store · funciona offline</div>
+  </div>
+  <div class="install-btn" id="installBtn">Instalar</div>
+</div>
+
+<div class="foot">Digital Architecture &amp; Custom PWA by <b>mx.studio</b><br>Mariscos La Perla Azul · Acapulco 2026</div>
+
+
+<!-- ═══════════════════════════════════
+     PANEL: MENU
+═══════════════════════════════════ -->
+<div class="panel" id="panel-menu">
+  <div class="phead">
+    <h2 id="menuPanelTitle">🍽️ Menú Digital</h2>
+    <button class="close" onclick="closePanel('menu')">✕</button>
+  </div>
+  <div class="pbody">
+    <div class="menu-hero">
+      <div class="emo">🦐</div>
+      <h3>Mariscos La Perla Azul</h3>
+      <p id="menuLive">Menú en vivo · precios actuales</p>
+    </div>
+
+    <div class="menu-cat" id="catEntradas">🥗 Entradas</div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="e1n">Ceviche Clásico</div><div class="mi-desc" id="e1d">Camarón y pulpo en limón, jitomate, cebolla y chile</div></div><div class="mi-price">$145</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="e2n">Tostadas de Marlin</div><div class="mi-desc" id="e2d">Marlin ahumado, aguacate, chile, crema</div></div><div class="mi-price">$125</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="e3n">Ostiones al Mojo</div><div class="mi-desc" id="e3d">Media docena con limón y salsa valentina</div></div><div class="mi-price">$135</div></div>
+
+    <div class="menu-cat" id="catPlatillos">🍤 Platillos</div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="p1n">Camarones a la Diabla</div><div class="mi-desc" id="p1d">Camarones jumbo en salsa de chile rojo, arroz y frijoles</div></div><div class="mi-price">$245</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="p2n">Mojarra Frita</div><div class="mi-desc" id="p2d">Entera, frita, con arroz, ensalada y tortillas</div></div><div class="mi-price">$195</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="p3n">Filete Veracruzano</div><div class="mi-desc" id="p3d">Filete de huachinango con salsa de jitomate, olivas y alcaparras</div></div><div class="mi-price">$225</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="p4n">Pulpo a las Brasas</div><div class="mi-desc" id="p4d">Pulpo a la parrilla con aceite de oliva, limón y papas</div></div><div class="mi-price">$265</div></div>
+
+    <div class="menu-cat" id="catBebidas">🥤 Bebidas</div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="b1n">Agua de Coco Natural</div><div class="mi-desc" id="b1d">Coco fresco del día</div></div><div class="mi-price">$65</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="b2n">Michelada de Camarón</div><div class="mi-desc" id="b2d">Cerveza, clamato, camarones, chamoy, limón</div></div><div class="mi-price">$125</div></div>
+    <div class="menu-item"><div class="mi-info"><div class="mi-name" id="b3n">Margarita de Mango</div><div class="mi-desc" id="b3d">Tequila, mango natural, limón, sal de gusano</div></div><div class="mi-price">$145</div></div>
+
+    <div style="height:80px"></div>
+  </div>
+  <div class="order-bar">
+    <button class="order-btn" id="orderBtn" onclick="openWhatsApp()">💬 Pedir por WhatsApp al mesero</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     PANEL: REVIEW
+═══════════════════════════════════ -->
+<div class="panel" id="panel-review">
+  <div class="phead">
+    <h2 id="reviewTitle">⭐ ¿Cómo estuvo?</h2>
+    <button class="close" onclick="closePanel('review')">✕</button>
+  </div>
+  <div class="pbody">
+    <div class="review-body">
+      <h3 id="reviewH">Califica tu experiencia</h3>
+      <p id="reviewP">Las calificaciones de 4–5 estrellas van directo a Google Maps. Las de 1–3 avisan al gerente en privado.</p>
+      <div class="star-row" id="starRow">
+        <button class="star-btn" data-s="1" onclick="setStar(1)">⭐</button>
+        <button class="star-btn" data-s="2" onclick="setStar(2)">⭐</button>
+        <button class="star-btn" data-s="3" onclick="setStar(3)">⭐</button>
+        <button class="star-btn" data-s="4" onclick="setStar(4)">⭐</button>
+        <button class="star-btn" data-s="5" onclick="setStar(5)">⭐</button>
       </div>
-      <span class="lcard-arr">›</span>
-    </div>
-  </a>
-
-  <!-- Available listing slot -->
-  <div class="lcard-ph">
-    <div class="lcard-ic">🏡</div>
-    <div class="lcard-tx">
-      <div class="lcard-name" id="phStay">Renta tu espacio aquí</div>
-      <div class="lcard-sub" id="phStaySub">Hotel · Cabaña · Casa · Contacta MX Studio</div>
+      <div class="review-hint" id="reviewHint"></div>
+      <button class="review-submit" id="reviewSubmit" onclick="submitReview()" style="display:none" id="revSubmitBtn">
+        <span id="reviewSubmitTxt">Enviar calificación</span>
+      </button>
     </div>
   </div>
-
 </div>
 
-<!-- ACTIVITIES -->
-<div class="sec-label"><span id="secAct">Qué hacer</span></div>
-<div class="act-card">
-  <ul class="act-list">
-    <li><span class="ic">🤿</span><span class="nm" id="a1">La Quebrada — Clavadistas</span><span class="loc">Icónico · Iconic</span></li>
-    <li><span class="ic">⛵</span><span class="nm" id="a2">Isla Roqueta</span><span class="loc">Tour en barco · snorkel</span></li>
-    <li><span class="ic">🏖️</span><span class="nm" id="a3">Pie de la Cuesta</span><span class="loc">Playa · laguna · atardecer</span></li>
-    <li><span class="ic">🏰</span><span class="nm" id="a4">Fuerte de San Diego</span><span class="loc">Historia · museo</span></li>
-    <li><span class="ic">🛶</span><span class="nm" id="a5">Kayak y paddleboard</span><span class="loc">Playa Condesa · Caleta</span></li>
-    <li><span class="ic">🌊</span><span class="nm" id="a6">Laguna de Coyuca</span><span class="loc">Tour · pesca · nature</span></li>
-    <li><span class="ic">🌃</span><span class="nm" id="a7">Playa Condesa</span><span class="loc">Vida nocturna · beach clubs</span></li>
-  </ul>
-</div>
 
-<!-- MX STUDIO PRODUCTS -->
-<div class="sec-label"><span id="secMx">MX Studio</span></div>
-<div class="cards">
+<!-- ═══════════════════════════════════
+     PANEL: HOTELS
+═══════════════════════════════════ -->
+<div class="panel" id="panel-hotels">
+  <div class="phead">
+    <h2 id="hotelsPanelTitle">🏨 Dónde Quedarse</h2>
+    <button class="close" onclick="closePanel('hotels')">✕</button>
+  </div>
+  <div class="pbody">
+    <div style="padding:12px 16px 0;font-size:.78em;color:var(--muted)" id="hotelsIntro">Los mejores hoteles y resorts de Acapulco, seleccionados para tu estancia.</div>
 
-  <a class="mxcard c-games" href="/acapulco/juegos/">
-    <div class="mxcard-bg" style="background:linear-gradient(135deg,#1a0a3a,#2e1a5e,#0d0820)"></div>
-    <div class="mxcard-overlay"></div>
-    <div class="mxcard-body">
-      <div class="mxcard-ic">🎮</div>
-      <div class="mxcard-tx">
-        <div class="mxcard-name" id="lblGames">Juegos en familia</div>
-        <div class="mxcard-sub" id="subGames">Trivia · Memoria · Colorear</div>
-        <div class="mx-badge"><span>MX Studio ✦</span></div>
+    <div class="hotel-card">
+      <div class="hotel-emo">🌊</div>
+      <div class="hotel-info">
+        <div class="hotel-zone">Punta Diamante</div>
+        <div class="hotel-name">Banyan Tree Cabo Marqués</div>
+        <div class="hotel-desc" id="h1d">Villas privadas con alberca en el acantilado con vista al Océano Pacífico. Ultra privado, ultra lujoso.</div>
+        <div class="hotel-price">desde $420 USD / noche</div>
       </div>
-      <span class="mxcard-arr">›</span>
     </div>
-  </a>
 
-  <a class="mxcard c-habla" href="/acapulco/habla/">
-    <div class="mxcard-bg" style="background:linear-gradient(135deg,#0a1a3a,#0d2a4a,#061420)"></div>
-    <div class="mxcard-overlay"></div>
-    <div class="mxcard-body">
-      <div class="mxcard-ic">🗣️</div>
-      <div class="mxcard-tx">
-        <div class="mxcard-name" id="lblHabla">Habla · Aprende inglés</div>
-        <div class="mxcard-sub" id="subHabla">Palabras y frases con audio</div>
-        <div class="mx-badge"><span>MX Studio ✦</span></div>
+    <div class="hotel-card">
+      <div class="hotel-emo">🏖️</div>
+      <div class="hotel-info">
+        <div class="hotel-zone">Zona Dorada</div>
+        <div class="hotel-name">Hotel Emporio Acapulco</div>
+        <div class="hotel-desc" id="h2d">Ícono de la Costera Miguel Alemán, frente al mar, con acceso directo a la bahía.</div>
+        <div class="hotel-price">desde $135 USD / noche</div>
       </div>
-      <span class="mxcard-arr">›</span>
     </div>
-  </a>
 
+    <div class="hotel-card">
+      <div class="hotel-emo">🌺</div>
+      <div class="hotel-info">
+        <div class="hotel-zone">Las Brisas</div>
+        <div class="hotel-name">Las Brisas Acapulco</div>
+        <div class="hotel-desc" id="h3d">Las icónicas casitas rosas y blancas en la colina con club de playa privado y jeep rosado incluido.</div>
+        <div class="hotel-price">desde $210 USD / noche</div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-emo">🏔️</div>
+      <div class="hotel-info">
+        <div class="hotel-zone">Costa Azul</div>
+        <div class="hotel-name">Quinta Real Acapulco</div>
+        <div class="hotel-desc" id="h4d">Suites elegantes sobre la bahía, piscina infinity y restaurante gourmet con vista panorámica.</div>
+        <div class="hotel-price">desde $175 USD / noche</div>
+      </div>
+    </div>
+    <div style="height:20px"></div>
+  </div>
 </div>
 
-<div class="div"></div>
 
-<!-- WHATSAPP -->
-<div class="wa-wrap">
-  <a class="wa-btn" href="https://wa.me/527441930502" target="_blank">
-    <span style="font-size:1.2rem">💬</span>
-    <span id="waLabel">Contactar MX Studio por WhatsApp</span>
-  </a>
+<!-- ═══════════════════════════════════
+     PANEL: ACTIVITIES
+═══════════════════════════════════ -->
+<div class="panel" id="panel-activities">
+  <div class="phead">
+    <h2 id="actPanelTitle">⛵ Qué Hacer</h2>
+    <button class="close" onclick="closePanel('activities')">✕</button>
+  </div>
+  <div class="pbody">
+    <div style="padding:12px 16px 0;font-size:.78em;color:var(--muted)" id="activitiesIntro">Las mejores experiencias de Acapulco, a minutos de aquí.</div>
+
+    <div class="act-card">
+      <div class="act-tag" id="a1tag">🏆 TRADICIÓN OBLIGATORIA</div>
+      <div class="act-title"><span>🤿</span><span id="a1title">Clavadistas de La Quebrada</span></div>
+      <div class="act-desc" id="a1desc">Los clavadistas más famosos del mundo saltan 35 metros al océano en una grieta de roca. Espectáculo de día y noche con antorchas.</div>
+      <div class="act-detail" id="a1detail">Shows: 1:00 PM · 7:30 PM · 8:30 PM · 9:30 PM · 10:30 PM</div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-tag" id="a2tag">🌿 ECO &amp; SNORKEL</div>
+      <div class="act-title"><span>🐠</span><span id="a2title">Isla La Roqueta</span></div>
+      <div class="act-desc" id="a2desc">Lancha de fondo de cristal desde Playa Caleta. Ve la estatua submarina de la Virgen de Guadalupe y haz snorkel en arrecifes naturales.</div>
+      <div class="act-detail" id="a2detail">Sale de Playa Caleta · ~45 min · $200–250 MXN por persona</div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-tag" id="a3tag">🌅 ATARDECER</div>
+      <div class="act-title"><span>⛵</span><span id="a3title">Catamárán Bahía de Acapulco</span></div>
+      <div class="act-desc" id="a3desc">Tour de 2.5 horas por la bahía con barra libre, música en vivo y vistas doradas de la bahía de Santa Lucía al atardecer.</div>
+      <div class="act-detail" id="a3detail">Sale a las 5:30 PM · desde $650 MXN por persona</div>
+    </div>
+
+    <div class="act-card">
+      <div class="act-tag" id="a4tag">🎣 AVENTURA</div>
+      <div class="act-title"><span>🎣</span><span id="a4title">Pesca Deportiva</span></div>
+      <div class="act-desc" id="a4desc">Acapulco es mundialmente famoso por su pesca. Marlín, pez vela, dorado y atún a media hora de la costa.</div>
+      <div class="act-detail" id="a4detail">Yates de 4–8 personas · desde $4,500 MXN · sale 6:00 AM</div>
+    </div>
+
+    <div style="height:20px"></div>
+  </div>
 </div>
 
-<!-- FOOTER -->
-<div class="mx-footer">
-  <a class="mx-pill" href="https://myjefetech.app" target="_blank">
-    <span class="mx-cross">✦</span>
-    <span class="mx-name">MX STUDIO</span>
-  </a>
-  <span class="mx-tagline" id="mxTag">Acapulco MX Hub · myjefetech.app</span>
+
+<!-- ═══════════════════════════════════
+     PANEL: TRIVIA
+═══════════════════════════════════ -->
+<div class="panel" id="panel-trivia">
+  <div class="phead">
+    <h2 id="trivPanelTitle">🎯 Trivia de Acapulco</h2>
+    <button class="close" onclick="closePanel('trivia')">✕</button>
+  </div>
+  <div class="pbody" id="triviaBody">
+    <!-- filled by JS -->
+  </div>
 </div>
 
-</div><!-- /page -->
+
+<!-- ═══════════════════════════════════
+     PANEL: SPANISH
+═══════════════════════════════════ -->
+<div class="panel" id="panel-spanish">
+  <div class="phead">
+    <h2 id="spPanelTitle">🗣️ Español de Sobrevivencia</h2>
+    <button class="close" onclick="closePanel('spanish')">✕</button>
+  </div>
+  <div class="pbody">
+    <div class="spanish-intro" id="spIntro">Toca cualquier tarjeta para escuchar la pronunciación. Perfectas para ordenar, pedir la cuenta o hacer amigos en Acapulco 🌊</div>
+
+    <div class="phrase-cat" id="spCatOrder">🍽️ ORDENAR COMIDA</div>
+    <div class="phrase-card" onclick="speak('La cuenta, por favor')">
+      <div class="phrase-es">La cuenta, por favor</div>
+      <div class="phrase-en">The check, please</div>
+      <div class="phrase-pron">lah KWEN-tah, por fah-VOR</div>
+      <div class="phrase-tap" id="tapHear">👆 Toca para escuchar</div>
+    </div>
+    <div class="phrase-card" onclick="speak('¿Me recomienda algo?')">
+      <div class="phrase-es">¿Me recomienda algo?</div>
+      <div class="phrase-en">What do you recommend?</div>
+      <div class="phrase-pron">meh reh-koh-MYEN-dah AL-go</div>
+      <div class="phrase-tap" id="tapHear2">👆 Toca para escuchar</div>
+    </div>
+    <div class="phrase-card" onclick="speak('Sin picante, por favor')">
+      <div class="phrase-es">Sin picante, por favor</div>
+      <div class="phrase-en">Not spicy, please</div>
+      <div class="phrase-pron">seen pee-KAN-teh, por fah-VOR</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+    <div class="phrase-card" onclick="speak('¡Está delicioso!')">
+      <div class="phrase-es">¡Está delicioso!</div>
+      <div class="phrase-en">This is delicious!</div>
+      <div class="phrase-pron">es-TAH deh-lee-SYOH-so</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+
+    <div class="phrase-cat" id="spCatBasic">👋 BÁSICO</div>
+    <div class="phrase-card" onclick="speak('¿Cuánto cuesta?')">
+      <div class="phrase-es">¿Cuánto cuesta?</div>
+      <div class="phrase-en">How much does it cost?</div>
+      <div class="phrase-pron">KWAN-toh KWES-tah</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+    <div class="phrase-card" onclick="speak('Mucho gusto')">
+      <div class="phrase-es">Mucho gusto</div>
+      <div class="phrase-en">Nice to meet you</div>
+      <div class="phrase-pron">MOO-cho GOOS-toh</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+    <div class="phrase-card" onclick="speak('¿Habla inglés?')">
+      <div class="phrase-es">¿Habla inglés?</div>
+      <div class="phrase-en">Do you speak English?</div>
+      <div class="phrase-pron">AH-blah een-GLAYS</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+
+    <div class="phrase-cat" id="spCatBeach">🏖️ EN LA PLAYA</div>
+    <div class="phrase-card" onclick="speak('¿Dónde está la playa?')">
+      <div class="phrase-es">¿Dónde está la playa?</div>
+      <div class="phrase-en">Where is the beach?</div>
+      <div class="phrase-pron">DON-deh es-TAH la PLY-ah</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+    <div class="phrase-card" onclick="speak('Dos cervezas, por favor')">
+      <div class="phrase-es">Dos cervezas, por favor</div>
+      <div class="phrase-en">Two beers, please</div>
+      <div class="phrase-pron">dos ser-VEH-sahs, por fah-VOR</div>
+      <div class="phrase-tap">👆 Toca para escuchar</div>
+    </div>
+
+    <div style="height:20px"></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     PANEL: INSTALL
+═══════════════════════════════════ -->
+<div class="panel" id="panel-install">
+  <div class="phead">
+    <h2 id="instPanelTitle">📲 Guardar en tu teléfono</h2>
+    <button class="close" onclick="closePanel('install')">✕</button>
+  </div>
+  <div class="pbody">
+    <div class="install-steps">
+      <p style="font-size:.8em;color:var(--muted);margin-bottom:16px;line-height:1.5" id="instIntro">
+        Guarda el Acapulco Hub en tu pantalla de inicio. Sin App Store. Funciona sin internet una vez guardado.
+      </p>
+      <div class="install-os">
+        <h3>🍎 iPhone (Safari)</h3>
+        <div class="install-step"><div class="step-num">1</div><div class="step-txt" id="i1">Toca el ícono de <b>Compartir ⎋</b> en la barra inferior de Safari.</div></div>
+        <div class="install-step"><div class="step-num">2</div><div class="step-txt" id="i2">Desplázate y toca <b>"Agregar a pantalla de inicio"</b>.</div></div>
+        <div class="install-step"><div class="step-num">3</div><div class="step-txt" id="i3">Toca <b>Agregar</b> en la esquina superior derecha.</div></div>
+      </div>
+      <div class="install-os">
+        <h3>🤖 Android (Chrome)</h3>
+        <div class="install-step"><div class="step-num">1</div><div class="step-txt" id="i4">Toca el menú de tres puntos <b>⋮</b> en la esquina superior derecha.</div></div>
+        <div class="install-step"><div class="step-num">2</div><div class="step-txt" id="i5">Toca <b>"Instalar app"</b> o <b>"Agregar a pantalla de inicio"</b>.</div></div>
+        <div class="install-step"><div class="step-num">3</div><div class="step-txt" id="i6">Confirma para colocar el ícono en tu pantalla.</div></div>
+      </div>
+      <button class="install-dismiss" onclick="closePanel('install')" id="instGot">✓ Entendido</button>
+    </div>
+  </div>
+</div>
+
 
 <script>
-// ── SLIDESHOW
-var slides=document.querySelectorAll('#hero .slide');
-var dotsEl=document.getElementById('dots');
-var cur=0,timer;
-slides.forEach(function(_,i){
-  var d=document.createElement('span');
-  d.className='dot'+(i===0?' on':'');
-  dotsEl.appendChild(d);
-});
-var dots=dotsEl.querySelectorAll('.dot');
-function go(n){
-  slides[cur].classList.remove('on');dots[cur].classList.remove('on');
-  cur=(n+slides.length)%slides.length;
-  slides[cur].classList.add('on');dots[cur].classList.add('on');
-}
-timer=setInterval(function(){go(cur+1)},4200);
-var sx=0;
-document.getElementById('hero').addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
-document.getElementById('hero').addEventListener('touchend',function(e){
-  var dx=e.changedTouches[0].clientX-sx;
-  if(Math.abs(dx)>40){clearInterval(timer);go(dx<0?cur+1:cur-1);timer=setInterval(function(){go(cur+1)},4200)}
-},{passive:true});
+// ── LANGUAGE ──
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let lang=store.get('hub-lang')||((navigator.language||'es').startsWith('en')?'en':'es');
 
-// ── TRANSLATIONS
-var T={
+const T={
   es:{
-    hTitle:'Acapulco MX',hSub:'Powered by MX Studio',
-    heroH:'Acapulco, México ✝️',heroP:'Bienvenidos · Welcome',
-    secRest:'Restaurante',
-    restName:'El Rincón del Mar',restSub:'Mariscos · Vista al mar · Acapulco',restCta:'Ver menú · See menu',
-    secStay:'Dónde quedarse',
-    hotel1Name:'Hotel Mirador Acapulco',hotel1Sub:'Frente al mar · Zona Dorada · desde $850 MXN',
-    phStay:'Renta tu espacio aquí',phStaySub:'Hotel · Cabaña · Casa · Contacta MX Studio',
-    secAct:'Qué hacer',
-    a1:'La Quebrada — Clavadistas',a2:'Isla Roqueta',a3:'Pie de la Cuesta',
-    a4:'Fuerte de San Diego',a5:'Kayak y paddleboard',a6:'Laguna de Coyuca',a7:'Playa Condesa',
-    secMx:'MX Studio',
-    lblGames:'Juegos en familia',subGames:'Trivia · Memoria · Colorear',
-    lblHabla:'Habla · Aprende inglés',subHabla:'Palabras y frases con audio',
-    waLabel:'Contactar MX Studio por WhatsApp',
-    mxTag:'Acapulco MX Hub · myjefetech.app'
+    tableLabel:'Mesa 07 · Estás aquí',
+    reviewCount:'(640 reseñas Google)',
+    btnMenu:'Ver Menú',btnWA:'WhatsApp Host',btnReview:'Calificar',
+    exploreTitle:'🌊 Explorar Acapulco',exploreSub:'Toca cualquier módulo',
+    modHotLabel:'Dónde quedarse',modHotTitle:'Hoteles & Resorts',modHotSub:'Boutique, Diamante & villas',
+    modActLabel:'Qué hacer',modActTitle:'Actividades',modActSub:'Clavadistas, yates & tours',
+    trivBadge:'🎯 Gana un shot',modTrivLabel:'Mini juego',modTrivTitle:'Trivia de Acapulco',modTrivSub:'3 preguntas · responde todo y gana un shot gratis',
+    modSpLabel:'Aprende en la mesa',modSpTitle:'Español de Sobrevivencia',modSpSub:'Toca para escuchar pronunciación real',
+    installTitle:'Guarda el Hub en tu teléfono',installSub:'Sin App Store · funciona offline',installBtn:'Instalar',
+    menuPanelTitle:'🍽️ Menú Digital',menuLive:'Menú en vivo · precios actuales',
+    catEntradas:'🥗 Entradas',catPlatillos:'🍤 Platillos',catBebidas:'🥤 Bebidas',
+    orderBtn:'💬 Pedir por WhatsApp al mesero',
+    reviewTitle:'⭐ ¿Cómo estuvo?',reviewH:'Califica tu experiencia',
+    reviewP:'Las calificaciones de 4–5 estrellas van directo a Google Maps. Las de 1–3 avisan al gerente en privado.',
+    reviewSubmitTxt:'Enviar calificación',
+    hotelsPanelTitle:'🏨 Dónde Quedarse',hotelsIntro:'Los mejores hoteles y resorts de Acapulco, seleccionados para tu estancia.',
+    h1d:'Villas privadas con alberca en el acantilado con vista al Océano Pacífico. Ultra privado, ultra lujoso.',
+    h2d:'Ícono de la Costera Miguel Alemán, frente al mar, con acceso directo a la bahía.',
+    h3d:'Las icónicas casitas rosas y blancas en la colina con club de playa privado y jeep rosado incluido.',
+    h4d:'Suites elegantes sobre la bahía, piscina infinity y restaurante gourmet con vista panorámica.',
+    actPanelTitle:'⛵ Qué Hacer',activitiesIntro:'Las mejores experiencias de Acapulco, a minutos de aquí.',
+    a1tag:'🏆 TRADICIÓN OBLIGATORIA',a1title:'Clavadistas de La Quebrada',
+    a1desc:'Los clavadistas más famosos del mundo saltan 35 metros al océano en una grieta de roca. Espectáculo de día y noche con antorchas.',
+    a1detail:'Shows: 1:00 PM · 7:30 PM · 8:30 PM · 9:30 PM · 10:30 PM',
+    a2tag:'🌿 ECO & SNORKEL',a2title:'Isla La Roqueta',
+    a2desc:'Lancha de fondo de cristal desde Playa Caleta. Ve la estatua submarina de la Virgen de Guadalupe y haz snorkel en arrecifes naturales.',
+    a2detail:'Sale de Playa Caleta · ~45 min · $200–250 MXN por persona',
+    a3tag:'🌅 ATARDECER',a3title:'Catamárán Bahía de Acapulco',
+    a3desc:'Tour de 2.5 horas por la bahía con barra libre, música en vivo y vistas doradas de la bahía de Santa Lucía al atardecer.',
+    a3detail:'Sale a las 5:30 PM · desde $650 MXN por persona',
+    a4tag:'🎣 AVENTURA',a4title:'Pesca Deportiva',
+    a4desc:'Acapulco es mundialmente famoso por su pesca. Marlín, pez vela, dorado y atún a media hora de la costa.',
+    a4detail:'Yates de 4–8 personas · desde $4,500 MXN · sale 6:00 AM',
+    trivPanelTitle:'🎯 Trivia de Acapulco',
+    spPanelTitle:'🗣️ Español de Sobrevivencia',
+    spIntro:'Toca cualquier tarjeta para escuchar la pronunciación. Perfectas para ordenar, pedir la cuenta o hacer amigos en Acapulco 🌊',
+    spCatOrder:'🍽️ ORDENAR COMIDA',spCatBasic:'👋 BÁSICO',spCatBeach:'🏖️ EN LA PLAYA',
+    tapHear:'👆 Toca para escuchar',
+    instPanelTitle:'📲 Guardar en tu teléfono',
+    instIntro:'Guarda el Acapulco Hub en tu pantalla de inicio. Sin App Store. Funciona sin internet una vez guardado.',
+    i1:'Toca el ícono de <b>Compartir ⎋</b> en la barra inferior de Safari.',
+    i2:'Desplázate y toca <b>"Agregar a pantalla de inicio"</b>.',
+    i3:'Toca <b>Agregar</b> en la esquina superior derecha.',
+    i4:'Toca el menú de tres puntos <b>⋮</b> en la esquina superior derecha.',
+    i5:'Toca <b>"Instalar app"</b> o <b>"Agregar a pantalla de inicio"</b>.',
+    i6:'Confirma para colocar el ícono en tu pantalla.',
+    instGot:'✓ Entendido',
+    reviewHintHigh:'🌟 ¡Genial! Esto va a Google Maps y ayuda al restaurante.',
+    reviewHintLow:'🔒 Esto se envía al gerente en privado. Gracias por tu honestidad.',
+    trivQ:[
+      {q:'¿Cuántos metros de altura saltan los Clavadistas de La Quebrada?',opts:['20 metros','35 metros','50 metros','15 metros'],ans:1},
+      {q:'¿En qué océano está la Bahía de Acapulco?',opts:['Atlántico','Índico','Pacífico','Caribe'],ans:2},
+      {q:'¿Cuál es el plato típico de mariscos más famoso de Acapulco?',opts:['Tacos de pescado','Pozole de mar','Pescado a la talla','Caldo de camarón'],ans:2},
+    ],
+    trivPrize:'🎉 ¡Ganaste! Muéstrale esto a tu mesero para canjear tu shot gratis.',
+    trivRetry:'🔄 Intentar de nuevo',
+    trivScore:'Respuestas correctas',
   },
   en:{
-    hTitle:'Acapulco MX',hSub:'Powered by MX Studio',
-    heroH:'Acapulco, Mexico ✝️',heroP:'Welcome · Bienvenidos',
-    secRest:'Restaurant',
-    restName:'El Rincón del Mar',restSub:'Seafood · Ocean view · Acapulco',restCta:'See menu · Ver menú',
-    secStay:'Places to stay',
-    hotel1Name:'Hotel Mirador Acapulco',hotel1Sub:'Oceanfront · Zona Dorada · from $850 MXN',
-    phStay:'List your place here',phStaySub:'Hotel · Cabin · House · Contact MX Studio',
-    secAct:'Things to do',
-    a1:'La Quebrada — Cliff Divers',a2:'Roqueta Island',a3:'Pie de la Cuesta beach',
-    a4:'Fort San Diego',a5:'Kayak & paddleboard',a6:'Coyuca Lagoon',a7:'Playa Condesa',
-    secMx:'MX Studio',
-    lblGames:'Family games',subGames:'Trivia · Memory · Coloring',
-    lblHabla:'Habla · Learn Spanish',subHabla:'Words and phrases with audio',
-    waLabel:'Contact MX Studio on WhatsApp',
-    mxTag:'Acapulco MX Hub · myjefetech.app'
+    tableLabel:'Table 07 · You Are Here',
+    reviewCount:'(640 Google Reviews)',
+    btnMenu:'View Menu',btnWA:'WhatsApp Host',btnReview:'Rate Us',
+    exploreTitle:'🌊 Explore Acapulco',exploreSub:'Tap any module',
+    modHotLabel:'Where to stay',modHotTitle:'Hotels & Resorts',modHotSub:'Boutique, Diamante & villas',
+    modActLabel:'Things to do',modActTitle:'Activities',modActSub:'Cliff divers, yachts & tours',
+    trivBadge:'🎯 Win a free shot',modTrivLabel:'Mini game',modTrivTitle:'Acapulco Trivia',modTrivSub:'3 questions · get them all right, win a free shot',
+    modSpLabel:'Learn at the table',modSpTitle:'Survival Spanish',modSpSub:'Tap to hear real pronunciation',
+    installTitle:'Save the Hub to your phone',installSub:'No App Store · works offline',installBtn:'Install',
+    menuPanelTitle:'🍽️ Digital Menu',menuLive:'Live menu · current prices',
+    catEntradas:'🥗 Starters',catPlatillos:'🍤 Mains',catBebidas:'🥤 Drinks',
+    orderBtn:'💬 Order via WhatsApp',
+    reviewTitle:'⭐ How was it?',reviewH:'Rate your experience',
+    reviewP:'4–5 star ratings go directly to Google Maps. 1–3 stars privately alert the manager.',
+    reviewSubmitTxt:'Submit rating',
+    hotelsPanelTitle:'🏨 Where to Stay',hotelsIntro:'The best hotels and resorts in Acapulco, curated for your stay.',
+    h1d:'Private cliffside pool villas overlooking the Pacific Ocean. Ultra private, ultra luxury.',
+    h2d:'Icon of Costera Miguel Alemán, beachfront with direct bay access.',
+    h3d:'Iconic pink-and-white hillside casitas with a private beach club and complimentary pink jeep.',
+    h4d:'Elegant suites above the bay, infinity pool and gourmet restaurant with panoramic views.',
+    actPanelTitle:'⛵ Things To Do',activitiesIntro:'The best experiences in Acapulco, minutes from here.',
+    a1tag:'🏆 MUST-SEE TRADITION',a1title:'La Quebrada Cliff Divers',
+    a1desc:"The world's most famous cliff divers leap 35 meters into the ocean from a narrow rock gorge. Day and torch-lit night shows.",
+    a1detail:'Shows: 1:00 PM · 7:30 PM · 8:30 PM · 9:30 PM · 10:30 PM',
+    a2tag:'🌿 ECO & SNORKEL',a2title:'Isla La Roqueta',
+    a2desc:'Glass-bottom boat from Caleta Beach. See the underwater Virgen de Guadalupe statue and snorkel on natural reefs.',
+    a2detail:'Departs Playa Caleta · ~45 min · $200–250 MXN per person',
+    a3tag:'🌅 SUNSET CRUISE',a3title:'Acapulco Bay Catamaran',
+    a3desc:'2.5-hour bay tour with open bar, live music and golden-hour views of Santa Lucía Bay at sunset.',
+    a3detail:'Departs 5:30 PM · from $650 MXN per person',
+    a4tag:'🎣 ADVENTURE',a4title:'Sport Fishing',
+    a4desc:'Acapulco is world-famous for sport fishing. Marlin, sailfish, mahi-mahi and tuna 30 minutes offshore.',
+    a4detail:'4–8 person yachts · from $4,500 MXN · departs 6:00 AM',
+    trivPanelTitle:'🎯 Acapulco Trivia',
+    spPanelTitle:'🗣️ Survival Spanish',
+    spIntro:'Tap any card to hear the pronunciation. Perfect for ordering, asking for the check, or making friends in Acapulco 🌊',
+    spCatOrder:'🍽️ ORDERING FOOD',spCatBasic:'👋 BASICS',spCatBeach:'🏖️ AT THE BEACH',
+    tapHear:'👆 Tap to hear',
+    instPanelTitle:'📲 Save to Your Phone',
+    instIntro:'Save the Acapulco Hub to your home screen. No App Store. Works offline once saved.',
+    i1:'Tap the <b>Share icon ⎋</b> at the bottom of Safari.',
+    i2:'Scroll down and tap <b>"Add to Home Screen"</b>.',
+    i3:'Tap <b>Add</b> in the top-right corner.',
+    i4:'Tap the three-dot menu <b>⋮</b> in the top-right corner.',
+    i5:'Tap <b>"Install app"</b> or <b>"Add to Home Screen"</b>.',
+    i6:'Confirm to place the icon on your home screen.',
+    instGot:'✓ Got It',
+    reviewHintHigh:'🌟 Awesome! This goes to Google Maps and helps the restaurant.',
+    reviewHintLow:'🔒 This is sent privately to the manager. Thank you for your honesty.',
+    trivQ:[
+      {q:'How many meters do the La Quebrada cliff divers jump?',opts:['20 meters','35 meters','50 meters','15 meters'],ans:1},
+      {q:'Which ocean is Acapulco Bay on?',opts:['Atlantic','Indian','Pacific','Caribbean'],ans:2},
+      {q:'What is the most famous traditional seafood dish from Acapulco?',opts:['Fish tacos','Seafood pozole','Pescado a la talla','Shrimp broth'],ans:2},
+    ],
+    trivPrize:'🎉 You won! Show this to your server to claim your free shot.',
+    trivRetry:'🔄 Try again',
+    trivScore:'Correct answers',
   }
 };
-function setLang(l){
-  var t=T[l];
-  Object.keys(t).forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=t[id]});
-  document.getElementById('esBtn').classList.toggle('on',l==='es');
-  document.getElementById('enBtn').classList.toggle('on',l==='en');
+
+function t(key){return T[lang][key]||T['es'][key]||''}
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.getElementById('langSw').className='lang-sw'+(lang==='en'?' en':'');
+  document.querySelectorAll('#langSw button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false'));
+  const ids=['tableLabel','reviewCount','btnMenu','btnWA','btnReview','exploreTitle','exploreSub',
+    'modHotLabel','modHotTitle','modHotSub','modActLabel','modActTitle','modActSub',
+    'trivBadge','modTrivLabel','modTrivTitle','modTrivSub','modSpLabel','modSpTitle','modSpSub',
+    'installTitle','installSub','installBtn',
+    'menuPanelTitle','menuLive','catEntradas','catPlatillos','catBebidas','orderBtn',
+    'reviewTitle','reviewH','reviewP','reviewSubmitTxt',
+    'hotelsPanelTitle','hotelsIntro','h1d','h2d','h3d','h4d',
+    'actPanelTitle','activitiesIntro','a1tag','a1title','a1desc','a1detail',
+    'a2tag','a2title','a2desc','a2detail','a3tag','a3title','a3desc','a3detail',
+    'a4tag','a4title','a4desc','a4detail',
+    'trivPanelTitle','spPanelTitle','spIntro','spCatOrder','spCatBasic','spCatBeach','tapHear',
+    'instPanelTitle','instIntro','i1','i2','i3','i4','i5','i6','instGot'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el){const v=t(id);if(v)el.innerHTML=v}});
+  renderTrivia();
 }
-(function(){
-  var pl=(navigator.language||'es').toLowerCase();
-  if(pl.startsWith('en'))setLang('en');
-})();
+
+document.getElementById('langSw').addEventListener('click',e=>{
+  const b=e.target.closest('[data-l]');if(!b)return;
+  lang=b.dataset.l;store.set('hub-lang',lang);applyLang();
+});
+
+// ── PANELS ──
+function openPanel(id){
+  document.getElementById('panel-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+  if(id==='trivia')renderTrivia();
+}
+function closePanel(id){
+  document.getElementById('panel-'+id).classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ── WHATSAPP ──
+function openWhatsApp(){
+  window.open('https://api.whatsapp.com/send?phone=527441930502&text='+encodeURIComponent('Hola, estoy en Mesa 07 de Mariscos La Perla Azul. Quisiera ordenar...'),'_blank');
+}
+// wire hero WA button
+document.querySelector('.hbtn.w').onclick=()=>{
+  window.open('https://api.whatsapp.com/send?phone=527441930502&text='+encodeURIComponent('Hola, estoy en Mesa 07. ¿Me pueden atender?'),'_blank');
+};
+
+// ── REVIEW ──
+let selectedStars=0;
+function setStar(n){
+  selectedStars=n;
+  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('on',i<n));
+  const hint=document.getElementById('reviewHint');
+  const submit=document.getElementById('reviewSubmit');
+  if(n>=4){hint.textContent=t('reviewHintHigh');hint.className='review-hint pub';}
+  else{hint.textContent=t('reviewHintLow');hint.className='review-hint priv';}
+  submit.style.display='block';
+}
+function submitReview(){
+  if(selectedStars>=4){
+    window.open('https://search.google.com/local/writereview?placeid=ChIJexample','_blank');
+  }
+  closePanel('review');
+  selectedStars=0;
+  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('reviewSubmit').style.display='none';
+  document.getElementById('reviewHint').textContent='';
+}
+
+// ── TRIVIA ──
+let trivAnswers={},trivDone=false;
+function renderTrivia(){
+  const qs=t('trivQ');if(!qs)return;
+  const body=document.getElementById('triviaBody');
+  const correct=Object.values(trivAnswers).filter(v=>v===true).length;
+  let html='<div class="trivia-wrap">';
+  if(trivDone){
+    html+=`<div class="trivia-score"><div class="sc">${correct}/3</div><div class="sc-label">${t('trivScore')}</div></div>`;
+    if(correct===3){
+      html+=`<div class="trivia-prize"><div class="trophy">🥃</div><h3>${t('trivPrize')}</h3><p style="font-size:.8em;margin-top:6px;color:var(--gold)">✝️ MX Studio · Acapulco Hub</p></div>`;
+    }
+  }
+  qs.forEach((q,qi)=>{
+    const answered=trivAnswers[qi]!==undefined;
+    html+=`<div class="q-card"><div class="q-num">Pregunta ${qi+1} de 3</div><div class="q-text">${q.q}</div><div class="q-opts">`;
+    q.opts.forEach((opt,oi)=>{
+      let cls='q-opt';
+      if(answered){cls+=(oi===q.ans?' correct':(trivAnswers[qi]===false&&oi===_wrongChoice[qi]?' wrong':''));};
+      html+=`<button class="${cls}" ${answered||trivDone?'disabled':''} onclick="answerTrivia(${qi},${oi},${q.ans})">${opt}</button>`;
+    });
+    html+='</div></div>';
+  });
+  if(trivDone){
+    html+=`<button class="trivia-reset" onclick="resetTrivia()">${t('trivRetry')}</button>`;
+  }
+  html+='</div>';
+  body.innerHTML=html;
+}
+const _wrongChoice={};
+function answerTrivia(qi,chosen,correct){
+  const isCorrect=chosen===correct;
+  trivAnswers[qi]=isCorrect;
+  if(!isCorrect)_wrongChoice[qi]=chosen;
+  if(Object.keys(trivAnswers).length===3)trivDone=true;
+  renderTrivia();
+}
+function resetTrivia(){trivAnswers={};trivDone=false;renderTrivia();}
+
+// ── SPEECH ──
+function speak(text){
+  if(!window.speechSynthesis)return;
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='es-MX';u.rate=0.85;u.pitch=1;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+// init
+applyLang();
 </script>
+</body>
+</html>
