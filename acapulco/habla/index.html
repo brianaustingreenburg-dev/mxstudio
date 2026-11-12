@@ -84,11 +84,32 @@ button:focus-visible{outline:3px solid var(--marigold);outline-offset:2px}
 .list .tx small{color:var(--muted)}
 .back{display:inline-flex;align-items:center;gap:6px;color:var(--cobalt);font:700 .9rem var(--body);text-decoration:none;padding:6px 0}
 .back[hidden]{display:none}
+/* MX Studio powered-by badge */
+.powered{text-align:center;margin-bottom:4px}
+.powered a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted)}
+.pw-label{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.pw-brand{font-family:var(--display);font-weight:800;font-size:.95rem;color:var(--cobalt)}
+/* TikTok unlock modal */
+.tt-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.tt-sheet{background:var(--surface);border-radius:24px 24px 0 0;padding:28px 24px 40px;max-width:480px;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.tt-sheet h3{font-family:var(--display);font-size:1.4rem;font-weight:800;margin:0}
+.tt-sheet p{color:var(--muted);font-size:.93rem;margin:0;line-height:1.45}
+.tt-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;width:100%;text-align:left}
+.tt-steps li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem}
+.tt-steps li span:first-child{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--cobalt);color:var(--surface);font-weight:800;font-size:.75rem;display:grid;place-items:center}
+.tt-btn-tt{display:inline-flex;align-items:center;gap:8px;background:#010101;color:#fff;font:700 .95rem var(--body);border:0;padding:13px 22px;border-radius:12px;cursor:pointer;width:100%;justify-content:center}
+.tt-btn-skip{background:none;border:0;color:var(--muted);font:.85rem var(--body);cursor:pointer;text-decoration:underline}
 @media (prefers-reduced-motion:reduce){.pic.big{animation:none}}
 </style>
 
 <div class="wrap">
   <a class="back" id="back" href="#" hidden>‹ <span id="backLbl">Volver</span></a>
+  <div class="powered">
+    <a href="https://go.myjefetech.app" target="_blank" rel="noopener" aria-label="MX Studio">
+      <span class="pw-label">Powered by</span>
+      <span class="pw-brand">MX Studio ✝</span>
+    </a>
+  </div>
   <header>
     <div>
       <h1>Habla<span>.</span></h1>
@@ -283,15 +304,25 @@ function renderQuiz(){
   const st=document.getElementById("stage");
   if(Q.q>=Q.order.length){
     const pct=Math.round(Q.score/Q.order.length*100);
-    const msg=pct>=80?(es?"Excellent! Ready for the next level.":"¡Excelente! Listo para el siguiente nivel."):
+    const passed=pct>=80;
+    const msg=passed?(es?"Excellent! Ready for the next level.":"¡Excelente! Listo para el siguiente nivel."):
               pct>=50?(es?"Good progress. Review the word list and try again.":"Buen progreso. Repasa la lista y vuelve a intentarlo."):
               (es?"Keep practicing with the Learn cards first.":"Sigue practicando primero con las tarjetas.");
-    st.innerHTML=`<div class="pic" aria-hidden="true">${pct>=80?"🏆":pct>=50?"⭐":"💪"}</div>
+    // TikTok unlock: show when passed level 1 or 2 (not already on 3)
+    const showTT=passed&&S.level<3;
+    st.innerHTML=`<div class="pic" aria-hidden="true">${passed?"🏆":pct>=50?"⭐":"💪"}</div>
       <p class="target">${Q.score} / ${Q.order.length}</p><div class="native">${msg}</div>
       <div class="row"><button class="btn primary" id="b-again">${es?"Try again":"Otra vez"}</button>
-      ${S.level<3?`<button class="btn warm" id="b-up">${es?"Go to level":"Ir al nivel"} ${S.level+1} →</button>`:""}</div>`;
+      ${S.level<3?`<button class="btn warm" id="b-up">${es?"Go to level":"Ir al nivel"} ${S.level+1} →</button>`:""}</div>
+      ${showTT?`<div class="tt-cta" style="width:100%;border-top:1px solid var(--line);padding-top:16px;text-align:center">
+        <p style="font-size:.82rem;color:var(--muted);margin:0 0 10px">${es?"🎉 ¡Pasaste! Desbloquea el Nivel "+(S.level+1)+" gratis:":"🎉 You passed! Unlock Level "+(S.level+1)+" free:"}</p>
+        <button class="btn warm" id="b-tt" style="width:100%;justify-content:center">${es?"📲 Comparte tu certificado en TikTok → Nivel "+(S.level+1)+" gratis":"📲 Share your certificate on TikTok → Free Level "+(S.level+1)}</button>
+      </div>`:""}`;
     document.getElementById("b-again").onclick=()=>{newQuiz();render();};
     const up=document.getElementById("b-up");if(up)up.onclick=()=>{S.level++;S.idx=0;S.mode="learn";S.quiz=null;save();render();};
+    if(showTT){
+      document.getElementById("b-tt").onclick=()=>showTikTokUnlock(es,S.level+1);
+    }
     return;
   }
   const ans=Q.order[Q.q];
@@ -318,6 +349,48 @@ function renderQuiz(){
     const nx=document.getElementById("q-next");nx.hidden=false;nx.focus();
     nx.onclick=()=>{Q.q++;Q.answered=false;Q.opts=null;render();};
   });
+}
+
+/* ---------- TikTok unlock ---------- */
+const TT_HANDLE="@mxstudio"; // ← update when account is live
+const TT_URL="https://www.tiktok.com/"+TT_HANDLE.replace("@","@");
+function showTikTokUnlock(es,nextLevel){
+  const overlay=document.createElement("div");
+  overlay.className="tt-overlay";
+  overlay.setAttribute("role","dialog");
+  overlay.setAttribute("aria-modal","true");
+  const msgEs=`¡Acabo de aprobar el Nivel ${nextLevel-1} en Habla × MX Studio! 🏆\n¿Ya aprendes inglés o español con nosotros? 👇\ngo.myjefetech.app/habla`;
+  const msgEn=`I just passed Level ${nextLevel-1} on Habla × MX Studio! 🏆\nLearning English or Spanish with us? 👇\ngo.myjefetech.app/habla`;
+  const msg=es?msgEs:msgEn;
+  overlay.innerHTML=`<div class="tt-sheet">
+    <div style="font-size:2.2rem">🎵</div>
+    <h3>${es?"¡Desbloquea el Nivel "+nextLevel+" gratis!":"Unlock Level "+nextLevel+" Free!"}</h3>
+    <p>${es?"Comparte tu logro en TikTok y te desbloqueamos el siguiente nivel. Así de fácil.":"Share your achievement on TikTok and we'll unlock your next level. That simple."}</p>
+    <ol class="tt-steps">
+      <li><span>1</span><span>${es?"Copia el mensaje de abajo":"Copy the message below"}</span></li>
+      <li><span>2</span><span>${es?"Publica en TikTok y etiqueta <b>${TT_HANDLE}</b>":"Post on TikTok and tag <b>${TT_HANDLE}</b>"}</span></li>
+      <li><span>3</span><span>${es?"Envíanos el enlace por WhatsApp y activamos tu nivel":"Send us the link on WhatsApp and we activate your level"}</span></li>
+    </ol>
+    <textarea id="tt-msg" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;font-size:.82rem;background:var(--cobalt-soft);color:var(--ink);resize:none;min-height:72px">${msg}</textarea>
+    <button class="btn primary" id="tt-copy" style="width:100%;justify-content:center">${es?"📋 Copiar mensaje":"📋 Copy message"}</button>
+    <a class="tt-btn-tt" href="${TT_URL}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-4.77-4.32V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.84a8.17 8.17 0 0 0 4.77 1.52V6.9a4.84 4.84 0 0 1-1-.21z"/></svg>
+      ${es?"Ir a TikTok ("+TT_HANDLE+")":"Go to TikTok ("+TT_HANDLE+")"}
+    </a>
+    <button class="tt-btn-skip" id="tt-skip">${es?"Ahora no, ir al nivel sin TikTok →":"Not now, go to level without TikTok →"}</button>
+  </div>`;
+  document.body.appendChild(overlay);
+  document.getElementById("tt-copy").onclick=()=>{
+    const ta=document.getElementById("tt-msg");
+    navigator.clipboard.writeText(ta.value).then(()=>{
+      document.getElementById("tt-copy").textContent=es?"✓ Copiado!":"✓ Copied!";
+    }).catch(()=>{ta.select();document.execCommand("copy");});
+  };
+  document.getElementById("tt-skip").onclick=()=>{
+    overlay.remove();
+    S.level=nextLevel;S.idx=0;S.mode="learn";S.quiz=null;save();render();
+  };
+  overlay.addEventListener("click",e=>{if(e.target===overlay){overlay.remove();}});
 }
 
 document.querySelectorAll("#dir button").forEach(b=>b.onclick=()=>{S.dir=b.dataset.dir;S.quiz=null;save();render();});
