@@ -104,6 +104,17 @@ h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0
 .wf{background:#f4ede5;border-radius:14px;padding:12px 14px;margin-top:10px}.wf small{display:block;color:#776a63;font-size:12px;font-weight:700}.wf b{font-size:19px;word-break:break-all}.wp{font-family:ui-monospace,Menlo,monospace;letter-spacing:.5px}.wh{font-size:13.5px;color:#5c514b;margin-top:12px;line-height:1.45}
 .acts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:14px}
 .btn.g{background:#f0e6da;color:var(--ink)}
+.btn.b-g{background:#1a6e3c;color:#fff}
+.tip-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.tip-btn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:11px 6px;border-radius:12px;border:1.5px solid var(--line);font-weight:800;font-size:14px}
+.tip-btn.on{border-color:var(--c);background:var(--c);color:#fff}
+.tip-custom{margin-top:4px;display:none}
+.tip-custom.on{display:block}
+.hotel-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.hotel-btn{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:11px 6px;border-radius:12px;border:1.5px solid var(--line);font-weight:700;font-size:13px}
+.chk-tot{background:var(--c);color:#fff;border-radius:14px;padding:14px;margin:12px 0;text-align:center}
+.chk-tot .big{font-size:1.5em;font-weight:900;display:block;margin:4px 0}
+.chk-sec{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
 .empty{color:var(--muted);text-align:center;padding:30px}
 .inst{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:22px}
 .inst h3{font-size:17px;font-weight:800}
@@ -157,7 +168,20 @@ const U={
   pop:"⭐ Most popular",demo:"DEMO · MX STUDIO",demoFoot:"Demo by MX Studio ✝ · Sample menu and photos",
   iT:"📲 Save this app to your phone",iP:"Open it from your home screen, even offline.",iBtn:"Install now",
   ios:["Open this page in <b>Safari</b>.","Tap the <b>Share</b> button (square with ↑ arrow).","Choose <b>Add to Home Screen</b>, then tap <b>Add</b>."],
-  and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>."]}
+  and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>."]},
+ checkT:"Pedir la cuenta",checkTen:"Request the check",
+ tipT:"¿Cuánto de propina?",tipTen:"How much tip?",
+ tipNone:"Sin propina",tipNoneen:"No tip",
+ subtotal:"Subtotal",subtotalen:"Subtotal",
+ tipLine:"Propina",tipLineen:"Tip",
+ totalLine:"Total",totalLineen:"Total",
+ checkDone:"El mesero viene en camino 🙋",checkDoneen:"Your waiter is on the way 🙋",
+ checkReview:"¿Te gustó? Déjanos tu reseña en Google",checkReviewen:"Enjoyed it? Leave a Google review",
+ roomTitle:"¿Quedarte una noche más?",roomTitleen:"Stay another night?",
+ room1:"1 noche",room1en:"1 night",
+ room2:"2 noches",room2en:"2 nights",
+ roomMore:"Más noches",roomMoreen:"More nights",
+ roomSent:"Tu solicitud fue enviada a Alfonso por WhatsApp ✅",roomSenten:"Your request was sent to Alfonso via WhatsApp ✅"
 };
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -168,6 +192,9 @@ const money=n=>cur==="usd"||cur==="cad"?(cur==="usd"?"US$":"CA$")+(Math.round(Nu
 const KEY="app-"+(D.slug||"x");
 try{if(!localStorage.getItem(KEY+"-menu-v180")){localStorage.removeItem(KEY+"-menu");localStorage.setItem(KEY+"-menu-v180","1")}}catch(_){}
 let lang="es",cart={},how="p",where="t",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
+// persist running tab across page reloads / phone screen-lock
+function saveTab(){try{localStorage.setItem(KEY+"-tab",JSON.stringify(cart))}catch(_){}}
+function loadTab(){try{const t=JSON.parse(localStorage.getItem(KEY+"-tab")||"{}");if(t&&typeof t==="object")cart=t}catch(_){}}
 const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;os="and";if(typeof render==="function")render()});
 try{lang=localStorage.getItem(KEY+"-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
@@ -216,7 +243,8 @@ function render(){
  const cnt=Object.values(cart).reduce((a,b)=>a+b,0),tot=items().reduce((s,it)=>s+(cart[it.id]||0)*(+it.price||0),0);
  const bb=[];
  if(canOrder())bb.push(`<button class="btn b-c" data-a="cart">${D.carryout&&!D.waiter?"🛍️ "+u.order:"📝 "+u.myList}${cnt?` (${cnt}) · ${money(tot)}`:""}</button>`);
- if(D.reservations)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
+ if(D.waiter&&cnt>0)bb.push(`<button class="btn b-g" data-a="check">🧾 ${lang==="en"?u.checkTen:u.checkT}</button>`);
+ if(D.reservations&&!cnt)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
  $("bar").innerHTML=bb.join("");$("bar").style.display=bb.length?"":"none";
  $("inst").style.display=standalone?"none":"";
  $("inst").innerHTML=`<h3>${u.iT}</h3><p>${u.iP}</p><div class="os"><button data-os="ios" class="${os==="ios"?"on":""}">iPhone</button><button data-os="and" class="${os==="and"?"on":""}">Android</button></div>
@@ -256,6 +284,56 @@ function openAct(){
  <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button><button class="btn b-wa" data-x="asend">${u.aSend}</button></div>`;
  $("sheet").classList.add("on");
 }
+function openCheck(){
+ const en=lang==="en",u=U[lang];
+ const its=items().filter(it=>cart[it.id]);
+ const sub=its.reduce((s,it)=>s+(cart[it.id]||0)*(+it.price||0),0);
+ const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
+ let tipPct=15;
+ function renderCheck(customTip){
+  const tip=customTip!=null?customTip:Math.round(sub*tipPct/100);
+  const total=sub+tip;
+  const tipOpts=[0,10,15,20];
+  $("box").innerHTML=`
+   <h3>🧾 ${en?u.checkTen:u.checkT}</h3>
+   ${its.map(it=>`<div class="line"><span>${cart[it.id]} × ${esc(tx(it.name))}</span><span>${money(cart[it.id]*(+it.price||0))}</span></div>`).join("")}
+   <div class="line" style="border-top:1.5px dashed var(--line);margin-top:8px;padding-top:8px"><span>${en?u.subtotalen:u.subtotal}</span><span>${money(sub)}</span></div>
+   <div class="chk-sec">${en?u.tipTen:u.tipT}</div>
+   <div class="tip-row">
+    ${tipOpts.map(p=>`<button class="tip-btn${tipPct===p&&customTip==null?" on":""}" data-tip="${p}">${p===0?(en?u.tipNoneen:u.tipNone):p+"%"}</button>`).join("")}
+   </div>
+   <div class="tip-custom${customTip!=null?" on":""}">
+    <input id="tipInput" type="number" min="0" placeholder="$ ${en?"custom":"personalizada"}" style="width:100%;padding:10px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:14px" value="${customTip!=null?customTip:""}">
+   </div>
+   <div class="line"><span>${en?u.tipLineen:u.tipLine}</span><span>${money(tip)}</span></div>
+   <div class="chk-tot"><span style="opacity:.8;font-size:.8em">${en?u.totalLineen:u.totalLine}</span><span class="big">${money(total)}</span></div>
+   ${D.hotel!==false?`<div class="chk-sec">🛏️ ${en?u.roomTitleen:u.roomTitle}</div>
+   <div class="hotel-row">
+    <button class="hotel-btn" data-room="1">🌙 ${en?u.room1en:u.room1}</button>
+    <button class="hotel-btn" data-room="2">🌙🌙 ${en?u.room2en:u.room2}</button>
+    <button class="hotel-btn" data-room="3+">🌙+ ${en?u.roomMoreen:u.roomMore}</button>
+   </div>`:""}
+   ${pid?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener" style="margin:10px 0 4px;display:block">⭐ ${en?u.checkReviewen:u.checkReview}</a>`:""}
+   <div class="acts" style="grid-template-columns:1fr 2fr">
+    <button class="btn g" data-x="close">${en?"Close":"Cerrar"}</button>
+    <button class="btn b-g" data-x="checkdone">🙋 ${en?"Waiter is coming":"El mesero viene"}</button>
+   </div>`;
+  $("sheet").classList.add("on");
+  // tip percent buttons
+  $("box").querySelectorAll("[data-tip]").forEach(b=>{b.onclick=()=>{tipPct=+b.dataset.tip;renderCheck(null)}});
+  // hotel room buttons
+  $("box").querySelectorAll("[data-room]").forEach(b=>{b.onclick=()=>{
+   const nights=b.dataset.room;
+   const wa_msg=en?`Hi Alfonso! I'd like to book ${nights} more night(s) at Casa Axolotl. I'm currently at the restaurant. Please confirm. 🏨`:`¡Hola Alfonso! Me gustaría reservar ${nights} noche(s) más en Casa Axolotl. Ahora estoy en el restaurante. Por favor confirma. 🏨`;
+   open(`https://api.whatsapp.com/send?phone=${D.whatsapp}&text=${encodeURIComponent(wa_msg)}`,"_blank");
+   b.textContent="✅ "+b.textContent;b.style.borderColor="var(--c)";b.style.background="rgba(201,146,42,.1)";
+  }});
+  // custom tip input
+  const ti=$("tipInput");if(ti){ti.oninput=()=>{const v=parseInt(ti.value)||0;renderCheck(v)};
+   ti.onfocus=()=>{if(customTip==null){tipPct=-1;renderCheck(0)};}}
+ }
+ renderCheck(null);
+}
 function openRes(){
  const u=U[lang];const d=new Date().toISOString().slice(0,10);
  $("box").innerHTML=`<h3>${u.rT}</h3><div class="two"><div><label>${u.people}</label><select id="rP">${[1,2,3,4,5,6,7,8,10,12,15,20].map(n=>`<option ${n===2?"selected":""}>${n}</option>`).join("")}</select></div><div><label>${u.rtime}</label><input id="rT" type="time" value="20:00"></div></div>
@@ -270,8 +348,8 @@ document.addEventListener("click",e=>{
  if(e.target.closest("[data-inst]")&&deferred){deferred.prompt();deferred=null;render();return}
  const c=e.target.closest(".cat");if(c){CAT=+c.dataset.c;render();const y=$("menu").getBoundingClientRect().top+scrollY-$("cats").offsetHeight-10;if(CAT>=0||scrollY>y)scrollTo({top:y,behavior:"smooth"});return}
  const a=e.target.closest("[data-a]");
- if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="wifi")return openWifi();if(k==="act")return openAct();if(k==="cart")return openCart();cart[k]=(cart[k]||0)+1;render();return}
- const d=e.target.closest("[data-d]");if(d){cart[d.dataset.d]--;if(!cart[d.dataset.d])delete cart[d.dataset.d];render();return}
+ if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="wifi")return openWifi();if(k==="act")return openAct();if(k==="cart")return openCart();if(k==="check")return openCheck();cart[k]=(cart[k]||0)+1;saveTab();render();return}
+ const d=e.target.closest("[data-d]");if(d){cart[d.dataset.d]--;if(!cart[d.dataset.d])delete cart[d.dataset.d];saveTab();render();return}
  const h=e.target.closest("[data-how]");if(h){how=h.dataset.how;openCart();return}
  const wh=e.target.closest("[data-where]");if(wh){where=wh.dataset.where;openCart();return}
  const tg=e.target.closest("[data-opt]");if(tg){const k=tg.dataset.opt;D[k]=!D[k];if(!canOrder())cart={};render();return}
@@ -280,10 +358,12 @@ document.addEventListener("click",e=>{
  const x=e.target.closest("[data-x]");if(!x)return;const u=U[lang];
  if(x.dataset.x==="close")return $("sheet").classList.remove("on");
  if(x.dataset.x==="bill")return billStart();
+ if(x.dataset.x==="checkdone"){const en=lang==="en",u=U[lang];$("sheet").classList.remove("on");const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];$("box").innerHTML=`<div style="text-align:center;padding:20px 10px"><div style="font-size:48px">🙋</div><h3 style="margin:10px 0 6px">${en?u.checkDoneen:u.checkDone}</h3><p style="color:var(--muted);font-size:.9em">${en?"Thank you for visiting Casa Axolotl ✝️":"Gracias por visitar Casa Axolotl ✝️"}</p>${pid?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener" style="margin-top:16px;display:block">⭐ ${en?u.checkReviewen:u.checkReview}</a>`:""}
+ <button class="btn g" style="margin-top:12px;width:100%" data-x="close">${en?"Close":"Cerrar"}</button></div>`;$("sheet").classList.add("on");return;}
  if(x.dataset.x==="stf"){const i=+x.dataset.i;return i>=0?billRate(i):billIssue(-1,0)}
  if(x.dataset.x==="rate")return billIssue(+x.dataset.i,+x.dataset.s);
  if(x.dataset.x==="cpn"){const c=cpnGet();if(c)cpnView(c,false);return}
- if(x.dataset.x==="clear"){cart={};render();$("sheet").classList.remove("on");return}
+ if(x.dataset.x==="clear"){cart={};saveTab();render();$("sheet").classList.remove("on");return}
  if(x.dataset.x==="show"){const u=U[lang],its=items().filter(it=>cart[it.id]),m=new URLSearchParams(location.search).get("mesa");
   $("show").innerHTML=`<div class="sw"><small>${esc(D.name)}</small>${m?`<div class="sm">${u.mesa} ${esc(m)}</div>`:""}${its.map(it=>`<div class="si"><b>${cart[it.id]}×</b><span>${esc(tx(it.name))}</span></div>`).join("")}<p>${u.showT}<br><i>${u.showS}</i></p><em>${u.showX}</em></div>`;
   $("sheet").classList.remove("on");$("show").classList.add("on");return}
@@ -350,7 +430,7 @@ if(!D.demo)fetch("special.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r
 // live menu (edited from Rutas → ✏️ Editar menú) → menu.json
 if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if(Array.isArray(m)&&m.length)D.menu=m}catch(_){}
  fetch("menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(m=>{if(Array.isArray(m)&&m.length){D.menu=m;try{localStorage.setItem(KEY+"-menu",JSON.stringify(m))}catch(_){}render()}}).catch(()=>{})}
-render();
+loadTab();render();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){navigator.serviceWorker.register("../../sw.js").catch(()=>{})}
 
 window.MXG={slug:(location.pathname.match(/\/c\/([^/]+)/)||[])[1]||"app",name:D.name,lang:()=>lang,lib:(location.pathname.includes("/c/")?"../../lib/":"../lib/"),url:location.origin+location.pathname};
