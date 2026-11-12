@@ -186,6 +186,42 @@ body.is-off .off{display:block}
   <div class="sec"><small data-t="fK"></small><h2 data-t="fH"></h2></div>
   <div class="faq" id="faq"></div>
 
+  <section class="plan" style="margin-top:16px;border-color:rgba(201,146,42,.35)">
+    <div class="pname" id="mpKicker">Marketing</div>
+    <div class="ptitle" id="mpTitle">Aparece en otros hubs</div>
+    <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-top:8px" id="mpDesc">¿Tu restaurante quiere aparecer en el hub de un hotel? ¿Tu hotel quiere estar en el hub de otro negocio? Paga una vez al mes y te ponemos donde están tus clientes.</p>
+    <div class="prices" style="margin-top:16px">
+      <div class="pbox"><b id="mpPrice">$150</b><span style="font-size:13px;opacity:.7" id="mpPer"> USD / mes</span></div>
+    </div>
+    <ul class="feats" style="margin-top:14px">
+      <li id="mp1">✔ Apareces en el hub que elijas</li>
+      <li id="mp2">✔ Llega a clientes que ya están ahí</li>
+      <li id="mp3">✔ Restaurantes, hoteles, actividades, clubs</li>
+      <li id="mp4">✔ Cancela cuando quieras</li>
+    </ul>
+    <div class="tax" id="mpTax" style="margin-top:12px">$150 USD por hub · se cobra en efectivo · disponible para cualquier negocio con app MX Studio</div>
+    <button class="cta" style="margin-top:16px;width:100%" onclick="window.open('https://wa.me/527441930502?text='+encodeURIComponent(document.getElementById('mpWA').dataset.msg),'_blank')" id="mpBtn">📲 Quiero aparecer en otro hub</button>
+    <span id="mpWA" data-msg="Hola Brian, quiero agregar mi negocio a otro hub. ¿Me explicas cómo funciona?" hidden></span>
+  </section>
+  <script>
+  (function(){
+    const MP={
+      es:{kicker:"Marketing",title:"Aparece en otros hubs",desc:"¿Tu restaurante quiere aparecer en el hub de un hotel? ¿Tu hotel quiere estar en el hub de otro negocio? Paga una vez al mes y te ponemos donde están tus clientes.",per:" USD / mes",f1:"✔ Apareces en el hub que elijas",f2:"✔ Llega a clientes que ya están ahí",f3:"✔ Restaurantes, hoteles, actividades, clubs",f4:"✔ Cancela cuando quieras",tax:"$150 USD por hub · se cobra en efectivo · disponible para cualquier negocio con app MX Studio",btn:"📲 Quiero aparecer en otro hub",wa:"Hola Brian, quiero agregar mi negocio a otro hub. ¿Me explicas cómo funciona?"},
+      en:{kicker:"Marketing",title:"Get listed on other hubs",desc:"Want your restaurant on a hotel hub? Want your hotel on a restaurant hub? Pay once a month and we put you where your customers already are.",per:" USD / mo",f1:"✔ Listed on the hub of your choice",f2:"✔ Reach customers who are already there",f3:"✔ Restaurants, hotels, activities, beach clubs",f4:"✔ Cancel any time",tax:"$150 USD per hub · collected in cash · available for any MX Studio app business",btn:"📲 Get listed on another hub",wa:"Hi Brian, I want to add my business to another hub. How does it work?"}
+    };
+    function mpRender(){
+      const l=window.lang||"es",m=MP[l]||MP.es;
+      ["mpKicker","mpTitle","mpDesc","mpPer","mp1","mp2","mp3","mp4","mpTax","mpBtn"].forEach(id=>{
+        const k=id.replace("mp","").replace(/^K/,"kicker").replace(/^T(?!a)/,"title").replace(/^D/,"desc").replace(/^P/,"per").replace(/^[1-4]$/,n=>"f"+n).replace(/^Ta/,"tax").replace(/^B/,"btn");
+        const el=document.getElementById(id);if(el)el.textContent=m[{mpKicker:"kicker",mpTitle:"title",mpDesc:"desc",mpPer:"per",mp1:"f1",mp2:"f2",mp3:"f3",mp4:"f4",mpTax:"tax",mpBtn:"btn"}[id]]||"";
+      });
+      const wa=document.getElementById("mpWA");if(wa)wa.dataset.msg=m.wa;
+    }
+    const _r=window.render;window.render=function(){_r&&_r.apply(this,arguments);mpRender();};
+    document.addEventListener("DOMContentLoaded",mpRender);
+  })();
+  </script>
+
   <footer class="foot"><b>MX Studio ✝</b> · Acapulco, Guerrero<br>WhatsApp +52 744 193 0502</footer>
 </div>
 
