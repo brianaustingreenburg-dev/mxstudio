@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Actividades · AcaFree</title>
+<title>Actividades · AcáFree</title>
 <meta name="theme-color" content="#1a1a2e">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 <style>
@@ -18,7 +18,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(-
 
 /* header */
 .topbar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--navylt);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
-.back{background:none;border:none;color:var(--yellow);font-size:1.3rem;cursor:pointer;padding:0 4px;line-height:1;-webkit-tap-highlight-color:transparent}
+.back{background:none;border:none;color:var(--yellow);font-size:1.3rem;cursor:pointer;padding:0 4px;line-height:1;-webkit-tap-highlight-color:transparent;text-decoration:none}
 .topbar-logo{width:40px;height:40px;object-fit:contain;border-radius:8px;background:var(--yellow);flex-shrink:0}
 .topbar h1{font-size:1rem;font-weight:800;color:var(--text);flex:1;line-height:1.1}
 .topbar h1 span{display:block;font-size:.65rem;font-weight:400;color:var(--wave);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
@@ -59,14 +59,14 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(-
 
 <div class="topbar">
   <a class="back" href="../">‹</a>
-  <img class="topbar-logo" src="../img/acafree-logo.png" alt="AcaFree">
-  <h1>AcaFree<span id="hSub">Turismo de Aventura</span></h1>
+  <img class="topbar-logo" src="../img/acafree-logo.png" alt="AcáFree">
+  <h1>AcáFree<span id="hSub">Turismo de Aventura</span></h1>
   <button class="lang-btn on" id="esBtn" onclick="setLang('es')">ES</button>
   <span style="color:#333;font-size:.7rem;padding:0 2px">|</span>
   <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
 </div>
 
-<p class="intro" id="intro">Eventos y actividades gratuitas en Pie de la Cuesta y Acapulco.</p>
+<p class="intro" id="intro">Experiencias y aventuras en Pie de la Cuesta y Acapulco.</p>
 
 <div class="cards" id="cards"></div>
 
@@ -78,35 +78,130 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(-
 
 <script>
 const WA = '527474999032';
-const ACT = [
-  {ic:'🔥',col:'#e8607a',
-   n:{es:'Fogata AcáFree · 7:30 pm',en:'AcáFree Bonfire · 7:30 pm'},
-   d:{es:'Reúnete con otros viajeros alrededor de la fogata cada noche. Música, buena compañía y el atardecer más famoso de México. Entrada gratuita.',en:'Join fellow travelers around the bonfire every evening. Music, good company and Mexico\'s most famous sunset. Free entry.'},
-   msg:{es:'Hola, ¿a qué hora es la fogata esta noche en Casa Axolotl?',en:'Hello, what time is the bonfire tonight at Casa Axolotl?'}},
-  {ic:'🌅',col:'#c9922a',
-   n:{es:'Mejor atardecer de México',en:'Best Sunset in Mexico'},
-   d:{es:'Pie de la Cuesta es el único lugar donde el sol cae directo al mar entre el Pacífico y la laguna de Coyuca. Sal a la playa frente al hotel alrededor de las 6 pm.',en:'Pie de la Cuesta is the only place the sun drops straight into the ocean between the Pacific and Coyuca Lagoon. Head to the beach in front of the hotel around 6 pm.'}},
-  {ic:'🏖',col:'#2563a8',
-   n:{es:'Playa Pie de la Cuesta',en:'Pie de la Cuesta Beach'},
-   d:{es:'La playa larga y salvaje frente al hotel. Olas fuertes del Pacífico — ideal para caminar, correr o sentarse a ver el mar. No recomendada para nadar.',en:'The long, wild Pacific beach right in front of the hotel. Strong Pacific waves — perfect for walking, jogging or watching the ocean. Not recommended for swimming.'}},
-  {ic:'🦅',col:'#16495e',
-   n:{es:'Aves en la laguna de Coyuca',en:'Birds on Coyuca Lagoon'},
-   d:{es:'Garzas, pelícanos, fragatas y más de 200 especies viven en los manglares. Sal al muelle al amanecer para verlas de cerca, gratis.',en:'Herons, pelicans, frigatebirds and over 200 species live in the lagoon mangroves. Walk to the dock at sunrise for free up-close views.'}},
-  {ic:'🌿',col:'#2d7a4f',
-   n:{es:'Parque Nacional El Veladero',en:'El Veladero National Park'},
-   d:{es:'Bosque tropical a 15 min en taxi. Senderos con vistas al Pacífico, iguanas silvestres y vegetación nativa. Entrada gratuita.',en:'Tropical forest 15 min by taxi. Trails with Pacific viewpoints, wild iguanas and native vegetation. Free entry.'}},
-  {ic:'🚶',col:'#6b3fa0',
-   n:{es:'Costera Miguel Alemán',en:'Costera Miguel Alemán'},
-   d:{es:'El malecón más famoso de Acapulco: 10 km frente al mar con la escultura de Diana Cazadora, parques y vistas a la bahía. Libre y abierto todo el día.',en:'Acapulco\'s most famous promenade: 10 km along the ocean with the Diana the Huntress sculpture, parks and bay views. Free and open all day.'}},
-  {ic:'🌺',col:'#b85a3c',
-   n:{es:'Jardín Botánico de Acapulco',en:'Acapulco Botanical Garden'},
-   d:{es:'Más de 2,000 especies de plantas tropicales, caminos sombreados y áreas de picnic. Entrada gratuita. A 25 min en taxi.',en:'Over 2,000 tropical plant species, shaded paths and picnic areas. Free admission. About 25 min by taxi.'}},
-  {ic:'⛪',col:'#8a6a45',
-   n:{es:'Zócalo y Catedral',en:'Zócalo & Cathedral'},
-   d:{es:'El corazón histórico de Acapulco con la Catedral de Nuestra Señora de la Soledad, cafés y vida local. Gratis, a 30 min en taxi.',en:'Acapulco\'s historic heart with the Cathedral of Our Lady of Solitude, cafés and local life. Free, about 30 min by taxi.'}},
+
+const SECTIONS = [
+  {
+    id: 'hotel',
+    label: { es: 'En Casa Axolotl', en: 'At Casa Axolotl' },
+    items: [
+      {
+        ic: '🏊', col: '#2563a8',
+        n: { es: 'Alberca', en: 'Swimming Pool' },
+        d: { es: 'Nuestra alberca privada con vista al jardín. Perfecta para relajarte entre excursiones o disfrutar de una tarde tranquila en Pie de la Cuesta.', en: 'Our private pool overlooking the garden. Perfect for relaxing between adventures or enjoying a quiet afternoon in Pie de la Cuesta.' }
+      },
+      {
+        ic: '🛶', col: '#16495e',
+        n: { es: 'Kayak en la laguna', en: 'Kayak on the Lagoon' },
+        d: { es: 'Sal a remar por la laguna de Coyuca directo desde el hotel. Entre manglares, aves tropicales y aguas tranquilas. Kayaks disponibles en el hotel.', en: 'Paddle through Coyuca Lagoon directly from the hotel. Through mangroves, tropical birds and calm waters. Kayaks available at the hotel.' },
+        msg: { es: '¡Hola! ¿Puedo rentar un kayak hoy en Casa Axolotl? ¿A qué hora puedo salir?', en: 'Hi! Can I rent a kayak today at Casa Axolotl? What time can I go out?' }
+      },
+      {
+        ic: '🔥', col: '#e8607a',
+        n: { es: 'Fogata AcáFree · 7:30 pm', en: 'AcáFree Bonfire · 7:30 pm' },
+        d: { es: 'Reúnete con otros viajeros alrededor de la fogata cada noche. Música, buena compañía y el atardecer más famoso de México. Consulta disponibilidad.', en: 'Join fellow travelers around the bonfire every evening. Music, great company and Mexico\'s most famous sunset. Check availability.' },
+        msg: { es: '¡Hola! ¿A qué hora es la fogata esta noche en Casa Axolotl?', en: 'Hi! What time is the bonfire tonight at Casa Axolotl?' }
+      },
+      {
+        ic: '💆', col: '#6b3fa0',
+        n: { es: 'Masajes', en: 'Massages' },
+        d: { es: 'Sesiones de masaje a cargo de especialistas locales. Relájate después de un día de aventura. Reserva con anticipación por WhatsApp.', en: 'Massage sessions with local specialists. Unwind after a day of adventure. Book in advance via WhatsApp.' },
+        msg: { es: '¡Hola! Me gustaría reservar un masaje en Casa Axolotl. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'d like to book a massage at Casa Axolotl. What days do you have availability?' }
+      },
+      {
+        ic: '🌅', col: '#c9922a',
+        n: { es: 'Mejor atardecer de México', en: 'Best Sunset in Mexico' },
+        d: { es: 'Pie de la Cuesta es el único lugar donde el sol cae directo al mar entre el Pacífico y la laguna de Coyuca. Sal a la playa frente al hotel alrededor de las 6 pm.', en: 'Pie de la Cuesta is the only place the sun drops straight into the ocean between the Pacific and Coyuca Lagoon. Head to the beach in front of the hotel around 6 pm.' }
+      },
+      {
+        ic: '🎬', col: '#1a7a5e',
+        n: { es: 'Cine en la playa', en: 'Beach Cinema' },
+        d: { es: 'Noches de cine bajo las estrellas frente al Pacífico. Una experiencia única en Pie de la Cuesta. Consulta fechas y disponibilidad.', en: 'Movie nights under the stars facing the Pacific. A unique experience in Pie de la Cuesta. Ask about dates and availability.' },
+        msg: { es: '¡Hola! ¿Cuándo es la próxima noche de cine en Casa Axolotl?', en: 'Hi! When is the next beach movie night at Casa Axolotl?' }
+      }
+    ]
+  },
+  {
+    id: 'tours',
+    label: { es: 'Tours y Recorridos · AcáFree', en: 'Tours & Excursions · AcáFree' },
+    items: [
+      {
+        ic: '🚣', col: '#16495e',
+        n: { es: 'Tour en kayak por la laguna', en: 'Kayak Tour on the Lagoon' },
+        d: { es: 'Recorrido guiado por los manglares y canales de la laguna de Coyuca. Ve de cerca garzas, pelícanos, fragatas y más de 200 especies de aves. Salida desde el hotel.', en: 'Guided tour through the mangroves and channels of Coyuca Lagoon. See herons, pelicans, frigatebirds and over 200 bird species up close. Departure from the hotel.' },
+        msg: { es: '¡Hola! Me interesa el tour en kayak por la laguna de Coyuca. ¿Cuánto cuesta y cuándo salen?', en: 'Hi! I\'m interested in the kayak tour of Coyuca Lagoon. How much does it cost and when do you depart?' }
+      },
+      {
+        ic: '🏝', col: '#2563a8',
+        n: { es: 'Tour a las Islas', en: 'Island Tour' },
+        d: { es: 'Recorrido en lancha por las islas de la bahía de Acapulco. Snorkel, nado en aguas cristalinas y vistas increíbles de la bahía. Salida desde el muelle local.', en: 'Boat tour around the islands of Acapulco Bay. Snorkel, swim in crystal-clear waters and stunning bay views. Departure from the local dock.' },
+        msg: { es: '¡Hola! Quiero información sobre el tour a las islas desde Casa Axolotl. ¿Cuánto cuesta y qué incluye?', en: 'Hi! I want information about the island tour from Casa Axolotl. How much does it cost and what\'s included?' }
+      },
+      {
+        ic: '🐢', col: '#2d7a4f',
+        n: { es: 'Liberación de Tortugas', en: 'Turtle Release' },
+        d: { es: 'Participa en la liberación de crías de tortuga marina al Pacífico. Una experiencia de conservación única, disponible en temporada (jul–dic). Contacta para confirmar fechas.', en: 'Participate in the release of baby sea turtles into the Pacific. A unique conservation experience, available in season (Jul–Dec). Contact us to confirm dates.' },
+        msg: { es: '¡Hola! Me interesa participar en la liberación de tortugas. ¿Cuándo es la próxima salida?', en: 'Hi! I\'m interested in the turtle release. When is the next one?' }
+      },
+      {
+        ic: '⛵', col: '#1a4a8e',
+        n: { es: 'Paseo en lancha', en: 'Boat Ride' },
+        d: { es: 'Recorre la laguna de Coyuca o la bahía de Acapulco en lancha. Pesca, snorkel o simplemente disfruta del agua. Rutas y precios según destino.', en: 'Cruise Coyuca Lagoon or Acapulco Bay by boat. Fishing, snorkel or just enjoy the water. Routes and prices vary by destination.' },
+        msg: { es: '¡Hola! ¿Qué opciones de paseo en lancha tienen disponibles desde Casa Axolotl?', en: 'Hi! What boat ride options do you have available from Casa Axolotl?' }
+      },
+      {
+        ic: '🌿', col: '#2d7a4f',
+        n: { es: 'Senderismo · El Veladero', en: 'Hiking · El Veladero' },
+        d: { es: 'Caminata guiada por el Parque Nacional El Veladero. Bosque tropical, vistas al Pacífico, iguanas silvestres y vegetación nativa. A 15 min en taxi del hotel.', en: 'Guided hike through El Veladero National Park. Tropical forest, Pacific views, wild iguanas and native vegetation. 15 min by taxi from the hotel.' },
+        msg: { es: '¡Hola! Me interesa hacer senderismo en El Veladero. ¿Organizan salidas guiadas desde Casa Axolotl?', en: 'Hi! I\'m interested in hiking El Veladero. Do you organize guided outings from Casa Axolotl?' }
+      },
+      {
+        ic: '🤿', col: '#0d7a8e',
+        n: { es: 'Snorkel', en: 'Snorkeling' },
+        d: { es: 'Exploración submarina en las aguas cristalinas de las islas de Acapulco. Equipo incluido. Se combina con el tour a las islas o como salida independiente.', en: 'Underwater exploration in the crystal-clear waters around Acapulco\'s islands. Equipment included. Combined with the island tour or as a standalone outing.' },
+        msg: { es: '¡Hola! Quiero hacer snorkel. ¿Qué opciones tienen disponibles desde Casa Axolotl?', en: 'Hi! I want to go snorkeling. What options do you have available from Casa Axolotl?' }
+      }
+    ]
+  },
+  {
+    id: 'especiales',
+    label: { es: 'Experiencias Especiales · AcáFree', en: 'Special Experiences · AcáFree' },
+    items: [
+      {
+        ic: '🧺', col: '#b85a3c',
+        n: { es: 'Picnic en la playa', en: 'Beach Picnic' },
+        d: { es: 'Picnic privado frente al Pacífico con canasta preparada, decoración y atención personalizada. Ideal para parejas, cumpleaños o celebraciones especiales. Reserva con anticipación.', en: 'Private picnic facing the Pacific with prepared basket, decorations and personalized service. Perfect for couples, birthdays or special celebrations. Book in advance.' },
+        msg: { es: '¡Hola! Me interesa organizar un picnic en la playa en Casa Axolotl. ¿Qué incluye y cuánto cuesta?', en: 'Hi! I\'m interested in organizing a beach picnic at Casa Axolotl. What\'s included and how much does it cost?' }
+      },
+      {
+        ic: '💍', col: '#e8407a',
+        n: { es: 'Cásate Conmigo · Propuestas', en: '"Marry Me" · Proposals' },
+        d: { es: 'Organiza tu propuesta de matrimonio durante el atardecer más famoso de México. Decoración, champagne, fotografía y la magia de Pie de la Cuesta. Un momento que no olvidarán.', en: 'Plan your marriage proposal during Mexico\'s most famous sunset. Decoration, champagne, photography and the magic of Pie de la Cuesta. A moment they\'ll never forget.' },
+        msg: { es: '¡Hola! Quiero organizar una propuesta de matrimonio en Casa Axolotl. ¿Me pueden ayudar a planearla?', en: 'Hi! I want to plan a marriage proposal at Casa Axolotl. Can you help me plan it?' }
+      },
+      {
+        ic: '🎂', col: '#c9922a',
+        n: { es: 'Cumpleaños y Celebraciones', en: 'Birthdays & Celebrations' },
+        d: { es: 'Haz de tu cumpleaños algo inolvidable en Pie de la Cuesta. Decoración temática, pastel, música y experiencias personalizadas para el festejado y sus invitados.', en: 'Make your birthday unforgettable in Pie de la Cuesta. Themed decorations, cake, music and personalized experiences for the birthday person and guests.' },
+        msg: { es: '¡Hola! Quiero organizar una celebración de cumpleaños en Casa Axolotl. ¿Qué opciones tienen disponibles?', en: 'Hi! I want to organize a birthday celebration at Casa Axolotl. What options do you have available?' }
+      },
+      {
+        ic: '📸', col: '#6b3fa0',
+        n: { es: 'Sesión de Fotografía + Dron', en: 'Photo Session + Drone' },
+        d: { es: 'Sesión fotográfica profesional en las playas y lagunas de Pie de la Cuesta, con tomas aéreas en dron. Perfecta para parejas, familias o contenido para redes sociales.', en: 'Professional photo session on the beaches and lagoons of Pie de la Cuesta, with aerial drone shots. Perfect for couples, families or social media content.' },
+        msg: { es: '¡Hola! Me interesa una sesión de fotos con dron en Pie de la Cuesta. ¿Cuánto cuesta y qué incluye?', en: 'Hi! I\'m interested in a photo session with drone in Pie de la Cuesta. How much does it cost and what\'s included?' }
+      },
+      {
+        ic: '🎻', col: '#8a4a6e',
+        n: { es: 'Serenata con Violinista', en: 'Violin Serenade' },
+        d: { es: 'Sorprende a tu pareja con una serenata en vivo al atardecer frente al Pacífico. Música clásica, romántica o lo que prefieras. Una experiencia única en Pie de la Cuesta.', en: 'Surprise your partner with a live serenade at sunset facing the Pacific. Classical, romantic or whatever you prefer. A one-of-a-kind experience in Pie de la Cuesta.' },
+        msg: { es: '¡Hola! Quiero contratar una serenata con violinista en Casa Axolotl. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want to book a violin serenade at Casa Axolotl. When do you have availability?' }
+      }
+    ]
+  }
 ];
 
 let lang = (navigator.language||'es').startsWith('en') ? 'en' : 'es';
+let cardCounter = 0;
 
 function waLink(msg){ return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`; }
 
@@ -114,28 +209,41 @@ function render(){
   const es = lang==='es';
   document.getElementById('hSub').textContent = es ? 'Turismo de Aventura' : 'Adventure Tourism';
   document.getElementById('intro').textContent = es
-    ? 'Actividades y eventos gratuitos en Pie de la Cuesta y Acapulco.'
-    : 'Free activities and events in Pie de la Cuesta and Acapulco.';
+    ? 'Experiencias y aventuras en Pie de la Cuesta y Acapulco.'
+    : 'Experiences and adventures in Pie de la Cuesta and Acapulco.';
   document.getElementById('esBtn').className = 'lang-btn'+(lang==='es'?' on':'');
   document.getElementById('enBtn').className = 'lang-btn'+(lang==='en'?' on':'');
   document.documentElement.lang = lang;
 
-  document.getElementById('cards').innerHTML = ACT.map((a,i)=>`
-    <div class="card">
-      <div class="card-accent" style="background:${a.col}"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-num">${String(i+1).padStart(2,'0')}</span>
-          <span class="card-icon">${a.ic}</span>
-          <div class="card-info">
-            <div class="card-name">${es?a.n.es:a.n.en}</div>
+  cardCounter = 0;
+  let html = '';
+  SECTIONS.forEach(sec => {
+    html += `<div class="section-hd"><span>${es ? sec.label.es : sec.label.en}</span></div>`;
+    sec.items.forEach(a => {
+      cardCounter++;
+      const num = String(cardCounter).padStart(2,'0');
+      const waBtn = a.msg
+        ? `<a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">💬 ${es?'Reservar por WhatsApp':'Book via WhatsApp'} ›</a>`
+        : '';
+      html += `
+        <div class="card">
+          <div class="card-accent" style="background:${a.col}"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-num">${num}</span>
+              <span class="card-icon">${a.ic}</span>
+              <div class="card-info">
+                <div class="card-name">${es?a.n.es:a.n.en}</div>
+              </div>
+            </div>
+            <p class="card-desc">${es?a.d.es:a.d.en}</p>
+            ${waBtn}
           </div>
-        </div>
-        <p class="card-desc">${es?a.d.es:a.d.en}</p>
-        ${a.msg?`<a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">💬 ${es?'Preguntar por WhatsApp':'Ask via WhatsApp'} ›</a>`:''}
-      </div>
-    </div>
-  `).join('');
+        </div>`;
+    });
+  });
+
+  document.getElementById('cards').innerHTML = html;
 }
 
 function setLang(l){ lang=l; render(); }
