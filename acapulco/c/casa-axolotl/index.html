@@ -174,23 +174,6 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
 .card-r{border-left:3px solid var(--gold)}
 .card-h{border-left:3px solid var(--wave)}
 .card-a{border-left:3px solid var(--yellow)}
-.card-g{border-left:3px solid var(--purple)}
-
-/* MX Studio branding footer */
-.mx-credit{
-  text-align:center;padding:10px 0 32px;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-}
-.mx-brand{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(201,146,42,.1);border:1px solid rgba(201,146,42,.2);
-  border-radius:30px;padding:5px 14px;text-decoration:none;
-  -webkit-tap-highlight-color:transparent;transition:opacity .2s;
-}
-.mx-brand:active{opacity:.7}
-.mx-brand .mx-logo{font-size:1rem}
-.mx-brand .mx-txt{font-size:.7rem;color:var(--gold-lt);font-weight:700;letter-spacing:.06em}
-.mx-sub{font-size:.58rem;color:var(--muted);letter-spacing:.05em}
 
 /* AcaFree micro-badge on activities card */
 .aca-micro{
@@ -327,20 +310,6 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
     </div>
   </a>
 
-
-  <a class="card card-g" href="../../juegos/" id="linkGames">
-    <div class="card-photo" style="background-image:url('img/hub3.jpg')"></div>
-    <div class="card-overlay" style="background:linear-gradient(100deg,rgba(13,10,26,.92) 0%,rgba(13,10,26,.55) 55%,rgba(13,10,26,.2) 100%)"></div>
-    <div class="card-content">
-      <div class="card-icon-wrap">🎮</div>
-      <div class="card-info">
-        <div class="card-label" id="lblGames">Juegos en familia</div>
-        <div class="card-sub" id="subGames">Trivia · Memoria · Colorear · Mientras esperas</div>
-      </div>
-      <span class="card-arr">›</span>
-    </div>
-  </a>
-
 </div>
 
 <!-- Habla: learn English / Spanish -->
@@ -376,13 +345,9 @@ body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidde
   </a>
 </div>
 
-<!-- MX Studio credit -->
-<div class="mx-credit">
-  <a class="mx-brand" href="https://myjefetech.app" target="_blank">
-    <span class="mx-logo">✦</span>
-    <span class="mx-txt">MX STUDIO</span>
-  </a>
-  <span class="mx-sub" id="mxSub">Digital experiences for Acapulco · myjefetech.app</span>
+<!-- Credit -->
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
 </div>
 
 </div><!-- /page -->
@@ -403,8 +368,8 @@ document.getElementById('slides').addEventListener('touchend',e=>{const dx=e.cha
 
 // Lang
 const T={
-  es:{acaSub:'Turismo de Aventura',sectionLbl:'Explorar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Coctelería · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía del huésped',lblAct:'Actividades',subAct:'Kayak · Tours · Fogata · Laguna · Surf',wa:'Contactar por WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Aprende inglés',subHabla:'Palabras y frases con audio · Learn Spanish too',lblGames:'Juegos en familia',subGames:'Trivia · Memoria · Colorear · Mientras esperas',mxSub:'Experiencias digitales para Acapulco · myjefetech.app'},
-  en:{acaSub:'Adventure Tourism',sectionLbl:'Explore',lblMenu:'Restaurant',subMenu:'Menu · Bar · Cocktails · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Bonfire · Lagoon · Surf',wa:'Contact via WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Learn Spanish',subHabla:'Words and phrases with audio · Aprende inglés',lblGames:'Family games',subGames:'Trivia · Memory · Coloring · While you wait',mxSub:'Digital experiences for Acapulco · myjefetech.app'}
+  es:{acaSub:'Turismo de Aventura',sectionLbl:'Explorar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Coctelería · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía del huésped',lblAct:'Actividades',subAct:'Kayak · Tours · Fogata · Laguna · Surf',wa:'Contactar por WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Aprende inglés',subHabla:'Palabras y frases con audio · Learn Spanish too'},
+  en:{acaSub:'Adventure Tourism',sectionLbl:'Explore',lblMenu:'Restaurant',subMenu:'Menu · Bar · Cocktails · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Bonfire · Lagoon · Surf',wa:'Contact via WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Learn Spanish',subHabla:'Words and phrases with audio · Aprende inglés'}
 };
 function setLang(l){
   const t=T[l];
@@ -419,9 +384,6 @@ function setLang(l){
   document.getElementById('waLabel').textContent=t.wa;
   document.getElementById('lblHabla').textContent=t.lblHabla;
   document.getElementById('subHabla').textContent=t.subHabla;
-  document.getElementById('lblGames').textContent=t.lblGames;
-  document.getElementById('subGames').textContent=t.subGames;
-  document.getElementById('mxSub').textContent=t.mxSub;
   document.getElementById('linkAct').href=t.linkAct;
   document.getElementById('esBtn').classList.toggle('active',l==='es');
   document.getElementById('enBtn').classList.toggle('active',l==='en');
