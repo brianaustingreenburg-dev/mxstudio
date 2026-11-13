@@ -76,6 +76,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   position:absolute;top:0;left:0;right:0;z-index:3;
   display:flex;align-items:center;justify-content:space-between;
   padding:calc(14px + env(safe-area-inset-top)) 20px 14px;
+  padding-right:max(20px,env(safe-area-inset-right,0px));
 }
 .hero-brand{
   font-family:var(--serif);
@@ -580,17 +581,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
   <!-- top bar -->
   <div class="hero-bar">
-    <div style="display:flex;align-items:center;gap:12px">
+    <div style="display:flex;align-items:center;gap:10px">
       <a href="../" aria-label="Volver" style="display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-size:22px;line-height:1;flex-shrink:0;font-weight:300">←</a>
-      <div class="hero-brand">
-        Acapulco Hub ✝️
-        <small id="hdrSub">MX Studio · Demo</small>
+      <div class="lang-sw" id="langSw" data-l="es" onclick="toggleLang()">
+        <div class="knob"></div>
+        <span class="es-lbl">ES</span>
+        <span class="en-lbl">EN</span>
       </div>
     </div>
-    <div class="lang-sw" id="langSw" data-l="es" onclick="toggleLang()">
-      <div class="knob"></div>
-      <span class="es-lbl">ES</span>
-      <span class="en-lbl">EN</span>
+    <div class="hero-brand" style="text-align:right">
+      Acapulco Hub ✝️
+      <small id="hdrSub">MX Studio · Demo</small>
     </div>
   </div>
 
