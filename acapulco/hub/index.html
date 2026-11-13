@@ -543,6 +543,14 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* ══════════════════════════════════════
    WA CTA
 ══════════════════════════════════════ */
+.share-wrap{padding:28px 20px 8px;max-width:640px;margin:0 auto}
+.share-label{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);opacity:.7;margin-bottom:14px;text-align:center}
+.share-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:14px}
+.share-lang{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);opacity:.6;margin-bottom:8px}
+.share-msg{font-size:.88rem;line-height:1.6;white-space:pre-wrap;color:var(--fg);opacity:.9;font-family:inherit;background:transparent;border:none;width:100%;resize:none;user-select:text}
+.share-copy{margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:.8rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:opacity .15s}
+.share-copy:hover{opacity:.85}
+.share-copy.copied{background:#22c55e}
 .wa-wrap{padding:28px 22px calc(32px + env(safe-area-inset-bottom))}
 .wa-btn{
   display:flex;align-items:center;justify-content:center;gap:12px;width:100%;
@@ -973,6 +981,45 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   </div>
 </div>
 
+<!-- ══════════════════════════════════════
+     SHARE MESSAGES (copy-ready for WhatsApp)
+══════════════════════════════════════ -->
+<div class="share-wrap">
+  <div class="share-label">📲 Mensaje para clientes · Message for clients</div>
+
+  <!-- Spanish -->
+  <div class="share-card">
+    <div class="share-lang">Español</div>
+    <div class="share-msg" id="msgES">¡Hola! 👋
+
+Desde que adquiriste tu app con MX Studio ✝️, tu negocio ahora forma parte del *Acapulco Hub* — una plataforma digital donde turistas y visitantes descubren los mejores restaurantes, hoteles y resorts de Acapulco.
+
+🌊 Explora el hub aquí:
+go.myjefetech.app/acapulco/hub
+
+Tu negocio ya está en el radar. El primer año en el hub es completamente gratis para todos los que compraron su app en 2026.
+
+— Brian · MX Studio ✝️</div>
+    <button class="share-copy" onclick="copyMsg('msgES',this)">Copiar</button>
+  </div>
+
+  <!-- English -->
+  <div class="share-card">
+    <div class="share-lang">English</div>
+    <div class="share-msg" id="msgEN">Hey! 👋
+
+Since you got your app with MX Studio ✝️, your business is now part of the *Acapulco Hub* — a digital platform where tourists and visitors discover the best restaurants, hotels and resorts in Acapulco.
+
+🌊 Explore the hub here:
+go.myjefetech.app/acapulco/hub
+
+Your business is already on the map. The first year on the hub is completely free for everyone who bought their app in 2026.
+
+— Brian · MX Studio ✝️</div>
+    <button class="share-copy" onclick="copyMsg('msgEN',this)">Copy</button>
+  </div>
+</div>
+
 <!-- WA CTA -->
 <div class="wa-wrap">
   <button class="wa-btn" onclick="window.open('https://api.whatsapp.com/send?phone=527441930502&text='+encodeURIComponent('Hola Brian, quiero saber más sobre MX Studio ✝️'),'_blank')">
@@ -1192,6 +1239,7 @@ const T={
 let lang='es';
 function t(k){return T[lang]&&T[lang][k]!==undefined?T[lang][k]:(T.es[k]||'')}
 function toggleLang(){lang=lang==='es'?'en':'es';document.getElementById('langSw').dataset.l=lang;applyLang()}
+function copyMsg(id,btn){const el=document.getElementById(id);const txt=el.innerText||el.textContent;navigator.clipboard.writeText(txt).then(()=>{btn.textContent=id==='msgES'?'¡Copiado!':'Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent=id==='msgES'?'Copiar':'Copy';btn.classList.remove('copied')},2000)}).catch(()=>{const r=document.createRange();r.selectNode(el);window.getSelection().removeAllRanges();window.getSelection().addRange(r);document.execCommand('copy');window.getSelection().removeAllRanges();btn.textContent=id==='msgES'?'¡Copiado!':'Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent=id==='msgES'?'Copiar':'Copy';btn.classList.remove('copied')},2000)})}
 function applyLang(){
   document.documentElement.lang=lang;
   // QR splash label
