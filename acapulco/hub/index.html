@@ -911,87 +911,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 </div><!-- /featured -->
 
-<!-- CONTEXT (auto-swaps) -->
-<div id="ctx"></div>
-
-<!-- ══════════════════════════════════════
-     ROUTE 1
-══════════════════════════════════════ -->
-<div class="sec-label"><span id="secRoutes">Rutas</span></div>
-<div class="route-header">
-  <span class="route-num">Ruta 01</span>
-  <span class="route-title" id="r1name">Costa Azul</span>
-</div>
-<div class="route-sub" id="r1sub">Playa · Café · Restaurante · Hotel · 1.4 km</div>
-<div class="route-stops">
-
-  <div class="route-stop">
-    <div class="stop-icon">☕</div>
-    <div>
-      <div class="stop-type cafe" id="s1type">Café</div>
-      <div class="stop-name" id="s1name">Café Bahía</div>
-      <div class="stop-desc" id="s1desc">Terraza con vista a la bahía. Desayunos, café de especialidad y jugos frescos frente al mar.</div>
-      <div class="stop-detail" id="s1detail">Costera Miguel Alemán 22 · 7 AM – 2 PM</div>
-    </div>
-  </div>
-
-  <div class="route-stop">
-    <div class="stop-icon">🏨</div>
-    <div>
-      <div class="stop-type hotel" id="s2type">Hotel</div>
-      <div class="stop-name" id="s2name">Hotel Costa Azul</div>
-      <div class="stop-desc" id="s2desc">Hotel boutique frente a la playa. Habitaciones con balcón y vista directa al Pacífico. Alberca en la azotea.</div>
-      <div class="stop-detail" id="s2detail">desde $950 MXN · Costera 48</div>
-      <span class="stop-dist" id="s2dist">↑ 180 m</span>
-    </div>
-  </div>
-
-  <div class="route-stop">
-    <div class="stop-icon">🍽️</div>
-    <div>
-      <div class="stop-type rest" id="s3type">Restaurante</div>
-      <div class="stop-name" id="s3name">Mariscos El Farallon</div>
-      <div class="stop-desc" id="s3desc">Mariscos frescos del día, ceviches y pescado a la talla. Mesas con vista al mar sobre la roca.</div>
-      <div class="stop-detail" id="s3detail">Costera 95 · 11 AM – 9 PM · ★ 4.7</div>
-      <span class="stop-dist" id="s3dist">↑ 350 m</span>
-    </div>
-  </div>
-
-  <div class="route-stop">
-    <div class="stop-icon">☕</div>
-    <div>
-      <div class="stop-type cafe" id="s4type">Café</div>
-      <div class="stop-name" id="s4name">Pastelería La Costera</div>
-      <div class="stop-desc" id="s4desc">Panadería artesanal y café expresso. Perfecta parada de media tarde con pan dulce y aguas frescas.</div>
-      <div class="stop-detail" id="s4detail">Costera 112 · 8 AM – 8 PM</div>
-      <span class="stop-dist" id="s4dist">↑ 220 m</span>
-    </div>
-  </div>
-
-  <div class="route-stop">
-    <div class="stop-icon">🏨</div>
-    <div>
-      <div class="stop-type hotel" id="s5type">Hotel</div>
-      <div class="stop-name" id="s5name">Hotel Emporio Acapulco</div>
-      <div class="stop-desc" id="s5desc">Referencia de la Zona Dorada. Playa privada, 3 albercas, restaurante en la terraza y acceso directo a la bahía.</div>
-      <div class="stop-detail" id="s5detail">desde $1,350 MXN · Costera 75 · ★ 4.5</div>
-      <span class="stop-dist" id="s5dist">↑ 290 m</span>
-    </div>
-  </div>
-
-  <div class="route-stop">
-    <div class="stop-icon">🍽️</div>
-    <div>
-      <div class="stop-type rest" id="s6type">Restaurante</div>
-      <div class="stop-name" id="s6name">Restaurante Blackbeard's</div>
-      <div class="stop-desc" id="s6desc">Steakhouse y mariscos con vista panorámica de la bahía. Cena frente al Pacífico con música en vivo los viernes.</div>
-      <div class="stop-detail" id="s6detail">Costera 162 · 1 PM – 11 PM · ★ 4.6</div>
-      <span class="stop-dist" id="s6dist">↑ 400 m</span>
-    </div>
-  </div>
-
-</div>
-
 <!-- ══════════════════════════════════════
      ACTIVITIES
 ══════════════════════════════════════ -->
@@ -1300,7 +1219,7 @@ function applyLang(){
   // hotaD uses innerHTML (has <strong> tag)
   const hotaEl=document.getElementById('hotaD');
   if(hotaEl){const v=t('hotaD');if(v!=='')hotaEl.innerHTML=v;}
-  drawCtx();drawTrivia();
+  drawTrivia();
 }
 
 // ════════════════════════════════
@@ -1321,32 +1240,7 @@ function setTab(tab){
   document.getElementById('feat-rest').style.display=tab==='rest'?'block':'none';
   document.getElementById('feat-hotel').style.display=tab==='hotel'?'block':'none';
   document.getElementById('feat-resort').style.display=tab==='resort'?'block':'none';
-  drawCtx();
   document.getElementById('tabsEl').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-// ════════════════════════════════
-// CONTEXT SECTION
-// ════════════════════════════════
-function drawCtx(){
-  const c=document.getElementById('ctx');
-  if(activeTab==='rest'){
-    c.innerHTML=`
-    <div class="sec-label"><span>${t('secStay')}</span></div>
-    <div class="ctx-cards">
-      <div class="ctx-card"><div class="ctx-emo">🌊</div><div><div class="ctx-zone">${t('h1z')}</div><div class="ctx-name">${t('h1n')}</div><div class="ctx-desc">${t('h1d')}</div><div class="ctx-detail">${t('h1p')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🏖️</div><div><div class="ctx-zone">${t('h2z')}</div><div class="ctx-name">${t('h2n')}</div><div class="ctx-desc">${t('h2d')}</div><div class="ctx-detail">${t('h2p')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🌺</div><div><div class="ctx-zone">${t('h3z')}</div><div class="ctx-name">${t('h3n')}</div><div class="ctx-desc">${t('h3d')}</div><div class="ctx-detail">${t('h3p')}</div></div></div>
-    </div>`;
-  } else {
-    c.innerHTML=`
-    <div class="sec-label"><span>${t('secDining')}</span></div>
-    <div class="ctx-cards">
-      <div class="ctx-card"><div class="ctx-emo">🦐</div><div><div class="ctx-zone">${t('d1t')}</div><div class="ctx-name">${t('d1n')}</div><div class="ctx-desc">${t('d1d')}</div><div class="ctx-detail">${t('d1dt')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🌮</div><div><div class="ctx-zone">${t('d2t')}</div><div class="ctx-name">${t('d2n')}</div><div class="ctx-desc">${t('d2d')}</div><div class="ctx-detail">${t('d2dt')}</div></div></div>
-      <div class="ctx-card"><div class="ctx-emo">🍹</div><div><div class="ctx-zone">${t('d3t')}</div><div class="ctx-name">${t('d3n')}</div><div class="ctx-desc">${t('d3d')}</div><div class="ctx-detail">${t('d3dt')}</div></div></div>
-    </div>`;
-  }
 }
 
 // ════════════════════════════════
@@ -1392,7 +1286,7 @@ function speak(text){
 }
 
 // init
-drawCtx();drawTrivia();applyLang();
+drawTrivia();applyLang();
 </script>
 </body>
 </html>
