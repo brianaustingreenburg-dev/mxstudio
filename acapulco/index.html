@@ -45,11 +45,6 @@ button{font:inherit;color:inherit}
 .tright{display:flex;gap:8px;align-items:center}
 .icon-btn{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--gold)}
 .icon-btn svg{width:17px;height:17px}
-.lang{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;position:relative}
-.lang button{all:unset;cursor:pointer;font-weight:700;font-size:12px;letter-spacing:.06em;padding:7px 13px;border-radius:999px;color:var(--muted);position:relative;z-index:1;transition:color .2s}
-.lang button[aria-pressed=true]{color:#1a0f0a}
-.lang .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s ease}
-.lang.en .knob{transform:translateX(100%)}
 
 /* hero */
 .hero{text-align:center;padding:10px 0 4px;position:relative}
@@ -397,8 +392,7 @@ function render(){
  const u=UI[lang];
  document.documentElement.lang=lang;
  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
- $("lang").classList.toggle("en",lang==="en");
- $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+
  $("perks").innerHTML=u.perks.map(p=>`<div class="perk">${ic(p[0])}<b>${p[1]}</b><span>${p[2]}</span></div>`).join("");
  $("tabs").innerHTML=BIZ.map(b=>`<button class="tab" role="tab" aria-selected="${b.id===cur}" data-id="${b.id}">${ic(b.id)}${b[lang].name}</button>`).join("");
  const d=BIZ.find(x=>x.id===cur)[lang], msg=`${u.msg} ${d.one}.`;
@@ -425,7 +419,6 @@ function setTab(id,scroll){
  const t=document.querySelector(`.tab[data-id="${id}"]`);if(t)t.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
  if(scroll){const y=$("tabs").getBoundingClientRect().top+scrollY;if(scrollY>y)scrollTo({top:y,behavior:"smooth"})}
 }
-$("lang").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-lang",lang)}catch(_){}render()});
 $("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)setTab(b.dataset.id)});
 $("panel").addEventListener("click",e=>{const b=e.target.closest(".seg button");if(!b)return;view=b.dataset.v;renderDemo()});
 /* swipe between businesses */
