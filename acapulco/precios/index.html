@@ -198,6 +198,7 @@ body.is-off .off{display:block}
       <li id="mp2">✔ Llega a clientes que ya están ahí</li>
       <li id="mp3">✔ Restaurantes, hoteles, actividades, clubs</li>
       <li id="mp4">✔ Cancela cuando quieras</li>
+      <li id="mp5">✔ Primer año gratis (compradores 2026)</li>
     </ul>
     <div class="tax" id="mpTax" style="margin-top:12px">$150 USD por hub · se cobra en efectivo · disponible para cualquier negocio con app MX Studio</div>
     <button class="cta" style="margin-top:16px;width:100%" onclick="window.open('https://wa.me/527441930502?text='+encodeURIComponent(document.getElementById('mpWA').dataset.msg),'_blank')" id="mpBtn">📲 Quiero aparecer en otro hub</button>
@@ -206,15 +207,13 @@ body.is-off .off{display:block}
   <script>
   (function(){
     const MP={
-      es:{kicker:"Marketing",title:"Aparece en otros hubs",desc:"¿Tu restaurante quiere aparecer en el hub de un hotel? ¿Tu hotel quiere estar en el hub de otro negocio? Paga una vez al mes y te ponemos donde están tus clientes.",per:" USD / mes",f1:"✔ Apareces en el hub que elijas",f2:"✔ Llega a clientes que ya están ahí",f3:"✔ Restaurantes, hoteles, actividades, clubs",f4:"✔ Cancela cuando quieras",tax:"$150 USD por hub · se cobra en efectivo · disponible para cualquier negocio con app MX Studio",btn:"📲 Quiero aparecer en otro hub",wa:"Hola Brian, quiero agregar mi negocio a otro hub. ¿Me explicas cómo funciona?"},
-      en:{kicker:"Marketing",title:"Get listed on other hubs",desc:"Want your restaurant on a hotel hub? Want your hotel on a restaurant hub? Pay once a month and we put you where your customers already are.",per:" USD / mo",f1:"✔ Listed on the hub of your choice",f2:"✔ Reach customers who are already there",f3:"✔ Restaurants, hotels, activities, beach clubs",f4:"✔ Cancel any time",tax:"$150 USD per hub · collected in cash · available for any MX Studio app business",btn:"📲 Get listed on another hub",wa:"Hi Brian, I want to add my business to another hub. How does it work?"}
+      es:{kicker:"Marketing",title:"Aparece en otros hubs",desc:"¿Tu restaurante quiere aparecer en el hub de un hotel? ¿Tu hotel quiere estar en el hub de otro negocio? Entramos temprano — el primer año es gratis para todos los que compren su app en 2026. Estamos construyendo la red ahora y tú formas parte desde el inicio. Después del primer año, solo $150 al mes.",per:" USD / mes",f1:"✔ Primer año completamente gratis (compradores 2026)",f2:"✔ Apareces en el hub que elijas",f3:"✔ Llega a clientes que ya están ahí",f4:"✔ Restaurantes, hoteles, actividades, clubs",f5:"✔ Cancela cuando quieras",tax:"$150 USD por hub a partir del segundo año · se cobra en efectivo · disponible para cualquier negocio con app MX Studio",btn:"📲 Quiero aparecer en otro hub",wa:"Hola Brian, quiero agregar mi negocio a otro hub. ¿Me explicas cómo funciona?"},
+      en:{kicker:"Marketing",title:"Get listed on other hubs",desc:"Want your restaurant on a hotel hub? Want your hotel on a restaurant hub? We're getting in early — the first year is free for everyone who buys an app in 2026. We're building the network now and you'll be part of it from the start. After year one, just $150/month.",per:" USD / mo",f1:"✔ First year completely free (2026 buyers)",f2:"✔ Listed on the hub of your choice",f3:"✔ Reach customers who are already there",f4:"✔ Restaurants, hotels, activities, beach clubs",f5:"✔ Cancel any time",tax:"$150 USD per hub starting year two · collected in cash · available for any MX Studio app business",btn:"📲 Get listed on another hub",wa:"Hi Brian, I want to add my business to another hub. How does it work?"}
     };
     function mpRender(){
       const l=window.lang||"es",m=MP[l]||MP.es;
-      ["mpKicker","mpTitle","mpDesc","mpPer","mp1","mp2","mp3","mp4","mpTax","mpBtn"].forEach(id=>{
-        const k=id.replace("mp","").replace(/^K/,"kicker").replace(/^T(?!a)/,"title").replace(/^D/,"desc").replace(/^P/,"per").replace(/^[1-4]$/,n=>"f"+n).replace(/^Ta/,"tax").replace(/^B/,"btn");
-        const el=document.getElementById(id);if(el)el.textContent=m[{mpKicker:"kicker",mpTitle:"title",mpDesc:"desc",mpPer:"per",mp1:"f1",mp2:"f2",mp3:"f3",mp4:"f4",mpTax:"tax",mpBtn:"btn"}[id]]||"";
-      });
+      const mpMap={mpKicker:"kicker",mpTitle:"title",mpDesc:"desc",mpPer:"per",mp1:"f1",mp2:"f2",mp3:"f3",mp4:"f4",mp5:"f5",mpTax:"tax",mpBtn:"btn"};
+      Object.keys(mpMap).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=m[mpMap[id]]||""});
       const wa=document.getElementById("mpWA");if(wa)wa.dataset.msg=m.wa;
     }
     const _r=window.render;window.render=function(){_r&&_r.apply(this,arguments);mpRender();};
