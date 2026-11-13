@@ -1,0 +1,378 @@
+[
+  {
+    "cat": {
+      "es": "Desayunos y brunch",
+      "en": "Breakfast & brunch"
+    },
+    "items": [
+      {
+        "name": {
+          "es": "Chilaquiles verdes o rojos",
+          "en": "Green or red chilaquiles"
+        },
+        "desc": {
+          "es": "Con huevo estrellado, crema, queso fresco y frijoles",
+          "en": "With fried egg, crema, fresh cheese and beans"
+        },
+        "price": "140",
+        "img": "img/cover-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Huevos al gusto",
+          "en": "Eggs your way"
+        },
+        "desc": {
+          "es": "Rancheros, a la mexicana o con jamón, con frijoles y tortillas",
+          "en": "Ranchero, Mexican-style or with ham, beans and tortillas"
+        },
+        "price": "120",
+        "img": "img/huevos-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Enfrijoladas",
+          "en": "Enfrijoladas"
+        },
+        "desc": {
+          "es": "Tortillas bañadas en frijol, rellenas de pollo o queso",
+          "en": "Tortillas in bean sauce, filled with chicken or cheese"
+        },
+        "price": "130"
+      },
+      {
+        "name": {
+          "es": "Plato de fruta de temporada",
+          "en": "Seasonal fruit plate"
+        },
+        "desc": {
+          "es": "Papaya, piña, melón y sandía con limón y chile",
+          "en": "Papaya, pineapple, melon and watermelon with lime and chile"
+        },
+        "price": "90"
+      },
+      {
+        "name": {
+          "es": "Hot cakes",
+          "en": "Pancakes"
+        },
+        "desc": {
+          "es": "Con miel de maple y fruta",
+          "en": "With maple syrup and fruit"
+        },
+        "price": "110",
+        "img": "img/waffle-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Café de olla",
+          "en": "Café de olla"
+        },
+        "desc": {
+          "es": "Café con canela y piloncillo",
+          "en": "Coffee with cinnamon and piloncillo"
+        },
+        "price": "45"
+      }
+    ]
+  },
+  {
+    "cat": {
+      "es": "Del mar para compartir",
+      "en": "From the sea, to share"
+    },
+    "items": [
+      {
+        "name": {
+          "es": "Ceviche de pescado",
+          "en": "Fish ceviche"
+        },
+        "desc": {
+          "es": "Estilo Acapulco, con tostadas",
+          "en": "Acapulco style, with tostadas"
+        },
+        "price": "170"
+      },
+      {
+        "name": {
+          "es": "Aguachile de camarón",
+          "en": "Shrimp aguachile"
+        },
+        "desc": {
+          "es": "Verde, con pepino y cebolla morada",
+          "en": "Green, with cucumber and red onion"
+        },
+        "price": "210",
+        "img": "img/aguachile-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Cóctel de camarón",
+          "en": "Shrimp cocktail"
+        },
+        "desc": {
+          "es": "Con aguacate y galletas saladas",
+          "en": "With avocado and crackers"
+        },
+        "price": "190",
+        "img": "img/coctel-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Tostadas de atún",
+          "en": "Tuna tostadas"
+        },
+        "desc": {
+          "es": "Atún fresco, aguacate y mayonesa de chipotle",
+          "en": "Fresh tuna, avocado and chipotle mayo"
+        },
+        "price": "160"
+      },
+      {
+        "name": {
+          "es": "Guacamole con totopos",
+          "en": "Guacamole and chips"
+        },
+        "desc": {
+          "es": "Hecho al momento",
+          "en": "Made to order"
+        },
+        "price": "120"
+      }
+    ]
+  },
+  {
+    "cat": {
+      "es": "Sushi",
+      "en": "Sushi"
+    },
+    "items": [
+      {
+        "name": {
+          "es": "Rollo Axolotl",
+          "en": "Axolotl roll"
+        },
+        "desc": {
+          "es": "Atún, aguacate y queso crema, con salsa de chipotle y serrano",
+          "en": "Tuna, avocado and cream cheese, chipotle sauce and serrano"
+        },
+        "price": "180"
+      },
+      {
+        "name": {
+          "es": "Rollo de camarón empanizado",
+          "en": "Crispy shrimp roll"
+        },
+        "desc": {
+          "es": "Camarón tempura, pepino y aguacate",
+          "en": "Tempura shrimp, cucumber and avocado"
+        },
+        "price": "170"
+      },
+      {
+        "name": {
+          "es": "Rollo California",
+          "en": "California roll"
+        },
+        "desc": {
+          "es": "Surimi, pepino, aguacate y queso crema",
+          "en": "Surimi, cucumber, avocado and cream cheese"
+        },
+        "price": "150"
+      },
+      {
+        "name": {
+          "es": "Rollo Pie de la Cuesta",
+          "en": "Pie de la Cuesta roll"
+        },
+        "desc": {
+          "es": "Por fuera de mango, por dentro camarón y aguacate",
+          "en": "Mango on top, shrimp and avocado inside"
+        },
+        "price": "185"
+      }
+    ]
+  },
+  {
+    "cat": {
+      "es": "Platos fuertes",
+      "en": "Mains"
+    },
+    "items": [
+      {
+        "name": {
+          "es": "Camarones al mojo de ajo",
+          "en": "Garlic shrimp"
+        },
+        "desc": {
+          "es": "Con arroz, ensalada y tortillas · el favorito de nuestros huéspedes",
+          "en": "With rice, salad and tortillas · our guests' favorite"
+        },
+        "price": "240",
+        "img": "img/camarones-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Camarones a la diabla",
+          "en": "Shrimp a la diabla"
+        },
+        "desc": {
+          "es": "Salsa picante de chiles secos, con arroz",
+          "en": "Spicy dried-chile sauce, with rice"
+        },
+        "price": "240"
+      },
+      {
+        "name": {
+          "es": "Pescado a la talla",
+          "en": "Fish a la talla"
+        },
+        "desc": {
+          "es": "Pescado entero a la leña, mitad rojo y mitad verde (por kilo)",
+          "en": "Whole wood-grilled fish, half red, half green adobo (per kilo)"
+        },
+        "price": "380",
+        "img": "img/caldo-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Filete empapelado",
+          "en": "Fish fillet en papillote"
+        },
+        "desc": {
+          "es": "Con verduras y mantequilla de ajo",
+          "en": "With vegetables and garlic butter"
+        },
+        "price": "220"
+      },
+      {
+        "name": {
+          "es": "Tacos de pescado o camarón",
+          "en": "Fish or shrimp tacos"
+        },
+        "desc": {
+          "es": "Tres tacos capeados con col y salsa de la casa",
+          "en": "Three battered tacos with cabbage and house salsa"
+        },
+        "price": "170"
+      }
+    ]
+  },
+  {
+    "cat": {
+      "es": "Cocina mexicana",
+      "en": "Mexican kitchen"
+    },
+    "items": [
+      {
+        "name": {
+          "es": "Enchiladas suizas",
+          "en": "Enchiladas suizas"
+        },
+        "desc": {
+          "es": "De pollo, en salsa verde con crema y queso gratinado",
+          "en": "Chicken, green salsa, crema and melted cheese"
+        },
+        "price": "160"
+      },
+      {
+        "name": {
+          "es": "Quesadillas",
+          "en": "Quesadillas"
+        },
+        "desc": {
+          "es": "Tortilla de harina con queso y guarnición",
+          "en": "Flour tortilla with cheese and sides"
+        },
+        "price": "110",
+        "img": "img/quesadillas-real.jpg"
+      },
+      {
+        "name": {
+          "es": "Pozole guerrerense (jueves)",
+          "en": "Guerrero-style pozole (Thursdays)"
+        },
+        "desc": {
+          "es": "Verde, con sus botanas",
+          "en": "Green pozole with traditional sides"
+        },
+        "price": "160",
+        "img": "img/pozole-real.jpg"
+      }
+    ]
+  },
+  {
+    "cat": {
+      "es": "Bebidas",
+      "en": "Drinks"
+    },
+    "items": [
+      {
+        "name": {
+          "es": "Agua fresca del día",
+          "en": "Agua fresca of the day"
+        },
+        "desc": {
+          "es": "Jamaica, horchata o fruta de temporada",
+          "en": "Hibiscus, horchata or seasonal fruit"
+        },
+        "price": "45"
+      },
+      {
+        "name": {
+          "es": "Coco frío",
+          "en": "Fresh coconut"
+        },
+        "desc": {
+          "es": "Natural o preparado",
+          "en": "Plain or with chile and lime"
+        },
+        "price": "70"
+      },
+      {
+        "name": {
+          "es": "Cerveza nacional",
+          "en": "Mexican beer"
+        },
+        "desc": {
+          "es": "Pregunta por las marcas",
+          "en": "Ask your server for brands"
+        },
+        "price": "50"
+      },
+      {
+        "name": {
+          "es": "Michelada",
+          "en": "Michelada"
+        },
+        "desc": {
+          "es": "Con limón, sal y salsas",
+          "en": "With lime, salt and sauces"
+        },
+        "price": "80"
+      },
+      {
+        "name": {
+          "es": "Margarita",
+          "en": "Margarita"
+        },
+        "desc": {
+          "es": "Clásica o de mango",
+          "en": "Classic or mango"
+        },
+        "price": "130"
+      },
+      {
+        "name": {
+          "es": "Piña colada",
+          "en": "Piña colada"
+        },
+        "desc": {
+          "es": "Con o sin alcohol",
+          "en": "With or without alcohol"
+        },
+        "price": "130"
+      }
+    ]
+  }
+]

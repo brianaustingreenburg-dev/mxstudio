@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Precios · MX Studio ✝️</title>
+<meta name="description" content="Tu app bilingüe con menú, ubicación y WhatsApp para reservas y para llevar. Restaurante o Hotel + Restaurante, todo incluido y el primer mes incluido. Desde $18,000.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MX Studio ✝">
+<meta property="og:title" content="Precios · MX Studio ✝">
+<meta property="og:description" content="Tu app bilingüe con menú, WiFi, reservas y QR · Bilingual app with menu, WiFi, reservations & QR">
+<meta property="og:url" content="https://go.myjefetech.app/acapulco/precios/">
+<meta property="og:image" content="https://go.myjefetech.app/acapulco/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://go.myjefetech.app/acapulco/icon-512.png">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="MX Precios">
+<style>
+:root{--bg:#000;--s1:#110e0f;--s2:#1b1617;--line:rgba(232,196,140,.18);--line2:rgba(232,196,140,.38);--gold:#e8c48c;--gold2:#d9a35f;--sun:#e0703a;--text:#f6ece0;--muted:#b9aaa0;--green:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;font-size:17px;padding-bottom:calc(150px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+button{font:inherit;color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 0 6px}
+.brand{font-weight:800;letter-spacing:.22em;font-size:12px;color:var(--gold)}
+.cur{display:flex;gap:2px;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:auto;margin-right:6px}.cur button{all:unset;cursor:pointer;font-weight:800;font-size:12px;padding:7px 9px;border-radius:999px;opacity:.7}.cur button[aria-pressed=true]{background:#25d366;color:#05301a;opacity:1}.curnote{text-align:center;font-size:12px;opacity:.7;margin:6px 0 0}
+.lang{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;position:relative}
+.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:8px 15px;border-radius:999px;color:var(--muted);position:relative;z-index:1}
+.lang button[aria-pressed=true]{color:#1a0f0a}
+.lang .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s}
+.lang.en .knob{transform:translateX(100%)}
+.hero{text-align:center;padding:8px 0 4px;position:relative}
+.glow{position:absolute;left:50%;top:10px;width:300px;height:300px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(224,112,58,.38),transparent 70%);z-index:-1}
+.logo{width:120px;height:120px;display:block;margin:4px auto 10px;filter:drop-shadow(0 0 20px rgba(224,112,58,.5))}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.28em;color:var(--sun)}
+h1{font-size:30px;font-weight:800;line-height:1.1;margin:8px 0 6px}
+h1 span{color:var(--gold)}
+.sub{color:var(--muted);font-size:15px}
+.plan{margin-top:20px;border-radius:24px;padding:20px 18px;background:radial-gradient(120% 90% at 50% 0%,rgba(224,112,58,.22),transparent 70%),var(--s1);border:1px solid var(--line2)}
+.pname{font-size:13px;font-weight:800;letter-spacing:.18em;color:var(--sun);text-transform:uppercase}
+.ptitle{font-size:22px;font-weight:800;margin-top:4px}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.pbox{background:#000;border:1px solid var(--line);border-radius:18px;padding:14px 10px;text-align:center}
+.pbox b{display:block;font-size:30px;font-weight:800;color:var(--green);line-height:1.05}
+.pbox span{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:4px}
+.pbox .was{font-size:11.5px;color:var(--gold);margin-top:2px}.plans{margin:14px 0 4px;display:grid;gap:8px}.plh{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}.plb{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:30px 1fr;column-gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14)}.plb span{grid-row:span 2;font-size:22px}.plb b{font-size:15.5px}.plb small{opacity:.75;font-size:12.5px}.plb[aria-pressed=true]{border-color:#25d366;background:rgba(37,211,102,.12)}.pnote{font-size:11.5px;color:var(--gold);margin-top:2px}
+.was{text-decoration:line-through;text-decoration-thickness:2px;opacity:.85}
+.bonus{margin-top:10px;padding:10px 13px;border-radius:14px;border:1.5px dashed var(--gold);font-size:13px;font-weight:700;line-height:1.4}.bonus b{display:block;font-size:14.5px}
+.regp{display:block;font-size:13px;font-weight:700;opacity:.6;text-decoration:line-through}.pkgs{margin:16px 0 0;display:grid;gap:8px}
+.pkg-types{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.pkg-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:0}
+.pkgs button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:9px 6px;border-radius:12px;font-weight:800;font-size:12.5px;border:1.5px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05)}.pkgs button[aria-pressed=true]{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border-color:transparent}.pkgs small{display:block;font-weight:600;font-size:11px;opacity:.8;margin-top:2px}
+.promo{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:99px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a}
+.feats{list-style:none;display:grid;gap:0}
+.cmp-wrap{overflow-x:auto;margin:0 -4px 14px}
+.cmp{width:100%;border-collapse:collapse;font-size:13px}
+.cmp th,.cmp td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center}
+.cmp th:first-child,.cmp td:first-child{text-align:left;font-weight:600}
+.cmp thead th{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cmp .th-sel{color:var(--sun);border-bottom:2px solid var(--sun)}
+.cmp .tf{display:flex;gap:7px;align-items:center;font-size:13px;font-weight:600;padding-right:8px}
+.cmp .tf i{flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:14px}
+.cmp .tc-y{color:#4caf50;font-weight:800;font-size:15px}
+.cmp .tc-n{color:var(--muted);opacity:.45}
+.feat-list{list-style:none;display:grid;gap:10px;margin-top:4px}
+.feat-list li{display:flex;gap:12px;align-items:center;font-size:16px;font-weight:600}
+.feat-list i{flex:0 0 36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--s2);border:1px solid var(--line);font-style:normal;font-size:18px}
+.feat-more{margin:12px 0 4px;font-size:13px;color:var(--muted);padding:9px 12px;border-radius:10px;background:var(--s2);border:1px solid var(--line)}
+.inc{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:6px}
+.inc span{font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:99px;background:rgba(37,211,102,.12);color:#7fe9aa;border:1px solid rgba(37,211,102,.3)}
+.tables{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:14px;padding:12px;border-radius:16px;background:#000;border:1px solid var(--line)}
+.tables b{display:block;font-size:15px}.tables small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.step{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.step button{all:unset;cursor:pointer;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:22px;background:var(--s2);border:1px solid var(--line2);color:var(--gold)}
+.step span{min-width:28px;text-align:center;font-weight:800;font-size:20px}
+.tax{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.sec{margin:30px 0 10px}
+.sec small{font-size:11px;font-weight:800;letter-spacing:.28em;color:var(--sun);text-transform:uppercase}
+.sec h2{font-size:22px;font-weight:800;margin-top:4px}
+.sec p{color:var(--muted);font-size:14px;margin-top:3px}
+.x{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;align-items:center;width:100%;background:var(--s1);border:1.5px solid var(--line);border-radius:18px;padding:14px;margin-bottom:9px;transition:border-color .15s,background .15s}
+.x .ic{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--s2);font-size:20px}
+.x .t{flex:1;min-width:0}
+.x .t b{display:block;font-size:15.5px}
+.x .t small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.x .pr{text-align:right;flex:0 0 auto}
+.x .pr b{display:block;font-size:16px;color:var(--gold)}
+.x .pr small{display:block;color:var(--muted);font-size:12px}
+.x .ck{flex:0 0 28px;height:28px;border-radius:9px;border:2px solid var(--line2);display:grid;place-items:center;font-weight:900;font-size:16px;color:transparent}
+.x[aria-pressed=true]{border-color:var(--green);background:rgba(37,211,102,.07)}
+.x[aria-pressed=true] .ck{background:var(--green);border-color:var(--green);color:#05301a}
+.hotel{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:16px;display:flex;gap:12px;align-items:center}
+.hotel i{font-style:normal;font-size:26px}
+.hotel b{display:block;font-size:16px}
+.hotel span{color:var(--muted);font-size:13.5px}
+.faq details{background:var(--s1);border:1px solid var(--line);border-radius:16px;margin-bottom:8px}
+.faq summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--gold);font-size:20px;line-height:1}
+.faq details[open] summary:after{content:"−"}
+.faq p{padding:0 16px 14px;color:var(--muted);font-size:14px}
+.foot{text-align:center;color:var(--muted);font-size:12px;padding:26px 0 0}
+.foot b{color:var(--gold)}
+.total{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(10,8,9,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line2);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.total .in{max-width:560px;margin:0 auto}
+.trow{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:10px}
+.trow small{display:block;font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
+.trow b{font-size:22px;font-weight:800}
+.trow .r{text-align:right}
+.trow .r b{color:var(--green)}
+.cta{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:15px;border-radius:16px;background:var(--green);color:#05301a;font-weight:800;font-size:16px}
+.cta svg{width:22px;height:22px}
+ .sheet{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.7);display:none;align-items:flex-end}
+.sheet.on{display:flex}
+.box{width:100%;max-width:560px;margin:0 auto;max-height:90vh;overflow:auto;background:#f8f3ec;color:#1d1715;border-radius:24px 24px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom))}
+.inv-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:2px solid #1d1715;padding-bottom:12px}
+.inv-h b{font-size:20px;font-weight:800;display:block}
+.inv-h small{display:block;color:#776a63;font-size:12.5px;margin-top:2px}
+.inv-h .brand2{white-space:nowrap;text-align:right;font-weight:800;font-size:12px;letter-spacing:.14em;color:#b5642f}
+.box label{display:block;font-size:13px;font-weight:700;color:#776a63;margin:12px 0 4px}
+.box input{width:100%;padding:12px;border:1.5px solid #e4d8ca;border-radius:12px;font-size:16px;background:#fff;color:#1d1715}
+.ln{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #e4d8ca;font-size:14.5px}
+.ln span:last-child{font-weight:700;white-space:nowrap}
+.tt{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding:12px 0 2px}
+.ty{display:flex;justify-content:space-between;color:#776a63;font-size:14px}
+.ptog{position:relative;display:grid;grid-template-columns:1fr 1fr;background:#ece3d8;border-radius:999px;padding:4px}
+.ptog button{all:unset;cursor:pointer;position:relative;z-index:1;text-align:center;padding:12px 6px;border-radius:999px;font-weight:800;font-size:14.5px;color:#776a63;transition:color .2s}
+.ptog button[aria-pressed=true]{color:#05301a}
+.ptog .pk{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:#25d366;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .25s ease}
+.ptog.w .pk{transform:translateX(100%)}
+.olang{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.psub{font-size:13px;color:#776a63;text-align:center;margin-top:6px}
+.onote{font-size:12.5px;color:#776a63;margin:12px 0 4px}
+.oacts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:12px}
+.oacts button{all:unset;cursor:pointer;text-align:center;padding:14px;border-radius:14px;font-weight:800}
+.oacts .ob1{background:#ece3d8;color:#1d1715}.oacts .ob2{background:#25d366;color:#05301a}
+.off{display:none;text-align:center;font-size:12px;font-weight:700;color:#1a0f0a;background:var(--gold);padding:6px;border-radius:10px;margin-top:10px}
+body.is-off .off{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><a id="backR" href="../rutas/" style="display:none;margin-right:8px;padding:6px 12px;border-radius:999px;background:rgba(217,163,95,.18);color:inherit;text-decoration:none;font-weight:800;font-size:13px">← MX Dashboard</a>MX STUDIO ✝</div>
+    <div class="cur" id="cur"><button data-c="mxn" aria-pressed="true">MXN</button><button data-c="usd" aria-pressed="false">USD</button><button data-c="cad" aria-pressed="false">CAD</button></div><div class="lang" id="lang"><span class="knob"></span><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div>
+  </header>
+  <section class="hero">
+    <div class="glow"></div>
+    <img class="logo" src="../logo.png" alt="MX Studio">
+    <div class="kicker" data-t="kicker"></div>
+    <h1><span data-t="h1a"></span><br><span data-t="h1b"></span></h1>
+    <p class="sub" data-t="sub"></p>
+    <div class="off" data-t="off"></div>
+  </section>
+
+  <section class="plan">
+    <div class="pname" data-t="pname"></div>
+    <div class="ptitle" data-t="ptitle"></div>
+    <div class="promo" data-t="promo"></div>
+    <div class="bonus" id="bonus" hidden></div>
+    <div class="prices">
+      <div class="pbox"><span class="regp" id="pReg"></span><b id="pOnce">$18,000</b><span data-t="once"></span><span class="pnote" id="pSeason"></span><span class="pnote" data-t="wasO"></span></div>
+      <div class="pbox"><b id="pHost">$300</b><span data-t="month"></span><span class="pnote" data-t="was"></span></div>
+     </div>
+     <div class="pkgs" id="pkgs"></div>
+     <div class="plans" id="plans"></div>
+     <div>
+    </div>
+    <ul class="feats" id="feats"></ul>
+    <div class="inc" id="inc"></div>
+    <div class="tables"><div><b data-t="tbT"></b><small data-t="tbS"></small></div><div style="font-size:26px">♾️</div></div>
+    <div class="tax" data-t="tax"></div>
+  </section>
+
+  <div id="extras" style="display:none"></div>
+
+
+  <div class="sec"><small data-t="fK"></small><h2 data-t="fH"></h2></div>
+  <div class="faq" id="faq"></div>
+
+  <section class="plan" style="margin-top:16px;border-color:rgba(201,146,42,.35)">
+    <div class="pname" id="mpKicker">Marketing</div>
+    <div class="ptitle" id="mpTitle">Aparece en otros hubs</div>
+    <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-top:8px" id="mpDesc">¿Tu restaurante quiere aparecer en el hub de un hotel? ¿Tu hotel quiere estar en el hub de otro negocio? Paga una vez al mes y te ponemos donde están tus clientes.</p>
+    <div class="prices" style="margin-top:16px">
+      <div class="pbox"><b id="mpPrice">$150</b><span style="font-size:13px;opacity:.7" id="mpPer"> USD / mes</span></div>
+    </div>
+    <ul class="feats" style="margin-top:14px">
+      <li id="mp1">✔ Apareces en el hub que elijas</li>
+      <li id="mp2">✔ Llega a clientes que ya están ahí</li>
+      <li id="mp3">✔ Restaurantes, hoteles, actividades, clubs</li>
+      <li id="mp4">✔ Cancela cuando quieras</li>
+      <li id="mp5">✔ Primer año gratis (compradores 2026)</li>
+    </ul>
+    <div class="tax" id="mpTax" style="margin-top:12px">$150 USD por hub · se cobra en efectivo · disponible para cualquier negocio con app MX Studio</div>
+    <button class="cta" style="margin-top:16px;width:100%" onclick="window.open('https://wa.me/527441930502?text='+encodeURIComponent(document.getElementById('mpWA').dataset.msg),'_blank')" id="mpBtn">📲 Quiero aparecer en otro hub</button>
+    <span id="mpWA" data-msg="Hola Brian, quiero agregar mi negocio a otro hub. ¿Me explicas cómo funciona?" hidden></span>
+  </section>
+  <script>
+  (function(){
+    const MP={
+      es:{kicker:"Marketing",title:"Aparece en otros hubs",desc:"¿Tu restaurante quiere aparecer en el hub de un hotel? ¿Tu hotel quiere estar en el hub de otro negocio? Entramos temprano — el primer año es gratis para todos los que compren su app en 2026. Estamos construyendo la red ahora y tú formas parte desde el inicio. Después del primer año, solo $150 al mes.",per:" USD / mes",f1:"✔ Primer año completamente gratis (compradores 2026)",f2:"✔ Apareces en el hub que elijas",f3:"✔ Llega a clientes que ya están ahí",f4:"✔ Restaurantes, hoteles, actividades, clubs",f5:"✔ Cancela cuando quieras",tax:"$150 USD por hub a partir del segundo año · se cobra en efectivo · disponible para cualquier negocio con app MX Studio",btn:"📲 Quiero aparecer en otro hub",wa:"Hola Brian, quiero agregar mi negocio a otro hub. ¿Me explicas cómo funciona?"},
+      en:{kicker:"Marketing",title:"Get listed on other hubs",desc:"Want your restaurant on a hotel hub? Want your hotel on a restaurant hub? We're getting in early — the first year is free for everyone who buys an app in 2026. We're building the network now and you'll be part of it from the start. After year one, just $150/month.",per:" USD / mo",f1:"✔ First year completely free (2026 buyers)",f2:"✔ Listed on the hub of your choice",f3:"✔ Reach customers who are already there",f4:"✔ Restaurants, hotels, activities, beach clubs",f5:"✔ Cancel any time",tax:"$150 USD per hub starting year two · collected in cash · available for any MX Studio app business",btn:"📲 Get listed on another hub",wa:"Hi Brian, I want to add my business to another hub. How does it work?"}
+    };
+    function mpRender(){
+      const l=window.lang||"es",m=MP[l]||MP.es;
+      const mpMap={mpKicker:"kicker",mpTitle:"title",mpDesc:"desc",mpPer:"per",mp1:"f1",mp2:"f2",mp3:"f3",mp4:"f4",mp5:"f5",mpTax:"tax",mpBtn:"btn"};
+      Object.keys(mpMap).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=m[mpMap[id]]||""});
+      const wa=document.getElementById("mpWA");if(wa)wa.dataset.msg=m.wa;
+    }
+    const _r=window.render;window.render=function(){_r&&_r.apply(this,arguments);mpRender();};
+    document.addEventListener("DOMContentLoaded",mpRender);
+  })();
+  </script>
+
+  <footer class="foot"><b>MX Studio ✝</b> · Acapulco, Guerrero<br>WhatsApp +52 744 193 0502</footer>
+</div>
+
+<div class="sheet" id="sheet"><div class="box" id="box"></div></div>
+<div class="total"><div class="in">
+  <div class="trow"><div><small data-t="today"></small><b id="tToday">$3,000</b></div><div class="r"><small data-t="monthly"></small><b id="tMonth">$1,000</b></div></div>
+  <button class="cta" id="cta"><span style="font-size:20px">🛒</span><span data-t="cta"></span></button>
+</div></div>
+
+<script>
+const PHONE="527441930502";
+const QS=new URLSearchParams(location.search),PS=(QS.get("s")||"").replace(/[^a-z0-9-]/g,""),PA=(QS.get("a")||"").replace(/[^A-Za-z0-9_-]/g,""),PN=QS.get("n")||"";
+function cfgPA(){try{return JSON.parse(decodeURIComponent(escape(atob(PA.replace(/-/g,"+").replace(/_/g,"/")))))}catch(_){return {}}}
+const esc2=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const b64u=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const ymd=x=>`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`;
+const addY=(d,n)=>{const x=new Date(d);x.setFullYear(x.getFullYear()+n);return x};
+function stripeBtns(es){return "";const L=[];const b=(url,txt)=>url?`<a style="display:block;text-decoration:none;margin:8px 0;padding:15px;border-radius:14px;background:#635bff;color:#fff;font-weight:800;font-size:15.5px" target="_blank" href="${url}">💳 ${txt}</a>`:"";
+ if(plan==="full")L.push(b(PAY.full,(es?"Pagar "+fmt(price())+" con tarjeta":"Pay "+fmt(price())+" by card")));else if(plan==="p5"?PAY.m5:PAY.m10){L.push(`<p style="margin:6px 0;font-weight:700">💵 ${es?"Enganche de "+fmt(PK[pkg].down)+" en efectivo, hoy.":fmt(PK[pkg].down)+" down payment in cash, today."}</p>`);L.push(b(plan==="p5"?PAY.m5:PAY.m10,(es?`Activar pagos de ${plan==="p5"?"$1,000 × 5":"$500 × 10"} al mes`:`Start ${plan==="p5"?"$1,000 × 5":"$500 × 10"} monthly payments`)))}
+ 
+ const any=L.join("");return any?`<p style="font-weight:800;margin:14px 0 4px">${es?"Pago con tarjeta:":"Card payment:"}</p>${any}`:(pay==="s"?`<p style="font-size:13px;color:#b5642f;font-weight:700">${es?"El link de pago con tarjeta todavía no está listo. Cobra en efectivo por ahora.":"The card payment link isn't set up yet. Take cash for now."}</p>`:"")}
+function icsFor(s){const p=n=>String(n).padStart(2,"0"),st=Date.now(),E=[];const f=new Date(s.date+"T12:00");f.setMonth(f.getMonth()+3);const d1=`${f.getFullYear()}${p(f.getMonth()+1)}${p(f.getDate())}`,stamp=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";
+ if(s.n)E.push("BEGIN:VEVENT","UID:"+s.id+"-pay@mxstudio","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+d1,"RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT="+s.n,"SUMMARY:Cobrar MX Studio: "+s.biz+" ($"+(s.mo-(s.host?300:0))+" efectivo)","DESCRIPTION:Dueño: "+(s.name||"")+" · WhatsApp: "+(s.wa||""),"BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Cobrar pago: "+s.biz,"END:VALARM","END:VEVENT");
+ if(s.renew){const r=new Date(s.renew+"T12:00"),dr=`${r.getFullYear()}${p(r.getMonth()+1)}${p(r.getDate())}`;E.push("BEGIN:VEVENT","UID:"+s.id+"-y2@mxstudio","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+dr,"RRULE:FREQ=MONTHLY;INTERVAL=3","SUMMARY:Cobrar MX Studio $"+((s.pkg==="h"?500:300)*3).toLocaleString("en-US")+": "+s.biz,"BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Cobrar $"+((s.pkg==="h"?500:300)*3).toLocaleString("en-US")+" (3 meses): "+s.biz,"END:VALARM","END:VEVENT")}
+ return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//MX Studio//ES",...E,"END:VCALENDAR"].join("\r\n")}
+async function pushCfgP(slug,cfg){let key="";try{key=localStorage.getItem("crear-gh")||""}catch(_){}if(!key||!navigator.onLine)return false;
+ const body={whatsapp:cfg.w,wifi:cfg.n?{name:cfg.n,pass:cfg.p}:null,waiter:cfg.o.includes("m"),carryout:cfg.o.includes("c"),reservations:cfg.o.includes("r"),t:cfg.t};
+ const api="https://api.github.com/repos/brianaustingreenburg-dev/mxstudio/contents/acapulco/c/"+slug+"/config.json",hd={Authorization:"Bearer "+key,Accept:"application/vnd.github+json"};
+ try{let sha;const g=await fetch(api+"?ref=main",{headers:hd,cache:"no-store"});if(g.ok)sha=(await g.json()).sha;const r=await fetch(api,{method:"PUT",headers:hd,body:JSON.stringify({message:"Venta "+slug+" ✝️",branch:"main",sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(body,null,1))))})});return r.ok}catch(_){return false}}
+function ownerWa(){try{const j=JSON.parse(decodeURIComponent(escape(atob(PA.replace(/-/g,"+").replace(/_/g,"/")))));return (j.w||"").replace(/^52/,"")}catch(_){return ""}}
+function pkgText(A){A=A===undefined?PA:A;if(!PS)return "";const G="https://go.myjefetech.app/acapulco/",a=A?"&a="+A:"",es=lang==="es";
+ return (es?"\n\n📦 *Tu paquete*":"\n\n📦 *Your package*")+"\n📱 App: "+G+"c/"+PS+"/"+(A?"?a="+A:"")+"\n🍽️ "+(es?"Tarjetas de mesa":"Table cards")+": "+G+"tarjeta/?s="+PS+a+"&f=m\n🏷️ "+(es?"Stickers de menú":"Menu stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=st\n⭐ "+(es?"Stickers de reseñas":"Review stickers")+": "+G+"tarjeta/?s="+PS+a+"&f=rv"+"\n🧑‍🍳 "+(es?"Tu panel (reseñas, QR, cambios)":"Your panel (reviews, QRs, changes)")+": "+G+"dueno/?s="+PS+a+"\n🧰 "+(es?"Guías para configurar todo, paso a paso":"Step-by-step setup guides")+": "+G+"dueno/?s="+PS+a+"#setup"}
+const BASE={once:8000,down:3000,year:1000};let plan="full",host=false,PAY={};fetch("../lib/pay.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{PAY=j||{}}).catch(()=>{});
+// Package types
+const TYPES={
+ r:{es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
+ h:{es:"🏨 Hotel",en:"🏨 Hotel"},
+ hr:{es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
+};
+// Prices: r and h are fixed; hr is a range (quote-based)
+const PK={
+ r:{low:18000,reg:18000,down:7000,host:300,es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
+ h:{low:23000,reg:23000,down:10000,host:400,es:"🏨 Hotel",en:"🏨 Hotel"},
+ hr:{low:38000,reg:65000,down:13000,host:500,es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
+};
+const HOST_MO={r:300,h:400,hr:500};
+// hr is a range — show $38k–$65k, CTA goes to WhatsApp quote (not order form)
+const isRange=()=>pkg==="hr";
+// Payment plan available for Hotel+Restaurante only — terms agreed in person
+function pkgPayable(type){return type==="hr"}
+let pkg=(()=>{const t=QS.get("pkg")||"r";return["r","h","hr"].includes(t)?t:"r"})();
+const price=()=>PK[pkg].low,regP=()=>PK[pkg].reg;
+function buildPL(){const F=price();
+ if(pkgPayable(pkg))return{full:{today:F,mo:0,n:0},pay:{today:F,mo:0,n:0}};
+ return{full:{today:F,mo:0,n:0}};}
+let PL=buildPL(),HOST=PK[pkg].host;
+function setPkg(k){
+ pkg=k;
+ PL=buildPL();HOST=PK[pkg].host;
+ if(!pkgPayable(pkg))plan="full";
+}
+const X=[];
+// Tier feature breakdown: each row = {icon, es, en, tiers:[1,2,3 or subset], hotel:true if hotel-only}
+const TIER_FEATS=[
+ {ic:"📱",es:"App + menú con fotos",en:"App + menu with photos",tiers:[1,2,3]},
+ {ic:"🔳",es:"QR ilimitados (mesas, puerta, caja, stickers)",en:"Unlimited QR codes (tables, door, counter, stickers)",tiers:[1,2,3]},
+ {ic:"📶",es:"Botón de WiFi en la app",en:"WiFi button in the app",tiers:[1,2,3]},
+ {ic:"🌎",es:"Español e inglés (un botón)",en:"Spanish + English (one tap)",tiers:[1,2,3]},
+ {ic:"💵",es:"Precios en dólares para turistas",en:"Dollar prices for tourists",tiers:[1,2,3]},
+ {ic:"🔥",es:"Especial de hoy (tú lo cambias)",en:"Today's special (you change it)",tiers:[1,2,3]},
+ {ic:"🎮",es:"Juegos en familia gratis",en:"Free family games",tiers:[1,2,3]},
+ {ic:"🧑‍🍳",es:"Tu panel para editar el menú",en:"Owner panel to edit menu",tiers:[1,2,3]},
+ {ic:"🔎",es:"Perfil de Google + reseñas",en:"Google profile setup + reviews",tiers:[2,3]},
+ {ic:"💬",es:"Reservas y para llevar por WhatsApp",en:"WhatsApp reservations + carry-out",tiers:[2,3]},
+ {ic:"🏨",es:"Guía del huésped",en:"Guest guide",tiers:[2,3],hotel:true},
+ {ic:"🎁",es:"Regalo de lealtad (visitas repetidas)",en:"Guest loyalty gift (return visits)",tiers:[3]},
+ {ic:"🏆",es:"Concurso Mesero de la Semana",en:"Waiter of the Week contest",tiers:[3]},
+ {ic:"🗣️",es:"App Habla: inglés y español para equipo y clientes",en:"Habla app: English + Spanish for staff + guests",tiers:[3]},
+];
+const T={
+ es:{kicker:"Precios · Acapulco",h1a:"Tu ecosistema digital",h1b:"Desde $18,000 · todo incluido",sub:"Menú, ubicación y WhatsApp para reservas y para llevar. Sin descargas: tus clientes solo escanean el QR.",off:"Sin internet: estás viendo la versión guardada.",
+  pname:"App MX Studio",ptitle:"Todo lo que tu negocio necesita",once:"todo incluido · 1er mes incluido",month:"al mes, desde el 2º mes",was:"Hosting, soporte y cambios",wasO:"",promo:"📅 Hotel + Restaurante: planes de pago disponibles, en efectivo · tú controlas tu ecosistema con tu panel",
+  feats:[["🔳","QR ilimitados: mesas, puerta, caja, reseñas (impresión no incluida)"],["🧑‍🍳","Tu panel: cambia menú, precios, platillos y el especial de hoy tú mismo"],["📶","Botón de WiFi en la app, sin escribir la contraseña"],["📖","Menú con fotos y precios"],["📍","Ubicación y cómo llegar"],["💬","Reservas y para llevar por WhatsApp"],["🔎","Ecosistema Google: casi 70% de los viajeros lo usan para encontrar negocios"],["🌎","Español e inglés, con un botón"],["💵","Precios en dólares para turistas"],["🔥","Especial de hoy que tú cambias"],["🎮","Juegos en familia gratis: trivia de Acapulco en el teléfono de cada quien, memoria y colorear"],["🧰","Guías paso a paso para configurar todo: Google, WiFi, impresión, WhatsApp y tu equipo. ¿Prefieres que lo haga yo? Ve “Preguntas”."]],
+  inc:["Todo incluido","1er mes incluido","Tu panel para hacer cambios","Sin contrato","Soporte por WhatsApp"],tax:"Precios finales en pesos mexicanos (MXN) · sin cargos extra",
+  tbT:"QR ilimitados para todas tus mesas",tbM:"",tbS:"Te damos los archivos para imprimir los que quieras · impresión no incluida",tbX:"mesas extra",xK:"Opcional",xH:"Agrega a tu app",xP:"Toca para ver tu total. Puedes agregarlos cuando quieras.",
+  hK:"Negocios grandes",hH:"Hoteles y resorts",hT:"Cotización a tu medida",hS:"Guía del huésped, servicio a cuarto y más. Escríbenos por WhatsApp.",
+  fK:"Preguntas",fH:"Lo que nos preguntan",
+  faq:[["¿Qué tengo que configurar yo?","Tu panel trae guías paso a paso: WiFi, imprimir y colocar tus QR, tu perfil de Google y reseñas, WhatsApp Business, explicarle a tu equipo, menú y especial, fotos y redes. Cada una tiene su casilla de “Ya lo hice”."],["¿Me lo puedes configurar tú?","Sí, con un pago único: imprimir y colocar tus QR $500 (+ impresión) · perfil de Google y reseñas $1,500 · WhatsApp Business $500 · capacitar a tu equipo $500 · sesión de fotos de platillos $1,500 · ponerlo en tus redes $500. WiFi y cambios de menú: incluidos."],["¿Cuántos QR incluye?","Ilimitados. Te damos los archivos de tarjetas de mesa, stickers para puerta y caja, y stickers de reseñas para imprimir los que quieras (la impresión no está incluida). El WiFi es un botón dentro de la app."],["¿Mis clientes tienen que descargar algo?","No. Escanean el QR con su cámara y la app se abre al momento."],["¿Qué incluye “cambios ilimitados”?","Cambiamos tu menú, precios, fotos y horarios cuando quieras, sin costo extra."],["¿Qué pago después?","El primer mes está incluido. Desde el segundo mes son $300 al mes: hosting, soporte, cambios y nuevas lecciones de Habla. Sin contrato."],["¿Qué incluye?","Todo: tu app, QR ilimitados, stickers, reseñas, juegos para la familia, precios en dólares y tu panel para cambiar menú, precios y el especial de hoy. No hay extras que pagar."],["¿Cómo pago?","En efectivo, sin comisiones. Restaurantes: un solo pago. Hotel + Restaurante: pago completo o plan de pagos que acordamos en persona. Yo paso a tu negocio a cobrar, te doy recibo por WhatsApp y reviso que tu app esté perfecta."],["¿Qué es Habla?","Viene con el Ecosistema: una app para aprender inglés y español con audio, en 3 niveles (palabras, frases útiles y conversación). Aparece dentro de tu app, así tu equipo practica inglés para atender turistas y tus clientes aprenden español mientras esperan."],["¿Funciona sin internet?","Sí. Después de abrirla una vez, la app se guarda en el teléfono."],["¿Cuánto tarda?","Normalmente tu app está lista en pocos días, con tu menú y tu logo."]],
+  today:"HOY",monthly:"CADA AÑO",cta:"Comprar ahora",per:"/año",
+  oT:"Tu orden",oNo:"Orden",oDate:"Fecha",oBiz:"Nombre de tu negocio",oName:"Tu nombre",oBase:"App MX Studio · instalación",oSup:"Soporte 1er mes (cambios ilimitados)",oTables:"QR de mesa",oStk:"Stickers de menú (puerta, caja)",oRev:"Stickers de reseñas Google",oInc:"Incluidos",oExtraT:"Mesas extra",oToday:"Total a pagar hoy",oYear:"Después, cada año",
+  pay:"Forma de pago",payC:"💵 Efectivo",payCs:"Sin comisiones · pagas en persona",payW:"💳 Tarjeta",payWs:"Tarjeta de crédito o débito (Stripe)",payCm:"Efectivo (sin comisiones, cobro en persona)",payWm:"Tarjeta (Stripe)",
+  oNote:"Al confirmar se abre WhatsApp con tu orden. MX Studio te responde con la bienvenida y los detalles de tu pago.",oSend:"Confirmar y enviar por WhatsApp",oCancel:"Cerrar",oNeed:"Escribe el nombre de tu negocio",
+  msg:(o)=>`🧾 *ORDEN ${o.no} · MX Studio ✝*\nFecha: ${o.date}\nNegocio: ${o.biz}${o.name?"\nNombre: "+o.name:""}\n\n${o.lines}\n\n*Total a pagar hoy: ${o.today}*${o.mo?"\nDespués: "+o.mo:""}\nDesde el 2º mes: ${fmt(HOST)}/mes (hosting, soporte y cambios), se cobran ${fmt(HOST*3)} cada 3 meses\nForma de pago: ${o.pay}\n\nHola MX Studio, quiero mi app. 🙌`},
+ en:{kicker:"Prices · Acapulco",h1a:"Your digital ecosystem",h1b:"From $18,000 · everything included",sub:"Menu, location and WhatsApp for reservations and carry-out. No downloads: your customers just scan the QR.",off:"Offline: you're viewing the saved version.",
+  pname:"MX Studio app",ptitle:"Everything your business needs",once:"everything included · 1st month included",month:"per month, from month 2",was:"Hosting, support and changes",wasO:"",promo:"📅 Hotel + Restaurant: payment plans available, in cash · you control your ecosystem from your panel",
+  feats:[["🔳","Unlimited QRs: tables, door, register, reviews (printing not included)"],["🧑‍🍳","Your panel: change menu, prices, dishes and today's special yourself"],["📶","WiFi button in the app, no typing the password"],["📖","Menu with photos and prices"],["📍","Location and directions"],["💬","WhatsApp reservations and carry-out"],["🔎","Google Ecosystem: nearly 70% of travelers use it to find businesses"],["🌎","Spanish and English, one tap"],["💵","Prices in dollars for tourists"],["🔥","Today's special you change yourself"],["🎮","Free family games: Acapulco trivia on everyone's phone, memory and coloring"],["🧰","Step-by-step guides to set up everything: Google, WiFi, printing, WhatsApp and your team. Rather I do it? See “Questions”."]],
+  inc:["Everything included","1st month included","Your own editing panel","No contract","WhatsApp support"],tax:"Final prices in Mexican pesos (MXN) · no extra fees",
+  tbT:"Unlimited QRs for all your tables",tbM:"",tbS:"We give you the files to print as many as you want · printing not included",tbX:"extra tables",xK:"Optional",xH:"Add to your app",xP:"Tap to see your total. Add them anytime.",
+  hK:"Bigger businesses",hH:"Hotels & resorts",hT:"Custom quote",hS:"Guest guide, room service and more. Message us on WhatsApp.",
+  fK:"Questions",fH:"What people ask us",
+  faq:[["What do I have to set up?","Your panel has step-by-step guides: WiFi, printing and placing your QRs, your Google profile and reviews, WhatsApp Business, showing your team, menu and special, photos and social media. Each one has a “Done” checkbox."],["Can you set it up for me?","Yes, one-time payment: print and place your QRs $500 (+ printing) · Google profile and reviews $1,500 · WhatsApp Business $500 · train your team $500 · dish photo session $1,500 · add it to your social media $500. WiFi and menu changes: included."],["How many QRs are included?","Unlimited. You get the files for table cards, door and register stickers, and review stickers to print as many as you want (printing not included). WiFi is a button inside the app."],["Do my customers need to download anything?","No. They scan the QR with their camera and the app opens right away."],["What does “unlimited updates” include?","We change your menu, prices, photos and hours whenever you want, at no extra cost."],["What do I pay after that?","The first month is included. From month 2 it's $300 a month: hosting, support, changes and new Habla lessons. No contract."],["What's included?","Everything: your app, unlimited QRs, stickers, reviews, family games, dollar prices and your panel to change menu, prices and today's special. No extras to pay."],["How do I pay?","Cash, no fees. Restaurants: one payment. Hotel + Restaurant: pay in full or a payment plan we agree on in person. I come to your business to collect, give you a WhatsApp receipt and check your app is perfect."],["What is Habla?","It comes with the Ecosystem: an English + Spanish learning app with audio, in 3 levels (words, useful phrases and conversation). It shows up inside your app, so your staff practice English to serve tourists and your guests pick up Spanish while they wait."],["Does it work offline?","Yes. After opening it once, the app saves to the phone."],["How long does it take?","Your app is usually ready in a few days, with your menu and logo."]],
+  today:"TODAY",monthly:"EACH YEAR",cta:"Buy now",per:"/yr",
+  oT:"Your order",oNo:"Order",oDate:"Date",oBiz:"Your business name",oName:"Your name",oBase:"MX Studio app · setup",oSup:"1st month support (unlimited updates)",oTables:"QR table cards",oStk:"Menu stickers (door, counter)",oRev:"Google review stickers",oInc:"Included",oExtraT:"Extra tables",oToday:"Total due today",oYear:"Then, each year",
+  pay:"Payment method",payC:"💵 Cash",payCs:"No fees · pay in person",payW:"💳 Card",payWs:"Credit or debit card (Stripe)",payCm:"Cash (no fees, collected in person)",payWm:"Card (Stripe)",
+  oNote:"Confirming opens WhatsApp with your order. MX Studio replies with a welcome and your payment details.",oSend:"Confirm and send on WhatsApp",oCancel:"Close",oNeed:"Enter your business name",
+  msg:(o)=>`🧾 *ORDER ${o.no} · MX Studio ✝*\nDate: ${o.date}\nBusiness: ${o.biz}${o.name?"\nName: "+o.name:""}\n\n${o.lines}\n\n*Total due today: ${o.today}*${o.mo?"\nThen: "+o.mo:""}\nFrom month 2: ${fmt(HOST)}/mo (hosting, support and changes), collected as ${fmt(HOST*3)} every 3 months\nPayment: ${o.pay}\n\nHi MX Studio, I want my app. 🙌`}
+};
+const $=id=>document.getElementById(id);
+let lang="es",sel={};
+try{lang=localStorage.getItem("mx-precios-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
+const fmt=n=>"$"+n.toLocaleString("en-US");
+let tables=10;const extraT=()=>0;
+function totals(){const P=PL[plan];let o=P.today+(host?HOST:0),y=0,mo=P.mo+(host?HOST:0);X.forEach(x=>{if(sel[x.k]){o+=x.once;y+=x.year}});return{o,m:y,mo,n:P.n,inst:P.mo}}
+const BONUS_END=new Date("2026-11-12T00:00:00-06:00");const bonusOn=()=>Date.now()<BONUS_END.getTime();
+function bonusTxt(es){return es?["🎁 Activa antes del 11 de noviembre","Te configuro tu perfil de Google gratis: fotos, horario, menú y reseñas (valor $1,500)."]:["🎁 Activate before November 11","I'll set up your Google profile free: photos, hours, menu and reviews (a $1,500 value)."]}
+function render(){
+ const u=T[lang];{const bx=document.getElementById("bonus");if(bx){if(bonusOn()){const b=bonusTxt(lang==="es");bx.innerHTML=`<b>${b[0]}</b>${b[1]}`;bx.hidden=false}else bx.hidden=true}}document.documentElement.lang=lang;
+ document.querySelectorAll("[data-t]").forEach(el=>el.textContent=u[el.dataset.t]);
+ {const es=lang==="es",K=PK[pkg],rng=isRange();
+  document.querySelector('[data-t="h1b"]').textContent=(es?"Restaurante desde "+fmt(18000):"Restaurant from "+fmt(18000));
+  // Price box: range for hr, fixed for r/h
+  $("pOnce").textContent=rng?(fmt(K.low)+" – "+fmt(K.reg)):fmt(K.low);
+  $("pReg").textContent="";$("pReg").style.display="none";
+  if(rng){$("pSeason").textContent=(es?"📅 Cotización a tu medida · plazo y pagos en persona":"📅 Custom quote · terms set in person");$("pSeason").style.display="";}
+  else if(pkgPayable(pkg)){$("pSeason").textContent=(es?"📅 Planes de pago disponibles":"📅 Payment plans available");$("pSeason").style.display="";}
+  else{$("pSeason").style.display="none";}
+  $("pHost").textContent=fmt(K.host);
+  // Type selector — show range label for hr
+  const typeBtns=Object.entries(TYPES).map(([k,v])=>{
+   const lbl=k==="hr"?(fmt(PK[k].low)+"–"+fmt(PK[k].reg)):fmt(PK[k].low);
+   return`<button data-pkg="${k}" aria-pressed="${pkg===k}">${v[lang]}<small>${lbl}</small></button>`;}).join("");
+  $("pkgs").innerHTML=`<div class="pkg-types">${typeBtns}</div>`;}
+ $("lang").classList.toggle("en",lang==="en");$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ // Features list (flat — all included)
+ {const es=lang==="es";
+  const isHotel=pkg==="h"||pkg==="hr";
+  const relevantFeats=TIER_FEATS.filter(f=>!f.hotel||isHotel);
+  $("feats").innerHTML=`<ul class="feat-list">${relevantFeats.map(f=>`<li><i>${f.ic}</i>${es?f.es:f.en}</li>`).join("")}</ul>`;}
+
+ $("inc").innerHTML=u.inc.map(s=>`<span>✓ ${s}</span>`).join("");
+ $("extras").innerHTML=X.map(x=>`<button class="x" data-k="${x.k}" aria-pressed="${!!sel[x.k]}"><div class="ic">${x.ic}</div><div class="t"><b>${x[lang][0]}</b><small>${x[lang][1]}</small></div><div class="pr"><b>+${fmt(x.once)}</b><small>${x.year?"+"+fmt(x.year)+u.per:(lang==="es"?"una vez":"one time")}</small></div><div class="ck">✓</div></button>`).join("");
+ const fx=x=>x.replace(/\$18,000/g,"§REG§").replace(/\$7,000/g,fmt(PK[pkg].down)).replace(/§REG§/g,fmt(regP())).replace(/\$300 al mes/g,fmt(HOST)+" al mes").replace(/\$300 a month/g,fmt(HOST)+" a month");
+ $("faq").innerHTML=u.faq.map(f=>`<details><summary>${f[0]}</summary><p>${fx(f[1])}</p></details>`).join("");
+ const es=lang==="es";
+ const planOpts=[["full","💵",es?"Pago completo":"Pay in full",fmt(price())+" · "+(es?"un solo pago":"one payment"),plan==="full"]];
+ if(pkgPayable(pkg))planOpts.push(["pay","📅",es?"Plan de pagos":"Payment plan",(es?"Lo acordamos en persona":"We set it up together in person"),plan==="pay"]);
+ $("plans").innerHTML=`<div class="plh">${es?"Forma de pago":"Payment"}</div>`+planOpts.map(([k,i,a,b,on])=>`<button class="plb" data-plan="${k}" aria-pressed="${on}"><span>${i}</span><b>${a}</b><small>${b}</small></button>`).join("");
+ 
+ const t=totals(),es2=lang==="es",rng2=isRange();
+ if(rng2){
+  $("tToday").textContent=fmt(PK.hr.low)+" – "+fmt(PK.hr.reg);
+  document.querySelector('[data-t="today"]').textContent=es2?"COTIZACIÓN":"QUOTE";
+  $("tMonth").textContent=fmt(HOST_MO.hr)+(es2?"/mes":"/mo");
+  document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º MES":"FROM MONTH 2";
+  $("cta").querySelector("span:last-child").textContent=es2?"Pedir cotización por WhatsApp":"Request quote on WhatsApp";
+ } else if(plan==="full"){
+  $("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PAGO COMPLETO":"PAY IN FULL";$("tMonth").textContent=fmt(HOST)+(es2?"/mes":"/mo");document.querySelector('[data-t="monthly"]').textContent=es2?"DESDE EL 2º MES":"FROM MONTH 2";
+  $("cta").querySelector("span:last-child").textContent=u.cta;
+ } else{
+  $("tToday").textContent=fmt(t.o);document.querySelector('[data-t="today"]').textContent=es2?"PRECIO TOTAL":"TOTAL PRICE";$("tMonth").textContent=es2?"A acordar":"To agree";document.querySelector('[data-t="monthly"]').textContent=es2?"PAGOS":"PAYMENTS";
+  $("cta").querySelector("span:last-child").textContent=u.cta;
+ }
+ document.title=(lang==="es"?"Precios":"Prices")+" · MX Studio ✝️";
+}
+$("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render()};
+
+$("pkgs").onclick=e=>{
+ const bp=e.target.closest("[data-pkg]");if(bp){setPkg(bp.dataset.pkg);render();}
+};
+$("plans").onclick=e=>{const b=e.target.closest("[data-plan]");if(b){plan=b.dataset.plan;render();return}if(e.target.closest("[data-host]")){host=!host;render()}};
+$("extras").onclick=e=>{const b=e.target.closest(".x");if(!b)return;sel[b.dataset.k]=!sel[b.dataset.k];render()};
+let orderNo=null,pay="c";
+function orderLines(){const u=T[lang];const es=lang==="es",P=PL[plan];
+ const typeLabel=TYPES[pkg]?(es?TYPES[pkg].es:TYPES[pkg].en):"";
+ const L=[[(es?"Paquete MX Studio · ":"MX Studio package · ")+typeLabel+(es?" · todo incluido, 1er mes incluido":" · everything included, 1st month included"),fmt(price())],
+  [es?"Forma de pago":"Payment",plan==="full"?(es?"Pago completo hoy":"Paid in full today"):(es?`Plan de pagos · lo acordamos en persona`:`Payment plan · set up together in person`)],
+  [es?"🧑‍🍳 Tu panel para cambios":"🧑‍🍳 Your editing panel",es?"Incluido":"Included"],
+  [es?"Desde el 2º mes (hosting, soporte, cambios)":"From month 2 (hosting, support, changes)",fmt(HOST)+(es?"/mes":"/mo")],[u.oTables,es?"Ilimitados (impresión aparte)":"Unlimited (printing extra)"],[u.oStk,es?"Ilimitados":"Unlimited"],[u.oRev,es?"Ilimitados":"Unlimited"]];
+ 
+ if(bonusOn())L.push([es?"🎁 Bono: perfil de Google configurado (activado antes del 11 nov)":"🎁 Bonus: Google profile set up (activated before Nov 11)",es?"Gratis · valor $1,500":"Free · $1,500 value"]);
+ X.filter(x=>sel[x.k]).forEach(x=>{L.push([x[lang][0],fmt(x.once)+(x.year?" + "+fmt(x.year)+u.per:"")])});return L}
+function openOrder(keep){const u=T[lang],t=totals();if(!orderNo)orderNo="MX-"+Date.now().toString(36).slice(-5).toUpperCase();
+ const d=new Date().toLocaleDateString(lang==="es"?"es-MX":"en-US",{day:"numeric",month:"long",year:"numeric"});
+ let biz="",nm="";try{biz=localStorage.getItem("mx-order-biz")||"";nm=localStorage.getItem("mx-order-name")||""}catch(_){}
+ if(PN&&!keep)biz=PN;if(keep){biz=keep[0];nm=keep[1]}
+ $("box").innerHTML=`<div class="inv-h"><div><b>🧾 ${u.oT}</b><small>${u.oNo} ${orderNo} · ${u.oDate}: ${d}</small></div><div class="olang"><div class="lang ${lang==="en"?"en":""}" id="olang"><span class="knob"></span><button data-ol="es" aria-pressed="${lang==="es"}">ES</button><button data-ol="en" aria-pressed="${lang==="en"}">EN</button></div><div class="brand2">MX STUDIO ✝</div></div></div>
+ <label>${u.oBiz}</label><input id="oBiz" value="${biz.replace(/"/g,"&quot;")}" autocomplete="organization"><label>${u.oName}</label><input id="oName" value="${nm.replace(/"/g,"&quot;")}" autocomplete="name"><label>${lang==="es"?"WhatsApp del dueño (le llega su orden con su app y sus QR)":"Owner's WhatsApp (gets the order with their app and QRs)"}</label><input id="oWa" inputmode="tel" placeholder="744 123 4567" value="${ownerWa()}">${PS?`<label>Email</label><input id="oEm" type="email" inputmode="email" autocomplete="email" placeholder="nombre@correo.com"><label>${lang==="es"?"WiFi del restaurante: nombre exacto":"Restaurant WiFi: exact name"}</label><input id="oWn" autocomplete="off" autocapitalize="off" value="${String(cfgPA().n||"").replace(/"/g,"&quot;")}"><label>${lang==="es"?"WiFi: contraseña exacta":"WiFi: exact password"}</label><input id="oWp" autocomplete="off" autocapitalize="off" value="${String(cfgPA().p||"").replace(/"/g,"&quot;")}">`:""}
+${plan==="pay"?`<div style="margin-top:10px;padding:11px 13px;border-radius:14px;border:1.5px solid var(--gold);font-size:13px;font-weight:700">📅 ${lang==="es"?"Plan de pagos: acordamos las mensualidades en persona · solo efectivo":"Payment plan: we agree on the monthly payments in person · cash only"}</div>`:""}
+ <div style="margin-top:12px">${orderLines().map(l=>`<div class="ln"><span>${l[0]}</span><span>${l[1]}</span></div>`).join("")}</div>
+ <div class="tt"><span>${u.oToday}</span><span>${fmt(t.o)}</span></div>${t.mo?`<div class="ty"><span>${lang==="es"?"Después, cada 3 meses":"Then, every 3 months"}${t.n?` (${t.n})`:""}</span><span>${fmt(t.mo)}</span></div>`:""}<div class="ty"><span>${lang==="es"?"Desde el 2º mes":"From month 2"}</span><span>${fmt(HOST)}${lang==="es"?"/mes":"/mo"}</span></div>
+ <div style="background:#eaf8ef;border:1.5px solid #25d366;border-radius:16px;padding:12px 14px;margin:12px 0 6px;color:#14301f">
+ <b style="font-size:15.5px">💵 ${lang==="es"?"Pago en efectivo":"Cash payment"}</b>
+ <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;line-height:1.5">${(lang==="es"?["Sin comisiones de tarjeta ni de banco: pagas el precio exacto.","No necesitas cuenta, app del banco ni ir a ninguna tienda: paso yo a tu negocio.","Recibo por WhatsApp en el momento, para tus cuentas.","Cada visita incluye revisión de tu app y los cambios que necesites.","Mismo precio todo el año, sin cargos sorpresa."]:["No card or bank fees: you pay the exact price.","No account, bank app or store trips: I come to your business.","WhatsApp receipt on the spot, for your records.","Every visit includes a check-up of your app and any changes you need.","Same price all year, no surprise charges."]).map(x=>`<li>${x}</li>`).join("")}</ul></div>
+ <p class="onote">${u.oNote}</p><div class="oacts"><button class="ob1" id="oClose">${u.oCancel}</button><button class="ob2" id="oSend">${u.oSend}</button></div>`;
+ $("sheet").classList.add("on");d&&0}
+$("cta").onclick=()=>{
+ if(isRange()){
+  const es=lang==="es";
+  const msg=es
+   ?"Hola MX Studio ✝ · Me interesa el paquete Hotel + Restaurante. ¿Pueden darme una cotización?"
+   :"Hi MX Studio ✝ · I'm interested in the Hotel + Restaurant package. Can you give me a quote?";
+  open("https://api.whatsapp.com/send?phone="+PHONE+"&text="+encodeURIComponent(msg),"_blank");
+ } else openOrder();
+};
+$("sheet").onclick=e=>{const u=T[lang];
+ const op=e.target.closest("[data-oplan]");if(op){/* legacy – no-op */return}
+ const ol=e.target.closest("[data-ol]");if(ol){const k=[$("oBiz").value,$("oName").value];lang=ol.dataset.ol;try{localStorage.setItem("mx-precios-lang",lang)}catch(_){}render();openOrder(k);return}
+ const pb=e.target.closest("[data-pay]");if(pb){pay=pb.dataset.pay;$("ptog").classList.toggle("w",pay==="s");$("ptog").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.pay===pay));$("psub").textContent=pay==="c"?u.payCs:pay==="w"?u.payWs:(lang==="es"?"Tarjeta (Stripe) · el enganche de "+fmt(PK[pkg].down)+" va en efectivo, los pagos mensuales con tarjeta automáticos":"Card (Stripe) · the "+fmt(PK[pkg].down)+" down is cash, monthly payments charge the card automatically");return}
+ if(e.target.id==="sheet"||e.target.id==="oClose"){$("sheet").classList.remove("on");return}
+ if(e.target.id!=="oSend")return;const biz=$("oBiz").value.trim(),nm=$("oName").value.trim();
+ if(!biz){$("oBiz").focus();$("oBiz").placeholder=u.oNeed;$("oBiz").style.borderColor="#e0703a";return}
+ try{localStorage.setItem("mx-order-biz",biz);localStorage.setItem("mx-order-name",nm)}catch(_){}
+ const t=totals();const lines=orderLines().map(l=>`• ${l[0]}: ${l[1]}`).join("\n");
+ const d=new Date().toLocaleDateString(lang==="es"?"es-MX":"en-US",{day:"numeric",month:"long",year:"numeric"});
+ const ow=($("oWa")&&$("oWa").value||"").replace(/\D/g,""),to=ow.length>=10?(ow.length===10?"52"+ow:ow):PHONE;
+ let A=PA,sale=null;
+ if(PS){const em=($("oEm").value||"").trim(),wn=($("oWn").value||"").trim(),wp=$("oWp").value||"",bw=ow.length>=10?(ow.length===10?"52"+ow:ow):"";
+  const cfg={w:bw,n:wn,p:wn?wp:"",o:bw?"mcr":"m",t:Date.now()};A=b64u(cfg);
+  try{localStorage.setItem("mx-act-"+PS,JSON.stringify(Object.assign({a:A},cfg)))}catch(_){}
+  const now=new Date();sale={id:orderNo,slug:PS,biz,name:nm,wa:bw,email:em,wifi:wn,date:ymd(now),renew:ymd((d=>(d.setMonth(d.getMonth()+1),d))(new Date(now))),amount:t.o,year:t.m,pay:pay,plan,pkg,price:price(),mo:t.mo,n:1,host};
+  try{const L=JSON.parse(localStorage.getItem("mx-sales")||"[]").filter(x=>x.slug!==PS);L.push(sale);localStorage.setItem("mx-sales",JSON.stringify(L));localStorage.setItem("mx-sales-dirty","1")}catch(_){}
+  pushCfgP(PS,cfg)}
+ let body=u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),mo:t.mo?(lang==="es"?`${fmt(t.mo)} al completar (efectivo · paso a cobrar en persona)`:`${fmt(t.mo)} on completion (cash · collected in person)`):"",yr:t.m,year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:pay==="w"?u.payWm:(lang==="es"?"Tarjeta (Stripe)":"Card (Stripe)")})+(sale?(lang==="es"?`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 Desde ${sale.renew}: ${fmt(HOST)}/mes, se cobran ${fmt(HOST*3)} cada 3 meses en efectivo`:`\n\n👤 ${sale.name||"-"}\n📧 ${sale.email||"-"}\n📶 WiFi: ${sale.wifi||"-"}\n🔁 From ${sale.renew}: ${fmt(HOST)}/mo, collected as ${fmt(HOST*3)} cash every 3 months`):"")+pkgText(A);
+ if(to!==PHONE)body=body.replace(/\n\n(Hola MX Studio, quiero mi app\. 🙌|Hi MX Studio, I want my app\. 🙌)/,"")+(lang==="es"?"\n\n¡Gracias por tu compra! 🙌\n— MX Studio ✝ · +52 744 193 0502":"\n\nThank you for your purchase! 🙌\n— MX Studio ✝ · +52 744 193 0502");
+ open(`https://api.whatsapp.com/send?phone=${to}&text=${encodeURIComponent(body)}`,"_blank");
+ if(sale){const es=lang==="es",url=URL.createObjectURL(new Blob([icsFor(sale)],{type:"text/calendar"}));
+  $("box").innerHTML=`<div style="text-align:center;padding:10px 4px"><div style="font-size:44px">✅</div><h3 style="margin:6px 0">${es?"Venta guardada":"Sale saved"}</h3><p>${esc2(biz)} · ${fmt(t.o)}</p><p style="font-weight:800">${t.n?(es?`📅 Luego ${t.n} pagos de ${fmt(t.inst)}, cada 3 meses`:`📅 Then ${t.n} payments of ${fmt(t.inst)}, every 3 months`):(es?"✅ Pagado completo":"✅ Paid in full")}<br>🔁 ${es?"Desde":"From"} ${sale.renew}: ${fmt(HOST)}${es?"/mes · "+fmt(HOST*3)+" cada 3 meses":"/mo · "+fmt(HOST*3)+" every 3 months"}</p>
+  ${true?`<a style="display:block;text-decoration:none;margin:14px 0 8px;padding:16px;border-radius:14px;background:#25d366;color:#05301a;font-weight:800;font-size:16px" href="${url}" download="renovacion-${PS}.ics">📅 ${es?"Agregar recordatorios de pago a mi calendario":"Add payment reminders to my calendar"}</a>`:""}
+  ${stripeBtns(es)}
+  <p style="font-size:13px;opacity:.75">${es?"Te avisa un día antes de cada pago. ":"Alerts you the day before each payment. "}${es?"La app ya quedó activada con su WhatsApp y WiFi. Su panel para hacer cambios va en su WhatsApp.":"The app is already activated with their WhatsApp and WiFi. Their editing panel link is in their WhatsApp."}</p>
+  <button id="oClose" style="all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;margin-top:10px;padding:14px;border-radius:14px;background:#e9e1d6;color:#1d1715;font-weight:800;text-align:center">${u.oCancel}</button></div>`}
+ return;
+ open(`https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(u.msg({no:orderNo,date:d,biz,name:nm,lines,today:fmt(t.o),mo:t.mo?(lang==="es"?`${t.n} pagos de ${fmt(t.inst)}, cada 3 meses, en efectivo (paso a cobrar en persona)`:`${t.n} payments of ${fmt(t.inst)}, every 3 months, in cash (collected in person)`):"",yr:t.m,year:fmt(t.m)+u.per,pay:pay==="c"?u.payCm:pay==="w"?u.payWm:(lang==="es"?"Tarjeta (Stripe)":"Card (Stripe)")})+pkgText())}`,"_blank")};
+const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEventListener("online",net);addEventListener("offline",net);net();
+render();
+let CUR="mxn",FXR={usd:18.8,cad:12.4};try{CUR=localStorage.getItem("mx-precios-cur")||"mxn"}catch(_){}
+fetch("../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){if(+j.usd>5)FXR.usd=+j.usd;else if(+j.mxn>5)FXR.usd=+j.mxn;if(+j.cad>5)FXR.cad=+j.cad;applyCur()}}).catch(()=>{});
+const _cOrig=new WeakMap();
+function conv(s){if(CUR==="mxn")return s;const r=FXR[CUR],pre=CUR==="usd"?"US$":"CA$";return s.replace(/\$\s?([\d][\d,]*)/g,(m,n)=>{const v=Math.round(+n.replace(/,/g,"")/r/5)*5;return pre+v.toLocaleString("en-US")})}
+function applyCur(){const roots=[document.querySelector("main")||document.body];roots.forEach(root=>{const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentNode.closest("#cur,#curnote,script,style"))continue;if(!_cOrig.has(n)||(_cOrig.get(n).last!==n.nodeValue))_cOrig.set(n,{o:n.nodeValue,last:null});const rec=_cOrig.get(n);const v=conv(rec.o);if(v!==n.nodeValue)n.nodeValue=v;rec.last=n.nodeValue}});
+ document.querySelectorAll("#cur button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===CUR));let cn=document.getElementById("curnote");if(!cn){cn=document.createElement("p");cn.id="curnote";cn.className="curnote";const pl=document.querySelector(".prices");pl&&pl.after(cn)}
+ const nt=CUR==="mxn"?"":(lang==="es"?`Aproximado · 1 ${CUR.toUpperCase()} ≈ $${FXR[CUR]} MXN · se cobra en pesos`:`Approximate · 1 ${CUR.toUpperCase()} ≈ $${FXR[CUR]} MXN · charged in pesos`);if(cn.textContent!==nt)cn.textContent=nt}
+document.getElementById("cur").onclick=e=>{const b=e.target.closest("[data-c]");if(!b)return;CUR=b.dataset.c;try{localStorage.setItem("mx-precios-cur",CUR)}catch(_){}applyCur()};
+new MutationObserver(()=>{if(CUR!=="mxn"&&!window._curBusy){window._curBusy=true;try{applyCur()}finally{window._curBusy=false}}}).observe(document.body,{childList:true,subtree:true,characterData:true});
+applyCur();
+if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
+</script>
+<div id="offok" style="position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#1d7a4a;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:99;display:none;white-space:nowrap">✓ Funciona sin internet · Works offline</div>
+<script>try{if("serviceWorker"in navigator&&"caches"in window)navigator.serviceWorker.ready.then(()=>caches.match(location.pathname)).then(m=>{if(m){const b=document.getElementById("offok");b.style.display="block";setTimeout(()=>b.style.display="none",2500)}}).catch(()=>{})}catch(e){}</script>
+<script>try{if(new URLSearchParams(location.search).get("embed")==="1"){}else if(new URLSearchParams(location.search).get("r")==="1"){document.getElementById("backR").style.display="inline-block";try{sessionStorage.setItem("fromR","1")}catch(_){}}else{try{if(sessionStorage.getItem("fromR")==="1")document.getElementById("backR").style.display="inline-block"}catch(_){}}}catch(e){}</script>
+
+
+
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{if("serviceWorker" in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.addEventListener("controllerchange",function(){if(window.__mxReloaded)return;window.__mxReloaded=1;location.reload()})}}catch(e){}
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
+</body>
+</html>

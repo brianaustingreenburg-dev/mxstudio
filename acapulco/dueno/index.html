@@ -1,0 +1,448 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel del dueño · MX Studio ✝</title>
+<link rel="icon" href="../icon-192.png">
+<style>
+@font-face{font-family:M;font-weight:500;src:url(../lib/fonts/m500.woff2)}@font-face{font-family:M;font-weight:700;src:url(../lib/fonts/m700.woff2)}@font-face{font-family:M;font-weight:800;src:url(../lib/fonts/m800.woff2)}
+:root{--c:#b5642f;--bg:#faf6f0;--card:#fff;--ink:#1d1715;--line:#eadfd2}
+*{box-sizing:border-box}body{margin:0;font-family:M,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.top{background:var(--c);color:#fff;padding:6px 16px 18px}.top small{opacity:.85;font-weight:700;letter-spacing:.12em;font-size:11px}.top h1{margin:4px 0 2px;font-size:24px}.top p{margin:0;opacity:.9}
+.sbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:8px;background:var(--c);padding:calc(8px + env(safe-area-inset-top)) 12px 8px;box-shadow:0 2px 10px rgba(0,0,0,.15)}.bk2{color:#fff;text-decoration:none;font-weight:800;font-size:14px;background:rgba(0,0,0,.25);padding:7px 12px;border-radius:999px}.bk2[hidden]{display:none}.card{scroll-margin-top:64px}
+.lang{display:flex;background:rgba(0,0,0,.25);border-radius:999px;padding:3px}.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px;color:#fff}.lang button[aria-pressed=true]{background:#fff;color:var(--ink)}
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px 40px}
+.card{background:var(--card);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 2px 12px rgba(40,25,15,.07)}.card h2{margin:0 0 4px;font-size:18px}.card p{margin:4px 0 10px;opacity:.8;line-height:1.45}
+.qr{width:200px;height:200px;margin:8px auto;padding:10px;background:#fff;border:3px solid var(--c);border-radius:16px}.qr svg{width:100%;height:100%;display:block}
+.b{all:unset;box-sizing:border-box;display:block;width:100%;text-align:center;cursor:pointer;border-radius:14px;padding:14px;font-weight:800;margin-top:8px;background:var(--c);color:#fff;text-decoration:none}.b.g{background:#25d366;color:#05301a}.b.l{background:#f1e9df;color:var(--ink)}
+.stars{font-size:28px;letter-spacing:4px;text-align:center}.tip{font-size:13px;opacity:.75;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.grid .b{margin-top:0;font-size:14px}
+.ed input,.ed textarea,.ed select{box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid var(--line);font:inherit;font-size:15px;background:#fff;color:var(--ink);margin-top:5px}
+.sec2{border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0;background:#fffdf9}.it{display:grid;grid-template-columns:1fr 84px 38px;gap:6px;align-items:start;margin:8px 0}.it .x{all:unset;cursor:pointer;text-align:center;padding:10px 0;border-radius:10px;background:#f6e1df}.sm{font-size:12px;opacity:.7}
+.chip{all:unset;cursor:pointer;display:inline-block;padding:9px 12px;border-radius:999px;background:#f1e9df;font-weight:800;font-size:13px;margin:4px 4px 0 0}
+</style></head><body>
+<div class="sbar"><a id="back" class="bk2" href="../rutas/?m=o" hidden>← MX Dashboard</a><span style="flex:1"></span><div class="lang" id="lang"><button data-l="es">ES</button><button data-l="en">EN</button></div></div><div class="top"><small>MX STUDIO ✝ · <span data-t="panel"></span></small><h1 id="nm">…</h1><p data-t="sub"></p></div>
+<div class="wrap" id="w"></div>
+<script src="../lib/setup.js"></script>
+<script src="../lib/reviews.js"></script>
+<script src="../lib/loyalty.js"></script>
+<script src="../lib/qrcode.js"></script>
+<script>
+const $=i=>document.getElementById(i),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const q=new URLSearchParams(location.search),slug=(q.get("s")||"").replace(/[^a-z0-9-]/g,""),A=(q.get("a")||"").replace(/[^A-Za-z0-9_-]/g,""),BR="527441930502";
+const RB=new URLSearchParams(location.search).get("r")==="1";try{if(RB)document.getElementById("back").hidden=false}catch(_){}
+let lang="es";try{lang=localStorage.getItem("mx-dueno-lang")||((navigator.language||"es").startsWith("es")?"es":"en")}catch(_){}
+const T={es:{panel:"Panel del dueño",sub:"Todo lo de tu app en un lugar",app:"📱 Tu app",appP:"Este es el QR de tu app. Tus clientes lo escanean con la cámara.",open:"Abrir mi app",shareApp:"📲 Compartir mi app por WhatsApp",rev:"⭐ Más reseñas de 5 estrellas",revP:"Más reseñas = más arriba en Google Maps, donde te buscan los turistas.",revQR:"Que el cliente escanee este QR antes de irse:",revMsg:"📲 Mandar link de reseña a un cliente",revTip:"Tip: pídela cuando el cliente diga que le gustó. Pon los stickers ⭐ en la caja y en el ticket.",print:"🖨️ Imprimir",mesa:"🍽️ Tarjetas de mesa",stk:"🏷️ Stickers de menú",rvs:"⭐ Stickers de reseñas",chg:"✏️ Cambios",chgP:"Cambios ilimitados incluidos. Mándanos lo que quieras cambiar y lo hacemos.",spec:"🔥 Cambiar especial de hoy",menu:"📷 Mandar foto del menú o precios nuevos",help:"💬 Hablar con MX Studio",tipsH:"💡 Para vender más",tips:"Pon el link de tu app en tu Instagram, Facebook y en la respuesta automática de WhatsApp. Ponlo como “Menú” en tu perfil de Google.",copy:"📋 Copiar link de mi app",copied:"✓ Copiado",shareMsg:"¡Mira nuestro menú con fotos, en español e inglés! ",revAsk:"¡Gracias por visitarnos! ¿Nos regalas una reseña de 5 ⭐? Nos ayuda muchísimo: ",specMsg:"Hola MX Studio, quiero cambiar el especial de hoy de ",menuMsg:"Hola MX Studio, te mando cambios del menú de ",helpMsg:"Hola MX Studio, soy de ",none:"Falta el restaurante en el link."},
+ en:{panel:"Owner panel",sub:"Everything about your app in one place",app:"📱 Your app",appP:"This is your app's QR. Customers scan it with their camera.",open:"Open my app",shareApp:"📲 Share my app on WhatsApp",rev:"⭐ More 5-star reviews",revP:"More reviews = higher on Google Maps, where tourists search.",revQR:"Have the customer scan this QR before leaving:",revMsg:"📲 Send the review link to a customer",revTip:"Tip: ask when the customer says they liked it. Put the ⭐ stickers at the register and on receipts.",print:"🖨️ Print",mesa:"🍽️ Table cards",stk:"🏷️ Menu stickers",rvs:"⭐ Review stickers",chg:"✏️ Changes",chgP:"Unlimited changes included. Send us what you want changed and we'll do it.",spec:"🔥 Change today's special",menu:"📷 Send a menu photo or new prices",help:"💬 Talk to MX Studio",tipsH:"💡 Sell more",tips:"Put your app link on Instagram, Facebook and your WhatsApp auto-reply. Add it as the “Menu” on your Google profile.",copy:"📋 Copy my app link",copied:"✓ Copied",shareMsg:"See our menu with photos, in Spanish and English! ",revAsk:"Thanks for visiting! Would you leave us a 5 ⭐ review? It helps us a lot: ",specMsg:"Hi MX Studio, I want to change today's special for ",menuMsg:"Hi MX Studio, here are menu changes for ",helpMsg:"Hi MX Studio, this is ",none:"The restaurant is missing from the link."}};
+function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 ${n+6} ${n+6}" shape-rendering="crispEdges"><path d="${d}" fill="#000"/></svg>`}
+let D=null,pid="",CFG_RAW={};
+async function load(){if(!slug){$("w").innerHTML=`<div class="card">${T[lang].none}</div>`;return}
+ try{D=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){D={name:slug}}
+ try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
+ try{const r=await fetch("../c/"+slug+"/loyalty.json?t="+Date.now(),{cache:"no-store"});LYC=r.ok?await r.json():null}catch(_){LYC=null}
+ try{const r=await fetch("../c/"+slug+"/opts.json?t="+Date.now(),{cache:"no-store"});OPC=r.ok?await r.json():{}}catch(_){OPC={}}
+ try{const r=await fetch("../c/"+slug+"/config.json?t="+Date.now(),{cache:"no-store"});CFG_RAW=r.ok?await r.json():{}}catch(_){CFG_RAW={}}
+ if(D.color)document.documentElement.style.setProperty("--c",D.color);render()}
+function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:""),rv=pid?"https://search.google.com/local/writereview?placeid="+pid:"",tj="../tarjeta/?s="+slug+(A?"&a="+A:""),wa=(m,to)=>"https://api.whatsapp.com/send?"+(to?"phone="+to+"&":"")+"text="+encodeURIComponent(m);
+ document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(e=>e.textContent=u[e.dataset.t]);$("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("nm").textContent=D.name||slug;document.title=u.panel+" · "+(D.name||slug);
+ $("w").innerHTML=`<div class="card"><h2>${u.app}</h2><p>${u.appP}</p><div class="qr">${qrSvg(app)}</div>
+  ${RB?`<a class="b" href="${app+(app.includes("?")?"&":"?")+"r=1&rb=p"}">${u.open}</a>`:`<a class="b" href="${app}" target="_blank">${u.open}</a>`}<a class="b g" target="_blank" href="${wa(u.shareMsg+app)}">${u.shareApp}</a><button class="b l" id="cp">${u.copy}</button></div>
+ ${rv?`<div class="card"><h2>${u.rev}</h2><div class="stars">⭐⭐⭐⭐⭐</div><p>${u.revP}</p><p style="font-weight:700;opacity:1">${u.revQR}</p><div class="qr">${qrSvg(rv)}</div>
+  <a class="b g" target="_blank" href="${wa(u.revAsk+rv)}">${u.revMsg}</a><p class="tip">${u.revTip}</p>${revTopBox()}${revIdeas()}</div>`:""}
+ <div class="card"><h2>${u.print}</h2><div class="grid"><a class="b l" href="${tj}&f=m">${u.mesa}</a><a class="b l" href="${tj}&f=st">${u.stk}</a><a class="b l" href="${tj}&f=rv" style="grid-column:span 2">${u.rvs}</a></div></div>
+ <div class="card"><h2>${lang==="es"?"✏️ Edita tu menú":"✏️ Edit your menu"}</h2><p>${lang==="es"?"Cambia precios, agrega platillos, toma foto de tu menú o cambia el especial de hoy. Al terminar, toca Publicar.":"Change prices, add dishes, snap a photo of your menu or change today's special. When you're done, tap Publish."}</p><button class="b" id="edOpen">${lang==="es"?"✏️ Abrir editor":"✏️ Open editor"}</button></div>
+ <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
+ ${lyCard()}
+ ${starCard()}
+ ${hablaCard()}
+ ${tierSetupCard()}
+ ${featuresCard()}
+ ${setupCard()}
+ <div class="card"><h2>${u.tipsH}</h2><p>${u.tips}</p></div>
+ <p class="tip" style="text-align:center">MX Studio ✝ · Acapulco · +52 744 193 0502</p>`;
+ $("edOpen").onclick=openEd;if(location.hash==="#setup"&&!window.__sj){window.__sj=1;setTimeout(()=>{const s=$("setup");if(s)s.scrollIntoView({behavior:"smooth"})},300)}if(location.hash==="#stc"&&!window.__sc){window.__sc=1;setTimeout(()=>{const s=$("stc");if(s)s.scrollIntoView({behavior:"smooth"})},300)}$("cp").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(app):Promise.reject()).then(()=>{$("cp").textContent=u.copied}).catch(()=>prompt("",app))}}
+
+
+
+// ---------- ⭐ Mesero Estrella de la Semana (private ratings, Google-safe) ----------
+const EJ=new URLSearchParams(location.search).get("ej")==="1";
+const wsGet=()=>{try{return JSON.parse(localStorage.getItem("mx-star-"+slug)||"[]")}catch(_){return []}},wsSet=a=>{try{localStorage.setItem("mx-star-"+slug,JSON.stringify(a))}catch(_){}};
+const stCfgGet=()=>{try{return JSON.parse(localStorage.getItem("mx-starcfg-"+slug)||"{}")}catch(_){return {}}},stCfgSet=o=>{try{localStorage.setItem("mx-starcfg-"+slug,JSON.stringify(o))}catch(_){}};
+const stMon=d=>{const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x};
+const stYmd=d=>{const x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+const ST_FUT=[["🗓️ Elige primero sus turnos de la próxima semana","🗓️ First pick of next week's shifts"],["📈 Mérito para ascenso (Capitán, Encargado, Gerente)","📈 Merit toward promotion (Captain, Shift lead, Manager)"],["🎓 Curso o certificación pagada","🎓 A paid course or certification"],["🎟️ Boleto extra para el sorteo trimestral","🎟️ Extra ticket for the quarterly raffle"]];
+function stStaff(){if(EJ)return ["Sarah M.","Alex R.","Carlos T."];return (LYC&&Array.isArray(LYC.staff)?LYC.staff:[]).filter(Boolean)}
+function stData(){if(!EJ)return wsGet();const m=stMon(Date.now()),P=[[1,0,2,1,3,2,1],[0,1,1,2,2,1,0],[1,1,0,0,1,1,1]],o=[];
+ P.forEach((row,s)=>row.forEach((n,d)=>{for(let k=0;k<n;k++)o.push({c:"EJ"+s+d+k,s,n:["Sarah M.","Alex R.","Carlos T."][s],st:5,at:new Date(m.getTime()+d*864e5+12*36e5).toISOString()})}));
+ o.push({c:"EJx1",s:1,n:"Alex R.",st:4,at:new Date(m.getTime()+36e5*14).toISOString()});
+ const pm=new Date(m.getTime()-7*864e5);[5,3,2].forEach((n,s)=>{for(let k=0;k<n;k++)o.push({c:"EJp"+s+k,s,n:["Sarah M.","Alex R.","Carlos T."][s],st:5,at:new Date(pm.getTime()+k*864e5+12*36e5).toISOString()})});return o}
+function stWeek(all,mon,names){const end=mon.getTime()+7*864e5,W=all.filter(x=>{const t=new Date(x.at).getTime();return t>=mon.getTime()&&t<end});
+ const rows=names.map((n,i)=>{const mine=W.filter(x=>x.s===i),days=[0,0,0,0,0,0,0];mine.filter(x=>x.st===5).forEach(x=>{days[(new Date(x.at).getDay()+6)%7]++});
+  const five=days.reduce((a,b)=>a+b,0),avg=mine.length?mine.reduce((a,x)=>a+x.st,0)/mine.length:0;return {n,i,days,five,avg,cnt:mine.length}});
+ const rk=rows.slice().sort((a,b)=>b.five-a.five||b.avg-a.avg||b.cnt-a.cnt),w=rk[0]&&rk[0].five>=3?rk[0]:null;return {rows,w}}
+function starCard(){const es=lang==="es",names=stStaff(),all=stData(),cfg=stCfgGet(),bono=cfg.b||"$500",fut=+cfg.f||0,mon=stMon(Date.now()),{rows,w}=stWeek(all,mon,names);
+ const prev=stWeek(all,new Date(mon.getTime()-7*864e5),names).w;
+ const q0=new Date(mon.getFullYear(),Math.floor(mon.getMonth()/3)*3,1),tk={};for(let m=stMon(q0);m<mon;m=new Date(m.getTime()+7*864e5)){const r=stWeek(all,m,names).w;if(r)tk[r.n]=(tk[r.n]||0)+1}
+ const D7=es?["L","M","M","J","V","S","D"]:["M","T","W","T","F","S","S"],th="padding:6px 2px;border-bottom:1px solid #eadfd3;text-align:center";
+ const lead=rows.slice().sort((a,b)=>b.five-a.five||b.avg-a.avg)[0];
+ const status=!names.length?"":w?`🏆 <b>${esc(w.n)}</b> ${es?"va ganando":"is winning"} · ${w.five} × 5⭐`:lead&&lead.five?`${es?"Va adelante":"In the lead"}: <b>${esc(lead.n)}</b> · ${es?"le faltan":"needs"} ${3-lead.five} ${es?"para el mínimo de 3":"more to reach the minimum of 3"}`:(es?"Todavía no hay calificaciones esta semana.":"No ratings this week yet.");
+ const share=(es?"⭐ Mesero Estrella de la Semana · ":"⭐ Waiter of the Week · ")+(D.name||slug)+"\n"+rows.slice().sort((a,b)=>b.five-a.five||b.avg-a.avg).map((r,i)=>`${i+1}. ${r.n}: ${r.five} × 5⭐${w&&w.i===r.i?" 🏆":""}`).join("\n")+"\n🎁 "+(es?"Premio":"Prize")+": "+bono+" + "+ST_FUT[fut][es?0:1];
+ const tbl=names.length?`<div style="overflow-x:auto;margin:8px 0"><table style="width:100%;border-collapse:collapse;font-size:13px"><tr><th style="${th};text-align:left">${es?"Mesero":"Waiter"}</th>${D7.map(d=>`<th style="${th}">${d}</th>`).join("")}<th style="${th}">5⭐</th><th style="${th}">${es?"Prom.":"Avg"}</th></tr>
+  ${rows.map(r=>`<tr style="${w&&w.i===r.i?"background:#fff6e5;font-weight:800":""}"><td style="${th};text-align:left">${esc(r.n)}${w&&w.i===r.i?" 🏆":""}</td>${r.days.map(n=>`<td style="${th}">${n}</td>`).join("")}<td style="${th};font-weight:800">${r.five}</td><td style="${th}">${r.cnt?r.avg.toFixed(1):"–"}</td></tr>`).join("")}</table></div>`:"";
+ const det=(t,b)=>`<details style="margin-top:8px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff"><summary style="cursor:pointer;font-weight:800">${t}</summary>${b}</details>`;
+ const rules=es?["Cuenta cada calificación de 5⭐ que el cliente da en la app al pedir la cuenta y que se registra al cobrar.","Cada código se registra una sola vez, el mismo día o al día siguiente.","Mínimo 3 calificaciones de 5⭐ en la semana para ganar.","Empate: gana el mejor promedio; si sigue el empate, quien atendió más mesas.","Códigos hechos por el propio mesero o sin una cuenta real = descalificación.","Las reseñas de Google NO cuentan para el concurso: se piden a todos los clientes, sin pedir 5 estrellas ni nombres, y nunca a cambio de nada (reglas de Google)."]:["Every 5⭐ rating a guest gives in the app when asking for the bill, registered at checkout, counts.","Each code is registered once, the same day or the next day.","At least 3 five-star ratings in the week to win.","Tie: best average wins; if still tied, whoever served more tables.","Codes made by the waiter or without a real bill = disqualified.","Google reviews do NOT count for the contest: ask every guest, never ask for 5 stars or names, and never in exchange for anything (Google rules)."];
+ const steps=es?[["⭐ Servicio de excelencia","Atención amable, rápida y atenta durante toda la visita."],["🧾 Al llevar la cuenta","“¡Fue un gusto atenderle! Si pide la cuenta en la app le sale un regalo para su próxima visita y puede calificar el servicio. Y si le gustó, una reseña en Google nos ayuda mucho.”"],["✅ En caja","El cliente enseña su código y se registra aquí arriba."]]:[["⭐ Excellent service","Friendly, fast, attentive service the whole visit."],["🧾 With the bill","“It was a pleasure! If you ask for the bill in the app you get a gift for your next visit and you can rate the service. And if you enjoyed it, a Google review helps us a lot.”"],["✅ At checkout","The guest shows their code and you register it above."]];
+ const ben=es?["⭐ Mejor servicio todos los días: tus meseros compiten por atender mejor.","🧑‍🍳 Menos rotación: bonos, mejores turnos y crecimiento retienen a tu equipo.","📍 Más reseñas en Google sin riesgo: se piden a todos y de forma permitida.","📊 Sabes quién atiende mejor, con datos reales de tus clientes."]:["⭐ Better service every day: your waiters compete to serve better.","🧑‍🍳 Less turnover: bonuses, better shifts and growth keep your team.","📍 More Google reviews with no risk: asked of everyone, the allowed way.","📊 You know who serves best, from real guest data."];
+ return `<div class="card" id="stc"><h2>⭐ ${es?"Mesero Estrella de la Semana":"Waiter of the Week"}</h2>
+ ${EJ?`<p style="background:#fff6e5;border-radius:10px;padding:8px 10px;font-weight:700">👀 ${es?"Ejemplo con datos de muestra":"Example with sample data"}</p>`:""}
+ <p style="font-size:.92em">${es?"Al pedir la cuenta en tu app, el cliente elige quién lo atendió y lo califica <b>en privado</b> (solo lo ves tú, no se publica en Google). El mesero con más calificaciones de 5⭐ en la semana gana.":"When guests ask for the bill in your app, they pick who served them and rate them <b>privately</b> (only you see it, nothing is posted on Google). The waiter with the most 5⭐ ratings in the week wins."}</p>
+ ${!names.length?`<p class="tip">${es?"Primero agrega a tus meseros en 🎁 Regalo para clientes → ⚙️ Configurar, y envíalo a MX Studio para activarlo.":"First add your waiters in 🎁 Guest gift → ⚙️ Settings and send it to MX Studio to turn it on."}</p>`:`
+ ${EJ?"":`<h3 style="margin:12px 0 4px">🧾 ${es?"Al cobrar: registra el código":"At checkout: register the code"}</h3>
+ <input id="stCode" placeholder="ABC-1234" autocapitalize="characters" autocomplete="off" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:800 20px ui-monospace,monospace;letter-spacing:2px;text-align:center"><button class="b" id="stAdd">${es?"Registrar calificación":"Register rating"}</button><div id="stRes"></div>`}
+ <h3 style="margin:14px 0 2px">📊 ${es?"Esta semana":"This week"} · ${mon.toLocaleDateString(es?"es-MX":"en-US",{day:"numeric",month:"short"})}</h3>${tbl}
+ <p style="margin:4px 0">${status}</p>${prev?`<p class="tip" style="margin-top:2px">${es?"Ganador de la semana pasada":"Last week's winner"}: 🏆 ${esc(prev.n)}</p>`:""}
+ ${Object.keys(tk).length?`<p class="tip" style="margin-top:2px">🎟️ ${es?"Boletos para el sorteo del trimestre":"Quarterly raffle tickets"}: ${Object.entries(tk).map(([n,c])=>esc(n)+" "+c).join(" · ")}</p>`:""}
+ <h3 style="margin:14px 0 4px">🎁 ${es?"Premio de la semana":"This week's prize"}</h3>
+ <label style="font-weight:700;font-size:.9em">💵 ${es?"Bono en efectivo (sugerido $500 – $1,000)":"Cash bonus (suggested $500 – $1,000)"}</label><input id="stBono" value="${esc(bono)}" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin:5px 0 8px;font:inherit">
+ <label style="font-weight:700;font-size:.9em">🌱 ${es?"Incentivo a futuro":"Future incentive"}</label><select id="stFut" style="width:100%;padding:11px;border-radius:10px;margin-top:5px;font:inherit">${ST_FUT.map((f,i)=>`<option value="${i}" ${i===fut?"selected":""}>${es?f[0]:f[1]}</option>`).join("")}</select>
+ <a class="b g" target="_blank" href="https://api.whatsapp.com/send?text=${encodeURIComponent(share)}">📤 ${es?"Compartir resultados con tu equipo":"Share results with your team"}</a>`}
+ ${det("📋 "+(es?"Reglas":"Rules"),`<ol style="margin:8px 0;padding-left:20px">${rules.map(r=>`<li style="margin:4px 0">${r}</li>`).join("")}</ol>`)}
+ ${det("🗣️ "+(es?"Guion para meseros (3 pasos)":"Waiter script (3 steps)"),steps.map(([a,b])=>`<p style="margin:8px 0"><b>${a}</b><br>${b}</p>`).join(""))}
+ ${det("💡 "+(es?"Beneficios para tu negocio":"Benefits for your business"),`<ul style="margin:8px 0;padding-left:20px">${ben.map(r=>`<li style="margin:4px 0">${r}</li>`).join("")}</ul>`)}
+ <p class="tip">${es?"Las calificaciones se guardan en este teléfono: usa siempre el mismo teléfono del negocio.":"Ratings are saved on this phone: always use the same business phone."}</p></div>`}
+document.addEventListener("change",e=>{if(e.target.id==="stBono"||e.target.id==="stFut"){const o=stCfgGet();o.b=$("stBono").value.trim();o.f=+$("stFut").value;stCfgSet(o);const y=scrollY;render();scrollTo(0,y)}});
+document.addEventListener("click",e=>{if(e.target.id!=="stAdd")return;const es=lang==="es",box=$("stRes"),r=window.MXL&&MXL.read(slug,$("stCode").value),names=stStaff();
+ if(!r){box.innerHTML=`<p style="color:#b3261e;font-weight:800">❌ ${es?"Código no válido":"Invalid code"}</p>`;return}
+ if(r.staff<0||!names[r.staff]||!r.stars){box.innerHTML=`<p style="color:#b5642f;font-weight:800">ℹ️ ${es?"Este código no trae calificación de mesero.":"This code has no waiter rating."}</p>`;return}
+ const a=wsGet();if(a.find(x=>x.c===r.code)){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⚠️ ${es?"Este código ya se registró":"This code was already registered"}</p>`;return}
+ if(MXL.today()-r.day>1){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⌛ ${es?"Se registra el mismo día o al día siguiente":"Must be registered the same day or the next day"}</p>`;return}
+ a.push({c:r.code,s:r.staff,n:names[r.staff],st:r.stars,at:new Date().toISOString()});wsSet(a);const y=scrollY;render();scrollTo(0,y);
+ const b2=$("stRes");if(b2)b2.innerHTML=`<p style="color:#1f7a46;font-weight:800">✅ ${esc(names[r.staff])} · ${"⭐".repeat(r.stars)}</p>`});
+
+// ---------- 🎁 Guest gift + 🏆 waiter credit ----------
+let LYC=null,LYD=null;const GIFTS=[["10% de descuento","10% off"],["Postre gratis","Free dessert"],["Bebida gratis","Free drink"],["Café gratis","Free coffee"]];
+const redGet=()=>{try{return JSON.parse(localStorage.getItem("mx-red-"+slug)||"[]")}catch(_){return []}},redSet=a=>{try{localStorage.setItem("mx-red-"+slug,JSON.stringify(a))}catch(_){}};
+function hablaOn(){return !!(CFG_RAW.features&&CFG_RAW.features.habla===true)||getTierSel().tier===3}
+// 🗣️ Habla (Ecosystem): language app the owner shares with the team
+function hablaCard(){if(!hablaOn())return "";const es=lang==="es",nm=D&&D.name||slug,
+ base="https://go.myjefetech.app/acapulco/habla/",staff=base+"?d=en",open="../habla/?d=en&back="+encodeURIComponent("../dueno/"+location.search)+"&n="+encodeURIComponent(es?"Panel":"Panel"),
+ msg=es?`🗣️ Equipo de ${nm}: practiquen inglés para atender a los turistas con Habla. Palabras, frases y conversación con audio, en 3 niveles. Ábranlo en su teléfono:\n`:`🗣️ ${nm} team: practice English to serve our guests with Habla. Words, phrases and conversation with audio, in 3 levels. Open it on your phone:\n`;
+ return `<div class="card" id="habla"><h2>🗣️ ${es?"Habla · inglés para tu equipo":"Habla · English for your team"}</h2>
+ <p>${es?"Incluido en tu Ecosistema. Tu equipo practica inglés para atender turistas, con audio y en 3 niveles: palabras, frases útiles y conversación. Tus clientes también lo encuentran en tu app para aprender español.":"Included in your Ecosystem. Your team practices English to serve tourists, with audio and 3 levels: words, useful phrases and conversation. Your guests also find it in your app to learn Spanish."}</p>
+ <div class="qr">${qrSvg(staff)}</div><p class="tip">${es?"Pon este QR en la cocina o el área del personal.":"Put this QR in the kitchen or staff area."}</p>
+ <a class="b g" target="_blank" href="https://api.whatsapp.com/send?text=${encodeURIComponent(msg+staff)}">📤 ${es?"Compartir con tu equipo":"Share with your team"}</a><a class="b l" href="${open}">${es?"Abrir Habla":"Open Habla"}</a></div>`}
+function lyCard(){const es=lang==="es",L=LYC&&LYC.on?LYC:null,g=L?(es?L.gift.es:L.gift.en):"",ym=d=>{const x=new Date(d);return x.getFullYear()+"-"+x.getMonth()},mo=ym(Date.now()),R=redGet().filter(x=>x.at&&ym(x.at)===mo);
+ const cnt={};R.forEach(x=>{const n=x.n||(es?"Sin nombre":"No name");cnt[n]=(cnt[n]||0)+1});const rk=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
+ let prize="";try{prize=localStorage.getItem("mx-prize-"+slug)||""}catch(_){}
+ const S=LYD||{on:L?true:true,g:L?L.gift.es:GIFTS[0][0],ge:L?L.gift.en:GIFTS[0][1],days:L?L.days:30,staff:L?(L.staff||[]).join("\n"):""};
+ return `<div class="card" id="lyc"><h2>🎁 ${es?"Regalo para clientes y premio a meseros":"Guest gift and waiter reward"}</h2>
+ <p>${L?`✅ <b>${es?"Activado":"On"}:</b> ${esc(g)} · ${es?"válido":"valid"} ${L.days} ${es?"días":"days"}`:`⚪ <b>${es?"Apagado":"Off"}</b> — ${es?"configúralo abajo":"set it up below"}`}</p>
+ <p style="font-size:.92em">${es?"Cuando el cliente toca <b>🧾 Pedir la cuenta</b> en tu app, recibe un regalo para su próxima visita y le pedimos una reseña en Google. Cuando regresa y lo canjea, el mesero que lo atendió gana un punto.":"When a guest taps <b>🧾 Ask for the bill</b> in your app, they get a gift for their next visit and we ask for a Google review. When they come back and redeem it, the waiter who served them earns a point."}</p>
+ <p class="tip">${es?"El regalo es para todos, no a cambio de la reseña: así lo permite Google. Pide a tus meseros que digan: “Le dejamos un regalo en la app para su próxima visita. Y si le gustó, nos ayuda mucho con una reseña.”":"The gift is for everyone, not in exchange for a review — that's what Google allows. Have waiters say: “There's a gift for your next visit in the app. And if you liked it, a review helps us a lot.”"}</p>
+ ${L?`<h3 style="margin:14px 0 4px">✅ ${es?"Canjear un cupón":"Redeem a coupon"}</h3><p style="font-size:.9em;margin:0">${es?"El cliente te enseña su pantalla. Escribe el código:":"The guest shows their screen. Type the code:"}</p>
+ <input id="lyCode" placeholder="ABC-1234" autocapitalize="characters" autocomplete="off" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:800 20px ui-monospace,monospace;letter-spacing:2px;text-align:center"><button class="b" id="lyChk">${es?"Revisar código":"Check code"}</button><div id="lyRes"></div>
+ <h3 style="margin:16px 0 4px">🏆 ${es?"Meseros del mes":"Waiters of the month"}</h3>
+ ${rk.length?`<ol style="margin:4px 0 6px;padding-left:22px">${rk.map(([n,c],i)=>`<li style="margin:3px 0"><b>${esc(n)}</b> — ${c} ${es?(c===1?"cliente regresó":"clientes regresaron"):(c===1?"guest came back":"guests came back")}${i===0?" 🥇":""}</li>`).join("")}</ol>`:`<p style="font-size:.9em;opacity:.75">${es?"Todavía no hay cupones canjeados este mes.":"No coupons redeemed this month yet."}</p>`}
+ <input id="lyPrize" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:inherit" placeholder="${es?"Premio del mes (ej: $500 al mesero #1)":"Monthly prize (e.g. $500 to waiter #1)"}" value="${esc(prize)}">
+ ${rk.length?`<a class="b g" target="_blank" href="https://api.whatsapp.com/send?text=${encodeURIComponent((es?"🏆 Meseros del mes · ":"🏆 Waiters of the month · ")+(D.name||slug)+"\n"+rk.map(([n,c],i)=>`${i+1}. ${n}: ${c}`).join("\n")+(prize?"\n🎁 "+prize:""))}">📤 ${es?"Compartir con tu equipo":"Share with your team"}</a>`:""}
+ <p class="tip">${es?"Los canjes se guardan en este teléfono: usa siempre el mismo teléfono del negocio.":"Redemptions are saved on this phone: always use the same business phone."}</p>`:""}
+ <details style="margin-top:12px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff" ${L?"":"open"}><summary style="cursor:pointer;font-weight:800">⚙️ ${es?"Configurar":"Settings"}</summary>
+ <label style="display:flex;gap:8px;align-items:center;font-weight:700;margin:10px 0"><input type="checkbox" id="lyOn" ${S.on?"checked":""} style="width:22px;height:22px;margin:0"> ${es?"Activar regalo en mi app":"Turn on the gift in my app"}</label>
+ <b>${es?"Regalo":"Gift"}</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0">${GIFTS.map(([a,b])=>`<button class="b l" style="margin:0;padding:10px" data-gift="${esc(a)}|${esc(b)}">${es?a:b}</button>`).join("")}</div>
+ <input id="lyG" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:inherit" value="${esc(S.g)}" placeholder="${es?"Regalo en español":"Gift in Spanish"}"><input id="lyGe" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;margin-top:6px;font:inherit" value="${esc(S.ge)}" placeholder="${es?"Regalo en inglés":"Gift in English"}">
+ <b style="display:block;margin-top:10px">${es?"Válido por":"Valid for"}</b><select id="lyDays" style="width:100%;padding:11px;border-radius:10px;margin-top:5px;font:inherit">${[15,30,60,90].map(d=>`<option value="${d}" ${+S.days===d?"selected":""}>${d} ${es?"días":"days"}</option>`).join("")}</select>
+ <b style="display:block;margin-top:10px">${es?"Tus meseros (uno por renglón)":"Your waiters (one per line)"}</b><textarea id="lyStaff" rows="5" style="box-sizing:border-box;width:100%;padding:11px;border-radius:10px;border:1.5px solid #e2d6c8;font:inherit;margin-top:5px" placeholder="Juan\nMaría\nLuis">${esc(S.staff)}</textarea>
+ <p class="tip">${es?"Agrega meseros nuevos al final; no cambies el orden de los que ya están.":"Add new waiters at the end; don't reorder the ones already there."}</p>
+ <button class="b" id="lySend">📤 ${es?"Enviar a MX Studio para activar":"Send to MX Studio to turn on"}</button></details></div>`}
+document.addEventListener("click",async e=>{const es=lang==="es";
+ const gb=e.target.closest("[data-gift]");if(gb){const [a,b]=gb.dataset.gift.split("|");$("lyG").value=a;$("lyGe").value=b;return}
+ if(e.target.id==="lyChk"){const v=$("lyCode").value,r=window.MXL&&MXL.read(slug,v),box=$("lyRes"),days=+(LYC&&LYC.days)||30;
+  if(!r){box.innerHTML=`<p style="color:#b3261e;font-weight:800">❌ ${es?"Código no válido":"Invalid code"}</p>`;return}
+  const used=redGet().find(x=>x.c===r.code),age=MXL.today()-r.day,nm=r.staff>=0&&LYC&&LYC.staff?LYC.staff[r.staff]||"":"";
+  if(used){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⚠️ ${es?"Ya se usó el":"Already used on"} ${esc(new Date(used.at).toLocaleDateString(es?"es-MX":"en-US",{day:"numeric",month:"long"}))}</p>`;return}
+  if(age>days){box.innerHTML=`<p style="color:#b3261e;font-weight:800">⌛ ${es?"Vencido":"Expired"} (${age} ${es?"días":"days"})</p>`;return}
+  if(age<1){box.innerHTML=`<p style="color:#b5642f;font-weight:800">🕒 ${es?"Este cupón es para su próxima visita (se dio hoy).":"This coupon is for their next visit (issued today)."}</p>`;return}
+  box.innerHTML=`<p style="color:#1f7a46;font-weight:800">✅ ${es?"Válido":"Valid"} · ${esc(es?LYC.gift.es:LYC.gift.en)}${nm?` · ${es?"Lo atendió":"Served by"} ${esc(nm)}`:""}</p><button class="b g" id="lyRed" data-c="${r.code}" data-n="${esc(nm)}">✅ ${es?"Canjear":"Redeem"}</button>`;return}
+ if(e.target.id==="lyRed"){const a=redGet();a.push({c:e.target.dataset.c,n:e.target.dataset.n,at:new Date().toISOString()});redSet(a);const y=scrollY;render();scrollTo(0,y);return}
+ if(e.target.id==="lySend"){const on=$("lyOn").checked,staff=$("lyStaff").value.split("\n").map(s=>s.trim()).filter(Boolean).slice(0,15);
+  const ly={on,gift:{es:$("lyG").value.trim()||GIFTS[0][0],en:$("lyGe").value.trim()||$("lyG").value.trim()||GIFTS[0][1]},days:+$("lyDays").value||30,staff};
+  const code=await pack({s:slug,ly,t:Date.now()}),link="https://go.myjefetech.app/acapulco/rutas/#chg="+code;
+  open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent((es?"🎁 Regalo y meseros de *":"🎁 Gift & waiters for *")+(D.name||slug)+(es?"* — toca para publicar:\n":"* — tap to publish:\n")+link),"_blank");
+  LYD={on,g:ly.gift.es,ge:ly.gift.en,days:ly.days,staff:staff.join("\n")};e.target.textContent="✅ "+(es?"Enviado. Se activa en unos minutos.":"Sent. It turns on in a few minutes.");return}});
+document.addEventListener("change",e=>{if(e.target.id==="lyPrize"){try{localStorage.setItem("mx-prize-"+slug,e.target.value)}catch(_){}}});
+
+// ---------- ⭐ "See our Google reviews" bar at the top of the app (on by default) ----------
+let OPC={};
+function revTopBox(){const es=lang==="es",on=OPC.revTop!==false;
+ return `<div style="margin-top:12px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff"><b>⭐ ${es?"“Ver nuestras reseñas” arriba en tu app":"“See our reviews” at the top of your app"}</b>
+ <p style="margin:6px 0;font-size:.92em">${es?"Un botón arriba del menú abre tus reseñas reales de Google, para que los clientes vean que la comida es buena. Ahora está":"A button above the menu opens your real Google reviews, so guests see the food is good. Right now it's"} <b>${on?(es?"ENCENDIDO":"ON"):(es?"APAGADO":"OFF")}</b>.</p>
+ <button class="b l" id="rtTog" data-on="${on?1:0}">${on?(es?"Apagarlo":"Turn it off"):(es?"Encenderlo":"Turn it on")}</button></div>`}
+document.addEventListener("click",async e=>{if(e.target.id!=="rtTog")return;const es=lang==="es",nv=e.target.dataset.on!=="1";
+ const code=await pack({s:slug,op:{revTop:nv},t:Date.now()}),link="https://go.myjefetech.app/acapulco/rutas/#chg="+code;
+ open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent((es?"⭐ Reseñas arriba "+(nv?"ENCENDER":"APAGAR")+" · *":"⭐ Reviews at the top "+(nv?"ON":"OFF")+" · *")+(D.name||slug)+(es?"* — toca para publicar:\n":"* — tap to publish:\n")+link),"_blank");
+ e.target.textContent="✅ "+(es?"Enviado. Cambia en unos minutos.":"Sent. It changes in a few minutes.")});
+// ---------- ⭐ Review ideas (owner picks) ----------
+function revIdeas(){const L=window.MX_REV||[];if(!L.length)return "";const es=lang==="es",nm=D.name||slug,H=es?["Fácil, gratis","Fácil","Lo revisamos"]:["Easy, free","Easy","We check it"];
+ return `<details style="margin-top:12px;border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;background:#fff"><summary style="cursor:pointer;font-weight:800">💡 ${es?"Ideas para conseguir más reseñas":"Ideas to get more reviews"}</summary>
+ <p style="margin:8px 0">${es?"Escoge las que quieras. Toca “Me interesa” y lo vemos juntos.":"Pick the ones you like. Tap “I'm interested” and we'll set it up together."}</p>
+ ${L.map(x=>{const t=x[es?"es":"en"],m=es?`Hola Brian, me interesa para ${nm}: ${t.t}`:`Hi Brian, for ${nm} I'm interested in: ${t.t}`;return `<div style="border-top:1px solid #f0e7dd;padding:10px 0"><b>${x.i} ${t.t}</b> <small style="opacity:.6">· ${H[x.hard]}</small><p style="margin:4px 0 8px;font-size:.92em">${t.d}</p><a class="b l" style="margin:0" target="_blank" href="https://api.whatsapp.com/send?phone=${BR}&text=${encodeURIComponent(m)}">👍 ${es?"Me interesa":"I'm interested"}</a></div>`}).join("")}</details>`}
+// ---------- 🧰 Setup guides ----------
+function stGet(){try{return JSON.parse(localStorage.getItem("mx-setup-"+slug)||"{}")}catch(_){return {}}}
+function stSet(o){try{localStorage.setItem("mx-setup-"+slug,JSON.stringify(o))}catch(_){}}
+
+// ---------- ⚙️ Feature toggles ----------
+const FEAT_DEFS=[
+ {k:"wifi",        es:"📶 WiFi",             en:"📶 WiFi",              esP:"Muestra el botón de WiFi en la app.",                        enP:"Shows the WiFi button in the app."},
+ {k:"ordering",    es:"📝 Pedidos / Mesero",  en:"📝 Ordering / Waiter", esP:"Permite ordenar al mesero o pedir para llevar.",              enP:"Lets guests order to the table or carry-out."},
+ {k:"reservations_feature",es:"📅 Reservaciones",en:"📅 Reservations",  esP:"Muestra el botón de reservar mesa.",                         enP:"Shows the reserve-a-table button."},
+ {k:"reviews",     es:"⭐ Reseñas Google",    en:"⭐ Google Reviews",    esP:"Muestra los links y QR de reseñas de Google.",               enP:"Shows Google review links and QR codes."},
+ {k:"lang_toggle", es:"🌐 Toggle ES/EN",      en:"🌐 ES/EN toggle",      esP:"El botón para cambiar el idioma de la app.",                  enP:"The language-switch button in the app."},
+ {k:"loyalty",     es:"🎁 Regalo y meseros",  en:"🎁 Gift & waiters",    esP:"El sistema de regalo para clientes y Mesero Estrella.",       enP:"The guest gift and Waiter of the Week system."},
+];
+function getFeat(k){const f=CFG_RAW.features;if(!f||f[k]===undefined)return true;return !!f[k]}
+// ---------- 🏗️ Tier setup card (Brian's activation tool) ----------
+const TIER_KEY=s=>"mx-tier-"+s;
+function getTierSel(){try{return JSON.parse(localStorage.getItem(TIER_KEY(slug))||"{}")}catch(_){return {}}}
+function setTierSel(o){try{localStorage.setItem(TIER_KEY(slug),JSON.stringify(o))}catch(_){}}
+const TIER_TYPES={
+ r:{es:"🍽️ Restaurante / Café",en:"🍽️ Restaurant / Café"},
+ h:{es:"🏨 Hotel (sin restaurante)",en:"🏨 Hotel (no restaurant)"},
+ hr:{es:"🏨+🍽️ Hotel + Restaurante",en:"🏨+🍽️ Hotel + Restaurant"},
+};
+const TIER_PRICES={r:{1:8000,2:13000,3:18000},h:{1:10000,2:15000,3:20000},hr:{3:28000}};
+const TIER_HOST={r:300,h:400,hr:500};
+function tierSteps(type,tier,es){
+ // Core steps every client gets
+ const base=[
+  {k:"app",i:"📱",es:"Crear y lanzar la app",en:"Create and launch the app",
+   esS:["Crea la carpeta del cliente en GitHub (c/<slug>/)","Sube config.json con sus datos","Verifica que la app abre en go.myjefetech.app/acapulco/c/<slug>/","Manda el link al cliente por WhatsApp","Confirma que el QR funciona"],
+   enS:["Create the client's folder on GitHub (c/<slug>/)","Upload config.json with their info","Verify the app opens at go.myjefetech.app/acapulco/c/<slug>/","Send the link to the client on WhatsApp","Confirm the QR works"]},
+  {k:"menu",i:"🍽️",es:"Cargar el menú",en:"Upload the menu",
+   esS:["Recibe foto o PDF del menú","Transcribe a menu.json (nombre, precio, sección)","Publica en GitHub","Verifica en la app del cliente"],
+   enS:["Receive menu photo or PDF","Transcribe to menu.json (name, price, section)","Publish to GitHub","Verify in the client's app"]},
+  {k:"qr",i:"🔳",es:"Preparar tarjetas y stickers QR",en:"Prepare QR cards and stickers",
+   esS:["Genera los QR para mesas en /tarjeta/?s=<slug>&f=m","Genera stickers de menú en /tarjeta/?s=<slug>&f=st","Genera stickers de reseñas en /tarjeta/?s=<slug>&f=rv","Manda los archivos al cliente (PDF o imagen para imprimir)"],
+   enS:["Generate table QRs at /tarjeta/?s=<slug>&f=m","Generate menu stickers at /tarjeta/?s=<slug>&f=st","Generate review stickers at /tarjeta/?s=<slug>&f=rv","Send the files to the client (PDF or image to print)"]},
+  {k:"wifi",i:"📶",es:"Configurar WiFi en la app",en:"Set up WiFi in the app",
+   esS:["Pide al cliente el nombre exacto de la red WiFi","Pide la contraseña","Actualiza wifi.name y wifi.pass en config.json","Verifica que el botón WiFi funciona en la app"],
+   enS:["Ask the client for the exact WiFi network name","Ask for the password","Update wifi.name and wifi.pass in config.json","Verify the WiFi button works in the app"]},
+ ];
+ // Tier 2+ steps
+ const negocio=[
+  {k:"google",i:"🔎",es:"Ecosistema Google",en:"Google Ecosystem",
+   esS:["Vincula el perfil de Google Business del cliente","Activa reseñas: añade query_place_id al index.html del cliente","Revisa que el QR de reseñas aparece en su panel","Ayuda al cliente a pedir las primeras 5 reseñas"],
+   enS:["Link the client's Google Business profile","Activate reviews: add query_place_id to the client's index.html","Confirm the reviews QR shows in their panel","Help the client get their first 5 reviews"]},
+  {k:"whatsapp",i:"💬",es:"WhatsApp Business",en:"WhatsApp Business",
+   esS:["Verifica que tiene WhatsApp Business (no personal)","Activa mensaje de bienvenida automático","Activa respuesta de ausencia (fuera de horario)","Añade el link de la app como respuesta rápida"],
+   enS:["Verify they have WhatsApp Business (not personal)","Turn on automatic welcome message","Turn on away message (outside hours)","Add the app link as a quick reply"]},
+ ];
+ // Tier 3 (Ecosistema) steps
+ const ecosistema=[
+  {k:"loyalty",i:"🎁",es:"Regalo para clientes",en:"Guest gift",
+   esS:["Activa loyalty.json (gifts, días de validez, staff)","Verifica que el botón 🧾 Pedir cuenta aparece en la app","Prueba el flujo completo: pedir cuenta → QR → canjear","Explica al cliente cómo funciona el sistema de puntos"],
+   enS:["Activate loyalty.json (gifts, validity days, staff)","Verify the 🧾 Ask for the bill button shows in the app","Test the full flow: ask bill → QR → redeem","Explain to the client how the points system works"]},
+  {k:"habla",i:"🗣️",es:"Habla (app de idiomas)",en:"Habla (language app)",
+   esS:["Pon features.habla:true en config.json","Agrega la tarjeta de Habla en la app del cliente, junto a Guárdalo en tu teléfono","Verifica la tarjeta 🗣️ Habla en su panel del dueño","Enséñale al dueño a compartirlo con su equipo por WhatsApp"],
+   enS:["Set features.habla:true in config.json","Add the Habla card to the client's app, next to Save to your phone","Check the 🗣️ Habla card shows in their owner panel","Show the owner how to share it with the team on WhatsApp"]},
+  {k:"mesero",i:"⭐",es:"Mesero Estrella de la Semana",en:"Waiter of the Week",
+   esS:["Añade los nombres del equipo a loyalty.json (staff[])","Verifica que aparecen en su panel del dueño","Explica las reglas del concurso al cliente","Define el bono semanal con el cliente ($500 – $1,000)"],
+   enS:["Add team names to loyalty.json (staff[])","Verify they appear in the owner's panel","Explain the contest rules to the client","Set the weekly bonus with the client ($500 – $1,000)"]},
+  {k:"reservas",i:"📅",es:"Reservas y para llevar",en:"Reservations and carry-out",
+   esS:["Activa reservations:true y carryout:true en config.json","Verifica que los botones aparecen en la app del cliente","Prueba una reserva de prueba por WhatsApp","Confirma que llega al número del cliente"],
+   enS:["Set reservations:true and carryout:true in config.json","Verify the buttons show in the client's app","Test a trial reservation via WhatsApp","Confirm it arrives at the client's number"]},
+ ];
+ // Hotel extras
+ const hotel=[
+  {k:"guia",i:"🏨",es:"Guía del huésped",en:"Guest guide",
+   esS:["Activa la sección PROGRAMA en la app","Carga los servicios del hotel (horarios, piscina, restaurante, etc.)","Activa el modo hotel (eSchedule, horarios)","Verifica la guía en un teléfono de huésped"],
+   enS:["Activate the PROGRAM section in the app","Load hotel services (hours, pool, restaurant, etc.)","Turn on hotel mode (eSchedule, hours)","Verify the guide on a guest phone"]},
+ ];
+ let steps=[...base];
+ if(tier>=2)steps=[...steps,...negocio];
+ if(tier===3)steps=[...steps,...ecosistema];
+ if((type==="h"||type==="hr")&&tier>=2)steps=[...steps,...hotel];
+ return steps.map(x=>({...x,s:es?x.esS:x.enS,t:es?x.es:x.en}))}
+function tierSetupCard(){
+ const es=lang==="es";
+ const sel=getTierSel();
+ const type=sel.type||"r";
+ const tier=sel.tier||1;
+ const steps=tierSteps(type,tier,es);
+ const done=sel.done||{};
+ const doneCount=steps.filter(s=>done[s.k]).length;
+ const price=TIER_PRICES[type]&&TIER_PRICES[type][tier];
+ const pLabel=price?"$"+price.toLocaleString("en-US"):"—";
+ const typeBtns=Object.entries(TIER_TYPES).map(([k,v])=>`<button class="ts-type" data-tst="${k}" style="all:unset;box-sizing:border-box;cursor:pointer;padding:8px 10px;border-radius:12px;font-weight:800;font-size:12.5px;border:1.5px solid ${type===k?"#b5642f":"#eadfd2"};background:${type===k?"#b5642f":"#f7f2ec"};color:${type===k?"#fff":"var(--ink)"};text-align:center">${v[es?"es":"en"]}</button>`).join("");
+ const availTiers=type==="hr"?[3]:[1,2,3];
+ const tierNames=es?["Básico","Negocio","Ecosistema"]:["Basic","Business","Ecosystem"];
+ const tierBtns=availTiers.map(t=>`<button class="ts-tier" data-tsr="${t}" style="all:unset;box-sizing:border-box;cursor:pointer;padding:8px 10px;border-radius:12px;font-weight:800;font-size:13px;border:1.5px solid ${tier===t?"#b5642f":"#eadfd2"};background:${tier===t?"#b5642f":"#f7f2ec"};color:${tier===t?"#fff":"var(--ink)"};text-align:center">${tierNames[t-1]}<small style="display:block;font-weight:600;font-size:11px;opacity:.85;margin-top:1px">${TIER_PRICES[type]?("$"+(TIER_PRICES[type][t]||"—").toLocaleString("en-US")):"—"}</small></button>`).join("");
+ const stepHtml=steps.map(x=>{const ok=!!done[x.k];return `<details style="border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;margin:8px 0;background:${ok?"#eef9f1":"#fff"}"><summary style="cursor:pointer;font-weight:800;list-style:none;display:flex;gap:8px;align-items:center"><span>${x.i}</span><span style="flex:1">${x.t}</span><span style="font-size:18px">${ok?"✅":"◻️"}</span></summary><ol style="margin:10px 0 6px;padding-left:20px;line-height:1.6;font-size:14.5px">${x.s.map(s=>`<li style="margin:4px 0">${s}</li>`).join("")}</ol><label style="display:flex;gap:10px;align-items:center;font-weight:800;margin:10px 0 4px;cursor:pointer"><input type="checkbox" class="ts-check" data-tsk="${x.k}" ${ok?"checked":""} style="width:22px;height:22px;cursor:pointer"> ${es?"✅ Listo":"✅ Done"}</label></details>`}).join("");
+ return `<div class="card" id="tierCard"><h2>🏗️ ${es?"Configurar cliente":"Client setup"}</h2>
+ <p style="font-size:.9em;opacity:.8;margin-bottom:12px">${es?`Elige el tipo y tier del cliente para ver su checklist de activación. <b>${doneCount}/${steps.length}</b> pasos listos.`:`Pick the client's type and tier to see their activation checklist. <b>${doneCount}/${steps.length}</b> steps done.`}</p>
+ <div style="font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:6px">${es?"Tipo de negocio":"Business type"}</div>
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px">${typeBtns}</div>
+ <div style="font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:6px">${es?"Nivel (tier)":"Level (tier)"}</div>
+ <div style="display:grid;grid-template-columns:repeat(${availTiers.length},1fr);gap:7px;margin-bottom:14px">${tierBtns}</div>
+ <div style="padding:10px 13px;border-radius:14px;background:#faf6f0;border:1.5px solid #eadfd2;margin-bottom:12px;font-weight:800;font-size:14px">
+  ${es?"Cliente paga":"Client pays"}: <span style="color:#b5642f">${pLabel}</span> · ${es?"Hosting desde el mes 2":"Hosting from month 2"}: <span style="color:#b5642f">$${TIER_HOST[type]}/mes</span>
+  ${tier===3?`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#fff3e0;color:#b5642f;font-size:12px">📅 Plan de pagos a acordar</span>`:`<span style="display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#eef9f1;color:#1b5e20;font-size:12px">${es?"💵 Pago completo":"💵 Paid in full"}</span>`}
+ </div>
+ ${stepHtml}
+ <p class="tip" style="margin-top:8px">${es?"Los ✅ se guardan en este dispositivo para este cliente.":"✅ marks are saved on this device for this client."}</p></div>`}
+document.addEventListener("click",e=>{
+ const bt=e.target.closest(".ts-type");
+ if(bt){const sel=getTierSel();sel.type=bt.dataset.tst;if(sel.type==="hr")sel.tier=3;else if(sel.tier===undefined)sel.tier=1;setTierSel(sel);const y=scrollY;render();scrollTo(0,y);return;}
+ const br=e.target.closest(".ts-tier");
+ if(br){const sel=getTierSel();sel.tier=parseInt(br.dataset.tsr);setTierSel(sel);const y=scrollY;render();scrollTo(0,y);return;}
+});
+document.addEventListener("change",e=>{
+ const c=e.target.closest(".ts-check");if(!c)return;
+ const sel=getTierSel();if(!sel.done)sel.done={};
+ if(c.checked)sel.done[c.dataset.tsk]=1;else delete sel.done[c.dataset.tsk];
+ setTierSel(sel);const y=scrollY;render();scrollTo(0,y);
+});
+function featuresCard(){
+ const es=lang==="es";
+ const rows=FEAT_DEFS.map(f=>{
+  const on=getFeat(f.k);
+  return `<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #eadfd2">
+   <div style="flex:1"><b style="font-size:15px">${f[es?"es":"en"]}</b><br><small style="color:#776a63">${f[es?"esP":"enP"]}</small></div>
+   <button class="feat-tog" data-fk="${f.k}" data-on="${on?1:0}" style="all:unset;cursor:pointer;width:52px;height:30px;border-radius:999px;background:${on?"#25d366":"#cdbfb2"};position:relative;flex:0 0 auto;transition:background .2s" aria-label="${on?(es?"Apagar":"Turn off"):(es?"Encender":"Turn on")}">
+    <span style="position:absolute;top:3px;${on?"right:3px":"left:3px"};width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:all .2s"></span>
+   </button>
+  </div>`}).join("");
+ return `<div class="card" id="featCard"><h2>⚙️ ${es?"Funciones de tu app":"App features"}</h2>
+  <p style="font-size:.9em;opacity:.8">${es?"Enciende o apaga funciones. Los cambios se envían a MX Studio por WhatsApp para aplicarlos.":"Turn features on or off. Changes are sent to MX Studio via WhatsApp to apply them."}</p>
+  ${rows}
+  <button id="featSend" class="b" style="margin-top:14px;display:none">📲 ${es?"Enviar cambios":"Send changes"}</button>
+ </div>`}
+let _featPending={};
+function featToggleSetup(){
+ document.addEventListener("click",e=>{
+  const t=e.target.closest(".feat-tog");if(!t)return;
+  const k=t.dataset.fk,wasOn=t.dataset.on==="1",nowOn=!wasOn;
+  t.dataset.on=nowOn?1:0;t.style.background=nowOn?"#25d366":"#cdbfb2";
+  t.querySelector("span").style.left=nowOn?"":"3px";t.querySelector("span").style.right=nowOn?"3px":"";
+  _featPending[k]=nowOn;const btn=$("featSend");if(btn)btn.style.display="";
+ });
+ document.addEventListener("click",e=>{
+  if(!e.target.matches("#featSend"))return;
+  const es=lang==="es",nm=D.name||slug;
+  const lines=Object.entries(_featPending).map(([k,v])=>{const def=FEAT_DEFS.find(f=>f.k===k);return `${def?def[es?"es":"en"]:k}: ${v?(es?"ON":"ON"):(es?"OFF":"OFF")}`}).join("\n");
+  const msg=es?`Hola Brian, cambios de funciones para ${nm}:\n${lines}`:`Hi Brian, feature changes for ${nm}:\n${lines}`;
+  window.open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");
+  _featPending={};const btn=$("featSend");if(btn)btn.style.display="none";
+ });
+}
+function setupCard(){const L=window.MX_SETUP||[];if(!L.length)return "";const es=lang==="es",done=stGet(),n=L.filter(x=>done[x.k]).length,nm=D.name||slug;
+ const money=v=>"$"+v.toLocaleString("en-US");
+ return `<div class="card" id="setup"><h2>🧰 ${es?"Configura todo, paso a paso":"Set up everything, step by step"}</h2>
+ <p>${es?`<b>${n} de ${L.length}</b> listos. Hazlo tú con estas guías, o pídeme que lo haga yo.`:`<b>${n} of ${L.length}</b> done. Do it yourself with these guides, or ask me to do it for you.`}</p>
+ <div style="height:8px;background:#eadfd3;border-radius:9px;overflow:hidden;margin:6px 0 10px"><div style="height:100%;width:${Math.round(n/L.length*100)}%;background:#25d366"></div></div>
+ ${L.map(x=>{const t=x[es?"es":"en"],ok=!!done[x.k],pr=x.price?money(x.price)+(t.n?" "+t.n:""):(es?"incluido":"included");
+  const msg=(es?`Hola Brian, quiero que me hagas: ${t.d} (${pr}) para ${nm}.`:`Hi Brian, please do this for me: ${t.d} (${pr}) for ${nm}.`);
+  return `<details style="border:1px solid #eadfd3;border-radius:14px;padding:10px 12px;margin:8px 0;background:${ok?"#eef9f1":"#fff"}"><summary style="cursor:pointer;font-weight:800;list-style:none;display:flex;gap:8px;align-items:center"><span>${ok?"✅":x.i}</span><span style="flex:1">${t.t}</span><small style="font-weight:700;opacity:.65">${x.price?(es?"o yo: ":"or me: ")+money(x.price):(es?"incluido":"included")}</small></summary>
+  <ol style="margin:10px 0 6px;padding-left:20px;line-height:1.5">${t.s.map(s=>`<li style="margin:4px 0">${s}</li>`).join("")}</ol>
+  <label style="display:flex;gap:8px;align-items:center;font-weight:700;margin:8px 0"><input type="checkbox" data-stk="${x.k}" ${ok?"checked":""} style="width:22px;height:22px"> ${es?"Ya lo hice":"Done"}</label>
+  <a class="b ${x.price?"g":"l"}" target="_blank" href="https://api.whatsapp.com/send?phone=${BR}&text=${encodeURIComponent(msg)}">🙋 ${t.d} · ${pr}</a></details>`}).join("")}
+ <p class="tip">${es?"Los precios de “hazlo por mí” son un solo pago. Lo que dice incluido no cuesta extra.":"“Do it for me” prices are a one-time payment. Anything marked included costs nothing extra."}</p></div>`}
+document.addEventListener("change",e=>{const c=e.target.closest("[data-stk]");if(!c)return;const o=stGet();if(c.checked)o[c.dataset.stk]=1;else delete o[c.dataset.stk];stSet(o);const y=scrollY;render();scrollTo(0,y);const s=document.querySelector(`[data-stk="${c.dataset.stk}"]`);if(s)s.closest("details").open=true});
+$("lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("mx-dueno-lang",lang)}catch(_){}render()};
+
+// ---------- Owner menu editor ----------
+let EM=null,SP={es:"",en:""},QT="";
+const r5=n=>String(Math.round(n/5)*5);
+function parseQ(txt){const out=[];let pend="",cur="";for(let raw of txt.split(/\n+/)){let l=raw.replace(/[|_•·]+/g," ").replace(/\s{2,}/g," ").trim();if(!l)continue;
+ if(!/\d/.test(l)&&l.length<26&&/[A-ZÁÉÍÓÚÑ]/.test(l)&&l===l.toUpperCase()){pend="";cur=l.charAt(0)+l.slice(1).toLowerCase();continue}
+ const m=l.match(/^(.*?)[\s.\-–:…]*\$?\s*(\d{2,4})(?:[.,]\d{1,2})?\s*(?:mxn|pesos)?\s*$/i);
+ if(m&&+m[2]>=10){let n=(m[1]||"").replace(/[.\-–:…$]+$/,"").trim();if(!n&&pend)n=pend;pend="";if(n.length>=2)out.push({es:n.charAt(0).toUpperCase()+n.slice(1),price:r5(+m[2]),sec:cur});continue}
+ pend=pend?pend+" "+l:l}return out}
+async function openEd(){const es=lang==="es";$("w").innerHTML=`<div class="card"><p>${es?"Cargando…":"Loading…"}</p></div>`;
+ try{let d=null;try{d=JSON.parse(localStorage.getItem("mx-dueno-draft-"+slug)||"null")}catch(_){}
+  if(d&&d.m){EM=d.m;SP=d.sp||SP}else{EM=await (await fetch("../c/"+slug+"/menu.json?t="+Date.now(),{cache:"no-store"})).json();try{const s=await (await fetch("../c/"+slug+"/special.json?t="+Date.now(),{cache:"no-store"})).json();if(s&&s.on)SP={es:s.es||"",en:s.en||""}}catch(_){}}}
+ catch(_){$("w").innerHTML=`<div class="card"><p>${es?"Necesitas internet para abrir el editor.":"You need internet to open the editor."}</p><button class="b l" id="bk">←</button></div>`;$("bk").onclick=render;return}
+ drawEd()}
+function saveDraft(){try{localStorage.setItem("mx-dueno-draft-"+slug,JSON.stringify({m:EM,sp:SP}))}catch(_){}}
+function drawEd(){const es=lang==="es";
+ $("w").innerHTML=`<div class="card ed"><h2>🔥 ${es?"Especial de hoy":"Today's special"}</h2><p class="sm">${es?"Sale arriba en tu app. Déjalo vacío para quitarlo.":"Shows at the top of your app. Leave empty to remove."}</p><input data-sp="es" placeholder="${es?"Ej: 2×1 en margaritas de 5 a 7":"E.g. 2-for-1 margaritas 5–7 pm"}" value="${esc(SP.es)}"><input data-sp="en" placeholder="English (opcional)" value="${esc(SP.en)}"></div>
+ <div class="card ed"><h2>📷 ${es?"Agregar rápido":"Quick add"}</h2><p class="sm">${es?"Toma foto de tu menú o escribe un platillo por línea con su precio.":"Photograph your menu or type one dish per line with its price."}</p>
+  <label class="b l" style="margin-top:4px">📷 ${es?"Foto del menú":"Menu photo"}<input type="file" accept="image/*" id="ph" style="display:none"></label><p class="sm" id="phs"></p>
+  <textarea id="qt" rows="5" placeholder="Limonada 55&#10;Flan 75">${esc(QT)}</textarea><button class="b" id="qa">➕ ${es?"Agregar al menú":"Add to the menu"}</button></div>
+ ${EM.map((c,ci)=>`<div class="sec2 ed"><div class="it" style="grid-template-columns:1fr 38px"><input data-c="${ci}" value="${esc(c.cat.es)}" style="font-weight:800"><button class="x" data-dc="${ci}">🗑</button></div>
+  ${c.items.map((it,ii)=>`<div class="it"><div><input data-i="${ci}-${ii}" data-f="es" value="${esc(it.name.es)}"><input data-i="${ci}-${ii}" data-f="en" value="${esc(it.name.en||"")}" placeholder="English" style="font-size:13px"></div><input data-i="${ci}-${ii}" data-f="price" inputmode="decimal" value="${esc(it.price)}" placeholder="$"><button class="x" data-di="${ci}-${ii}">✕</button></div>`).join("")}
+  <button class="chip" data-ai="${ci}">+ ${es?"Platillo":"Dish"}</button></div>`).join("")}
+ <div class="card"><button class="chip" data-as="Bebidas|Drinks">🥤 ${es?"Bebidas":"Drinks"}</button><button class="chip" data-as="Postres|Desserts">🍰 ${es?"Postres":"Desserts"}</button><button class="chip" data-as="?">✍️ ${es?"Otra sección":"Other section"}</button></div>
+ <div class="card"><button class="b g" id="pub">📤 ${es?"Publicar cambios":"Publish changes"}</button><p class="tip">${es?"Se manda a MX Studio por WhatsApp y queda en tu app en minutos.":"It's sent to MX Studio by WhatsApp and goes live in your app within minutes."}</p><button class="b l" id="bk">← ${es?"Volver":"Back"}</button></div>`;
+ const W=$("w");
+ W.oninput=e=>{const el=e.target;if(el.dataset.sp){SP[el.dataset.sp]=el.value}else if(el.dataset.c!==undefined&&!el.dataset.i){EM[+el.dataset.c].cat.es=el.value}else if(el.dataset.i){const [ci,ii]=el.dataset.i.split("-").map(Number),it=EM[ci].items[ii];if(el.dataset.f==="es")it.name.es=el.value;else if(el.dataset.f==="en")it.name.en=el.value;else it.price=el.value.replace(/[^0-9.]/g,"")}else if(el.id==="qt")QT=el.value;saveDraft()};
+ W.onchange=e=>{if(e.target.id==="ph")ocr(e.target.files[0])};
+ W.onclick=e=>{const t=e.target;const es=lang==="es";
+  if(t.id==="bk"){render();return}
+  if(t.id==="pub"){publish();return}
+  if(t.id==="qa"){const L=parseQ(QT);if(!L.length)return;L.forEach(x=>{let k=EM.length-1;if(x.sec){const nm=x.sec.toLowerCase();k=EM.findIndex(c=>c.cat.es.toLowerCase().startsWith(nm.slice(0,5))||nm.startsWith(c.cat.es.toLowerCase().slice(0,5)));if(k<0){EM.push({cat:{es:x.sec,en:x.sec},items:[]});k=EM.length-1}}if(k<0){EM.push({cat:{es:"Menú",en:"Menu"},items:[]});k=0}EM[k].items.push({name:{es:x.es,en:x.es},desc:{es:"",en:""},price:x.price,img:""})});QT="";saveDraft();drawEd();return}
+  const di=t.closest("[data-di]");if(di){const [ci,ii]=di.dataset.di.split("-").map(Number);EM[ci].items.splice(ii,1);saveDraft();drawEd();return}
+  const dc=t.closest("[data-dc]");if(dc){if(confirm(es?"¿Borrar toda la sección?":"Delete the whole section?")){EM.splice(+dc.dataset.dc,1);saveDraft();drawEd()}return}
+  const ai=t.closest("[data-ai]");if(ai){EM[+ai.dataset.ai].items.push({name:{es:"",en:""},desc:{es:"",en:""},price:"",img:""});saveDraft();drawEd();return}
+  const as=t.closest("[data-as]");if(as){let v=as.dataset.as;if(v==="?"){const n=prompt(es?"Nombre de la sección":"Section name");if(!n)return;v=n+"|"+n}const [a,b]=v.split("|");EM.push({cat:{es:a,en:b},items:[{name:{es:"",en:""},desc:{es:"",en:""},price:"",img:""}]});saveDraft();drawEd()}}}
+async function ocr(file){if(!file)return;const s=$("phs"),es=lang==="es";s.textContent=es?"⏳ Leyendo la foto… (10–30 s)":"⏳ Reading photo… (10–30 s)";
+ try{if(!window.Tesseract)await new Promise((ok,no)=>{const x=document.createElement("script");x.src="../lib/ocr/tesseract.min.js";x.onload=ok;x.onerror=no;document.head.appendChild(x)});
+  const img=await createImageBitmap(file),k=Math.min(1,2000/Math.max(img.width,img.height)),cv=document.createElement("canvas");cv.width=img.width*k;cv.height=img.height*k;const cx=cv.getContext("2d");cx.filter="grayscale(1) contrast(1.4)";cx.drawImage(img,0,0,cv.width,cv.height);
+  const base=new URL("../lib/ocr/",location.href).href,w=await Tesseract.createWorker("spa",1,{workerPath:base+"worker.min.js",corePath:base,langPath:base.replace(/\/$/,""),gzip:true});const r=await w.recognize(cv);await w.terminate();
+  QT=(QT?QT+"\n":"")+r.data.text.trim();saveDraft();drawEd();$("phs").textContent=(es?"✓ Revisa el texto y toca Agregar":"✓ Check the text and tap Add")}catch(_){s.textContent=es?"❌ No se pudo leer la foto":"❌ Couldn't read the photo"}}
+async function pack(o){const bytes=new TextEncoder().encode(JSON.stringify(o));if(window.CompressionStream){const cs=new Blob([bytes]).stream().pipeThrough(new CompressionStream("deflate-raw"));const buf=new Uint8Array(await new Response(cs).arrayBuffer());let s="";buf.forEach(b=>s+=String.fromCharCode(b));return "z"+btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+ let s="";bytes.forEach(b=>s+=String.fromCharCode(b));return "j"+btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+async function publish(){const es=lang==="es";const clean=EM.map(c=>({cat:c.cat,items:c.items.filter(i=>(i.name.es||"").trim()).map(i=>({name:{es:i.name.es.trim(),en:(i.name.en||i.name.es).trim()},desc:i.desc||{es:"",en:""},price:String(i.price||""),img:i.img||""}))})).filter(c=>c.items.length);
+ const code=await pack({s:slug,m:clean,sp:{on:!!(SP.es.trim()||SP.en.trim()),es:SP.es.trim(),en:(SP.en||SP.es).trim()},t:Date.now()});
+ const link="https://go.myjefetech.app/acapulco/rutas/#chg="+code,msg=(es?"🧑‍🍳 Cambios de *":"🧑‍🍳 Changes for *")+(D.name||slug)+(es?"* — toca para publicar:\n":"* — tap to publish:\n")+link;
+ open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");try{localStorage.removeItem("mx-dueno-draft-"+slug)}catch(_){}
+ $("w").innerHTML=`<div class="card" style="text-align:center"><div style="font-size:42px">✅</div><h2>${es?"Cambios enviados":"Changes sent"}</h2><p>${es?"Toca Enviar en WhatsApp. Tu app se actualiza en unos minutos.":"Tap Send in WhatsApp. Your app updates in a few minutes."}</p><button class="b l" id="bk">← ${es?"Volver":"Back"}</button></div>`;$("bk").onclick=render}
+load();
+featToggleSetup();
+if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
+</script>
+
+
+
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={"mount": "#lang", "after": true, "css": "float:right;margin-top:2px", "color": "#fff"};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{if("serviceWorker" in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.addEventListener("controllerchange",function(){if(window.__mxReloaded)return;window.__mxReloaded=1;location.reload()})}}catch(e){}
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
+</body></html>

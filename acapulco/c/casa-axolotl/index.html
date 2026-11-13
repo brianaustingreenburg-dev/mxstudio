@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Casa Axolotl</title>
+<meta name="theme-color" content="#0d0a1a">
+<link rel="apple-touch-icon" sizes="180x180" href="img/icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-title" content="Casa Axolotl">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9922a;
+  --gold-lt:#f5c46a;
+  --coral:#e8607a;
+  --purple:#6b3fa0;
+  --ocean:#2563a8;
+  --wave:#4ba3d9;
+  --yellow:#f5e94a;
+  --bg:#0d0a1a;
+  --card:#181228;
+  --text:#f5f0ea;
+  --muted:#8a84a2;
+  --border:rgba(201,146,42,.2);
+}
+html{background:var(--bg)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);overflow-x:hidden;background:var(--bg)}
+.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--bg)}
+
+/* ── HEADER BAR ── */
+.header{
+  display:flex;align-items:center;
+  padding:12px 16px;
+  background:linear-gradient(135deg,#0d0a1a 0%,#131028 100%);
+  border-bottom:1px solid var(--border);
+  gap:12px;
+}
+.refresh{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px;line-height:1;cursor:pointer;flex-shrink:0}
+.hero-logo{
+  width:54px;height:54px;border-radius:50%;
+  border:2px solid var(--gold);
+  object-fit:cover;flex-shrink:0;
+  box-shadow:0 0 16px rgba(201,146,42,.35);
+}
+.header-info{flex:1;min-width:0}
+.header-info h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.2rem;font-weight:700;color:var(--text);
+  line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.header-info p{
+  font-size:.62rem;color:var(--gold-lt);
+  letter-spacing:.08em;text-transform:uppercase;margin-top:3px;
+}
+/* AcaFree pill */
+.aca-pill{
+  display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;
+}
+.aca-pill-inner{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(245,233,74,.12);
+  border:1px solid rgba(245,233,74,.4);
+  border-radius:40px;
+  padding:5px 11px 5px 8px;
+}
+.aca-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--yellow);flex-shrink:0;
+  box-shadow:0 0 6px rgba(245,233,74,.8);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 6px rgba(245,233,74,.8)}50%{opacity:.7;box-shadow:0 0 12px rgba(245,233,74,.5)}}
+.aca-pill-inner span{font-size:.74rem;font-weight:700;color:var(--yellow);letter-spacing:.04em}
+.aca-pill small{font-size:.55rem;color:rgba(245,233,74,.5);letter-spacing:.06em;text-transform:uppercase;padding-right:2px}
+
+/* ── HERO SLIDESHOW ── */
+.hero{position:relative;height:62vw;max-height:360px;min-height:220px;overflow:hidden;background:#0a0818}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;background-size:cover;background-position:center}
+.slide.active{opacity:1}
+.hero::after{content:'';position:absolute;inset:auto 0 0;height:50px;background:linear-gradient(to top,rgba(13,10,26,.7),transparent);pointer-events:none}
+/* slide dots */
+.hero-dots{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;z-index:3;
+}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .3s}
+.dot.on{background:var(--gold-lt);transform:scale(1.4)}
+
+/* ── LANG TOGGLE ── */
+.setup-section{
+  padding:0 14px 0;
+  display:flex;flex-direction:column;gap:6px;
+}
+.lang-row{
+  display:flex;justify-content:flex-end;align-items:center;
+  padding:6px 4px 2px;gap:4px;
+}
+.lang-btn{
+  background:none;border:1px solid var(--border);
+  color:var(--muted);font-size:.68rem;font-weight:500;
+  padding:3px 11px;border-radius:20px;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.05em;
+  transition:all .2s;
+}
+.lang-btn.active{color:var(--gold-lt);border-color:var(--gold);background:rgba(201,146,42,.1)}
+
+/* ── SECTION LABEL ── */
+.section-label{
+  padding:16px 18px 10px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label span{font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── DESTINATION CARDS ── */
+.cards{display:flex;flex-direction:column;gap:12px;padding:0 14px 6px}
+.card{
+  display:block;text-decoration:none;color:var(--text);
+  border-radius:18px;overflow:hidden;
+  position:relative;
+  min-height:110px;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 24px rgba(0,0,0,.5);
+}
+.card:active{transform:scale(.975)}
+/* photo bg via inline style */
+.card-photo{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform .4s;
+}
+.card:active .card-photo{transform:scale(1.03)}
+/* gradient overlay */
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(13,10,26,.88) 0%,rgba(13,10,26,.5) 55%,rgba(13,10,26,.2) 100%);
+}
+.card-content{
+  position:relative;z-index:1;
+  display:flex;align-items:center;
+  padding:20px 18px;
+  gap:14px;
+}
+.card-icon-wrap{
+  width:46px;height:46px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;flex-shrink:0;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.12);
+}
+.card-info{flex:1;min-width:0}
+.card-label{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.1rem;font-weight:700;
+  line-height:1.2;color:#fff;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.card-sub{
+  font-size:.7rem;color:rgba(245,240,234,.65);
+  margin-top:4px;letter-spacing:.03em;line-height:1.4;
+}
+.card-arr{
+  font-size:1.3rem;color:rgba(255,255,255,.5);
+  flex-shrink:0;padding-left:4px;
+}
+/* per-card accent border on left */
+.card-r{border-left:3px solid var(--gold)}
+.card-h{border-left:3px solid var(--wave)}
+.card-a{border-left:3px solid var(--yellow)}
+
+/* AcaFree micro-badge on activities card */
+.aca-micro{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(245,233,74,.2);border:1px solid rgba(245,233,74,.4);
+  border-radius:30px;padding:2px 7px 2px 5px;margin-top:5px;
+}
+.aca-micro .dot{width:5px;height:5px;background:var(--yellow);border-radius:50%;flex-shrink:0}
+.aca-micro span{font-size:.6rem;font-weight:600;color:var(--yellow);letter-spacing:.04em}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:14px 18px}
+
+/* ── WA BUTTON ── */
+.wa-wrap{padding:4px 14px 26px}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,rgba(22,58,34,.9),rgba(28,74,42,.9));
+  border:1px solid rgba(100,220,130,.22);
+  color:#72e09a;padding:15px;border-radius:16px;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
+  box-shadow:0 2px 16px rgba(0,0,0,.35);
+  letter-spacing:.02em;
+}
+.wa-btn:active{opacity:.8}
+
+/* ── CREDIT ── */
+.credit{text-align:center;padding:0 0 32px;opacity:.3}
+.pwa-hint{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;margin:0;position:relative}
+.pwa-icon{font-size:1.4rem;flex-shrink:0}
+.pwa-text{flex:1;font-size:.8rem;line-height:1.4;color:var(--muted)}
+.pwa-es,.pwa-en{color:rgba(255,255,255,.65);font-weight:500}
+.pwa-sep{color:var(--muted)}
+.pwa-sub{font-size:.72rem;color:var(--muted)}
+.pwa-sub strong{color:rgba(255,255,255,.5);font-weight:600}
+.pwa-x{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:.7rem;cursor:pointer;padding:4px;line-height:1;opacity:.6}
+.pwa-x:hover{opacity:1}
+/* Habla language card, sits with the save-to-phone card */
+.habla-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(75,163,217,.35);border-left:3px solid var(--wave);border-radius:14px;padding:14px 16px;margin:8px 0 4px;text-decoration:none;color:var(--text);-webkit-tap-highlight-color:transparent}
+.habla-card:active{transform:scale(.985)}
+.habla-ic{font-size:1.4rem;flex-shrink:0}
+.habla-tx{flex:1;min-width:0;font-size:.8rem;line-height:1.4}
+.habla-tx b{display:block;font-family:'Playfair Display',Georgia,serif;font-size:1rem;color:#fff}
+.habla-tx span{color:var(--muted);font-size:.72rem}
+.habla-arr{font-size:1.3rem;color:rgba(255,255,255,.5);flex-shrink:0}
+.credit a{color:var(--muted);font-size:.62rem;text-decoration:none;letter-spacing:.06em}
+.credit strong{color:var(--gold-lt)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- Header bar -->
+<div class="header">
+  <img class="hero-logo" src="img/logo.png" alt="Casa Axolotl">
+  <div class="header-info">
+    <h1>Casa Axolotl</h1>
+    <p>Hotel &amp; Restaurante · Acapulco</p>
+  </div>
+  <div class="aca-pill">
+    <div class="aca-pill-inner">
+      <span class="aca-dot"></span>
+      <span>AcaFree</span>
+    </div>
+    <small id="acaSub">Turismo de Aventura</small>
+  </div>
+  <button class="refresh" onclick="location.reload(true)" title="Refresh">↻</button>
+</div>
+
+<!-- Slideshow -->
+<div class="hero" id="slides">
+  <div class="slide active" style="background-image:url('img/hub1.jpg')"></div>
+  <div class="slide" style="background-image:url('img/hub2.jpg')"></div>
+  <div class="slide" style="background-image:url('img/hub3.jpg')"></div>
+  <div class="slide" style="background-image:url('img/hub4.jpg')"></div>
+  <div class="slide" style="background-image:url('img/hub5.jpg')"></div>
+  <div class="slide" style="background-image:url('img/hub6.jpg')"></div>
+  <div class="hero-dots" id="dots"></div>
+</div>
+
+<!-- Lang toggle -->
+<div class="lang-row">
+  <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
+  <span style="color:var(--border);padding:0 2px;font-size:.8rem">|</span>
+  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- Section label -->
+<div class="section-label">
+  <span id="sectionLbl">Explorar</span>
+</div>
+
+<!-- Destination cards -->
+<div class="cards">
+
+  <a class="card card-r" href="menu/" id="linkMenu">
+    <div class="card-photo" style="background-image:url('img/hub1.jpg')"></div>
+    <div class="card-overlay"></div>
+    <div class="card-content">
+      <div class="card-icon-wrap">🍽️</div>
+      <div class="card-info">
+        <div class="card-label" id="lblMenu">Restaurante</div>
+        <div class="card-sub" id="subMenu">Menú · Bar · Coctelería · Desayunos</div>
+      </div>
+      <span class="card-arr">›</span>
+    </div>
+  </a>
+
+  <a class="card card-h" href="hotel/" id="linkHotel">
+    <div class="card-photo" style="background-image:url('img/hotel.jpg')"></div>
+    <div class="card-overlay"></div>
+    <div class="card-content">
+      <div class="card-icon-wrap">🏨</div>
+      <div class="card-info">
+        <div class="card-label" id="lblHotel">Hotel</div>
+        <div class="card-sub" id="subHotel">Habitaciones · Servicios · Guía del huésped</div>
+      </div>
+      <span class="card-arr">›</span>
+    </div>
+  </a>
+
+  <a class="card card-a" href="actividades/" id="linkAct">
+    <div class="card-photo" style="background-image:url('img/hub5.jpg')"></div>
+    <div class="card-overlay" style="background:linear-gradient(100deg,rgba(13,10,26,.9) 0%,rgba(13,10,26,.5) 55%,rgba(13,10,26,.15) 100%)"></div>
+    <div class="card-content">
+      <div class="card-icon-wrap">🌊</div>
+      <div class="card-info">
+        <div class="card-label" id="lblAct">Actividades</div>
+        <div class="card-sub" id="subAct">Kayak · Tours · Fogata · Laguna · Surf</div>
+        <div class="aca-micro"><span class="dot"></span><span>AcaFree</span></div>
+      </div>
+      <span class="card-arr">›</span>
+    </div>
+  </a>
+
+</div>
+
+<!-- Habla: learn English / Spanish -->
+<a class="habla-card" id="linkHabla" href="../../habla/?back=../c/casa-axolotl/&amp;n=Casa%20Axolotl">
+  <span class="habla-ic">🗣️</span>
+  <div class="habla-tx">
+    <b id="lblHabla">Habla · Aprende inglés</b>
+    <span id="subHabla">Palabras y frases con audio · Learn Spanish too</span>
+  </div>
+  <span class="habla-arr">›</span>
+</a>
+
+<!-- Save to home screen hint -->
+<div class="pwa-hint" id="pwaHint">
+  <span class="pwa-icon">📲</span>
+  <div class="pwa-text">
+    <span class="pwa-es">Guárdalo en tu teléfono</span>
+    <span class="pwa-sep"> · </span>
+    <span class="pwa-en">Save to your phone</span>
+    <br>
+    <span class="pwa-sub" id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
+  </div>
+  <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
+</div>
+
+<div class="divider"></div>
+
+<!-- WhatsApp -->
+<div class="wa-wrap">
+  <a class="wa-btn" href="https://wa.me/527474999032" target="_blank">
+    <span style="font-size:1.25rem">💬</span>
+    <span id="waLabel">Contactar por WhatsApp</span>
+  </a>
+</div>
+
+<!-- Credit -->
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// Slideshow
+const slides=document.querySelectorAll('#slides .slide');
+const dotsEl=document.getElementById('dots');
+let cur=0,timer;
+slides.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i===0?' on':'');dotsEl.appendChild(d)});
+const dots=dotsEl.querySelectorAll('.dot');
+function go(n){slides[cur].classList.remove('active');dots[cur].classList.remove('on');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');dots[cur].classList.add('on')}
+function next(){go(cur+1)}
+timer=setInterval(next,4200);
+let sx=0;
+document.getElementById('slides').addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+document.getElementById('slides').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){clearInterval(timer);go(dx<0?cur+1:cur-1);timer=setInterval(next,4200)}},{passive:true});
+
+// Lang
+const T={
+  es:{acaSub:'Turismo de Aventura',sectionLbl:'Explorar',lblMenu:'Restaurante',subMenu:'Menú · Bar · Coctelería · Desayunos',lblHotel:'Hotel',subHotel:'Habitaciones · Servicios · Guía del huésped',lblAct:'Actividades',subAct:'Kayak · Tours · Fogata · Laguna · Surf',wa:'Contactar por WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Aprende inglés',subHabla:'Palabras y frases con audio · Learn Spanish too'},
+  en:{acaSub:'Adventure Tourism',sectionLbl:'Explore',lblMenu:'Restaurant',subMenu:'Menu · Bar · Cocktails · Breakfast',lblHotel:'Hotel',subHotel:'Rooms · Amenities · Guest Guide',lblAct:'Activities',subAct:'Kayak · Tours · Bonfire · Lagoon · Surf',wa:'Contact via WhatsApp',linkAct:'actividades/',lblHabla:'Habla · Learn Spanish',subHabla:'Words and phrases with audio · Aprende inglés'}
+};
+function setLang(l){
+  const t=T[l];
+  document.getElementById('acaSub').textContent=t.acaSub;
+  document.getElementById('sectionLbl').textContent=t.sectionLbl;
+  document.getElementById('lblMenu').textContent=t.lblMenu;
+  document.getElementById('subMenu').textContent=t.subMenu;
+  document.getElementById('lblHotel').textContent=t.lblHotel;
+  document.getElementById('subHotel').textContent=t.subHotel;
+  document.getElementById('lblAct').textContent=t.lblAct;
+  document.getElementById('subAct').textContent=t.subAct;
+  document.getElementById('waLabel').textContent=t.wa;
+  document.getElementById('lblHabla').textContent=t.lblHabla;
+  document.getElementById('subHabla').textContent=t.subHabla;
+  document.getElementById('linkAct').href=t.linkAct;
+  document.getElementById('esBtn').classList.toggle('active',l==='es');
+  document.getElementById('enBtn').classList.toggle('active',l==='en');
+}
+
+// PWA hint dismiss
+try{if(localStorage.getItem('pwa-hint-dismissed')==='1'){document.getElementById('pwaHint').style.display='none'}}catch(e){}
+document.getElementById('pwaClose').addEventListener('click',function(){
+  document.getElementById('pwaHint').style.display='none';
+  try{localStorage.setItem('pwa-hint-dismissed','1')}catch(e){}
+});
+</script>
+</body>
+</html>
