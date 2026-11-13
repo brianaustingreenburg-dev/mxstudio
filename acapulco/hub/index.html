@@ -208,9 +208,67 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* ══════════════════════════════════════
-   FEATURED DEMO (swaps on tab tap)
+   MARKETING PITCH PANELS
 ══════════════════════════════════════ */
-.featured{background:var(--card);border-bottom:1px solid var(--border)}
+.pitch{background:var(--card);border-bottom:1px solid var(--border)}
+.pitch-hero{
+  height:200px;
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+}
+.pitch-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(6,8,15,.1) 0%,rgba(6,8,15,.88) 100%);
+}
+.pitch-hero-info{position:absolute;bottom:0;left:0;right:0;padding:16px 20px 18px}
+.pitch-tag{
+  font-size:.52rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:8px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.pitch-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-lt)}
+.pitch-headline{
+  font-family:var(--serif);
+  font-size:1.65rem;font-weight:500;line-height:1.05;
+  color:#fdf9f2;
+}
+.pitch-sub{font-size:.72rem;color:rgba(240,235,226,.65);margin-top:5px;line-height:1.5}
+.pitch-body{padding:20px 22px 4px}
+.pitch-desc{font-size:.82rem;color:var(--text-2);line-height:1.65;margin-bottom:18px}
+.pitch-benefits{display:flex;flex-direction:column;gap:0}
+.pitch-benefit{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--border);
+}
+.pitch-benefit:last-child{border-bottom:none}
+.pitch-benefit-ico{
+  font-size:1.5em;width:40px;height:40px;flex-shrink:0;
+  background:var(--gold-dim);border:1px solid var(--border);
+  border-radius:2px;display:grid;place-items:center;
+}
+.pitch-benefit-title{font-size:.8rem;font-weight:600;color:var(--text);line-height:1.3}
+.pitch-benefit-desc{font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-free{
+  margin:18px 0 4px;
+  background:linear-gradient(135deg,rgba(201,146,42,.1),rgba(201,146,42,.05));
+  border:1px solid var(--border-lt);
+  padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+}
+.pitch-free-ico{font-size:1.6em;flex-shrink:0}
+.pitch-free-title{font-size:.78rem;font-weight:700;color:var(--gold-lt);line-height:1.3}
+.pitch-free-desc{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-wa{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  margin:18px 0 24px;width:100%;padding:16px;
+  background:linear-gradient(135deg,rgba(18,46,27,.95),rgba(24,60,34,.95));
+  border:1px solid rgba(37,211,102,.25);
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);cursor:pointer;
+  transition:border-color .2s;
+}
+.pitch-wa:hover{border-color:rgba(37,211,102,.5)}
+.pitch-wa-ico{font-size:1.3em}
 
 /* photo cover */
 .feat-photo{
@@ -278,6 +336,29 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   font-size:.62rem;font-weight:600;letter-spacing:.06em;
   color:var(--gold-lt);margin:12px 20px 16px;
 }
+
+/* pitch panels */
+.pitch-hero{height:210px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.pitch-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,8,15,.08) 0%,rgba(6,8,15,.88) 100%)}
+.pitch-hero-info{position:absolute;bottom:0;left:0;right:0;padding:16px 20px 18px}
+.pitch-tag{font-size:.5rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:6px;display:inline-flex;align-items:center;gap:5px}
+.pitch-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-lt);flex-shrink:0}
+.pitch-headline{font-family:var(--serif);font-size:1.65rem;font-weight:500;line-height:1.05;color:#fdf9f2}
+.pitch-sub{font-size:.7rem;color:rgba(240,235,226,.65);margin-top:5px;line-height:1.5}
+.pitch-body{padding:20px 22px 4px}
+.pitch-desc{font-size:.82rem;color:var(--text-2);line-height:1.65;margin-bottom:18px;margin-top:0}
+.pitch-benefits{display:flex;flex-direction:column;gap:0}
+.pitch-benefit{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.pitch-benefit:last-child{border-bottom:none}
+.pitch-benefit-ico{font-size:1.4em;width:38px;height:38px;flex-shrink:0;background:var(--gold-dim);border:1px solid var(--border);border-radius:2px;display:grid;place-items:center}
+.pitch-benefit-title{font-size:.8rem;font-weight:600;color:var(--text);line-height:1.3}
+.pitch-benefit-desc{font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-free{margin:18px 0 4px;background:linear-gradient(135deg,rgba(201,146,42,.1),rgba(201,146,42,.03));border:1px solid var(--border-lt);padding:16px 18px;display:flex;align-items:center;gap:14px}
+.pitch-free-ico{font-size:1.6em;flex-shrink:0}
+.pitch-free-title{font-size:.78rem;font-weight:700;color:var(--gold-lt);line-height:1.3}
+.pitch-free-desc{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-wa{display:flex;align-items:center;gap:14px;margin:18px 0 24px;padding:16px 18px;background:linear-gradient(135deg,rgba(18,46,27,.95),rgba(10,30,18,.98));border:1px solid rgba(37,211,102,.25);text-decoration:none;color:var(--green)}
+.pitch-wa div{flex:1}
 
 /* room grid */
 .room-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
@@ -630,86 +711,185 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 </div>
 
 <!-- ══════════════════════════════════════
-     FEATURED (inline swap)
+     MARKETING PITCH (inline swap per tab)
 ══════════════════════════════════════ -->
-<div class="featured" id="featured">
+<div class="pitch" id="featured">
 
-  <!-- RESTAURANT -->
+  <!-- RESTAURANT PITCH -->
   <div id="feat-rest">
-    <div class="feat-photo" style="background-image:url('https://images.pexels.com/photos/3369578/pexels-photo-3369578.jpeg?auto=compress&cs=tinysrgb&w=800')">
-      <div class="feat-photo-overlay"></div>
-      <div class="feat-photo-info">
-        <div class="feat-demo-tag" id="demoTagR">DEMO — ASÍ SE VE TU APP</div>
-        <div class="feat-name">Mariscos La Perla Azul</div>
-        <div class="feat-meta">Costa Azul, Acapulco &nbsp;·&nbsp; <span class="feat-stars">★ 4.8</span> &nbsp;<span id="reviewCount">(640 reseñas)</span></div>
+    <div class="pitch-hero" style="background-image:url('https://images.pexels.com/photos/3369578/pexels-photo-3369578.jpeg?auto=compress&cs=tinysrgb&w=800')">
+      <div class="pitch-hero-overlay"></div>
+      <div class="pitch-hero-info">
+        <div class="pitch-tag">Restaurantes · Restaurants</div>
+        <div class="pitch-headline" id="phR">Tu mesa en el hub</div>
+        <div class="pitch-sub" id="psR">Llega a turistas y locales cuando más importa</div>
       </div>
     </div>
-    <div class="feat-actions">
-      <div class="feat-action"><span class="ico">🍽️</span><span id="actMenu">Ver Menú</span></div>
-      <div class="feat-action wa"><span class="ico">💬</span><span id="actWA">WhatsApp</span></div>
-      <div class="feat-action map"><span class="ico">⭐</span><span id="actRate">Calificar</span></div>
+    <div class="pitch-body">
+      <p class="pitch-desc" id="pdR">Los turistas llegan a Acapulco con hambre y sin plan. Tu restaurante aparece justo cuando están listos para ordenar — con tu menú, tus fotos y tu WhatsApp a un toque.</p>
+      <div class="pitch-benefits">
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">📱</div>
+          <div>
+            <div class="pitch-benefit-title" id="rb1t">Tu app propia</div>
+            <div class="pitch-benefit-desc" id="rb1d">Menú digital, fotos, horarios y botón de WhatsApp. Todo en una app tuya.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">📍</div>
+          <div>
+            <div class="pitch-benefit-title" id="rb2t">En el mapa del hub</div>
+            <div class="pitch-benefit-desc" id="rb2d">Apareces en las rutas y recomendaciones que los visitantes ven al llegar.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🤝</div>
+          <div>
+            <div class="pitch-benefit-title" id="rb3t">Red de hoteles</div>
+            <div class="pitch-benefit-desc" id="rb3d">Los hoteles y resorts del hub pueden recomendar tu restaurante a sus huéspedes.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">📊</div>
+          <div>
+            <div class="pitch-benefit-title" id="rb4t">Sin comisiones</div>
+            <div class="pitch-benefit-desc" id="rb4d">Pago fijo mensual. Sin porcentaje por pedido, sin sorpresas.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pitch-free">
+        <div class="pitch-free-ico">🎁</div>
+        <div>
+          <div class="pitch-free-title" id="rfreeT">Primer año gratis — 2026</div>
+          <div class="pitch-free-desc" id="rfreeD">Comprando tu app en 2026 entras al hub sin costo. Después, solo $150 USD al mes.</div>
+        </div>
+      </div>
+      <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20poner%20mi%20restaurante%20en%20el%20hub%20de%20Acapulco" target="_blank">
+        <span style="font-size:1.3em">💬</span>
+        <div>
+          <div style="font-size:.78rem;font-weight:700" id="rwaT">Quiero aparecer aquí</div>
+          <div style="font-size:.65rem;opacity:.7" id="rwaS">WhatsApp · JefeTech</div>
+        </div>
+      </a>
     </div>
-    <div class="menu-cat" id="catStarters">Entradas</div>
-    <div class="menu-row"><div><div class="menu-name" id="e1n">Ceviche Clásico</div><div class="menu-desc" id="e1d">Camarón, pulpo, jitomate, cebolla, chile</div></div><div class="menu-price">$145</div></div>
-    <div class="menu-row"><div><div class="menu-name" id="e2n">Tostadas de Marlin</div><div class="menu-desc" id="e2d">Marlin ahumado, aguacate, chile, crema</div></div><div class="menu-price">$125</div></div>
-    <div class="menu-cat" id="catMains">Platillos</div>
-    <div class="menu-row"><div><div class="menu-name" id="p1n">Camarones a la Diabla</div><div class="menu-desc" id="p1d">Camarones jumbo, arroz, frijoles negros</div></div><div class="menu-price">$245</div></div>
-    <div class="menu-row"><div><div class="menu-name" id="p2n">Mojarra Frita</div><div class="menu-desc" id="p2d">Entera, frita, arroz, ensalada, tortillas</div></div><div class="menu-price">$195</div></div>
-    <div class="menu-row"><div><div class="menu-name" id="p3n">Pulpo a las Brasas</div><div class="menu-desc" id="p3d">A la parrilla, aceite de oliva, papas</div></div><div class="menu-price">$265</div></div>
-    <div class="menu-cat" id="catDrinks">Bebidas</div>
-    <div class="menu-row"><div><div class="menu-name" id="b1n">Michelada de Camarón</div><div class="menu-desc" id="b1d">Cerveza, clamato, camarones, limón</div></div><div class="menu-price">$125</div></div>
-    <div class="menu-row"><div><div class="menu-name" id="b2n">Margarita de Mango</div><div class="menu-desc" id="b2d">Tequila, mango fresco, limón, sal de gusano</div></div><div class="menu-price">$145</div></div>
-    <div class="demo-pill" id="demoPillR">✦ &nbsp;Tu menú va aquí &nbsp;·&nbsp; Your menu goes here</div>
   </div>
 
-  <!-- HOTEL -->
+  <!-- HOTEL PITCH -->
   <div id="feat-hotel" style="display:none">
-    <div class="feat-photo" style="background-image:url('https://images.pexels.com/photos/2004354/pexels-photo-2004354.jpeg?auto=compress&cs=tinysrgb&w=800')">
-      <div class="feat-photo-overlay"></div>
-      <div class="feat-photo-info">
-        <div class="feat-demo-tag" id="demoTagH">DEMO — ASÍ SE VE TU APP</div>
-        <div class="feat-name">Hotel Mirador del Pacífico</div>
-        <div class="feat-meta">Las Brisas · Acapulco &nbsp;·&nbsp; <span class="feat-stars">★ 4.6</span></div>
+    <div class="pitch-hero" style="background-image:url('https://images.pexels.com/photos/2004354/pexels-photo-2004354.jpeg?auto=compress&cs=tinysrgb&w=800')">
+      <div class="pitch-hero-overlay"></div>
+      <div class="pitch-hero-info">
+        <div class="pitch-tag">Hoteles · Hotels</div>
+        <div class="pitch-headline" id="phH">Tu hotel en el hub</div>
+        <div class="pitch-sub" id="psH">Sé la primera opción cuando buscan dónde quedarse</div>
       </div>
     </div>
-    <div class="room-grid">
-      <div class="room-card">
-        <div class="room-img" style="background-image:url('https://images.pexels.com/photos/2932497/pexels-photo-2932497.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
-        <div class="room-info"><div class="room-name" id="r1n">Habitación Estándar</div><div class="room-price" id="r1p">desde $850 MXN</div></div>
+    <div class="pitch-body">
+      <p class="pitch-desc" id="pdH">Los viajeros buscan hoteles en su teléfono minutos antes de llegar. Con tu app en el hub, apareces con fotos, habitaciones, precios y reservaciones directas — sin intermediarios.</p>
+      <div class="pitch-benefits">
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🏨</div>
+          <div>
+            <div class="pitch-benefit-title" id="hb1t">Reservaciones directas</div>
+            <div class="pitch-benefit-desc" id="hb1d">Los huéspedes te contactan por WhatsApp o reservan directo. Cero comisión a terceros.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🌐</div>
+          <div>
+            <div class="pitch-benefit-title" id="hb2t">App con tu identidad</div>
+            <div class="pitch-benefit-desc" id="hb2d">Fotos, habitaciones, amenidades y precios. Tu marca, tu estilo.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🍽️</div>
+          <div>
+            <div class="pitch-benefit-title" id="hb3t">Concierge digital</div>
+            <div class="pitch-benefit-desc" id="hb3d">Recomienda restaurantes, tours y actividades del hub a tus huéspedes desde tu propia app.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">⭐</div>
+          <div>
+            <div class="pitch-benefit-title" id="hb4t">Reseñas y visibilidad</div>
+            <div class="pitch-benefit-desc" id="hb4d">Acumula reseñas y aparece destacado cuando los visitantes exploran el hub.</div>
+          </div>
+        </div>
       </div>
-      <div class="room-card">
-        <div class="room-img" style="background-image:url('https://images.pexels.com/photos/9229067/pexels-photo-9229067.jpeg?auto=compress&cs=tinysrgb&w=400')"></div>
-        <div class="room-info"><div class="room-name" id="r2n">Suite Vista Mar</div><div class="room-price" id="r2p">desde $1,400 MXN</div></div>
+      <div class="pitch-free">
+        <div class="pitch-free-ico">🎁</div>
+        <div>
+          <div class="pitch-free-title" id="hfreeT">Primer año gratis — 2026</div>
+          <div class="pitch-free-desc" id="hfreeD">Entramos temprano juntos. Tu app + hub sin costo el primer año. Después $150 USD/mes.</div>
+        </div>
       </div>
+      <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20poner%20mi%20hotel%20en%20el%20hub%20de%20Acapulco" target="_blank">
+        <span style="font-size:1.3em">💬</span>
+        <div>
+          <div style="font-size:.78rem;font-weight:700" id="hwaT">Quiero aparecer aquí</div>
+          <div style="font-size:.65rem;opacity:.7" id="hwaS">WhatsApp · JefeTech</div>
+        </div>
+      </a>
     </div>
-    <div class="feat-2btn">
-      <div class="feat-btn"><span class="ico">📅</span><span id="hactBook">Reservar</span></div>
-      <div class="feat-btn wa"><span class="ico">💬</span><span id="hactWA">WhatsApp</span></div>
-    </div>
-    <div class="demo-pill" id="demoPillH">✦ &nbsp;Tu hotel va aquí &nbsp;·&nbsp; Your hotel goes here</div>
   </div>
 
-  <!-- RESORT -->
+  <!-- RESORT PITCH -->
   <div id="feat-resort" style="display:none">
-    <div class="feat-photo" style="background-image:url('https://images.pexels.com/photos/37730/pexels-photo-37730.jpeg?auto=compress&cs=tinysrgb&w=800')">
-      <div class="feat-photo-overlay"></div>
-      <div class="feat-photo-info">
-        <div class="feat-demo-tag" id="demoTagRS">DEMO — ASÍ SE VE TU APP</div>
-        <div class="feat-name">Resort Diamante Acapulco</div>
-        <div class="feat-meta">Punta Diamante · Todo Incluido &nbsp;·&nbsp; <span class="feat-stars">★ 4.9</span></div>
+    <div class="pitch-hero" style="background-image:url('https://images.pexels.com/photos/37730/pexels-photo-37730.jpeg?auto=compress&cs=tinysrgb&w=800')">
+      <div class="pitch-hero-overlay"></div>
+      <div class="pitch-hero-info">
+        <div class="pitch-tag">Resorts · Beach Clubs</div>
+        <div class="pitch-headline" id="phRS">Tu resort en el hub</div>
+        <div class="pitch-sub" id="psRS">La experiencia completa — desde que llegan hasta que se van</div>
       </div>
     </div>
-    <div class="amenity-grid">
-      <div class="amenity"><span class="ico">🏊</span><span id="am1">Alberca infinity</span></div>
-      <div class="amenity"><span class="ico">🍹</span><span id="am2">Bar en la playa</span></div>
-      <div class="amenity"><span class="ico">🏖️</span><span id="am3">Playa privada</span></div>
-      <div class="amenity"><span class="ico">🌿</span><span id="am4">Spa & wellness</span></div>
+    <div class="pitch-body">
+      <p class="pitch-desc" id="pdRS">Los resorts y beach clubs viven de la experiencia. Tu app en el hub te posiciona como el destino completo de Acapulco — con todas tus amenidades, paquetes y acceso directo al cliente.</p>
+      <div class="pitch-benefits">
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🏖️</div>
+          <div>
+            <div class="pitch-benefit-title" id="rsb1t">Paquetes y día de playa</div>
+            <div class="pitch-benefit-desc" id="rsb1d">Muestra tus paquetes todo incluido, day pass y eventos especiales. Reserva por WhatsApp al instante.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🌟</div>
+          <div>
+            <div class="pitch-benefit-title" id="rsb2t">Posicionamiento premium</div>
+            <div class="pitch-benefit-desc" id="rsb2d">Los resorts anclan el hub. Tu marca aparece primero cuando los visitantes buscan lo mejor de Acapulco.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">🤝</div>
+          <div>
+            <div class="pitch-benefit-title" id="rsb3t">Red de partners</div>
+            <div class="pitch-benefit-desc" id="rsb3d">Coordina con restaurantes y actividades del hub. Ofrece a tus huéspedes una experiencia Acapulco completa.</div>
+          </div>
+        </div>
+        <div class="pitch-benefit">
+          <div class="pitch-benefit-ico">📲</div>
+          <div>
+            <div class="pitch-benefit-title" id="rsb4t">App de resort completa</div>
+            <div class="pitch-benefit-desc" id="rsb4d">Amenidades, horarios, menú de restaurante, spa — todo en una app con tu nombre.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pitch-free">
+        <div class="pitch-free-ico">🎁</div>
+        <div>
+          <div class="pitch-free-title" id="rsfreeT">Primer año gratis — 2026</div>
+          <div class="pitch-free-desc" id="rsfreeD">Los fundadores del hub entran gratis el primer año. Después $150 USD/mes. Lanzamos juntos.</div>
+        </div>
+      </div>
+      <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20poner%20mi%20resort%20en%20el%20hub%20de%20Acapulco" target="_blank">
+        <span style="font-size:1.3em">💬</span>
+        <div>
+          <div style="font-size:.78rem;font-weight:700" id="rswaT">Quiero aparecer aquí</div>
+          <div style="font-size:.65rem;opacity:.7" id="rswaS">WhatsApp · JefeTech</div>
+        </div>
+      </a>
     </div>
-    <div class="feat-2btn">
-      <div class="feat-btn"><span class="ico">📅</span><span id="ractBook">Reservar</span></div>
-      <div class="feat-btn wa"><span class="ico">💬</span><span id="ractWA">WhatsApp</span></div>
-    </div>
-    <div class="demo-pill" id="demoPillRS">✦ &nbsp;Tu resort va aquí &nbsp;·&nbsp; Your resort goes here</div>
   </div>
 
 </div><!-- /featured -->
