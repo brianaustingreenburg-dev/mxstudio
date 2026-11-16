@@ -167,7 +167,7 @@ html[lang=en] #guion h2 .le,#guion h3 .le,#guion .go>b .le{display:inline!import
 <div class="go"><b style="font-size:1.6em">🎬</b><p class="es">"1 de cada 4 personas encuentra restaurantes en TikTok o Instagram, y más de la mitad de los millennials en TikTok ha ido a un restaurante después de verlo ahí."</p><p class="en">1 in 4 people find restaurants on TikTok or Instagram, and over half of millennials on TikTok have visited a restaurant after seeing it there.</p><p class="do"><span class="le"></span><span class="ln"><a href="https://prnewswire.com/news-releases/new-survey-reveals-more-than-half-of-millennial-tiktok-users-have-visited-or-ordered-food-from-a-restaurant-after-seeing-the-eatery-on-tiktok-301658395.html" target="_blank" rel="noopener" style="color:inherit">Source: Reputation/Nielsen 2025 · MGH 2022 (EE.UU.)</a></span></p></div>
 
 </div>
-<div id="pwrap" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:4;background:#000"><iframe id="pframe" title="Precios" style="border:0;width:100%;height:100%;display:block"></iframe><button id="pqr" style="all:unset;position:absolute;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));background:#d9a35f;color:#1a0f0a;font:800 13px system-ui;padding:10px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4);cursor:pointer" data-t="pQr"></button></div>
+<div id="pwrap" style="display:none;position:fixed;inset:0;z-index:4;background:#000"><iframe id="pframe" title="Precios" style="border:0;width:100%;height:100%;display:block"></iframe><button id="pqr" style="all:unset;position:absolute;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));background:#d9a35f;color:#1a0f0a;font:800 13px system-ui;padding:10px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.4);cursor:pointer" data-t="pQr"></button></div>
 <div class="sheet" id="sheet"><div class="box" id="sheetBox"></div></div>
 <div class="toast" id="toast"></div>
 <script src="../lib/reviews.js"></script>
@@ -732,7 +732,7 @@ $("bigger").onclick=()=>{st.fs=Math.min(28,st.fs+2);applyFs();save()};
 $("smaller").onclick=()=>{st.fs=Math.max(15,st.fs-2);applyFs();save()};
 function applyMode(){const m=st.mode||"r",Vm=m==="v",Om=m==="o",Zm=m==="z",Hm=m==="h",P=m==="$"||m==="w"||m==="g"||Vm||Zm||Om,Gm=m==="g"||Vm||Zm||Om;$("az").style.display=Zm?"block":"none";if(Zm)drawAZ();$("owner").style.display=Om?"block":"none";if(Om)drawOwner();$("hub").style.display=Hm?"block":"none";$("modes").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===m));
  $("tabs").style.display=(P||Hm)?"none":"";$("filters").style.display=(P||Hm)?"none":"";$("main").style.display=(P||Hm)?"none":"";$("pwrap").style.display=(P&&!Gm)?"block":"none";$("guion").style.display=(m==="g")?"block":"none";$("ventas").style.display=Vm?"block":"none";if(Vm)drawSales();
- if(P&&!Gm){const f=$("pframe"),W=m==="w";if(!f.src||f.src==="about:blank"||!f.src.includes(W?"trabajo":"precios"))f.src=W?"../trabajo/?t="+Date.now():"../precios/?embed=1";f.title=W?"MX Studio":"Precios";$("pqr").textContent=W?L().wShare:L().pQr;$("pwrap").style.top=document.querySelector(".top").offsetHeight+"px"}}
+ if(P&&!Gm){const f=$("pframe"),W=m==="w";if(!f.src||f.src==="about:blank"||!f.src.includes(W?"trabajo":"precios"))f.src=W?"../trabajo/?t="+Date.now():"../precios/?embed=1";f.title=W?"MX Studio":"Precios";$("pqr").textContent=W?L().wShare:L().pQr}}
 $("modes").onclick=e=>{const b=e.target.closest("[data-m]");if(!b)return;const was=st.mode;st.mode=b.dataset.m;if(!["$","g","v","z","o","h"].includes(st.mode)&&was!==st.mode)st.route=1;save();applyMode();scrollTo({top:0});if(!["$","g","v","z","o","h"].includes(st.mode))render()};
 
 
@@ -774,7 +774,7 @@ $("az").addEventListener("click",e=>{const a=e.target.closest(".zl a");if(a){e.p
  const g=e.target.closest("[data-zg]");if(g){const[sec,num,id]=g.dataset.zg.split("|");st.mode=sec;st.route=+num;st.filter&&(st.filter="all");save();applyMode();render();
   setTimeout(()=>{const c=document.querySelector(`#main [data-id="${CSS.escape(id)}"]`);if(c){scrollTo({top:c.getBoundingClientRect().top+scrollY-document.querySelector(".top").offsetHeight-12,behavior:"smooth"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),2500)}},150)}});
 $("pqr").onclick=()=>st.mode==="w"?showWork():showPrices();
-addEventListener("resize",()=>{if(st.mode==="$"||st.mode==="w")$("pwrap").style.top=document.querySelector(".top").offsetHeight+"px"});
+addEventListener("resize",()=>{});
 $("prices").onclick=()=>{st.mode="$";save();applyMode()};
 $("refresh").onclick=async()=>{if(!navigator.onLine){toast(L().aOff);return}$("refresh").textContent="⏳";
  try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.update()}catch(_){}
