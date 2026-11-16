@@ -688,11 +688,26 @@ async function pushCfg(slug,cfg){const t=L(),el=$("cfgSt");let key="";try{key=lo
   const p=await fetch(api,{method:"PUT",headers:h,body:JSON.stringify({message:"Activar "+slug+" ✝️",branch:"main",sha,content:btoa(unescape(encodeURIComponent(JSON.stringify(body,null,1))))})});
   if(!p.ok)throw new Error(p.status);if(el)el.textContent=t.cOk}catch(err){if(el)el.textContent=t.cErr+err.message}}
 function showWork(){const t=L(),u="https://go.myjefetech.app/mxstudio/";
- $("sheetBox").innerHTML=`<a class="share" style="display:block;text-decoration:none;margin:0 0 6px" href="${u}" target="_blank" rel="noopener">${t.wOpen}</a>
- <p style="text-align:center">${t.wScan}</p><div class="pqr" style="width:240px;box-sizing:border-box;margin:10px auto;padding:10px;background:#fff;border-radius:14px">${qrSvg(u)}</div>
- <a class="share" style="display:block;text-decoration:none;margin:10px 0 6px;background:#25d366;color:#05301a" href="https://api.whatsapp.com/send?text=${encodeURIComponent(t.wMsg)}" target="_blank" rel="noopener">${t.wSend}</a>
+ $("sheetBox").innerHTML=`
+ <h3 class="ah">🌟 ${t.mW}</h3>
+ <a class="share" style="display:block;text-decoration:none;margin:0 0 10px" href="${u}" target="_blank" rel="noopener">${t.wOpen}</a>
+ <p style="font-size:.82em;font-weight:700;margin-bottom:6px;opacity:.7">${t.wSend}</p>
+ <input id="workWa" type="tel" inputmode="numeric" placeholder="${st.lang==="es"?"WhatsApp del cliente (10 dígitos)":"Client WhatsApp (10 digits)"}" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--s1);color:var(--text);font:inherit;font-size:1em;margin-bottom:8px">
+ <button id="workSendBtn" class="share" style="display:block;width:100%;box-sizing:border-box;border:0;cursor:pointer;font:inherit;text-align:center;background:#25d366;color:#05301a">${t.wSend}</button>
+ <p style="text-align:center;margin:10px 0 4px;font-size:.8em;opacity:.6">${t.wScan}</p>
+ <div class="pqr" style="width:220px;box-sizing:border-box;margin:0 auto 10px;padding:10px;background:#fff;border-radius:14px">${qrSvg(u)}</div>
  <button class="close" id="closeSheet">${t.close}</button>`;
  $("sheet").classList.add("on");
+ setTimeout(()=>{
+   const inp=$("workWa");
+   $("workSendBtn").onclick=()=>{
+     const wa=inp.value.replace(/\D/g,"");
+     const num=wa.length===10?"52"+wa:wa.length===12?wa:"";
+     const msg=t.wMsg;
+     if(num){window.open("https://wa.me/"+num+"?text="+encodeURIComponent(msg),"_blank")}
+     else{window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")}
+   };
+ },50);
 }
 function showPrices(k){const es=false;
  const pk=k&&k.pkg||"r",nm=k&&k.nm||"",wa=k&&k.wa||"";
