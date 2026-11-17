@@ -626,8 +626,10 @@ document.addEventListener('click', e=>{
 });
 // close QR modal on backdrop click
 $('qrModal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeQrModal(); });
-const hashTab = (location.hash||'').slice(1); if(['today','dine','relax','explore','info'].includes(hashTab)) tab=hashTab;
+const hashVal = (location.hash||'').slice(1);
+if(['today','dine','relax','explore','info'].includes(hashVal)) tab=hashVal;
 render();
+if(hashVal==='qr'){ tab='info'; render(); openQrModal(); }
 setInterval(()=>{ if(tab==='today') renderToday(); if(tab==='dine') renderDine(); }, 60000);
 </script>
 <script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
