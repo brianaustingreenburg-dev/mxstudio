@@ -206,7 +206,9 @@
   #qrModal .qm-btn:active{opacity:.8}
   #qrModal .qm-primary{background:var(--ink);color:#fdfaf4}
   #qrModal .qm-secondary{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
-  #qrModal .qm-close{margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:none;border:0;cursor:pointer;padding:6px 12px}
+  #qrModal .qm-card-link{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);text-decoration:none;padding:4px 8px;border-radius:4px;transition:opacity .15s}
+  #qrModal .qm-card-link:active{opacity:.7}
+  #qrModal .qm-close{margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:none;border:0;cursor:pointer;padding:6px 12px}
 
   /* open-app button in Info tab */
   .save-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:22px;padding:17px;background:var(--ink);color:#fdfaf4;font:inherit;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;border:0;border-radius:2px;cursor:pointer}
@@ -317,6 +319,10 @@
         <span id="qm-copy-lbl"></span>
       </button>
     </div>
+    <a class="qm-card-link" id="qm-card-link" href="qr-card/">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+      <span id="qm-card-lbl">Ver tarjeta imprimible</span>
+    </a>
     <button class="qm-close" id="qm-close-btn"></button>
   </div>
 </div>
@@ -343,7 +349,7 @@ const T = {
     eInfo:'Servicios', info:'Información <em>del hotel</em>', call:'Llamar a recepción',
     saveBtn:'Guardar en mi teléfono',
     qmEye:'Su app de huésped', qmTitle:'<em>Ritz</em> Acapulco', qmSub:'Escanee con la cámara de su teléfono y ábralo en su pantalla de inicio.',
-    qmShare:'Compartir enlace', qmCopy:'Copiar enlace', qmClose:'Cerrar',
+    qmShare:'Compartir enlace', qmCopy:'Copiar enlace', qmCard:'Ver tarjeta imprimible', qmClose:'Cerrar',
     eFb:'Su opinión', fb:'¿Cómo va su estancia?', pFb:'Su opinión llega directamente a la gerencia. Gracias por ayudarnos a mejorar.',
     fbPh:'Cuéntenos qué disfrutó o qué podemos mejorar (opcional)', send:'Enviar opinión',
     thanks:'Gracias. Su opinión fue enviada.', pick:'Elija de 1 a 5 estrellas',
@@ -369,7 +375,7 @@ const T = {
     eInfo:'Services', info:'Hotel <em>information</em>', call:'Call the front desk',
     saveBtn:'Save to my phone',
     qmEye:'Your guest app', qmTitle:'<em>Ritz</em> Acapulco', qmSub:'Scan with your phone camera and add it to your home screen.',
-    qmShare:'Share link', qmCopy:'Copy link', qmClose:'Close',
+    qmShare:'Share link', qmCopy:'Copy link', qmCard:'View printable card', qmClose:'Close',
     eFb:'Your feedback', fb:'How is your stay?', pFb:'Your feedback goes straight to management. Thank you for helping us improve.',
     fbPh:'Tell us what you enjoyed or what we can do better (optional)', send:'Send feedback',
     thanks:'Thank you. Your feedback was sent.', pick:'Choose 1 to 5 stars',
@@ -589,7 +595,7 @@ function renderInfo(){
   $('saveAppLbl').textContent=t.saveBtn;
   // QR modal labels
   html('qm-eye',t.qmEye); html('qm-title',t.qmTitle); $('qm-sub').textContent=t.qmSub;
-  $('qm-share-lbl').textContent=t.qmShare; $('qm-copy-lbl').textContent=t.qmCopy; $('qm-close-btn').textContent=t.qmClose;
+  $('qm-share-lbl').textContent=t.qmShare; $('qm-copy-lbl').textContent=t.qmCopy; $('qm-card-lbl').textContent=t.qmCard; $('qm-close-btn').textContent=t.qmClose;
   $('e-fb').textContent=t.eFb; $('h-fb').textContent=t.fb; $('p-fb').textContent=t.pFb; $('fbtext').placeholder=t.fbPh; $('fbsend').textContent=t.send;
   html('rate', [1,2,3,4,5].map(i=>`<button data-s="${i}" class="${i<=stars?'on':''}" aria-label="${i}">★</button>`).join(''));
 }
