@@ -54,6 +54,8 @@
   .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,23,29,.55) 0%,rgba(12,23,29,0) 22%,rgba(12,23,29,0) 48%,rgba(12,23,29,.72) 100%)}
   .bar{position:absolute;z-index:2;top:0;left:0;right:0;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
   .bar .loc{color:#f1e7d6}
+  .back-qr{display:flex;align-items:center;gap:4px;color:var(--brass-2);font-size:12px;font-weight:600;letter-spacing:.08em;text-decoration:none;padding:4px 8px 4px 2px;background:rgba(12,23,29,.35);border-radius:20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,164,108,.3)}
+  .back-qr:active{opacity:.7}
   .sw{position:relative;display:grid;grid-template-columns:1fr 1fr;width:84px;height:30px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(12,23,29,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:11px;font-weight:600;letter-spacing:.14em}
   .sw .knob{position:absolute;top:2px;left:2px;width:39px;height:24px;border-radius:999px;background:#fbf8f3;transition:transform .3s cubic-bezier(.4,1.3,.6,1)}
   .sw[aria-checked="true"] .knob{transform:translateX(41px)}
@@ -222,6 +224,10 @@
   <header class="hero">
     <img src="img/hero.jpg" alt="">
     <div class="bar">
+      <a class="back-qr" id="backQr" href="qr-card/" style="display:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>QR</span>
+      </a>
       <div class="loc micro" id="crest"></div>
       <span class="rt"><button class="rf" id="rf" aria-label="Actualizar / Refresh" title="Actualizar / Refresh"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button><button class="sw" id="langSw" role="switch" aria-checked="false" aria-label="Español / English"><i class="knob"></i><span class="es">ES</span><span class="en">EN</span></button></span>
     </div>
@@ -629,7 +635,7 @@ $('qrModal').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeQ
 const hashVal = (location.hash||'').slice(1);
 if(['today','dine','relax','explore','info'].includes(hashVal)) tab=hashVal;
 render();
-if(hashVal==='qr'){ tab='info'; render(); openQrModal(); }
+if(hashVal==='qr'){ tab='info'; render(); openQrModal(); $('backQr').style.display='flex'; }
 setInterval(()=>{ if(tab==='today') renderToday(); if(tab==='dine') renderDine(); }, 60000);
 </script>
 <script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
