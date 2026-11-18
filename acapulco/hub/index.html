@@ -273,6 +273,23 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   transition:border-color .2s;
 }
 .pitch-wa:hover{border-color:rgba(37,211,102,.5)}
+.ffs-note{font-size:.74rem;line-height:1.6;color:var(--text-2);background:rgba(201,146,42,.08);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:16px}
+.ffs-launch{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin:18px 0 10px}
+.ffs-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.ffs-opt{display:flex;flex-direction:column;gap:4px;padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.02);text-decoration:none;color:var(--text);min-width:0}
+.ffs-opt:hover,.ffs-opt:focus-visible{border-color:var(--gold)}
+.ffs-opt:last-child{grid-column:1/-1}
+.ffs-opt-hl{border-color:rgba(245,196,106,.55);background:rgba(201,146,42,.1)}
+.ffs-opt-k{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-lt)}
+.ffs-opt-p{font-family:var(--serif);font-size:1.7rem;font-weight:600;line-height:1.1}
+.ffs-opt-p small{font-family:inherit;font-size:.8rem;font-weight:500;color:var(--text-2)}
+.ffs-opt-d{font-size:.66rem;line-height:1.5;color:var(--muted)}
+.ffs-inc-h{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin:20px 0 8px}
+.ffs-inc{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.ffs-inc li{font-size:.74rem;color:var(--text-2);line-height:1.5;padding-left:20px;position:relative}
+.ffs-inc li::before{content:'✓';position:absolute;left:0;color:var(--gold-lt);font-weight:700}
+.ffs-kit{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.ffs-kit img{width:100%;max-width:100%;border-radius:12px;display:block}
 .pitch-wa-ico{font-size:1.3em}
 
 /* photo cover */
@@ -937,12 +954,35 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
       <div class="pitch-benefit"><div class="pitch-benefit-ico">🏨</div><div><div class="pitch-benefit-title" id="ffsb3t">Visto en hoteles y restaurantes</div><div class="pitch-benefit-desc" id="ffsb3d">La app se abre desde las apps del Ritz Acapulco, Casa Axolotl y más negocios del hub.</div></div></div>
       <div class="pitch-benefit"><div class="pitch-benefit-ico">✝</div><div><div class="pitch-benefit-title" id="ffsb4t">Apoyas una app gratis</div><div class="pitch-benefit-desc" id="ffsb4d">Tu patrocinio mantiene Family First gratis para cualquier familia.</div></div></div>
       </div>
-    <div class="pitch-free">
-      <div class="pitch-free-ico">💛</div>
-      <div>
-        <div class="pitch-free-title" id="ffsPrice">$300 MXN al mes</div>
-        <div class="pitch-free-desc" id="ffsPriceD">Cualquier negocio de Acapulco. Sin contrato, cancela cuando quieras.</div>
-      </div>
+    <div class="ffs-note" id="ffsFree">Family First ya viene gratis con todas las apps de MX Studio. El patrocinio es opcional: es para que tu negocio aparezca en el hub de marketing y en la app.</div>
+    <div class="ffs-launch" id="ffsLaunch">Lanzamiento: enero 2027</div>
+    <div class="ffs-opts">
+      <a class="ffs-opt" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20patrocinar%20Family%20First%3A%20plan%20mensual%20%28%24300%20MXN/mes%29." target="_blank" rel="noopener">
+        <span class="ffs-opt-k" id="ffsO1k">Mensual</span>
+        <span class="ffs-opt-p">$300 <small>MXN</small></span>
+        <span class="ffs-opt-d" id="ffsO1d">al mes · sin contrato, cancela cuando quieras</span>
+      </a>
+      <a class="ffs-opt ffs-opt-hl" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20patrocinar%20Family%20First%3A%20plan%20anual%20%28%243%2C000%20MXN%29." target="_blank" rel="noopener">
+        <span class="ffs-opt-k" id="ffsO2k">Anual · el mejor precio</span>
+        <span class="ffs-opt-p">$3,000 <small>MXN</small></span>
+        <span class="ffs-opt-d" id="ffsO2d">por 12 meses · 2 meses gratis</span>
+      </a>
+      <a class="ffs-opt" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20ser%20patrocinador%20fundador%20de%20Family%20First%20%28enero%202027%29." target="_blank" rel="noopener">
+        <span class="ffs-opt-k" id="ffsO3k">Fundador · enero 2027</span>
+        <span class="ffs-opt-p">$300 <small id="ffsO3p">de por vida</small></span>
+        <span class="ffs-opt-d" id="ffsO3d">Solo los primeros 20 patrocinadores: tu precio nunca sube + insignia de fundador</span>
+      </a>
+    </div>
+    <div class="ffs-inc-h" id="ffsIncH">Todos los planes incluyen</div>
+    <ul class="ffs-inc">
+      <li id="ffsI1">Tu negocio en la app Family First y en el hub</li>
+      <li id="ffsI2">Sticker de patrocinador para tu puerta o mostrador</li>
+      <li id="ffsI3">Insignia para tus redes sociales</li>
+      <li id="ffsI4">Menciones en nuestras publicaciones</li>
+    </ul>
+    <div class="ffs-kit">
+      <img src="img/ff-sponsor-sticker.png" alt="Sticker de patrocinador Family First" loading="lazy">
+      <img src="img/ff-sponsor-badge.png" alt="Insignia de patrocinador Family First para redes" loading="lazy">
     </div>
     <div id="ffsList" style="margin:14px 0 4px;font-size:.72rem;color:var(--muted);line-height:1.6"></div>
     <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20patrocinar%20Family%20First%20con%20mi%20negocio%20(%24300%20MXN%2Fmes)" target="_blank" rel="noopener">
@@ -1132,7 +1172,7 @@ const T={
     rsb2t:'Posicionamiento premium',rsb2d:'Los resorts anclan el hub. Tu marca aparece primero cuando los visitantes buscan lo mejor de Acapulco.',
     rsb3t:'Red de partners',rsb3d:'Coordina con restaurantes y actividades del hub. Ofrece a tus huéspedes una experiencia Acapulco completa.',
     rsb4t:'App de resort completa',rsb4d:'Amenidades, horarios, menú de restaurante, spa — todo en una app con tu nombre.',
-    secFFS:'Patrocina Family First',ffsD:'Family First es la app familiar gratis que reciben los huéspedes y clientes de los hoteles y restaurantes del hub: SOS, ubicación y check-ins en 12 idiomas. Patrocínala y tu negocio aparece en la app y en nuestra promoción.',ffsb1t:'Tu negocio listado en la app',ffsb1d:'Tu nombre en la sección de patrocinadores de Family First, con enlace a tu WhatsApp o tu app.',ffsb2t:'Promoción incluida',ffsb2d:'Te mencionamos en publicaciones y en el hub como negocio que apoya a las familias.',ffsb3t:'Visto en hoteles y restaurantes',ffsb3d:'La app se abre desde las apps del Ritz Acapulco, Casa Axolotl y más negocios del hub.',ffsb4t:'Apoyas una app gratis',ffsb4d:'Tu patrocinio mantiene Family First gratis para cualquier familia.',ffsPrice:'$300 MXN al mes',ffsPriceD:'Cualquier negocio de Acapulco. Sin contrato, cancela cuando quieras.',ffsWaT:'Quiero patrocinar',ffsWaS:'WhatsApp · JefeTech',ffsSee:'Ver la app Family First ›',ffsNone:'Sé el primer patrocinador de Acapulco.',ffsNow:'Patrocinadores: ',
+    secFFS:'Patrocina Family First',ffsD:'Family First es la app familiar gratis que reciben los huéspedes y clientes de los hoteles y restaurantes del hub: SOS, ubicación y check-ins en 12 idiomas. Patrocínala y tu negocio aparece en la app y en nuestra promoción.',ffsb1t:'Tu negocio listado en la app',ffsb1d:'Tu nombre en la sección de patrocinadores de Family First, con enlace a tu WhatsApp o tu app.',ffsb2t:'Promoción incluida',ffsb2d:'Te mencionamos en publicaciones y en el hub como negocio que apoya a las familias.',ffsb3t:'Visto en hoteles y restaurantes',ffsb3d:'La app se abre desde las apps del Ritz Acapulco, Casa Axolotl y más negocios del hub.',ffsb4t:'Apoyas una app gratis',ffsb4d:'Tu patrocinio mantiene Family First gratis para cualquier familia.',ffsFree:'Family First ya viene gratis con todas las apps de MX Studio. El patrocinio es opcional: es para que tu negocio aparezca en el hub de marketing y en la app.',ffsLaunch:'Lanzamiento: enero 2027',ffsO1k:'Mensual',ffsO1d:'al mes · sin contrato, cancela cuando quieras',ffsO2k:'Anual · el mejor precio',ffsO2d:'por 12 meses · 2 meses gratis',ffsO3k:'Fundador · enero 2027',ffsO3p:'de por vida',ffsO3d:'Solo los primeros 20 patrocinadores: tu precio nunca sube + insignia de fundador',ffsIncH:'Todos los planes incluyen',ffsI1:'Tu negocio en la app Family First y en el hub',ffsI2:'Sticker de patrocinador para tu puerta o mostrador',ffsI3:'Insignia para tus redes sociales',ffsI4:'Menciones en nuestras publicaciones',ffsWaT:'Quiero patrocinar',ffsWaS:'WhatsApp · JefeTech',ffsSee:'Ver la app Family First ›',ffsNone:'Sé el primer patrocinador de Acapulco.',ffsNow:'Patrocinadores: ',
     rsfreeT:'Primer año gratis — 2026',rsfreeD:'Los fundadores del hub entran gratis el primer año. Después $700 MXN/mes. Lanzamos juntos.',
     rswaT:'Quiero aparecer aquí',rswaS:'WhatsApp · JefeTech',
     reviewCount:'(640 reseñas)',
@@ -1211,7 +1251,7 @@ const T={
     rsb2t:'Premium positioning',rsb2d:'Resorts anchor the hub. Your brand appears first when visitors search for the best of Acapulco.',
     rsb3t:'Partner network',rsb3d:'Coordinate with restaurants and activities in the hub. Give your guests a complete Acapulco experience.',
     rsb4t:'Full resort app',rsb4d:'Amenities, hours, restaurant menu, spa — everything in one app with your name on it.',
-    secFFS:'Sponsor Family First',ffsD:'Family First is the free family app that guests and customers of hub hotels and restaurants get: SOS, location and check-ins in 12 languages. Sponsor it and your business is listed in the app and in our promotion.',ffsb1t:'Your business listed in the app',ffsb1d:'Your name in the Family First sponsors section, linked to your WhatsApp or your app.',ffsb2t:'Promotion included',ffsb2d:'We feature you in posts and on the hub as a business that supports families.',ffsb3t:'Seen in hotels and restaurants',ffsb3d:'The app opens from the Ritz Acapulco, Casa Axolotl and other hub business apps.',ffsb4t:'Keep a free app free',ffsb4d:'Your sponsorship keeps Family First free for every family.',ffsPrice:'$300 MXN a month',ffsPriceD:'Any business in Acapulco. No contract, cancel anytime.',ffsWaT:'I want to sponsor',ffsWaS:'WhatsApp · JefeTech',ffsSee:'See the Family First app ›',ffsNone:'Be the first sponsor in Acapulco.',ffsNow:'Sponsors: ',
+    secFFS:'Sponsor Family First',ffsD:'Family First is the free family app that guests and customers of hub hotels and restaurants get: SOS, location and check-ins in 12 languages. Sponsor it and your business is listed in the app and in our promotion.',ffsb1t:'Your business listed in the app',ffsb1d:'Your name in the Family First sponsors section, linked to your WhatsApp or your app.',ffsb2t:'Promotion included',ffsb2d:'We feature you in posts and on the hub as a business that supports families.',ffsb3t:'Seen in hotels and restaurants',ffsb3d:'The app opens from the Ritz Acapulco, Casa Axolotl and other hub business apps.',ffsb4t:'Keep a free app free',ffsb4d:'Your sponsorship keeps Family First free for every family.',ffsFree:'Family First already comes free with every MX Studio app. Sponsorship is optional: it gets your business seen on the marketing hub and in the app.',ffsLaunch:'Launching January 2027',ffsO1k:'Monthly',ffsO1d:'a month · no contract, cancel anytime',ffsO2k:'Yearly · best price',ffsO2d:'for 12 months · 2 months free',ffsO3k:'Founder · January 2027',ffsO3p:'for life',ffsO3d:'First 20 sponsors only: your price never goes up + founder badge',ffsIncH:'Every plan includes',ffsI1:'Your business in the Family First app and on the hub',ffsI2:'Sponsor sticker for your door or counter',ffsI3:'Badge for your social media',ffsI4:'Mentions in our posts',ffsWaT:'I want to sponsor',ffsWaS:'WhatsApp · JefeTech',ffsSee:'See the Family First app ›',ffsNone:'Be the first sponsor in Acapulco.',ffsNow:'Sponsors: ',
     rsfreeT:'First year free — 2026',rsfreeD:'Hub founders get in free the first year. After that, $700 MXN/month. We launch together.',
     rswaT:'I want to appear here',rswaS:'WhatsApp · JefeTech',
     reviewCount:'(640 reviews)',
@@ -1287,7 +1327,7 @@ function applyLang(){
     'hfreeT','hfreeD','hwaT','hwaS',
     'phRS','psRS','pdRS','rsb1t','rsb1d','rsb2t','rsb2d','rsb3t','rsb3d','rsb4t','rsb4d',
     'rsfreeT','rsfreeD','rswaT','rswaS',
-    'secFFS','ffsD','ffsb1t','ffsb1d','ffsb2t','ffsb2d','ffsb3t','ffsb3d','ffsb4t','ffsb4d','ffsPrice','ffsPriceD','ffsWaT','ffsWaS','ffsSee'];
+    'secFFS','ffsD','ffsb1t','ffsb1d','ffsb2t','ffsb2d','ffsb3t','ffsb3d','ffsb4t','ffsb4d','ffsFree','ffsLaunch','ffsO1k','ffsO1d','ffsO2k','ffsO2d','ffsO3k','ffsO3p','ffsO3d','ffsIncH','ffsI1','ffsI2','ffsI3','ffsI4','ffsWaT','ffsWaS','ffsSee'];
   ids.forEach(id=>{const el=document.getElementById(id);if(el){const v=t(id);if(v!=='')el.textContent=v}});
   // hotaD uses innerHTML (has <strong> tag)
   const hotaEl=document.getElementById('hotaD');
