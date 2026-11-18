@@ -1,6 +1,6 @@
 {
-  "name": "Acapulco Hub",
-  "short_name": "Hub",
+  "name": "Comunidad",
+  "short_name": "Comunidad",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
