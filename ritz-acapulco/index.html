@@ -212,6 +212,15 @@
   #qrModal .qm-card-link:active{opacity:.7}
   #qrModal .qm-close{margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:none;border:0;cursor:pointer;padding:6px 12px}
 
+  /* Family First card in Info tab */
+  .ff-card{display:flex;align-items:center;gap:14px;margin-top:18px;padding:16px 18px;border:1px solid var(--line-2);border-left:3px solid var(--coral);background:var(--paper);color:var(--ink);text-decoration:none;border-radius:6px}
+  .ff-card:active{opacity:.8}
+  .ff-card .ff-ic{font-size:24px;line-height:1;flex-shrink:0}
+  .ff-card .ff-tx{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+  .ff-card .ff-eye{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+  .ff-card b{font-size:16px;font-weight:600}
+  .ff-card .ff-sub{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+  .ff-card .ff-arr{font-size:20px;color:var(--brass);flex-shrink:0}
   /* open-app button in Info tab */
   .save-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:22px;padding:17px;background:var(--ink);color:#fdfaf4;font:inherit;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;border:0;border-radius:2px;cursor:pointer}
   .save-btn svg{width:19px;height:19px;flex-shrink:0}
@@ -288,6 +297,11 @@
         <span id="saveAppLbl"></span>
       </button>
       <a class="btn" id="call" href="tel:+527444693500" style="margin-top:10px"></a>
+      <a class="ff-card" id="ffCard" href="https://go.myjefetech.app/family-first/" target="_blank" rel="noopener">
+        <span class="ff-ic">👨‍👩‍👧‍👦</span>
+        <span class="ff-tx"><span class="ff-eye" id="ffEye"></span><b>Family First ✝</b><span class="ff-sub" id="ffSub"></span></span>
+        <span class="ff-arr">›</span>
+      </a>
       <div class="orn"><i></i><b>✦</b><i></i></div>
       <div class="eyebrow micro" id="e-fb" style="margin-top:28px"></div>
       <h2 id="h-fb" style="font-size:34px"></h2>
@@ -354,6 +368,8 @@ const T = {
     request:'Solicitar',
     eInfo:'Servicios', info:'Información <em>del hotel</em>', call:'Llamar a recepción',
     saveBtn:'Guardar en mi teléfono',
+    ffEye:'Gratis para huéspedes',
+    ffSub:'App familiar: SOS, ubicación, check-ins y más. En 12 idiomas.',
     qmEye:'Su app de huésped', qmTitle:'<em>Ritz</em> Acapulco', qmSub:'Escanee con la cámara de su teléfono y ábralo en su pantalla de inicio.',
     qmShare:'Compartir enlace', qmCopy:'Copiar enlace', qmCard:'Ver tarjeta imprimible', qmClose:'Cerrar',
     eFb:'Su opinión', fb:'¿Cómo va su estancia?', pFb:'Su opinión llega directamente a la gerencia. Gracias por ayudarnos a mejorar.',
@@ -380,6 +396,8 @@ const T = {
     request:'Request',
     eInfo:'Services', info:'Hotel <em>information</em>', call:'Call the front desk',
     saveBtn:'Save to my phone',
+    ffEye:'Free for guests',
+    ffSub:'Family safety app: SOS, location, check-ins and more. 12 languages.',
     qmEye:'Your guest app', qmTitle:'<em>Ritz</em> Acapulco', qmSub:'Scan with your phone camera and add it to your home screen.',
     qmShare:'Share link', qmCopy:'Copy link', qmCard:'View printable card', qmClose:'Close',
     eFb:'Your feedback', fb:'How is your stay?', pFb:'Your feedback goes straight to management. Thank you for helping us improve.',
@@ -599,6 +617,7 @@ function renderInfo(){
   const t=T[lang]; $('e-info').textContent=t.eInfo; html('h-info',t.info); $('call').textContent=t.call;
   html('info', INFO.map(([k,v,x])=>`<div><span>${L(k)}</span><span><b>${L(v)}</b>${x==='copy'?`<button class="copy" data-copy="${v}">${t.copy}</button>`:''}</span></div>`).join(''));
   $('saveAppLbl').textContent=t.saveBtn;
+  $('ffEye').textContent=t.ffEye; $('ffSub').textContent=t.ffSub;
   // QR modal labels
   html('qm-eye',t.qmEye); html('qm-title',t.qmTitle); $('qm-sub').textContent=t.qmSub;
   $('qm-share-lbl').textContent=t.qmShare; $('qm-copy-lbl').textContent=t.qmCopy; $('qm-card-lbl').textContent=t.qmCard; $('qm-close-btn').textContent=t.qmClose;
