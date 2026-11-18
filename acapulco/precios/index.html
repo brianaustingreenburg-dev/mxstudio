@@ -224,29 +224,28 @@ body.is-off .off{display:block}
   <section class="plan" id="ffsPlan" style="margin-top:16px;border-color:rgba(217,79,61,.4)">
     <div class="pname" id="ffpKicker">Opcional · Family First</div>
     <div class="ptitle" id="ffpTitle">Patrocina Family First</div>
-    <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-top:8px" id="ffpDesc">Family First ya viene gratis con tu app. Si además quieres que tu negocio aparezca en el hub de marketing y en la app como patrocinador, elige un plan. Lanzamiento: enero 2027.</p>
+    <p style="font-size:13.5px;color:var(--t2);line-height:1.6;margin-top:8px" id="ffpDesc">Family First ya viene gratis con tu app. Si además quieres que tu negocio aparezca en el hub de marketing y en la app como patrocinador, aporta lo que quieras. Lanzamiento: enero 2027.</p>
     <div class="prices" style="margin-top:16px">
-      <div class="pbox"><b>$300</b><span id="ffpMonth">MXN al mes</span></div>
-      <div class="pbox"><b>$3,000</b><span id="ffpYear">MXN al año · 2 meses gratis</span></div>
+      <div class="pbox"><b id="ffpAmt">Tú decides</b><span id="ffpMonth">desde $0 · cada mes o una sola vez</span></div>
     </div>
     <ul class="feats" style="margin-top:14px">
       <li id="ffp1">✔ Tu negocio en la app Family First y en el hub</li>
       <li id="ffp2">✔ Sticker de patrocinador y insignia para redes</li>
       <li id="ffp3">✔ Menciones en nuestras publicaciones</li>
-      <li id="ffp4">✔ Fundadores (primeros 20, enero 2027): $300 de por vida</li>
+      <li id="ffp4">✔ Mismo trato con cualquier cantidad, incluso $0</li>
       <li id="ffp5">✔ Sin contrato, cancela cuando quieras</li>
     </ul>
-    <a class="cta" style="margin-top:16px;width:100%" href="../hub/#patrocina" id="ffpBtn">💛 Ver planes de patrocinio</a>
+    <a class="cta" style="margin-top:16px;width:100%" href="../hub/#patrocina" id="ffpBtn">💛 Elegir mi aporte</a>
   </section>
   <script>
   (function(){
     const FP={
-      es:{k:"Opcional · Family First",t:"Patrocina Family First",d:"Family First ya viene gratis con tu app. Si además quieres que tu negocio aparezca en el hub de marketing y en la app como patrocinador, elige un plan. Lanzamiento: enero 2027.",m:"MXN al mes",y:"MXN al año · 2 meses gratis",f1:"✔ Tu negocio en la app Family First y en el hub",f2:"✔ Sticker de patrocinador y insignia para redes",f3:"✔ Menciones en nuestras publicaciones",f4:"✔ Fundadores (primeros 20, enero 2027): $300 de por vida",f5:"✔ Sin contrato, cancela cuando quieras",b:"💛 Ver planes de patrocinio"},
-      en:{k:"Optional · Family First",t:"Sponsor Family First",d:"Family First already comes free with your app. If you also want your business featured as a sponsor on the marketing hub and in the app, pick a plan. Launching January 2027.",m:"MXN a month",y:"MXN a year · 2 months free",f1:"✔ Your business in the Family First app and on the hub",f2:"✔ Sponsor sticker and social media badge",f3:"✔ Mentions in our posts",f4:"✔ Founders (first 20, January 2027): $300 for life",f5:"✔ No contract, cancel anytime",b:"💛 See sponsor plans"}
+      es:{k:"Opcional · Family First",t:"Patrocina Family First",d:"Family First ya viene gratis con tu app. Si además quieres que tu negocio aparezca en el hub de marketing y en la app como patrocinador, aporta lo que quieras. Lanzamiento: enero 2027.",a:"Tú decides",m:"desde $0 · cada mes o una sola vez",f1:"✔ Tu negocio en la app Family First y en el hub",f2:"✔ Sticker de patrocinador y insignia para redes",f3:"✔ Menciones en nuestras publicaciones",f4:"✔ Mismo trato con cualquier cantidad, incluso $0",f5:"✔ Sin contrato, cancela cuando quieras",b:"💛 Elegir mi aporte"},
+      en:{k:"Optional · Family First",t:"Sponsor Family First",d:"Family First already comes free with your app. If you also want your business featured as a sponsor on the marketing hub and in the app, choose any amount. Launching January 2027.",a:"You decide",m:"from $0 · monthly or one time",f1:"✔ Your business in the Family First app and on the hub",f2:"✔ Sponsor sticker and social media badge",f3:"✔ Mentions in our posts",f4:"✔ Same benefits at any amount, even $0",f5:"✔ No contract, cancel anytime",b:"💛 Choose my amount"}
     };
     function fpRender(){
       const l=(typeof lang!=="undefined"?lang:window.lang)||"es",m=FP[l]||FP.es;
-      const map={ffpKicker:"k",ffpTitle:"t",ffpDesc:"d",ffpMonth:"m",ffpYear:"y",ffp1:"f1",ffp2:"f2",ffp3:"f3",ffp4:"f4",ffp5:"f5",ffpBtn:"b"};
+      const map={ffpKicker:"k",ffpTitle:"t",ffpDesc:"d",ffpAmt:"a",ffpMonth:"m",ffp1:"f1",ffp2:"f2",ffp3:"f3",ffp4:"f4",ffp5:"f5",ffpBtn:"b"};
       Object.keys(map).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=m[map[id]]||""});
     }
     const _r=window.render;window.render=function(){_r&&_r.apply(this,arguments);fpRender();};
