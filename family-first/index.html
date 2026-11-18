@@ -4171,7 +4171,7 @@ async function sendSOSNow() {
   } else {
     msg += '(GPS unavailable — please call me immediately)\n';
   }
-  msg += '\n— Sent via Family First\nOpen the app: https://myfamilyfirst.app ✝';
+  msg += '\n— Sent via Family First\nOpen the app: https://go.myjefetech.app/family-first/ ✝';
 
   // Save SOS alert to Supabase (broadcast to all family members via Realtime)
   var sb = getSupabase();
@@ -4210,7 +4210,7 @@ async function sendSOSNow() {
 
 /* ===== SHARE APP ===== */
 function shareApp() {
-  var url = 'https://myfamilyfirst.app';
+  var url = 'https://go.myjefetech.app/family-first/';
   var familyCode = FF.family ? FF.family.invite_code : null;
   var waText = '👋 Hey! I want us to use *Family First* together — it\'s a free family safety app. GPS tracking, SOS alerts, check-ins, and more. Works on any phone, no download needed.\n\n📲 Join here: ' + url;
   if (familyCode) waText += '\n\n🔑 Our family invite code: *' + familyCode + '*\n\n(Open the app → My Family tab → Join Family → enter the code)';
