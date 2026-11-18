@@ -1204,6 +1204,16 @@ footer{
   </div>
 </section>
 
+<!-- LOCAL SPONSORS (list: sponsors.json) -->
+<section class="section section-alt" id="local-sponsors" style="padding-block:64px">
+  <div class="wrap" style="text-align:center">
+    <div class="section-label" id="ls-label" style="text-align:center">Sponsors · Acapulco</div>
+    <h2 id="ls-title" style="margin-inline:auto">Local businesses that keep Family First free</h2>
+    <p class="section-intro" id="ls-intro" style="margin-inline:auto;margin-bottom:28px">These businesses sponsor Family First so every family can use it for free. Thank them with a visit. ✝</p>
+    <div id="ls-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;max-width:760px;margin:0 auto"></div>
+  </div>
+</section>
+
 <!-- SPONSOR -->
 <section class="section" id="sponsor" style="background:#0a0a0a;padding-block:80px">
   <div class="wrap">
@@ -2542,6 +2552,37 @@ function updateMemberStrip() {
     '<div class="member-name">Invite</div></div>';
   strip.innerHTML = html;
 }
+
+/* ----- LOCAL SPONSORS ----- */
+var FF_SPONSORS = [];
+function ffEsc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+function renderLocalSponsors(){
+  var grid = document.getElementById('ls-grid'); if (!grid) return;
+  var es = (typeof currentLang !== 'undefined' && currentLang === 'es');
+  var set = function(id, en, sp){ var el = document.getElementById(id); if (el) el.textContent = es ? sp : en; };
+  set('ls-label', 'Sponsors · Acapulco', 'Patrocinadores · Acapulco');
+  set('ls-title', 'Local businesses that keep Family First free', 'Negocios locales que mantienen Family First gratis');
+  set('ls-intro', 'These businesses sponsor Family First so every family can use it for free. Thank them with a visit. ✝', 'Estos negocios patrocinan Family First para que cualquier familia la use gratis. Agradéceles con una visita. ✝');
+  var card = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;text-align:left;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-sm)';
+  var html = FF_SPONSORS.map(function(sp){
+    var inner = '<span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)">' + ffEsc(sp.type || (es ? 'Patrocinador' : 'Sponsor')) + '</span>' +
+      '<b style="font-size:15px">' + ffEsc(sp.name) + '</b>' +
+      '<span style="font-size:12.5px;color:var(--fg-muted)">' + ffEsc(sp.city || 'Acapulco') + '</span>';
+    var url = /^https:\/\//.test(sp.url || '') ? sp.url : '';
+    return url ? '<a href="' + ffEsc(url) + '" target="_blank" rel="noopener" style="' + card + '">' + inner + '</a>' : '<div style="' + card + '">' + inner + '</div>';
+  }).join('');
+  html += '<a href="https://go.myjefetech.app/acapulco/hub/#patrocina" target="_blank" rel="noopener" style="' + card + ';border-style:dashed;border-color:var(--gold);background:var(--gold-lt)">' +
+    '<span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)">' + (es ? 'Tu negocio aquí' : 'Your business here') + '</span>' +
+    '<b style="font-size:15px">' + (es ? 'Patrocina por $300 MXN/mes' : 'Sponsor for $300 MXN/month') + '</b>' +
+    '<span style="font-size:12.5px;color:var(--fg-soft)">' + (es ? 'Tu nombre en la app y en nuestra promoción ›' : 'Your name in the app and in our promotion ›') + '</span></a>';
+  grid.innerHTML = html;
+}
+try {
+  fetch('sponsors.json', {cache: 'no-store'}).then(function(r){ return r.json(); }).then(function(d){
+    FF_SPONSORS = (d && Array.isArray(d.sponsors)) ? d.sponsors.filter(function(x){ return x && x.name; }) : [];
+    renderLocalSponsors();
+  }).catch(function(){ renderLocalSponsors(); });
+} catch(e) {}
 
 /* ----- DASHBOARD UI UPDATE ----- */
 function ffApplyGreeting() {
@@ -4064,6 +4105,7 @@ function setLang(lang) {
   });
   applyHope(lang);
   if (typeof ffApplyGreeting === 'function') ffApplyGreeting();
+  if (typeof renderLocalSponsors === 'function') renderLocalSponsors();
   // update lang button label to show full language name
   var names = {
     en:'🇺🇸 English',es:'🇲🇽 Español',fr:'🇫🇷 Français',pt:'🇧🇷 Português',
