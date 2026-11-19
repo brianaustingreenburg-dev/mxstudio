@@ -180,80 +180,51 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 </div>
 
 <!-- GOOGLE PITCH -->
-<div class="sec">
-  <div class="gpitch">
-    <h3 class="es">📍 Cuando un turista te encuentra en Google Maps y toca “Sitio web” — ¿qué ve?</h3>
-    <h3 class="en">📍 When a tourist finds you on Google Maps and taps “Website” — what do they see?</h3>
-    <p class="es">Con MX Studio recibe 3 apps en 1: tu negocio completo, una app para aprender idiomas y Family First ✝ — app de seguridad familiar. Todo tuyo.</p>
-    <p class="en">With MX Studio, they get 3 apps in 1: your full business app, a language-learning tool, and Family First ✝ — a family safety app. All yours.</p>
+<div class=”sec”>
+  <div class=”gpitch”>
+    <h3 class=”es”>📍 Cuando un turista te encuentra en Google Maps y toca “Sitio web” — ¿qué ve?</h3>
+    <h3 class=”en”>📍 When a tourist finds you on Google Maps and taps “Website” — what do they see?</h3>
+    <p class=”es”>Con MX Studio recibe 3 apps en 1: tu negocio completo, una app interactiva para aprender idiomas y una app de seguridad turística. Todo tuyo.</p>
+    <p class=”en”>With MX Studio, they get 3 apps in 1: your full business app, an interactive language-learning app, and a local tourist safety app. All yours.</p>
   </div>
 </div>
 
 <hr>
 
 <!-- STEP 1: APP -->
-<div class="sec" id="secApp">
-  <div class="sec-label es">Paso 1 · Elige tu app</div>
-  <div class="sec-label en">Step 1 · Choose your app</div>
-  <h2 class="es">¿Qué tipo de negocio tienes?</h2>
-  <h2 class="en">What type of business do you have?</h2>
-  <p class="sub es">Pago único. Sin mensualidades. Tu app es tuya.</p>
-  <p class="sub en">One-time payment. No monthly fees. Your app is yours.</p>
+<div class=”sec” id=”secApp”>
+  <div class=”sec-label es”>Paso 1 · Elige tu app</div>
+  <div class=”sec-label en”>Step 1 · Choose your app</div>
+  <h2 class=”es”>¿Qué tipo de negocio tienes?</h2>
+  <h2 class=”en”>What type of business do you have?</h2>
+  <p class=”sub es”>Pago único. Sin mensualidades. Lista en 24 horas.</p>
+  <p class=”sub en”>One-time payment. No monthly fees. Ready in 24 hours.</p>
 
-  <div class="app-grid">
-    <div class="app-card" id="app-cafe" onclick="selectApp('cafe')">
-      <div class="app-ic">☕</div>
-      <h3 class="es">Café / Bar / Puesto</h3>
-      <h3 class="en">Café / Bar / Food Stand</h3>
-      <div class="app-price"><sup>$</sup>3,000<sub> MXN</sub></div>
-      <p class="app-desc es">Negocio pequeño, menú simple. App completa con todo incluido.</p>
-      <p class="app-desc en">Small business, simple menu. Full app with everything included.</p>
-      <button class="app-sel es">Seleccionar →</button>
-      <button class="app-sel en">Select →</button>
+  <div class=”app-grid”>
+    <div class=”app-card” id=”app-biz” onclick=”selectApp('biz')”>
+      <div class=”app-ic”>🍽️</div>
+      <h3 class=”es”>App Negocio</h3>
+      <h3 class=”en”>Business App</h3>
+      <p class=”app-desc es” style=”font-size:.75em;color:var(--gold);margin-bottom:6px”>Cafés, Bares, Restaurantes y Tiendas</p>
+      <p class=”app-desc en” style=”font-size:.75em;color:var(--gold);margin-bottom:6px”>Cafés, Bars, Restaurants &amp; Local Shops</p>
+      <div class=”app-price”><sup>$</sup>5,000<sub> MXN</sub></div>
+      <p class=”app-desc es”>Tu app completa con tu marca — menú con fotos, WiFi en un toque, reservas, reseñas de Google, lealtad, más apps integradas de Idiomas y Seguridad Turística.</p>
+      <p class=”app-desc en”>Your full branded app — photo menu, one-tap WiFi, reservations, Google reviews, loyalty, plus built-in Language Learning &amp; Tourist Safety apps.</p>
+      <button class=”app-sel es”>Seleccionar →</button>
+      <button class=”app-sel en”>Select →</button>
     </div>
 
-    <div class="app-card" id="app-rest" onclick="selectApp('rest')">
-      <div class="app-ic">🍽️</div>
-      <h3 class="es">Restaurante</h3>
-      <h3 class="en">Restaurant</h3>
-      <div class="app-price"><sup>$</sup>5,000<sub> MXN</sub></div>
-      <p class="app-desc es">Restaurante completo. Menú con fotos, WiFi, reservas, pedidos y más.</p>
-      <p class="app-desc en">Full restaurant. Photo menu, WiFi, reservations, orders and more.</p>
-      <button class="app-sel es">Seleccionar →</button>
-      <button class="app-sel en">Select →</button>
-    </div>
-
-    <div class="app-card" id="app-hotel" onclick="selectApp('hotel')">
-      <div class="app-ic">🏨</div>
-      <h3 class="es">Hotel</h3>
-      <h3 class="en">Hotel</h3>
-      <div class="app-price"><sup>$</sup>8,000<sub> MXN</sub></div>
-      <p class="app-desc es">Tu app, QR para cada cuarto, menú bilingüe, reseñas de Google y sistema de lealtad — listo en 24 horas.</p>
-      <p class="app-desc en">Your hotel's app, QR for every room, bilingual menu, Google reviews, and guest loyalty — ready in 24 hours.</p>
-      <button class="app-sel es">Seleccionar →</button>
-      <button class="app-sel en">Select →</button>
-    </div>
-
-    <div class="app-card featured" id="app-hotelrest" onclick="selectApp('hotelrest')">
-      <div class="app-ic">🏨🍽️</div>
-      <h3 class="es">Hotel + Restaurante</h3>
-      <h3 class="en">Hotel + Restaurant</h3>
-      <div class="app-price"><sup>$</sup>11,500<sub> MXN</sub></div>
-      <p class="app-desc es">App completa de hotel + restaurante con foto. Ahorra $1,500 MXN vs. comprar por separado.</p>
-      <p class="app-desc en">Full hotel guest app + photo restaurant menu. Saves $1,500 MXN vs. buying separately.</p>
-      <button class="app-sel es">Seleccionar →</button>
-      <button class="app-sel en">Select →</button>
-    </div>
-
-    <div class="app-card" id="app-resort" onclick="selectApp('resort')">
-      <div class="app-ic">🌴</div>
-      <h3 class="es">Resort</h3>
-      <h3 class="en">Resort</h3>
-      <div class="app-price" style="font-size:1.3em"><sub style="font-size:.5em;color:var(--muted)" class="es">desde </sub><sub style="font-size:.5em;color:var(--muted)" class="en">from </sub><sup>$</sup>35,000<sub> MXN</sub></div>
-      <p class="app-desc es">Resort completo. Restaurante, bar, spa, playa — todo en una app con tu marca.</p>
-      <p class="app-desc en">Full resort. Restaurant, bar, spa, beach — everything in one branded app.</p>
-      <button class="app-sel es">Seleccionar →</button>
-      <button class="app-sel en">Select →</button>
+    <div class=”app-card featured” id=”app-hotel” onclick=”selectApp('hotel')”>
+      <div class=”app-ic”>🏨</div>
+      <h3 class=”es”>App Hotel y Resort</h3>
+      <h3 class=”en”>Hotel &amp; Resort App</h3>
+      <p class=”app-desc es” style=”font-size:.75em;color:var(--gold);margin-bottom:6px”>Hoteles, Estancias Boutique y Resorts</p>
+      <p class=”app-desc en” style=”font-size:.75em;color:var(--gold);margin-bottom:6px”>Hotels, Boutique Stays &amp; Resorts</p>
+      <div class=”app-price”><sub style=”font-size:.4em;color:var(--muted)” class=”es”>desde </sub><sub style=”font-size:.4em;color:var(--muted)” class=”en”>from </sub><sup>$</sup>12,000<sub> MXN</sub></div>
+      <p class=”app-desc es”>Todo lo de App Negocio, más códigos QR únicos para cada habitación, menús multi-área (restaurante, bar, spa, playa) y guía de concierge.</p>
+      <p class=”app-desc en”>Everything in Business App, plus unique QR codes for every room, multi-outlet menus (restaurant, bar, spa, beach), and concierge info.</p>
+      <button class=”app-sel es”>Seleccionar →</button>
+      <button class=”app-sel en”>Select →</button>
     </div>
   </div>
 </div>
@@ -369,11 +340,8 @@ let lang = "en";
 let selApp = null, selPkg = undefined;
 
 const APPS = {
-  cafe:     {es:{n:"Café / Bar / Puesto", p:"$3,000 MXN"}, en:{n:"Café / Bar / Food Stand", p:"$3,000 MXN"}, v:3000},
-  rest:     {es:{n:"Restaurante",         p:"$5,000 MXN"}, en:{n:"Restaurant",              p:"$5,000 MXN"}, v:5000},
-  hotel:    {es:{n:"Hotel",               p:"$8,000 MXN"}, en:{n:"Hotel",                   p:"$8,000 MXN"}, v:8000},
-  hotelrest:{es:{n:"Hotel + Restaurante", p:"$11,500 MXN"},en:{n:"Hotel + Restaurant",      p:"$11,500 MXN"},v:11500},
-  resort:   {es:{n:"Resort",              p:"Desde $35,000 MXN"},en:{n:"Resort",             p:"From $35,000 MXN"},v:null}
+  biz:   {es:{n:"App Negocio",      p:"$5,000 MXN"},        en:{n:"Business App",        p:"$5,000 MXN"},        v:5000},
+  hotel: {es:{n:"App Hotel y Resort",p:"Desde $12,000 MXN"},en:{n:"Hotel & Resort App",  p:"From $12,000 MXN"},  v:null}
 };
 const PKGS = {
   basic:  {es:{n:"Paquete Básico",   p:"$1,500 MXN/año"},  en:{n:"Basic Package",   p:"$1,500 MXN/year"},  v:1500},
@@ -422,7 +390,7 @@ function updateSummary(){
   rows+=`<div class="sum-row"><span>${a.n}</span><span>${a.p}</span></div>`;
   if(APPS[selApp].v) total+=APPS[selApp].v;
   if(pk){rows+=`<div class="sum-row"><span>${pk.n}</span><span>${pk.p}</span></div>`;total+=PKGS[selPkg].v;}
-  const totalStr = selApp==="resort"?(lang==="es"?"A cotizar":"Quote"):("$"+total.toLocaleString()+" MXN");
+  const totalStr = !APPS[selApp].v?(lang==="es"?"A cotizar":"Quote"):("$"+total.toLocaleString()+" MXN");
   const totalLabel=lang==="es"?"Total":"Total";
   rows+=`<div class="sum-row"><span>${totalLabel}</span><span>${totalStr}</span></div>`;
   document.getElementById("sumRows").innerHTML=rows;
