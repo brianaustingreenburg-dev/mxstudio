@@ -121,7 +121,7 @@ document.addEventListener("click",e=>{if(e.target.id!=="stAdd")return;const es=l
 // ---------- 🎁 Guest gift + 🏆 waiter credit ----------
 let LYC=null,LYD=null;const GIFTS=[["10% de descuento","10% off"],["Postre gratis","Free dessert"],["Bebida gratis","Free drink"],["Café gratis","Free coffee"]];
 const redGet=()=>{try{return JSON.parse(localStorage.getItem("mx-red-"+slug)||"[]")}catch(_){return []}},redSet=a=>{try{localStorage.setItem("mx-red-"+slug,JSON.stringify(a))}catch(_){}};
-function hablaOn(){return !!(CFG_RAW.features&&CFG_RAW.features.habla===true)||getTierSel().tier===3}
+function hablaOn(){return !!(CFG_RAW.features&&CFG_RAW.features.habla===true)}
 // 🗣️ Habla (Ecosystem): language app the owner shares with the team
 function hablaCard(){if(!hablaOn())return "";const es=lang==="es",nm=D&&D.name||slug,
  base="https://go.myjefetech.app/acapulco/habla/",staff=base+"?d=en",open="../habla/?d=en&back="+encodeURIComponent("../dueno/"+location.search)+"&n="+encodeURIComponent(es?"Panel":"Panel"),
