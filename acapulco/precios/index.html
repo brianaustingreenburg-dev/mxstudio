@@ -127,6 +127,11 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 .modal-send{width:100%;padding:14px;border-radius:13px;border:none;background:#25d366;color:#063117;font:inherit;font-weight:800;font-size:.95em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .modal-cancel{width:100%;padding:10px;border-radius:13px;border:none;background:transparent;color:var(--muted);font:inherit;font-size:.88em;cursor:pointer;margin-top:8px}
 
+.share-bar{padding:0 max(16px,env(safe-area-inset-left,0px)) 24px;text-align:center}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:99px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);font:inherit;font-size:.88em;font-weight:700;cursor:pointer;transition:all .2s}
+.share-btn:hover{border-color:var(--gold);color:var(--gold)}
+.share-toast{display:inline-block;margin-top:10px;font-size:.8em;color:var(--green);opacity:0;transition:opacity .3s}
+.share-toast.on{opacity:1}
 .foot{text-align:center;padding:32px 16px 16px;color:var(--muted);font-size:.8em}
 .foot a{color:var(--gold);text-decoration:none}
 
@@ -329,6 +334,18 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
   </div>
 </div>
 
+<div class="share-bar">
+  <button class="share-btn" onclick="sharePage()">
+    <span>🔗</span>
+    <span class="es">Compartir esta página</span>
+    <span class="en">Share this page</span>
+  </button>
+  <div class="share-toast" id="shareToast">
+    <span class="es">¡Enlace copiado!</span>
+    <span class="en">Link copied!</span>
+  </div>
+</div>
+
 <div class="foot">
   <p>MX Studio ✝ · <a href="https://wa.me/527441930502">+52 744 193 0502</a></p>
   <p style="margin-top:4px" class="es">Acapulco, México · go.myjefetech.app</p>
@@ -417,6 +434,24 @@ function openModal(){
 function closeModal(){document.getElementById("overlay").classList.remove("on");}
 function closeOutside(e){if(e.target===document.getElementById("overlay"))closeModal();}
 
+function sharePage(){
+  const url="https://go.myjefetech.app/acapulco/precios/";
+  if(navigator.share){
+    navigator.share({title:"MX Studio ✝ · Precios",url}).catch(()=>{});
+  } else {
+    try{navigator.clipboard.writeText(url).then(()=>showToast()).catch(()=>showToast(url));}catch(e){showToast(url);}
+  }
+}
+function showToast(fallback){
+  if(fallback){
+    const el=document.createElement('input');el.value=fallback;
+    document.body.appendChild(el);el.select();document.execCommand('copy');
+    document.body.removeChild(el);
+  }
+  const t=document.getElementById('shareToast');
+  t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),2500);
+}
 function sendWA(){
   const num=document.getElementById("waInput").value.replace(/\D/g,"");
   const inp=document.getElementById("waInput");
