@@ -828,6 +828,28 @@ const net=()=>document.body.classList.toggle("is-off",!navigator.onLine);addEven
 try{const qm=new URLSearchParams(location.search).get("m");if(qm==="p"||qm==="$"||qm==="r"||qm==="g"||qm==="w"||qm==="z"||qm==="o")st.mode=qm}catch(_){}
 applyFs();applyLang();render();applyMode();
 if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
+
+// PIN LOCK
+(function(){
+  const PIN="2450",KEY="mx-pin-ok";
+  if(sessionStorage.getItem(KEY)===PIN)return;
+  document.body.style.display="none";
+  const ov=document.createElement("div");
+  ov.style.cssText="position:fixed;inset:0;z-index:9999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif";
+  ov.innerHTML=`<div style="font-size:1.6em;font-weight:900;color:#e8c48c">MX Studio ✝</div>
+<div style="font-size:.9em;color:#b9aaa0;letter-spacing:.05em">DASHBOARD</div>
+<input id="pinIn" type="password" inputmode="numeric" maxlength="4" placeholder="PIN" autocomplete="off"
+  style="width:140px;text-align:center;padding:14px;border-radius:14px;border:1.5px solid rgba(232,196,140,.4);background:#121012;color:#f6ece0;font-size:1.6em;font-weight:800;letter-spacing:.3em;outline:none">
+<div id="pinErr" style="color:#e0703a;font-size:.85em;min-height:1.2em"></div>`;
+  document.body.parentNode.insertBefore(ov,document.body.nextSibling);
+  setTimeout(()=>ov.querySelector("#pinIn").focus(),100);
+  ov.querySelector("#pinIn").addEventListener("input",function(){
+    if(this.value.length===4){
+      if(this.value===PIN){sessionStorage.setItem(KEY,PIN);ov.remove();document.body.style.display="";}
+      else{ov.querySelector("#pinErr").textContent="Incorrect PIN";this.value="";this.focus();}
+    }
+  });
+})();
 </script>
 <div id="offok" style="position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#1d7a4a;color:#fff;font:700 13px system-ui,sans-serif;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:99;display:none;white-space:nowrap">✓ Funciona sin internet · Works offline</div>
 <script>try{if("serviceWorker"in navigator&&"caches"in window)navigator.serviceWorker.ready.then(()=>caches.match(location.pathname)).then(m=>{if(m){const b=document.getElementById("offok");b.style.display="block";setTimeout(()=>b.style.display="none",2500)}}).catch(()=>{})}catch(e){}</script>
