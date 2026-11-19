@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>MX Studio</title>
+<title>Precios</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Precios">
+<meta name="application-name" content="Precios">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="apple-touch-icon" href="../icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap">
 <style>
 :root{
@@ -15,7 +22,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;padding-bottom:60px}
 
-/* LANG TOGGLE */
+/* LANG BAR */
 .lang-bar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;align-items:center}
 .brand{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.05em}
 .brand span{color:var(--gold)}
@@ -35,65 +42,68 @@ body{background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;font-si
 .p-b{display:block;font-size:.9em;font-weight:800;color:var(--fg);margin-bottom:3px}
 .p-s{font-size:.78em;color:var(--muted);line-height:1.4}
 
-/* XMAS BANNER */
-.xmas{background:linear-gradient(135deg,rgba(180,30,30,.25),rgba(212,168,83,.15));border:1px solid rgba(212,168,83,.4);border-radius:18px;padding:20px max(16px,env(safe-area-inset-left,0px));margin:24px max(16px,env(safe-area-inset-left,0px)) 0;text-align:center}
-.xmas h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.1em;margin-bottom:6px}
-.xmas p{font-size:.88em;color:var(--muted)}
-.xmas strong{color:var(--gold)}
-
 /* SECTION */
 .sec{padding:40px max(16px,env(safe-area-inset-left,0px))}
 .sec-label{font-size:.72em;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .sec h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.3em,4vw,1.9em);font-weight:800;line-height:1.2;margin-bottom:8px}
 .sec p.sub{color:var(--muted);font-size:.9em;margin-bottom:20px}
 
-/* APP TIERS */
-.app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.app-card{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;transition:border-color .2s,transform .15s;position:relative}
-.app-card:hover{transform:translateY(-2px)}
+/* GOOGLE PITCH */
+.gpitch{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:22px}
+.gpitch h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.05em;margin-bottom:8px}
+.gpitch p{font-size:.88em;color:var(--muted);line-height:1.6}
+.gpitch strong{color:var(--fg)}
+
+/* APP CARD — single card */
+.app-card{background:var(--bg2);border:2px solid rgba(212,168,83,.4);border-radius:18px;padding:24px;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative}
 .app-card.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
-.app-card.featured{border-color:rgba(212,168,83,.4)}
-.app-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a0f0a;border-radius:99px;padding:3px 12px;font-size:.7em;font-weight:800;white-space:nowrap}
-.app-ic{font-size:1.6em;margin-bottom:8px}
-.app-card h3{font-family:'Space Grotesk',sans-serif;font-size:1em;font-weight:800;margin-bottom:4px}
-.app-price{font-family:'Space Grotesk',sans-serif;font-size:1.8em;font-weight:900;color:var(--gold);line-height:1;margin-bottom:4px}
+.app-ic{font-size:1.8em;margin-bottom:10px}
+.app-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.1em;font-weight:800;margin-bottom:10px}
+.app-price{font-family:'Space Grotesk',sans-serif;font-size:2em;font-weight:900;color:var(--gold);line-height:1;margin-bottom:4px}
 .app-price sup{font-size:.45em;vertical-align:super}
 .app-price sub{font-size:.35em;color:var(--muted);font-weight:500}
-.app-desc{font-size:.82em;color:var(--muted);margin-bottom:12px;line-height:1.4}
-.app-sel{width:100%;padding:10px;border-radius:12px;border:2px solid var(--line);background:var(--bg3);color:var(--fg);font:inherit;font-weight:700;font-size:.85em;cursor:pointer;transition:all .2s}
-.app-card.selected .app-sel{border-color:var(--gold);background:rgba(212,168,83,.1);color:var(--gold)}
+.app-once{font-size:.78em;color:var(--green);font-weight:700;margin-bottom:14px}
+.app-features{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.app-features li{font-size:.85em;display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+.app-features li .num{background:var(--gold);color:#1a0f0a;border-radius:50%;width:18px;height:18px;font-size:.7em;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.app-sel{width:100%;padding:13px;border-radius:13px;border:2px solid rgba(212,168,83,.4);background:rgba(212,168,83,.08);color:var(--gold);font:inherit;font-weight:800;font-size:.95em;cursor:pointer;transition:all .2s}
+.app-card.selected .app-sel{border-color:var(--gold);background:rgba(212,168,83,.18)}
 
 /* DIVIDER */
 hr{border:none;border-top:1px solid var(--line);margin:0}
 
-/* PACKAGES */
+/* SUPPORT PLANS */
 .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-
 .pkg{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;transition:border-color .2s;position:relative}
 .pkg.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .pkg.featured{border-color:rgba(212,168,83,.4)}
-.pkg-badge{display:inline-block;background:var(--gold);color:#1a0f0a;border-radius:99px;padding:3px 12px;font-size:.72em;font-weight:800;margin-bottom:8px}
+.pkg-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a0f0a;border-radius:99px;padding:3px 14px;font-size:.7em;font-weight:800;white-space:nowrap}
 .pkg h4{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1em;margin-bottom:4px}
 .pkg-price{font-family:'Space Grotesk',sans-serif;font-size:1.6em;font-weight:900;color:var(--gold);line-height:1;margin-bottom:4px}
 .pkg-price sub{font-size:.38em;color:var(--muted);font-weight:500}
 .pkg-desc{font-size:.82em;color:var(--muted);margin-bottom:10px;line-height:1.4}
 .pkg ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.pkg ul li{font-size:.82em;display:flex;gap:7px;align-items:flex-start}
-.pkg ul li::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0}
+.pkg ul li{font-size:.82em;display:flex;gap:7px;align-items:flex-start;line-height:1.4}
+.pkg ul li::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0;margin-top:1px}
 .pkg-sel{width:100%;margin-top:14px;padding:9px;border-radius:11px;border:2px solid var(--line);background:var(--bg3);color:var(--fg);font:inherit;font-weight:700;font-size:.82em;cursor:pointer;transition:all .2s}
 .pkg.selected .pkg-sel{border-color:var(--gold);background:rgba(212,168,83,.1);color:var(--gold)}
-.pkg-skip{text-align:center;margin-top:10px;font-size:.82em;color:var(--muted);cursor:pointer;text-decoration:underline}
+.pkg-skip{text-align:center;margin-top:12px;font-size:.82em;color:var(--muted);cursor:pointer;text-decoration:underline}
 
-/* HUB */
-.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:4px}
-.hub-card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;transition:border-color .2s}
-.hub-card.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
-.hub-card h4{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:.95em;margin-bottom:4px}
-.hub-price{font-family:'Space Grotesk',sans-serif;font-size:1.4em;font-weight:900;color:var(--gold)}
-.hub-price sub{font-size:.4em;color:var(--muted);font-weight:500}
-.hub-card p{font-size:.8em;color:var(--muted);margin:5px 0 0;line-height:1.4}
-.hub-free{display:inline-block;background:rgba(37,168,98,.2);color:var(--green);border:1px solid rgba(37,168,98,.4);border-radius:99px;padding:2px 10px;font-size:.72em;font-weight:800;margin-top:5px}
-.hub-skip{text-align:center;margin-top:10px;font-size:.82em;color:var(--muted);cursor:pointer;text-decoration:underline}
+/* ADD-ON */
+.addon-wrap{margin-top:24px}
+.addon-card{background:var(--bg2);border:1px solid rgba(37,168,98,.3);border-radius:18px;padding:20px;cursor:pointer;transition:border-color .2s}
+.addon-card.selected{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.addon-label{display:inline-block;background:rgba(37,168,98,.15);color:var(--green);border:1px solid rgba(37,168,98,.35);border-radius:99px;padding:3px 12px;font-size:.72em;font-weight:800;margin-bottom:8px}
+.addon-card h4{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1em;margin-bottom:4px}
+.addon-price{font-family:'Space Grotesk',sans-serif;font-size:1.5em;font-weight:900;color:var(--green);line-height:1;margin-bottom:4px}
+.addon-price sub{font-size:.38em;color:var(--muted);font-weight:500}
+.addon-desc{font-size:.82em;color:var(--muted);margin-bottom:10px;line-height:1.4}
+.addon-card ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.addon-card ul li{font-size:.82em;display:flex;gap:7px;align-items:flex-start;line-height:1.4}
+.addon-card ul li::before{content:"✓";color:var(--green);font-weight:800;flex-shrink:0;margin-top:1px}
+.addon-btn{width:100%;margin-top:14px;padding:9px;border-radius:11px;border:2px solid rgba(37,168,98,.35);background:rgba(37,168,98,.08);color:var(--green);font:inherit;font-weight:700;font-size:.82em;cursor:pointer;transition:all .2s}
+.addon-card.selected .addon-btn{border-color:var(--green);background:rgba(37,168,98,.18)}
+.addon-skip{text-align:center;margin-top:10px;font-size:.82em;color:var(--muted);cursor:pointer;text-decoration:underline}
 
 /* SUMMARY */
 .summary{background:var(--bg3);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:20px}
@@ -117,12 +127,6 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 .modal-send{width:100%;padding:14px;border-radius:13px;border:none;background:#25d366;color:#063117;font:inherit;font-weight:800;font-size:.95em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .modal-cancel{width:100%;padding:10px;border-radius:13px;border:none;background:transparent;color:var(--muted);font:inherit;font-size:.88em;cursor:pointer;margin-top:8px}
 
-/* GOOGLE PITCH */
-.gpitch{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:0}
-.gpitch h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.05em;margin-bottom:8px}
-.gpitch p{font-size:.88em;color:var(--muted);line-height:1.6}
-.gpitch strong{color:var(--fg)}
-
 .foot{text-align:center;padding:32px 16px 16px;color:var(--muted);font-size:.8em}
 .foot a{color:var(--gold);text-decoration:none}
 
@@ -144,10 +148,10 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 <div class="hero">
   <div class="hero-tag es">Acapulco · Plataforma digital</div>
   <div class="hero-tag en">Acapulco · Digital platform</div>
-  <h1 class="es">Tu negocio.<br><span>Tu app. Tu hub.</span></h1>
-  <h1 class="en">Your business.<br><span>Your app. Your hub.</span></h1>
-  <p class="hero-sub es">Todo lo que tus clientes necesitan — en una sola app, desde el primer día.</p>
-  <p class="hero-sub en">Everything your guests need — in one app, from day one.</p>
+  <h1 class="es">Tu negocio.<br><span>Tu app. Tu panel.</span></h1>
+  <h1 class="en">Your business.<br><span>Your app. Your panel.</span></h1>
+  <p class="hero-sub es">Todo lo que tus clientes necesitan — en una sola app, con tu propio panel de control.</p>
+  <p class="hero-sub en">Everything your guests need — in one app, with your own owner's control panel.</p>
   <div class="pillars">
     <div class="pillar">
       <div class="p-ic">📱</div>
@@ -163,8 +167,8 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
       <div>
         <span class="p-b es">Family First ✝ incluido</span>
         <span class="p-b en">Family First ✝ included</span>
-        <span class="p-s es">Rastrea a tu familia en tiempo real, recibe alertas si salen de zona segura, sigue a tu chofer y guarda documentos importantes.</span>
-        <span class="p-s en">Track your family in real time, get alerts when they leave a safe zone, follow your driver, and store important documents.</span>
+        <span class="p-s es">Rastrea a tu familia en tiempo real, recibe alertas de zona segura, sigue a tu chofer y guarda documentos importantes.</span>
+        <span class="p-s en">Track your family in real time, safe-zone alerts, driver tracking, and important document vault.</span>
       </div>
     </div>
     <div class="pillar">
@@ -180,114 +184,132 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 </div>
 
 <!-- GOOGLE PITCH -->
-<div class=”sec”>
-  <div class=”gpitch”>
-    <h3 class=”es”>📍 Cuando un turista te encuentra en Google Maps y toca “Sitio web” — ¿qué ve?</h3>
-    <h3 class=”en”>📍 When a tourist finds you on Google Maps and taps “Website” — what do they see?</h3>
-    <p class=”es”>Con MX Studio recibe 3 apps en 1: tu negocio completo, una app interactiva para aprender idiomas y una app de seguridad turística. Todo tuyo.</p>
-    <p class=”en”>With MX Studio, they get 3 apps in 1: your full business app, an interactive language-learning app, and a local tourist safety app. All yours.</p>
+<div class="sec">
+  <div class="gpitch">
+    <h3 class="es">📍 Cuando un turista te encuentra en Google Maps y toca "Sitio web" — ¿qué ve?</h3>
+    <h3 class="en">📍 When a tourist finds you on Google Maps and taps "Website" — what do they see?</h3>
+    <p class="es">Con MX Studio reciben <strong>3 apps en 1</strong>: tu negocio completo (menú, habitaciones, WiFi, reservas), una app interactiva para aprender idiomas y una app de seguridad turística — más códigos QR personalizados y un <strong>Panel de Control</strong> para que tú mismo edites tus precios y fotos en cualquier momento. Todo tuyo.</p>
+    <p class="en">With MX Studio, they get <strong>3 apps in 1</strong>: your full business (menu, rooms, WiFi, reservations), an interactive language-learning app, and a local tourist safety app — plus custom QR codes and an <strong>Owner's Panel</strong> so you control your own prices and photos anytime. All yours.</p>
   </div>
 </div>
 
 <hr>
 
 <!-- STEP 1: APP -->
-<div class=”sec” id=”secApp”>
-  <div class=”sec-label es”>Paso 1 · Elige tu app</div>
-  <div class=”sec-label en”>Step 1 · Choose your app</div>
-  <h2 class=”es”>¿Qué tipo de negocio tienes?</h2>
-  <h2 class=”en”>What type of business do you have?</h2>
-  <p class=”sub es”>Pago único. Sin mensualidades. Lista en 24 horas.</p>
-  <p class=”sub en”>One-time payment. No monthly fees. Ready in 24 hours.</p>
+<div class="sec" id="secApp">
+  <div class="sec-label es">Paso 1 · Tu app</div>
+  <div class="sec-label en">Step 1 · Your app</div>
+  <h2 class="es">La App Completa 3-en-1 + Panel de Control</h2>
+  <h2 class="en">The Complete 3-in-1 App + Owner's Panel</h2>
+  <p class="sub es">Pago único. Lista en 24 horas.</p>
+  <p class="sub en">One-time payment. Ready in 24 hours.</p>
 
-  <div class=”app-grid”>
-    <div class=”app-card” id=”app-biz” onclick=”selectApp('biz')”>
-      <div class=”app-ic”>🍽️</div>
-      <h3 class=”es”>App Negocio<br><small style=”font-size:.7em;color:var(--gold);font-weight:500”>Cafés, Bares, Restaurantes y Tiendas</small></h3>
-      <h3 class=”en”>Business App<br><small style=”font-size:.7em;color:var(--gold);font-weight:500”>Cafés, Bars, Restaurants &amp; Local Shops</small></h3>
-      <div class=”app-price”><sup>$</sup>5,000<sub> MXN</sub></div>
-      <p class=”app-desc es”>Tu app completa con tu marca — menú con fotos, WiFi en un toque, reservas, reseñas de Google, lealtad, más apps integradas de Idiomas y Seguridad Turística.</p>
-      <p class=”app-desc en”>Your full branded app — photo menu, one-tap WiFi, reservations, Google reviews, loyalty, plus built-in Language Learning &amp; Tourist Safety apps.</p>
-      <button class=”app-sel es”>Seleccionar →</button>
-      <button class=”app-sel en”>Select →</button>
-    </div>
-
-    <div class=”app-card featured” id=”app-hotel” onclick=”selectApp('hotel')”>
-      <div class=”app-ic”>🏨</div>
-      <h3 class=”es”>App Hotel y Resort<br><small style=”font-size:.7em;color:var(--gold);font-weight:500”>Hoteles, Estancias Boutique y Resorts</small></h3>
-      <h3 class=”en”>Hotel &amp; Resort App<br><small style=”font-size:.7em;color:var(--gold);font-weight:500”>Hotels, Boutique Stays &amp; Resorts</small></h3>
-      <div class=”app-price”><sub style=”font-size:.4em;color:var(--muted)” class=”es”>desde </sub><sub style=”font-size:.4em;color:var(--muted)” class=”en”>from </sub><sup>$</sup>12,000<sub> MXN</sub></div>
-      <p class=”app-desc es”>Todo lo de App Negocio, más códigos QR únicos para cada habitación, menús multi-área (restaurante, bar, spa, playa) y guía de concierge.</p>
-      <p class=”app-desc en”>Everything in Business App, plus unique QR codes for every room, multi-outlet menus (restaurant, bar, spa, beach), and concierge info.</p>
-      <button class=”app-sel es”>Seleccionar →</button>
-      <button class=”app-sel en”>Select →</button>
-    </div>
+  <div class="app-card" id="app-main" onclick="selectApp()">
+    <div class="app-ic">🏨</div>
+    <h3 class="es">App Negocio + Panel de Control<br><small style="font-size:.7em;color:var(--gold);font-weight:500">Restaurantes, Bares, Hoteles y Tiendas</small></h3>
+    <h3 class="en">Business App + Owner's Panel<br><small style="font-size:.7em;color:var(--gold);font-weight:500">Restaurants, Bars, Hotels &amp; Local Shops</small></h3>
+    <div class="app-price"><sup>$</sup>3,000<sub> MXN</sub></div>
+    <p class="app-once es">✓ Pago único — sin mensualidades</p>
+    <p class="app-once en">✓ One-time payment — no monthly fees</p>
+    <ul class="app-features">
+      <li><span class="num">1</span><span class="es"><strong>Hub de Negocio Completo</strong> — Menú con fotos, info de habitaciones, WiFi en un toque, reservas, reseñas de Google y lealtad de clientes</span><span class="en"><strong>Full Business Hub</strong> — Photo menu, room &amp; concierge info, one-tap WiFi, reservations, Google reviews &amp; guest loyalty</span></li>
+      <li><span class="num">2</span><span class="es"><strong>App de Idiomas integrada</strong> — Guía interactiva de idiomas para tus clientes</span><span class="en"><strong>Built-In Language App</strong> — Interactive language guide for your guests</span></li>
+      <li><span class="num">3</span><span class="es"><strong>App de Seguridad Turística</strong> — Info de seguridad local y herramientas de emergencia en un toque</span><span class="en"><strong>Tourist Safety App</strong> — Local safety info and emergency tools in one tap</span></li>
+      <li><span class="num">4</span><span class="es"><strong>Panel de Control del Dueño</strong> — Edita tus propios precios, menús y fotos en cualquier momento desde tu teléfono</span><span class="en"><strong>Owner's Control Panel</strong> — Edit your own prices, menus and photos anytime from your phone</span></li>
+      <li><span class="num">5</span><span class="es"><strong>Códigos QR personalizados</strong> — Listos para imprimir para tus mesas o habitaciones</span><span class="en"><strong>Custom QR Codes</strong> — Ready-to-print QR codes for your tables or rooms</span></li>
+    </ul>
+    <button class="app-sel es">Seleccionar →</button>
+    <button class="app-sel en">Select →</button>
   </div>
 </div>
 
 <hr>
 
-<!-- STEP 2: MAINTENANCE -->
+<!-- STEP 2: SUPPORT -->
 <div class="sec" id="secPkg">
-  <div class="sec-label es">Paso 2 · Plan de soporte anual (opcional)</div>
-  <div class="sec-label en">Step 2 · Annual support plan (optional)</div>
-  <h2 class="es">¿Cuánto soporte necesitas?</h2>
-  <h2 class="en">How much support do you need?</h2>
-  <p class="sub es">Tu app viene lista. El plan cubre soporte continuo, actualizaciones y desarrollo después del lanzamiento.</p>
-  <p class="sub en">Your app comes ready. The plan covers ongoing support, upgrades, and development after launch.</p>
+  <div class="sec-label es">Paso 2 · Soporte 24/7 (opcional)</div>
+  <div class="sec-label en">Step 2 · 24/7 Care (optional)</div>
+  <h2 class="es">¿Cuánto cuidado necesita tu app?</h2>
+  <h2 class="en">How much care does your app need?</h2>
+  <p class="sub es">Puedes editar tu menú y fotos tú mismo en tu Panel de Control — o agrega un plan para protección en la nube 24/7, gestión manos libres y herramientas de crecimiento.</p>
+  <p class="sub en">You can manage daily edits yourself in your Owner's Panel — or add a plan for 24/7 cloud protection, hands-free management, and growth tools.</p>
 
   <div class="pkg-grid">
-  <div class="pkg-popular-wrap">
-    <div class="pkg" id="pkg-basic" onclick="selectPkg('basic')">
-      <h4>Básico</h4>
-      <div class="pkg-price">$1,500<sub class="es"> MXN/año</sub><sub class="en"> MXN/year</sub></div>
-      <p class="pkg-desc es">Para negocios que casi no cambian nada.</p>
-      <p class="pkg-desc en">Safety net for venues that rarely change anything.</p>
+    <div class="pkg" id="pkg-care" onclick="selectPkg('care')">
+      <h4 class="es">Cuidado 24/7 y Hosting</h4>
+      <h4 class="en">24/7 Care &amp; Hosting</h4>
+      <div class="pkg-price">$2,500<sub class="es"> MXN/año</sub><sub class="en"> MXN/year</sub></div>
+      <p class="pkg-desc es">Infraestructura, seguridad y soporte técnico para que tu app nunca se caiga.</p>
+      <p class="pkg-desc en">Infrastructure, security, and emergency tech support so your app never goes down.</p>
       <ul>
-        <li class="es">1 actualización de menú o contenido al año</li><li class="en">1 menu or content update per year</li>
-        <li class="es">Hosting y mantenimiento técnico incluido</li><li class="en">Hosting &amp; technical maintenance included</li>
-        <li class="es">Soporte WhatsApp en 24–48 horas</li><li class="en">24–48 hr WhatsApp support</li>
+        <li class="es">Uptime 24/7 y monitoreo en la nube: carga rápida de imágenes, SSL y copias de seguridad diarias</li><li class="en">24/7 uptime &amp; cloud monitoring: fast image loading, SSL security &amp; daily cloud backups</li>
+        <li class="es">Actualizaciones automáticas de la App de Idiomas y Seguridad</li><li class="en">Automatic Language &amp; Safety app platform updates</li>
+        <li class="es">Soporte técnico de emergencia por WhatsApp en 24–48 hr</li><li class="en">Emergency tech support via WhatsApp in 24–48 hrs</li>
       </ul>
       <button class="pkg-sel es">Seleccionar →</button>
       <button class="pkg-sel en">Select →</button>
     </div>
 
-    <div class="pkg featured" id="pkg-pro" onclick="selectPkg('pro')">
-      <div class="pkg-badge">👍 Popular</div>
-      <h4>Pro</h4>
-      <div class="pkg-price">$3,500<sub class="es"> MXN/año</sub><sub class="en"> MXN/year</sub></div>
-      <p class="pkg-desc es">Para negocios que actualizan menú, precios o fotos.</p>
-      <p class="pkg-desc en">For spots updating seasonal menus, prices, or photos.</p>
+    <div class="pkg featured" id="pkg-concierge" onclick="selectPkg('concierge')">
+      <div class="pkg-badge es">👍 Popular</div>
+      <div class="pkg-badge en">👍 Popular</div>
+      <h4 class="es">Concierge Pro</h4>
+      <h4 class="en">Concierge Pro</h4>
+      <div class="pkg-price">$4,500<sub class="es"> MXN/año</sub><sub class="en"> MXN/year</sub></div>
+      <p class="pkg-desc es">¿Demasiado ocupado para usar el Panel? Mándanos fotos por WhatsApp y nosotros lo hacemos.</p>
+      <p class="pkg-desc en">Too busy to use the Owner's Panel? Text us on WhatsApp and we handle everything for you.</p>
       <ul>
-        <li class="es">Hasta 6 actualizaciones de menú y fotos al año</li><li class="en">Up to 6 menu &amp; photo updates per year</li>
-        <li class="es">Nuevas funciones estándar incluidas automáticamente</li><li class="en">New standard features added automatically</li>
-        <li class="es">Soporte WhatsApp prioritario en 24 horas</li><li class="en">24-hr priority WhatsApp support</li>
+        <li class="es">Todo lo de Cuidado 24/7 y Hosting</li><li class="en">Everything in 24/7 Care &amp; Hosting</li>
+        <li class="es">Concierge manos libres: mándanos fotos o precios por WhatsApp — nosotros los subimos (hasta 6 actualizaciones completas/año)</li><li class="en">Hands-free WhatsApp concierge: send us raw photos or prices — we resize, translate &amp; publish (up to 6 full refreshes/year)</li>
+        <li class="es">Acceso instantáneo a nuevas funciones de la app cuando se lanzan</li><li class="en">Instant access to every new guest feature as it launches</li>
+        <li class="es">Soporte prioritario por WhatsApp en 24 hr</li><li class="en">24-hr priority WhatsApp support</li>
       </ul>
       <button class="pkg-sel es">Seleccionar →</button>
       <button class="pkg-sel en">Select →</button>
     </div>
 
-  </div>
-    <div class="pkg" id="pkg-premium" onclick="selectPkg('premium')">
-      <h4>Premium</h4>
+    <div class="pkg" id="pkg-vip" onclick="selectPkg('vip')">
+      <h4 class="es">VIP Personalizado</h4>
+      <h4 class="en">VIP Custom</h4>
       <div class="pkg-price">$8,500<sub class="es"> MXN/año</sub><sub class="en"> MXN/year</sub></div>
-      <p class="pkg-desc es">Ideal para hoteles, resorts y negocios con múltiples áreas.</p>
-      <p class="pkg-desc en">Best for hotels, resorts &amp; multi-outlet venues.</p>
+      <p class="pkg-desc es">Desarrollo personalizado dedicado y soporte prioritario el mismo día.</p>
+      <p class="pkg-desc en">Dedicated custom development and same-day priority support.</p>
       <ul>
-        <li class="es">Actualizaciones de menú y fotos ilimitadas</li><li class="en">Unlimited menu &amp; photo updates</li>
-        <li class="es">Hasta 4 funciones personalizadas al año</li><li class="en">Up to 4 custom feature additions per year</li>
-        <li class="es">Soporte WhatsApp mismo día</li><li class="en">Same-day priority WhatsApp support</li>
+        <li class="es">Todo lo de Concierge Pro</li><li class="en">Everything in Concierge Pro</li>
+        <li class="es">Ediciones manos libres ilimitadas: mándanos cambios en cualquier momento</li><li class="en">Unlimited hands-free edits: text us changes anytime — we handle all updates</li>
+        <li class="es">Hasta 4 funciones personalizadas construidas al año para tu negocio</li><li class="en">Up to 4 custom feature builds/year tailored to your venue</li>
+        <li class="es">Soporte prioritario por WhatsApp el mismo día</li><li class="en">Same-day priority WhatsApp support</li>
       </ul>
       <button class="pkg-sel es">Seleccionar →</button>
       <button class="pkg-sel en">Select →</button>
     </div>
   </div>
+
+  <!-- INVENTORY ADD-ON -->
+  <div class="addon-wrap">
+    <div class="addon-card" id="addon-scanner" onclick="toggleAddon()">
+      <div class="addon-label es">➕ Módulo Opcional</div>
+      <div class="addon-label en">➕ Optional Module</div>
+      <h4 class="es">Escáner de Inventario<br><small style="font-size:.8em;color:var(--muted);font-weight:400">Módulo de Operaciones</small></h4>
+      <h4 class="en">Inventory Scanner<br><small style="font-size:.8em;color:var(--muted);font-weight:400">Operations Module</small></h4>
+      <div class="addon-price">$5,000<sub class="es"> MXN/mes</sub><sub class="en"> MXN/month</sub></div>
+      <p class="addon-desc es">Convierte los teléfonos de tu personal en escáneres de inventario en tiempo real — integrado en tu Panel de Control.</p>
+      <p class="addon-desc en">Turn your staff's phones into real-time stock and barcode scanners — built right into your Owner's Panel.</p>
+      <ul>
+        <li class="es">Escáner de códigos de barras y stock desde el celular</li><li class="en">Mobile barcode &amp; stock scanner built into your Owner's Panel</li>
+        <li class="es">Seguimiento de inventario en tiempo real y alertas de stock bajo para bar, cocina o habitaciones</li><li class="en">Real-time inventory tracking &amp; low-stock alerts for bar, kitchen or housekeeping</li>
+        <li class="es">Acceso multi-personal con sincronización instantánea</li><li class="en">Multi-staff access with instant sync</li>
+      </ul>
+      <button class="addon-btn es">Agregar a mi app →</button>
+      <button class="addon-btn en">Add to my app →</button>
+    </div>
+  </div>
+
   <div class="pkg-skip" id="skipPkg" onclick="selectPkg(null)">
     <span class="es">No por ahora →</span>
     <span class="en">No thanks, skip →</span>
   </div>
 </div>
-
 
 <!-- ORDER SUMMARY -->
 <div class="sec" id="secSum" style="display:none">
@@ -333,22 +355,24 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 <script>
 const BRIAN = "527441930502";
 let lang = "en";
-let selApp = null, selPkg = undefined;
+let appSelected = false;
+let selPkg = undefined;
+let addonSelected = false;
 
-const APPS = {
-  biz:   {es:{n:"App Negocio",      p:"$5,000 MXN"},        en:{n:"Business App",        p:"$5,000 MXN"},        v:5000},
-  hotel: {es:{n:"App Hotel y Resort",p:"Desde $12,000 MXN"},en:{n:"Hotel & Resort App",  p:"From $12,000 MXN"},  v:null}
+const APP = {
+  es:{n:"App Negocio + Panel de Control", p:"$3,000 MXN"},
+  en:{n:"Business App + Owner's Panel",   p:"$3,000 MXN"},
+  v:3000
 };
 const PKGS = {
-  basic:  {es:{n:"Paquete Básico",   p:"$1,500 MXN/año"},  en:{n:"Basic Package",   p:"$1,500 MXN/year"},  v:1500},
-  pro:    {es:{n:"Paquete Pro",      p:"$3,500 MXN/año"},  en:{n:"Pro Package",     p:"$3,500 MXN/year"},  v:3500},
-  premium:{es:{n:"Paquete Premium",  p:"$8,500 MXN/año"},  en:{n:"Premium Package", p:"$8,500 MXN/year"},  v:8500}
+  care:     {es:{n:"Cuidado 24/7 y Hosting",  p:"$2,500 MXN/año"},  en:{n:"24/7 Care & Hosting",  p:"$2,500 MXN/year"},  v:2500},
+  concierge:{es:{n:"Concierge Pro",           p:"$4,500 MXN/año"},  en:{n:"Concierge Pro",         p:"$4,500 MXN/year"},  v:4500},
+  vip:      {es:{n:"VIP Personalizado",       p:"$8,500 MXN/año"},  en:{n:"VIP Custom",            p:"$8,500 MXN/year"},  v:8500}
 };
-const HUBS = {
-  xmas:  {es:{n:"Hub · Temporada Navidad",    p:"🎁 GRATIS (promo)"},   en:{n:"Hub · Christmas Season",  p:"🎁 FREE (promo)"},    v:0},
-  semana:{es:{n:"Hub · Semana Santa",         p:"$1,500 MXN"},          en:{n:"Hub · Easter Season",     p:"$1,500 MXN"},         v:1500},
-  verano:{es:{n:"Hub · Temporada Verano",     p:"$1,500 MXN"},          en:{n:"Hub · Summer Season",     p:"$1,500 MXN"},         v:1500},
-  all:   {es:{n:"Hub · Las 3 temporadas",     p:"$3,500 MXN"},          en:{n:"Hub · All 3 seasons",     p:"$3,500 MXN"},         v:3500}
+const ADDON = {
+  es:{n:"Escáner de Inventario", p:"$5,000 MXN/mes"},
+  en:{n:"Inventory Scanner",     p:"$5,000 MXN/month"},
+  v:5000
 };
 
 function setLang(l){
@@ -360,10 +384,9 @@ function setLang(l){
   updateSummary();
 }
 
-function selectApp(a){
-  selApp=a;
-  document.querySelectorAll(".app-card").forEach(e=>e.classList.remove("selected"));
-  document.getElementById("app-"+a)?.classList.add("selected");
+function selectApp(){
+  appSelected=true;
+  document.getElementById("app-main").classList.add("selected");
   updateSummary();
   setTimeout(()=>document.getElementById("secPkg")?.scrollIntoView({behavior:"smooth",block:"start"}),100);
 }
@@ -377,26 +400,33 @@ function selectPkg(p){
   setTimeout(()=>document.getElementById("secSum")?.scrollIntoView({behavior:"smooth",block:"nearest"}),150);
 }
 
+function toggleAddon(){
+  addonSelected=!addonSelected;
+  document.getElementById("addon-scanner").classList.toggle("selected",addonSelected);
+  updateSummary();
+}
+
 function updateSummary(){
   const box=document.getElementById("secSum");
-  if(!selApp||selPkg===undefined){box.style.display="none";return;}
+  if(!appSelected||selPkg===undefined){box.style.display="none";return;}
   box.style.display="block";
-  const a=APPS[selApp][lang], pk=selPkg?PKGS[selPkg][lang]:null;
-  let total=0, rows="";
+  const a=APP[lang], pk=selPkg?PKGS[selPkg][lang]:null, ad=addonSelected?ADDON[lang]:null;
+  let total=APP.v, rows="";
   rows+=`<div class="sum-row"><span>${a.n}</span><span>${a.p}</span></div>`;
-  if(APPS[selApp].v) total+=APPS[selApp].v;
   if(pk){rows+=`<div class="sum-row"><span>${pk.n}</span><span>${pk.p}</span></div>`;total+=PKGS[selPkg].v;}
-  const totalStr = !APPS[selApp].v?(lang==="es"?"A cotizar":"Quote"):("$"+total.toLocaleString()+" MXN");
+  if(ad){rows+=`<div class="sum-row"><span>${ad.n}</span><span>${ad.p}</span></div>`;}
   const totalLabel=lang==="es"?"Total":"Total";
+  const totalStr="$"+total.toLocaleString()+" MXN"+(ad?" + "+ADDON[lang].p:"");
   rows+=`<div class="sum-row"><span>${totalLabel}</span><span>${totalStr}</span></div>`;
   document.getElementById("sumRows").innerHTML=rows;
 }
 
 function openModal(){
-  if(!selApp) return;
-  const a=APPS[selApp][lang], pk=selPkg?PKGS[selPkg][lang]:null;
+  if(!appSelected) return;
+  const a=APP[lang], pk=selPkg?PKGS[selPkg][lang]:null, ad=addonSelected?ADDON[lang]:null;
   let txt=`<strong>${a.n}</strong> — ${a.p}`;
   if(pk) txt+=`<br><strong>${pk.n}</strong> — ${pk.p}`;
+  if(ad) txt+=`<br><strong>${ad.n}</strong> — ${ad.p}`;
   document.getElementById("modalOrder").innerHTML=txt;
   document.getElementById("overlay").classList.add("on");
   setTimeout(()=>document.getElementById("waInput").focus(),350);
@@ -408,15 +438,17 @@ function sendWA(){
   const num=document.getElementById("waInput").value.replace(/\D/g,"");
   const inp=document.getElementById("waInput");
   if(num.length<10){inp.style.borderColor="#e0703a";inp.focus();return;}
-  const a=APPS[selApp][lang], pk=selPkg?PKGS[selPkg][lang]:null;
+  const a=APP[lang], pk=selPkg?PKGS[selPkg][lang]:null, ad=addonSelected?ADDON[lang]:null;
   let msg;
   if(lang==="es"){
     msg=`Hola Brian, quiero mi app de MX Studio ✝\n\n📱 ${a.n} — ${a.p}`;
-    if(pk) msg+=`\n📦 ${pk.n} — ${pk.p}`;
+    if(pk) msg+=`\n🛡️ ${pk.n} — ${pk.p}`;
+    if(ad) msg+=`\n📦 ${ad.n} — ${ad.p}`;
     msg+=`\n\nMi WhatsApp: +${num}`;
   } else {
     msg=`Hi Brian, I want my MX Studio ✝ app\n\n📱 ${a.n} — ${a.p}`;
-    if(pk) msg+=`\n📦 ${pk.n} — ${pk.p}`;
+    if(pk) msg+=`\n🛡️ ${pk.n} — ${pk.p}`;
+    if(ad) msg+=`\n📦 ${ad.n} — ${ad.p}`;
     msg+=`\n\nMy WhatsApp: +${num}`;
   }
   window.open("https://api.whatsapp.com/send?phone="+BRIAN+"&text="+encodeURIComponent(msg),"_blank");
