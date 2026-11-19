@@ -262,24 +262,24 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
 
 <!-- STEP 2: MAINTENANCE -->
 <div class="sec" id="secPkg">
-  <div class="sec-label es">Paso 2 · Paquete de mantenimiento (opcional)</div>
-  <div class="sec-label en">Step 2 · Maintenance package (optional)</div>
-  <h2 class="es">¿Quieres que lo mantengamos por ti?</h2>
-  <h2 class="en">Want us to keep it updated for you?</h2>
-  <p class="sub es">Tu app viene lista. Los paquetes son para cuando quieras cambios después del lanzamiento.</p>
-  <p class="sub en">Your app comes ready. Packages are for when you want changes after launch.</p>
+  <div class="sec-label es">Paso 2 · Plan de soporte anual (opcional)</div>
+  <div class="sec-label en">Step 2 · Annual support plan (optional)</div>
+  <h2 class="es">¿Cuánto soporte necesitas?</h2>
+  <h2 class="en">How much support do you need?</h2>
+  <p class="sub es">Tu app viene lista. El plan cubre soporte continuo, actualizaciones y desarrollo después del lanzamiento.</p>
+  <p class="sub en">Your app comes ready. The plan covers ongoing support, upgrades, and development after launch.</p>
 
   <div class="pkg-grid">
   <div class="pkg-popular-wrap">
     <div class="pkg" id="pkg-basic" onclick="selectPkg('basic')">
       <h4>Básico</h4>
       <div class="pkg-price">$1,500<sub class="es">/año</sub><sub class="en">/year</sub></div>
-      <p class="pkg-desc es">Para negocios que cambian poco.</p>
-      <p class="pkg-desc en">For businesses that rarely change.</p>
+      <p class="pkg-desc es">Mantenimiento esencial para tu app.</p>
+      <p class="pkg-desc en">Essential maintenance for your app.</p>
       <ul>
-        <li class="es">Hasta 5 fotos subidas</li><li class="en">Up to 5 photos uploaded</li>
-        <li class="es">2 actualizaciones al año</li><li class="en">2 content updates/year</li>
-        <li class="es">WiFi y panel del dueño</li><li class="en">WiFi and owner panel</li>
+        <li class="es">Cambios de menú ilimitados</li><li class="en">Unlimited menu changes</li>
+        <li class="es">Actualizaciones de contenido</li><li class="en">Content updates</li>
+        <li class="es">Soporte técnico incluido</li><li class="en">Technical support included</li>
         <li class="es">Respuesta en 24 horas</li><li class="en">24-hour response</li>
       </ul>
       <button class="pkg-sel es">Seleccionar →</button>
@@ -290,12 +290,12 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
       <div class="pkg-badge">👍 Popular</div>
       <h4>Pro</h4>
       <div class="pkg-price">$3,500<sub class="es">/año</sub><sub class="en">/year</sub></div>
-      <p class="pkg-desc es">Para negocios activos con más contenido.</p>
-      <p class="pkg-desc en">For active businesses with more content.</p>
+      <p class="pkg-desc es">Soporte activo + fotos y mejoras.</p>
+      <p class="pkg-desc en">Active support + photos and upgrades.</p>
       <ul>
-        <li class="es">Hasta 30 fotos subidas</li><li class="en">Up to 30 photos uploaded</li>
-        <li class="es">2 actualizaciones al año</li><li class="en">2 content updates/year</li>
-        <li class="es">Especial del día, lealtad, reservas</li><li class="en">Today's special, loyalty, reservations</li>
+        <li class="es">Todo lo de Básico</li><li class="en">Everything in Básico</li>
+        <li class="es">Fotos profesionales subidas</li><li class="en">Professional photos uploaded</li>
+        <li class="es">Nuevas funciones cuando salen</li><li class="en">New features as they launch</li>
         <li class="es">Respuesta en 24 horas</li><li class="en">24-hour response</li>
       </ul>
       <button class="pkg-sel es">Seleccionar →</button>
@@ -305,14 +305,13 @@ hr{border:none;border-top:1px solid var(--line);margin:0}
   </div>
     <div class="pkg" id="pkg-premium" onclick="selectPkg('premium')">
       <h4>Premium</h4>
-      <div class="pkg-price">$6,500<sub class="es">/año</sub><sub class="en">/year</sub></div>
-      <p class="pkg-desc es">Para los que quieren siempre estar al día.</p>
-      <p class="pkg-desc en">For those who always want to stay current.</p>
+      <div class="pkg-price">$8,500<sub class="es">/año</sub><sub class="en">/year</sub></div>
+      <p class="pkg-desc es">Desarrollo personalizado, lo que necesites.</p>
+      <p class="pkg-desc en">Custom development, whatever you need.</p>
       <ul>
-        <li class="es">Fotos ilimitadas</li><li class="en">Unlimited photos</li>
-        <li class="es">Actualizaciones ilimitadas</li><li class="en">Unlimited updates</li>
-        <li class="es">Nuevas funciones primero</li><li class="en">New features first</li>
-        <li class="es">Solicitudes personalizadas</li><li class="en">Custom requests</li>
+        <li class="es">Todo lo de Pro</li><li class="en">Everything in Pro</li>
+        <li class="es">Builds personalizados</li><li class="en">Custom builds</li>
+        <li class="es">Funciones a la medida</li><li class="en">Features built to order</li>
         <li class="es">Respuesta en 24 horas</li><li class="en">24-hour response</li>
       </ul>
       <button class="pkg-sel es">Seleccionar →</button>
@@ -382,7 +381,7 @@ const APPS = {
 const PKGS = {
   basic:  {es:{n:"Paquete Básico",   p:"$1,500 MXN/año"},  en:{n:"Basic Package",   p:"$1,500 MXN/year"},  v:1500},
   pro:    {es:{n:"Paquete Pro",      p:"$3,500 MXN/año"},  en:{n:"Pro Package",     p:"$3,500 MXN/year"},  v:3500},
-  premium:{es:{n:"Paquete Premium",  p:"$6,500 MXN/año"},  en:{n:"Premium Package", p:"$6,500 MXN/year"},  v:6500}
+  premium:{es:{n:"Paquete Premium",  p:"$8,500 MXN/año"},  en:{n:"Premium Package", p:"$8,500 MXN/year"},  v:8500}
 };
 const HUBS = {
   xmas:  {es:{n:"Hub · Temporada Navidad",    p:"🎁 GRATIS (promo)"},   en:{n:"Hub · Christmas Season",  p:"🎁 FREE (promo)"},    v:0},
