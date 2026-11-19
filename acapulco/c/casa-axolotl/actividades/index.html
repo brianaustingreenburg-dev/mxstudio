@@ -91,21 +91,31 @@ const SECTIONS = [
       },
       {
         ic: '🛶', col: '#16495e',
-        n: { es: 'Kayak en la laguna', en: 'Kayak on the Lagoon' },
-        d: { es: 'Sal a remar por la laguna de Coyuca directo desde el hotel. Entre manglares, aves tropicales y aguas tranquilas. Kayaks disponibles en el hotel.', en: 'Paddle through Coyuca Lagoon directly from the hotel. Through mangroves, tropical birds and calm waters. Kayaks available at the hotel.' },
+        n: { es: 'Renta de Kayak', en: 'Kayak Rental' },
+        pr: { es: '$150 por persona · 1 hora en la laguna', en: '$150 per person · 1 hr on the lagoon' },
+        d: { es: 'Una hora de renta en la laguna de Pie de la Cuesta. Ingresando por Palapa Xperiences (firma de responsiva requerida).', en: 'One hour rental on the Pie de la Cuesta lagoon. Enter through Palapa Xperiences (liability waiver required).' },
         msg: { es: '¡Hola! ¿Puedo rentar un kayak hoy en Casa Axolotl? ¿A qué hora puedo salir?', en: 'Hi! Can I rent a kayak today at Casa Axolotl? What time can I go out?' }
       },
       {
         ic: '🔥', col: '#e8607a',
-        n: { es: 'Fogata AcáFree · 7:30 pm', en: 'AcáFree Bonfire · 7:30 pm' },
-        d: { es: 'Reúnete con otros viajeros alrededor de la fogata cada noche. Música, buena compañía y el atardecer más famoso de México. Consulta disponibilidad.', en: 'Join fellow travelers around the bonfire every evening. Music, great company and Mexico\'s most famous sunset. Check availability.' },
-        msg: { es: '¡Hola! ¿A qué hora es la fogata esta noche en Casa Axolotl?', en: 'Hi! What time is the bonfire tonight at Casa Axolotl?' }
+        n: { es: 'Fogata Familiar · AcáFree', en: 'Family Bonfire · AcáFree' },
+        pr: { es: '$600 · Incluye leña, bombones y varillas para asar', en: '$600 · Includes wood, marshmallows & roasting sticks' },
+        d: { es: 'Nosotros te armamos la fogata, no debes preocuparte por nada. Incluimos 1 carga de leña, bombones y varillas para asar. Te entregamos la fogata prendida al atardecer en Pie de la Cuesta.', en: 'We set up the bonfire — you just show up. Includes 1 load of firewood, marshmallows and roasting sticks. We hand it over lit at sunset in Pie de la Cuesta.' },
+        msg: { es: '¡Hola! Quiero reservar una fogata familiar en Casa Axolotl. ¿Tienen disponibilidad esta noche?', en: 'Hi! I want to book a family bonfire at Casa Axolotl. Do you have availability tonight?' }
       },
       {
         ic: '💆', col: '#6b3fa0',
-        n: { es: 'Masajes', en: 'Massages' },
-        d: { es: 'Sesiones de masaje a cargo de especialistas locales. Relájate después de un día de aventura. Reserva con anticipación por WhatsApp.', en: 'Massage sessions with local specialists. Unwind after a day of adventure. Book in advance via WhatsApp.' },
+        n: { es: 'Masaje Relajante', en: 'Relaxing Massage' },
+        pr: { es: '$800 · De 8 a.m. a 5 p.m.', en: '$800 · 8 a.m. to 5 p.m.' },
+        d: { es: 'Disfruta de un buen masaje relajante en Casa Axolotl. A cargo de especialistas locales. Reserva con anticipación por WhatsApp.', en: 'Enjoy a relaxing massage at Casa Axolotl with local specialists. Book in advance via WhatsApp.' },
         msg: { es: '¡Hola! Me gustaría reservar un masaje en Casa Axolotl. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'d like to book a massage at Casa Axolotl. What days do you have availability?' }
+      },
+      {
+        ic: '🏖️', col: '#c9922a',
+        n: { es: 'Day Pass · Casa Axolotl', en: 'Day Pass · Casa Axolotl' },
+        pr: { es: '$350 por persona · Incluye 1 hora de kayak gratis', en: '$350 per person · Includes 1 free hour of kayak' },
+        d: { es: 'Puedes usarlo en consumo en restaurante o en cualquiera de nuestras actividades. ¡Te regalamos una hora de kayak!', en: 'Use it toward restaurant consumption or any of our activities. We throw in one free hour of kayak!' },
+        msg: { es: '¡Hola! Me interesa el Day Pass de Casa Axolotl. ¿Qué incluye exactamente?', en: 'Hi! I\'m interested in the Casa Axolotl Day Pass. What exactly does it include?' }
       },
       {
         ic: '🌅', col: '#c9922a',
@@ -126,20 +136,30 @@ const SECTIONS = [
     items: [
       {
         ic: '🚣', col: '#16495e',
-        n: { es: 'Tour en kayak por la laguna', en: 'Kayak Tour on the Lagoon' },
+        n: { es: 'Tour en Kayak · Recorrido Guiado', en: 'Guided Kayak Tour' },
+        pr: { es: '$450 por persona · Incluye 1 desayuno completo', en: '$450 per person · Includes full breakfast' },
         d: { es: 'Recorrido guiado por los manglares y canales de la laguna de Coyuca. Ve de cerca garzas, pelícanos, fragatas y más de 200 especies de aves. Salida desde el hotel.', en: 'Guided tour through the mangroves and channels of Coyuca Lagoon. See herons, pelicans, frigatebirds and over 200 bird species up close. Departure from the hotel.' },
-        msg: { es: '¡Hola! Me interesa el tour en kayak por la laguna de Coyuca. ¿Cuánto cuesta y cuándo salen?', en: 'Hi! I\'m interested in the kayak tour of Coyuca Lagoon. How much does it cost and when do you depart?' }
+        msg: { es: '¡Hola! Me interesa el tour en kayak por la laguna de Coyuca. ¿A qué hora salen?', en: 'Hi! I\'m interested in the guided kayak tour of Coyuca Lagoon. What time do you depart?' }
       },
       {
         ic: '🏝', col: '#2563a8',
-        n: { es: 'Tour a las Islas', en: 'Island Tour' },
-        d: { es: 'Recorrido en lancha por las islas de la bahía de Acapulco. Snorkel, nado en aguas cristalinas y vistas increíbles de la bahía. Salida desde el muelle local.', en: 'Boat tour around the islands of Acapulco Bay. Snorkel, swim in crystal-clear waters and stunning bay views. Departure from the local dock.' },
-        msg: { es: '¡Hola! Quiero información sobre el tour a las islas desde Casa Axolotl. ¿Cuánto cuesta y qué incluye?', en: 'Hi! I want information about the island tour from Casa Axolotl. How much does it cost and what\'s included?' }
+        n: { es: 'Tour Isla Pie de la Cuesta', en: 'Pie de la Cuesta Island Tour' },
+        pr: { es: '$400 con desayuno · $200 solo recorrido (por persona)', en: '$400 with breakfast · $200 tour only (per person)' },
+        d: { es: 'Viaje a la isla montosa de Pie de la Cuesta con playa de agua dulce. Renta banana o moto acuática, visita el cocodrilario y come platillos a la leña. Embarcando a las 12 del día desde Casa Axolotl.', en: 'Trip to the freshwater island of Pie de la Cuesta. Rent a banana boat or jet ski, visit the crocodile sanctuary and eat wood-fired meals. Boarding at noon from Casa Axolotl.' },
+        msg: { es: '¡Hola! Quiero información sobre el Tour Isla Pie de la Cuesta. ¿Cuántos lugares tienen disponibles?', en: 'Hi! I want information about the Pie de la Cuesta Island Tour. How many spots do you have available?' }
+      },
+      {
+        ic: '🏄', col: '#e8407a',
+        n: { es: 'Paquete Isla Park + Desayuno', en: 'Isla Park Package + Breakfast' },
+        pr: { es: '$400 por persona', en: '$400 per person' },
+        d: { es: 'Reserva con nosotros en Aca-Free. Incluye entrada a Isla Park y desayuno completo en Casa Axolotl.', en: 'Book with us through Aca-Free. Includes Isla Park entry and full breakfast at Casa Axolotl.' },
+        msg: { es: '¡Hola! Me interesa el paquete Isla Park + Desayuno. ¿Cómo lo reservo?', en: 'Hi! I\'m interested in the Isla Park + Breakfast package. How do I book it?' }
       },
       {
         ic: '🐢', col: '#2d7a4f',
         n: { es: 'Liberación de Tortugas', en: 'Turtle Release' },
-        d: { es: 'Participa en la liberación de crías de tortuga marina al Pacífico. Una experiencia de conservación única, disponible en temporada (jul–dic). Contacta para confirmar fechas.', en: 'Participate in the release of baby sea turtles into the Pacific. A unique conservation experience, available in season (Jul–Dec). Contact us to confirm dates.' },
+        pr: { es: '$600 con transporte · $500 sin transporte (por persona)', en: '$600 with transport · $500 without transport (per person)' },
+        d: { es: 'Llega a las 9 a.m. para desayuno en Casa Axolotl. A las 11–12 nos dirigimos a la Barra de Coyuca para un recorrido en lancha y la liberación de tortugas. Disponible en temporada (jul–dic).', en: 'Arrive at 9 a.m. for breakfast at Casa Axolotl. At 11–12 we head to Barra de Coyuca for a boat ride and turtle release. Available in season (Jul–Dec).' },
         msg: { es: '¡Hola! Me interesa participar en la liberación de tortugas. ¿Cuándo es la próxima salida?', en: 'Hi! I\'m interested in the turtle release. When is the next one?' }
       },
       {
@@ -234,6 +254,7 @@ function render(){
               <span class="card-icon">${a.ic}</span>
               <div class="card-info">
                 <div class="card-name">${es?a.n.es:a.n.en}</div>
+                ${a.pr ? `<div class="card-pr">${es?a.pr.es:a.pr.en}</div>` : ''}
               </div>
             </div>
             <p class="card-desc">${es?a.d.es:a.d.en}</p>
