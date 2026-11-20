@@ -492,7 +492,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .biz-cards{padding:0 20px 8px;display:grid;grid-template-columns:1fr;gap:20px}
 @media(min-width:600px){.biz-cards{grid-template-columns:repeat(2,1fr);padding:0 28px 12px}}
 @media(min-width:900px){.biz-cards{padding:0 32px 16px;gap:24px}}
-.biz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.biz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.biz-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
 .biz-photo{height:200px;background-size:cover;background-position:center;flex-shrink:0}
 @media(min-width:600px){.biz-photo{height:220px}}
 .biz-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
@@ -778,17 +779,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 <div class="biz-cards">
 
   <!-- Casa Axolotl -->
-  <div class="biz-card">
+  <a class="biz-card" href="../c/casa-axolotl/hotel/" target="_blank" rel="noopener">
     <div class="biz-photo" style="background-image:url('../c/casa-axolotl/hotel/img/cover.jpg')"></div>
     <div class="biz-body">
       <div class="biz-zone" id="h1z">Pie de la Cuesta</div>
       <div class="biz-name" id="h1n">Casa Axolotl</div>
       <div class="biz-desc" id="h1d">Hotel y restaurante frente al Océano Pacífico en Pie de la Cuesta. Kayaks, fogata AcáFree y la mejor puesta de sol de México.</div>
-      <a class="biz-wa" href="https://wa.me/527441930502?text=Hola%2C%20quiero%20reservar%20en%20Casa%20Axolotl" target="_blank" rel="noopener">
-        <span>💬</span><span id="h1p">WhatsApp para reservar</span>
-      </a>
+      <div class="biz-wa">
+        <span>🏨</span><span id="h1p">Ver hotel &amp; reservar · View &amp; book</span>
+      </div>
     </div>
-  </div>
+  </a>
 
 </div>
 
@@ -799,7 +800,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 <div class="biz-cards">
 
   <!-- Tres Marías -->
-  <div class="biz-card">
+  <a class="biz-card" href="../c/tres-marias/" target="_blank" rel="noopener">
     <div class="biz-photo" style="background-image:url('../c/tres-marias/img/cover.jpg')"></div>
     <div class="biz-body">
       <div class="biz-tag" id="d1t">Mariscos</div>
@@ -807,10 +808,10 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
       <div class="biz-desc" id="d1d">Más de 30 años sirviendo pescado a la talla en comal de barro, tacos de camarón y ceviche fresco en Pie de la Cuesta.</div>
       <div class="biz-hours" id="d1dt">Pie de la Cuesta · Abierto 9 am–6 pm</div>
     </div>
-  </div>
+  </a>
 
   <!-- Kailúa Fresh -->
-  <div class="biz-card">
+  <a class="biz-card" href="../c/kailua-fresh/" target="_blank" rel="noopener">
     <div class="biz-photo" style="background-image:url('../c/kailua-fresh/img/cover.jpg')"></div>
     <div class="biz-body">
       <div class="biz-tag" id="d2t">Café &amp; Cocina</div>
@@ -818,7 +819,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
       <div class="biz-desc" id="d2d">Café de especialidad, desayunos y comida en un ambiente fresco y relajado.</div>
       <div class="biz-hours" id="d2dt">Acapulco · Abierto todo el día</div>
     </div>
-  </div>
+  </a>
 
   <!-- Slot 3 — coming soon -->
   <div class="biz-card biz-card-soon">
