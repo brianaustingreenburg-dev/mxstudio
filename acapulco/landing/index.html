@@ -479,7 +479,11 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
       <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="en">Inventory Scanner</h4>
       <p style="font-size:.72em;color:var(--muted);margin-bottom:12px" class="es">Módulo de Operaciones</p>
       <p style="font-size:.72em;color:var(--muted);margin-bottom:12px" class="en">Operations Module</p>
-      <div style="font-family:var(--serif);font-style:italic;font-size:2.2em;line-height:1;color:#2a9962;margin-bottom:4px">$5,000<span style="font-size:.38em;font-style:normal;color:var(--muted)" class="es"> MXN/mes</span><span style="font-size:.38em;font-style:normal;color:var(--muted)" class="en"> MXN/month</span></div>
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px">
+        <div style="font-family:var(--serif);font-style:italic;font-size:2.2em;line-height:1;color:#2a9962">$25,000<span style="font-size:.38em;font-style:normal;color:var(--muted)"> MXN</span></div>
+        <div style="font-size:.8em;color:var(--muted)" class="es">setup · después $5,000/mes</div>
+        <div style="font-size:.8em;color:var(--muted)" class="en">setup · then $5,000/month</div>
+      </div>
       <p style="font-size:.82em;color:var(--muted);margin-bottom:14px;line-height:1.5" class="es">Convierte los teléfonos de tu personal en escáneres de inventario en tiempo real — integrado en tu Panel de Control.</p>
       <p style="font-size:.82em;color:var(--muted);margin-bottom:14px;line-height:1.5" class="en">Turn your staff's phones into real-time inventory scanners — built into your Owner's Panel.</p>
       <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px">
@@ -619,7 +623,7 @@ function updateSummary(){
   var total=0;
   if(state.app){rows.push({es:'App Negocio + Panel de Control',en:'Business App + Owner\'s Panel',p:'$3,000 MXN'});total+=3000;}
   if(state.pkg==='concierge'){rows.push({es:'Concierge Pro',en:'Concierge Pro',p:'$5,500 MXN/año'});total+=5500;}
-  if(state.addon){rows.push({es:'Escáner de Inventario',en:'Inventory Scanner',p:'$5,000 MXN/mes'});total+=5000;}
+  if(state.addon){rows.push({es:'Escáner de Inventario',en:'Inventory Scanner',p:'$25,000 MXN setup + $5,000/mes'});total+=25000;}
   var sec=document.getElementById('secSum');
   if(!rows.length){sec.hidden=true;return;}
   sec.hidden=false;
@@ -638,7 +642,7 @@ function openModal(){
   var rows=[];
   if(state.app)rows.push('App Negocio + Panel de Control — $3,000 MXN');
   if(state.pkg==='concierge')rows.push('Concierge Pro — $5,500 MXN/año');
-  if(state.addon)rows.push('Escáner de Inventario — $5,000 MXN/mes');
+  if(state.addon)rows.push('Escáner de Inventario — $25,000 MXN setup + $5,000 MXN/mes');
   document.getElementById('modalOrder').innerHTML=rows.join('<br>')||'(sin selección)';
   var ov=document.getElementById('overlay');
   var mb=document.getElementById('modal-box');
