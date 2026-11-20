@@ -508,9 +508,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .biz-photo-soon::after{content:'🌊'}
 /* ── end biz cards ── */
 /* ── AcáFree activities ── */
-.acafree-banner{padding:0 20px 16px;text-align:center}
-@media(min-width:600px){.acafree-banner{padding:0 28px 20px}}
-.acafree-badge{display:inline-block;background:linear-gradient(135deg,rgba(201,146,42,.18),rgba(201,146,42,.08));border:1px solid rgba(201,146,42,.4);color:var(--gold-lt);font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:7px 14px;border-radius:999px}
+.act-tabs{display:flex;gap:8px;padding:0 20px 20px;overflow-x:auto;scrollbar-width:none}
+.act-tabs::-webkit-scrollbar{display:none}
+@media(min-width:600px){.act-tabs{padding:0 28px 20px;gap:10px}}
+.act-tab{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.78rem;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s,border-color .15s;font-family:inherit}
+.act-tab.on{background:rgba(201,146,42,.15);border-color:var(--gold);color:var(--gold-lt)}
 .acafree-grid{padding:0 20px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(min-width:600px){.acafree-grid{grid-template-columns:repeat(3,1fr);padding:0 28px 36px;gap:14px}}
 @media(min-width:900px){.acafree-grid{grid-template-columns:repeat(4,1fr);padding:0 32px 40px}}
@@ -837,14 +839,19 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
      ACÁFREE ACTIVITIES
 ══════════════════════════════════════ -->
 <div class="sec-label">
-  <span>AcáFree · Actividades Gratis</span>
+  <span>AcáFree · Actividades</span>
 </div>
-<div class="acafree-banner">
-  <span class="acafree-badge">🎄 Gratis · Temporada Navideña · Free · Christmas Season</span>
-</div>
-<div class="acafree-grid">
 
-  <!-- En Casa Axolotl -->
+<!-- Activity tabs -->
+<div class="act-tabs" id="actTabs">
+  <button class="act-tab on" onclick="switchActTab('casa',this)">🏡 En Casa</button>
+  <button class="act-tab" onclick="switchActTab('tours',this)">🚣 Tours</button>
+  <button class="act-tab" onclick="switchActTab('especiales',this)">✨ Especiales</button>
+</div>
+
+<!-- Tab: En Casa Axolotl -->
+<div class="acafree-grid" id="act-casa">
+
   <div class="acafree-card">
     <div class="acafree-ico">🏊</div>
     <div class="acafree-name">Alberca · Swimming Pool</div>
@@ -892,7 +899,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
     <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20When%20is%20the%20next%20beach%20movie%20night%20at%20Casa%20Axolotl%3F" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 
-  <!-- Tours y Recorridos -->
+</div>
+
+<!-- Tab: Tours -->
+<div class="acafree-grid" id="act-tours" style="display:none">
+
   <div class="acafree-card">
     <div class="acafree-ico">🚣</div>
     <div class="acafree-name">Tour en Kayak · Guided Kayak Tour</div>
@@ -935,7 +946,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
     <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20to%20go%20snorkeling.%20What%20options%20do%20you%20have%20available%20from%20Casa%20Axolotl%3F" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 
-  <!-- Experiencias Especiales -->
+</div>
+
+<!-- Tab: Experiencias Especiales -->
+<div class="acafree-grid" id="act-especiales" style="display:none">
+
   <div class="acafree-card">
     <div class="acafree-ico">🧺</div>
     <div class="acafree-name">Picnic en la Playa · Beach Picnic</div>
@@ -1008,6 +1023,14 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   };
   document.head.appendChild(script);
 })();
+
+function switchActTab(tab, btn){
+  ['casa','tours','especiales'].forEach(id=>{
+    document.getElementById('act-'+id).style.display = id===tab ? '' : 'none';
+  });
+  document.querySelectorAll('.act-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
 
 function enterHub(){
   const splash=document.getElementById('qr-splash');
