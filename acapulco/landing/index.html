@@ -28,6 +28,7 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   background:rgba(251,248,243,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line)}
+@media(min-width:960px){.nav{padding-left:calc((100% - 960px)/2 + 40px);padding-right:calc((100% - 960px)/2 + 40px)}}
 .nav-brand{font-family:var(--serif);font-weight:500;font-size:1.3em;letter-spacing:.01em;color:var(--ink)}
 .nav-brand em{color:var(--brass);font-style:italic}
 .lang-toggle{display:flex;background:#e8e0d4;border-radius:99px;padding:3px;gap:2px}
@@ -47,6 +48,7 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
     rgba(12,23,29,.2) 55%,
     rgba(12,23,29,.85) 100%)}
 .hero-content{position:relative;z-index:2;padding:0 max(28px,env(safe-area-inset-left,0px)) 60px}
+@media(min-width:960px){.hero-content{max-width:960px;margin-left:auto;margin-right:auto;padding-left:40px;padding-right:40px}}
 .hero-eyebrow{font-size:.65em;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--brass2);margin-bottom:18px}
 .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2em,12vw,5.5em);line-height:.95;letter-spacing:-.01em;color:#fdfaf4;margin-bottom:24px}
 .hero h1 em{font-style:italic;color:var(--brass2)}
@@ -67,6 +69,12 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
 
 /* SECTION */
 .sec{padding:80px max(28px,env(safe-area-inset-left,0px))}
+@media(min-width:960px){
+  .sec{max-width:960px;margin-left:auto;margin-right:auto;padding-left:40px;padding-right:40px}
+  .demo-card{max-width:960px;margin-left:auto;margin-right:auto}
+  .cta-band{padding-left:40px;padding-right:40px}
+  .foot{padding-left:40px;padding-right:40px}
+}
 .sec-eyebrow{font-size:.65em;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
 .sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2em,8vw,3.4em);line-height:1.02;color:var(--ink);letter-spacing:-.01em;margin-bottom:14px}
 .sec h2 em{font-style:italic;color:var(--brass)}
