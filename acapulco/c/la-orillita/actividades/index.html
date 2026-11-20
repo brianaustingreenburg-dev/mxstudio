@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Actividades · La Orillita</title>
+<meta name="theme-color" content="#1a1a2e">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#f5e94a;--pink:#e8407a;--navy:#1a1a2e;--navylt:#252545;
+  --wave:#5bc8dc;--text:#f5f0ea;--muted:#9898b8;--border:rgba(245,233,74,.2);
+}
+html{background:var(--navy)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--navy);overflow-x:hidden}
+.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--navy);box-shadow:0 0 80px rgba(0,0,0,.6)}
+
+/* header */
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--navylt);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.back{background:none;border:none;color:var(--yellow);font-size:1.3rem;cursor:pointer;padding:0 4px;line-height:1;-webkit-tap-highlight-color:transparent;text-decoration:none}
+.topbar-logo{width:40px;height:40px;object-fit:contain;border-radius:8px;background:var(--yellow);flex-shrink:0}
+.topbar h1{font-size:1rem;font-weight:800;color:var(--text);flex:1;line-height:1.1}
+.topbar h1 span{display:block;font-size:.65rem;font-weight:400;color:var(--wave);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:3px 9px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif}
+.lang-btn.on{color:var(--yellow);border-color:var(--yellow)}
+
+/* intro */
+.intro{padding:14px 16px 4px;font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:10px;padding:12px 16px 32px}
+.card{background:var(--navylt);border-radius:14px;overflow:hidden;display:flex;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.card-accent{width:5px;flex-shrink:0}
+.card-body{flex:1;padding:14px 14px 12px}
+.card-top{display:flex;align-items:flex-start;gap:10px}
+.card-num{font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.06em;width:22px;flex-shrink:0;padding-top:3px}
+.card-icon{font-size:1.5rem;flex-shrink:0}
+.card-info{flex:1}
+.card-name{font-size:1rem;font-weight:700;line-height:1.25;color:var(--text)}
+.card-pr{font-size:.68rem;color:var(--yellow);letter-spacing:.05em;margin-top:2px}
+.card-desc{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:8px}
+.card-wa{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(245,233,74,.1);border:1px solid rgba(245,233,74,.4);color:#f5e94a;font-size:.75rem;font-weight:600;padding:7px 14px;border-radius:50px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.card-wa:active{opacity:.7}
+
+/* section header */
+.section-hd{padding:16px 16px 4px;display:flex;align-items:center;gap:8px}
+.section-hd span{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.section-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* credit */
+.credit{text-align:center;padding:0 0 28px;opacity:.35}
+.credit a{color:var(--muted);font-size:.65rem;text-decoration:none;letter-spacing:.05em}
+.credit strong{color:var(--yellow)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topbar">
+  <a class="back" href="../">‹</a>
+  <img class="topbar-logo" src="../img/acafree-logo.png" alt="AcáFree">
+  <h1>AcáFree<span id="hSub">Turismo de Aventura</span></h1>
+  <button class="lang-btn" onclick="location.reload()" title="Refresh" style="margin-right:4px">↻</button>
+  <button class="lang-btn on" id="esBtn" onclick="setLang('es')">ES</button>
+  <span style="color:#333;font-size:.7rem;padding:0 2px">|</span>
+  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+</div>
+
+<p class="intro" id="intro">Experiencias y aventuras en Pie de la Cuesta y Acapulco.</p>
+
+<div class="cards" id="cards"></div>
+
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> ✝ · myjefetech.app</a>
+</div>
+
+</div>
+
+<script>
+const WA = '527474999032';
+
+const SECTIONS = [
+  {
+    id: 'gratis',
+    label: { es: 'Gratis en Pie de la Cuesta', en: 'Free in Pie de la Cuesta' },
+    items: [
+      { ic: '🌅', col: '#c9922a',
+        n: { es: 'Mejor atardecer de México', en: 'Best Sunset in Mexico' },
+        d: { es: 'En Pie de la Cuesta el sol cae directo al mar, entre el Pacífico y la laguna de Coyuca. Pide algo frío en La Orillita y sal a verlo alrededor de las 6 pm.', en: 'In Pie de la Cuesta the sun drops straight into the ocean, between the Pacific and Coyuca Lagoon. Grab a cold drink at La Orillita and head out around 6 pm.' } },
+      { ic: '🏖️', col: '#2563a8',
+        n: { es: 'Playa Pie de la Cuesta', en: 'Pie de la Cuesta Beach' },
+        d: { es: 'Kilómetros de playa abierta al Pacífico. Ideal para caminar y ver el atardecer. Ojo: el oleaje es fuerte, no se recomienda nadar mar adentro.', en: 'Miles of open Pacific beach. Perfect for walks and sunsets. Note: the surf is strong, swimming far out is not recommended.' } },
+      { ic: '🦅', col: '#2d7a4f',
+        n: { es: 'Aves en la laguna de Coyuca', en: 'Birds on Coyuca Lagoon' },
+        d: { es: 'Desde la orilla puedes ver garzas, pelícanos, fragatas y cormoranes, sobre todo temprano en la mañana y al atardecer.', en: 'From the shore you can spot herons, pelicans, frigatebirds and cormorants, especially early morning and at sunset.' } }
+    ]
+  },
+  {
+    id: 'tours',
+    label: { es: 'Tours y Recorridos · AcáFree', en: 'Tours & Excursions · AcáFree' },
+    items: [
+      { ic: '🛶', col: '#16495e',
+        n: { es: 'Renta de Kayak', en: 'Kayak Rental' },
+        pr: { es: '$150 por persona · 1 hora en la laguna', en: '$150 per person · 1 hr on the lagoon' },
+        d: { es: 'Una hora de kayak en la laguna de Pie de la Cuesta (firma de responsiva requerida).', en: 'One hour of kayaking on the Pie de la Cuesta lagoon (liability waiver required).' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. ¿Puedo rentar un kayak hoy?', en: 'Hi AcáFree! I\'m at La Orillita. Can I rent a kayak today?' } },
+      { ic: '🚣', col: '#16495e',
+        n: { es: 'Tour en Kayak · Recorrido Guiado', en: 'Guided Kayak Tour' },
+        pr: { es: '$450 por persona · Incluye desayuno completo', en: '$450 per person · Includes full breakfast' },
+        d: { es: 'Recorrido guiado por los manglares y canales de la laguna de Coyuca. Ve de cerca garzas, pelícanos, fragatas y más de 200 especies de aves.', en: 'Guided tour through the mangroves and channels of Coyuca Lagoon. See herons, pelicans, frigatebirds and over 200 bird species up close.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Me interesa el tour en kayak por la laguna de Coyuca. ¿A qué hora salen?', en: 'Hi AcáFree! I\'m at La Orillita. I\'m interested in the guided kayak tour. What time do you depart?' } },
+      { ic: '🏝', col: '#2563a8',
+        n: { es: 'Tour Isla Pie de la Cuesta', en: 'Pie de la Cuesta Island Tour' },
+        pr: { es: '$400 con desayuno · $200 solo recorrido (por persona)', en: '$400 with breakfast · $200 tour only (per person)' },
+        d: { es: 'Viaje a la isla de Pie de la Cuesta con playa de agua dulce. Renta banana o moto acuática, visita el cocodrilario y come platillos a la leña. Salida a las 12 del día.', en: 'Trip to the Pie de la Cuesta island with a freshwater beach. Rent a banana boat or jet ski, visit the crocodile sanctuary and eat wood-fired food. Departs at noon.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Quiero información del Tour Isla Pie de la Cuesta.', en: 'Hi AcáFree! I\'m at La Orillita. I\'d like info on the Pie de la Cuesta Island Tour.' } },
+      { ic: '🏄', col: '#0d7a8e',
+        n: { es: 'Paquete Isla Park + Desayuno', en: 'Isla Park Package + Breakfast' },
+        pr: { es: '$400 por persona', en: '$400 per person' },
+        d: { es: 'Incluye entrada a Isla Park y desayuno completo. Reserva con AcáFree.', en: 'Includes Isla Park entry and full breakfast. Book with AcáFree.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Me interesa el paquete Isla Park + Desayuno.', en: 'Hi AcáFree! I\'m at La Orillita. I\'m interested in the Isla Park + Breakfast package.' } },
+      { ic: '🐢', col: '#2d7a4f',
+        n: { es: 'Liberación de Tortugas', en: 'Turtle Release' },
+        pr: { es: '$600 con transporte · $500 sin transporte (por persona)', en: '$600 with transport · $500 without transport (per person)' },
+        d: { es: 'Desayuno a las 9 a.m. y a las 11–12 salida a la Barra de Coyuca para un paseo en lancha y la liberación de tortugas. En temporada (jul–dic).', en: 'Breakfast at 9 a.m., then at 11–12 we head to Barra de Coyuca for a boat ride and turtle release. In season (Jul–Dec).' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. ¿Cuándo es la próxima liberación de tortugas?', en: 'Hi AcáFree! I\'m at La Orillita. When is the next turtle release?' } },
+      { ic: '🌿', col: '#2d7a4f',
+        n: { es: 'Senderismo · El Veladero', en: 'Hiking · El Veladero' },
+        d: { es: 'Caminata guiada por el Parque Nacional El Veladero: bosque tropical, vistas al Pacífico e iguanas silvestres.', en: 'Guided hike through El Veladero National Park: tropical forest, Pacific views and wild iguanas.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. ¿Organizan salidas guiadas a El Veladero?', en: 'Hi AcáFree! I\'m at La Orillita. Do you run guided hikes to El Veladero?' } },
+      { ic: '🤿', col: '#0d7a8e',
+        n: { es: 'Snorkel', en: 'Snorkeling' },
+        d: { es: 'Snorkel en las aguas cristalinas de las islas de Acapulco. Equipo incluido.', en: 'Snorkeling in the crystal-clear waters around Acapulco\'s islands. Equipment included.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Quiero hacer snorkel, ¿qué opciones tienen?', en: 'Hi AcáFree! I\'m at La Orillita. I want to go snorkeling, what options do you have?' } }
+    ]
+  },
+  {
+    id: 'especiales',
+    label: { es: 'Experiencias Especiales · AcáFree', en: 'Special Experiences · AcáFree' },
+    items: [
+      { ic: '🧺', col: '#b85a3c',
+        n: { es: 'Picnic en la playa', en: 'Beach Picnic' },
+        d: { es: 'Picnic privado frente al Pacífico con canasta preparada y decoración. Ideal para parejas, cumpleaños o celebraciones.', en: 'Private picnic facing the Pacific with a prepared basket and decorations. Perfect for couples, birthdays or celebrations.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Me interesa un picnic en la playa, ¿qué incluye?', en: 'Hi AcáFree! I\'m at La Orillita. I\'m interested in a beach picnic, what\'s included?' } },
+      { ic: '💍', col: '#c9922a',
+        n: { es: 'Cásate Conmigo · Propuestas', en: '"Marry Me" · Proposals' },
+        d: { es: 'Tu propuesta de matrimonio en el atardecer más famoso de México: decoración, champaña y fotos.', en: 'Your marriage proposal at Mexico\'s most famous sunset: decorations, champagne and photos.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Quiero organizar una propuesta de matrimonio.', en: 'Hi AcáFree! I\'m at La Orillita. I want to plan a marriage proposal.' } },
+      { ic: '🎂', col: '#c9922a',
+        n: { es: 'Cumpleaños y Celebraciones', en: 'Birthdays & Celebrations' },
+        d: { es: 'Festeja en Pie de la Cuesta con decoración, pastel, música y experiencias para tus invitados.', en: 'Celebrate in Pie de la Cuesta with decorations, cake, music and experiences for your guests.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Quiero organizar un cumpleaños.', en: 'Hi AcáFree! I\'m at La Orillita. I want to plan a birthday.' } },
+      { ic: '📸', col: '#2563a8',
+        n: { es: 'Sesión de Fotografía + Dron', en: 'Photo Session + Drone' },
+        d: { es: 'Sesión profesional en las playas y la laguna de Pie de la Cuesta, con tomas aéreas en dron.', en: 'Professional photo session on the beaches and lagoon of Pie de la Cuesta, with aerial drone shots.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Me interesa una sesión de fotos con dron.', en: 'Hi AcáFree! I\'m at La Orillita. I\'m interested in a drone photo session.' } },
+      { ic: '🎻', col: '#8a5a3c',
+        n: { es: 'Serenata con Violinista', en: 'Violin Serenade' },
+        d: { es: 'Sorprende a tu pareja con una serenata en vivo al atardecer frente al Pacífico.', en: 'Surprise your partner with a live serenade at sunset facing the Pacific.' },
+        msg: { es: '¡Hola AcáFree! Vengo de La Orillita. Quiero contratar una serenata con violinista.', en: 'Hi AcáFree! I\'m at La Orillita. I want to book a violin serenade.' } }
+    ]
+  }
+];
+
+let lang = (()=>{try{return localStorage.getItem('orillita-lang')||((navigator.language||'es').startsWith('en')?'en':'es')}catch(e){return 'es'}})();
+let cardCounter = 0;
+
+function waLink(msg){ return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`; }
+
+function render(){
+  const es = lang==='es';
+  document.getElementById('hSub').textContent = es ? 'Turismo de Aventura' : 'Adventure Tourism';
+  document.getElementById('intro').textContent = es
+    ? 'Tours y experiencias cerca de La Orillita, en Pie de la Cuesta. Tours por AcáFree.'
+    : 'Tours and experiences near La Orillita in Pie de la Cuesta. Tours by AcáFree.';
+  document.getElementById('esBtn').className = 'lang-btn'+(lang==='es'?' on':'');
+  document.getElementById('enBtn').className = 'lang-btn'+(lang==='en'?' on':'');
+  document.documentElement.lang = lang;
+
+  cardCounter = 0;
+  let html = '';
+  SECTIONS.forEach(sec => {
+    html += `<div class="section-hd"><span>${es ? sec.label.es : sec.label.en}</span></div>`;
+    sec.items.forEach(a => {
+      cardCounter++;
+      const num = String(cardCounter).padStart(2,'0');
+      const waBtn = a.msg
+        ? `<a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">💬 ${es?'Reservar con AcáFree':'Book with AcáFree'} ›</a>`
+        : '';
+      html += `
+        <div class="card">
+          <div class="card-accent" style="background:${a.col}"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-num">${num}</span>
+              <span class="card-icon">${a.ic}</span>
+              <div class="card-info">
+                <div class="card-name">${es?a.n.es:a.n.en}</div>
+                ${a.pr ? `<div class="card-pr">${es?a.pr.es:a.pr.en}</div>` : ''}
+              </div>
+            </div>
+            <p class="card-desc">${es?a.d.es:a.d.en}</p>
+            ${waBtn}
+          </div>
+        </div>`;
+    });
+  });
+
+  document.getElementById('cards').innerHTML = html;
+}
+
+function setLang(l){ lang=l; try{localStorage.setItem('orillita-lang',l)}catch(e){} render(); }
+render();
+</script>
+</body>
+</html>

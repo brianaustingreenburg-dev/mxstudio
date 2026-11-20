@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Paseos en lancha · La Orillita</title>
+<meta name="theme-color" content="#120e0a">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#f5c46a;--pink:#e8407a;--navy:#120e0a;--navylt:#1f1812;
+  --wave:#5bc8dc;--text:#f5f0ea;--muted:#a3968a;--border:rgba(201,146,42,.25);
+}
+html{background:var(--navy)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--navy);overflow-x:hidden}
+.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--navy);box-shadow:0 0 80px rgba(0,0,0,.6)}
+
+/* header */
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--navylt);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.back{background:none;border:none;color:var(--yellow);font-size:1.3rem;cursor:pointer;padding:0 4px;line-height:1;-webkit-tap-highlight-color:transparent;text-decoration:none}
+.topbar-logo{width:40px;height:40px;object-fit:contain;border-radius:8px;background:var(--yellow);flex-shrink:0}
+.topbar h1{font-size:1rem;font-weight:800;color:var(--text);flex:1;line-height:1.1}
+.topbar h1 span{display:block;font-size:.65rem;font-weight:400;color:var(--wave);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:3px 9px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif}
+.lang-btn.on{color:var(--yellow);border-color:var(--yellow)}
+
+/* intro */
+.intro{padding:14px 16px 4px;font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:10px;padding:12px 16px 32px}
+.card{background:var(--navylt);border-radius:14px;overflow:hidden;display:flex;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.card-accent{width:5px;flex-shrink:0}
+.card-body{flex:1;padding:14px 14px 12px}
+.card-top{display:flex;align-items:flex-start;gap:10px}
+.card-num{font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.06em;width:22px;flex-shrink:0;padding-top:3px}
+.card-icon{font-size:1.5rem;flex-shrink:0}
+.card-info{flex:1}
+.card-name{font-size:1rem;font-weight:700;line-height:1.25;color:var(--text)}
+.card-pr{font-size:.68rem;color:var(--yellow);letter-spacing:.05em;margin-top:2px}
+.card-desc{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:8px}
+.card-wa{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(245,233,74,.1);border:1px solid rgba(245,233,74,.4);color:#f5e94a;font-size:.75rem;font-weight:600;padding:7px 14px;border-radius:50px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.card-wa:active{opacity:.7}
+
+/* section header */
+.section-hd{padding:16px 16px 4px;display:flex;align-items:center;gap:8px}
+.section-hd span{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.section-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* credit */
+.credit{text-align:center;padding:0 0 28px;opacity:.35}
+.credit a{color:var(--muted);font-size:.65rem;text-decoration:none;letter-spacing:.05em}
+.credit strong{color:var(--yellow)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topbar">
+  <a class="back" href="../">‹</a>
+  <span class="topbar-logo" style="display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:#f6ecd6">🚤</span>
+  <h1>La Orillita<span id="hSub">Paseos en lancha</span></h1>
+  <button class="lang-btn" onclick="location.reload()" title="Refresh" style="margin-right:4px">↻</button>
+  <button class="lang-btn on" id="esBtn" onclick="setLang('es')">ES</button>
+  <span style="color:#333;font-size:.7rem;padding:0 2px">|</span>
+  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+</div>
+
+<div style="height:44vw;max-height:260px;background:url('../img/lancha.jpg') center/cover"></div>
+<p class="intro" id="intro">Experiencias y aventuras en Pie de la Cuesta y Acapulco.</p>
+
+<div class="cards" id="cards"></div>
+
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> ✝ · myjefetech.app</a>
+</div>
+
+</div>
+
+<script>
+let WA = '';
+const SECTIONS = [
+  {
+    id: 'lanchas',
+    label: { es: 'Recorridos en lancha', en: 'Boat tours' },
+    items: [
+      { ic: '🚤', col: '#16495e',
+        n: { es: 'Paseo por la laguna de Coyuca', en: 'Coyuca Lagoon boat ride' },
+        pr: { es: 'Pregunta precios y horarios', en: 'Ask for prices and times' },
+        d: { es: 'Recorre en lancha una de las lagunas más bonitas de Guerrero, rodeada de palmeras y montañas. Sale desde la orilla, a unos pasos del restaurante.', en: 'Cruise one of the most beautiful lagoons in Guerrero, surrounded by palm trees and mountains. Leaves from the shore, steps from the restaurant.' },
+        msg: { es: '¡Hola La Orillita! Me interesa un paseo en lancha por la laguna. ¿Precio y horarios?', en: 'Hi La Orillita! I\'d like a boat ride on the lagoon. Price and times?' } },
+      { ic: '🌿', col: '#2d7a4f',
+        n: { es: 'Manglares y aves', en: 'Mangroves & birds' },
+        pr: { es: 'Pregunta precios y horarios', en: 'Ask for prices and times' },
+        d: { es: 'Entra por los canales de manglar y ve garzas, pelícanos y fragatas de cerca. Mejor temprano en la mañana.', en: 'Go through the mangrove channels and see herons, pelicans and frigatebirds up close. Best early in the morning.' },
+        msg: { es: '¡Hola La Orillita! Me interesa el recorrido por los manglares. ¿Precio y horarios?', en: 'Hi La Orillita! I\'m interested in the mangrove boat tour. Price and times?' } },
+      { ic: '🏝', col: '#2563a8',
+        n: { es: 'Isla de la laguna', en: 'Lagoon island' },
+        pr: { es: 'Pregunta precios y horarios', en: 'Ask for prices and times' },
+        d: { es: 'Lancha a la isla de la laguna: playa de agua dulce, cocodrilario y comida a la leña.', en: 'Boat to the lagoon island: freshwater beach, crocodile sanctuary and wood-fired food.' },
+        msg: { es: '¡Hola La Orillita! ¿Hacen viaje en lancha a la isla de la laguna? ¿Precio?', en: 'Hi La Orillita! Do you do boat trips to the lagoon island? Price?' } },
+      { ic: '🌅', col: '#c9922a',
+        n: { es: 'Paseo al atardecer', en: 'Sunset boat ride' },
+        pr: { es: 'Pregunta precios y horarios', en: 'Ask for prices and times' },
+        d: { es: 'Ve caer el sol desde el agua, con las montañas reflejadas en la laguna. Sale alrededor de las 5:30 pm.', en: 'Watch the sun go down from the water, with the mountains reflected in the lagoon. Leaves around 5:30 pm.' },
+        msg: { es: '¡Hola La Orillita! Me interesa el paseo en lancha al atardecer. ¿Precio?', en: 'Hi La Orillita! I\'m interested in the sunset boat ride. Price?' } },
+      { ic: '🎣', col: '#8a5a3c',
+        n: { es: 'Pesca en la laguna', en: 'Lagoon fishing' },
+        pr: { es: 'Pregunta precios y horarios', en: 'Ask for prices and times' },
+        d: { es: 'Sal a pescar con un lanchero local que conoce los mejores puntos de la laguna.', en: 'Go fishing with a local boatman who knows the best spots on the lagoon.' },
+        msg: { es: '¡Hola La Orillita! Me interesa salir a pescar en lancha. ¿Precio?', en: 'Hi La Orillita! I\'d like to go fishing by boat. Price?' } },
+      { ic: '👨‍👩‍👧', col: '#0d7a8e',
+        n: { es: 'Lancha privada para grupos', en: 'Private boat for groups' },
+        pr: { es: 'Precio según recorrido y personas', en: 'Price by route and group size' },
+        d: { es: 'Renta la lancha para tu familia o grupo y arma tu propio recorrido por la laguna.', en: 'Rent the boat for your family or group and plan your own route on the lagoon.' },
+        msg: { es: '¡Hola La Orillita! Quiero rentar una lancha privada para un grupo. ¿Precio?', en: 'Hi La Orillita! I\'d like to rent a private boat for a group. Price?' } }
+    ]
+  }
+];
+
+let lang = (()=>{try{return localStorage.getItem('orillita-lang')||((navigator.language||'es').startsWith('en')?'en':'es')}catch(e){return 'es'}})();
+let cardCounter = 0;
+
+function waLink(msg){ return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`; }
+
+function render(){
+  const es = lang==='es';
+  document.getElementById('hSub').textContent = es ? 'Paseos en lancha' : 'Boat rides';
+  document.getElementById('intro').textContent = es
+    ? 'Paseos en lancha por la laguna de Coyuca, saliendo desde La Orillita.'
+    : 'Boat rides on Coyuca Lagoon, leaving from La Orillita.';
+  document.getElementById('esBtn').className = 'lang-btn'+(lang==='es'?' on':'');
+  document.getElementById('enBtn').className = 'lang-btn'+(lang==='en'?' on':'');
+  document.documentElement.lang = lang;
+
+  cardCounter = 0;
+  let html = '';
+  SECTIONS.forEach(sec => {
+    html += `<div class="section-hd"><span>${es ? sec.label.es : sec.label.en}</span></div>`;
+    sec.items.forEach(a => {
+      cardCounter++;
+      const num = String(cardCounter).padStart(2,'0');
+      const waBtn = a.msg
+        ? (WA ? `<a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">💬 ${es?'Reservar por WhatsApp':'Book via WhatsApp'} ›</a>` : `<span class="card-wa">🙋 ${es?'Pregunta a tu mesero':'Ask your waiter'}</span>`)
+        : '';
+      html += `
+        <div class="card">
+          <div class="card-accent" style="background:${a.col}"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-num">${num}</span>
+              <span class="card-icon">${a.ic}</span>
+              <div class="card-info">
+                <div class="card-name">${es?a.n.es:a.n.en}</div>
+                ${a.pr ? `<div class="card-pr">${es?a.pr.es:a.pr.en}</div>` : ''}
+              </div>
+            </div>
+            <p class="card-desc">${es?a.d.es:a.d.en}</p>
+            ${waBtn}
+          </div>
+        </div>`;
+    });
+  });
+
+  document.getElementById('cards').innerHTML = html;
+}
+
+function setLang(l){ lang=l; try{localStorage.setItem('orillita-lang',l)}catch(e){} render(); }
+render();
+// WhatsApp of the restaurant: activation link (?a=) or config.json
+function setWA(n){n=String(n||'').replace(/\D/g,'');if(n.length===10)n='52'+n;if(n.length>=12){WA=n;render()}}
+try{const a=new URLSearchParams(location.search).get('a');if(a){setWA(JSON.parse(decodeURIComponent(escape(atob(a.replace(/-/g,'+').replace(/_/g,'/'))))).w)}}catch(e){}
+fetch('../config.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(c=>{if(c&&c.whatsapp)setWA(c.whatsapp)}).catch(()=>{});
+</script>
+</body>
+</html>
