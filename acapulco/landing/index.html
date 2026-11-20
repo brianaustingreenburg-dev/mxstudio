@@ -390,18 +390,64 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
     <p style="font-size:.88em;color:var(--muted);margin-bottom:16px;line-height:1.6" class="es">Restaurante, hotel, beach club, actividad — tu propia página de hub. Otros negocios pagan para aparecer en tu hub.</p>
     <p style="font-size:.88em;color:var(--muted);margin-bottom:16px;line-height:1.6" class="en">Restaurant, hotel, beach club, activity — your own branded hub. Other businesses pay to be listed on your hub.</p>
 
-    <!-- CHRISTMAS PROMO -->
-    <div style="background:linear-gradient(135deg,rgba(201,146,42,.12),rgba(201,146,42,.05));border:1px solid rgba(201,146,42,.45);border-radius:2px;padding:18px 20px;margin-bottom:22px">
-      <p style="font-size:.62em;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:6px">🎄 Oferta Navideña · Christmas Offer</p>
-      <p class="es" style="font-size:.88em;color:var(--ink2);line-height:1.6"><strong style="color:var(--ink)">Compra antes de Navidad — tu negocio aparece en el Hub de Acapulco durante toda la temporada navideña.</strong> Llega a los turistas que ya están en la zona, gratis.</p>
-      <p class="en" style="font-size:.88em;color:var(--ink2);line-height:1.6"><strong style="color:var(--ink)">Buy before Christmas — your business gets listed on the Acapulco Hub for the entire Christmas season.</strong> Reach tourists already in the area, at no extra cost.</p>
+    <!-- SEASONAL HUB PLACEMENT PRICING -->
+    <div style="border:1px solid var(--line2);border-radius:2px;overflow:hidden;margin-bottom:22px">
+
+      <!-- Christmas — FREE banner -->
+      <div style="background:var(--ink);color:var(--paper);padding:18px 22px">
+        <p style="font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass2);margin-bottom:6px">🎄 Temporada Navideña · Christmas Season</p>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
+          <span style="font-family:var(--serif);font-style:italic;font-size:2.4em;color:#fff">GRATIS</span>
+          <span style="font-size:.78em;color:rgba(255,255,255,.5)" class="es">· FREE</span>
+          <span style="font-size:.78em;color:rgba(255,255,255,.5)" class="en">· GRATIS</span>
+        </div>
+        <p class="es" style="font-size:.82em;color:rgba(255,255,255,.65);line-height:1.5">Compra tu app antes de Navidad y tu negocio aparece en el Hub de Acapulco toda la temporada navideña — sin costo.</p>
+        <p class="en" style="font-size:.82em;color:rgba(255,255,255,.65);line-height:1.5">Buy your app before Christmas and your business appears on the Acapulco Hub all Christmas season — at no charge.</p>
+      </div>
+
+      <!-- The 4 seasons -->
+      <div style="background:var(--paper);padding:18px 22px 6px">
+        <p style="font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass);margin-bottom:14px" class="es">Temporadas en Acapulco · $100 MXN c/u</p>
+        <p style="font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass);margin-bottom:14px" class="en">Acapulco Seasons · $100 MXN each</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">🎄</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Navidad</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Christmas</p>
+            <p style="font-size:.72em;color:var(--muted)">Dic–Ene</p>
+            <p style="font-size:.72em;color:#2a9962;font-weight:700;margin-top:4px" class="es">✦ GRATIS primer año</p>
+            <p style="font-size:.72em;color:#2a9962;font-weight:700;margin-top:4px" class="en">✦ FREE first year</p>
+          </div>
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">🌸</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Semana Santa</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Easter</p>
+            <p style="font-size:.72em;color:var(--muted)">Mar–Abr</p>
+            <p style="font-size:.72em;color:var(--brass);font-weight:700;margin-top:4px">$100 MXN</p>
+          </div>
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">☀️</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Verano</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Summer</p>
+            <p style="font-size:.72em;color:var(--muted)">Jul–Ago</p>
+            <p style="font-size:.72em;color:var(--brass);font-weight:700;margin-top:4px">$100 MXN</p>
+          </div>
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">🎉</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Puentes &amp; Fiestas</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Long Weekends</p>
+            <p style="font-size:.72em;color:var(--muted)">Sep–Oct</p>
+            <p style="font-size:.72em;color:var(--brass);font-weight:700;margin-top:4px">$100 MXN</p>
+          </div>
+        </div>
+        <p style="font-size:.75em;color:var(--muted);border-left:2px solid var(--brass2);padding-left:10px;line-height:1.55;margin-bottom:18px">
+          <span class="es">Año 1: Navidad gratis + 3 temporadas = <strong style="color:var(--ink)">$300 MXN</strong>. El precio por temporada sube cada año.</span>
+          <span class="en">Year 1: Christmas free + 3 seasons = <strong style="color:var(--ink)">$300 MXN</strong>. Season price increases each year.</span>
+        </p>
+      </div>
     </div>
 
     <div style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;position:relative">
-      <div style="position:absolute;top:-11px;left:28px;background:var(--ink);color:var(--paper);padding:3px 14px;font-size:.65em;font-weight:700;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap">
-        <span class="es">✦ Sin mensualidad el primer año</span>
-        <span class="en">✦ No monthly fee — first year</span>
-      </div>
       <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$8,500<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
       <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="es">Pago único · Todo incluido · Sin mensualidades el primer año</p>
       <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="en">One-time · Everything included · No monthly fees year one</p>
