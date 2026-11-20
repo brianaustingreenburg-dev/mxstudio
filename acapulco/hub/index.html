@@ -506,6 +506,20 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .biz-photo-soon{background:linear-gradient(135deg,rgba(201,146,42,.08),rgba(201,146,42,.03));display:flex;align-items:center;justify-content:center;font-size:2rem}
 .biz-photo-soon::after{content:'🌊'}
 /* ── end biz cards ── */
+/* ── AcáFree activities ── */
+.acafree-banner{padding:0 20px 16px;text-align:center}
+@media(min-width:600px){.acafree-banner{padding:0 28px 20px}}
+.acafree-badge{display:inline-block;background:linear-gradient(135deg,rgba(201,146,42,.18),rgba(201,146,42,.08));border:1px solid rgba(201,146,42,.4);color:var(--gold-lt);font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:7px 14px;border-radius:999px}
+.acafree-grid{padding:0 20px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:600px){.acafree-grid{grid-template-columns:repeat(3,1fr);padding:0 28px 36px;gap:14px}}
+@media(min-width:900px){.acafree-grid{grid-template-columns:repeat(4,1fr);padding:0 32px 40px}}
+.acafree-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.acafree-ico{font-size:1.6rem;line-height:1}
+.acafree-name{font-family:var(--serif);font-size:1rem;font-weight:500;line-height:1.2;color:var(--text)}
+.acafree-detail{font-size:.68rem;color:var(--muted);line-height:1.4;flex:1}
+.acafree-wa{display:inline-flex;align-items:center;gap:5px;margin-top:6px;background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:700;padding:6px 11px;border-radius:8px;text-decoration:none;align-self:flex-start}
+.acafree-wa:hover{opacity:.82}
+/* ── end AcáFree ── */
 .act-cards{padding:0 22px 4px}
 .act-card{
   padding:22px 0;
@@ -818,8 +832,67 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 </div>
 
+<!-- ══════════════════════════════════════
+     ACÁFREE ACTIVITIES
+══════════════════════════════════════ -->
+<div class="sec-label">
+  <span>AcáFree · Actividades Gratis</span>
+</div>
+<div class="acafree-banner">
+  <span class="acafree-badge">🎄 Gratis · Temporada Navideña · Free · Christmas Season</span>
+</div>
+<div class="acafree-grid">
 
+  <div class="acafree-card">
+    <div class="acafree-ico">🔥</div>
+    <div class="acafree-name">Fogata AcáFree</div>
+    <div class="acafree-detail">Pie de la Cuesta · 7:30 pm</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hola%2C%20quiero%20info%20sobre%20la%20fogata%20AcáFree" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 
+  <div class="acafree-card">
+    <div class="acafree-ico">🌅</div>
+    <div class="acafree-name">Mejor Atardecer de México</div>
+    <div class="acafree-detail">Pie de la Cuesta · Best Sunset in Mexico</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🏖️</div>
+    <div class="acafree-name">Playa Pie de la Cuesta</div>
+    <div class="acafree-detail">Océano Pacífico · Pacific Ocean</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🦅</div>
+    <div class="acafree-name">Aves en la Laguna de Coyuca</div>
+    <div class="acafree-detail">Laguna de Coyuca · Bird watching</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🌿</div>
+    <div class="acafree-name">Parque Nacional El Veladero</div>
+    <div class="acafree-detail">Acapulco · Hiking &amp; nature</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🚶</div>
+    <div class="acafree-name">Costera Miguel Alemán</div>
+    <div class="acafree-detail">Acapulco · Oceanfront boardwalk</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🌺</div>
+    <div class="acafree-name">Jardín Botánico de Acapulco</div>
+    <div class="acafree-detail">Acapulco · Botanical garden</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">⛪</div>
+    <div class="acafree-name">Zócalo y Catedral</div>
+    <div class="acafree-detail">Centro Histórico · Historic downtown</div>
+  </div>
+
+</div>
 
 </div><!-- /page-wrap -->
 
