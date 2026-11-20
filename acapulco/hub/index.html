@@ -79,10 +79,13 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* Top bar: logo + lang */
 .hero-bar{
-  position:absolute;top:0;left:0;right:0;z-index:3;
+  position:sticky;top:0;left:0;right:0;z-index:20;
   display:flex;align-items:center;justify-content:space-between;
-  padding:calc(14px + env(safe-area-inset-top)) 20px 14px;
+  padding:calc(10px + env(safe-area-inset-top)) 20px 10px;
   padding-right:max(20px,env(safe-area-inset-right,0px));
+  background:rgba(6,8,15,.72);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,146,42,.18);
 }
 @media(min-width:900px){
   .hero-bar,.hero-content{max-width:900px;margin-left:auto;margin-right:auto;left:0;right:0;padding-left:32px;padding-right:32px}
@@ -726,6 +729,25 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 </div>
 
 <!-- ══════════════════════════════════════
+     STICKY TOP BAR (always visible)
+══════════════════════════════════════ -->
+<div class="hero-bar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="../landing/" aria-label="Volver" style="display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-size:22px;line-height:1;flex-shrink:0;font-weight:300">←</a>
+    <button type="button" onclick="location.reload()" aria-label="Actualizar / Refresh" title="Actualizar / Refresh" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,146,42,.5);color:#f5c46a"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><polyline points="21 3 21 9 15 9"></polyline></svg></button>
+    <div class="lang-sw" id="langSw" data-l="es" onclick="toggleLang()">
+      <div class="knob"></div>
+      <span class="es-lbl">ES</span>
+      <span class="en-lbl">EN</span>
+    </div>
+  </div>
+  <div class="hero-brand" style="text-align:right">
+    Comunidad ✝️
+    <small id="hdrSub">MX Studio · Demo</small>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
      CINEMATIC HERO
 ══════════════════════════════════════ -->
 <div class="hero" id="hero">
@@ -735,23 +757,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
   <!-- gradient overlay -->
   <div class="hero-overlay"></div>
-
-  <!-- top bar -->
-  <div class="hero-bar">
-    <div style="display:flex;align-items:center;gap:10px">
-      <a href="../landing/" aria-label="Volver" style="display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-size:22px;line-height:1;flex-shrink:0;font-weight:300">←</a>
-      <button type="button" onclick="location.reload()" aria-label="Actualizar / Refresh" title="Actualizar / Refresh" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(245,196,106,.35);color:#f5c46a"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><polyline points="21 3 21 9 15 9"></polyline></svg></button>
-      <div class="lang-sw" id="langSw" data-l="es" onclick="toggleLang()">
-        <div class="knob"></div>
-        <span class="es-lbl">ES</span>
-        <span class="en-lbl">EN</span>
-      </div>
-    </div>
-    <div class="hero-brand" style="text-align:right">
-      Comunidad ✝️
-      <small id="hdrSub">MX Studio · Demo</small>
-    </div>
-  </div>
 
   <!-- bottom content -->
   <div class="hero-content">
