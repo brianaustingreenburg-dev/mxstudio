@@ -281,56 +281,192 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="sec" id="precios" style="background:var(--paper)">
-  <div class="sec-eyebrow es">Precios</div>
-  <div class="sec-eyebrow en">Pricing</div>
-  <h2 class="es">Transparente.<br><em>Sin sorpresas.</em></h2>
-  <h2 class="en">Transparent.<br><em>No surprises.</em></h2>
-  <p class="sec-lead es">Todo en pesos mexicanos. Opciones de pago disponibles — 50% de enganche, el resto con MX Studio.</p>
-  <p class="sec-lead en">Everything in Mexican pesos. Payment options available — 50% down, the rest with MX Studio.</p>
+<!-- ══════════════════════════════════════
+     PRICING — full interactive section
+     ══════════════════════════════════════ -->
+<div id="precios" style="background:var(--bone)">
 
-  <div class="pricing-grid">
-    <div class="pkg">
-      <div class="pkg-eye es">Hub Digital</div>
-      <div class="pkg-eye en">Digital Hub</div>
-      <h3 class="es">Tu propio hub</h3>
-      <h3 class="en">Your own hub</h3>
-      <div class="pkg-price">$8,500</div>
-      <div class="pkg-freq es">MXN · pago único</div>
-      <div class="pkg-freq en">MXN · one-time payment</div>
-      <div class="pkg-badge green es">Sin mensualidad el primer año</div>
-      <div class="pkg-badge green en">No monthly fee year one</div>
-      <p class="pkg-desc es">Hub completo con tu menú, fotos, horarios, QR, apps para clientes, Google Maps y soporte directo.</p>
-      <p class="pkg-desc en">Full hub with your menu, photos, hours, QR code, guest apps, Google Maps setup and direct support.</p>
-      <p style="font-size:.78em;color:var(--muted)"><em class="es">Opciones de pago: 3 × $2,833 · 6 × $1,417</em><em class="en">Payment options: 3 × $2,833 · 6 × $1,417</em></p>
-    </div>
+  <!-- section header -->
+  <div style="padding:72px max(28px,env(safe-area-inset-left,0px)) 0">
+    <div class="sec-eyebrow es">Precios</div>
+    <div class="sec-eyebrow en">Pricing</div>
+    <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(2.2em,8vw,3.4em);line-height:1.02;letter-spacing:-.01em;margin-bottom:14px" class="es">Tu negocio.<br><em style="font-style:italic;color:var(--brass)">Tu app. Tu panel.</em></h2>
+    <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(2.2em,8vw,3.4em);line-height:1.02;letter-spacing:-.01em;margin-bottom:14px" class="en">Your business.<br><em style="font-style:italic;color:var(--brass)">Your app. Your panel.</em></h2>
+    <p style="font-size:.92em;color:var(--muted);line-height:1.7;max-width:42ch;margin-bottom:18px" class="es">Todo en pesos mexicanos. Pago único, listo en 24 horas.</p>
+    <p style="font-size:.92em;color:var(--muted);line-height:1.7;max-width:42ch;margin-bottom:18px" class="en">Everything in Mexican pesos. One-time payment, ready in 24 hours.</p>
+    <p style="font-size:.82em;color:var(--muted);border-left:2px solid var(--brass2);padding-left:12px;line-height:1.6;margin-bottom:48px">
+      <span class="es">💳 Opciones de pago disponibles — 50% de enganche, el resto en mensualidades acordadas con MX Studio.</span>
+      <span class="en">💳 Payment options available — 50% down, remaining balance in monthly payments arranged with MX Studio.</span>
+    </p>
+  </div>
 
-    <div class="pkg featured">
-      <div class="pkg-eye es">Marketing y Publicidad</div>
-      <div class="pkg-eye en">Marketing & Ads</div>
-      <h3 class="es">Colocación en hubs</h3>
-      <h3 class="en">Hub placement</h3>
-      <div class="pkg-price">$12,000</div>
-      <div class="pkg-freq es">MXN · por año, por hub</div>
-      <div class="pkg-freq en">MXN · per year, per hub</div>
-      <p class="pkg-desc es">Tu negocio aparece en hubs de hoteles, resorts y restaurantes de Acapulco. Los turistas te ven cuando ya están en la ciudad.</p>
-      <p class="pkg-desc en">Your business appears in hotel, resort and restaurant hubs across Acapulco. Tourists see you when they're already in town.</p>
-    </div>
-
-    <div class="pkg">
-      <div class="pkg-eye es">Plan completo</div>
-      <div class="pkg-eye en">Full plan</div>
-      <h3>Concierge Pro</h3>
-      <div class="pkg-price">$5,500</div>
-      <div class="pkg-freq es">MXN · por año</div>
-      <div class="pkg-freq en">MXN · per year</div>
-      <p class="pkg-desc es">Hub + dominio personalizado + todas las apps gratis para huéspedes + configuración Google Maps + soporte prioritario.</p>
-      <p class="pkg-desc en">Hub + custom domain + all free guest apps + Google Maps setup + priority support.</p>
-      <p style="font-size:.78em;color:var(--muted)"><em class="es">💳 50% enganche · mensualidades acordadas</em><em class="en">💳 50% down · monthly payments arranged</em></p>
+  <!-- GOOGLE PITCH -->
+  <div style="padding:0 max(28px,env(safe-area-inset-left,0px)) 32px">
+    <div style="background:var(--paper);border:1px solid var(--line2);padding:26px 28px">
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:10px">📍 Google Maps</p>
+      <p class="es" style="font-size:.92em;color:var(--ink2);line-height:1.65">Cuando un turista te busca en Google Maps y toca "Sitio web" — ve <strong style="color:var(--ink)">tu marca</strong>: menú, habitaciones, WiFi, reservas y tus <strong style="color:var(--ink)">Gift Apps incluidas</strong>. Todo bajo tu nombre, con tu propio <strong style="color:var(--ink)">Panel de Control</strong>.</p>
+      <p class="en" style="font-size:.92em;color:var(--ink2);line-height:1.65">When a tourist finds you on Google Maps and taps "Website" — they see <strong style="color:var(--ink)">your brand</strong>: menu, rooms, WiFi, reservations and your <strong style="color:var(--ink)">included Gift Apps</strong>. All under your name, with your own <strong style="color:var(--ink)">Owner's Panel</strong>.</p>
     </div>
   </div>
-</section>
+
+  <!-- STEP 1: APP -->
+  <div style="padding:0 max(28px,env(safe-area-inset-left,0px)) 0" id="secApp">
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="es">Paso 1 · Tu app</p>
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="en">Step 1 · Your app</p>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:6px" class="es">Gift Apps by MX Studio</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:6px" class="en">Gift Apps by MX Studio</h3>
+    <p style="font-size:.85em;color:var(--muted);margin-bottom:20px" class="es">Pago único. Lista en 24 horas.</p>
+    <p style="font-size:.85em;color:var(--muted);margin-bottom:20px" class="en">One-time payment. Ready in 24 hours.</p>
+
+    <div id="app-main" onclick="selectApp()" style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;cursor:pointer;transition:border-color .2s;margin-bottom:6px">
+      <p style="font-size:1.5em;margin-bottom:12px">🏨</p>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="es">App Negocio + Panel de Control</h4>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="en">Business App + Owner's Panel</h4>
+      <p style="font-size:.78em;color:var(--brass);margin-bottom:14px" class="es">Restaurantes · Bares · Hoteles · Tiendas</p>
+      <p style="font-size:.78em;color:var(--brass);margin-bottom:14px" class="en">Restaurants · Bars · Hotels · Local Shops</p>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$3,000<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
+      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="es">✓ Pago único — sin mensualidades</p>
+      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="en">✓ One-time payment — no monthly fees</p>
+      <div style="border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</span><span class="es"><strong>Hub de Negocio Completo</strong> — Menú con fotos, WiFi, reservas, reseñas y lealtad</span><span class="en"><strong>Full Business Hub</strong> — Photo menu, WiFi, reservations, Google reviews &amp; loyalty</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</span><span class="es"><strong>App de Idiomas integrada</strong> — Guía interactiva para tus clientes</span><span class="en"><strong>Built-In Language App</strong> — Interactive guide for your guests</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</span><span class="es"><strong>App de Seguridad Turística</strong> — Info de emergencia en un toque</span><span class="en"><strong>Tourist Safety App</strong> — Emergency tools in one tap</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">4</span><span class="es"><strong>Panel de Control del Dueño</strong> — Edita precios, menús y fotos desde tu teléfono</span><span class="en"><strong>Owner's Control Panel</strong> — Edit prices, menus and photos from your phone</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">5</span><span class="es"><strong>Códigos QR personalizados</strong> — Listos para imprimir para tus mesas</span><span class="en"><strong>Custom QR Codes</strong> — Ready-to-print for your tables or rooms</span></div>
+      </div>
+      <button id="app-sel-btn" style="width:100%;padding:14px;border:1.5px solid var(--line2);background:transparent;color:var(--ink);font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">
+        <span class="es">Seleccionar →</span><span class="en">Select →</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 2: SUPPORT -->
+  <div style="padding:40px max(28px,env(safe-area-inset-left,0px)) 0" id="secPkg">
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="es">Paso 2 · Soporte (opcional)</p>
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="en">Step 2 · Care (optional)</p>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:16px" class="es">¿Cuánto cuidado necesita tu app?</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:16px" class="en">How much care does your app need?</h3>
+
+    <div id="pkg-concierge" onclick="selectPkg('concierge')" style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;cursor:pointer;transition:border-color .2s;position:relative;margin-bottom:12px">
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px">Concierge Pro</p>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.4em;line-height:1;color:var(--brass);margin-bottom:4px">$5,500<span style="font-size:.35em;font-style:normal;color:var(--muted)" class="es"> MXN/año</span><span style="font-size:.35em;font-style:normal;color:var(--muted)" class="en"> MXN/year</span></div>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="es">¿Demasiado ocupado? Mándanos fotos por WhatsApp y nosotros lo hacemos.</p>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="en">Too busy? Text us on WhatsApp and we handle everything for you.</p>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px">
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Concierge manos libres vía WhatsApp — subimos fotos y precios por ti</span><span class="en">Hands-free WhatsApp concierge — we resize, translate &amp; publish for you</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Acceso instantáneo a nuevas funciones al lanzarse</span><span class="en">Instant access to every new feature as it launches</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Soporte prioritario por WhatsApp en 24 hr</span><span class="en">24-hr priority WhatsApp support</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Configuración en Google Maps — aparece cuando te buscan</span><span class="en">Google Maps Setup — show up when guests search for you</span></div>
+      </div>
+      <button style="width:100%;padding:14px;border:1.5px solid var(--line2);background:transparent;color:var(--ink);font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">
+        <span class="es">Seleccionar →</span><span class="en">Select →</span>
+      </button>
+    </div>
+
+    <p style="font-size:.8em;color:var(--muted);border-left:2px solid var(--brass2);padding-left:12px;line-height:1.6;margin-bottom:12px">
+      <span class="es">💳 MX Studio ofrece opciones de pago — 50% de enganche, después mensualidades acordadas entre MX Studio y el dueño.</span>
+      <span class="en">💳 MX Studio offers payment options — 50% down, then monthly payments arranged between MX Studio and the owner.</span>
+    </p>
+
+    <p id="skipPkg" onclick="selectPkg(null)" style="text-align:center;font-size:.82em;color:var(--muted);cursor:pointer;text-decoration:underline;padding:12px 0">
+      <span class="es">No por ahora →</span><span class="en">No thanks, skip →</span>
+    </p>
+  </div>
+
+  <!-- MARKETING HUB -->
+  <div style="padding:40px max(28px,env(safe-area-inset-left,0px)) 0">
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="es">Marketing Hub</p>
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="en">Marketing Hub</p>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:8px" class="es">Tu hub, tu marca</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:8px" class="en">Your hub, your brand</h3>
+    <p style="font-size:.88em;color:var(--muted);margin-bottom:22px;line-height:1.6" class="es">Restaurante, hotel, beach club, actividad — tu propia página de hub. Otros negocios pagan para aparecer en tu hub.</p>
+    <p style="font-size:.88em;color:var(--muted);margin-bottom:22px;line-height:1.6" class="en">Restaurant, hotel, beach club, activity — your own branded hub. Other businesses pay to be listed on your hub.</p>
+
+    <div style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;position:relative">
+      <div style="position:absolute;top:-11px;left:28px;background:var(--ink);color:var(--paper);padding:3px 14px;font-size:.65em;font-weight:700;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap">
+        <span class="es">✦ Sin mensualidad el primer año</span>
+        <span class="en">✦ No monthly fee — first year</span>
+      </div>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$8,500<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="es">Pago único · Todo incluido · Sin mensualidades el primer año</p>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="en">One-time · Everything included · No monthly fees year one</p>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px">
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Tu hub con tu nombre, logo y colores</span><span class="en">Your hub with your name, logo and colors</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Menú, fotos, info, horarios, ubicación</span><span class="en">Menu, photos, info, hours, location</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Otros negocios pagan $12,000/año por aparecer en tu hub</span><span class="en">Other businesses pay $12,000/yr to list on your hub</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Con 1 listado tu hub se paga solo — el resto es ganancia</span><span class="en">1 listing covers your hub cost — the rest is pure profit</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Gift Apps incluidas para tus clientes</span><span class="en">Gift Apps included for your guests</span></div>
+      </div>
+      <p style="font-size:.78em;color:var(--muted);margin-bottom:16px;font-weight:600">
+        <span class="es">💳 Opciones de pago: 3 × $2,833 · 6 × $1,417</span>
+        <span class="en">💳 Payment options: 3 × $2,833 · 6 × $1,417</span>
+      </p>
+      <a href="https://wa.me/527441930502" target="_blank" rel="noopener" style="display:block;width:100%;padding:14px;background:var(--ink);color:var(--paper);font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;text-decoration:none;transition:opacity .2s">
+        <span class="es">💬 Quiero mi Marketing Hub →</span>
+        <span class="en">💬 I want my Marketing Hub →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SCANNER ADD-ON -->
+  <div style="padding:40px max(28px,env(safe-area-inset-left,0px)) 0">
+    <div id="addon-scanner" onclick="toggleAddon()" style="background:var(--paper);border:1.5px solid rgba(42,153,98,.3);padding:28px;cursor:pointer;transition:border-color .2s">
+      <div style="display:inline-block;background:rgba(42,153,98,.12);color:#2a9962;border:1px solid rgba(42,153,98,.3);padding:3px 11px;font-size:.65em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px">
+        <span class="es">➕ Módulo Opcional</span><span class="en">➕ Optional Module</span>
+      </div>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="es">Escáner de Inventario</h4>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="en">Inventory Scanner</h4>
+      <p style="font-size:.72em;color:var(--muted);margin-bottom:12px" class="es">Módulo de Operaciones</p>
+      <p style="font-size:.72em;color:var(--muted);margin-bottom:12px" class="en">Operations Module</p>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.2em;line-height:1;color:#2a9962;margin-bottom:4px">$5,000<span style="font-size:.38em;font-style:normal;color:var(--muted)" class="es"> MXN/mes</span><span style="font-size:.38em;font-style:normal;color:var(--muted)" class="en"> MXN/month</span></div>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:14px;line-height:1.5" class="es">Convierte los teléfonos de tu personal en escáneres de inventario en tiempo real — integrado en tu Panel de Control.</p>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:14px;line-height:1.5" class="en">Turn your staff's phones into real-time inventory scanners — built into your Owner's Panel.</p>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px">
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Escáner de códigos de barras desde el celular</span><span class="en">Mobile barcode scanner built into your panel</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Inventario en tiempo real y alertas de stock bajo</span><span class="en">Real-time inventory tracking &amp; low-stock alerts</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Acceso multi-personal con sincronización instantánea</span><span class="en">Multi-staff access with instant sync</span></div>
+      </div>
+      <button style="width:100%;padding:12px;border:1.5px solid rgba(42,153,98,.4);background:rgba(42,153,98,.06);color:#2a9962;font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">
+        <span class="es">Agregar a mi app →</span><span class="en">Add to my app →</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div style="padding:32px max(28px,env(safe-area-inset-left,0px))" id="secSum" hidden>
+    <div style="background:var(--paper);border:1px solid var(--line2);padding:28px">
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:12px" class="es">Tu pedido</p>
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:12px" class="en">Your order</p>
+      <div id="sumRows"></div>
+      <button onclick="openModal()" style="width:100%;margin-top:16px;padding:16px;border:none;background:var(--ink);color:var(--paper);font:inherit;font-size:.85em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+        <span>💬</span>
+        <span class="es">Comprar por WhatsApp</span>
+        <span class="en">Buy on WhatsApp</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- PURCHASE MODAL -->
+<div id="overlay" onclick="closeOutside(event)" style="position:fixed;inset:0;background:rgba(20,35,44,.82);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(8px)">
+  <div id="modal-box" style="background:var(--paper);padding:32px max(24px,env(safe-area-inset-left,0px)) max(32px,calc(env(safe-area-inset-bottom,0px)+32px));width:100%;max-width:520px;transform:translateY(100%);transition:transform .3s">
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.8em;margin-bottom:6px" class="es">¿Cuál es tu WhatsApp?</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.8em;margin-bottom:6px" class="en">What's your WhatsApp?</h3>
+    <p style="font-size:.86em;color:var(--muted);margin-bottom:16px" class="es">Brian te contacta para activar tu app y cerrar los detalles.</p>
+    <p style="font-size:.86em;color:var(--muted);margin-bottom:16px" class="en">Brian will contact you to activate your app and finalize details.</p>
+    <div id="modalOrder" style="background:var(--bone);border:1px solid var(--line);padding:14px 16px;margin-bottom:16px;font-size:.86em;color:var(--muted);line-height:1.7"></div>
+    <input type="tel" id="waInput" placeholder="+52 744 000 0000" inputmode="tel" style="width:100%;padding:14px 16px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);font:inherit;font-size:1em;margin-bottom:14px;outline:none;transition:border-color .2s">
+    <button onclick="sendWA()" style="width:100%;padding:16px;border:none;background:#25d366;color:#063117;font:inherit;font-weight:800;font-size:.92em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px">
+      <span>💬</span>
+      <span class="es">Enviar por WhatsApp</span>
+      <span class="en">Send on WhatsApp</span>
+    </button>
+    <button onclick="closeModal()" style="width:100%;padding:10px;border:none;background:transparent;color:var(--muted);font:inherit;font-size:.86em;cursor:pointer">
+      <span class="es">Cancelar</span><span class="en">Cancel</span>
+    </button>
+  </div>
+</div>
 
 <!-- BOTTOM CTA -->
 <div class="cta-band">
@@ -354,6 +490,7 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
 </footer>
 
 <script>
+/* ── lang toggle ── */
 function setLang(l){
   document.body.className='lang-'+l;
   document.getElementById('btnES').className=l==='es'?'on':'';
@@ -361,6 +498,118 @@ function setLang(l){
   try{localStorage.setItem('mx-lang',l)}catch(e){}
 }
 try{var sl=localStorage.getItem('mx-lang');if(sl)setLang(sl)}catch(e){}
+
+/* ── pricing state ── */
+var state={app:false,pkg:null,addon:false};
+
+function selectApp(){
+  state.app=!state.app;
+  var card=document.getElementById('app-main');
+  var btn=document.getElementById('app-sel-btn');
+  if(state.app){
+    card.style.borderColor='var(--brass)';
+    btn.style.background='var(--ink)';
+    btn.style.color='var(--paper)';
+    btn.style.borderColor='var(--ink)';
+    btn.innerHTML='<span class="es">✓ Seleccionado</span><span class="en">✓ Selected</span>';
+  } else {
+    card.style.borderColor='var(--line2)';
+    btn.style.background='transparent';
+    btn.style.color='var(--ink)';
+    btn.style.borderColor='var(--line2)';
+    btn.innerHTML='<span class="es">Seleccionar →</span><span class="en">Select →</span>';
+  }
+  updateSummary();
+}
+
+function selectPkg(id){
+  state.pkg=id;
+  var c=document.getElementById('pkg-concierge');
+  if(c){
+    c.style.borderColor=id==='concierge'?'var(--brass)':'var(--line2)';
+    var b=c.querySelector('button');
+    if(b){
+      b.style.background=id==='concierge'?'var(--ink)':'transparent';
+      b.style.color=id==='concierge'?'var(--paper)':'var(--ink)';
+      b.innerHTML=id==='concierge'?'<span class="es">✓ Seleccionado</span><span class="en">✓ Selected</span>':'<span class="es">Seleccionar →</span><span class="en">Select →</span>';
+    }
+  }
+  updateSummary();
+}
+
+function toggleAddon(){
+  state.addon=!state.addon;
+  var card=document.getElementById('addon-scanner');
+  var b=card.querySelector('button');
+  if(state.addon){
+    card.style.borderColor='#2a9962';
+    card.style.background='rgba(42,153,98,.04)';
+    if(b){b.style.background='#2a9962';b.style.color='#fff';b.innerHTML='<span class="es">✓ Agregado</span><span class="en">✓ Added</span>';}
+  } else {
+    card.style.borderColor='rgba(42,153,98,.3)';
+    card.style.background='var(--paper)';
+    if(b){b.style.background='rgba(42,153,98,.06)';b.style.color='#2a9962';b.innerHTML='<span class="es">Agregar a mi app →</span><span class="en">Add to my app →</span>';}
+  }
+  updateSummary();
+}
+
+function updateSummary(){
+  var rows=[];
+  var total=0;
+  if(state.app){rows.push({es:'App Negocio + Panel de Control',en:'Business App + Owner\'s Panel',p:'$3,000 MXN'});total+=3000;}
+  if(state.pkg==='concierge'){rows.push({es:'Concierge Pro',en:'Concierge Pro',p:'$5,500 MXN/año'});total+=5500;}
+  if(state.addon){rows.push({es:'Escáner de Inventario',en:'Inventory Scanner',p:'$5,000 MXN/mes'});total+=5000;}
+  var sec=document.getElementById('secSum');
+  if(!rows.length){sec.hidden=true;return;}
+  sec.hidden=false;
+  var html='';
+  rows.forEach(function(r){
+    html+='<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88em"><span class="es">'+r.es+'</span><span class="en">'+r.en+'</span><span style="color:var(--brass);font-weight:600;white-space:nowrap">'+r.p+'</span></div>';
+  });
+  if(rows.length>1){
+    html+='<div style="display:flex;justify-content:space-between;padding:10px 0 0;font-weight:700;font-size:.9em"><span class="es">Total estimado</span><span class="en">Estimated total</span><span style="color:var(--ink)">$'+total.toLocaleString()+' MXN</span></div>';
+  }
+  document.getElementById('sumRows').innerHTML=html;
+}
+
+/* ── modal ── */
+function openModal(){
+  var rows=[];
+  if(state.app)rows.push('App Negocio + Panel de Control — $3,000 MXN');
+  if(state.pkg==='concierge')rows.push('Concierge Pro — $5,500 MXN/año');
+  if(state.addon)rows.push('Escáner de Inventario — $5,000 MXN/mes');
+  document.getElementById('modalOrder').innerHTML=rows.join('<br>')||'(sin selección)';
+  var ov=document.getElementById('overlay');
+  var mb=document.getElementById('modal-box');
+  ov.style.opacity='1';
+  ov.style.pointerEvents='auto';
+  mb.style.transform='translateY(0)';
+  document.getElementById('waInput').focus();
+}
+
+function closeModal(){
+  var ov=document.getElementById('overlay');
+  var mb=document.getElementById('modal-box');
+  ov.style.opacity='0';
+  ov.style.pointerEvents='none';
+  mb.style.transform='translateY(100%)';
+}
+
+function closeOutside(e){if(e.target===document.getElementById('overlay'))closeModal();}
+
+function sendWA(){
+  var ph=(document.getElementById('waInput').value||'').trim();
+  var rows=[];
+  if(state.app)rows.push('App Negocio + Panel de Control ($3,000 MXN)');
+  if(state.pkg==='concierge')rows.push('Concierge Pro ($5,500 MXN/año)');
+  if(state.addon)rows.push('Escáner de Inventario ($5,000 MXN/mes)');
+  var msg='Hola Brian, me interesa MX Studio 🎯\n\n';
+  msg+=rows.join('\n');
+  if(ph)msg+='\n\nMi WhatsApp: '+ph;
+  var url='https://wa.me/527441930502?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
+  closeModal();
+}
 </script>
 </body>
 </html>
