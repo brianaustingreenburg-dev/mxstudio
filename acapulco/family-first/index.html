@@ -4039,7 +4039,7 @@ function showView(v) {
 
   [welcome,dashboard,setup,hope,langex,tutor,footer].forEach(function(el){if(el)el.style.display='none';});
   [btnL,btnD,btnS,btnH,btnLE,btnT].forEach(function(b){if(b)b.classList.remove('active');});
-  cta.style.display = 'none';
+  if (cta) cta.style.display = 'none';
 
   if (v === 'dashboard') {
     dashboard.style.display = 'block'; btnD.classList.add('active');
@@ -4055,7 +4055,7 @@ function showView(v) {
     welcome.style.display = 'block';
     footer.style.display = 'block';
     btnL.classList.add('active');
-    cta.style.display = '';
+    if (cta) cta.style.display = '';
   }
   window.scrollTo(0, 0);
   // Re-apply current language so inner views always show the right text
