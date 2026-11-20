@@ -852,6 +852,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   <button class="act-tab on" onclick="switchActTab('casa',this)">🏡 En Casa</button>
   <button class="act-tab" onclick="switchActTab('tours',this)">🚣 Tours</button>
   <button class="act-tab" onclick="switchActTab('especiales',this)">✨ Especiales</button>
+  <button class="act-tab" onclick="switchActTab('apps',this)">📱 Apps Gratis</button>
 </div>
 
 <!-- Tab: En Casa Axolotl -->
@@ -993,6 +994,34 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 </div>
 
+<div class="acafree-grid" id="act-apps" style="display:none">
+
+  <a class="acafree-card" href="../habla/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">🗣️</div>
+    <div class="acafree-name">Habla · Language Guide</div>
+    <div class="acafree-detail">Aprende español o inglés con frases de viaje. Learn travel Spanish or English. Free · Sin registro.</div>
+  </a>
+
+  <a class="acafree-card" href="../family-first/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">❤️</div>
+    <div class="acafree-name">Family First</div>
+    <div class="acafree-detail">Ubica a tu familia en tiempo real, alertas SOS y check-ins. Real-time family location &amp; safety. Free.</div>
+  </a>
+
+  <a class="acafree-card" href="../juegos/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">🎮</div>
+    <div class="acafree-name">Juegos · Games</div>
+    <div class="acafree-detail">Juegos familiares para la mesa, la playa o la alberca. Family games for the table, beach or pool. Free.</div>
+  </a>
+
+  <a class="acafree-card" href="../rutas/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">🗺️</div>
+    <div class="acafree-name">MX Dashboard · Rutas</div>
+    <div class="acafree-detail">Mapa de restaurantes, playas y actividades de Acapulco. Restaurants, beaches &amp; activities map. Free.</div>
+  </a>
+
+</div>
+
 </div><!-- /page-wrap -->
 
 <div class="foot">
@@ -1030,7 +1059,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 })();
 
 function switchActTab(tab, btn){
-  ['casa','tours','especiales'].forEach(id=>{
+  ['casa','tours','especiales','apps'].forEach(id=>{
     document.getElementById('act-'+id).style.display = id===tab ? '' : 'none';
   });
   document.querySelectorAll('.act-tab').forEach(b=>b.classList.remove('on'));
