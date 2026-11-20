@@ -502,6 +502,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .biz-hours{font-size:.72rem;color:var(--muted);margin-bottom:14px;opacity:.8}
 .biz-wa{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--bg);padding:10px 16px;border-radius:10px;text-decoration:none;font-size:.8rem;font-weight:700;align-self:flex-start;transition:opacity .15s}
 .biz-wa:hover{opacity:.82}
+.biz-card-soon{border-style:dashed;opacity:.6}
+.biz-photo-soon{background:linear-gradient(135deg,rgba(201,146,42,.08),rgba(201,146,42,.03));display:flex;align-items:center;justify-content:center;font-size:2rem}
+.biz-photo-soon::after{content:'🌊'}
 /* ── end biz cards ── */
 .act-cards{padding:0 22px 4px}
 .act-card{
@@ -803,353 +806,20 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
     </div>
   </div>
 
-</div>
-
-<!-- REMOVED pitch/featured block + Family First -->
-<!--
-  <div id="feat-rest">
-    <div class="pitch-hero" style="background-image:url('https://images.pexels.com/photos/3369578/pexels-photo-3369578.jpeg?auto=compress&cs=tinysrgb&w=800')">
-      <div class="pitch-hero-overlay"></div>
-      <div class="pitch-hero-info">
-        <div class="pitch-tag">Restaurantes · Restaurants</div>
-        <div class="pitch-headline" id="phR">Tu mesa en Comunidad</div>
-        <div class="pitch-sub" id="psR">Llega a turistas y locales cuando más importa</div>
-      </div>
+  <!-- Slot 3 — coming soon -->
+  <div class="biz-card biz-card-soon">
+    <div class="biz-photo biz-photo-soon"></div>
+    <div class="biz-body">
+      <div class="biz-tag">Próximamente · Coming Soon</div>
+      <div class="biz-name" style="opacity:.35">Tu negocio aquí</div>
+      <div class="biz-desc" style="opacity:.35">¿Tienes un restaurante en Acapulco? Contáctanos para aparecer en Comunidad. · Have a restaurant in Acapulco? Contact us to be listed.</div>
     </div>
-    <div class="pitch-body">
-      <p class="pitch-desc" id="pdR">Los turistas llegan a Acapulco con hambre y sin plan. Tu restaurante aparece justo cuando están listos para ordenar — con tu menú, tus fotos y tu WhatsApp a un toque.</p>
-      <div class="pitch-benefits">
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">📱</div>
-          <div>
-            <div class="pitch-benefit-title" id="rb1t">Tu app propia</div>
-            <div class="pitch-benefit-desc" id="rb1d">Menú digital, fotos, horarios y botón de WhatsApp. Todo en una app tuya.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">📍</div>
-          <div>
-            <div class="pitch-benefit-title" id="rb2t">En el mapa de Comunidad</div>
-            <div class="pitch-benefit-desc" id="rb2d">Apareces en las rutas y recomendaciones que los visitantes ven al llegar.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🤝</div>
-          <div>
-            <div class="pitch-benefit-title" id="rb3t">Red de hoteles</div>
-            <div class="pitch-benefit-desc" id="rb3d">Los hoteles y resorts de Comunidad pueden recomendar tu restaurante a sus huéspedes.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">📊</div>
-          <div>
-            <div class="pitch-benefit-title" id="rb4t">Sin comisiones</div>
-            <div class="pitch-benefit-desc" id="rb4d">Sin porcentaje por pedido, sin cuotas fijas, sin sorpresas.</div>
-          </div>
-        </div>
-      </div>
-      <div class="pitch-free">
-        <div class="pitch-free-ico">🤝</div>
-        <div>
-          <div class="pitch-free-title" id="rfreeT">Gratis para todos — tú decides cómo apoyar</div>
-          <div class="pitch-free-desc" id="rfreeD">En Comunidad entra cualquier negocio de Acapulco, sin costo. Si quieres apoyar a la comunidad, aporta lo que tú decidas, cuando quieras, o nada. Aquí todos son parte.</div>
-        </div>
-      </div>
-      <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20poner%20mi%20restaurante%20en%20el%20hub%20de%20Acapulco" target="_blank">
-        <span style="font-size:1.3em">💬</span>
-        <div>
-          <div style="font-size:.78rem;font-weight:700" id="rwaT">Quiero aparecer aquí</div>
-          <div style="font-size:.65rem;opacity:.7" id="rwaS">WhatsApp · JefeTech</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- HOTEL PITCH -->
-  <div id="feat-hotel" style="display:none">
-    <div class="pitch-hero" style="background-image:url('https://images.pexels.com/photos/2004354/pexels-photo-2004354.jpeg?auto=compress&cs=tinysrgb&w=800')">
-      <div class="pitch-hero-overlay"></div>
-      <div class="pitch-hero-info">
-        <div class="pitch-tag">Hoteles · Hotels</div>
-        <div class="pitch-headline" id="phH">Tu hotel en Comunidad</div>
-        <div class="pitch-sub" id="psH">Sé la primera opción cuando buscan dónde quedarse</div>
-      </div>
-    </div>
-    <div class="pitch-body">
-      <p class="pitch-desc" id="pdH">Booking.com, Expedia y Airbnb te cobran entre 15% y 25% por cada reservación. Con tu app en Comunidad, tus clientes reservan directo — y ese dinero se queda en tu hotel.</p>
-
-      <!-- OTA savings callout -->
-      <div style="background:linear-gradient(135deg,rgba(185,28,28,.12),rgba(185,28,28,.04));border:1px solid rgba(185,28,28,.3);padding:14px 16px;margin-bottom:18px;display:flex;align-items:flex-start;gap:12px">
-        <div style="font-size:1.5em;flex-shrink:0">💸</div>
-        <div>
-          <div style="font-size:.78rem;font-weight:700;color:#fca5a5;line-height:1.3" id="hotaT">Lo que le pagas a las OTAs cada año</div>
-          <div style="font-size:.68rem;color:var(--muted);margin-top:4px;line-height:1.6" id="hotaD">Un hotel con 20 cuartos a $1,200 MXN y 60% de ocupación le paga <strong style="color:#fca5a5">~$500,000 MXN al año</strong> en comisiones a Booking o Expedia. Con reservas directas, ese dinero se queda en tu hotel.</div>
-        </div>
-      </div>
-
-      <div class="pitch-benefits">
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🚫</div>
-          <div>
-            <div class="pitch-benefit-title" id="hb1t">Cero comisión por reservación</div>
-            <div class="pitch-benefit-desc" id="hb1d">Las OTAs cobran 15–25% de cada cuarto. Con tu app, el huésped reserva directo por WhatsApp y la comisión es tuya.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🔄</div>
-          <div>
-            <div class="pitch-benefit-title" id="hb2t">Clientes que regresan a ti</div>
-            <div class="pitch-benefit-desc" id="hb2d">Cuando reservan por Booking, el cliente es de Booking. Cuando reservan por tu app, el cliente es tuyo — para siempre.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">📲</div>
-          <div>
-            <div class="pitch-benefit-title" id="hb3t">Tu app, tu marca</div>
-            <div class="pitch-benefit-desc" id="hb3d">Fotos, habitaciones, precios y botón de WhatsApp. Tus huéspedes ven tu nombre, no el de una plataforma.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🗺️</div>
-          <div>
-            <div class="pitch-benefit-title" id="hb4t">Visibilidad en Comunidad</div>
-            <div class="pitch-benefit-desc" id="hb4d">Apareces en rutas y recomendaciones de Comunidad. Nuevos huéspedes te descubren antes de llegar a Booking.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🍽️</div>
-          <div>
-            <div class="pitch-benefit-title" id="hb5t">Concierge digital incluido</div>
-            <div class="pitch-benefit-desc" id="hb5d">Recomienda restaurantes, tours y actividades de Comunidad desde tu propia app. Tus huéspedes lo agradecen y los partners también.</div>
-          </div>
-        </div>
-      </div>
-      <div class="pitch-free">
-        <div class="pitch-free-ico">🤝</div>
-        <div>
-          <div class="pitch-free-title" id="hfreeT">Gratis para todos — tú decides cómo apoyar</div>
-          <div class="pitch-free-desc" id="hfreeD">En Comunidad entra cualquier negocio de Acapulco, sin costo. Si quieres apoyar a la comunidad, aporta lo que tú decidas, cuando quieras, o nada. Aquí todos son parte.</div>
-        </div>
-      </div>
-      <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20poner%20mi%20hotel%20en%20el%20hub%20de%20Acapulco" target="_blank">
-        <span style="font-size:1.3em">💬</span>
-        <div>
-          <div style="font-size:.78rem;font-weight:700" id="hwaT">Quiero aparecer aquí</div>
-          <div style="font-size:.65rem;opacity:.7" id="hwaS">WhatsApp · JefeTech</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <!-- RESORT PITCH -->
-  <div id="feat-resort" style="display:none">
-    <div class="pitch-hero" style="background-image:url('https://images.pexels.com/photos/37730/pexels-photo-37730.jpeg?auto=compress&cs=tinysrgb&w=800')">
-      <div class="pitch-hero-overlay"></div>
-      <div class="pitch-hero-info">
-        <div class="pitch-tag">Resorts · Beach Clubs</div>
-        <div class="pitch-headline" id="phRS">Tu resort en Comunidad</div>
-        <div class="pitch-sub" id="psRS">La experiencia completa — desde que llegan hasta que se van</div>
-      </div>
-    </div>
-    <div class="pitch-body">
-      <p class="pitch-desc" id="pdRS">Los resorts y beach clubs viven de la experiencia. Tu app en Comunidad te posiciona como el destino completo de Acapulco — con todas tus amenidades, paquetes y acceso directo al cliente.</p>
-      <div class="pitch-benefits">
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🏖️</div>
-          <div>
-            <div class="pitch-benefit-title" id="rsb1t">Paquetes y día de playa</div>
-            <div class="pitch-benefit-desc" id="rsb1d">Muestra tus paquetes todo incluido, day pass y eventos especiales. Reserva por WhatsApp al instante.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🌟</div>
-          <div>
-            <div class="pitch-benefit-title" id="rsb2t">Posicionamiento premium</div>
-            <div class="pitch-benefit-desc" id="rsb2d">Los resorts anclan Comunidad. Tu marca aparece primero cuando los visitantes buscan lo mejor de Acapulco.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">🤝</div>
-          <div>
-            <div class="pitch-benefit-title" id="rsb3t">Red de partners</div>
-            <div class="pitch-benefit-desc" id="rsb3d">Coordina con restaurantes y actividades de Comunidad. Ofrece a tus huéspedes una experiencia Acapulco completa.</div>
-          </div>
-        </div>
-        <div class="pitch-benefit">
-          <div class="pitch-benefit-ico">📲</div>
-          <div>
-            <div class="pitch-benefit-title" id="rsb4t">App de resort completa</div>
-            <div class="pitch-benefit-desc" id="rsb4d">Amenidades, horarios, menú de restaurante, spa — todo en una app con tu nombre.</div>
-          </div>
-        </div>
-      </div>
-      <div class="pitch-free">
-        <div class="pitch-free-ico">🤝</div>
-        <div>
-          <div class="pitch-free-title" id="rsfreeT">Gratis para todos — tú decides cómo apoyar</div>
-          <div class="pitch-free-desc" id="rsfreeD">En Comunidad entra cualquier negocio de Acapulco, sin costo. Si quieres apoyar a la comunidad, aporta lo que tú decidas, cuando quieras, o nada. Aquí todos son parte.</div>
-        </div>
-      </div>
-      <a class="pitch-wa" href="https://wa.me/528131156879?text=Hola%2C%20quiero%20poner%20mi%20resort%20en%20el%20hub%20de%20Acapulco" target="_blank">
-        <span style="font-size:1.3em">💬</span>
-        <div>
-          <div style="font-size:.78rem;font-weight:700" id="rswaT">Quiero aparecer aquí</div>
-          <div style="font-size:.65rem;opacity:.7" id="rswaS">WhatsApp · JefeTech</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-</div><!-- /featured -->
-
-<!-- ══════════════════════════════════════
-     FAMILY FIRST SPONSORS
-══════════════════════════════════════ -->
-<div class="sec-label" id="patrocina" style="scroll-margin-top:80px"><span id="secFFS">Patrocina Family First</span></div>
-<div class="pitch">
-  <div class="pitch-body" style="padding-top:6px">
-    <p class="pitch-desc" id="ffsD">Family First es la app familiar gratis que reciben los huéspedes y clientes de los hoteles y restaurantes de Comunidad: SOS, ubicación y check-ins en 12 idiomas. Patrocínala con lo que tú decidas y tu negocio aparece en la app y en nuestra promoción.</p>
-    <div class="pitch-benefits">
-      <div class="pitch-benefit"><div class="pitch-benefit-ico">📛</div><div><div class="pitch-benefit-title" id="ffsb1t">Tu negocio listado en la app</div><div class="pitch-benefit-desc" id="ffsb1d">Tu nombre en la sección de patrocinadores de Family First, con enlace a tu WhatsApp o tu app.</div></div></div>
-      <div class="pitch-benefit"><div class="pitch-benefit-ico">📣</div><div><div class="pitch-benefit-title" id="ffsb2t">Promoción incluida</div><div class="pitch-benefit-desc" id="ffsb2d">Te mencionamos en publicaciones y en Comunidad como negocio que apoya a las familias.</div></div></div>
-      <div class="pitch-benefit"><div class="pitch-benefit-ico">🏨</div><div><div class="pitch-benefit-title" id="ffsb3t">Visto en hoteles y restaurantes</div><div class="pitch-benefit-desc" id="ffsb3d">La app se abre desde las apps del Ritz Acapulco, Casa Axolotl y más negocios de Comunidad.</div></div></div>
-      <div class="pitch-benefit"><div class="pitch-benefit-ico">✝</div><div><div class="pitch-benefit-title" id="ffsb4t">Apoyas una app gratis</div><div class="pitch-benefit-desc" id="ffsb4d">Tu patrocinio mantiene Family First gratis para cualquier familia.</div></div></div>
-      </div>
-    <div class="ffs-note" id="ffsFree">Family First ya viene gratis con todas las apps de MX Studio. El patrocinio es opcional y voluntario: aporta lo que quieras, desde $0, y tu negocio aparece en Comunidad y en la app.</div>
-    <div class="ffs-launch" id="ffsLaunch">Lanzamiento: enero 2027</div>
-    <div class="ffs-step" id="ffsStep1">1 · ¿Cuánto quieres aportar? Tú decides, desde $0.</div>
-    <div class="ffs-amts" role="group" aria-labelledby="ffsStep1">
-      <button type="button" class="ffs-amt" data-amt="0">$0</button>
-      <button type="button" class="ffs-amt" data-amt="100">$100</button>
-      <button type="button" class="ffs-amt on" data-amt="300">$300</button>
-      <button type="button" class="ffs-amt" data-amt="500">$500</button>
-      <button type="button" class="ffs-amt" data-amt="1000">$1,000</button>
-      <button type="button" class="ffs-amt" data-amt="other" id="ffsOther">Otra</button>
-    </div>
-    <label class="ffs-custom" id="ffsCustomWrap" hidden><span id="ffsCustomL">Tu cantidad (MXN)</span><input id="ffsCustom" type="number" inputmode="numeric" min="0" step="50" placeholder="750"></label>
-    <div class="ffs-step" id="ffsStep2">2 · ¿Cada mes o una sola vez?</div>
-    <div class="ffs-freq" role="group" aria-labelledby="ffsStep2">
-      <button type="button" class="ffs-fq on" data-fq="m" id="ffsFqM">Cada mes</button>
-      <button type="button" class="ffs-fq" data-fq="o" id="ffsFqO">Una sola vez</button>
-    </div>
-    <div class="ffs-sum" id="ffsSum"></div>
-    <div class="ffs-inc-h" id="ffsIncH">Cualquier cantidad incluye</div>
-    <ul class="ffs-inc">
-      <li id="ffsI1">Tu negocio en la app Family First y en Comunidad</li>
-      <li id="ffsI2">Sticker de patrocinador para tu puerta o mostrador</li>
-      <li id="ffsI3">Insignia para tus redes sociales</li>
-      <li id="ffsI4">Menciones en nuestras publicaciones</li>
-    </ul>
-    <div class="ffs-kit">
-      <img src="img/ff-sponsor-sticker.png" alt="Sticker de patrocinador Family First" loading="lazy">
-      <img src="img/ff-sponsor-badge.png" alt="Insignia de patrocinador Family First para redes" loading="lazy">
-    </div>
-    <div id="ffsList" style="margin:14px 0 4px;font-size:.72rem;color:var(--muted);line-height:1.6"></div>
-    <a class="pitch-wa" id="ffsWa" href="https://wa.me/528131156879" target="_blank" rel="noopener">
-      <span style="font-size:1.3em">💬</span>
-      <div>
-        <div style="font-size:.78rem;font-weight:700" id="ffsWaT">Quiero patrocinar</div>
-        <div style="font-size:.65rem;opacity:.7" id="ffsWaS">WhatsApp · JefeTech</div>
-      </div>
-    </a>
-    <a href="https://go.myjefetech.app/family-first/" target="_blank" rel="noopener" style="display:block;text-align:center;font-size:.72rem;color:var(--gold-lt);margin:10px 0 18px;text-decoration:none" id="ffsSee">Ver la app Family First ›</a>
-  </div>
-</div>
--->
-
-<!-- ══════════════════════════════════════
-     ACTIVITIES
-══════════════════════════════════════ -->
-<div class="sec-label"><span id="secAct">Actividades</span></div>
-<div class="act-cards">
-  <div class="act-card">
-    <div class="act-no">01</div>
-    <div class="act-title" id="a1title">Clavadistas de La Quebrada</div>
-    <div class="act-desc" id="a1desc">Los clavadistas más famosos del mundo saltan 35 metros al océano. Un espectáculo de día y de noche con antorchas encendidas.</div>
-    <div class="act-detail" id="a1detail">1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM</div>
-  </div>
-  <div class="act-card">
-    <div class="act-no">02</div>
-    <div class="act-title" id="a2title">Isla La Roqueta</div>
-    <div class="act-desc" id="a2desc">Lancha de fondo de cristal desde Playa Caleta. Observa la Virgen submarina y haz snorkel en arrecifes naturales.</div>
-    <div class="act-detail" id="a2detail">Playa Caleta · ~45 min · $200–250 MXN</div>
-  </div>
-  <div class="act-card">
-    <div class="act-no">03</div>
-    <div class="act-title" id="a3title">Catamárán al Atardecer</div>
-    <div class="act-desc" id="a3desc">2.5 horas recorriendo la bahía con barra libre y música en vivo durante la hora dorada del Pacífico.</div>
-    <div class="act-detail" id="a3detail">Sale 5:30 PM · desde $650 MXN</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     TRIVIA
-══════════════════════════════════════ -->
-<div class="sec-label"><span id="secTrivia">Trivia</span></div>
-<div class="trivia-wrap" id="triviaWrap"></div>
-
-<!-- ══════════════════════════════════════
-     SURVIVAL SPANISH
-══════════════════════════════════════ -->
-<div class="sec-label"><span id="secSpanish">Español de Sobrevivencia</span></div>
-<div class="phrase-cards">
-  <div class="phrase-card" onclick="speak('La cuenta, por favor')">
-    <div class="phrase-es">La cuenta, por favor</div>
-    <div class="phrase-en" id="ph1en">The check, please</div>
-    <div class="phrase-pron">lah KWEN-tah, por fah-VOR</div>
-    <div class="phrase-tap" id="ph1tap">↑ Toca para escuchar</div>
-  </div>
-  <div class="phrase-card" onclick="speak('¿Me recomienda algo?')">
-    <div class="phrase-es">¿Me recomienda algo?</div>
-    <div class="phrase-en" id="ph2en">What do you recommend?</div>
-    <div class="phrase-pron">meh reh-koh-MYEN-dah AL-go</div>
-    <div class="phrase-tap" id="ph2tap">↑ Toca para escuchar</div>
-  </div>
-  <div class="phrase-card" onclick="speak('Dos cervezas, por favor')">
-    <div class="phrase-es">Dos cervezas, por favor</div>
-    <div class="phrase-en" id="ph3en">Two beers, please</div>
-    <div class="phrase-pron">dos ser-VEH-sahs, por fah-VOR</div>
-    <div class="phrase-tap" id="ph3tap">↑ Toca para escuchar</div>
-  </div>
-  <div class="phrase-card" onclick="speak('¡Está delicioso!')">
-    <div class="phrase-es">¡Está delicioso!</div>
-    <div class="phrase-en" id="ph4en">This is delicious!</div>
-    <div class="phrase-pron">es-TAH deh-lee-SYOH-so</div>
-    <div class="phrase-tap" id="ph4tap">↑ Toca para escuchar</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     SHARE MESSAGES (copy-ready for WhatsApp)
-══════════════════════════════════════ -->
-<div class="share-wrap">
-  <div class="share-label">📲 Mensaje para clientes · Message for clients</div>
-
-  <!-- Spanish -->
-  <div class="share-card">
-    <div class="share-lang">Español</div>
-    <div class="share-msg" id="msgES">¡Hola! 👋
-
-Desde que adquiriste tu app con MX Studio, tu negocio ahora forma parte del *Comunidad* — una plataforma digital donde turistas y visitantes descubren los mejores restaurantes, hoteles y resorts de Acapulco.
-
-🌊 Explora Comunidad aquí:
-go.myjefetech.app/acapulco/hub
-
-Tu negocio ya está en el radar. Comunidad es gratis para todos: es una comunidad, y cada quien apoya como quiera.
-
-— Brian · MX Studio</div>
-    <button class="share-copy" onclick="copyMsg('msgES',this)">Copiar</button>
   </div>
 
 </div>
 
-<!-- WA CTA -->
-<div class="wa-wrap">
-  <button class="wa-btn" onclick="window.open('https://api.whatsapp.com/send?phone=527441930502&text='+encodeURIComponent('Hola Brian, quiero saber más sobre MX Studio ✝️'),'_blank')">
-    <span class="wa-ico">💬</span>
-    <span id="waBtn">Quiero mi app · MX Studio ✝️</span>
-  </button>
-</div>
+
+
 
 </div><!-- /page-wrap -->
 
@@ -1377,17 +1047,11 @@ function applyLang(){
     'reviewCount',
     'actMenu','actWA','actRate','catStarters','catMains','catDrinks',
     'e1n','e1d','e2n','e2d','p1n','p1d','p2n','p2d','p3n','p3d','b1n','b1d','b2n','b2d',
-    'demoPillR','demoPillH','demoPillRS','r1n','r1p','r2n','r2p','hactBook','hactWA',
-    'am1','am2','am3','am4','ractBook','ractWA',
     'secStay','secDining',
     'h1z','h1n','h1d','h1p',
     'd1t','d1n','d1d','d1dt',
-    'd2t','d2n','d2d','d2dt',
-    'secAct','a1title','a1desc','a1detail','a2title','a2desc','a2detail','a3title','a3desc','a3detail',
-    'secTrivia','secSpanish',
-    'ph1en','ph2en','ph3en','ph4en','ph1tap','ph2tap','ph3tap','ph4tap','waBtn'];
+    'd2t','d2n','d2d','d2dt'];
   ids.forEach(id=>{const el=document.getElementById(id);if(el){const v=t(id);if(v!=='')el.textContent=v}});
-  drawTrivia();
 }
 // ════════════════════════════════
 // SCROLL HINT — hide on scroll
@@ -1397,50 +1061,8 @@ window.addEventListener('scroll',()=>{
   if(sh&&scrollY>60){sh.style.opacity='0';sh.style.pointerEvents='none'}
 },{passive:true,once:true});
 
-// ════════════════════════════════
-// TRIVIA
-// ════════════════════════════════
-let trivAnswers={},trivDone=false,trivWrong={};
-function drawTrivia(){
-  const wrap=document.getElementById('triviaWrap');
-  const qs=t('trivQ');
-  let html=`<div class="trivia-intro"><span class="t-ico">🏆</span><h3>${t('trivTitle')}</h3><p>${t('trivSub')}</p></div>`;
-  if(trivDone&&Object.values(trivAnswers).filter(Boolean).length===3){
-    html+=`<div class="trivia-win"><span class="t-ico">🥃</span><h3>${t('trivWinTitle')}</h3><p>${t('trivWinSub')}</p></div>`;
-  }
-  qs.forEach((q,qi)=>{
-    const answered=trivAnswers[qi]!==undefined;
-    html+=`<div class="q-card"><div class="q-num">${qi+1} &nbsp;/&nbsp; 3</div><div class="q-text">${q.q}</div><div class="q-opts">`;
-    q.opts.forEach((opt,oi)=>{
-      let cls='q-opt';
-      if(answered){if(oi===q.ans)cls+=' correct';else if(trivWrong[qi]===oi)cls+=' wrong';}
-      html+=`<button class="${cls}"${answered||trivDone?' disabled':''}onclick="answerTrivia(${qi},${oi},${q.ans})">${opt}</button>`;
-    });
-    html+='</div></div>';
-  });
-  if(trivDone)html+=`<button class="trivia-reset" onclick="resetTrivia()">${t('trivReset')}</button>`;
-  wrap.innerHTML=html;
-}
-function answerTrivia(qi,chosen,correct){
-  if(trivAnswers[qi]!==undefined)return;
-  trivAnswers[qi]=chosen===correct;
-  if(!trivAnswers[qi])trivWrong[qi]=chosen;
-  if(Object.keys(trivAnswers).length===3)trivDone=true;
-  drawTrivia();
-}
-function resetTrivia(){trivAnswers={};trivDone=false;trivWrong={};drawTrivia();}
-
-// ════════════════════════════════
-// SPEECH
-// ════════════════════════════════
-function speak(text){
-  if(!window.speechSynthesis)return;
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='es-MX';u.rate=.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
-}
-
 // init
-drawTrivia();applyLang();
+applyLang();
 </script>
 </body>
 </html>
