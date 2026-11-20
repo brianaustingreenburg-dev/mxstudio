@@ -336,12 +336,9 @@ body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:
       <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="en">Business App + Owner's Panel</h4>
       <p style="font-size:.78em;color:var(--brass);margin-bottom:14px" class="es">Restaurantes · Bares · Hoteles · Tiendas</p>
       <p style="font-size:.78em;color:var(--brass);margin-bottom:14px" class="en">Restaurants · Bars · Hotels · Local Shops</p>
-      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$18,000<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
-      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:4px" class="es">🍽️ Restaurante / Café · pagos desde $7,000</p>
-      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:4px" class="en">🍽️ Restaurant / Café · payments from $7,000</p>
-      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px;margin-top:14px">$23,000<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
-      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="es">🏨 Hotel + Restaurante · pagos desde $13,000</p>
-      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="en">🏨 Hotel + Restaurant · payments from $13,000</p>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$3,000<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
+      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="es">✓ Pago único — sin mensualidades</p>
+      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="en">✓ One-time payment — no monthly fees</p>
       <div style="border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
         <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</span><span class="es"><strong>Hub de Negocio Completo</strong> — Menú con fotos, WiFi, reservas, reseñas y lealtad</span><span class="en"><strong>Full Business Hub</strong> — Photo menu, WiFi, reservations, Google reviews &amp; loyalty</span></div>
         <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</span><span class="es"><strong>Gift Apps incluidas</strong> — Apps de regalo para tus clientes, sin costo extra</span><span class="en"><strong>Gift Apps included</strong> — Bonus apps for your guests at no extra cost</span></div>
@@ -628,7 +625,7 @@ function toggleAddon(){
 function updateSummary(){
   var rows=[];
   var total=0;
-  if(state.app){rows.push({es:'Ecosistema Digital MX Studio',en:'MX Studio Digital Ecosystem',p:'desde $18,000 MXN'});total+=18000;}
+  if(state.app){rows.push({es:'App Negocio + Panel de Control',en:'Business App + Owner\'s Panel',p:'$3,000 MXN'});total+=3000;}
   if(state.pkg==='concierge'){rows.push({es:'Concierge Pro',en:'Concierge Pro',p:'$5,500 MXN/año'});total+=5500;}
   if(state.addon){rows.push({es:'Escáner de Inventario',en:'Inventory Scanner',p:'$25,000 MXN setup + $5,000/mes'});total+=25000;}
   var sec=document.getElementById('secSum');
@@ -647,7 +644,7 @@ function updateSummary(){
 /* ── modal ── */
 function openModal(){
   var rows=[];
-  if(state.app)rows.push('Ecosistema Digital MX Studio — desde $18,000 MXN');
+  if(state.app)rows.push('App Negocio + Panel de Control — $3,000 MXN');
   if(state.pkg==='concierge')rows.push('Concierge Pro — $5,500 MXN/año');
   if(state.addon)rows.push('Escáner de Inventario — $25,000 MXN setup + $5,000 MXN/mes');
   document.getElementById('modalOrder').innerHTML=rows.join('<br>')||'(sin selección)';
