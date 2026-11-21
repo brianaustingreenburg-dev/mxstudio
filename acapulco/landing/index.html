@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14232c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>MX Studio · Acapulco</title>
+<meta name="description" content="Tu hub digital. Tu marketing. Tu negocio en Acapulco.">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bone:#f5f0e8;--paper:#fbf8f3;--line:#e3d9c8;--line2:#d6c8b1;
+  --ink:#14232c;--ink2:#3a4852;--muted:#7b8389;
+  --brass:#a8834f;--brass2:#c9a46c;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bone);color:var(--ink);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) max(20px,env(safe-area-inset-left,0px)) 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:rgba(251,248,243,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line)}
+@media(min-width:960px){.nav{padding-left:calc((100% - 960px)/2 + 40px);padding-right:calc((100% - 960px)/2 + 40px)}}
+.nav-brand{font-family:var(--serif);font-weight:500;font-size:1.3em;letter-spacing:.01em;color:var(--ink)}
+.nav-brand em{color:var(--brass);font-style:italic}
+.lang-toggle{display:flex;background:#e8e0d4;border-radius:99px;padding:3px;gap:2px}
+.lang-toggle button{all:unset;cursor:pointer;padding:4px 11px;border-radius:99px;font-size:.7em;font-weight:700;color:var(--muted);letter-spacing:.08em;transition:all .2s}
+.lang-toggle button.on{background:var(--ink);color:var(--paper)}
+.nav-cta{background:var(--ink);color:var(--paper);font-weight:700;font-size:.75em;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:2px;text-decoration:none;white-space:nowrap}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:#14232c}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:scale(1.05);animation:kb 20s ease-out forwards}
+@keyframes kb{to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(12,23,29,.5) 0%,
+    rgba(12,23,29,.1) 25%,
+    rgba(12,23,29,.2) 55%,
+    rgba(12,23,29,.85) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 max(28px,env(safe-area-inset-left,0px)) 60px}
+@media(min-width:960px){.hero-content{max-width:960px;margin-left:auto;margin-right:auto;padding-left:40px;padding-right:40px}}
+.hero-eyebrow{font-size:.65em;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--brass2);margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2em,12vw,5.5em);line-height:.95;letter-spacing:-.01em;color:#fdfaf4;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--brass2)}
+.hero-sub{font-size:clamp(.85em,3.5vw,1em);color:#d8cfbf;line-height:1.65;max-width:380px;margin-bottom:36px}
+.hero-sub strong{color:#fdfaf4}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--paper);color:var(--ink);font-weight:700;font-size:.82em;letter-spacing:.1em;text-transform:uppercase;padding:14px 26px;border-radius:2px;text-decoration:none;transition:opacity .2s}
+.btn-primary:active{opacity:.8}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fdfaf4;font-weight:600;font-size:.82em;letter-spacing:.1em;text-transform:uppercase;padding:14px 24px;border-radius:2px;text-decoration:none;border:1px solid rgba(255,255,255,.45);transition:border-color .2s}
+.btn-ghost:active{border-color:var(--brass2)}
+.hero-scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.45);font-size:.62em;font-weight:600;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:7px;z-index:2}
+.hero-scroll span{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent)}
+
+/* ORNAMENT */
+.orn{display:flex;align-items:center;gap:14px;color:var(--brass2);margin:0 0 32px}
+.orn i{flex:1;height:1px;background:var(--line2)}
+.orn b{font-weight:400;font-size:10px;letter-spacing:.1em}
+
+/* SECTION */
+.sec{padding:80px max(28px,env(safe-area-inset-left,0px))}
+@media(min-width:960px){
+  .sec{max-width:960px;margin-left:auto;margin-right:auto;padding-left:40px;padding-right:40px}
+  .demo-card{max-width:960px;margin-left:auto;margin-right:auto}
+  .cta-band{padding-left:40px;padding-right:40px}
+  .foot{padding-left:40px;padding-right:40px}
+}
+.sec-eyebrow{font-size:.65em;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.2em,8vw,3.4em);line-height:1.02;color:var(--ink);letter-spacing:-.01em;margin-bottom:14px}
+.sec h2 em{font-style:italic;color:var(--brass)}
+.sec-lead{font-size:.95em;color:var(--muted);line-height:1.7;max-width:42ch;margin-bottom:48px}
+
+/* PILLARS */
+.pillars{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.pillar{background:var(--paper);padding:34px 28px}
+.pillar-num{font-family:var(--serif);font-style:italic;font-size:2em;color:var(--brass2);margin-bottom:16px;line-height:1}
+.pillar h3{font-family:var(--serif);font-weight:500;font-size:1.8em;line-height:1.08;color:var(--ink);margin-bottom:10px}
+.pillar p{font-size:.88em;color:var(--muted);line-height:1.65}
+.pillar .pill-tag{display:inline-block;margin-top:14px;font-size:.65em;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);border-bottom:1px solid var(--brass2);padding-bottom:3px}
+
+/* DEMO CARD */
+.demo-card{margin:0 max(28px,env(safe-area-inset-left,0px));border:1px solid var(--line2);background:var(--paper);border-radius:2px;overflow:hidden}
+.demo-card-img{position:relative;height:220px;overflow:hidden;background:#14232c}
+.demo-card-img img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.demo-card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,23,29,.2) 0%,rgba(12,23,29,.5) 100%)}
+.demo-card-label{position:absolute;top:16px;left:18px;font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass2);z-index:2;background:rgba(12,23,29,.5);padding:5px 11px;border-radius:1px;backdrop-filter:blur(8px)}
+.demo-card-body{padding:26px 28px 30px}
+.demo-card-body h3{font-family:var(--serif);font-weight:500;font-size:1.9em;line-height:1.05;margin-bottom:8px}
+.demo-card-body p{font-size:.88em;color:var(--muted);line-height:1.6;margin-bottom:22px}
+.btn-demo{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);font-size:.78em;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:14px 24px;border-radius:2px;text-decoration:none;transition:opacity .2s}
+.btn-demo:active{opacity:.8}
+
+/* STEPS */
+.steps{counter-reset:step}
+.step{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:28px 0;border-bottom:1px solid var(--line);counter-increment:step}
+.step:first-child{border-top:1px solid var(--line)}
+.step-num{font-family:var(--serif);font-style:italic;font-size:2em;color:var(--brass2);padding-top:4px;line-height:1;font-variant-numeric:lining-nums}
+.step h4{font-family:var(--serif);font-weight:500;font-size:1.5em;line-height:1.1;margin-bottom:6px}
+.step p{font-size:.87em;color:var(--muted);line-height:1.6}
+
+/* PRICING */
+.pricing-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
+.pkg{background:var(--paper);padding:30px 28px}
+.pkg.featured{background:var(--ink);color:var(--paper)}
+.pkg-eye{font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+.pkg.featured .pkg-eye{color:var(--brass2)}
+.pkg h3{font-family:var(--serif);font-weight:500;font-size:1.85em;line-height:1.05;margin-bottom:6px}
+.pkg-price{font-family:var(--serif);font-style:italic;font-size:2.4em;line-height:1;color:var(--brass);margin:14px 0 6px}
+.pkg.featured .pkg-price{color:var(--brass2)}
+.pkg-freq{font-size:.75em;color:var(--muted);margin-bottom:16px}
+.pkg.featured .pkg-freq{color:rgba(255,255,255,.5)}
+.pkg-desc{font-size:.86em;line-height:1.65;color:var(--muted);margin-bottom:20px}
+.pkg.featured .pkg-desc{color:rgba(255,255,255,.65)}
+.pkg-badge{display:inline-block;font-size:.62em;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:4px 10px;border:1px solid;border-radius:1px;margin-bottom:16px}
+.pkg-badge.green{color:#2a9962;border-color:rgba(42,153,98,.4)}
+.pkg.featured .pkg-badge.green{color:#5fd9a0;border-color:rgba(95,217,160,.35)}
+
+/* BOTTOM CTA */
+.cta-band{background:var(--ink);color:var(--paper);padding:80px max(28px,env(safe-area-inset-left,0px));text-align:center}
+.cta-band h2{font-family:var(--serif);font-weight:500;font-size:clamp(2em,8vw,3.2em);line-height:1.05;margin-bottom:16px}
+.cta-band h2 em{font-style:italic;color:var(--brass2)}
+.cta-band p{font-size:.92em;color:rgba(255,255,255,.55);max-width:38ch;margin:0 auto 36px;line-height:1.65}
+.cta-band .btn-wa{display:inline-flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);font-weight:700;font-size:.82em;letter-spacing:.12em;text-transform:uppercase;padding:16px 32px;border-radius:2px;text-decoration:none;transition:opacity .2s}
+.cta-band .btn-wa:active{opacity:.8}
+
+/* FOOTER */
+.foot{background:var(--bone);border-top:1px solid var(--line);padding:40px max(28px,env(safe-area-inset-left,0px)) 32px;text-align:center}
+.foot .mark{font-family:var(--serif);font-style:italic;font-size:1.6em;color:var(--ink);display:block;margin-bottom:8px}
+.foot p{font-size:.8em;color:var(--muted);line-height:1.7}
+.foot a{color:var(--brass);text-decoration:none}
+
+/* LANGUAGE */
+.lang-es .en,.lang-en .es{display:none!important}
+.lang-both .en{display:block!important;opacity:.6;font-size:.93em;margin-top:1px}
+</style>
+</head>
+<body class="lang-es">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand"><em>MX</em> Studio ✝</div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button type="button" onclick="location.reload()" aria-label="Actualizar / Refresh" title="Actualizar / Refresh" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:transparent;border:1.5px solid var(--brass);color:var(--brass);cursor:pointer;padding:0;flex-shrink:0;transition:opacity .15s" onmouseenter="this.style.opacity='.7'" onmouseleave="this.style.opacity='1'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg></button>
+    <div class="lang-toggle">
+      <button id="btnES" onclick="setLang('es')" class="on">ES</button>
+      <button id="btnBOTH" onclick="setLang('both')">ES+EN</button>
+      <button id="btnEN" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="nav-cta es" href="https://wa.me/527441930502?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20MX%20Studio" target="_blank" rel="noopener">Contactar</a>
+    <a class="nav-cta en" href="https://wa.me/527441930502?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20MX%20Studio" target="_blank" rel="noopener">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.pexels.com/photos/5078916/pexels-photo-5078916.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Bahía de Acapulco">
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Acapulco · Guerrero · México</div>
+    <h1 class="es">Tu negocio.<br><em>En el bolsillo</em><br>de cada turista.</h1>
+    <h1 class="en">Your business.<br><em>In the pocket</em><br>of every guest.</h1>
+    <p class="hero-sub es">Hub digital · Marketing · Apps gratis para tus clientes. <strong>Listo en 24 horas.</strong></p>
+    <p class="hero-sub en">Digital hub · Marketing · Free apps for your guests. <strong>Ready in 24 hours.</strong></p>
+    <div class="hero-btns">
+      <a class="btn-primary es" href="https://wa.me/527441930502?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20MX%20Studio" target="_blank" rel="noopener">📱 Quiero saber más</a>
+      <a class="btn-primary en" href="https://wa.me/527441930502?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20MX%20Studio" target="_blank" rel="noopener">📱 Get in touch</a>
+      <a class="btn-ghost es" href="https://go.myjefetech.app/acapulco/" target="_blank" rel="noopener">Ver demo en vivo →</a>
+      <a class="btn-ghost en" href="https://go.myjefetech.app/acapulco/" target="_blank" rel="noopener">See live demo →</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span></span><span class="es">Explorar</span><span class="en">Explore</span></div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="sec" style="background:var(--paper)">
+  <div class="sec-eyebrow es">Lo que hacemos</div>
+  <div class="sec-eyebrow en">What we do</div>
+  <h2 class="es">Tres pilares.<br><em>Un solo equipo.</em></h2>
+  <h2 class="en">Three pillars.<br><em>One team.</em></h2>
+  <p class="sec-lead es">MX Studio conecta tu negocio con los turistas que ya están en Acapulco — antes de que busquen a la competencia.</p>
+  <p class="sec-lead en">MX Studio connects your business with tourists already in Acapulco — before they find your competition.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h3 class="es">Hub Digital</h3>
+      <h3 class="en">Digital Hub</h3>
+      <p class="es">Tu propio hub de negocios: restaurantes, actividades, hotel y más — todo en una app que los turistas abren desde su teléfono, sin descargar nada.</p>
+      <p class="en">Your own business hub: restaurants, activities, hotel and more — all in an app tourists open from their phone, no download needed.</p>
+      <span class="pill-tag es">Listo en 24 horas</span>
+      <span class="pill-tag en">Ready in 24 hours</span>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h3 class="es">Marketing y Publicidad</h3>
+      <h3 class="en">Marketing & Ads</h3>
+      <p class="es">Tu negocio aparece en hubs de toda la zona — hoteles, resorts, restaurantes que ya usan MX Studio. Un turista te ve, llega a tu puerta.</p>
+      <p class="en">Your business appears in hubs across the area — hotels, resorts, restaurants already on MX Studio. A tourist sees you, walks in your door.</p>
+      <span class="pill-tag es">Llega a más turistas</span>
+      <span class="pill-tag en">Reach more tourists</span>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h3 class="es">Apps para tus clientes</h3>
+      <h3 class="en">Apps for your guests</h3>
+      <p class="es">Apps gratis para tus clientes: idiomas, juegos familiares, seguridad GPS. Sin costo extra — incluidas en tu plan Concierge Pro.</p>
+      <p class="en">Free apps for your guests: languages, family games, GPS safety. No extra cost — included in your Concierge Pro plan.</p>
+      <span class="pill-tag es">Incluido en todos los planes</span>
+      <span class="pill-tag en">Included in every plan</span>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="sec" style="padding-top:0;padding-left:0;padding-right:0">
+  <div class="demo-card">
+    <div class="demo-card-img">
+      <div class="demo-card-label es">Demo en vivo</div>
+      <div class="demo-card-label en">Live demo</div>
+      <img src="https://images.pexels.com/photos/2004354/pexels-photo-2004354.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Acapulco Hub">
+    </div>
+    <div class="demo-card-body">
+      <h3 class="es">Así se ve tu hub en vivo</h3>
+      <h3 class="en">This is what your live hub looks like</h3>
+      <p class="es">Restaurantes, hotel, resort, actividades — todo en un solo lugar. Ábrelo en tu teléfono ahora mismo.</p>
+      <p class="en">Restaurants, hotel, resort, activities — all in one place. Open it on your phone right now.</p>
+      <a class="btn-demo" href="https://go.myjefetech.app/acapulco/" target="_blank" rel="noopener">
+        <span class="es">Abrir demo →</span>
+        <span class="en">Open demo →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec">
+  <div class="sec-eyebrow es">Proceso</div>
+  <div class="sec-eyebrow en">How it works</div>
+  <h2 class="es"><em>Listo</em> en 24 horas.</h2>
+  <h2 class="en"><em>Ready</em> in 24 hours.</h2>
+  <p class="sec-lead es">Sin complicaciones. Sin apps que descargar. Sin contratos largos.</p>
+  <p class="sec-lead en">No complications. No apps to download. No long contracts.</p>
+
+  <div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h4 class="es">Hablamos por WhatsApp</h4>
+        <h4 class="en">We talk on WhatsApp</h4>
+        <p class="es">Cuéntanos de tu negocio — restaurante, hotel, resort, actividades. Te explicamos cómo funciona, sin compromiso.</p>
+        <p class="en">Tell us about your business — restaurant, hotel, resort, activities. We explain how it works, no commitment needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h4 class="es">Configuramos tu hub</h4>
+        <h4 class="en">We build your hub</h4>
+        <p class="es">En menos de 24 horas, tu hub está en vivo con tus fotos, menú, horarios y QR listo para imprimir.</p>
+        <p class="en">In less than 24 hours, your hub is live with your photos, menu, hours and a QR code ready to print.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h4 class="es">Los turistas te encuentran</h4>
+        <h4 class="en">Tourists find you</h4>
+        <p class="es">Los visitantes escanean el QR o abren el hub desde el hotel. Tu negocio aparece justo cuando están buscando dónde ir.</p>
+        <p class="en">Visitors scan the QR or open the hub from their hotel. Your business appears exactly when they're deciding where to go.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <h4 class="es">Tú te enfocas en tu negocio</h4>
+        <h4 class="en">You focus on your business</h4>
+        <p class="es">Nosotros manejamos la tecnología. Tú recibes más clientes, más reservas, más ventas.</p>
+        <p class="en">We handle the technology. You get more customers, more bookings, more sales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PRICING — full interactive section
+     ══════════════════════════════════════ -->
+<div id="precios" style="background:var(--bone)">
+
+  <!-- section header -->
+  <div style="padding:72px max(28px,env(safe-area-inset-left,0px)) 0">
+    <div class="sec-eyebrow es">Precios</div>
+    <div class="sec-eyebrow en">Pricing</div>
+    <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(2.2em,8vw,3.4em);line-height:1.02;letter-spacing:-.01em;margin-bottom:14px" class="es">Tu negocio.<br><em style="font-style:italic;color:var(--brass)">Tu app. Tu panel.</em></h2>
+    <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(2.2em,8vw,3.4em);line-height:1.02;letter-spacing:-.01em;margin-bottom:14px" class="en">Your business.<br><em style="font-style:italic;color:var(--brass)">Your app. Your panel.</em></h2>
+    <p style="font-size:.92em;color:var(--muted);line-height:1.7;max-width:42ch;margin-bottom:18px" class="es">Todo en pesos mexicanos. Pago único, listo en 24 horas.</p>
+    <p style="font-size:.92em;color:var(--muted);line-height:1.7;max-width:42ch;margin-bottom:18px" class="en">Everything in Mexican pesos. One-time payment, ready in 24 hours.</p>
+    <p style="font-size:.82em;color:var(--muted);border-left:2px solid var(--brass2);padding-left:12px;line-height:1.6;margin-bottom:48px">
+      <span class="es">💳 Opciones de pago disponibles — 50% de enganche, el resto en mensualidades acordadas con MX Studio.</span>
+      <span class="en">💳 Payment options available — 50% down, remaining balance in monthly payments arranged with MX Studio.</span>
+    </p>
+  </div>
+
+  <!-- GOOGLE PITCH -->
+  <div style="padding:0 max(28px,env(safe-area-inset-left,0px)) 32px">
+    <div style="background:var(--paper);border:1px solid var(--line2);padding:26px 28px">
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:10px">📍 Google Maps</p>
+      <p class="es" style="font-size:.92em;color:var(--ink2);line-height:1.65">Cuando un turista te busca en Google Maps y toca "Sitio web" — ve <strong style="color:var(--ink)">tu marca</strong>: menú, habitaciones, WiFi, reservas y tus <strong style="color:var(--ink)">Gift Apps incluidas</strong>. Todo bajo tu nombre, con tu propio <strong style="color:var(--ink)">Panel de Control</strong>.</p>
+      <p class="en" style="font-size:.92em;color:var(--ink2);line-height:1.65">When a tourist finds you on Google Maps and taps "Website" — they see <strong style="color:var(--ink)">your brand</strong>: menu, rooms, WiFi, reservations and your <strong style="color:var(--ink)">included Gift Apps</strong>. All under your name, with your own <strong style="color:var(--ink)">Owner's Panel</strong>.</p>
+
+    </div>
+  </div>
+
+  <!-- STEP 1: APP -->
+  <div style="padding:0 max(28px,env(safe-area-inset-left,0px)) 0" id="secApp">
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="es">Paso 1 · Tu app</p>
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="en">Step 1 · Your app</p>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:6px" class="es">Gift Apps by MX Studio</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:6px" class="en">Gift Apps by MX Studio</h3>
+    <p style="font-size:.85em;color:var(--muted);margin-bottom:20px" class="es">Pago único. Lista en 24 horas.</p>
+    <p style="font-size:.85em;color:var(--muted);margin-bottom:20px" class="en">One-time payment. Ready in 24 hours.</p>
+
+    <div id="app-main" onclick="selectApp()" style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;cursor:pointer;transition:border-color .2s;margin-bottom:6px">
+      <p style="font-size:1.5em;margin-bottom:12px">🏨</p>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="es">App Negocio + Panel de Control</h4>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="en">Business App + Owner's Panel</h4>
+      <p style="font-size:.78em;color:var(--brass);margin-bottom:14px" class="es">Restaurantes · Bares · Hoteles · Tiendas</p>
+      <p style="font-size:.78em;color:var(--brass);margin-bottom:14px" class="en">Restaurants · Bars · Hotels · Local Shops</p>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$3,000<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
+      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="es">✓ Pago único — sin mensualidades</p>
+      <p style="font-size:.78em;color:#2a9962;font-weight:600;margin-bottom:16px" class="en">✓ One-time payment — no monthly fees</p>
+      <div style="border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</span><span class="es"><strong>Hub de Negocio Completo</strong> — Menú con fotos, WiFi, reservas, reseñas y lealtad</span><span class="en"><strong>Full Business Hub</strong> — Photo menu, WiFi, reservations, Google reviews &amp; loyalty</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</span><span class="es"><strong>Gift Apps incluidas</strong> — Apps de regalo para tus clientes, sin costo extra</span><span class="en"><strong>Gift Apps included</strong> — Bonus apps for your guests at no extra cost</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</span><span class="es"><strong>Panel de Control del Dueño</strong> — Edita precios, menús y fotos desde tu teléfono</span><span class="en"><strong>Owner's Control Panel</strong> — Edit prices, menus and photos from your phone</span></div>
+        <div style="display:flex;gap:10px;font-size:.85em;line-height:1.45"><span style="background:var(--brass);color:var(--paper);border-radius:50%;width:19px;height:19px;font-size:.7em;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">4</span><span class="es"><strong>Códigos QR personalizados</strong> — Listos para imprimir para tus mesas</span><span class="en"><strong>Custom QR Codes</strong> — Ready-to-print for your tables or rooms</span></div>
+      </div>
+      <button id="app-sel-btn" style="width:100%;padding:14px;border:1.5px solid var(--line2);background:transparent;color:var(--ink);font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">
+        <span class="es">Seleccionar →</span><span class="en">Select →</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 2: SUPPORT -->
+  <div style="padding:40px max(28px,env(safe-area-inset-left,0px)) 0" id="secPkg">
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="es">Paso 2 · Soporte (opcional)</p>
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="en">Step 2 · Care (optional)</p>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:16px" class="es">¿Cuánto cuidado necesita tu app?</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:16px" class="en">How much care does your app need?</h3>
+
+    <div id="pkg-concierge" onclick="selectPkg('concierge')" style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;cursor:pointer;transition:border-color .2s;position:relative;margin-bottom:12px">
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px">Concierge Pro</p>
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.4em;line-height:1;color:var(--brass);margin-bottom:4px">$5,500<span style="font-size:.35em;font-style:normal;color:var(--muted)" class="es"> MXN/año</span><span style="font-size:.35em;font-style:normal;color:var(--muted)" class="en"> MXN/year</span></div>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="es">¿Demasiado ocupado? Mándanos fotos por WhatsApp y nosotros lo hacemos.</p>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="en">Too busy? Text us on WhatsApp and we handle everything for you.</p>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px">
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Concierge manos libres vía WhatsApp — subimos fotos y precios por ti</span><span class="en">Hands-free WhatsApp concierge — we resize, translate &amp; publish for you</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Acceso instantáneo a nuevas funciones al lanzarse</span><span class="en">Instant access to every new feature as it launches</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Soporte prioritario por WhatsApp en 24 hr</span><span class="en">24-hr priority WhatsApp support</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Configuración en Google Maps — aparece cuando te buscan</span><span class="en">Google Maps Setup — show up when guests search for you</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Entrenamiento para reseñas de 5 estrellas — guion para meseros, competencia interna y sistema de regalo incluido</span><span class="en">5-Star Review Training — waiter script, internal competition &amp; guest gift system included</span></div>
+      </div>
+      <button style="width:100%;padding:14px;border:1.5px solid var(--line2);background:transparent;color:var(--ink);font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">
+        <span class="es">Seleccionar →</span><span class="en">Select →</span>
+      </button>
+    </div>
+
+    <p style="font-size:.8em;color:var(--muted);border-left:2px solid var(--brass2);padding-left:12px;line-height:1.6;margin-bottom:12px">
+      <span class="es">💳 MX Studio ofrece opciones de pago — 50% de enganche, después mensualidades acordadas entre MX Studio y el dueño.</span>
+      <span class="en">💳 MX Studio offers payment options — 50% down, then monthly payments arranged between MX Studio and the owner.</span>
+    </p>
+
+    <p id="skipPkg" onclick="selectPkg(null)" style="text-align:center;font-size:.82em;color:var(--muted);cursor:pointer;text-decoration:underline;padding:12px 0">
+      <span class="es">No por ahora →</span><span class="en">No thanks, skip →</span>
+    </p>
+  </div>
+
+  <!-- MARKETING HUB -->
+  <div style="padding:40px max(28px,env(safe-area-inset-left,0px)) 0">
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="es">Marketing Hub</p>
+    <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:8px" class="en">Marketing Hub</p>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:8px" class="es">Tu hub, tu marca</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.9em;margin-bottom:8px" class="en">Your hub, your brand</h3>
+    <p style="font-size:.88em;color:var(--muted);margin-bottom:16px;line-height:1.6" class="es">Restaurante, hotel, beach club, actividad — tu propia página de hub. Otros negocios pagan para aparecer en tu hub.</p>
+    <p style="font-size:.88em;color:var(--muted);margin-bottom:16px;line-height:1.6" class="en">Restaurant, hotel, beach club, activity — your own branded hub. Other businesses pay to be listed on your hub.</p>
+
+    <!-- SEASONAL HUB PLACEMENT PRICING -->
+    <div style="border:1px solid var(--line2);border-radius:2px;overflow:hidden;margin-bottom:22px">
+
+      <!-- Christmas — FREE banner -->
+      <div style="background:var(--ink);color:var(--paper);padding:18px 22px">
+        <p style="font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass2);margin-bottom:6px">🎄 Temporada Navideña · Christmas Season</p>
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
+          <span style="font-family:var(--serif);font-style:italic;font-size:2.4em;color:#fff">GRATIS</span>
+          <span style="font-size:.78em;color:rgba(255,255,255,.5)" class="es">· FREE</span>
+          <span style="font-size:.78em;color:rgba(255,255,255,.5)" class="en">· GRATIS</span>
+        </div>
+        <p class="es" style="font-size:.82em;color:rgba(255,255,255,.65);line-height:1.5">Compra tu app antes de Navidad y tu negocio aparece en el Hub de Acapulco toda la temporada navideña — sin costo.</p>
+        <p class="en" style="font-size:.82em;color:rgba(255,255,255,.65);line-height:1.5">Buy your app before Christmas and your business appears on the Acapulco Hub all Christmas season — at no charge.</p>
+      </div>
+
+      <!-- The 4 seasons -->
+      <div style="background:var(--paper);padding:18px 22px 6px">
+        <p style="font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass);margin-bottom:14px" class="es">Temporadas en Acapulco · $100 MXN c/u</p>
+        <p style="font-size:.6em;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--brass);margin-bottom:14px" class="en">Acapulco Seasons · $100 MXN each</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">🎄</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Navidad</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Christmas</p>
+            <p style="font-size:.72em;color:var(--muted)">Dic–Ene</p>
+            <p style="font-size:.72em;color:#2a9962;font-weight:700;margin-top:4px" class="es">✦ GRATIS primer año</p>
+            <p style="font-size:.72em;color:#2a9962;font-weight:700;margin-top:4px" class="en">✦ FREE first year</p>
+          </div>
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">🌸</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Semana Santa</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Easter</p>
+            <p style="font-size:.72em;color:var(--muted)">Mar–Abr</p>
+            <p style="font-size:.72em;color:var(--brass);font-weight:700;margin-top:4px">$100 MXN</p>
+          </div>
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">☀️</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Verano</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Summer</p>
+            <p style="font-size:.72em;color:var(--muted)">Jul–Ago</p>
+            <p style="font-size:.72em;color:var(--brass);font-weight:700;margin-top:4px">$100 MXN</p>
+          </div>
+          <div style="border:1px solid var(--line);padding:12px 14px;border-radius:1px">
+            <p style="font-size:1.3em;margin-bottom:4px">🎉</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="es">Puentes &amp; Fiestas</p>
+            <p style="font-size:.8em;font-weight:600;color:var(--ink)" class="en">Long Weekends</p>
+            <p style="font-size:.72em;color:var(--muted)">Sep–Oct</p>
+            <p style="font-size:.72em;color:var(--brass);font-weight:700;margin-top:4px">$100 MXN</p>
+          </div>
+        </div>
+        <p style="font-size:.75em;color:var(--muted);border-left:2px solid var(--brass2);padding-left:10px;line-height:1.55;margin-bottom:18px">
+          <span class="es">Año 1: Navidad gratis + 3 temporadas = <strong style="color:var(--ink)">$300 MXN</strong>. El precio por temporada sube cada año.</span>
+          <span class="en">Year 1: Christmas free + 3 seasons = <strong style="color:var(--ink)">$300 MXN</strong>. Season price increases each year.</span>
+        </p>
+      </div>
+    </div>
+
+    <div style="background:var(--paper);border:1.5px solid var(--line2);padding:28px;position:relative">
+      <div style="font-family:var(--serif);font-style:italic;font-size:2.6em;line-height:1;color:var(--brass);margin-bottom:4px">$8,500<span style="font-size:.35em;font-style:normal;color:var(--muted)"> MXN</span></div>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="es">Pago único · Todo incluido · Sin mensualidades el primer año</p>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:16px" class="en">One-time · Everything included · No monthly fees year one</p>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px">
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Tu hub con tu nombre, logo y colores</span><span class="en">Your hub with your name, logo and colors</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Menú, fotos, info, horarios, ubicación</span><span class="en">Menu, photos, info, hours, location</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Otros negocios pagan por aparecer en tu hub</span><span class="en">Other businesses pay to be listed on your hub</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:var(--brass);font-weight:800;flex-shrink:0">✓</span><span class="es">Tu hub genera ingresos por sí solo</span><span class="en">Your hub generates its own revenue</span></div>
+      </div>
+      <p style="font-size:.78em;color:var(--muted);margin-bottom:16px;font-weight:600">
+        <span class="es">💳 Opciones de pago: 3 × $2,833 · 6 × $1,417</span>
+        <span class="en">💳 Payment options: 3 × $2,833 · 6 × $1,417</span>
+      </p>
+      <a href="https://wa.me/527441930502" target="_blank" rel="noopener" style="display:block;width:100%;padding:14px;background:var(--ink);color:var(--paper);font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;text-decoration:none;transition:opacity .2s">
+        <span class="es">💬 Quiero mi Marketing Hub →</span>
+        <span class="en">💬 I want my Marketing Hub →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SCANNER ADD-ON -->
+  <div style="padding:40px max(28px,env(safe-area-inset-left,0px)) 0">
+    <div id="addon-scanner" onclick="toggleAddon()" style="background:var(--paper);border:1.5px solid rgba(42,153,98,.3);padding:28px;cursor:pointer;transition:border-color .2s">
+      <div style="display:inline-block;background:rgba(42,153,98,.12);color:#2a9962;border:1px solid rgba(42,153,98,.3);padding:3px 11px;font-size:.65em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px">
+        <span class="es">➕ Módulo Opcional</span><span class="en">➕ Optional Module</span>
+      </div>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="es">Escáner de Inventario</h4>
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:1.6em;line-height:1.1;margin-bottom:4px" class="en">Inventory Scanner</h4>
+      <p style="font-size:.72em;color:var(--muted);margin-bottom:12px" class="es">Módulo de Operaciones</p>
+      <p style="font-size:.72em;color:var(--muted);margin-bottom:12px" class="en">Operations Module</p>
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px">
+        <div style="font-family:var(--serif);font-style:italic;font-size:2.2em;line-height:1;color:#2a9962">$25,000<span style="font-size:.38em;font-style:normal;color:var(--muted)"> MXN</span></div>
+        <div style="font-size:.8em;color:var(--muted)" class="es">setup · después $5,000/mes</div>
+        <div style="font-size:.8em;color:var(--muted)" class="en">setup · then $5,000/month</div>
+      </div>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:14px;line-height:1.5" class="es">Convierte los teléfonos de tu personal en escáneres de inventario en tiempo real — integrado en tu Panel de Control.</p>
+      <p style="font-size:.82em;color:var(--muted);margin-bottom:14px;line-height:1.5" class="en">Turn your staff's phones into real-time inventory scanners — built into your Owner's Panel.</p>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px">
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Escáner de códigos de barras desde el celular</span><span class="en">Mobile barcode scanner built into your panel</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Inventario en tiempo real y alertas de stock bajo</span><span class="en">Real-time inventory tracking &amp; low-stock alerts</span></div>
+        <div style="display:flex;gap:8px;font-size:.84em"><span style="color:#2a9962;font-weight:800;flex-shrink:0">✓</span><span class="es">Acceso multi-personal con sincronización instantánea</span><span class="en">Multi-staff access with instant sync</span></div>
+      </div>
+      <button style="width:100%;padding:12px;border:1.5px solid rgba(42,153,98,.4);background:rgba(42,153,98,.06);color:#2a9962;font:inherit;font-size:.82em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s">
+        <span class="es">Agregar a mi app →</span><span class="en">Add to my app →</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div style="padding:32px max(28px,env(safe-area-inset-left,0px))" id="secSum" hidden>
+    <div style="background:var(--paper);border:1px solid var(--line2);padding:28px">
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:12px" class="es">Tu pedido</p>
+      <p style="font-size:.62em;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--brass);margin-bottom:12px" class="en">Your order</p>
+      <div id="sumRows"></div>
+      <button onclick="openModal()" style="width:100%;margin-top:16px;padding:16px;border:none;background:var(--ink);color:var(--paper);font:inherit;font-size:.85em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+        <span>💬</span>
+        <span class="es">Comprar por WhatsApp</span>
+        <span class="en">Buy on WhatsApp</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- PURCHASE MODAL -->
+<div id="overlay" onclick="closeOutside(event)" style="position:fixed;inset:0;background:rgba(20,35,44,.82);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(8px)">
+  <div id="modal-box" style="background:var(--paper);padding:32px max(24px,env(safe-area-inset-left,0px)) max(32px,calc(env(safe-area-inset-bottom,0px)+32px));width:100%;max-width:520px;transform:translateY(100%);transition:transform .3s">
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.8em;margin-bottom:6px" class="es">¿Cuál es tu WhatsApp?</h3>
+    <h3 style="font-family:var(--serif);font-weight:500;font-size:1.8em;margin-bottom:6px" class="en">What's your WhatsApp?</h3>
+    <p style="font-size:.86em;color:var(--muted);margin-bottom:16px" class="es">Brian te contacta para activar tu app y cerrar los detalles.</p>
+    <p style="font-size:.86em;color:var(--muted);margin-bottom:16px" class="en">Brian will contact you to activate your app and finalize details.</p>
+    <div id="modalOrder" style="background:var(--bone);border:1px solid var(--line);padding:14px 16px;margin-bottom:16px;font-size:.86em;color:var(--muted);line-height:1.7"></div>
+    <input type="tel" id="waInput" placeholder="+52 744 000 0000" inputmode="tel" style="width:100%;padding:14px 16px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);font:inherit;font-size:1em;margin-bottom:14px;outline:none;transition:border-color .2s">
+    <button onclick="sendWA()" style="width:100%;padding:16px;border:none;background:#25d366;color:#063117;font:inherit;font-weight:800;font-size:.92em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px">
+      <span>💬</span>
+      <span class="es">Enviar por WhatsApp</span>
+      <span class="en">Send on WhatsApp</span>
+    </button>
+    <button onclick="closeModal()" style="width:100%;padding:10px;border:none;background:transparent;color:var(--muted);font:inherit;font-size:.86em;cursor:pointer">
+      <span class="es">Cancelar</span><span class="en">Cancel</span>
+    </button>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="cta-band">
+  <h2 class="es">¿Listo para <em>ponerte en el mapa?</em></h2>
+  <h2 class="en">Ready to <em>get on the map?</em></h2>
+  <p class="es">Escríbenos hoy. En 24 horas, tu negocio ya está en el teléfono de cada turista que llega a Acapulco.</p>
+  <p class="en">Message us today. In 24 hours, your business is in the pocket of every tourist arriving in Acapulco.</p>
+  <a class="btn-wa es" href="https://wa.me/527441930502?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20MX%20Studio" target="_blank" rel="noopener">
+    📱 Escribirnos por WhatsApp
+  </a>
+  <a class="btn-wa en" href="https://wa.me/527441930502?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20MX%20Studio" target="_blank" rel="noopener">
+    📱 Message us on WhatsApp
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <span class="mark">MX Studio ✝</span>
+  <p><a href="https://wa.me/527441930502">+52 744 193 0502</a> · <a href="#precios">Ver precios →</a></p>
+  <p style="margin-top:8px;font-size:.75em">Acapulco de Juárez, Guerrero · myjefetech.app</p>
+</footer>
+
+<script>
+/* ── lang toggle ── */
+function setLang(l){
+  document.body.className='lang-'+l;
+  document.getElementById('btnES').className=l==='es'?'on':'';
+  document.getElementById('btnBOTH').className=l==='both'?'on':'';
+  document.getElementById('btnEN').className=l==='en'?'on':'';
+  try{localStorage.setItem('mx-lang',l)}catch(e){}
+}
+try{var sl=localStorage.getItem('mx-lang');if(sl)setLang(sl)}catch(e){}
+
+/* ── pricing state ── */
+var state={app:false,pkg:null,addon:false};
+
+function selectApp(){
+  state.app=!state.app;
+  var card=document.getElementById('app-main');
+  var btn=document.getElementById('app-sel-btn');
+  if(state.app){
+    card.style.borderColor='var(--brass)';
+    btn.style.background='var(--ink)';
+    btn.style.color='var(--paper)';
+    btn.style.borderColor='var(--ink)';
+    btn.innerHTML='<span class="es">✓ Seleccionado</span><span class="en">✓ Selected</span>';
+  } else {
+    card.style.borderColor='var(--line2)';
+    btn.style.background='transparent';
+    btn.style.color='var(--ink)';
+    btn.style.borderColor='var(--line2)';
+    btn.innerHTML='<span class="es">Seleccionar →</span><span class="en">Select →</span>';
+  }
+  updateSummary();
+}
+
+function selectPkg(id){
+  state.pkg=id;
+  var c=document.getElementById('pkg-concierge');
+  if(c){
+    c.style.borderColor=id==='concierge'?'var(--brass)':'var(--line2)';
+    var b=c.querySelector('button');
+    if(b){
+      b.style.background=id==='concierge'?'var(--ink)':'transparent';
+      b.style.color=id==='concierge'?'var(--paper)':'var(--ink)';
+      b.innerHTML=id==='concierge'?'<span class="es">✓ Seleccionado</span><span class="en">✓ Selected</span>':'<span class="es">Seleccionar →</span><span class="en">Select →</span>';
+    }
+  }
+  updateSummary();
+}
+
+function toggleAddon(){
+  state.addon=!state.addon;
+  var card=document.getElementById('addon-scanner');
+  var b=card.querySelector('button');
+  if(state.addon){
+    card.style.borderColor='#2a9962';
+    card.style.background='rgba(42,153,98,.04)';
+    if(b){b.style.background='#2a9962';b.style.color='#fff';b.innerHTML='<span class="es">✓ Agregado</span><span class="en">✓ Added</span>';}
+  } else {
+    card.style.borderColor='rgba(42,153,98,.3)';
+    card.style.background='var(--paper)';
+    if(b){b.style.background='rgba(42,153,98,.06)';b.style.color='#2a9962';b.innerHTML='<span class="es">Agregar a mi app →</span><span class="en">Add to my app →</span>';}
+  }
+  updateSummary();
+}
+
+function updateSummary(){
+  var rows=[];
+  var total=0;
+  if(state.app){rows.push({es:'App Negocio + Panel de Control',en:'Business App + Owner\'s Panel',p:'$3,000 MXN'});total+=3000;}
+  if(state.pkg==='concierge'){rows.push({es:'Concierge Pro',en:'Concierge Pro',p:'$5,500 MXN/año'});total+=5500;}
+  if(state.addon){rows.push({es:'Escáner de Inventario',en:'Inventory Scanner',p:'$25,000 MXN setup + $5,000/mes'});total+=25000;}
+  var sec=document.getElementById('secSum');
+  if(!rows.length){sec.hidden=true;return;}
+  sec.hidden=false;
+  var html='';
+  rows.forEach(function(r){
+    html+='<div style="display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88em"><span class="es">'+r.es+'</span><span class="en">'+r.en+'</span><span style="color:var(--brass);font-weight:600;white-space:nowrap">'+r.p+'</span></div>';
+  });
+  if(rows.length>1){
+    html+='<div style="display:flex;justify-content:space-between;padding:10px 0 0;font-weight:700;font-size:.9em"><span class="es">Total estimado</span><span class="en">Estimated total</span><span style="color:var(--ink)">$'+total.toLocaleString()+' MXN</span></div>';
+  }
+  document.getElementById('sumRows').innerHTML=html;
+}
+
+/* ── modal ── */
+function openModal(){
+  var rows=[];
+  if(state.app)rows.push('App Negocio + Panel de Control — $3,000 MXN');
+  if(state.pkg==='concierge')rows.push('Concierge Pro — $5,500 MXN/año');
+  if(state.addon)rows.push('Escáner de Inventario — $25,000 MXN setup + $5,000 MXN/mes');
+  document.getElementById('modalOrder').innerHTML=rows.join('<br>')||'(sin selección)';
+  var ov=document.getElementById('overlay');
+  var mb=document.getElementById('modal-box');
+  ov.style.opacity='1';
+  ov.style.pointerEvents='auto';
+  mb.style.transform='translateY(0)';
+  document.getElementById('waInput').focus();
+}
+
+function closeModal(){
+  var ov=document.getElementById('overlay');
+  var mb=document.getElementById('modal-box');
+  ov.style.opacity='0';
+  ov.style.pointerEvents='none';
+  mb.style.transform='translateY(100%)';
+}
+
+function closeOutside(e){if(e.target===document.getElementById('overlay'))closeModal();}
+
+function sendWA(){
+  var ph=(document.getElementById('waInput').value||'').trim();
+  var rows=[];
+  if(state.app)rows.push('App Negocio + Panel de Control ($3,000 MXN)');
+  if(state.pkg==='concierge')rows.push('Concierge Pro ($5,500 MXN/año)');
+  if(state.addon)rows.push('Escáner de Inventario ($5,000 MXN/mes)');
+  var msg='Hola Brian, me interesa MX Studio 🎯\n\n';
+  msg+=rows.join('\n');
+  if(ph)msg+='\n\nMi WhatsApp: '+ph;
+  var url='https://wa.me/527441930502?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
+  closeModal();
+}
+</script>
+</body>
+</html>

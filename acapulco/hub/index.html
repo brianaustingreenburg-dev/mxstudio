@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Comunidad ✝️</title>
+<meta name="theme-color" content="#06080f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Comunidad">
+<meta name="application-name" content="Comunidad">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#06080f;
+  --card:#0e1118;
+  --card2:#131720;
+  --gold:#c9922a;
+  --gold-lt:#f5c46a;
+  --gold-dim:rgba(201,146,42,.18);
+  --border:rgba(201,146,42,.18);
+  --border-lt:rgba(201,146,42,.32);
+  --text:#f0ebe2;
+  --text-2:#c4bdb0;
+  --muted:#7a7490;
+  --green:#25d366;
+  --sea:#2f8fa0;
+  --coral:#c8664a;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
+html{background:var(--bg)}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+/* ══════════════════════════════════════
+   CINEMATIC HERO SLIDESHOW
+══════════════════════════════════════ */
+.hero{
+  position:relative;
+  height:100svh;
+  min-height:580px;
+  max-height:860px;
+  overflow:hidden;
+  background:#06080f;
+}
+@media(min-width:900px){.hero{max-height:720px}}
+
+/* Hero photo — single full-bleed image */
+.hero-photo{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center 40%;
+  animation:kb 14s ease-out forwards;
+  will-change:transform;
+}
+@keyframes kb{
+  0%  {transform:scale(1.06)}
+  100%{transform:scale(1)}
+}
+
+/* Cinema-grade gradient overlay — fades bottom for legibility */
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to bottom,
+      rgba(6,8,15,.52) 0%,
+      rgba(6,8,15,0)   22%,
+      rgba(6,8,15,0)   42%,
+      rgba(6,8,15,.65) 72%,
+      rgba(6,8,15,.92) 100%
+    );
+  pointer-events:none;
+}
+
+/* Top bar: logo + lang */
+.hero-bar{
+  position:sticky;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(10px + env(safe-area-inset-top)) 20px 10px;
+  padding-right:max(20px,env(safe-area-inset-right,0px));
+  background:rgba(6,8,15,.72);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,146,42,.18);
+}
+@media(min-width:900px){
+  .hero-bar,.hero-content{max-width:900px;margin-left:auto;margin-right:auto;left:0;right:0;padding-left:32px;padding-right:32px}
+  .hero-content{padding-bottom:36px}
+}
+.hero-brand{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--text);
+}
+.hero-brand small{
+  display:block;
+  font-family:var(--sans);
+  font-size:.52rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold-lt);
+  margin-top:1px;
+}
+.lang-sw{
+  position:relative;
+  display:grid;grid-template-columns:1fr 1fr;
+  width:80px;height:28px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.4);
+  background:rgba(6,8,15,.3);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  font-size:11px;font-weight:600;letter-spacing:.12em;
+}
+.lang-sw .knob{
+  position:absolute;top:2px;left:2px;
+  width:38px;height:22px;
+  border-radius:999px;
+  background:rgba(201,146,42,.85);
+  transition:transform .3s cubic-bezier(.4,1.3,.6,1);
+}
+.lang-sw[data-l="en"] .knob{transform:translateX(38px)}
+.lang-sw span{
+  position:relative;z-index:1;
+  display:grid;place-items:center;
+  color:rgba(255,255,255,.75);
+  transition:color .2s;
+}
+.lang-sw[data-l="es"] .es-lbl,
+.lang-sw[data-l="en"] .en-lbl{color:#fff;font-weight:700}
+
+/* Hero content — bottom */
+.hero-content{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:0 22px calc(28px + env(safe-area-inset-bottom));
+}
+.hero-eyebrow{
+  font-size:.6rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:14px;
+}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(52px,14vw,80px);
+  font-weight:500;
+  line-height:.92;
+  color:#fdf9f2;
+  letter-spacing:-.01em;
+}
+.hero-title em{font-style:italic;color:var(--gold-lt)}
+.hero-caption{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(201,146,42,.3);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.hero-caption-text{
+  font-size:.72rem;color:rgba(240,235,226,.72);line-height:1.5;
+  max-width:70%;
+}
+/* dots — hidden, kept for compat */
+.hero-dots{display:none}
+.hero-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.3);
+  transition:all .4s;cursor:pointer;
+}
+.hero-dot.on{width:18px;border-radius:999px;background:var(--gold-lt)}
+
+/* Scroll hint */
+.scroll-hint{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  z-index:3;padding-bottom:8px;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(245,196,106,.5);
+  animation:bob 2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+.scroll-hint svg{width:14px;height:14px}
+
+/* ══════════════════════════════════════
+   TABS
+══════════════════════════════════════ */
+.tabs{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:10;
+}
+.tab{
+  padding:14px 4px;text-align:center;
+  font-family:var(--sans);
+  font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px;
+  transition:all .2s;
+}
+.tab .ico{font-size:1.5em;display:block;margin-bottom:4px}
+.tab.on{color:var(--gold-lt);border-bottom-color:var(--gold)}
+
+/* ══════════════════════════════════════
+   SECTION LABELS
+══════════════════════════════════════ */
+.sec-label{
+  display:flex;align-items:center;gap:14px;
+  padding:32px 20px 14px;
+}
+@media(min-width:600px){.sec-label{padding:36px 28px 16px}}
+@media(min-width:900px){.sec-label{padding:40px 32px 18px}}
+.sec-label span{
+  font-family:var(--sans);
+  font-size:.58rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ══════════════════════════════════════
+   MARKETING PITCH PANELS
+══════════════════════════════════════ */
+.pitch{background:var(--card);border-bottom:1px solid var(--border)}
+.pitch-hero{
+  height:200px;
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+}
+.pitch-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(6,8,15,.1) 0%,rgba(6,8,15,.88) 100%);
+}
+.pitch-hero-info{position:absolute;bottom:0;left:0;right:0;padding:16px 20px 18px}
+.pitch-tag{
+  font-size:.52rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:8px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.pitch-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-lt)}
+.pitch-headline{
+  font-family:var(--serif);
+  font-size:1.65rem;font-weight:500;line-height:1.05;
+  color:#fdf9f2;
+}
+.pitch-sub{font-size:.72rem;color:rgba(240,235,226,.65);margin-top:5px;line-height:1.5}
+.pitch-body{padding:20px 22px 4px}
+.pitch-desc{font-size:.82rem;color:var(--text-2);line-height:1.65;margin-bottom:18px}
+.pitch-benefits{display:flex;flex-direction:column;gap:0}
+.pitch-benefit{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--border);
+}
+.pitch-benefit:last-child{border-bottom:none}
+.pitch-benefit-ico{
+  font-size:1.5em;width:40px;height:40px;flex-shrink:0;
+  background:var(--gold-dim);border:1px solid var(--border);
+  border-radius:2px;display:grid;place-items:center;
+}
+.pitch-benefit-title{font-size:.8rem;font-weight:600;color:var(--text);line-height:1.3}
+.pitch-benefit-desc{font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-free{
+  margin:18px 0 4px;
+  background:linear-gradient(135deg,rgba(201,146,42,.1),rgba(201,146,42,.05));
+  border:1px solid var(--border-lt);
+  padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+}
+.pitch-free-ico{font-size:1.6em;flex-shrink:0}
+.pitch-free-title{font-size:.78rem;font-weight:700;color:var(--gold-lt);line-height:1.3}
+.pitch-free-desc{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-wa{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  margin:18px 0 24px;width:100%;padding:16px;
+  background:linear-gradient(135deg,rgba(18,46,27,.95),rgba(24,60,34,.95));
+  border:1px solid rgba(37,211,102,.25);
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);cursor:pointer;
+  transition:border-color .2s;
+}
+.pitch-wa:hover{border-color:rgba(37,211,102,.5)}
+.ffs-note{font-size:.74rem;line-height:1.6;color:var(--text-2);background:rgba(201,146,42,.08);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:16px}
+.ffs-launch{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin:18px 0 10px}
+.ffs-step{font-size:.74rem;font-weight:600;color:var(--text);margin:14px 0 8px}
+.ffs-amts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ffs-amt,.ffs-fq{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:12px 6px;min-height:44px;border:1px solid var(--border);border-radius:12px;font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.02)}
+.ffs-fq{font-family:inherit;font-size:.78rem}
+.ffs-amt.on,.ffs-fq.on{border-color:var(--gold-lt);background:rgba(201,146,42,.16);color:var(--gold-lt)}
+.ffs-amt:focus-visible,.ffs-fq:focus-visible,.ffs-custom input:focus-visible{outline:2px solid var(--gold-lt);outline-offset:2px}
+.ffs-freq{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ffs-custom[hidden]{display:none}
+.ffs-custom{display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:.7rem;color:var(--text-2)}
+.ffs-custom input{box-sizing:border-box;width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text);font:inherit;font-size:1rem}
+.ffs-sum{margin-top:14px;font-size:.78rem;line-height:1.55;color:var(--text-2);padding:12px 14px;border-radius:12px;background:rgba(201,146,42,.08);border:1px solid var(--border)}
+.ffs-inc-h{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin:20px 0 8px}
+.ffs-inc{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.ffs-inc li{font-size:.74rem;color:var(--text-2);line-height:1.5;padding-left:20px;position:relative}
+.ffs-inc li::before{content:'✓';position:absolute;left:0;color:var(--gold-lt);font-weight:700}
+.ffs-kit{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.ffs-kit img{width:100%;max-width:100%;border-radius:12px;display:block}
+.pitch-wa-ico{font-size:1.3em}
+
+/* photo cover */
+.feat-photo{
+  height:220px;
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+}
+.feat-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(6,8,15,.1) 0%,rgba(6,8,15,.85) 100%);
+}
+.feat-photo-info{position:absolute;bottom:0;left:0;right:0;padding:14px 20px 16px}
+.feat-demo-tag{
+  font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:6px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.feat-demo-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-lt);flex-shrink:0}
+.feat-name{
+  font-family:var(--serif);
+  font-size:1.6rem;font-weight:500;line-height:1.05;
+  color:#fdf9f2;
+}
+.feat-meta{font-size:.65rem;color:rgba(240,235,226,.65);margin-top:5px}
+.feat-stars{color:#f5ca60}
+
+/* action strip */
+.feat-actions{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-bottom:1px solid var(--border);
+}
+.feat-action{
+  padding:14px 4px;text-align:center;
+  font-size:.62rem;font-weight:600;letter-spacing:.06em;
+  border-right:1px solid var(--border);
+}
+.feat-action:last-child{border-right:none}
+.feat-action .ico{font-size:1.4em;display:block;margin-bottom:4px}
+.feat-action.wa{color:var(--green)}
+.feat-action.map{color:var(--sea)}
+
+/* menu */
+.menu-cat{
+  padding:10px 20px 5px;
+  font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--coral);
+  border-top:1px solid var(--border);
+}
+.menu-row{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:11px 20px;border-bottom:1px solid rgba(255,255,255,.04);gap:12px;
+}
+.menu-row:last-child{border-bottom:none}
+.menu-name{font-weight:500;font-size:.82rem;color:var(--text)}
+.menu-desc{font-size:.68rem;color:var(--muted);margin-top:2px;line-height:1.4}
+.menu-price{
+  font-family:var(--serif);
+  font-size:1rem;font-weight:500;
+  color:var(--gold-lt);white-space:nowrap;flex-shrink:0;
+}
+.demo-pill{
+  display:flex;align-items:center;gap:7px;
+  background:var(--gold-dim);border:1px solid var(--border-lt);
+  border-radius:2px;padding:7px 16px;
+  font-size:.62rem;font-weight:600;letter-spacing:.06em;
+  color:var(--gold-lt);margin:12px 20px 16px;
+}
+
+/* pitch panels */
+.pitch-hero{height:210px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.pitch-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,8,15,.08) 0%,rgba(6,8,15,.88) 100%)}
+.pitch-hero-info{position:absolute;bottom:0;left:0;right:0;padding:16px 20px 18px}
+.pitch-tag{font-size:.5rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:6px;display:inline-flex;align-items:center;gap:5px}
+.pitch-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-lt);flex-shrink:0}
+.pitch-headline{font-family:var(--serif);font-size:1.65rem;font-weight:500;line-height:1.05;color:#fdf9f2}
+.pitch-sub{font-size:.7rem;color:rgba(240,235,226,.65);margin-top:5px;line-height:1.5}
+.pitch-body{padding:20px 22px 4px}
+.pitch-desc{font-size:.82rem;color:var(--text-2);line-height:1.65;margin-bottom:18px;margin-top:0}
+.pitch-benefits{display:flex;flex-direction:column;gap:0}
+.pitch-benefit{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.pitch-benefit:last-child{border-bottom:none}
+.pitch-benefit-ico{font-size:1.4em;width:38px;height:38px;flex-shrink:0;background:var(--gold-dim);border:1px solid var(--border);border-radius:2px;display:grid;place-items:center}
+.pitch-benefit-title{font-size:.8rem;font-weight:600;color:var(--text);line-height:1.3}
+.pitch-benefit-desc{font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-free{margin:18px 0 4px;background:linear-gradient(135deg,rgba(201,146,42,.1),rgba(201,146,42,.03));border:1px solid var(--border-lt);padding:16px 18px;display:flex;align-items:center;gap:14px}
+.pitch-free-ico{font-size:1.6em;flex-shrink:0}
+.pitch-free-title{font-size:.78rem;font-weight:700;color:var(--gold-lt);line-height:1.3}
+.pitch-free-desc{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.pitch-wa{display:flex;align-items:center;gap:14px;margin:18px 0 24px;padding:16px 18px;background:linear-gradient(135deg,rgba(18,46,27,.95),rgba(10,30,18,.98));border:1px solid rgba(37,211,102,.25);text-decoration:none;color:var(--green)}
+.pitch-wa div{flex:1}
+
+/* room grid */
+.room-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.room-card{background:var(--card2);overflow:hidden}
+.room-img{height:100px;background-size:cover;background-position:center}
+.room-info{padding:10px 12px 12px}
+.room-name{font-family:var(--serif);font-size:1rem;font-weight:500}
+.room-price{font-size:.65rem;color:var(--gold-lt);margin-top:3px;font-weight:500}
+
+/* amenity grid */
+.amenity-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.amenity{background:var(--card2);padding:16px 14px;text-align:center}
+.amenity .ico{font-size:1.6em;display:block;margin-bottom:6px;line-height:1}
+.amenity span{font-size:.72rem;font-weight:500;color:var(--text-2)}
+
+/* 2-col button strip */
+.feat-2btn{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.feat-btn{padding:14px 4px;text-align:center;font-size:.62rem;font-weight:600;letter-spacing:.06em;border-right:1px solid var(--border)}
+.feat-btn:last-child{border-right:none}
+.feat-btn .ico{font-size:1.4em;display:block;margin-bottom:4px}
+.feat-btn.wa{color:var(--green)}
+
+/* ══════════════════════════════════════
+   CONTEXT CARDS (places to stay / dining)
+══════════════════════════════════════ */
+.ctx-cards{display:flex;flex-direction:column;padding:0 22px 4px;gap:0}
+.ctx-card{
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;
+}
+.ctx-card:last-child{border-bottom:none}
+.ctx-emo{
+  font-size:1.6em;
+  width:48px;height:48px;
+  border-radius:2px;
+  background:var(--gold-dim);
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  flex-shrink:0;
+}
+.ctx-zone{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--coral)}
+.ctx-name{font-family:var(--serif);font-size:1.3rem;font-weight:500;line-height:1.1;margin-top:3px}
+.ctx-desc{font-size:.72rem;color:var(--muted);margin-top:5px;line-height:1.5}
+.ctx-detail{font-size:.7rem;color:var(--gold-lt);margin-top:7px;font-weight:500}
+
+/* ══════════════════════════════════════
+   ROUTE STOPS
+══════════════════════════════════════ */
+.route-header{
+  padding:20px 22px 0;
+  display:flex;align-items:baseline;gap:10px;
+}
+.route-num{
+  font-family:var(--serif);font-style:italic;
+  font-size:.85rem;color:var(--gold);
+  letter-spacing:.04em;
+}
+.route-title{
+  font-family:var(--serif);font-size:1.55rem;font-weight:500;
+  color:var(--text);
+}
+.route-sub{font-size:.62rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;padding:4px 22px 16px}
+.route-stops{display:flex;flex-direction:column;padding:0 22px 4px;gap:0}
+.route-stop{
+  padding:18px 0;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;
+}
+.route-stop:last-child{border-bottom:none}
+.stop-icon{
+  width:48px;height:48px;
+  border-radius:2px;
+  background:var(--gold-dim);
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  font-size:1.4em;
+  flex-shrink:0;
+}
+.stop-type{font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.stop-type.cafe{color:#8fc9b8}
+.stop-type.rest{color:var(--coral)}
+.stop-type.hotel{color:var(--gold-lt)}
+.stop-name{font-family:var(--serif);font-size:1.25rem;font-weight:500;line-height:1.1;margin-top:3px}
+.stop-desc{font-size:.72rem;color:var(--muted);margin-top:5px;line-height:1.5}
+.stop-detail{font-size:.68rem;color:var(--gold-lt);margin-top:7px;font-weight:500}
+.stop-dist{
+  display:inline-block;margin-top:9px;
+  font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);padding:3px 7px;
+  background:var(--card2);border:1px solid var(--border);border-radius:1px;
+}
+
+/* ══════════════════════════════════════
+   ACTIVITIES
+══════════════════════════════════════ */
+/* ── Page-wide content wrapper (constrains on desktop) ── */
+.page-wrap{max-width:900px;margin:0 auto}
+/* ── Business listing cards ── */
+.biz-cards{padding:0 20px 8px;display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:600px){.biz-cards{grid-template-columns:repeat(2,1fr);padding:0 28px 12px}}
+@media(min-width:900px){.biz-cards{padding:0 32px 16px;gap:24px}}
+.biz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.biz-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
+.biz-photo{height:200px;background-size:cover;background-position:center;flex-shrink:0}
+@media(min-width:600px){.biz-photo{height:220px}}
+.biz-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.biz-zone,.biz-tag{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:5px}
+.biz-name{font-family:var(--serif);font-size:1.65rem;font-weight:500;line-height:1.1;margin-bottom:9px}
+.biz-desc{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:12px;flex:1}
+.biz-hours{font-size:.72rem;color:var(--muted);margin-bottom:14px;opacity:.8}
+.biz-wa{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--bg);padding:10px 16px;border-radius:10px;text-decoration:none;font-size:.8rem;font-weight:700;align-self:flex-start;transition:opacity .15s}
+.biz-wa:hover{opacity:.82}
+.biz-card-soon{border-style:dashed;opacity:.6}
+.biz-photo-soon{background:linear-gradient(135deg,rgba(201,146,42,.08),rgba(201,146,42,.03));display:flex;align-items:center;justify-content:center;font-size:2rem}
+.biz-photo-soon::after{content:'🌊'}
+/* ── end biz cards ── */
+/* ── AcáFree activities ── */
+.act-tabs{display:flex;gap:8px;padding:0 20px 20px;overflow-x:auto;scrollbar-width:none}
+.act-tabs::-webkit-scrollbar{display:none}
+@media(min-width:600px){.act-tabs{padding:0 28px 20px;gap:10px}}
+.act-tab{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:.78rem;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s,border-color .15s;font-family:inherit}
+.act-tab.on{background:rgba(201,146,42,.15);border-color:var(--gold);color:var(--gold-lt)}
+.acafree-grid{padding:0 20px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:600px){.acafree-grid{grid-template-columns:repeat(3,1fr);padding:0 28px 36px;gap:14px}}
+@media(min-width:900px){.acafree-grid{grid-template-columns:repeat(4,1fr);padding:0 32px 40px}}
+.acafree-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.acafree-ico{font-size:1.6rem;line-height:1}
+.acafree-name{font-family:var(--serif);font-size:1rem;font-weight:500;line-height:1.2;color:var(--text)}
+.acafree-detail{font-size:.68rem;color:var(--muted);line-height:1.4;flex:1}
+.acafree-wa{display:inline-flex;align-items:center;gap:5px;margin-top:6px;background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:700;padding:6px 11px;border-radius:8px;text-decoration:none;align-self:flex-start}
+.acafree-wa:hover{opacity:.82}
+/* ── end AcáFree ── */
+.act-cards{padding:0 22px 4px}
+.act-card{
+  padding:22px 0;
+  border-bottom:1px solid var(--border);
+}
+.act-card:last-child{border-bottom:none;padding-bottom:4px}
+.act-no{
+  font-family:var(--serif);font-style:italic;
+  font-size:1.1rem;color:var(--gold);
+  margin-bottom:4px;
+}
+.act-title{font-family:var(--serif);font-size:1.5rem;font-weight:500;line-height:1.1;margin-bottom:8px}
+.act-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+.act-detail{
+  display:inline-block;margin-top:10px;
+  font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-lt);padding-bottom:3px;border-bottom:1px solid var(--border-lt);
+}
+
+/* ══════════════════════════════════════
+   TRIVIA
+══════════════════════════════════════ */
+.trivia-wrap{padding:0 22px 4px}
+.trivia-intro{
+  padding:22px;
+  background:var(--card);
+  border:1px solid var(--border);
+  margin-bottom:1px;
+  text-align:center;
+}
+.trivia-intro .t-ico{font-size:2em;margin-bottom:10px;display:block}
+.trivia-intro h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--gold-lt)}
+.trivia-intro p{font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5}
+.q-card{
+  background:var(--card);border:1px solid var(--border);
+  padding:18px 20px;margin-bottom:1px;
+}
+.q-num{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:8px}
+.q-text{font-family:var(--serif);font-size:1.15rem;font-weight:500;line-height:1.4;margin-bottom:14px}
+.q-opts{display:flex;flex-direction:column;gap:1px}
+.q-opt{
+  background:var(--card2);
+  padding:12px 16px;
+  font-size:.8rem;font-weight:500;text-align:left;
+  transition:all .15s;cursor:pointer;
+  border:1px solid transparent;
+}
+.q-opt:hover:not(:disabled){background:rgba(201,146,42,.08);border-color:var(--border)}
+.q-opt.correct{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.4);color:var(--green)}
+.q-opt.wrong{background:rgba(200,102,74,.1);border-color:rgba(200,102,74,.4);color:var(--coral)}
+.q-opt:disabled{cursor:default}
+.trivia-win{
+  background:linear-gradient(135deg,rgba(201,146,42,.12),rgba(201,146,42,.06));
+  border:1px solid var(--border-lt);
+  padding:24px 20px;text-align:center;margin-bottom:1px;
+}
+.trivia-win .t-ico{font-size:2em;display:block;margin-bottom:10px}
+.trivia-win h3{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--gold-lt)}
+.trivia-win p{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.trivia-reset{
+  display:block;width:100%;padding:14px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-2);margin-top:1px;cursor:pointer;
+  transition:border-color .2s;
+}
+.trivia-reset:hover{border-color:var(--gold)}
+
+/* ══════════════════════════════════════
+   SURVIVAL SPANISH
+══════════════════════════════════════ */
+.phrase-cards{padding:0 22px 4px;display:flex;flex-direction:column;gap:0}
+.phrase-card{
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  transition:padding-left .15s;
+}
+.phrase-card:hover{padding-left:4px}
+.phrase-card:last-child{border-bottom:none}
+.phrase-es{font-family:var(--serif);font-size:1.2rem;font-weight:500}
+.phrase-en{font-size:.72rem;color:var(--muted);margin-top:3px}
+.phrase-pron{font-family:var(--serif);font-style:italic;font-size:.8rem;color:var(--gold-lt);margin-top:3px}
+.phrase-tap{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-top:7px}
+
+/* ══════════════════════════════════════
+   WA CTA
+══════════════════════════════════════ */
+.share-wrap{padding:28px 20px 8px;max-width:640px;margin:0 auto}
+.share-label{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);opacity:.7;margin-bottom:14px;text-align:center}
+.share-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:14px}
+.share-lang{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);opacity:.6;margin-bottom:8px}
+.share-msg{font-size:.88rem;line-height:1.6;white-space:pre-wrap;color:var(--fg);opacity:.9;font-family:inherit;background:transparent;border:none;width:100%;resize:none;user-select:text}
+.share-copy{margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:.8rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:opacity .15s}
+.share-copy:hover{opacity:.85}
+.share-copy.copied{background:#22c55e}
+.wa-wrap{padding:28px 22px calc(32px + env(safe-area-inset-bottom))}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:12px;width:100%;
+  padding:17px;
+  background:linear-gradient(135deg,rgba(18,46,27,.95),rgba(24,60,34,.95));
+  border:1px solid rgba(37,211,102,.25);
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);cursor:pointer;
+  transition:border-color .2s;
+}
+.wa-btn:hover{border-color:rgba(37,211,102,.5)}
+.wa-btn .wa-ico{font-size:1.4em}
+
+.foot{
+  text-align:center;
+  font-size:.6rem;letter-spacing:.06em;
+  color:rgba(122,116,144,.5);
+  padding:0 20px 32px;
+  line-height:2;
+}
+.foot .mark{
+  display:block;
+  font-family:var(--serif);font-style:italic;
+  font-size:1.2rem;color:var(--muted);
+  margin-bottom:4px;letter-spacing:0;
+}
+
+/* ══════════════════════════════════════
+   QR SPLASH SCREEN
+══════════════════════════════════════ */
+#qr-splash{
+  position:fixed;inset:0;z-index:999;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:32px 24px calc(40px + env(safe-area-inset-bottom));
+  transition:opacity .6s ease;
+}
+#qr-splash.fade-out{opacity:0;pointer-events:none}
+.qr-brand{
+  font-family:var(--serif);
+  font-size:1.5rem;font-weight:500;
+  color:var(--text);letter-spacing:.02em;
+  margin-bottom:4px;
+}
+.qr-brand small{
+  display:block;font-family:var(--sans);
+  font-size:.55rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-lt);margin-top:2px;text-align:center;
+}
+.qr-divider{
+  width:40px;height:1px;background:var(--border-lt);margin:16px 0;
+}
+.qr-box{
+  background:#fff;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 0 60px rgba(201,146,42,.15);
+  margin-bottom:24px;
+  width:min(220px,55vw);height:min(220px,55vw);
+  display:grid;place-items:center;
+}
+.qr-box svg{width:100%;height:100%}
+.qr-label{
+  font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;text-align:center;
+}
+.qr-url{
+  font-family:var(--sans);font-size:.65rem;color:rgba(201,146,42,.6);
+  letter-spacing:.06em;margin-top:6px;text-align:center;
+}
+.qr-enter{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;max-width:280px;padding:16px 20px;
+  background:linear-gradient(135deg,rgba(201,146,42,.18),rgba(201,146,42,.08));
+  border:1px solid var(--border-lt);
+  font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-lt);cursor:pointer;
+  transition:border-color .2s, background .2s;
+}
+.qr-enter:hover,.qr-enter:active{background:rgba(201,146,42,.25);border-color:rgba(201,146,42,.5)}
+.qr-enter-ico{font-size:1.3em}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     QR SPLASH SCREEN
+══════════════════════════════════════ -->
+<div id="qr-splash">
+  <div class="qr-brand">
+    Comunidad ✝️
+    <small>MX Studio · Demo</small>
+  </div>
+  <div class="qr-divider"></div>
+  <div class="qr-box" id="qrBox">
+    <!-- QR generated by JS -->
+  </div>
+  <div class="qr-label" id="qrLabel">Escanea para explorar · Scan to explore</div>
+  <div class="qr-url">go.myjefetech.app/acapulco/hub</div>
+  <div style="height:20px"></div>
+  <button class="qr-enter" onclick="enterHub()" id="qrEnterBtn">
+    <span class="qr-enter-ico">🌊</span>
+    <span id="qrEnterTxt">Explorar Comunidad</span>
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════
+     STICKY TOP BAR (always visible)
+══════════════════════════════════════ -->
+<div class="hero-bar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="../landing/" aria-label="Volver" style="display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-size:22px;line-height:1;flex-shrink:0;font-weight:300">←</a>
+    <button type="button" onclick="location.reload()" aria-label="Actualizar / Refresh" title="Actualizar / Refresh" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(6,8,15,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,146,42,.5);color:#f5c46a"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><polyline points="21 3 21 9 15 9"></polyline></svg></button>
+    <div class="lang-sw" id="langSw" data-l="es" onclick="toggleLang()">
+      <div class="knob"></div>
+      <span class="es-lbl">ES</span>
+      <span class="en-lbl">EN</span>
+    </div>
+  </div>
+  <div class="hero-brand" style="text-align:right">
+    Comunidad ✝️
+    <small id="hdrSub">MX Studio · Demo</small>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CINEMATIC HERO
+══════════════════════════════════════ -->
+<div class="hero" id="hero">
+
+  <!-- HERO: La Quebrada — clavadista al atardecer, Acapulco -->
+  <div class="hero-photo" style="background-image:url('img/la-quebrada.jpg');background-position:center 20%"></div>
+
+  <!-- gradient overlay -->
+  <div class="hero-overlay"></div>
+
+  <!-- bottom content -->
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="heroEyebrow">La Perla del Pacífico</div>
+    <div class="hero-title">
+      <span id="heroLine1">Acapulco</span><br>
+      <em id="heroLine2">Guerrero</em>
+    </div>
+    <div class="hero-caption">
+      <div class="hero-caption-text" id="heroCaption">La bahía más icónica de México. Clavadistas, mariscos, atardeceres y vida nocturna.</div>
+      <div class="hero-dots" id="heroDots"></div>
+    </div>
+  </div>
+
+  <!-- scroll hint -->
+  <div class="scroll-hint" id="scrollHint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+<!-- ══════════════════════════════════════
+     WHERE TO STAY
+══════════════════════════════════════ -->
+<div class="sec-label"><span id="secStay">Dónde Quedarse</span></div>
+<div class="biz-cards">
+
+  <!-- Casa Axolotl -->
+  <a class="biz-card" href="../c/casa-axolotl/hotel/">
+    <div class="biz-photo" style="background-image:url('../c/casa-axolotl/hotel/img/cover.jpg')"></div>
+    <div class="biz-body">
+      <div class="biz-zone" id="h1z">Pie de la Cuesta</div>
+      <div class="biz-name" id="h1n">Casa Axolotl</div>
+      <div class="biz-desc" id="h1d">Hotel y restaurante frente al Océano Pacífico en Pie de la Cuesta. Kayaks, fogata AcáFree y la mejor puesta de sol de México.</div>
+      <div class="biz-wa">
+        <span>🏨</span><span id="h1p">Ver hotel &amp; reservar · View &amp; book</span>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     WHERE TO EAT
+══════════════════════════════════════ -->
+<div class="sec-label"><span id="secDining">Dónde Comer</span></div>
+<div class="biz-cards">
+
+  <!-- Tres Marías -->
+  <a class="biz-card" href="../c/tres-marias/">
+    <div class="biz-photo" style="background-image:url('../c/tres-marias/img/cover.jpg')"></div>
+    <div class="biz-body">
+      <div class="biz-tag" id="d1t">Mariscos</div>
+      <div class="biz-name" id="d1n">Tres Marías</div>
+      <div class="biz-desc" id="d1d">Más de 30 años sirviendo pescado a la talla en comal de barro, tacos de camarón y ceviche fresco en Pie de la Cuesta.</div>
+      <div class="biz-hours" id="d1dt">Pie de la Cuesta · Abierto 9 am–6 pm</div>
+    </div>
+  </a>
+
+  <!-- Kailúa Fresh -->
+  <a class="biz-card" href="../c/kailua-fresh/">
+    <div class="biz-photo" style="background-image:url('../c/kailua-fresh/img/cover.jpg')"></div>
+    <div class="biz-body">
+      <div class="biz-tag" id="d2t">Café &amp; Cocina</div>
+      <div class="biz-name" id="d2n">Kailúa Fresh</div>
+      <div class="biz-desc" id="d2d">Café de especialidad, desayunos y comida en un ambiente fresco y relajado.</div>
+      <div class="biz-hours" id="d2dt">Acapulco · Abierto todo el día</div>
+    </div>
+  </a>
+
+  <!-- Slot 3 — coming soon -->
+  <div class="biz-card biz-card-soon">
+    <div class="biz-photo biz-photo-soon"></div>
+    <div class="biz-body">
+      <div class="biz-tag">Próximamente · Coming Soon</div>
+      <div class="biz-name" style="opacity:.35">Tu negocio aquí</div>
+      <div class="biz-desc" style="opacity:.35">¿Tienes un restaurante en Acapulco? Contáctanos para aparecer en Comunidad. · Have a restaurant in Acapulco? Contact us to be listed.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     ACÁFREE ACTIVITIES
+══════════════════════════════════════ -->
+<div class="sec-label">
+  <span>AcáFree · Actividades</span>
+</div>
+
+<!-- Activity tabs -->
+<div class="act-tabs" id="actTabs">
+  <button class="act-tab on" onclick="switchActTab('casa',this)">🏡 En Casa</button>
+  <button class="act-tab" onclick="switchActTab('tours',this)">🚣 Tours</button>
+  <button class="act-tab" onclick="switchActTab('especiales',this)">✨ Especiales</button>
+  <button class="act-tab" onclick="switchActTab('apps',this)">📱 Apps Gratis</button>
+</div>
+
+<!-- Tab: En Casa Axolotl -->
+<div class="acafree-grid" id="act-casa">
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🏊</div>
+    <div class="acafree-name">Alberca · Swimming Pool</div>
+    <div class="acafree-detail">Alberca privada con vista al jardín en Pie de la Cuesta. Private pool overlooking the garden.</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🛶</div>
+    <div class="acafree-name">Renta de Kayak · Kayak Rental</div>
+    <div class="acafree-detail">1 hora en la laguna de Pie de la Cuesta. 1 hr on the lagoon. $150/persona.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hola!%20Can%20I%20rent%20a%20kayak%20today%20at%20Casa%20Axolotl%3F%20What%20time%20can%20I%20go%20out%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🔥</div>
+    <div class="acafree-name">Fogata Familiar · Family Bonfire</div>
+    <div class="acafree-detail">Leña, bombones y varillas al atardecer. Wood, marshmallows &amp; roasting sticks at sunset. $600.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20to%20book%20a%20family%20bonfire%20at%20Casa%20Axolotl.%20Do%20you%20have%20availability%20tonight%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">💆</div>
+    <div class="acafree-name">Masaje Relajante · Relaxing Massage</div>
+    <div class="acafree-detail">Con especialistas locales. With local specialists. 8am–5pm · $800.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27d%20like%20to%20book%20a%20massage%20at%20Casa%20Axolotl.%20What%20days%20do%20you%20have%20availability%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🏖️</div>
+    <div class="acafree-name">Day Pass · Casa Axolotl</div>
+    <div class="acafree-detail">Incluye 1 hora de kayak gratis. Includes 1 free hour of kayak! $350/persona.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27m%20interested%20in%20the%20Casa%20Axolotl%20Day%20Pass.%20What%20exactly%20does%20it%20include%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🌅</div>
+    <div class="acafree-name">Mejor Atardecer de México · Best Sunset in Mexico</div>
+    <div class="acafree-detail">El sol cae directo al mar entre el Pacífico y la laguna de Coyuca. ~6 pm.</div>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🎬</div>
+    <div class="acafree-name">Cine en la Playa · Beach Cinema</div>
+    <div class="acafree-detail">Noches de cine bajo las estrellas frente al Pacífico. Movie nights under the stars.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20When%20is%20the%20next%20beach%20movie%20night%20at%20Casa%20Axolotl%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+</div>
+
+<!-- Tab: Tours -->
+<div class="acafree-grid" id="act-tours" style="display:none">
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🚣</div>
+    <div class="acafree-name">Tour en Kayak · Guided Kayak Tour</div>
+    <div class="acafree-detail">Manglares y canales de la laguna de Coyuca + desayuno. 200+ species of birds. $450.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27m%20interested%20in%20the%20guided%20kayak%20tour%20of%20Coyuca%20Lagoon.%20What%20time%20do%20you%20depart%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🏝</div>
+    <div class="acafree-name">Tour Isla Pie de la Cuesta · Island Tour</div>
+    <div class="acafree-detail">Isla de agua dulce, cocodrilario, banana boat. Freshwater island + crocodile sanctuary. $200–$400.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20information%20about%20the%20Pie%20de%20la%20Cuesta%20Island%20Tour.%20How%20many%20spots%20are%20available%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🐢</div>
+    <div class="acafree-name">Liberación de Tortugas · Turtle Release</div>
+    <div class="acafree-detail">Barra de Coyuca, lancha + desayuno. Boat ride + breakfast. Jul–Dic. $500–$600.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27m%20interested%20in%20the%20turtle%20release.%20When%20is%20the%20next%20one%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">⛵</div>
+    <div class="acafree-name">Paseo en Lancha · Boat Ride</div>
+    <div class="acafree-detail">Laguna de Coyuca o bahía de Acapulco. Pesca, snorkel o relax. Coyuca Lagoon or Acapulco Bay.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20What%20boat%20ride%20options%20do%20you%20have%20available%20from%20Casa%20Axolotl%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🌿</div>
+    <div class="acafree-name">Senderismo · Hiking El Veladero</div>
+    <div class="acafree-detail">Parque Nacional El Veladero. Vistas al Pacífico, iguanas silvestres. Pacific views, wild iguanas.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27m%20interested%20in%20hiking%20El%20Veladero.%20Do%20you%20organize%20guided%20outings%20from%20Casa%20Axolotl%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🤿</div>
+    <div class="acafree-name">Snorkel</div>
+    <div class="acafree-detail">Aguas cristalinas de las islas de Acapulco. Crystal-clear waters around Acapulco's islands. Equipo incluido.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20to%20go%20snorkeling.%20What%20options%20do%20you%20have%20available%20from%20Casa%20Axolotl%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+</div>
+
+<!-- Tab: Experiencias Especiales -->
+<div class="acafree-grid" id="act-especiales" style="display:none">
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🧺</div>
+    <div class="acafree-name">Picnic en la Playa · Beach Picnic</div>
+    <div class="acafree-detail">Canasta preparada frente al Pacífico. Parejas, cumpleaños, celebraciones. Private Pacific picnic.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27m%20interested%20in%20organizing%20a%20beach%20picnic%20at%20Casa%20Axolotl.%20What%27s%20included%20and%20how%20much%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">💍</div>
+    <div class="acafree-name">Cásate Conmigo · Proposals</div>
+    <div class="acafree-detail">Propuesta de matrimonio al atardecer más famoso de México. Deco, champagne, fotografía.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20to%20plan%20a%20marriage%20proposal%20at%20Casa%20Axolotl.%20Can%20you%20help%20me%20plan%20it%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🎂</div>
+    <div class="acafree-name">Cumpleaños · Birthdays &amp; Celebrations</div>
+    <div class="acafree-detail">Decoración temática, pastel, música. Themed decorations, cake &amp; personalized experiences.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20to%20organize%20a%20birthday%20celebration%20at%20Casa%20Axolotl.%20What%20options%20do%20you%20have%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">📸</div>
+    <div class="acafree-name">Sesión Foto + Dron · Photo + Drone Session</div>
+    <div class="acafree-detail">Sesión fotográfica profesional con tomas aéreas. Professional session with aerial drone shots.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%27m%20interested%20in%20a%20photo%20session%20with%20drone%20in%20Pie%20de%20la%20Cuesta.%20How%20much%20does%20it%20cost%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="acafree-card">
+    <div class="acafree-ico">🎻</div>
+    <div class="acafree-name">Serenata con Violinista · Violin Serenade</div>
+    <div class="acafree-detail">Serenata en vivo al atardecer frente al Pacífico. Live serenade at sunset on the Pacific.</div>
+    <a class="acafree-wa" href="https://wa.me/527474999032?text=Hi!%20I%20want%20to%20book%20a%20violin%20serenade%20at%20Casa%20Axolotl.%20When%20do%20you%20have%20availability%3F" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+</div>
+
+<div class="acafree-grid" id="act-apps" style="display:none">
+
+  <a class="acafree-card" href="../habla/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">🗣️</div>
+    <div class="acafree-name">Habla · Language Guide</div>
+    <div class="acafree-detail">Aprende español o inglés con frases de viaje. Learn travel Spanish or English. Free · Sin registro.</div>
+  </a>
+
+  <a class="acafree-card" href="../family-first/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">❤️</div>
+    <div class="acafree-name">Family First</div>
+    <div class="acafree-detail">Ubica a tu familia en tiempo real, alertas SOS y check-ins. Real-time family location &amp; safety. Free.</div>
+  </a>
+
+  <a class="acafree-card" href="../juegos/" style="text-decoration:none;color:inherit">
+    <div class="acafree-ico">🎮</div>
+    <div class="acafree-name">Juegos · Games</div>
+    <div class="acafree-detail">Juegos familiares para la mesa, la playa o la alberca. Family games for the table, beach or pool. Free.</div>
+  </a>
+
+</div>
+
+</div><!-- /page-wrap -->
+
+<div class="foot">
+  <span class="mark">mx.studio</span>
+  Digital Architecture ✝️ · Acapulco 2026
+</div>
+
+<script>
+// ════════════════════════════════
+// QR SPLASH
+// ════════════════════════════════
+(function(){
+  const HUB_URL='https://go.myjefetech.app/acapulco/hub/';
+  // Build QR as inline SVG using a minimal QR encoder
+  // We'll use a data-URL approach with a canvas via qrcode lib if available,
+  // otherwise fall back to a styled placeholder that links out
+  const box=document.getElementById('qrBox');
+  // Try loading qrcodejs from CDN
+  const script=document.createElement('script');
+  script.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  script.onload=function(){
+    box.innerHTML='';
+    new QRCode(box,{
+      text:HUB_URL,
+      width:188,height:188,
+      colorDark:'#06080f',colorLight:'#ffffff',
+      correctLevel:QRCode.CorrectLevel.M
+    });
+  };
+  script.onerror=function(){
+    // Fallback: show the URL clearly
+    box.innerHTML=`<div style="text-align:center;padding:8px"><div style="font-size:.6rem;letter-spacing:.1em;color:#06080f;font-weight:700;margin-bottom:8px">go.myjefetech.app</div><div style="font-size:.55rem;color:#333">/acapulco/hub</div></div>`;
+  };
+  document.head.appendChild(script);
+})();
+
+function switchActTab(tab, btn){
+  ['casa','tours','especiales','apps'].forEach(id=>{
+    document.getElementById('act-'+id).style.display = id===tab ? '' : 'none';
+  });
+  document.querySelectorAll('.act-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+function enterHub(){
+  const splash=document.getElementById('qr-splash');
+  splash.classList.add('fade-out');
+  setTimeout(()=>{splash.style.display='none'},650);
+  // prevent body scroll-lock
+  document.body.style.overflow='';
+}
+
+// ════════════════════════════════
+// TRANSLATIONS
+// ════════════════════════════════
+const T={
+  es:{
+    hdrSub:'MX Studio · Acapulco',
+    heroEyebrow:'La Perla del Pacífico',
+    heroLine1:'Acapulco',heroLine2:'Guerrero',
+    heroCaption:'La bahía más icónica de México. Clavadistas, mariscos, atardeceres y vida nocturna.',
+    tabRest:'Restaurante',tabHotel:'Hotel',tabResort:'Resort',
+    demoTagR:'DEMO — ASÍ SE VE TU APP',demoTagH:'DEMO — ASÍ SE VE TU APP',demoTagRS:'DEMO — ASÍ SE VE TU APP',
+    // RESTAURANT PITCH
+    phR:'Tu mesa en Comunidad',psR:'Llega a turistas y locales cuando más importa',
+    pdR:'Los turistas llegan a Acapulco con hambre y sin plan. Tu restaurante aparece justo cuando están listos para ordenar — con tu menú, tus fotos y tu WhatsApp a un toque.',
+    rb1t:'Tu app propia',rb1d:'Menú digital, fotos, horarios y botón de WhatsApp. Todo en una app tuya.',
+    rb2t:'En el mapa de Comunidad',rb2d:'Apareces en las rutas y recomendaciones que los visitantes ven al llegar.',
+    rb3t:'Red de hoteles',rb3d:'Los hoteles y resorts de Comunidad pueden recomendar tu restaurante a sus huéspedes.',
+    rb4t:'Sin comisiones',rb4d:'Sin porcentaje por pedido, sin cuotas fijas, sin sorpresas.',
+    rfreeT:'Gratis para todos — tú decides cómo apoyar',rfreeD:'En Comunidad entra cualquier negocio de Acapulco, sin costo. Si quieres apoyar a la comunidad, aporta lo que tú decidas, cuando quieras, o nada. Aquí todos son parte.',
+    rwaT:'Quiero aparecer aquí',rwaS:'WhatsApp · JefeTech',
+    // HOTEL PITCH
+    phH:'Tu hotel en Comunidad',psH:'Sé la primera opción cuando buscan dónde quedarse',
+    pdH:'Booking.com, Expedia y Airbnb te cobran entre 15% y 25% por cada reservación. Con tu app en Comunidad, tus clientes reservan directo — y ese dinero se queda en tu hotel.',
+    hotaT:'Lo que le pagas a las OTAs cada año',
+    hotaD:'Un hotel con 20 cuartos a $1,200 MXN y 60% de ocupación le paga <strong style="color:#fca5a5">~$500,000 MXN al año</strong> en comisiones a Booking o Expedia. Con reservas directas, ese dinero se queda en tu hotel.',
+    hb1t:'Cero comisión por reservación',hb1d:'Las OTAs cobran 15–25% de cada cuarto. Con tu app, el huésped reserva directo por WhatsApp y la comisión es tuya.',
+    hb2t:'Clientes que regresan a ti',hb2d:'Cuando reservan por Booking, el cliente es de Booking. Cuando reservan por tu app, el cliente es tuyo — para siempre.',
+    hb3t:'Tu app, tu marca',hb3d:'Fotos, habitaciones, precios y botón de WhatsApp. Tus huéspedes ven tu nombre, no el de una plataforma.',
+    hb4t:'Visibilidad en Comunidad',hb4d:'Apareces en rutas y recomendaciones de Comunidad. Nuevos huéspedes te descubren antes de llegar a Booking.',
+    hb5t:'Concierge digital incluido',hb5d:'Recomienda restaurantes, tours y actividades de Comunidad desde tu propia app. Tus huéspedes lo agradecen y los partners también.',
+    hfreeT:'Gratis para todos — tú decides cómo apoyar',hfreeD:'En Comunidad entra cualquier negocio de Acapulco, sin costo. Si quieres apoyar a la comunidad, aporta lo que tú decidas, cuando quieras, o nada. Aquí todos son parte.',
+    hwaT:'Quiero aparecer aquí',hwaS:'WhatsApp · JefeTech',
+    // RESORT PITCH
+    phRS:'Tu resort en Comunidad',psRS:'La experiencia completa — desde que llegan hasta que se van',
+    pdRS:'Los resorts y beach clubs viven de la experiencia. Tu app en Comunidad te posiciona como el destino completo de Acapulco — con todas tus amenidades, paquetes y acceso directo al cliente.',
+    rsb1t:'Paquetes y día de playa',rsb1d:'Muestra tus paquetes todo incluido, day pass y eventos especiales. Reserva por WhatsApp al instante.',
+    rsb2t:'Posicionamiento premium',rsb2d:'Los resorts anclan Comunidad. Tu marca aparece primero cuando los visitantes buscan lo mejor de Acapulco.',
+    rsb3t:'Red de partners',rsb3d:'Coordina con restaurantes y actividades de Comunidad. Ofrece a tus huéspedes una experiencia Acapulco completa.',
+    rsb4t:'App de resort completa',rsb4d:'Amenidades, horarios, menú de restaurante, spa — todo en una app con tu nombre.',
+    secFFS:'Patrocina Family First',ffsStep1:'1 · ¿Cuánto quieres aportar? Tú decides, desde $0.',ffsStep2:'2 · ¿Cada mes o una sola vez?',ffsFqM:'Cada mes',ffsFqO:'Una sola vez',ffsOther:'Otra',ffsCustomL:'Tu cantidad (MXN)',ffsIncH:'Cualquier cantidad incluye',ffsSumM:'Tu aporte: {a} MXN al mes. Sin contrato, cancela cuando quieras.',ffsSumO:'Tu aporte: {a} MXN, una sola vez.',ffsSum0:'$0 también cuenta: tu negocio aparece igual como parte de la comunidad.',ffsMsg:'Hola, quiero patrocinar Family First con mi negocio. Mi aporte: {a} MXN {f}.',ffsMsg0:'Hola, quiero que mi negocio sea parte de la comunidad de Family First (aporte de $0 por ahora).',ffsFm:'al mes',ffsFo:'una sola vez',ffsD:'Family First es la app familiar gratis que reciben los huéspedes y clientes de los hoteles y restaurantes de Comunidad: SOS, ubicación y check-ins en 12 idiomas. Patrocínala con lo que tú decidas y tu negocio aparece en la app y en nuestra promoción.',ffsb1t:'Tu negocio listado en la app',ffsb1d:'Tu nombre en la sección de patrocinadores de Family First, con enlace a tu WhatsApp o tu app.',ffsb2t:'Promoción incluida',ffsb2d:'Te mencionamos en publicaciones y en Comunidad como negocio que apoya a las familias.',ffsb3t:'Visto en hoteles y restaurantes',ffsb3d:'La app se abre desde las apps del Ritz Acapulco, Casa Axolotl y más negocios de Comunidad.',ffsb4t:'Apoyas una app gratis',ffsb4d:'Tu patrocinio mantiene Family First gratis para cualquier familia.',ffsFree:'Family First ya viene gratis con todas las apps de MX Studio. El patrocinio es opcional y voluntario: aporta lo que quieras, desde $0, y tu negocio aparece en Comunidad y en la app.',ffsLaunch:'Lanzamiento: enero 2027',ffsI1:'Tu negocio en la app Family First y en Comunidad',ffsI2:'Sticker de patrocinador para tu puerta o mostrador',ffsI3:'Insignia para tus redes sociales',ffsI4:'Menciones en nuestras publicaciones',ffsWaT:'Quiero patrocinar',ffsWaS:'WhatsApp · JefeTech',ffsSee:'Ver la app Family First ›',ffsNone:'Sé el primer patrocinador de Acapulco.',ffsNow:'Patrocinadores: ',
+    rsfreeT:'Gratis para todos — tú decides cómo apoyar',rsfreeD:'En Comunidad entra cualquier negocio de Acapulco, sin costo. Si quieres apoyar a la comunidad, aporta lo que tú decidas, cuando quieras, o nada. Aquí todos son parte.',
+    rswaT:'Quiero aparecer aquí',rswaS:'WhatsApp · JefeTech',
+    reviewCount:'(640 reseñas)',
+    actMenu:'Ver Menú',actWA:'WhatsApp',actRate:'Calificar',
+    catStarters:'Entradas',catMains:'Platillos',catDrinks:'Bebidas',
+    e1n:'Ceviche Clásico',e1d:'Camarón, pulpo, jitomate, cebolla, chile',
+    e2n:'Tostadas de Marlin',e2d:'Marlin ahumado, aguacate, chile, crema',
+    p1n:'Camarones a la Diabla',p1d:'Camarones jumbo, arroz, frijoles negros',
+    p2n:'Mojarra Frita',p2d:'Entera, frita, arroz, ensalada, tortillas',
+    p3n:'Pulpo a las Brasas',p3d:'A la parrilla, aceite de oliva, papas',
+    b1n:'Michelada de Camarón',b1d:'Cerveza, clamato, camarones, limón',
+    b2n:'Margarita de Mango',b2d:'Tequila, mango fresco, limón, sal de gusano',
+    demoPillR:'✦  Tu menú va aquí · Your menu goes here',
+    demoPillH:'✦  Tu hotel va aquí · Your hotel goes here',
+    demoPillRS:'✦  Tu resort va aquí · Your resort goes here',
+    r1n:'Habitación Estándar',r1p:'desde $850 MXN / noche',
+    r2n:'Suite Vista Mar',r2p:'desde $1,400 MXN / noche',
+    hactBook:'Reservar',hactWA:'WhatsApp',
+    am1:'Alberca infinity',am2:'Bar en la playa',am3:'Playa privada',am4:'Spa & wellness',
+    ractBook:'Reservar',ractWA:'WhatsApp',
+    secStay:'Dónde Quedarse',secDining:'Dónde Comer',
+    h1z:'Pie de la Cuesta',h1n:'Casa Axolotl',h1d:'Hotel y restaurante frente al Océano Pacífico en Pie de la Cuesta. Kayaks, fogata AcáFree y la mejor puesta de sol de México.',h1p:'WhatsApp para reservar',
+    h2z:'',h2n:'',h2d:'',h2p:'',
+    h3z:'',h3n:'',h3d:'',h3p:'',
+    d1t:'Mariscos',d1n:'Tres Marías',d1d:'Más de 30 años sirviendo pescado a la talla en comal de barro, tacos de camarón y ceviche fresco en Pie de la Cuesta.',d1dt:'Pie de la Cuesta · Abierto 9 am–6 pm',
+    d2t:'Café & Cocina',d2n:'Kailúa Fresh',d2d:'Café de especialidad, desayunos y comida en un ambiente fresco y relajado. Los mejores cafés y platillos de la zona.',d2dt:'Acapulco · Abierto todo el día',
+    d3t:'',d3n:'',d3d:'',d3dt:'',
+    secAct:'Actividades',
+    a1title:'Clavadistas de La Quebrada',a1desc:'Los clavadistas más famosos del mundo saltan 35 metros al océano. Un espectáculo de día y de noche con antorchas encendidas.',a1detail:'1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM',
+    a2title:'Isla La Roqueta',a2desc:'Lancha de fondo de cristal desde Playa Caleta. Observa la Virgen submarina y haz snorkel en arrecifes naturales.',a2detail:'Playa Caleta · ~45 min · $200–250 MXN',
+    a3title:'Catamárán al Atardecer',a3desc:'2.5 horas recorriendo la bahía con barra libre y música en vivo durante la hora dorada del Pacífico.',a3detail:'Sale 5:30 PM · desde $650 MXN',
+    secTrivia:'Trivia',secSpanish:'Español de Sobrevivencia',
+    ph1en:'La cuenta, por favor',ph2en:'¿Me recomienda algo?',ph3en:'Dos cervezas',ph4en:'¡Está delicioso!',
+    ph1tap:'↑ Toca para escuchar',ph2tap:'↑ Toca para escuchar',ph3tap:'↑ Toca para escuchar',ph4tap:'↑ Toca para escuchar',
+    waBtn:'Quiero mi app · MX Studio ✝️',
+    trivQ:[
+      {q:'¿Cuántos metros saltan los Clavadistas de La Quebrada?',opts:['20 metros','35 metros','50 metros','15 metros'],ans:1},
+      {q:'¿En qué océano está la Bahía de Acapulco?',opts:['Atlántico','Índico','Pacífico','Caribe'],ans:2},
+      {q:'¿Cuál es el plato más famoso de Acapulco?',opts:['Tacos de pescado','Pozole de mar','Pescado a la talla','Caldo de camarón'],ans:2},
+    ],
+    trivTitle:'¿Cuánto sabes de Acapulco?',trivSub:'Responde 3 preguntas y gana un shot gratis 🥃',
+    trivWinTitle:'¡Ganaste un shot! 🥃',trivWinSub:'Muéstrale esto a tu mesero para canjear tu shot gratis.',trivReset:'Jugar de nuevo',
+  },
+  en:{
+    hdrSub:'MX Studio · Acapulco',
+    heroEyebrow:'Pearl of the Pacific',
+    heroLine1:'Acapulco',heroLine2:'Guerrero',
+    heroCaption:"Mexico's most iconic bay. Cliff divers, fresh seafood, golden sunsets and legendary nightlife.",
+    tabRest:'Restaurant',tabHotel:'Hotel',tabResort:'Resort',
+    demoTagR:'DEMO — THIS IS HOW YOUR APP LOOKS',demoTagH:'DEMO — THIS IS HOW YOUR APP LOOKS',demoTagRS:'DEMO — THIS IS HOW YOUR APP LOOKS',
+    // RESTAURANT PITCH
+    phR:'Your restaurant on Comunidad',psR:'Reach tourists and locals right when they\'re hungry',
+    pdR:'Tourists arrive in Acapulco hungry and without a plan. Your restaurant shows up exactly when they\'re ready to order — with your menu, your photos, and your WhatsApp one tap away.',
+    rb1t:'Your own app',rb1d:'Digital menu, photos, hours, and a WhatsApp button. All in an app that\'s yours.',
+    rb2t:'On the Comunidad map',rb2d:'You appear in the routes and recommendations visitors see when they arrive.',
+    rb3t:'Hotel network',rb3d:'Hotels and resorts in Comunidad can recommend your restaurant to their guests.',
+    rb4t:'No commissions',rb4d:'No percentage per order, no fixed fees, no surprises.',
+    rfreeT:'Free for everyone — you choose how to support',rfreeD:'Any business in Acapulco can join Comunidad at no cost. If you want to support the community, give whatever you decide, whenever you want, or nothing. Everyone belongs here.',
+    rwaT:'I want to appear here',rwaS:'WhatsApp · JefeTech',
+    // HOTEL PITCH
+    phH:'Your hotel on Comunidad',psH:'Be the first choice when they\'re looking for a place to stay',
+    pdH:'Booking.com, Expedia, and Airbnb charge you between 15% and 25% on every reservation. With your app on Comunidad, your guests book direct — and that money stays in your hotel.',
+    hotaT:'What you\'re paying OTAs every year',
+    hotaD:'A 20-room hotel at $1,200 MXN/night with 60% occupancy pays <strong style="color:#fca5a5">~$500,000 MXN a year</strong> in commissions to Booking or Expedia. With direct bookings, that money stays in your hotel.',
+    hb1t:'Zero commission per booking',hb1d:'OTAs charge 15–25% per room. With your app, the guest books direct via WhatsApp and the commission is yours.',
+    hb2t:'Guests that come back to you',hb2d:'When they book through Booking, the guest belongs to Booking. When they book through your app, the guest is yours — forever.',
+    hb3t:'Your app, your brand',hb3d:'Photos, rooms, pricing, and WhatsApp button. Your guests see your name, not a platform\'s.',
+    hb4t:'Visibility on Comunidad',hb4d:'You appear in Comunidad routes and recommendations. New guests discover you before they ever open Booking.',
+    hb5t:'Digital concierge included',hb5d:'Recommend restaurants, tours and activities from Comunidad inside your own app. Your guests love it and partners do too.',
+    hfreeT:'Free for everyone — you choose how to support',hfreeD:'Any business in Acapulco can join Comunidad at no cost. If you want to support the community, give whatever you decide, whenever you want, or nothing. Everyone belongs here.',
+    hwaT:'I want to appear here',hwaS:'WhatsApp · JefeTech',
+    // RESORT PITCH
+    phRS:'Your resort on Comunidad',psRS:'The full experience — from arrival to checkout',
+    pdRS:'Resorts and beach clubs live and die by the experience. Your app on Comunidad positions you as Acapulco\'s complete destination — with all your amenities, packages, and direct access to guests.',
+    rsb1t:'Packages & day passes',rsb1d:'Show your all-inclusive packages, day passes and special events. Book via WhatsApp instantly.',
+    rsb2t:'Premium positioning',rsb2d:'Resorts anchor Comunidad. Your brand appears first when visitors search for the best of Acapulco.',
+    rsb3t:'Partner network',rsb3d:'Coordinate with restaurants and activities in Comunidad. Give your guests a complete Acapulco experience.',
+    rsb4t:'Full resort app',rsb4d:'Amenities, hours, restaurant menu, spa — everything in one app with your name on it.',
+    secFFS:'Sponsor Family First',ffsStep1:'1 · How much would you like to give? You decide, from $0.',ffsStep2:'2 · Monthly or one time?',ffsFqM:'Monthly',ffsFqO:'One time',ffsOther:'Other',ffsCustomL:'Your amount (MXN)',ffsIncH:'Any amount includes',ffsSumM:'Your support: {a} MXN a month. No contract, cancel anytime.',ffsSumO:'Your support: {a} MXN, one time.',ffsSum0:'$0 counts too: your business is listed just the same, as part of the community.',ffsMsg:'Hi, I want to sponsor Family First with my business. My support: {a} MXN {f}.',ffsMsg0:'Hi, I want my business to be part of the Family First community ($0 for now).',ffsFm:'a month',ffsFo:'one time',ffsD:'Family First is the free family app that guests and customers of Comunidad hotels and restaurants get: SOS, location and check-ins in 12 languages. Sponsor it with whatever amount you choose and your business is listed in the app and in our promotion.',ffsb1t:'Your business listed in the app',ffsb1d:'Your name in the Family First sponsors section, linked to your WhatsApp or your app.',ffsb2t:'Promotion included',ffsb2d:'We feature you in posts and on Comunidad as a business that supports families.',ffsb3t:'Seen in hotels and restaurants',ffsb3d:'The app opens from the Ritz Acapulco, Casa Axolotl and other Comunidad business apps.',ffsb4t:'Keep a free app free',ffsb4d:'Your sponsorship keeps Family First free for every family.',ffsFree:'Family First already comes free with every MX Studio app. Sponsorship is optional and voluntary: give whatever you want, from $0, and your business is listed on Comunidad and in the app.',ffsLaunch:'Launching January 2027',ffsI1:'Your business in the Family First app and on Comunidad',ffsI2:'Sponsor sticker for your door or counter',ffsI3:'Badge for your social media',ffsI4:'Mentions in our posts',ffsWaT:'I want to sponsor',ffsWaS:'WhatsApp · JefeTech',ffsSee:'See the Family First app ›',ffsNone:'Be the first sponsor in Acapulco.',ffsNow:'Sponsors: ',
+    rsfreeT:'Free for everyone — you choose how to support',rsfreeD:'Any business in Acapulco can join Comunidad at no cost. If you want to support the community, give whatever you decide, whenever you want, or nothing. Everyone belongs here.',
+    rswaT:'I want to appear here',rswaS:'WhatsApp · JefeTech',
+    reviewCount:'(640 reviews)',
+    actMenu:'View Menu',actWA:'WhatsApp',actRate:'Rate Us',
+    catStarters:'Starters',catMains:'Mains',catDrinks:'Drinks',
+    e1n:'Classic Ceviche',e1d:'Shrimp, octopus, tomato, onion, chili',
+    e2n:'Smoked Marlin Tostadas',e2d:'Smoked marlin, avocado, chili, cream',
+    p1n:'Shrimp Diabla Style',p1d:'Jumbo shrimp, rice, black beans',
+    p2n:'Whole Fried Mojarra',p2d:'Whole fish, fried, rice, salad, tortillas',
+    p3n:'Grilled Octopus',p3d:'Grilled, olive oil, lemon, potatoes',
+    b1n:'Shrimp Michelada',b1d:'Beer, clamato, shrimp, lemon',
+    b2n:'Mango Margarita',b2d:'Tequila, fresh mango, lemon, worm salt',
+    demoPillR:'✦  Your menu goes here',
+    demoPillH:'✦  Your hotel goes here',
+    demoPillRS:'✦  Your resort goes here',
+    r1n:'Standard Room',r1p:'from $850 MXN / night',
+    r2n:'Ocean View Suite',r2p:'from $1,400 MXN / night',
+    hactBook:'Book Now',hactWA:'WhatsApp',
+    am1:'Infinity pool',am2:'Beach bar',am3:'Private beach',am4:'Spa & wellness',
+    ractBook:'Book Now',ractWA:'WhatsApp',
+    secStay:'Where to Stay',secDining:'Where to Eat',
+    h1z:'Pie de la Cuesta',h1n:'Casa Axolotl',h1d:'Hotel and restaurant on the Pacific Ocean in Pie de la Cuesta. Kayaks, AcáFree bonfire and the best sunset in Mexico.',h1p:'WhatsApp to book',
+    h2z:'',h2n:'',h2d:'',h2p:'',
+    h3z:'',h3n:'',h3d:'',h3p:'',
+    d1t:'Seafood',d1n:'Tres Marías',d1d:'30+ years serving fresh pescado a la talla on a clay grill, shrimp tacos and ceviche right in Pie de la Cuesta.',d1dt:'Pie de la Cuesta · Open 9 am–6 pm',
+    d2t:'Coffee & Kitchen',d2n:'Kailúa Fresh',d2d:'Specialty coffee, breakfast and lunch in a fresh, relaxed setting. The best coffee and food in the area.',d2dt:'Acapulco · Open all day',
+    d3t:'',d3n:'',d3d:'',d3dt:'',
+    secAct:'Activities',
+    a1title:'La Quebrada Cliff Divers',a1desc:"The world's most famous cliff divers leap 35 meters into the ocean. Day shows and torch-lit performances at night.",a1detail:'1:00 PM · 7:30 · 8:30 · 9:30 · 10:30 PM',
+    a2title:'Isla La Roqueta',a2desc:'Glass-bottom boat from Caleta Beach. See the underwater Virgen statue and snorkel on natural reefs.',a2detail:'Playa Caleta · ~45 min · $200–250 MXN',
+    a3title:'Sunset Catamaran',a3desc:'2.5 hours across the bay with open bar and live music during the Pacific golden hour.',a3detail:'Departs 5:30 PM · from $650 MXN',
+    secTrivia:'Trivia',secSpanish:'Survival Spanish',
+    ph1en:'The check, please',ph2en:'What do you recommend?',ph3en:'Two beers, please',ph4en:'This is delicious!',
+    ph1tap:'↑ Tap to hear',ph2tap:'↑ Tap to hear',ph3tap:'↑ Tap to hear',ph4tap:'↑ Tap to hear',
+    waBtn:'I want my app · MX Studio ✝️',
+    trivQ:[
+      {q:'How many meters do La Quebrada cliff divers jump?',opts:['20 meters','35 meters','50 meters','15 meters'],ans:1},
+      {q:'Which ocean is Acapulco Bay on?',opts:['Atlantic','Indian','Pacific','Caribbean'],ans:2},
+      {q:"What is Acapulco's most famous dish?",opts:['Fish tacos','Seafood pozole','Pescado a la talla','Shrimp broth'],ans:2},
+    ],
+    trivTitle:'How well do you know Acapulco?',trivSub:'Answer 3 questions and win a free shot 🥃',
+    trivWinTitle:'You won a shot! 🥃',trivWinSub:'Show this to your server to claim your free shot.',trivReset:'Play again',
+  }
+};
+
+// ════════════════════════════════
+// LANG
+// ════════════════════════════════
+let lang='es';
+function t(k){return T[lang]&&T[lang][k]!==undefined?T[lang][k]:(T.es[k]||'')}
+function toggleLang(){lang=lang==='es'?'en':'es';document.getElementById('langSw').dataset.l=lang;applyLang()}
+function copyMsg(id,btn){const el=document.getElementById(id);const txt=el.innerText||el.textContent;navigator.clipboard.writeText(txt).then(()=>{btn.textContent=id==='msgES'?'¡Copiado!':'Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent=id==='msgES'?'Copiar':'Copy';btn.classList.remove('copied')},2000)}).catch(()=>{const r=document.createRange();r.selectNode(el);window.getSelection().removeAllRanges();window.getSelection().addRange(r);document.execCommand('copy');window.getSelection().removeAllRanges();btn.textContent=id==='msgES'?'¡Copiado!':'Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent=id==='msgES'?'Copiar':'Copy';btn.classList.remove('copied')},2000)})}
+function applyLang(){
+  document.documentElement.lang=lang;
+  // QR splash label
+  const qrLbl=document.getElementById('qrLabel');
+  const qrBtn=document.getElementById('qrEnterTxt');
+  if(qrLbl)qrLbl.textContent=lang==='es'?'Escanea para explorar · Scan to explore':'Scan to explore · Escanea para explorar';
+  if(qrBtn)qrBtn.textContent=lang==='es'?'Explorar Comunidad':'Explore Comunidad';
+  const ids=['hdrSub','heroEyebrow','heroLine1','heroLine2','heroCaption',
+    'reviewCount',
+    'actMenu','actWA','actRate','catStarters','catMains','catDrinks',
+    'e1n','e1d','e2n','e2d','p1n','p1d','p2n','p2d','p3n','p3d','b1n','b1d','b2n','b2d',
+    'secStay','secDining',
+    'h1z','h1n','h1d','h1p',
+    'd1t','d1n','d1d','d1dt',
+    'd2t','d2n','d2d','d2dt'];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el){const v=t(id);if(v!=='')el.textContent=v}});
+}
+// ════════════════════════════════
+// SCROLL HINT — hide on scroll
+// ════════════════════════════════
+window.addEventListener('scroll',()=>{
+  const sh=document.getElementById('scrollHint');
+  if(sh&&scrollY>60){sh.style.opacity='0';sh.style.pointerEvents='none'}
+},{passive:true,once:true});
+
+// init
+applyLang();
+</script>
+</body>
+</html>
