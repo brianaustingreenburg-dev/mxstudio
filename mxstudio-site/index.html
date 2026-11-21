@@ -248,13 +248,10 @@ function render(){const t=T[lang];document.documentElement.lang=lang;$('#langSw'
   document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t[e.dataset.t]);
   document.querySelectorAll('[data-h]').forEach(e=>e.innerHTML=t[e.dataset.h]);
   const wa='https://wa.me/527441930502?text='+encodeURIComponent(t.wa);document.querySelectorAll('a.wa').forEach(a=>a.href=wa);
-  const st=$('#stats');st.replaceChildren();t.stats.forEach(([a,b])=>{const d=el('div');d.append(el('b',null,a),el('span',null,b));st.append(d)});
   const w=$('#work');w.replaceChildren();t.work.forEach(([img,cat,name,desc,tags,url])=>{const c=el('article','w rv on');
     const ph=el('div','phone');const im=el('img');im.src='img/'+img+'.jpg';im.alt=name;im.loading='lazy';ph.append(im);
     const tx=el('div','t');tx.append(el('div','cat micro',cat),el('h3',null,name),el('p',null,desc));const tg=el('div','tags');tags.forEach(x=>tg.append(el('span',null,x)));tx.append(tg);
     c.append(ph,tx);if(url){const a=el('a','lk');a.href=url;a.target='_blank';a.rel='noopener';a.append(el('span',null,t.view));a.insertAdjacentHTML('beforeend',ARROW);c.append(a)}w.append(c)});
-  const s=$('#svc');s.replaceChildren();t.svc.forEach(([ic,h,p])=>{const d=el('div');d.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${ICON[ic]}</svg>`);d.append(el('h3',null,h),el('p',null,p));s.append(d)});
-  const sp=$('#steps');sp.replaceChildren();t.steps.forEach(([h,p],i)=>{const d=el('div');d.append(el('i',null,String(i+1).padStart(2,'0')),el('h3',null,h),el('p',null,p));sp.append(d)});
   document.title=lang==='es'?'MX Studio · Apps y dashboards · Acapulco':'MX Studio · Apps & dashboards · Acapulco'}
 $('#langSw').onclick=()=>{lang=lang==='es'?'en':'es';try{localStorage.setItem('mx-lang',lang)}catch(e){}render()};
 addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>40),{passive:true});
