@@ -1,7 +1,8 @@
 // MX Studio ✝ Acapulco — offline support for MX Dashboard, Precios and every restaurant app
-const CACHE="mx-acapulco-v245";   // app shells (replaced on each update)
-const APPC="mx-apps-v206";       // restaurant apps + photos (versioned so updates always push through)
+const CACHE="mx-acapulco-v246";   // app shells (replaced on each update)
+const APPC="mx-apps-v207";       // restaurant apps + photos (versioned so updates always push through)
 const SCOPE=self.registration.scope;
+const AXOLOTL=["c/casa-axolotl/hotel/","c/casa-axolotl/hotel/index.html","c/casa-axolotl/hotel/manifest.json","c/casa-axolotl/hotel/fonts/inter-latin-400-normal.woff2","c/casa-axolotl/hotel/fonts/inter-latin-600-normal.woff2","c/casa-axolotl/hotel/fonts/cormorant-garamond-latin-500-normal.woff2","c/casa-axolotl/hotel/fonts/cormorant-garamond-latin-500-italic.woff2","c/casa-axolotl/hotel/img/cover.jpg","c/casa-axolotl/hotel/img/room1.jpg","c/casa-axolotl/hotel/img/room2.jpg","c/casa-axolotl/hotel/img/room3.jpg","c/casa-axolotl/hotel/img/room4.jpg","c/casa-axolotl/hotel/img/comida.jpg","c/casa-axolotl/hotel/img/cuarto.jpg","c/casa-axolotl/hotel/img/fogata.jpg","c/casa-axolotl/hotel/img/kayak.jpg"].map(p=>new URL(p,SCOPE).href);
 const CORE=["","index.html","logo.png","icon-192.png","icon-512.png","manifest.json","la-bahia/","la-bahia/index.html","hotel-caleta/","hotel-caleta/index.html","rutas/","rutas/index.html","rutas/manifest.json","precios/","precios/index.html","precios/manifest.json","crear/","crear/index.html","crear/manifest.json","app/plantilla.html","demo/","demo/index.html","demo/manifest.json","tarjeta/","tarjeta/index.html","dueno/","dueno/index.html","lib/qrcode.js","lib/fx.json","lib/html2canvas.min.js","lib/jspdf.umd.min.js","lib/games.js","lib/setup.js","lib/reviews.js","lib/loyalty.js","lib/peerjs.min.js","lib/fonts/m500.woff2","lib/fonts/m700.woff2","lib/fonts/m800.woff2","pendientes/","pendientes/index.html","pendientes/manifest.json","propuestas/belleza/","propuestas/belleza/index.html","habla/","habla/index.html","juegos/","juegos/index.html","juegos/manifest.json","family-first/","family-first/index.html","apps/","apps/index.html"].map(p=>new URL(p,SCOPE).href);
 const store=u=>(u.pathname.includes("/c/")||u.pathname.includes("/demo/img/"))?APPC:CACHE;
 const put=(u,key,res)=>{if(res&&res.ok){const c=res.clone();caches.open(store(u)).then(x=>x.put(key,c))}return res};
@@ -9,7 +10,7 @@ const OFF='<!doctype html><meta charset="utf-8"><meta name="viewport" content="w
 const WORK=["trabajo/","trabajo/index.html","trabajo/img/family.jpg","trabajo/img/heli.jpg","trabajo/img/hero.jpg","trabajo/img/hotel.jpg","trabajo/img/inventario.jpg","trabajo/img/jefetechhq.jpg","trabajo/img/logo.png","trabajo/img/mansion.jpg","trabajo/img/panel.jpg","trabajo/img/tres.jpg","trabajo/fonts/cormorant-garamond-latin-500-italic.woff2","trabajo/fonts/cormorant-garamond-latin-500-normal.woff2","trabajo/fonts/cormorant-garamond-latin-600-italic.woff2","trabajo/fonts/cormorant-garamond-latin-600-normal.woff2","trabajo/fonts/inter-latin-400-normal.woff2","trabajo/fonts/inter-latin-500-normal.woff2","trabajo/fonts/inter-latin-600-normal.woff2","trabajo/fonts/inter-latin-700-normal.woff2","trabajo/img/kailua.jpg","trabajo/img/axolotl.jpg","trabajo/img/icon-180.png","trabajo/img/icon-192.png","trabajo/img/icon-512.png","trabajo/manifest.webmanifest"];
 // Install never fails because of one slow file (a failed install used to keep the OLD version and old prices on the phone)
 self.addEventListener("install",e=>{
-  const all=CORE.concat(WORK.map(f=>new URL(f,SCOPE).href));
+  const all=CORE.concat(WORK.map(f=>new URL(f,SCOPE).href)).concat(AXOLOTL);
   const get=(c,u)=>c.add(new Request(u,{cache:"reload"}));
   const job=caches.open(CACHE).then(c=>Promise.all(all.map(u=>get(c,u).catch(()=>get(c,u)).catch(()=>{}))));
   e.waitUntil(job.then(()=>self.skipWaiting()));
