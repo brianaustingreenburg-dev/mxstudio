@@ -1,14 +1,6 @@
-# Used when a Netlify site has no base directory set.
-# Each site publishes its own folder, picked by the Netlify site name.
 [build]
-  command = "bash netlify-build.sh"
-  publish = "_site"
-
-[build.environment]
-  NODE_VERSION = "18"
-
-[functions]
-  directory = "partners-site/netlify/functions"
+  command = ""
+  publish = "acapulco"
 
 [[headers]]
   for = "/sw.js"
