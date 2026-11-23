@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Agendar cita · MX Studio ✝</title>
+<meta name="theme-color" content="#06080f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#06080f;
+  --card:#0e1118;
+  --card2:#131720;
+  --gold:#c9922a;
+  --gold-lt:#f5c46a;
+  --gold-dim:rgba(201,146,42,.15);
+  --border:rgba(201,146,42,.2);
+  --border-lt:rgba(201,146,42,.35);
+  --text:#f0ebe2;
+  --text-2:#c4bdb0;
+  --muted:#7a7490;
+  --green:#25d366;
+  --green-dk:#05301a;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+}
+html{background:var(--bg);color-scheme:dark}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);min-height:100svh;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:calc(32px + var(--safe-bot))}
+
+/* ── HEADER ── */
+.hdr{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;gap:12px;
+  padding:max(14px,calc(var(--safe-top) + 10px)) max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));
+  background:rgba(6,8,15,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.hdr-logo{font-family:var(--serif);font-size:1.15em;color:var(--gold-lt);letter-spacing:.03em;line-height:1.1}
+.hdr-logo small{display:block;font-family:var(--sans);font-size:.6em;font-weight:300;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.lang-btn{margin-left:auto;font-size:.75em;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer;background:none}
+.lang-btn:hover{color:var(--gold-lt);border-color:var(--border-lt)}
+
+/* ── HERO ── */
+.hero{
+  text-align:center;
+  padding:48px max(20px,env(safe-area-inset-left,0px)) 36px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(201,146,42,.06) 0%,transparent 100%);
+}
+.hero-cross{font-size:2em;margin-bottom:8px;opacity:.7}
+.hero-title{font-family:var(--serif);font-size:clamp(2em,6vw,2.8em);font-weight:600;color:var(--gold-lt);line-height:1.15;margin-bottom:6px}
+.hero-sub{font-size:.9em;color:var(--text-2);font-weight:300;line-height:1.6;max-width:340px;margin:0 auto 20px}
+.brian-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-dim);border:1px solid var(--border-lt);
+  border-radius:40px;padding:8px 16px;
+  font-size:.82em;color:var(--gold-lt);font-weight:500;
+}
+
+/* ── STEPS ── */
+.steps{
+  display:flex;justify-content:center;gap:0;
+  padding:0 max(16px,env(safe-area-inset-left,0px));
+  margin:28px 0 0;
+}
+.step{flex:1;max-width:120px;text-align:center;position:relative}
+.step:not(:last-child)::after{content:"";position:absolute;top:16px;right:-50%;width:100%;height:1px;background:var(--border)}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--border-lt);color:var(--gold-lt);font-weight:700;font-size:.82em;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;position:relative;z-index:1}
+.step-num.done{background:var(--gold);color:#1a0f0a;border-color:var(--gold)}
+.step-lbl{font-size:.68em;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── MAIN CONTENT ── */
+.wrap{max-width:480px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+
+/* ── SECTIONS ── */
+.section{margin-top:28px}
+.section-title{font-family:var(--serif);font-size:1.25em;color:var(--gold-lt);margin-bottom:14px;font-style:italic}
+
+/* ── MODE CARDS ── */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.mode-card{
+  border:2px solid var(--border);border-radius:14px;
+  padding:18px 14px;text-align:center;cursor:pointer;
+  background:var(--card);transition:all .18s;
+  -webkit-user-select:none;user-select:none;
+}
+.mode-card:hover{border-color:var(--border-lt);background:var(--card2)}
+.mode-card.selected{border-color:var(--gold);background:var(--gold-dim)}
+.mode-icon{font-size:1.8em;margin-bottom:6px}
+.mode-name{font-weight:600;font-size:.88em;color:var(--text)}
+.mode-desc{font-size:.74em;color:var(--muted);margin-top:3px;line-height:1.4}
+
+/* ── DATE GRID ── */
+.date-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(min-width:360px){.date-grid{grid-template-columns:repeat(5,1fr)}}
+.date-cell{
+  border:1px solid var(--border);border-radius:10px;
+  padding:10px 4px;text-align:center;cursor:pointer;
+  background:var(--card);transition:all .15s;
+  -webkit-user-select:none;user-select:none;
+}
+.date-cell:hover{border-color:var(--border-lt)}
+.date-cell.selected{border-color:var(--gold);background:var(--gold-dim);color:var(--gold-lt)}
+.date-cell.disabled{opacity:.3;pointer-events:none}
+.date-day{font-size:.65em;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.date-num{font-size:1.1em;font-weight:700;margin-top:2px}
+.date-mon{font-size:.62em;color:var(--muted);margin-top:1px}
+
+/* ── TIME GRID ── */
+.time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.time-btn{
+  border:1px solid var(--border);border-radius:10px;
+  padding:11px 4px;text-align:center;cursor:pointer;
+  background:var(--card);font-size:.85em;font-weight:600;
+  transition:all .15s;-webkit-user-select:none;user-select:none;
+  color:var(--text-2);
+}
+.time-btn:hover{border-color:var(--border-lt);color:var(--text)}
+.time-btn.selected{border-color:var(--gold);background:var(--gold-dim);color:var(--gold-lt)}
+
+/* ── INPUT ── */
+.field{margin-top:14px}
+.field label{display:block;font-size:.8em;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.field input,.field textarea{
+  width:100%;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:12px 14px;color:var(--text);font:inherit;font-size:.92em;
+  outline:none;transition:border-color .15s;resize:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--gold)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+
+/* ── CONFIRM BTN ── */
+.confirm-btn{
+  display:block;width:100%;margin-top:24px;
+  padding:16px;border-radius:14px;border:0;cursor:pointer;
+  background:var(--green);color:var(--green-dk);
+  font:600 1em/1 var(--sans);letter-spacing:.02em;
+  transition:opacity .15s;
+}
+.confirm-btn:disabled{opacity:.4;cursor:not-allowed}
+.confirm-btn:not(:disabled):hover{opacity:.88}
+
+/* ── SUMMARY CARD ── */
+.summary{
+  background:var(--card);border:1px solid var(--border-lt);
+  border-radius:16px;padding:20px;margin-top:16px;
+}
+.summary-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+.summary-row:last-child{margin-bottom:0}
+.summary-icon{font-size:1.1em;flex-shrink:0;margin-top:1px}
+.summary-text{font-size:.88em;line-height:1.5;color:var(--text-2)}
+.summary-text strong{color:var(--text);display:block;font-size:.95em}
+
+/* ── SUCCESS ── */
+#successScreen{display:none;text-align:center;padding:48px 20px}
+#successScreen.show{display:block}
+.success-icon{font-size:3em;margin-bottom:16px}
+.success-title{font-family:var(--serif);font-size:2em;color:var(--gold-lt);margin-bottom:8px}
+.success-sub{font-size:.9em;color:var(--text-2);line-height:1.6;max-width:300px;margin:0 auto 28px}
+.wa-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green);color:var(--green-dk);
+  border-radius:12px;padding:14px 24px;font-weight:700;font-size:.95em;
+  text-decoration:none;cursor:pointer;border:0;
+}
+
+/* ── FOOTER ── */
+.footer{text-align:center;margin-top:40px;padding:0 16px;font-size:.75em;color:var(--muted);line-height:1.8}
+.footer a{color:var(--muted);text-decoration:none}
+
+/* ── HIDDEN ── */
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-logo">
+    MX Studio ✝
+    <small id="hdrSub">Acapulco · Apps para restaurantes</small>
+  </div>
+  <button class="lang-btn" id="langBtn">EN</button>
+</header>
+
+<!-- BOOKING FORM -->
+<div id="bookingScreen">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-cross">✝️</div>
+    <h1 class="hero-title" id="heroTitle">Agenda tu cita</h1>
+    <p class="hero-sub" id="heroSub">Hablo contigo en persona o por WhatsApp. Te muestro tu app, cómo funciona y cómo genera más clientes.</p>
+    <div class="brian-pill">👤 <span id="brianLbl">Brian · Fundador de MX Studio</span></div>
+  </div>
+
+  <!-- PROGRESS STEPS -->
+  <div class="steps">
+    <div class="step">
+      <div class="step-num done" id="s1">1</div>
+      <div class="step-lbl" id="sl1">Cómo</div>
+    </div>
+    <div class="step">
+      <div class="step-num" id="s2">2</div>
+      <div class="step-lbl" id="sl2">Día</div>
+    </div>
+    <div class="step">
+      <div class="step-num" id="s3">3</div>
+      <div class="step-lbl" id="sl3">Hora</div>
+    </div>
+    <div class="step">
+      <div class="step-num" id="s4">4</div>
+      <div class="step-lbl" id="sl4">Confirmar</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- STEP 1: MODE -->
+    <div class="section" id="secMode">
+      <div class="section-title" id="modeTitle">¿Cómo prefieres la cita?</div>
+      <div class="modes">
+        <div class="mode-card" data-mode="presencial">
+          <div class="mode-icon">🤝</div>
+          <div class="mode-name" id="modeName1">En persona</div>
+          <div class="mode-desc" id="modeDesc1">Te visito en tu restaurante o nos reunimos en un punto</div>
+        </div>
+        <div class="mode-card" data-mode="whatsapp">
+          <div class="mode-icon">📲</div>
+          <div class="mode-name" id="modeName2">Por WhatsApp</div>
+          <div class="mode-desc" id="modeDesc2">Llamada o videollamada desde donde estés</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: DATE -->
+    <div class="section" id="secDate" hidden>
+      <div class="section-title" id="dateTitle">¿Qué día te funciona?</div>
+      <div class="date-grid" id="dateGrid"></div>
+    </div>
+
+    <!-- STEP 3: TIME -->
+    <div class="section" id="secTime" hidden>
+      <div class="section-title" id="timeTitle">¿A qué hora?</div>
+      <div class="time-grid" id="timeGrid"></div>
+    </div>
+
+    <!-- STEP 4: INFO + CONFIRM -->
+    <div class="section" id="secInfo" hidden>
+      <div class="section-title" id="infoTitle">Tus datos</div>
+
+      <div class="summary" id="summaryCard"></div>
+
+      <div class="field">
+        <label id="nameLabel">Tu nombre</label>
+        <input type="text" id="nameInput" placeholder="Nombre del negocio o tuyo" autocomplete="name">
+      </div>
+      <div class="field">
+        <label id="phoneLabel">Tu WhatsApp</label>
+        <input type="tel" id="phoneInput" placeholder="744 000 0000" autocomplete="tel" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label id="noteLabel">Nota (opcional)</label>
+        <textarea id="noteInput" rows="2" placeholder="Nombre del restaurante, pregunta…"></textarea>
+      </div>
+
+      <button class="confirm-btn" id="confirmBtn" disabled>
+        <span id="confirmBtnTxt">📲 Confirmar por WhatsApp</span>
+      </button>
+    </div>
+
+    <div class="footer">
+      <p id="footerAvail">Disponible lunes a sábado · 10am – 7pm · Acapulco, México</p>
+      <p style="margin-top:6px"><a href="../rutas/" id="footerBack">← Regresar al dashboard</a></p>
+    </div>
+
+  </div><!-- /wrap -->
+</div><!-- /bookingScreen -->
+
+<!-- SUCCESS SCREEN -->
+<div id="successScreen">
+  <div class="success-icon">✅</div>
+  <div class="success-title" id="sucTitle">¡Listo!</div>
+  <p class="success-sub" id="sucSub">Tu solicitud va directo a Brian por WhatsApp. Te confirma en breve.</p>
+  <button class="wa-btn" id="sucWaBtn">💬 <span id="sucWaTxt">Abrir WhatsApp</span></button>
+  <div style="margin-top:24px">
+    <a href="../hub/" style="font-size:.82em;color:var(--muted);text-decoration:none" id="sucHubLnk">🏖️ Ver el Hub de restaurantes de Acapulco</a>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+const st={lang:"es",mode:null,date:null,time:null};
+const BRIAN_WA="5217441234567"; // placeholder — Brian updates this
+
+// ── TRANSLATIONS ──
+const T={
+  es:{
+    hdrSub:"Acapulco · Apps para restaurantes",
+    heroTitle:"Agenda tu cita",
+    heroSub:"Hablo contigo en persona o por WhatsApp. Te muestro tu app, cómo funciona y cómo genera más clientes.",
+    brianLbl:"Brian · Fundador de MX Studio",
+    sl1:"Cómo",sl2:"Día",sl3:"Hora",sl4:"Confirmar",
+    modeTitle:"¿Cómo prefieres la cita?",
+    modeName1:"En persona",modeDesc1:"Te visito en tu restaurante o nos reunimos en un punto",
+    modeName2:"Por WhatsApp",modeDesc2:"Llamada o videollamada desde donde estés",
+    dateTitle:"¿Qué día te funciona?",
+    timeTitle:"¿A qué hora?",
+    infoTitle:"Tus datos",
+    nameLabel:"Tu nombre",namePh:"Nombre del negocio o tuyo",
+    phoneLabel:"Tu WhatsApp",phonePh:"744 000 0000",
+    noteLabel:"Nota (opcional)",notePh:"Nombre del restaurante, pregunta…",
+    confirmBtnTxt:"📲 Confirmar por WhatsApp",
+    footerAvail:"Disponible lunes a sábado · 10am – 7pm · Acapulco, México",
+    footerBack:"← Regresar al dashboard",
+    days:["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"],
+    months:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+    modeLabels:{presencial:"En persona 🤝",whatsapp:"Por WhatsApp 📲"},
+    sumMode:"Cómo:",sumDate:"Fecha:",sumTime:"Hora:",
+    sucTitle:"¡Listo!",
+    sucSub:"Tu solicitud va directo a Brian por WhatsApp. Te confirma en breve.",
+    sucWaTxt:"Abrir WhatsApp",
+    sucHubLnk:"🏖️ Ver el Hub de restaurantes de Acapulco",
+    langBtn:"EN",
+    waMsg:(nm,ph,mode,date,time,note)=>`Hola Brian 👋 — Quiero agendar una cita.\n\n📋 Cómo: ${mode}\n📅 Fecha: ${date}\n🕐 Hora: ${time}\n👤 Nombre: ${nm}\n📱 WhatsApp: ${ph}${note?"\n📝 Nota: "+note:""}\n\nVi tu mensaje sobre mi app en MX Studio ✝ y me interesa saber más.`
+  },
+  en:{
+    hdrSub:"Acapulco · Restaurant Apps",
+    heroTitle:"Book your appointment",
+    heroSub:"Meet me in person or on WhatsApp. I'll show you your app, how it works, and how it brings in more customers.",
+    brianLbl:"Brian · Founder of MX Studio",
+    sl1:"How",sl2:"Day",sl3:"Time",sl4:"Confirm",
+    modeTitle:"How would you like to meet?",
+    modeName1:"In person",modeDesc1:"I'll visit your restaurant or we meet at a spot",
+    modeName2:"On WhatsApp",modeDesc2:"Call or video call from wherever you are",
+    dateTitle:"Which day works for you?",
+    timeTitle:"What time?",
+    infoTitle:"Your info",
+    nameLabel:"Your name",namePh:"Your name or business name",
+    phoneLabel:"Your WhatsApp",phonePh:"744 000 0000",
+    noteLabel:"Note (optional)",notePh:"Restaurant name, question…",
+    confirmBtnTxt:"📲 Confirm on WhatsApp",
+    footerAvail:"Available Mon–Sat · 10am–7pm · Acapulco, Mexico",
+    footerBack:"← Back to dashboard",
+    days:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+    months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+    modeLabels:{presencial:"In person 🤝",whatsapp:"On WhatsApp 📲"},
+    sumMode:"How:",sumDate:"Date:",sumTime:"Time:",
+    sucTitle:"You're booked!",
+    sucSub:"Your request goes straight to Brian on WhatsApp. He'll confirm shortly.",
+    sucWaTxt:"Open WhatsApp",
+    sucHubLnk:"🏖️ See the Acapulco Restaurant Hub",
+    langBtn:"ES",
+    waMsg:(nm,ph,mode,date,time,note)=>`Hi Brian 👋 — I'd like to book an appointment.\n\n📋 How: ${mode}\n📅 Date: ${date}\n🕐 Time: ${time}\n👤 Name: ${nm}\n📱 WhatsApp: ${ph}${note?"\n📝 Note: "+note:""}\n\nI saw your message about my app at MX Studio ✝ and I'm interested in learning more.`
+  }
+};
+
+function t(key){return T[st.lang][key]||T.es[key]||""}
+
+// ── LANG TOGGLE ──
+document.getElementById("langBtn").onclick=()=>{
+  st.lang=st.lang==="es"?"en":"es";
+  applyLang();
+};
+function applyLang(){
+  const tl=T[st.lang];
+  ["hdrSub","heroTitle","heroSub","brianLbl","sl1","sl2","sl3","sl4",
+   "modeTitle","modeName1","modeDesc1","modeName2","modeDesc2",
+   "dateTitle","timeTitle","infoTitle","nameLabel","phoneLabel",
+   "noteLabel","confirmBtnTxt","footerAvail","footerBack",
+   "sucTitle","sucSub","sucWaTxt","sucHubLnk","langBtn"
+  ].forEach(id=>{const el=document.getElementById(id);if(el&&tl[id])el.textContent=tl[id]});
+  document.getElementById("nameInput").placeholder=tl.namePh;
+  document.getElementById("phoneInput").placeholder=tl.phonePh;
+  document.getElementById("noteInput").placeholder=tl.notePh;
+  if(st.date)drawTimes();
+  updateSummary();
+}
+
+// ── STEP INDICATORS ──
+function setStep(n){
+  for(let i=1;i<=4;i++){
+    const el=document.getElementById("s"+i);
+    el.className="step-num"+(i<n?" done":i===n?" done":"");
+  }
+}
+
+// ── MODE SELECTION ──
+document.querySelectorAll(".mode-card").forEach(card=>{
+  card.onclick=()=>{
+    document.querySelectorAll(".mode-card").forEach(c=>c.classList.remove("selected"));
+    card.classList.add("selected");
+    st.mode=card.dataset.mode;
+    document.getElementById("secDate").hidden=false;
+    setStep(2);
+    drawDates();
+    document.getElementById("secDate").scrollIntoView({behavior:"smooth",block:"nearest"});
+  };
+});
+
+// ── DATE GRID ──
+function drawDates(){
+  const grid=document.getElementById("dateGrid");
+  const tl=T[st.lang];
+  const today=new Date();
+  today.setHours(0,0,0,0);
+  const cells=[];
+  // Show next 14 days, skip Sundays (0)
+  let d=new Date(today);d.setDate(d.getDate()+1); // start tomorrow
+  let count=0;
+  while(count<14){
+    const dow=d.getDay();
+    if(dow!==0){ // skip Sunday
+      const iso=d.toISOString().slice(0,10);
+      const isSelected=st.date===iso;
+      cells.push(`<div class="date-cell${isSelected?" selected":""}" data-date="${iso}">
+        <div class="date-day">${tl.days[dow]}</div>
+        <div class="date-num">${d.getDate()}</div>
+        <div class="date-mon">${tl.months[d.getMonth()]}</div>
+      </div>`);
+      count++;
+    }
+    d.setDate(d.getDate()+1);
+  }
+  grid.innerHTML=cells.join("");
+  grid.querySelectorAll(".date-cell").forEach(cell=>{
+    cell.onclick=()=>{
+      st.date=cell.dataset.date;
+      grid.querySelectorAll(".date-cell").forEach(c=>c.classList.remove("selected"));
+      cell.classList.add("selected");
+      document.getElementById("secTime").hidden=false;
+      setStep(3);
+      drawTimes();
+      document.getElementById("secTime").scrollIntoView({behavior:"smooth",block:"nearest"});
+    };
+  });
+}
+
+// ── TIME GRID ──
+function drawTimes(){
+  const grid=document.getElementById("timeGrid");
+  // 10am–7pm, hourly slots (last slot 6pm = ends 7pm)
+  const slots=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"];
+  const fmt=(s)=>{
+    const [h]=s.split(":").map(Number);
+    if(st.lang==="en"){const ampm=h>=12?"pm":"am";const h12=h>12?h-12:h;return h12+":00 "+ampm}
+    return s+" hrs";
+  };
+  grid.innerHTML=slots.map(s=>`<div class="time-btn${st.time===s?" selected":""}" data-t="${s}">${fmt(s)}</div>`).join("");
+  grid.querySelectorAll(".time-btn").forEach(btn=>{
+    btn.onclick=()=>{
+      st.time=btn.dataset.t;
+      grid.querySelectorAll(".time-btn").forEach(b=>b.classList.remove("selected"));
+      btn.classList.add("selected");
+      document.getElementById("secInfo").hidden=false;
+      setStep(4);
+      updateSummary();
+      document.getElementById("secInfo").scrollIntoView({behavior:"smooth",block:"nearest"});
+    };
+  });
+}
+
+// ── SUMMARY CARD ──
+function updateSummary(){
+  if(!st.mode&&!st.date&&!st.time)return;
+  const tl=T[st.lang];
+  const fmtDate=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-").map(Number);const dt=new Date(y,m-1,d);return tl.days[dt.getDay()]+" "+d+" "+tl.months[m-1]};
+  const fmtTime=s=>{if(!s)return"";const[h]=s.split(":").map(Number);if(st.lang==="en"){const ampm=h>=12?"pm":"am";const h12=h>12?h-12:h;return h12+":00 "+ampm}return s+" hrs"};
+  let rows="";
+  if(st.mode)rows+=`<div class="summary-row"><span class="summary-icon">🤝</span><div class="summary-text"><strong>${tl.sumMode}</strong>${tl.modeLabels[st.mode]}</div></div>`;
+  if(st.date)rows+=`<div class="summary-row"><span class="summary-icon">📅</span><div class="summary-text"><strong>${tl.sumDate}</strong>${fmtDate(st.date)}</div></div>`;
+  if(st.time)rows+=`<div class="summary-row"><span class="summary-icon">🕐</span><div class="summary-text"><strong>${tl.sumTime}</strong>${fmtTime(st.time)}</div></div>`;
+  document.getElementById("summaryCard").innerHTML=rows;
+}
+
+// ── ENABLE CONFIRM BTN ──
+["nameInput","phoneInput"].forEach(id=>{
+  document.getElementById(id).addEventListener("input",checkConfirm);
+});
+function checkConfirm(){
+  const nm=document.getElementById("nameInput").value.trim();
+  const ph=document.getElementById("phoneInput").value.replace(/\D/g,"");
+  document.getElementById("confirmBtn").disabled=!(nm&&ph.length>=10&&st.mode&&st.date&&st.time);
+}
+
+// ── CONFIRM ──
+document.getElementById("confirmBtn").onclick=()=>{
+  const tl=T[st.lang];
+  const nm=document.getElementById("nameInput").value.trim();
+  const ph=document.getElementById("phoneInput").value.trim();
+  const note=document.getElementById("noteInput").value.trim();
+  const fmtDate=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-").map(Number);const dt=new Date(y,m-1,d);return tl.days[dt.getDay()]+" "+d+" "+tl.months[m-1]};
+  const fmtTime=s=>{if(!s)return"";const[h]=s.split(":").map(Number);if(st.lang==="en"){const ampm=h>=12?"pm":"am";const h12=h>12?h-12:h;return h12+":00 "+ampm}return s+" hrs"};
+  const mode=tl.modeLabels[st.mode];
+  const msg=tl.waMsg(nm,ph,mode,fmtDate(st.date),fmtTime(st.time),note);
+  const waUrl="https://wa.me/"+BRIAN_WA+"?text="+encodeURIComponent(msg);
+  // Show success screen
+  document.getElementById("bookingScreen").style.display="none";
+  const ss=document.getElementById("successScreen");
+  ss.className="show";
+  document.getElementById("sucTitle").textContent=tl.sucTitle;
+  document.getElementById("sucSub").textContent=tl.sucSub;
+  document.getElementById("sucWaTxt").textContent=tl.sucWaTxt;
+  document.getElementById("sucHubLnk").textContent=tl.sucHubLnk;
+  document.getElementById("sucWaBtn").onclick=()=>window.open(waUrl,"_blank");
+  // Auto-open WA
+  window.open(waUrl,"_blank");
+};
+
+// ── DETECT LANG FROM URL OR BROWSER ──
+const urlLang=new URLSearchParams(location.search).get("lang");
+if(urlLang==="en"||navigator.language.startsWith("en"))st.lang="en";
+applyLang();
+</script>
+</body>
+</html>
