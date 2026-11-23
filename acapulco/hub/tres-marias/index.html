@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tres Marías ✝ Pie de la Cuesta</title>
+<meta name="theme-color" content="#06080f">
+<meta name="description" content="Restaurante de mariscos y hospedaje frente al mar en Pie de la Cuesta, Acapulco.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --teal:#0b5d7a;
+  --teal-lt:#1a8aad;
+  --teal-dim:rgba(11,93,122,.2);
+  --bg:#06080f;
+  --card:#0d1419;
+  --card2:#111c22;
+  --text:#f0ebe2;
+  --muted:#6a7f8a;
+  --border:rgba(11,93,122,.25);
+  --border-lt:rgba(11,93,122,.5);
+  --green:#25d366;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
+html{background:var(--bg)}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.page{max-width:600px;margin:0 auto;min-height:100svh;background:var(--bg);box-shadow:0 0 80px rgba(0,0,0,.6)}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+/* ── HEADER ── */
+.header{
+  display:flex;align-items:center;
+  padding:12px 16px;
+  background:linear-gradient(135deg,#06080f 0%,#0a1218 100%);
+  border-bottom:1px solid var(--border);
+  gap:12px;
+}
+.refresh{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  color:#fff;font-size:18px;line-height:1;cursor:pointer;flex-shrink:0;
+}
+.hero-logo{
+  width:54px;height:54px;border-radius:50%;
+  border:2px solid var(--teal);
+  object-fit:cover;flex-shrink:0;
+  box-shadow:0 0 16px rgba(11,93,122,.4);
+  background:var(--card2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+}
+.header-info{flex:1;min-width:0}
+.header-info h1{
+  font-family:var(--serif);
+  font-size:1.25rem;font-weight:500;color:var(--text);
+  line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.header-info p{
+  font-size:.62rem;color:var(--teal-lt);
+  letter-spacing:.08em;text-transform:uppercase;margin-top:3px;
+}
+
+/* ── HERO SLIDESHOW ── */
+.hero{
+  position:relative;
+  height:62vw;max-height:360px;min-height:220px;
+  overflow:hidden;background:#040a0d;
+}
+.slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1.4s ease;
+  background-size:cover;background-position:center;
+}
+.slide.active{opacity:1}
+.hero::after{
+  content:'';position:absolute;inset:auto 0 0;height:50px;
+  background:linear-gradient(to top,rgba(6,8,15,.7),transparent);
+  pointer-events:none;
+}
+.hero-dots{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;z-index:3;
+}
+.dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.25);transition:all .3s;
+}
+.dot.on{background:var(--teal-lt);transform:scale(1.4)}
+
+/* ── LANG TOGGLE ── */
+.lang-row{
+  display:flex;justify-content:flex-end;align-items:center;
+  padding:8px 16px 2px;gap:4px;
+}
+.lang-btn{
+  background:none;border:1px solid var(--border);
+  color:var(--muted);font-size:.68rem;font-weight:500;
+  padding:3px 11px;border-radius:20px;cursor:pointer;
+  font-family:var(--sans);letter-spacing:.05em;
+  transition:all .2s;
+}
+.lang-btn.active{color:var(--teal-lt);border-color:var(--teal);background:rgba(11,93,122,.12)}
+
+/* ── SECTION LABEL ── */
+.section-label{
+  padding:16px 18px 10px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label span{font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── DESTINATION CARDS ── */
+.cards{display:flex;flex-direction:column;gap:12px;padding:0 14px 6px}
+.card{
+  position:relative;
+  display:flex;align-items:center;
+  border-radius:14px;overflow:hidden;
+  height:100px;
+  text-decoration:none;color:var(--text);
+  background:var(--card);border:1px solid var(--border);
+  transition:transform .18s,box-shadow .18s;
+}
+.card:active{transform:scale(.975)}
+.card-photo{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform .4s;
+}
+.card:active .card-photo{transform:scale(1.03)}
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(6,8,15,.88) 0%,rgba(6,8,15,.5) 55%,rgba(6,8,15,.15) 100%);
+}
+.card-content{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:14px;
+  padding:0 16px;width:100%;
+}
+.card-icon-wrap{font-size:1.6rem;flex-shrink:0}
+.card-info{flex:1;min-width:0}
+.card-label{font-size:1rem;font-weight:600;line-height:1.2;margin-bottom:3px}
+.card-sub{font-size:.72rem;color:var(--muted);line-height:1.4}
+.card-arr{font-size:1.3rem;color:var(--muted);flex-shrink:0;opacity:.6}
+
+/* per-card accent */
+.card-r{border-left:3px solid var(--teal)}
+.card-h{border-left:3px solid #2f8fa0}
+.card-a{border-left:3px solid #c8a04a}
+
+/* ── SEE ALL APPS CARD ── */
+.apps-card{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(201,160,74,.07);
+  border:1px solid rgba(201,160,74,.3);
+  border-left:3px solid #c8a04a;
+  border-radius:14px;padding:14px 16px;
+  margin:8px 14px 4px;
+  text-decoration:none;color:var(--text);
+  transition:opacity .18s;
+}
+.apps-card:active{opacity:.7}
+.apps-ic{font-size:1.3rem;flex-shrink:0}
+.apps-tx{flex:1;min-width:0}
+.apps-tx b{display:block;font-size:.85rem;font-weight:600;margin-bottom:2px}
+.apps-tx span{display:block;font-size:.72rem;color:var(--muted);line-height:1.4}
+.apps-arr{font-size:1.1rem;color:#c8a04a;opacity:.8}
+
+/* ── PWA HINT ── */
+.pwa-hint{
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:14px 16px;
+  margin:12px 14px 0;position:relative;
+}
+.pwa-icon{font-size:1.4rem;flex-shrink:0}
+.pwa-text{flex:1;font-size:.78rem;line-height:1.5;color:var(--muted)}
+.pwa-text strong{color:var(--text)}
+.pwa-x{
+  font-size:1rem;color:var(--muted);padding:4px;line-height:1;
+  background:none;border:none;cursor:pointer;flex-shrink:0;
+}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);margin:20px 14px 0}
+
+/* ── WA SECTION ── */
+.wa-section{padding:16px 14px 8px}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:14px;
+  background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);
+  border-radius:14px;color:#25d366;
+  font-size:.9rem;font-weight:600;text-decoration:none;
+  transition:background .18s;
+}
+.wa-btn:active{background:rgba(37,211,102,.2)}
+
+/* ── FOOTER ── */
+.footer{
+  padding:24px 14px 36px;
+  text-align:center;
+  font-size:.68rem;color:var(--muted);
+  opacity:.5;line-height:1.8;
+}
+
+/* ── WA FLOAT ── */
+.wa-float{
+  position:fixed;
+  bottom:max(24px,calc(env(safe-area-inset-bottom,0px)+16px));
+  right:max(20px,env(safe-area-inset-right,0px));
+  z-index:100;
+  width:54px;height:54px;
+  background:var(--green);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  text-decoration:none;
+  transition:transform .2s;
+}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="hero-logo">🐚</div>
+  <div class="header-info">
+    <h1>Tres Marías ✝</h1>
+    <p id="headerSub">Pie de la Cuesta · Acapulco</p>
+  </div>
+  <button class="refresh" onclick="location.reload(true)" title="Actualizar">↻</button>
+</div>
+
+<!-- SLIDESHOW -->
+<div class="hero" id="slides">
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80&auto=format&fit=crop')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=900&q=80&auto=format&fit=crop')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=900&q=80&auto=format&fit=crop')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=900&q=80&auto=format&fit=crop')"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=900&q=80&auto=format&fit=crop')"></div>
+  <div class="hero-dots" id="dots"></div>
+</div>
+
+<!-- LANG TOGGLE -->
+<div class="lang-row">
+  <button class="lang-btn active" id="esBtn" onclick="setLang('es')">ES</button>
+  <span style="color:var(--border);padding:0 2px;font-size:.8rem">|</span>
+  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- SECTION LABEL -->
+<div class="section-label">
+  <span id="sectionLbl">Explorar</span>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+
+  <a class="card card-r" href="../../c/tres-marias/" id="linkMenu">
+    <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=75&auto=format&fit=crop')"></div>
+    <div class="card-overlay"></div>
+    <div class="card-content">
+      <div class="card-icon-wrap">🍽️</div>
+      <div class="card-info">
+        <div class="card-label" id="lblMenu">Restaurante</div>
+        <div class="card-sub" id="subMenu">Menú · Mariscos · Especialidades</div>
+      </div>
+      <span class="card-arr">›</span>
+    </div>
+  </a>
+
+  <a class="card card-h" href="#hospedaje" id="linkHotel">
+    <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&q=75&auto=format&fit=crop')"></div>
+    <div class="card-overlay"></div>
+    <div class="card-content">
+      <div class="card-icon-wrap">🛏️</div>
+      <div class="card-info">
+        <div class="card-label" id="lblHotel">Hospedaje</div>
+        <div class="card-sub" id="subHotel">Cuartos · Alberca · Vista al mar</div>
+      </div>
+      <span class="card-arr">›</span>
+    </div>
+  </a>
+
+  <a class="card card-a" href="#actividades" id="linkAct">
+    <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=75&auto=format&fit=crop')"></div>
+    <div class="card-overlay" style="background:linear-gradient(100deg,rgba(6,8,15,.9) 0%,rgba(6,8,15,.5) 55%,rgba(6,8,15,.15) 100%)"></div>
+    <div class="card-content">
+      <div class="card-icon-wrap">🌊</div>
+      <div class="card-info">
+        <div class="card-label" id="lblAct">Actividades</div>
+        <div class="card-sub" id="subAct">Playa · Mar · Pie de la Cuesta</div>
+      </div>
+      <span class="card-arr">›</span>
+    </div>
+  </a>
+
+</div>
+
+<!-- SEE ALL APPS -->
+<a class="apps-card" href="../../apps/">
+  <span class="apps-ic">🔍</span>
+  <div class="apps-tx">
+    <b>Ver todas las apps · See all apps</b>
+    <span>Habla · Family First · Family Games · Más por venir · More coming</span>
+  </div>
+  <span class="apps-arr">›</span>
+</a>
+
+<!-- PWA HINT -->
+<div class="pwa-hint" id="pwaHint">
+  <span class="pwa-icon">📲</span>
+  <div class="pwa-text">
+    <span id="pwaEs">Guárdalo en tu teléfono</span>
+    <span id="pwaEn" hidden> · Save to your phone</span>
+    <br>
+    <span id="pwaInstr">Toca <strong>Compartir</strong> → <strong>Añadir a inicio</strong> &nbsp;·&nbsp; Tap <strong>Share</strong> → <strong>Add to Home Screen</strong></span>
+  </div>
+  <button class="pwa-x" id="pwaClose" aria-label="Cerrar">✕</button>
+</div>
+
+<div class="divider"></div>
+
+<!-- WA BUTTON -->
+<div class="wa-section">
+  <a class="wa-btn" href="https://wa.me/527443233442" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span id="waBtnTxt">WhatsApp · Tres Marías</span>
+  </a>
+</div>
+
+<div class="footer">
+  Tres Marías ✝ · Pie de la Cuesta, Acapulco<br>
+  Desarrollado por MX Studio ✝
+</div>
+
+</div><!-- /page -->
+
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/527443233442" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ── SLIDESHOW ── */
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+let cur=0,timer;
+slides.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i===0?' on':'');dotsEl.appendChild(d)});
+function goTo(n){
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('on');
+  cur=(n+slides.length)%slides.length;
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('on');
+}
+function next(){goTo(cur+1)}
+timer=setInterval(next,4500);
+document.getElementById('slides').addEventListener('click',()=>{clearInterval(timer);next();timer=setInterval(next,4500)});
+
+/* ── LANG ── */
+const T={
+  es:{
+    section:'Explorar',
+    menu:'Restaurante',menuS:'Menú · Mariscos · Especialidades',
+    hotel:'Hospedaje',hotelS:'Cuartos · Alberca · Vista al mar',
+    act:'Actividades',actS:'Playa · Mar · Pie de la Cuesta',
+    wa:'WhatsApp · Tres Marías',
+  },
+  en:{
+    section:'Explore',
+    menu:'Restaurant',menuS:'Menu · Seafood · Specialties',
+    hotel:'Where to Stay',hotelS:'Rooms · Pool · Ocean view',
+    act:'Activities',actS:'Beach · Ocean · Pie de la Cuesta',
+    wa:'WhatsApp · Tres Marías',
+  }
+};
+function setLang(l){
+  const t=T[l];
+  document.getElementById('sectionLbl').textContent=t.section;
+  document.getElementById('lblMenu').textContent=t.menu;
+  document.getElementById('subMenu').textContent=t.menuS;
+  document.getElementById('lblHotel').textContent=t.hotel;
+  document.getElementById('subHotel').textContent=t.hotelS;
+  document.getElementById('lblAct').textContent=t.act;
+  document.getElementById('subAct').textContent=t.actS;
+  document.getElementById('waBtnTxt').textContent=t.wa;
+  document.getElementById('esBtn').classList.toggle('active',l==='es');
+  document.getElementById('enBtn').classList.toggle('active',l==='en');
+  try{localStorage.setItem('tm_lang',l)}catch(e){}
+}
+try{const saved=localStorage.getItem('tm_lang');if(saved)setLang(saved)}catch(e){}
+
+/* ── PWA DISMISS ── */
+document.getElementById('pwaClose').onclick=()=>{
+  document.getElementById('pwaHint').style.display='none';
+  try{localStorage.setItem('tm_pwa','1')}catch(e){}
+};
+try{if(localStorage.getItem('tm_pwa'))document.getElementById('pwaHint').style.display='none'}catch(e){}
+</script>
+</body>
+</html>
