@@ -791,7 +791,7 @@ $("az").addEventListener("click",e=>{const a=e.target.closest(".zl a");if(a){e.p
   const appLink="https://go.myjefetech.app/acapulco/c/"+slug+"/";
   const hubLink="https://go.myjefetech.app/acapulco/hub/";
   const citaLink="https://go.myjefetech.app/acapulco/cita/";
-  const msg=`Hola 👋\n\nSoy Brian, fundador de MX Studio ✝ — desarrollo PWAs (progressive web apps) para negocios aquí en Acapulco.\n\nYa tenemos lista su PWA — todo lo que sus clientes necesitan para encontrarlos en línea:\n👉 ${appLink}\n\nCada negocio que obtiene su app este mes queda incluido GRATIS en el Hub de Acapulco — donde turistas buscan restaurantes, hoteles y más, temporada tras temporada 🏖️\n\nLa temporada navideña es gratis para todos los que se suman hoy.\n\nLe explico todo en persona o por WhatsApp — lo que le quede mejor. ¿Agendamos unos minutos?\n📅 ${citaLink}\n\nSin costo verlo. Sin compromiso.`;
+  const msg=`Hey 👋 I'm Brian.\n\nI already built your app — take a look:\n👉 ${appLink}\n\nWhat do you think?`;
   fetch("../c/"+slug+"/index.html").then(r=>r.text()).then(html=>{
    const m=html.match(/"phone":\s*"([^"]+)"/);
    const phone=m?m[1].replace(/[^\d]/g,""):"";
