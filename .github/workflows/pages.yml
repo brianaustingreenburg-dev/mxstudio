@@ -95,6 +95,16 @@ jobs:
             echo "NETLIFY_AUTH_TOKEN=$HAS_NETLIFY VERCEL_TOKEN=$HAS_VERCEL"
           } > out/_diag/service.txt
           cat out/_diag/service.txt
+      - name: Deploy Casa Axolotl menu to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          npx -y netlify-cli deploy \
+            --dir acapulco/c/casa-axolotl/menu \
+            --prod \
+            --site-id 6bf75033-6dd4-44d2-8299-6e4415807a6b \
+            --auth "$NETLIFY_AUTH_TOKEN" \
+            --message "menu-v4 auto-deploy" || echo "netlify deploy failed"
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
