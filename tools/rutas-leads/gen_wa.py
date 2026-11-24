@@ -30,6 +30,39 @@ def region(a):
 
 data = [dict(c=r["code"], n=re.sub(r"\s*\([^)]*\)", "", r["n"]).strip(), i=industry(r["type"]), a=r["area"], g=region(r["area"]), w=r["phone"]) for r in rows]
 
+import unicodedata, html as _h, shutil
+COVER = {"restaurante":"v-NiJBks/cover.jpg","cafe":"4w1_MDvw/cover.jpg","bar":"iblARx4g/cover.jpg","club-de-playa":"NC6TYDe4/cover.jpg",
+         "hotel":"ind/hotel.jpg","tour":"ind/tour.jpg","spa":"ind/spa.jpg","salon":"ind/salon.jpg","boutique":"ind/boutique.jpg","tienda":"ind/tienda.jpg"}
+LABEL = {"restaurante":"Menú, pedidos y reservas","cafe":"Menú y pedidos","bar":"Menú y reservas","club-de-playa":"Day pass y reservas",
+         "hotel":"Habitaciones y reservas","tour":"Tours y reservas","spa":"Servicios y citas","salon":"Servicios y citas","boutique":"Catálogo y apartados","tienda":"Catálogo y pedidos"}
+def slugify(s):
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+    return s[:48].strip("-") or "negocio"
+used = set()
+for d in data:
+    s = slugify(d["n"])
+    if s in used: s = s + "-" + d["c"].lower()
+    used.add(s); d["s"] = s
+SITE = "https://go.myjefetech.app/acapulco/"
+outdir = os.path.join(REPO, "acapulco/a")
+if os.path.isdir(outdir): shutil.rmtree(outdir)
+for d in data:
+    p = os.path.join(outdir, d["s"]); os.makedirs(p, exist_ok=True)
+    n = _h.escape(d["n"], quote=True); lab = LABEL[d["i"]]
+    dest = "../../demo/" + d["i"] + "/?n=" + __import__("urllib.parse").parse.quote(d["n"]) + "&a=" + __import__("urllib.parse").parse.quote(d["a"])
+    img = SITE + "demo/img/" + COVER[d["i"]]; url = SITE + "a/" + d["s"] + "/"
+    open(os.path.join(p, "index.html"), "w", encoding="utf8").write(f"""<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{n} · App</title><meta name="robots" content="noindex">
+<meta name="description" content="La app de {n}: {lab} por WhatsApp.">
+<meta property="og:type" content="website"><meta property="og:url" content="{url}">
+<meta property="og:title" content="{n} · App"><meta property="og:description" content="{lab} por WhatsApp. Ábrala en su celular.">
+<meta property="og:image" content="{img}"><meta property="og:image:width" content="1100"><meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="refresh" content="0;url={_h.escape(dest, quote=True)}">
+<script>location.replace({json.dumps(dest)})</script></head><body style="font-family:sans-serif;background:#111;color:#eee;text-align:center;padding:40px">
+<p><a style="color:#e8c48c" href="{_h.escape(dest, quote=True)}">Abrir la app de {n}</a></p></body></html>""")
+
 
 HTML = r"""<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
@@ -87,7 +120,7 @@ let F={i:"all",g:"all",q:"",hid:false};try{Object.assign(F,JSON.parse(localStora
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const qs=b=>b.i+"/?n="+encodeURIComponent(b.n)+"&a="+encodeURIComponent(b.a);const demo=b=>"../../demo/"+qs(b);const demoLive=b=>LIVE+qs(b);
-const pitch=b=>"https://wa.me/"+b.w+"?text="+encodeURIComponent("Hola 👋 Soy Brian.\n\nYa construí la app de "+b.n+" — échele un vistazo:\n👉 "+demoLive(b)+"\n\n¿Qué le parece?");
+const shortLive=b=>"https://go.myjefetech.app/acapulco/a/"+b.s+"/";const pitch=b=>"https://wa.me/"+b.w+"?text="+encodeURIComponent("Hola, espero que se encuentre muy bien 👋 Soy Brian y construí un ecosistema que le puede interesar. Aquí tiene una muestra de lo que puedo hacer:\n\n"+shortLive(b));
 function chips(){const c={all:D.filter(b=>M[b.c]!=="x").length};IND.forEach(([k])=>c[k]=D.filter(b=>b.i===k&&M[b.c]!=="x").length);
  $("chips").innerHTML=`<button data-i="all" class="${F.i==="all"?"on":""}">Todos ${c.all}</button>`+IND.map(([k,l])=>`<button data-i="${k}" class="${F.i===k?"on":""}">${l} ${c[k]}</button>`).join("");
  const regs=[...new Set(D.map(b=>b.g))].sort((a,b)=>a==="Acapulco"?-1:b==="Acapulco"?1:a.localeCompare(b));

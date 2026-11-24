@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Demo · Spa · MX Studio ✝</title><meta name="robots" content="noindex,nofollow">
+<title>Spa</title><meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#111"><meta name="apple-mobile-web-app-capable" content="yes">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -85,7 +85,7 @@ function initials(n){const w=n.replace(/[^\p{L}\p{N} ]/gu,"").split(/\s+/).filte
 function render(){const u=T[L];document.documentElement.lang=L;
  document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(u[k]!=null)e.innerHTML=u[k]});
  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
- $("logo").textContent=initials(NAME);$("nm").textContent=NAME;document.title=NAME+" · Demo MX Studio ✝";
+ $("logo").textContent=initials(NAME);$("nm").textContent=NAME;document.title=NAME;
  $("tg").textContent=C.tag[L];$("ar").textContent="📍 "+AREA;$("ar2").textContent=AREA;$("lb").textContent=C.label[L];$("promo").textContent=u.promo;
  $("qWa").href=wa((L==="es"?"Hola "+NAME+" 👋 Quisiera información.":"Hi "+NAME+" 👋 I'd like some information.")+" [Demo MX Studio]");
  $("qMap").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(NAME+" "+AREA);
