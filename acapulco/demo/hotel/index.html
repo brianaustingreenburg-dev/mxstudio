@@ -65,7 +65,7 @@ form.bk input,form.bk select{width:100%;padding:11px;border-radius:10px;border:1
 <script>
 const C={"kind": "rooms", "emoji": "🏨", "label": {"es": "Hotel", "en": "Hotel"}, "tag": {"es": "Descanso frente al mar, atendido por sus dueños", "en": "Seaside rest, run by its owners"}, "cta": {"es": "Reservar por WhatsApp", "en": "Book on WhatsApp"}, "photos": [], "items": [["Habitaciones", "Rooms", [["Habitación doble", "Double room", "2 camas matrimoniales · A/A · WiFi", "2 double beds · A/C · WiFi", 1200], ["Suite vista al mar", "Ocean-view suite", "Cama king · terraza · vista al mar", "King bed · terrace · ocean view", 1900], ["Familiar", "Family room", "Hasta 5 personas · cocineta", "Up to 5 · kitchenette", 2300]]], ["Incluye", "Included", [["Alberca", "Pool", "Abierta de 8 a 20 h", "Open 8 am – 8 pm", 0], ["Estacionamiento", "Parking", "Gratis para huéspedes", "Free for guests", 0], ["WiFi", "WiFi", "En todo el hotel", "Throughout the hotel", 0]]]], "sample": "Hotel Brisa del Mar"},BR="527441930502";
 const q=new URLSearchParams(location.search);
-const NAME=(q.get("n")||C.sample).slice(0,60),AREA=(q.get("a")||"Guerrero, México").slice(0,80);
+const NAME=(q.get("n")||C.sample).slice(0,60),AREA=(q.get("a")||"México").slice(0,80);
 let L=(()=>{try{return localStorage.getItem("mxd-lang")||"es"}catch(_){return"es"}})();
 const T={es:{wa:"WhatsApp",map:"Cómo llegar",share:"Compartir",hours:"Lunes a domingo · 9:00 a 21:00",pay:"Efectivo, tarjeta y transferencia",infoT:"Información",
 inst:"📲 <b>Instálala como app:</b> en iPhone toca Compartir → «Agregar a inicio». En Android toca ⋮ → «Instalar app». Sin App Store.",
