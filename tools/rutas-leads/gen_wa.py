@@ -24,7 +24,7 @@ def region(a):
                  ("ixtapa", "Zihuatanejo · Ixtapa"), ("zihua", "Zihuatanejo · Ixtapa"), ("la unión", "Troncones · La Saladita"),
                  ("taxco", "Taxco"), ("chilpancingo", "Chilpancingo"), ("iguala", "Iguala"),
                  ("pie de la cuesta", "Pie de la Cuesta · Coyuca"), ("coyuca", "Pie de la Cuesta · Coyuca"),
-                 ("playa ventura", "Costa Chica"), ("copala", "Costa Chica"), ("marquelia", "Costa Chica")]:
+                 ("playa ventura", "Costa Chica"), ("copala", "Costa Chica"), ("marquelia", "Costa Chica"), ("tlapa", "Montaña · Tlapa"), ("tixtla", "Chilpancingo"), ("chilapa", "Chilpancingo"), ("altamirano", "Tierra Caliente"), ("tecpan", "Papanoa · Técpan")]:
         if k in a: return v
     return "Acapulco"
 

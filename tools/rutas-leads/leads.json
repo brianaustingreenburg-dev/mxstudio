@@ -6277,5 +6277,923 @@
   "phone": "527773053032",
   "code": "R0696",
   "batch": 14
+ },
+ {
+  "kind": "new",
+  "n": "755 Barbería",
+  "type": "Salón",
+  "area": "Paseo de Zihuatanejo Pte. 120A, El Hujal, Zihuatanejo, Guerrero",
+  "phone": "527552179755",
+  "code": "R0697",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Novia Mía Boutique",
+  "type": "Boutique",
+  "area": "Cuauhtémoc 59, Centro, Zihuatanejo, Guerrero",
+  "phone": "527551289195",
+  "code": "R0698",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Las Iguanas Bazar",
+  "type": "Tienda",
+  "area": "Escénica a La Ropa, Zihuatanejo, Guerrero",
+  "phone": "525581721256",
+  "code": "R0699",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Leonardo Joyería de Plata",
+  "type": "Tienda",
+  "area": "Taxco, Guerrero",
+  "phone": "527626271951",
+  "code": "R0700",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Mared Plata",
+  "type": "Tienda",
+  "area": "Taxco, Guerrero",
+  "phone": "527621009111",
+  "code": "R0701",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "El Panchito Guerrerense",
+  "type": "Restaurante",
+  "area": "Nevado de Toluca 16, Chilpancingo, Guerrero",
+  "phone": "527471403517",
+  "code": "R0702",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Marquesitas Yukis",
+  "type": "Café",
+  "area": "Av. Morelos, Centro, Zihuatanejo, Guerrero",
+  "phone": "527555598634",
+  "code": "R0703",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Ariel Panadería",
+  "type": "Tienda",
+  "area": "Calle Ejido 25, Centro, Zihuatanejo, Guerrero",
+  "phone": "527551028198",
+  "code": "R0704",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Lía Pastelería",
+  "type": "Café",
+  "area": "Calle La Nao, Fracc. Magallanes, Acapulco, Guerrero",
+  "phone": "527443139307",
+  "code": "R0705",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Barbacoa de Res Acapulco",
+  "type": "Restaurante",
+  "area": "Acapulco, Guerrero",
+  "phone": "527442187923",
+  "code": "R0706",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Aleia Hotel",
+  "type": "Hotel",
+  "area": "Centro, Taxco, Guerrero",
+  "phone": "527621110554",
+  "code": "R0707",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel William",
+  "type": "Hotel",
+  "area": "Juan Ruiz de Alarcón 7, Centro, Taxco, Guerrero",
+  "phone": "527626254504",
+  "code": "R0708",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Fish-R-Us Yates",
+  "type": "Tour",
+  "area": "Costera Miguel Alemán 100, Las Playas, Acapulco, Guerrero",
+  "phone": "527444878787",
+  "code": "R0709",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Salón & Studio en Acapulco",
+  "type": "Salón",
+  "area": "Costera 125, Acapulco, Guerrero",
+  "phone": "527443832125",
+  "code": "R0710",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Artesanía Chilapa",
+  "type": "Tienda",
+  "area": "Chilapa, Guerrero",
+  "phone": "527562464211",
+  "code": "R0711",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "El Artesano de Chilapa",
+  "type": "Tienda",
+  "area": "Chilapa, Guerrero",
+  "phone": "527561332000",
+  "code": "R0712",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Artesanías de Palma Chilapa",
+  "type": "Tienda",
+  "area": "Chilapa, Guerrero",
+  "phone": "527561164223",
+  "code": "R0713",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Pastellos Acapulco",
+  "type": "Café",
+  "area": "Acapulco, Guerrero",
+  "phone": "527442216532",
+  "code": "R0714",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Craft Acapulco",
+  "type": "Tienda",
+  "area": "Acapulco, Guerrero",
+  "phone": "527441072166",
+  "code": "R0715",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Cafetería 3 Cerros",
+  "type": "Café",
+  "area": "Calle Prosperidad, Chilpancingo, Guerrero",
+  "phone": "527471660460",
+  "code": "R0716",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Karma Sweet Chilpancingo",
+  "type": "Café",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "525646224943",
+  "code": "R0717",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Boutique Johamy",
+  "type": "Boutique",
+  "area": "Guerrero 57, Centro, Iguala, Guerrero",
+  "phone": "527331145146",
+  "code": "R0718",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Joyería Centro Joyero Iguala",
+  "type": "Tienda",
+  "area": "Centro Joyero, Iguala, Guerrero",
+  "phone": "527332643338",
+  "code": "R0719",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Ramona Acapulco",
+  "type": "Restaurante",
+  "area": "Blvd. de las Naciones 1723A, La Poza, Acapulco, Guerrero",
+  "phone": "527441723839",
+  "code": "R0720",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "La Escondida Mariscos",
+  "type": "Restaurante",
+  "area": "Rustiko Food, Costa Azul, Acapulco, Guerrero",
+  "phone": "527443101350",
+  "code": "R0721",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Yajo's Mariscos",
+  "type": "Restaurante",
+  "area": "Acapulco, Guerrero",
+  "phone": "527443769764",
+  "code": "R0722",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "El Gran Recuerdo",
+  "type": "Restaurante",
+  "area": "Acapulco, Guerrero",
+  "phone": "527443477715",
+  "code": "R0723",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Picante Catamarán",
+  "type": "Tour",
+  "area": "Paseo del Morro 5, Zihuatanejo, Guerrero",
+  "phone": "527555542694",
+  "code": "R0724",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Sunnyside DMC Services",
+  "type": "Tour",
+  "area": "Ixtapa, Guerrero",
+  "phone": "527555533790",
+  "code": "R0725",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Tasting Room Capricho del Rey",
+  "type": "Bar",
+  "area": "Pedro Ascencio 9, Centro, Zihuatanejo, Guerrero",
+  "phone": "527551012802",
+  "code": "R0726",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Bay Club",
+  "type": "Restaurante",
+  "area": "Playa La Ropa, Zihuatanejo, Guerrero",
+  "phone": "527555575739",
+  "code": "R0727",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Barra de Mezcales",
+  "type": "Bar",
+  "area": "Acapulco, Guerrero",
+  "phone": "527441820046",
+  "code": "R0728",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Casa Bambú Taxco",
+  "type": "Hotel",
+  "area": "Centro, Taxco, Guerrero",
+  "phone": "527771760230",
+  "code": "R0729",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Restaurante Bereto",
+  "type": "Restaurante",
+  "area": "Puerto Vicente Guerrero, Tecpan, Guerrero",
+  "phone": "527421123496",
+  "code": "R0730",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "La Rampita",
+  "type": "Restaurante",
+  "area": "Puerto Vicente Guerrero, Tecpan, Guerrero",
+  "phone": "527421135896",
+  "code": "R0731",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Beauty Corner Chilpancingo",
+  "type": "Salón",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "527471503883",
+  "code": "R0732",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Renacer Beauty Center",
+  "type": "Spa",
+  "area": "Av. Benito Juárez 55, Centro, Chilpancingo, Guerrero",
+  "phone": "527471925959",
+  "code": "R0733",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Glam Nails Chilpancingo",
+  "type": "Salón",
+  "area": "Col. PRI, Chilpancingo, Guerrero",
+  "phone": "527471648911",
+  "code": "R0734",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Grand Hotel Iguala",
+  "type": "Hotel",
+  "area": "Av. Vicente Guerrero 20, Iguala, Guerrero",
+  "phone": "527331181017",
+  "code": "R0735",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Terrazita Grill",
+  "type": "Bar",
+  "area": "Ruffo Figueroa 61, 24 de Febrero, Iguala, Guerrero",
+  "phone": "527333392256",
+  "code": "R0736",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Sushi-Te Restaurante",
+  "type": "Restaurante",
+  "area": "Aldama 112, Iguala, Guerrero",
+  "phone": "527331176271",
+  "code": "R0737",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Villa Celeste",
+  "type": "Hotel",
+  "area": "Calle Morelos 360, Col. San Francisco, Tlapa, Guerrero",
+  "phone": "527574775876",
+  "code": "R0738",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Florería María Bonita",
+  "type": "Tienda",
+  "area": "Acapulco, Guerrero",
+  "phone": "527441035581",
+  "code": "R0739",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Florería Encanto",
+  "type": "Tienda",
+  "area": "Constituyentes L 337, Acapulco, Guerrero",
+  "phone": "527441588529",
+  "code": "R0740",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Delirio Floristería",
+  "type": "Tienda",
+  "area": "Acapulco, Guerrero",
+  "phone": "527445310808",
+  "code": "R0741",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Costa Azul Acapulco",
+  "type": "Hotel",
+  "area": "Costa Azul, Acapulco, Guerrero",
+  "phone": "527443442165",
+  "code": "R0742",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Posada Misión Taxco",
+  "type": "Hotel",
+  "area": "Cerro de la Misión 32, Taxco, Guerrero",
+  "phone": "527621250880",
+  "code": "R0743",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Campestre Los Adobes",
+  "type": "Hotel",
+  "area": "Taxco, Guerrero",
+  "phone": "527626230002",
+  "code": "R0744",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel El Ángel Taxco",
+  "type": "Hotel",
+  "area": "Taxco, Guerrero",
+  "phone": "527621075743",
+  "code": "R0745",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Cielito Lindo Taxco",
+  "type": "Hotel",
+  "area": "Heroico Colegio Militar 8, Bermeja, Taxco, Guerrero",
+  "phone": "527626221001",
+  "code": "R0746",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Pozolería El Pendón",
+  "type": "Restaurante",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "527471157075",
+  "code": "R0747",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Fatana Joyería",
+  "type": "Boutique",
+  "area": "Galerías Acapulco, Acapulco, Guerrero",
+  "phone": "527443029576",
+  "code": "R0748",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Los Raqueros Troncones",
+  "type": "Hotel",
+  "area": "Bahía Manzanillo, Troncones, Guerrero",
+  "phone": "527551388189",
+  "code": "R0749",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Masajes Mar de Palmas",
+  "type": "Spa",
+  "area": "Playa La Saladita, Guerrero",
+  "phone": "527551116184",
+  "code": "R0750",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Saladita Surf Ohana Surf School",
+  "type": "Tour",
+  "area": "Playa La Saladita, Guerrero",
+  "phone": "527551301913",
+  "code": "R0751",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Saladita Surf School",
+  "type": "Tienda",
+  "area": "Playa La Saladita, Guerrero",
+  "phone": "527551010886",
+  "code": "R0752",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Luna Studio Yoga & Café",
+  "type": "Café",
+  "area": "Av. Fuerza Aérea km 3.5, Pie de la Cuesta, Guerrero",
+  "phone": "527441925281",
+  "code": "R0753",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Urban Food Acapulco",
+  "type": "Restaurante",
+  "area": "Acapulco Diamante, Acapulco, Guerrero",
+  "phone": "527446657901",
+  "code": "R0754",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Masajes Relajantes Ixtapa",
+  "type": "Spa",
+  "area": "Ixtapa, Guerrero",
+  "phone": "527551138014",
+  "code": "R0755",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Buzo's Costa Azul",
+  "type": "Restaurante",
+  "area": "Fernando Magallanes 274, Costa Azul, Acapulco, Guerrero",
+  "phone": "527445022942",
+  "code": "R0756",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Taquería Los Chilangos",
+  "type": "Restaurante",
+  "area": "Rayón 14 esq. Hidalgo, Centro, Chilpancingo, Guerrero",
+  "phone": "527471402033",
+  "code": "R0757",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Posada del Palmar",
+  "type": "Hotel",
+  "area": "Paseo del Palmar 66, Centro, Zihuatanejo, Guerrero",
+  "phone": "527551211085",
+  "code": "R0758",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Villas Mercedes",
+  "type": "Hotel",
+  "area": "Calle Adelita 59, Playa La Madera, Zihuatanejo, Guerrero",
+  "phone": "527555446781",
+  "code": "R0759",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Mariscos Mi Puerto",
+  "type": "Restaurante",
+  "area": "Calle Las Rosas 853, Garita, Acapulco, Guerrero",
+  "phone": "527442072586",
+  "code": "R0760",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Chef Bambú",
+  "type": "Restaurante",
+  "area": "Ejército Mexicano Pte, Ciudad Altamirano, Guerrero",
+  "phone": "524426022621",
+  "code": "R0761",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Uñas Chilpancingo",
+  "type": "Salón",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "527471429282",
+  "code": "R0762",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Esquina 24 Comedor Urbano",
+  "type": "Restaurante",
+  "area": "Juan N. Álvarez 2-B, Centro, Zihuatanejo, Guerrero",
+  "phone": "527555583362",
+  "code": "R0763",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Pa' Llevar",
+  "type": "Restaurante",
+  "area": "Valle del Silencio s/n, La Puerta, Ixtapa, Guerrero",
+  "phone": "527551118889",
+  "code": "R0764",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Cocogrill",
+  "type": "Restaurante",
+  "area": "Paseo de La Boquita 12, Centro, Zihuatanejo, Guerrero",
+  "phone": "527551712778",
+  "code": "R0765",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "La Cantinita de Zihua",
+  "type": "Restaurante",
+  "area": "Condominios Las Palmas Lote 5, Playa Blanca, Zihuatanejo, Guerrero",
+  "phone": "527555533700",
+  "code": "R0766",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Casa Victoria",
+  "type": "Hotel",
+  "area": "La Ropa, Zihuatanejo, Guerrero",
+  "phone": "527551719093",
+  "code": "R0767",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Mi Jardín Troncones",
+  "type": "Restaurante",
+  "area": "Troncones Hillside, Troncones, Guerrero",
+  "phone": "527551030154",
+  "code": "R0768",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Stone Acapulco Diamante",
+  "type": "Hotel",
+  "area": "Acapulco Diamante, Acapulco, Guerrero",
+  "phone": "527444478487",
+  "code": "R0769",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Costa Linda",
+  "type": "Hotel",
+  "area": "Caleta, Acapulco, Guerrero",
+  "phone": "527443226391",
+  "code": "R0770",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Económico Acapulco",
+  "type": "Hotel",
+  "area": "Zona Diamante, Acapulco, Guerrero",
+  "phone": "527441351916",
+  "code": "R0771",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel y Bungalows Puerto Ángel",
+  "type": "Hotel",
+  "area": "Cumbres de Caletilla 38, Acapulco, Guerrero",
+  "phone": "527441008028",
+  "code": "R0772",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Lety's Restaurant",
+  "type": "Restaurante",
+  "area": "Zihuatanejo, Guerrero",
+  "phone": "527551251648",
+  "code": "R0773",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Los Narvales",
+  "type": "Restaurante",
+  "area": "Agustín Ramírez 6, Centro, Zihuatanejo, Guerrero",
+  "phone": "527551301406",
+  "code": "R0774",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Mandaditos Papanoa",
+  "type": "Tienda",
+  "area": "Papanoa, Tecpan, Guerrero",
+  "phone": "527421075263",
+  "code": "R0775",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Barber Shop 656",
+  "type": "Salón",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "527471621761",
+  "code": "R0776",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Bambú Boutique Iguala",
+  "type": "Boutique",
+  "area": "Calle Guerrero 85, Iguala, Guerrero",
+  "phone": "527331541963",
+  "code": "R0777",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Boutique Christian",
+  "type": "Boutique",
+  "area": "Iguala, Guerrero",
+  "phone": "527331528887",
+  "code": "R0778",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Mar de Plata Taxco",
+  "type": "Boutique",
+  "area": "Plaza Progreso loc. 3.18, Taxco, Guerrero",
+  "phone": "527621116841",
+  "code": "R0779",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Taxco Plata",
+  "type": "Boutique",
+  "area": "Taxco, Guerrero",
+  "phone": "527626236488",
+  "code": "R0780",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Gus Creaciones Taxco",
+  "type": "Tienda",
+  "area": "Taxco, Guerrero",
+  "phone": "527621207039",
+  "code": "R0781",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Florería Eli Chilpancingo",
+  "type": "Tienda",
+  "area": "Calle 18 de Marzo 25, San Francisco, Chilpancingo, Guerrero",
+  "phone": "527471629831",
+  "code": "R0782",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Sugar Boutique Chilpancingo",
+  "type": "Boutique",
+  "area": "Calle Abasolo 1A, Centro, Chilpancingo, Guerrero",
+  "phone": "527471940382",
+  "code": "R0783",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Pastelería Vega",
+  "type": "Café",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "527475177853",
+  "code": "R0784",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Flor & Arte Chilpancingo",
+  "type": "Tienda",
+  "area": "Juan Ruiz de Alarcón 101, Universal, Chilpancingo, Guerrero",
+  "phone": "527471483330",
+  "code": "R0785",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Florería Brisa",
+  "type": "Tienda",
+  "area": "Chilpancingo, Guerrero",
+  "phone": "527471899477",
+  "code": "R0786",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Mar Boutique",
+  "type": "Boutique",
+  "area": "San Luis La Loma, Acapulco, Guerrero",
+  "phone": "527441720277",
+  "code": "R0787",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Chancaite",
+  "type": "Restaurante",
+  "area": "Vicente Guerrero 55, Tixtla, Guerrero",
+  "phone": "527541000103",
+  "code": "R0788",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Mary Iguala",
+  "type": "Hotel",
+  "area": "Iguala, Guerrero",
+  "phone": "527335848530",
+  "code": "R0789",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Hotel Casa Blanca Iguala",
+  "type": "Hotel",
+  "area": "Juan Aldama 54, Centro, Iguala, Guerrero",
+  "phone": "527331016931",
+  "code": "R0790",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "La Cevichería Diamante",
+  "type": "Restaurante",
+  "area": "Blvd. de las Naciones 1221, Acapulco, Guerrero",
+  "phone": "527443784187",
+  "code": "R0791",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "La Palapa Puerto Marqués",
+  "type": "Restaurante",
+  "area": "Blvd. de las Naciones 1225, Puerto Marqués, Acapulco, Guerrero",
+  "phone": "527444360011",
+  "code": "R0792",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Restaurant El Mirador Chilpancingo",
+  "type": "Restaurante",
+  "area": "Fracc. Paseo de Las Lomas, Chilpancingo, Guerrero",
+  "phone": "527471174998",
+  "code": "R0793",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "El Huamuchil Restaurante Parrilla",
+  "type": "Restaurante",
+  "area": "Carretera Nacional Acapulco, Chilpancingo, Guerrero",
+  "phone": "527471168328",
+  "code": "R0794",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Taquería El Fortachón",
+  "type": "Restaurante",
+  "area": "Vicente Guerrero 63, Chilpancingo, Guerrero",
+  "phone": "527471372449",
+  "code": "R0795",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Tangelo Restaurante y Tienda Orgánica",
+  "type": "Restaurante",
+  "area": "Baltazar R. Leyva Mancilla 68, Chilpancingo, Guerrero",
+  "phone": "527471371209",
+  "code": "R0796",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Bar Berta",
+  "type": "Bar",
+  "area": "Plaza Borda, Taxco, Guerrero",
+  "phone": "527621075590",
+  "code": "R0797",
+  "batch": 15
+ },
+ {
+  "kind": "new",
+  "n": "Restaurante Casa Santa Lucía",
+  "type": "Restaurante",
+  "area": "Benito Juárez 12, Taxco, Guerrero",
+  "phone": "527626881909",
+  "code": "R0798",
+  "batch": 15
  }
 ]
