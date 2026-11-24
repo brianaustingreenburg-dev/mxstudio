@@ -1,5 +1,5 @@
 // MX Studio ✝ Acapulco — offline support for MX Dashboard, Precios and every restaurant app
-const CACHE="mx-acapulco-v252";   // app shells (replaced on each update)
+
 const APPC="mx-apps-v209";       // restaurant apps + photos (versioned so updates always push through)
 const SCOPE=self.registration.scope;
 const AXOLOTL=["c/casa-axolotl/hotel/","c/casa-axolotl/hotel/index.html","c/casa-axolotl/hotel/manifest.json","c/casa-axolotl/hotel/fonts/inter-latin-400-normal.woff2","c/casa-axolotl/hotel/fonts/inter-latin-600-normal.woff2","c/casa-axolotl/hotel/fonts/cormorant-garamond-latin-500-normal.woff2","c/casa-axolotl/hotel/fonts/cormorant-garamond-latin-500-italic.woff2","c/casa-axolotl/hotel/img/cover.jpg","c/casa-axolotl/hotel/img/room1.jpg","c/casa-axolotl/hotel/img/room2.jpg","c/casa-axolotl/hotel/img/room3.jpg","c/casa-axolotl/hotel/img/room4.jpg","c/casa-axolotl/hotel/img/comida.jpg","c/casa-axolotl/hotel/img/cuarto.jpg","c/casa-axolotl/hotel/img/fogata.jpg","c/casa-axolotl/hotel/img/kayak.jpg"].map(p=>new URL(p,SCOPE).href);
