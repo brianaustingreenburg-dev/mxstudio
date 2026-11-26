@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tóxica Snack &amp; Bar</title>
+<meta name="description" content="Bar &amp; grill con cortes, mariscos y deportes hasta la madrugada">
+<meta name="theme-color" content="#c48a1a">
+<meta property="og:title" content="Tóxica Snack &amp; Bar">
+<meta property="og:description" content="Bar &amp; grill con cortes, mariscos y deportes hasta la madrugada">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MX Studio ✝">
+<meta property="og:url" content="https://go.myjefetech.app/acapulco/c/toxica-snack-bar/">
+<meta property="og:image" content="https://go.myjefetech.app/acapulco/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://go.myjefetech.app/acapulco/icon-512.png">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="../../icon-192.png">
+<link rel="apple-touch-icon" href="../../icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tóxica Snack &amp;">
+<style>
+:root{--c:#c48a1a;--bg:#faf6f0;--card:#fff;--line:#ece3d8;--ink:#1d1715;--muted:#776a63;--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.4;font-size:16px;padding-bottom:calc(96px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.hero{position:relative;min-height:230px;background:var(--c);color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+.hero img.cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.05) 35%,rgba(0,0,0,.72))}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:44px}
+.topbar{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top));left:0;right:0}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 16px}
+.demo{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#f3d9a8;font-weight:800;font-size:11px;letter-spacing:.08em;padding:8px 12px;border-radius:999px;text-decoration:none;border:1px solid rgba(243,217,168,.35)}
+.pop{margin-top:18px}
+.pop h2{font-size:19px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 8px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.pc{flex:0 0 62%;max-width:240px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 6px 18px rgba(40,25,15,.08)}
+.pc img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f1e8dc}
+.pc .pb{padding:10px 12px 12px}
+.pc b{display:block;font-size:15px;line-height:1.2;min-height:36px}
+.pc .row{padding-top:6px}
+.spec{margin:14px 0 0;padding:12px 14px;border-radius:16px;background:var(--c);color:#fff}.spec small{display:block;font-weight:800;font-size:11px;letter-spacing:.8px;text-transform:uppercase;opacity:.9}.spec b{font-size:16px;line-height:1.3}
+.revb{display:block;text-align:center;margin:18px 0 0;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-weight:800;color:inherit;text-decoration:none}
+.fxn{text-align:center;font-size:12px;opacity:.65;margin:10px 0 0}
+.lang{display:flex;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:3px}
+.lang button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:7px 13px;border-radius:999px;color:rgba(255,255,255,.75)}
+.lang button[aria-pressed=true]{background:#fff;color:var(--ink)}
+.id{display:flex;gap:12px;align-items:center}
+.logo{width:64px;height:64px;border-radius:18px;background:#fff;object-fit:cover;flex:0 0 auto;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.logo.txt{display:grid;place-items:center;font-weight:800;font-size:24px;color:var(--c)}
+h1{font-size:27px;font-weight:800;line-height:1.08;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.tag{font-size:14px;opacity:.92;margin-top:3px;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:-26px 0 6px;position:relative;z-index:3}
+.q{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;background:var(--card);border-radius:16px;padding:12px 6px;box-shadow:0 6px 18px rgba(40,25,15,.12);font-weight:800;font-size:13.5px}
+.q i{display:block;font-style:normal;font-size:22px;margin-bottom:3px}
+.info{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;font-size:14.5px;display:grid;gap:8px}
+.info div{display:flex;gap:10px}
+.info b{flex:0 0 22px;text-align:center}
+.cats{position:sticky;top:0;z-index:5;background:rgba(250,246,240,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);margin:16px -16px 0;padding:10px 16px;display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line)}
+.cats::-webkit-scrollbar{display:none}
+.cat{all:unset;cursor:pointer;white-space:nowrap;font-weight:800;font-size:13.5px;padding:8px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.cat.on{background:var(--c);color:#fff;border-color:transparent}
+.sec{font-size:19px;font-weight:800;margin:22px 0 10px;scroll-margin-top:70px}
+.item{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;margin-bottom:10px}
+.item img{width:92px;height:92px;border-radius:14px;object-fit:cover;flex:0 0 auto;background:#f1e8dc}
+.it{flex:1;min-width:0;display:flex;flex-direction:column}
+.it b{font-size:16px;line-height:1.2}
+.it small{color:var(--muted);font-size:13.5px;margin-top:3px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px;gap:8px}
+.price{font-weight:800;font-size:16px;color:var(--c)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{all:unset;cursor:pointer;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:19px;background:var(--c);color:#fff}
+.qty button.m{background:#f0e6da;color:var(--ink)}
+.qty span{min-width:14px;text-align:center;font-weight:800}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(250,246,240,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.bar .wrap{padding:0;display:flex;gap:8px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font-weight:800;font-size:14px;padding:14px 8px;border-radius:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-wa{background:var(--wa);color:#063117}
+.b-c{background:var(--c);color:#fff;flex:1.6}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:20}
+.sheet.on{display:flex}
+.box{width:100%;max-width:560px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+.box h3{font-size:19px;font-weight:800;margin-bottom:10px}
+.box label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:10px 0 4px}
+.box input,.box select,.box textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;background:#fff}
+.box .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;margin:10px 0 4px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+.seg button{all:unset;cursor:pointer;text-align:center;padding:11px;border-radius:12px;border:1.5px solid var(--line);font-weight:700}
+.seg button.on{border-color:var(--c);background:var(--c);color:#fff}
+.actv{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;margin:12px 0 4px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#f6d77a,#e8b64c);color:#3a2700;box-shadow:0 6px 18px rgba(160,110,0,.25)}.actv b{display:block;font-size:17px}.actv small{display:block;font-size:13px;margin:3px 0 8px;opacity:.85}.actv span{display:inline-block;background:#3a2700;color:#ffe9a8;border-radius:999px;padding:7px 14px;font-weight:800;font-size:14px}
+.gamesb{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center;width:100%;background:var(--card);border-radius:16px;padding:12px 16px;margin:10px 0;box-shadow:0 2px 10px rgba(40,25,15,.06)}.gamesb span{grid-row:span 2;font-size:28px}.gamesb b{font-weight:800}.gamesb small{opacity:.7}
+.story{background:var(--card);border-radius:16px;padding:12px 16px;margin:10px 0;box-shadow:0 2px 10px rgba(40,25,15,.06)}.story summary{font-weight:800;cursor:pointer}.story p{margin-top:8px;line-height:1.5;color:#4a403a}
+#show{position:fixed;inset:0;z-index:40;background:#fffdf8;display:none;overflow:auto}#show.on{display:block}.sw{padding:28px 22px 40px;text-align:center}.sw small{display:block;font-weight:800;color:var(--c);font-size:15px}.sm{font-size:34px;font-weight:900;margin:6px 0 10px}.si{display:flex;gap:12px;align-items:baseline;text-align:left;font-size:26px;font-weight:800;padding:12px 4px;border-bottom:1.5px dashed #e4d9cc}.si b{color:var(--c);min-width:2.2em}.sw p{margin-top:18px;font-size:16px;font-weight:700;color:#4a403a}.sw p i{font-weight:500;color:#776a63}.sw em{display:block;margin-top:14px;font-style:normal;color:#9a8c84;font-size:13px}
+#box .tryo label.opt{display:flex;flex-direction:row;align-items:center;margin:0;padding:8px 2px;font-size:14.5px;font-weight:700;color:inherit;text-transform:none;letter-spacing:0}
+.tryo{background:var(--card);border-radius:16px;padding:10px 12px 12px;margin:12px 0 0;box-shadow:0 2px 10px rgba(40,25,15,.06)}.tryo small{display:block;font-size:12.5px;color:#776a63;font-weight:700;margin-bottom:6px}.opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;padding:8px 2px;font-weight:700;font-size:14.5px}.opt i{font-style:normal;width:22px;height:22px;border-radius:7px;border:2px solid #cdbfb2;display:grid;place-items:center;font-size:13px;color:#fff}.opt.on i{background:var(--c);border-color:var(--c)}
+.wf{background:#f4ede5;border-radius:14px;padding:12px 14px;margin-top:10px}.wf small{display:block;color:#776a63;font-size:12px;font-weight:700}.wf b{font-size:19px;word-break:break-all}.wp{font-family:ui-monospace,Menlo,monospace;letter-spacing:.5px}.wh{font-size:13.5px;color:#5c514b;margin-top:12px;line-height:1.45}
+.acts{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:14px}
+.btn.g{background:#f0e6da;color:var(--ink)}
+.empty{color:var(--muted);text-align:center;padding:30px}
+.inst{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:22px}
+.inst h3{font-size:17px;font-weight:800}
+.inst p{color:var(--muted);font-size:13.5px;margin-top:2px}
+.os{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0 10px}
+.os button{all:unset;cursor:pointer;text-align:center;padding:10px;border-radius:12px;border:1.5px solid var(--line);font-weight:800;font-size:14px}
+.os button.on{background:var(--c);border-color:var(--c);color:#fff}
+.steps{list-style:none;counter-reset:s;display:grid;gap:8px}
+.steps li{counter-increment:s;display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
+.steps li:before{content:counter(s);flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f0e6da;color:var(--ink)}
+.ibtn{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;text-align:center;margin-top:12px;padding:13px;border-radius:14px;background:var(--c);color:#fff;font-weight:800}
+.topbar .demo{white-space:nowrap}@media(max-width:400px){.topbar .lang button{padding-left:7px;padding-right:7px;white-space:nowrap}.topbar .wrap{gap:6px}.topbar .demo .dl{display:none}}
+.back{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><a class="back" href="../../rutas/">&#8249;</a><div style="display:flex;gap:6px"><div class="lang" id="cur"><button data-cur="mxn" aria-pressed="true">$ MXN</button><button data-cur="usd" aria-pressed="false">US$</button><button data-cur="cad" aria-pressed="false">CA$</button></div><div class="lang" id="lang"><button data-l="es" aria-pressed="true">ES</button><button data-l="en" aria-pressed="false">EN</button></div></div></div></div>
+<header class="hero" id="hero"></header>
+<div class="wrap">
+  <div class="quick" id="quick"></div>
+  <div id="rvtop"></div>
+  <div class="info" id="info"></div>
+  <div id="spec"></div><div id="actv"></div><div id="story"></div><button class="gamesb" id="gamesB" type="button"><span>🎮</span><b id="gamesT"></b><small id="gamesS"></small></button>
+  <section class="pop" id="pop"></section>
+  <nav class="cats" id="cats"></nav>
+  <main id="menu"></main>
+  <section class="inst" id="inst"></section>
+  <div id="rev"></div><p class="foot" id="foot">App por MX Studio ✝ · Acapulco</p>
+</div>
+<div class="bar"><div class="wrap" id="bar"></div></div>
+<div id="show"></div><div class="sheet" id="sheet"><div class="box" id="box"></div></div>
+<script>
+const D={"slug": "toxica-snack-bar", "name": "Tóxica Snack & Bar", "tagline": {"es": "Bar & grill con cortes, mariscos y deportes hasta la madrugada", "en": "Bar & grill with steaks, seafood and sports until late"}, "color": "#c48a1a", "logo": "", "cover": "img/cover.jpg", "whatsapp": "", "phone": "", "address": "Av. Costera Miguel Alemán 34, Costa Azul", "map": "https://www.google.com/maps/search/?api=1&query=T%C3%B3xica%20Snack%20%26%20Bar%20Acapulco&query_place_id=ChIJo_fUHjdZyoURuc-2gxZS6H8", "hours": {"es": "Lun–Dom 14:00–4:00", "en": "Mon–Sun 2pm–4am"}, "reservations": false, "carryout": false, "waiter": true, "delivery": true, "menu": [{"cat": {"es": "Entradas", "en": "Starters"}, "items": [{"name": {"es": "Chicharrón de Arrachera", "en": "Arrachera Chicharrón"}, "desc": {"es": "Arrachera frita sobre guacamole con totopos", "en": "Fried steak bites over guacamole, chips"}, "price": "230", "img": ""}, {"name": {"es": "Carpaccio de Salmón", "en": "Salmon Carpaccio"}, "desc": {"es": "Salmón ahumado, cítricos, alcaparras", "en": "Smoked salmon, citrus, capers"}, "price": "210", "img": ""}, {"name": {"es": "Pan con Ajo", "en": "Garlic Bread"}, "desc": {"es": "Pan rústico con ajo y quesos gratinados", "en": "Rustic bread with garlic and melted cheese"}, "price": "140", "img": ""}, {"name": {"es": "Sopa de Tortilla", "en": "Tortilla Soup"}, "desc": {"es": "Caldo de guajillo con aguacate y queso", "en": "Guajillo broth with avocado and cheese"}, "price": "200", "img": ""}]}, {"cat": {"es": "Camarones y Mariscos", "en": "Shrimp & Seafood"}, "items": [{"name": {"es": "Pulpo Argentino", "en": "Argentine-Style Octopus"}, "desc": {"es": "Pulpo al carbón con chimichurri", "en": "Charcoal-grilled octopus with chimichurri"}, "price": "360", "img": "img/s1.jpg"}, {"name": {"es": "Camarones al Coco", "en": "Coconut Shrimp"}, "desc": {"es": "Con puré de plátano y arroz al curry", "en": "With plantain purée and curry rice"}, "price": "310", "img": "img/s4.jpg"}, {"name": {"es": "Camarones al Tamarindo", "en": "Tamarind Shrimp"}, "desc": {"es": "En salsa de tamarindo con arroz al curry", "en": "Tamarind sauce with curry rice"}, "price": "310", "img": ""}, {"name": {"es": "Cazuela Gratinada", "en": "Seafood Gratin"}, "desc": {"es": "Camarón y pulpo al chipotle gratinados", "en": "Chipotle shrimp and octopus au gratin"}, "price": "400", "img": ""}, {"name": {"es": "Brocheta Mar y Tierra", "en": "Surf & Turf Skewer"}, "desc": {"es": "Camarón y arrachera sobre lechugas", "en": "Shrimp and steak over greens"}, "price": "300", "img": ""}]}, {"cat": {"es": "Carnes y Aves", "en": "Steaks & Poultry"}, "items": [{"name": {"es": "Rib Eye 360 Gr", "en": "Rib Eye 360 g"}, "desc": {"es": "Con chiles toreados, guacamole y 2 guarniciones", "en": "Toreado chiles, guacamole, 2 sides"}, "price": "485", "img": "img/s2.jpg"}, {"name": {"es": "T Bone", "en": "T-Bone"}, "desc": {"es": "600 g con chiles toreados y guacamole", "en": "600 g with toreado chiles and guacamole"}, "price": "585", "img": ""}, {"name": {"es": "Arrachera 250 Gr", "en": "Arrachera 250 g"}, "desc": {"es": "Con guacamole, frijoles y guarniciones", "en": "With guacamole, beans and sides"}, "price": "400", "img": ""}, {"name": {"es": "Costilla de Cerdo", "en": "BBQ Pork Ribs"}, "desc": {"es": "Costillas BBQ con 2 guarniciones", "en": "BBQ ribs with 2 sides"}, "price": "325", "img": ""}, {"name": {"es": "Suprema de Pollo", "en": "Stuffed Chicken"}, "desc": {"es": "Rellena de camarón, espinaca y queso", "en": "Stuffed with shrimp, spinach, cheese"}, "price": "300", "img": ""}]}, {"cat": {"es": "Hamburguesas y Alitas", "en": "Burgers & Wings"}, "items": [{"name": {"es": "Trilogía Slider", "en": "Slider Trilogy"}, "desc": {"es": "Tres mini: camarón, pollo búfalo y res", "en": "Three minis: shrimp, buffalo chicken, beef"}, "price": "310", "img": "img/s3.jpg"}, {"name": {"es": "Hamburguesa BBQ", "en": "BBQ Burger"}, "desc": {"es": "Hamburguesa de res con salsa BBQ", "en": "Beef burger with BBQ sauce"}, "price": "200", "img": ""}, {"name": {"es": "Alitas X 10", "en": "10 Wings"}, "desc": {"es": "Alitas con salsa a elegir", "en": "Wings in sauce of choice"}, "price": "270", "img": ""}, {"name": {"es": "Tacos de Camarón", "en": "Shrimp Tacos"}, "desc": {"es": "Estilo Ensenada con col y crema de aguacate", "en": "Ensenada-style, cabbage, avocado cream"}, "price": "250", "img": ""}]}, {"cat": {"es": "Bebidas", "en": "Drinks"}, "items": [{"name": {"es": "Agua fresca del día", "en": "Fresh agua fresca"}, "desc": {"es": "Jamaica u horchata", "en": "Hibiscus or horchata"}, "price": "50", "img": ""}, {"name": {"es": "Limonada o naranjada", "en": "Lemonade or orangeade"}, "desc": {"es": "", "en": ""}, "price": "55", "img": ""}, {"name": {"es": "Refresco", "en": "Soft drink"}, "desc": {"es": "", "en": ""}, "price": "45", "img": ""}, {"name": {"es": "Cerveza nacional", "en": "Mexican beer"}, "desc": {"es": "", "en": ""}, "price": "60", "img": ""}, {"name": {"es": "Cerveza artesanal", "en": "Craft beer"}, "desc": {"es": "", "en": ""}, "price": "95", "img": ""}, {"name": {"es": "Michelada", "en": "Michelada"}, "desc": {"es": "", "en": ""}, "price": "95", "img": ""}, {"name": {"es": "Jarra de cerveza", "en": "Beer pitcher"}, "desc": {"es": "", "en": ""}, "price": "220", "img": ""}]}, {"cat": {"es": "Postres", "en": "Desserts"}, "items": [{"name": {"es": "Brownie con helado", "en": "Brownie with ice cream"}, "desc": {"es": "", "en": ""}, "price": "95", "img": ""}, {"name": {"es": "Pay de queso", "en": "Cheesecake"}, "desc": {"es": "", "en": ""}, "price": "85", "img": ""}]}], "demo": false};
+const U={
+ es:{res:"Reservar",go:"Cómo llegar",call:"Llamar",hours:"Horario",addr:"Dirección",menu:"Menú",order:"Para llevar",cart:"Tu pedido",empty:"Agrega platillos del menú con el botón +",
+  name:"Tu nombre",time:"Hora para recoger",pick:"Recoger",deliv:"A domicilio",address:"Dirección de entrega",notes:"Notas (opcional)",send:"Enviar pedido por WhatsApp",cancel:"Cerrar",total:"Total",
+  tbl:"En la mesa",togo:"Para llevar",myList:"Mi pedido",showW:"👀 Mostrar al mesero",showT:"Muestra esta pantalla a tu mesero",showS:"Show this screen to your waiter",showX:"Toca para cerrar",mesa:"Mesa",clear:"Borrar",tryT:"Prueba las opciones · el negocio elige cuáles quiere:",oCarry:"Para llevar por WhatsApp",oWaiter:"Lista para el mesero",oRes:"Reservar por WhatsApp",aOpts:"¿Qué quieres en tu app?",aMenuOnly:"Si apagas todo, queda solo el menú (el mesero toma la orden).",wifi:"Conectar WiFi",wAsk:"Pregunta la clave del WiFi a tu mesero.",wAdmin:"MX Studio: agrega su WiFi en MX Dashboard → ⚙️ Activar.",wT:"WiFi gratis",wNet:"Red",wPass:"Contraseña",wCopy:"Copiar contraseña",wOk:"✓ Copiada",wOpen:"Abre Ajustes → Wi-Fi, elige la red y pega la contraseña.",wIos:"iPhone: Ajustes → Wi-Fi → toca la red → pega.",wAnd:"Android: Ajustes → Wi-Fi (o baja la barra y mantén Wi-Fi) → toca la red → pega.",wNone:"Sin contraseña",wDemo:"Ejemplo · Aquí aparecerán la red y contraseña reales de tu negocio.",aT:"Activa tu app",aBan:"¿Te gusta? Actívala hoy",aBanS:"Llena 5 datos y MX Studio la deja lista con tu número y tu WiFi.",aOwner:"Tu nombre",aWa:"WhatsApp donde llegan pedidos y reservas (10 dígitos) — puede ser la caja o el dueño, no tiene que ser el mesero",aWn:"Nombre de tu WiFi (exacto)",aWp:"Contraseña del WiFi (exacta)",aStory:"Historia del negocio (opcional) — desde cuándo abrieron, quién lo empezó, qué los hace especiales",aMenu:"Cambios al menú o precios (opcional)",aSend:"Enviar a MX Studio",aNeed:"Falta este dato",story:"Nuestra historia",rT:"Reservar mesa",people:"Personas",date:"Fecha",rtime:"Hora",rsend:"Enviar reserva por WhatsApp",today:"Hoy",
+  mOrder:(n,ls,t,how,extra,notes)=>`Hola ${D.name}, quiero un pedido ${how}:\n${ls}\nTotal: ${t}\nNombre: ${n}${extra}${notes?"\nNotas: "+notes:""}`,
+  mRes:(p,d,t,n)=>`Hola ${D.name}, quiero reservar una mesa para ${p} personas el ${d} a las ${t}.\nNombre: ${n}`,
+  howP:"para llevar",howD:"a domicilio",pickT:"\nHora para recoger: ",delA:"\nDirección: ",
+  pop:"⭐ Lo más pedido",demo:"DEMO · MX STUDIO",demoFoot:"Demo creada por MX Studio ✝ · Menú y fotos de ejemplo",
+  iT:"📲 Guarda esta app en tu teléfono",iP:"Ábrela desde tu pantalla de inicio, incluso sin internet.",iBtn:"Instalar ahora",
+  ios:["Abre esta página en <b>Safari</b>.","Toca el botón <b>Compartir</b> (cuadro con flecha ↑).","Elige <b>Agregar a inicio</b> y toca <b>Agregar</b>."],
+  and:["Abre esta página en <b>Chrome</b>.","Toca el menú <b>⋮</b> (arriba a la derecha).","Elige <b>Instalar app</b> o <b>Agregar a pantalla principal</b>."]},
+ en:{res:"Reserve",go:"Directions",call:"Call",hours:"Hours",addr:"Address",menu:"Menu",order:"Carry-out",cart:"Your order",empty:"Add dishes from the menu with the + button",
+  name:"Your name",time:"Pickup time",pick:"Pickup",deliv:"Delivery",address:"Delivery address",notes:"Notes (optional)",send:"Send order on WhatsApp",cancel:"Close",total:"Total",
+  tbl:"At the table",togo:"Carry-out",myList:"My order",showW:"👀 Show the waiter",showT:"Show this screen to your waiter",showS:"Muestra esta pantalla a tu mesero",showX:"Tap to close",mesa:"Table",clear:"Clear",tryT:"Try the options · the business picks which it wants:",oCarry:"Carry-out by WhatsApp",oWaiter:"List for the waiter",oRes:"Reserve by WhatsApp",aOpts:"What do you want in your app?",aMenuOnly:"Turn everything off and it's just the menu (the waiter takes the order).",wifi:"Connect WiFi",wAsk:"Ask your waiter for the WiFi password.",wAdmin:"MX Studio: add their WiFi in MX Dashboard → ⚙️ Activar.",wT:"Free WiFi",wNet:"Network",wPass:"Password",wCopy:"Copy password",wOk:"✓ Copied",wOpen:"Open Settings → Wi-Fi, pick the network and paste the password.",wIos:"iPhone: Settings → Wi-Fi → tap the network → paste.",wAnd:"Android: Settings → Wi-Fi (or pull down and hold Wi-Fi) → tap the network → paste.",wNone:"No password",wDemo:"Sample · Your business's real network and password will show here.",aT:"Activate your app",aBan:"Like it? Activate it today",aBanS:"Fill in 5 details and MX Studio sets it up with your number and WiFi.",aOwner:"Your name",aWa:"WhatsApp that receives orders and reservations (10 digits) — can be the register or the owner, doesn't have to be a waiter",aWn:"WiFi network name (exact)",aWp:"WiFi password (exact)",aStory:"Your business story (optional) — when you opened, who started it, what makes you special",aMenu:"Menu or price changes (optional)",aSend:"Send to MX Studio",aNeed:"This is needed",story:"Our story",rT:"Reserve a table",people:"People",date:"Date",rtime:"Time",rsend:"Send reservation on WhatsApp",today:"Today",
+  mOrder:(n,ls,t,how,extra,notes)=>`Hi ${D.name}, I'd like to order ${how}:\n${ls}\nTotal: ${t}\nName: ${n}${extra}${notes?"\nNotes: "+notes:""}`,
+  mRes:(p,d,t,n)=>`Hi ${D.name}, I'd like to reserve a table for ${p} people on ${d} at ${t}.\nName: ${n}`,
+  howP:"for pickup",howD:"for delivery",pickT:"\nPickup time: ",delA:"\nAddress: ",
+  pop:"⭐ Most popular",demo:"DEMO · MX STUDIO",demoFoot:"Demo by MX Studio ✝ · Sample menu and photos",
+  iT:"📲 Save this app to your phone",iP:"Open it from your home screen, even offline.",iBtn:"Install now",
+  ios:["Open this page in <b>Safari</b>.","Tap the <b>Share</b> button (square with ↑ arrow).","Choose <b>Add to Home Screen</b>, then tap <b>Add</b>."],
+  and:["Open this page in <b>Chrome</b>.","Tap the <b>⋮</b> menu (top right).","Choose <b>Install app</b> or <b>Add to Home screen</b>."]}
+};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tx=o=>!o?"":typeof o==="string"?o:(lang==="en"&&o.en?o.en:(o.es||o.en||""));
+let SP=null,cur="mxn",FX=18.8;try{cur=localStorage.getItem("mx-cur")||"mxn"}catch(_){}
+let FXC=12.4;try{const c=+localStorage.getItem("mx-fxc");if(c>5)FXC=c}catch(_){}
+const money=n=>cur==="usd"||cur==="cad"?(cur==="usd"?"US$":"CA$")+(Math.round(Number(n||0)/(cur==="usd"?FX:FXC)*2)/2).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:1}):"$"+Number(n||0).toLocaleString("en-US");
+const KEY="app-"+(D.slug||"x");
+let lang="es",cart={},how="p",where="t",os=/android/i.test(navigator.userAgent)?"and":"ios",deferred=null;
+const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;os="and";if(typeof render==="function")render()});
+try{lang=localStorage.getItem(KEY+"-lang")||((navigator.language||"es").toLowerCase().startsWith("es")?"es":"en")}catch(e){}
+let CAT=-1;
+const catIco=c=>{const s=((c&&c.es||"")+" "+(c&&c.en||"")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+ for(const [k,e] of [["postre|dessert|dulce|pastel|helado","🍰 "],["marisc|seafood|camaron|shrimp|pescado|fish|ceviche|aguachile","🦐 "],["coctel|cocktail|mezcal|tequila|vino|wine|bar ","🍹 "],["bebida|drink|refresco|jugo|juice|limonada|agua|cerveza|beer","🥤 "],["desayuno|breakfast|brunch","🍳 "],["sushi|roll|maki","🍣 "],["pizza","🍕 "],["pasta","🍝 "],["hamburgues|burger","🍔 "],["alita|wing","🍗 "],["taco","🌮 "],["corte|steak|carne|parrilla|grill","🥩 "],["ensalada|salad","🥗 "],["sopa|soup|caldo","🍲 "],["entrada|starter|botana|appetizer|snack","🥟 "],["infantil|kids|nino","🧒 "],["\\bcafe|coffee|\\bte\\b|\\btea\\b","☕ "]])if(new RegExp(k).test(s+" "))return e;return ""};
+const items=()=>D.menu.flatMap((c,ci)=>c.items.map((it,ii)=>Object.assign({id:ci+"-"+ii},it)));
+const MXW="527441930502";const canOrder=()=>!!(D.carryout||D.waiter);const wa=t=>`https://api.whatsapp.com/send?phone=${D.whatsapp}&text=${encodeURIComponent(t)}`;
+const mapUrl=()=>D.map||("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(D.name+" "+(D.address||"")+" Acapulco"));
+function render(){
+ const u=U[lang];document.documentElement.lang=lang;
+ if(D.color){document.documentElement.style.setProperty("--c",D.color);const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=D.color}
+ $("lang").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+ $("cur").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cur===cur));
+ $("spec").innerHTML=lyBanner()+(SP&&tx(SP)?`<div class="spec"><small>🔥 ${lang==="en"?"Today's special":"Especial de hoy"}</small><b>${esc(tx(SP))}</b></div>`:"");
+ const pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1];
+ $("rvtop").innerHTML=pid&&!D.demo&&OP.revTop!==false?`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(D.name||"")}&query_place_id=${esc(pid)}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:inherit;text-decoration:none;font-weight:800"><span style="font-size:20px">⭐</span><span style="flex:1">${lang==="en"?"See our Google reviews":"Ver nuestras reseñas en Google"}<br><small style="font-weight:600;opacity:.7">${lang==="en"?"What our guests say about the food":"Lo que dicen nuestros clientes de la comida"}</small></span><span style="opacity:.6">›</span></a>`:"";
+ $("rev").innerHTML=lyBill()+(pid&&!D.demo?`<a class="revb" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${lang==="en"?"Enjoyed it? Leave us a Google review":"¿Te gustó? Déjanos tu reseña en Google"}</a>`:"")+(cur!=="mxn"?`<p class="fxn">${cur==="usd"?"US$":"CA$"} ${lang==="en"?"approx.":"aprox."} · 1 ${cur.toUpperCase()} ≈ $${cur==="usd"?FX:FXC} MXN · ${lang==="en"?"you pay in pesos or as the restaurant accepts":"se paga en pesos o como acepte el restaurante"}</p>`:"");
+ const ini=(D.name||"?").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();
+ $("hero").innerHTML=`${D.cover?`<img class="cover" src="${esc(D.cover)}" alt="">`:""}<div class="wrap"><div class="id">${D.logo?`<img class="logo" src="${esc(D.logo)}" alt="">`:`<div class="logo txt">${esc(ini)}</div>`}<div><h1>${esc(D.name)}</h1>${tx(D.tagline)?`<div class="tag">${esc(tx(D.tagline))}</div>`:""}</div></div></div>`;
+ const q=[];
+ if(D.reservations)q.push(`<button class="q" data-a="res"><i>📅</i>${u.res}</button>`);
+ q.push(`<a class="q" href="${esc(mapUrl())}" target="_blank" rel="noopener"><i>📍</i>${u.go}</a>`);
+ if(D.phone||D.whatsapp)q.push(`<a class="q" href="tel:+${esc(String(D.phone||D.whatsapp).replace(/\D/g,""))}"><i>📞</i>${u.call}</a>`);
+ if(!D.reservations&&D.carryout)q.unshift(`<a class="q" href="${wa(lang==="es"?"Hola "+D.name:"Hi "+D.name)}" target="_blank" rel="noopener"><i>💬</i>WhatsApp</a>`);
+ q.unshift(`<button class="q" data-a="wifi"><i>📶</i>${u.wifi}</button>`);
+ const qs=q.slice(0,4);$("quick").style.gridTemplateColumns=`repeat(${qs.length},1fr)`;$("quick").innerHTML=qs.join("");
+ const inf=[];
+ if(tx(D.hours))inf.push(`<div><b>🕒</b><span><strong>${u.hours}:</strong> ${esc(tx(D.hours))}</span></div>`);
+ if(D.address)inf.push(`<div><b>📍</b><span>${esc(D.address)}</span></div>`);
+ $("info").innerHTML=inf.join("");$("info").style.display=inf.length?"":"none";
+ const popular=items().filter(it=>it.img).slice(0,6);
+ $("pop").style.display=popular.length>=3?"":"none";
+ $("pop").innerHTML=`<h2>${u.pop}</h2><div class="rail">${popular.map(it=>{const n=cart[it.id]||0;return `<div class="pc"><img src="${esc(it.img)}" alt="" loading="lazy"><div class="pb"><b>${esc(tx(it.name))}</b><div class="row"><span class="price">${it.price?money(it.price):""}</span>${canOrder()&&it.price?`<div class="qty">${n?`<button class="m" data-d="${it.id}">−</button><span>${n}</span>`:""}<button data-a="${it.id}">+</button></div>`:""}</div></div></div>`}).join("")}</div>`;
+ {const _dp=$("demoPill");if(_dp)_dp.innerHTML=(new URLSearchParams(location.search).get("r")==="1")?(new URLSearchParams(location.search).get("rb")==="p"?`<a class="demo" href="../../dueno/?s=${encodeURIComponent(D.slug||"")}&r=1${new URLSearchParams(location.search).get("a")?"&a="+encodeURIComponent(new URLSearchParams(location.search).get("a")):""}">← Panel</a>`:`<a class="demo" href="../../rutas/">← <span class="dl">MX Dashboard${D.demo?" · "+u.demo:""}</span></a>`):(D.demo?`<a class="demo" href="${esc(D.back||"#")}">${D.back?"← ":""}${u.demo}</a>`:"");}
+ const ck=(k,l)=>`<button class="opt ${D[k]?"on":""}" data-opt="${k}"><i>${D[k]?"✓":""}</i>${l}</button>`;
+ $("actv").innerHTML=D.demo?`<div class="tryo"><small>${u.tryT}</small>${ck("waiter",u.oWaiter)}${ck("carryout",u.oCarry)}${ck("reservations",u.oRes)}</div><button class="actv" data-a="act"><b>✅ ${u.aBan}</b><small>${u.aBanS}</small><span>${u.aT} →</span></button>`:"";
+ $("gamesT").textContent=lang==="en"?"Family games":"Juegos en familia";$("gamesS").textContent=lang==="en"?"Acapulco trivia on everyone's phone · memory · coloring":"Trivia de Acapulco en el teléfono de cada quien · memoria · colorear";
+ $("story").innerHTML=tx(D.story)?`<details class="story"><summary>📖 ${u.story}</summary><p>${esc(tx(D.story)).replace(/\n/g,"<br>")}</p></details>`:"";
+ $("foot").textContent=D.demo?u.demoFoot:"App por MX Studio ✝ · Acapulco";
+ if(CAT>=D.menu.length)CAT=-1;
+ $("cats").innerHTML=`<button class="cat ${CAT<0?"on":""}" data-c="-1">📋 ${lang==="en"?"All":"Todo"}</button>`+D.menu.map((c,i)=>`<button class="cat ${CAT===i?"on":""}" data-c="${i}">${catIco(c.cat)}${esc(tx(c.cat))}</button>`).join("");
+ $("menu").innerHTML=D.menu.map((c,ci)=>CAT>=0&&CAT!==ci?"":`<h2 class="sec" id="c${ci}">${catIco(c.cat)}${esc(tx(c.cat))}</h2>`+c.items.map((it,ii)=>{const id=ci+"-"+ii,n=cart[id]||0;
+  return `<div class="item">${it.img?`<img src="${esc(it.img)}" alt="" loading="lazy">`:""}<div class="it"><b>${esc(tx(it.name))}</b>${tx(it.desc)?`<small>${esc(tx(it.desc))}</small>`:""}
+  <div class="row"><span class="price">${it.price?money(it.price):""}</span>${canOrder()&&it.price?`<div class="qty">${n?`<button class="m" data-d="${id}">−</button><span>${n}</span>`:""}<button data-a="${id}">+</button></div>`:""}</div></div></div>`}).join("")).join("");
+ const cnt=Object.values(cart).reduce((a,b)=>a+b,0),tot=items().reduce((s,it)=>s+(cart[it.id]||0)*(+it.price||0),0);
+ const bb=[];
+ if(canOrder())bb.push(`<button class="btn b-c" data-a="cart">${D.carryout&&!D.waiter?"🛍️ "+u.order:"📝 "+u.myList}${cnt?` (${cnt}) · ${money(tot)}`:""}</button>`);
+ if(D.reservations)bb.push(`<button class="btn b-wa" data-a="res">📅 ${u.res}</button>`);
+ $("bar").innerHTML=bb.join("");$("bar").style.display=bb.length?"":"none";
+ $("inst").style.display=standalone?"none":"";
+ $("inst").innerHTML=`<h3>${u.iT}</h3><p>${u.iP}</p><div class="os"><button data-os="ios" class="${os==="ios"?"on":""}">iPhone</button><button data-os="and" class="${os==="and"?"on":""}">Android</button></div>
+  <ol class="steps">${u[os].map(s=>`<li><span>${s}</span></li>`).join("")}</ol>${os==="and"&&deferred?`<button class="ibtn" data-inst="1">${u.iBtn}</button>`:""}`;
+ document.title=D.name;
+}
+function openCart(){
+ const u=U[lang],its=items().filter(it=>cart[it.id]);
+ if(!D.carryout)where="t";else if(!D.waiter)where="p";
+ const both=D.carryout&&D.waiter,seg2=both&&its.length?`<div class="seg"><button class="${where==="t"?"on":""}" data-where="t">🍽️ ${u.tbl}</button><button class="${where==="p"?"on":""}" data-where="p">🛍️ ${u.togo}</button></div>`:"";
+ if(where==="t"){const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
+  $("box").innerHTML=`<h3>📝 ${u.myList}</h3>${seg2}${its.length?its.map(it=>`<div class="line"><span>${cart[it.id]} × ${esc(tx(it.name))}</span><span>${money(cart[it.id]*(+it.price||0))}</span></div>`).join("")+`<div class="tot"><span>${u.total}</span><span>${money(tot)}</span></div>`:`<p class="empty">${u.empty}</p>`}
+  <div class="acts"><button class="btn g" data-x="${its.length?"clear":"close"}">${its.length?u.clear:u.cancel}</button>${its.length?`<button class="btn b-c" data-x="show">${u.showW}</button>`:""}</div>`;
+  $("sheet").classList.add("on");return}
+ const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
+ $("box").innerHTML=`<h3>${u.cart}</h3>${its.length?its.map(it=>`<div class="line"><span>${cart[it.id]} × ${esc(tx(it.name))}</span><span>${money(cart[it.id]*(+it.price||0))}</span></div>`).join("")+`<div class="tot"><span>${u.total}</span><span>${money(tot)}</span></div>`:`<p class="empty">${u.empty}</p>`}
+ ${seg2}${its.length?`${D.delivery?`<div class="seg"><button class="${how==="p"?"on":""}" data-how="p">${u.pick}</button><button class="${how==="d"?"on":""}" data-how="d">${u.deliv}</button></div>`:""}
+ <label>${u.name}</label><input id="fName" autocomplete="name">
+ ${how==="d"&&D.delivery?`<label>${u.address}</label><input id="fAddr" autocomplete="street-address">`:`<label>${u.time}</label><input id="fTime" type="time">`}
+ <label>${u.notes}</label><input id="fNotes">`:""}
+ <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button>${its.length?`<button class="btn b-wa" data-x="send">${u.send}</button>`:""}</div>`;
+ $("sheet").classList.add("on");
+}
+function openWifi(){
+ const u=U[lang],w=D.wifi||{};
+ if(!w.name){$("box").innerHTML=`<h3>📶 ${u.wT}</h3><div class="wf"><b style="font-size:16px">${u.wAsk}</b></div>${new URLSearchParams(location.search).get("r")==="1"?`<p class="wh">${u.wAdmin}</p>`:""}<div class="acts" style="grid-template-columns:1fr"><button class="btn g" data-x="close">${u.cancel}</button></div>`;$("sheet").classList.add("on");return}
+ $("box").innerHTML=`<h3>📶 ${u.wT}</h3><div class="wf"><small>${u.wNet}</small><b>${esc(w.name)}</b></div>${w.pass?`<div class="wf"><small>${u.wPass}</small><b class="wp">${esc(w.pass)}</b></div><button class="btn b-wa" data-x="wcopy" style="width:100%;margin-top:10px">📋 ${u.wCopy}</button>`:`<div class="wf"><b>${u.wNone}</b></div>`}
+ ${D.demo?`<p class="wh" style="background:#fff4d6;border-radius:12px;padding:8px 10px;color:#7a5a00">⚠️ ${u.wDemo}</p>`:""}<p class="wh">${os==="and"?u.wAnd:u.wIos}</p><div class="acts" style="grid-template-columns:1fr"><button class="btn g" data-x="close">${u.cancel}</button></div>`;
+ $("sheet").classList.add("on");
+}
+function openAct(){
+ const u=U[lang];let s={};try{s=JSON.parse(localStorage.getItem(KEY+"-act")||"{}")}catch(_){}
+ const f=(id,l,t="text",ph="")=>`<label>${l}</label><input id="${id}" type="${t}" value="${esc(s[id]||"")}" placeholder="${esc(ph)}">`;
+ $("box").innerHTML=`<h3>✅ ${u.aT}</h3>${f("aO",u.aOwner)}${f("aW",u.aWa,"tel","744 123 4567")}${f("aN",u.aWn,"text","Infinitum_A1B2")}${f("aP",u.aWp)}
+ <label>${u.aOpts}</label><div class="tryo" style="margin:0">${[["aw","waiter",u.oWaiter],["ac","carryout",u.oCarry],["ar","reservations",u.oRes]].map(([id,k,l])=>`<label class="opt ${(s[id]??D[k])?"on":""}"><input type="checkbox" id="${id}" ${(s[id]??D[k])?"checked":""} style="display:none" onchange="this.parentNode.classList.toggle('on',this.checked)"><i>✓</i>${l}</label>`).join("")}<small style="margin:4px 0 0">${u.aMenuOnly}</small></div>
+ <label>${u.aStory}</label><textarea id="aS" rows="4">${esc(s.aS||"")}</textarea><label>${u.aMenu}</label><textarea id="aM" rows="2">${esc(s.aM||"")}</textarea>
+ <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button><button class="btn b-wa" data-x="asend">${u.aSend}</button></div>`;
+ $("sheet").classList.add("on");
+}
+function openRes(){
+ const u=U[lang];const d=new Date().toISOString().slice(0,10);
+ $("box").innerHTML=`<h3>${u.rT}</h3><div class="two"><div><label>${u.people}</label><select id="rP">${[1,2,3,4,5,6,7,8,10,12,15,20].map(n=>`<option ${n===2?"selected":""}>${n}</option>`).join("")}</select></div><div><label>${u.rtime}</label><input id="rT" type="time" value="20:00"></div></div>
+ <label>${u.date}</label><input id="rD" type="date" value="${d}" min="${d}"><label>${u.name}</label><input id="rN" autocomplete="name">
+ <div class="acts"><button class="btn g" data-x="close">${u.cancel}</button><button class="btn b-wa" data-x="rsend">${u.rsend}</button></div>`;
+ $("sheet").classList.add("on");
+}
+document.addEventListener("click",e=>{
+ const cb=e.target.closest("#cur button");if(cb){cur=cb.dataset.cur;try{localStorage.setItem("mx-cur",cur)}catch(_){}render();return}
+ const l=e.target.closest("#lang button");if(l){lang=l.dataset.l;try{localStorage.setItem(KEY+"-lang",lang)}catch(_){}render();return}
+ const o=e.target.closest("[data-os]");if(o){os=o.dataset.os;render();return}
+ if(e.target.closest("[data-inst]")&&deferred){deferred.prompt();deferred=null;render();return}
+ const c=e.target.closest(".cat");if(c){CAT=+c.dataset.c;render();const y=$("menu").getBoundingClientRect().top+scrollY-$("cats").offsetHeight-10;if(CAT>=0||scrollY>y)scrollTo({top:y,behavior:"smooth"});return}
+ const a=e.target.closest("[data-a]");
+ if(a){const k=a.dataset.a;if(k==="res")return openRes();if(k==="wifi")return openWifi();if(k==="act")return openAct();if(k==="cart")return openCart();cart[k]=(cart[k]||0)+1;render();return}
+ const d=e.target.closest("[data-d]");if(d){cart[d.dataset.d]--;if(!cart[d.dataset.d])delete cart[d.dataset.d];render();return}
+ const h=e.target.closest("[data-how]");if(h){how=h.dataset.how;openCart();return}
+ const wh=e.target.closest("[data-where]");if(wh){where=wh.dataset.where;openCart();return}
+ const tg=e.target.closest("[data-opt]");if(tg){const k=tg.dataset.opt;D[k]=!D[k];if(!canOrder())cart={};render();return}
+ if(e.target.closest("#show")){$("show").classList.remove("on");return}
+ if(e.target.id==="sheet")return $("sheet").classList.remove("on");
+ const x=e.target.closest("[data-x]");if(!x)return;const u=U[lang];
+ if(x.dataset.x==="close")return $("sheet").classList.remove("on");
+ if(x.dataset.x==="bill")return billStart();
+ if(x.dataset.x==="stf"){const i=+x.dataset.i;return i>=0?billRate(i):billIssue(-1,0)}
+ if(x.dataset.x==="rate")return billIssue(+x.dataset.i,+x.dataset.s);
+ if(x.dataset.x==="cpn"){const c=cpnGet();if(c)cpnView(c,false);return}
+ if(x.dataset.x==="clear"){cart={};render();$("sheet").classList.remove("on");return}
+ if(x.dataset.x==="show"){const u=U[lang],its=items().filter(it=>cart[it.id]),m=new URLSearchParams(location.search).get("mesa");
+  $("show").innerHTML=`<div class="sw"><small>${esc(D.name)}</small>${m?`<div class="sm">${u.mesa} ${esc(m)}</div>`:""}${its.map(it=>`<div class="si"><b>${cart[it.id]}×</b><span>${esc(tx(it.name))}</span></div>`).join("")}<p>${u.showT}<br><i>${u.showS}</i></p><em>${u.showX}</em></div>`;
+  $("sheet").classList.remove("on");$("show").classList.add("on");return}
+ if(x.dataset.x==="asend"){const u=U[lang],v=id=>($(id).value||"").trim(),s={aO:v("aO"),aW:v("aW"),aN:v("aN"),aP:$("aP").value,aS:v("aS"),aM:v("aM"),aw:$("aw").checked,ac:$("ac").checked,ar:$("ar").checked};
+  try{localStorage.setItem(KEY+"-act",JSON.stringify(s))}catch(_){}
+  for(const id of ["aO","aW","aN"]){if(!s[id]||(id==="aW"&&s.aW.replace(/\D/g,"").length<10)){$(id).focus();$(id).style.borderColor="#e0703a";$(id).placeholder=u.aNeed;return}}
+  const q=new URLSearchParams(location.search);
+  const m=`✅ *ACTIVAR APP · MX Studio ✝*\nID: ${q.get("id")||D.slug}\nNegocio: ${D.name}\nDueño: ${s.aO}\nWhatsApp: ${s.aW}\nWiFi: ${s.aN}\nContraseña WiFi: ${s.aP||"(sin contraseña)"}\nLista para el mesero: ${s.aw?"Sí":"No"}\nPara llevar por WhatsApp: ${s.ac?"Sí":"No"}\nReservar por WhatsApp: ${s.ar?"Sí":"No"}\nHistoria: ${s.aS||"-"}\nCambios al menú: ${s.aM||"-"}\nIdioma: ${lang}`;
+  open(`https://api.whatsapp.com/send?phone=${MXW}&text=${encodeURIComponent(m)}`,"_blank");return}
+ if(x.dataset.x==="wcopy"){const p=(D.wifi||{}).pass||"",ok=()=>{x.textContent=U[lang].wOk};
+  const fb=()=>{const t=document.createElement("textarea");t.value=p;t.setAttribute("readonly","");t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");ok()}catch(_){}t.remove()};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(p).then(ok,fb);else fb();return}
+ if(x.dataset.x==="send"){const its=items().filter(it=>cart[it.id]);const tot=its.reduce((s,it)=>s+cart[it.id]*(+it.price||0),0);
+  const ls=its.map(it=>`• ${cart[it.id]} × ${tx(it.name)} (${money(cart[it.id]*(+it.price||0))})`).join("\n");
+  const n=($("fName")||{}).value||"",del=how==="d"&&D.delivery;
+  const extra=del?u.delA+(($("fAddr")||{}).value||""):(($("fTime")||{}).value?u.pickT+$("fTime").value:"");
+  open(wa(u.mOrder(n,ls,money(tot),del?u.howD:u.howP,extra,($("fNotes")||{}).value||"")),"_blank");return}
+ if(x.dataset.x==="rsend"){const dt=$("rD").value?new Date($("rD").value+"T12:00").toLocaleDateString(lang==="es"?"es-MX":"en-US",{weekday:"long",day:"numeric",month:"long"}):"";
+  open(wa(u.mRes($("rP").value,dt,$("rT").value,$("rN").value)),"_blank");}
+});
+// live settings (WhatsApp, WiFi, options) set from Rutas → config.json
+const CFGK=["whatsapp","phone","wifi","carryout","reservations","waiter","delivery"];
+function applyCfg(c){if(!c||typeof c!=="object")return;CFGK.forEach(k=>{if(c[k]!==undefined&&c[k]!==null&&c[k]!=="")D[k]=c[k]})}
+// settings built into the link (?a=…) — made by Rutas, no upload needed
+const UA=(()=>{try{const s=new URLSearchParams(location.search).get("a");if(!s)return null;const j=JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,"+").replace(/_/g,"/")))));const o=j.o||"";
+ return {whatsapp:j.w||"",wifi:j.n?{name:j.n,pass:j.p||""}:null,waiter:o.includes("m"),carryout:o.includes("c"),reservations:o.includes("r"),t:+j.t||0}}catch(_){return null}})();
+if(UA&&!D.demo){Object.assign(D,UA);if(UA.whatsapp&&!D.phone)D.phone=UA.whatsapp;
+ try{const m=document.querySelector('link[rel="manifest"]');if(m)fetch(m.href).then(r=>r.json()).then(j=>{j.start_url=location.href;j.scope=location.origin+location.pathname;j.icons=(j.icons||[]).map(i=>Object.assign({},i,{src:new URL(i.src,m.href).href}));m.href=URL.createObjectURL(new Blob([JSON.stringify(j)],{type:"application/json"}))}).catch(()=>{})}catch(_){}}
+if(!D.demo){const useC=c=>c&&(!UA||(+c.t||0)>(UA.t||0));
+ try{const c=JSON.parse(localStorage.getItem(KEY+"-cfg")||"null");if(useC(c))applyCfg(c)}catch(_){}
+ fetch("config.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(c=>{if(useC(c)){applyCfg(c);if(c.wifi===null)D.wifi=null;try{localStorage.setItem(KEY+"-cfg",JSON.stringify(c))}catch(_){}render()}}).catch(()=>{})}
+try{SP=JSON.parse(localStorage.getItem(KEY+"-sp")||"null")}catch(_){}
+try{const f=+localStorage.getItem("mx-fx");if(f>5)FX=f}catch(_){}
+fetch("../../lib/fx.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j){const u=+j.usd||+j.mxn;if(u>5){FX=u;try{localStorage.setItem("mx-fx",FX)}catch(_){}}if(+j.cad>5){FXC=+j.cad;try{localStorage.setItem("mx-fxc",FXC)}catch(_){}}render()}}).catch(()=>{});
+let OP={};try{OP=JSON.parse(localStorage.getItem(KEY+"-op")||"{}")||{}}catch(_){}
+if(!D.demo)fetch("opts.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{OP=j||{};try{localStorage.setItem(KEY+"-op",JSON.stringify(OP))}catch(_){}render()}).catch(()=>{});
+let LY=null;try{LY=JSON.parse(localStorage.getItem(KEY+"-ly")||"null")}catch(_){}
+if(!D.demo)fetch("loyalty.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{LY=j&&j.on?j:null;try{localStorage.setItem(KEY+"-ly",JSON.stringify(LY))}catch(_){}render()}).catch(()=>{});
+const cpnGet=()=>{try{return JSON.parse(localStorage.getItem(KEY+"-cpn")||"null")}catch(_){return null}},cpnSet=o=>{try{localStorage.setItem(KEY+"-cpn",JSON.stringify(o))}catch(_){}};
+const lyT=o=>o?(lang==="en"?(o.en||o.es):(o.es||o.en)):"";
+function cpnView(c,fresh){const en=lang==="en",pid=(String(D.map||"").match(/query_place_id=([^&]+)/)||[])[1],exp=new Date(c.e);
+ $("box").innerHTML=`<div style="text-align:center"><div style="font-size:44px">🎁</div><h3 style="margin:4px 0">${fresh?(en?"Thank you!":"¡Gracias!"):(en?"Your gift":"Tu regalo")}</h3>
+ <div style="border:2px dashed var(--acc,#d9a35f);border-radius:16px;padding:14px;margin:10px 0"><b style="font-size:1.25em;line-height:1.2;display:block">${esc(c.g)}</b><small>${en?"on your next visit":"en tu próxima visita"} · ${esc(D.name||"")}</small>
+ <div style="font:800 26px/1.2 ui-monospace,monospace;letter-spacing:3px;margin:10px 0 2px">${esc(c.c)}</div><small style="opacity:.75">${en?"Valid until":"Válido hasta"} ${exp.toLocaleDateString(en?"en-US":"es-MX",{day:"numeric",month:"long"})}${c.s?` · ${en?"Served by":"Te atendió"}: ${esc(c.s)}`:""}</small></div>
+ ${fresh&&c.r?`<p style="margin:6px 0;font-weight:800">🧾 ${en?"Show this code when you pay so your rating counts.":"Enséñale este código a tu mesero o en caja al pagar para que cuente tu calificación."}</p>`:""}${fresh?`<p style="margin:6px 0">${en?"It's saved on your phone. Next time, open this app and show it to your waiter.":"Ya quedó guardado en tu teléfono. La próxima vez abre esta app y enséñaselo a tu mesero."}</p>`:`<p style="margin:6px 0">${en?"Show this screen to your waiter.":"Enséñale esta pantalla a tu mesero."}</p>`}
+ ${fresh&&pid?`<a class="revb" style="margin-top:12px;background:#fff6e5" href="https://search.google.com/local/writereview?placeid=${esc(pid)}" target="_blank" rel="noopener">⭐ ${en?"Enjoyed it? Help us with a Google review — 1 minute":"¿Te gustó? Ayúdanos con una reseña en Google — 1 minuto"}</a>`:""}
+ <button class="revb" style="width:100%;margin-top:10px" data-x="close">${en?"Close":"Cerrar"}</button></div>`;$("sheet").classList.add("on")}
+function billStart(){const en=lang==="en",st=(LY&&Array.isArray(LY.staff)?LY.staff:[]).filter(Boolean);
+ const old=cpnGet();if(old&&Date.now()-old.i<4*36e5&&Date.now()<old.e)return cpnView(old,true);
+ if(!st.length)return billIssue(-1);
+ $("box").innerHTML=`<h3>🧾 ${en?"Ask for the bill":"Pedir la cuenta"}</h3><p>${en?"Who served you today? There's a gift for you.":"¿Quién te atendió hoy? Hay un regalo para ti."}</p>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">${st.map((n,i)=>`<button class="revb" style="margin:0" data-x="stf" data-i="${i}">${esc(n)}</button>`).join("")}</div>
+ <button class="revb" style="width:100%;margin:0;opacity:.8" data-x="stf" data-i="-1">${en?"Not sure":"No sé"}</button>`;$("sheet").classList.add("on")}
+function billRate(i){const en=lang==="en",st=(LY.staff||[]).filter(Boolean),n=st[i]||"";
+ $("box").innerHTML=`<h3>⭐ ${en?"How did "+esc(n)+" do?":"¿Cómo te atendió "+esc(n)+"?"}</h3><p style="font-size:.9em;opacity:.8">🔒 ${en?"Private: only the owner sees it. Nothing is posted.":"Privado: solo lo ve el dueño. No se publica."}</p>
+ <div style="display:grid;gap:8px;margin:10px 0">${[5,4,3,2,1].map(k=>`<button class="revb" style="margin:0;font-size:20px;letter-spacing:2px" data-x="rate" data-i="${i}" data-s="${k}" aria-label="${k}">${"⭐".repeat(k)}</button>`).join("")}</div>
+ <button class="revb" style="width:100%;margin:0;opacity:.8" data-x="rate" data-i="${i}" data-s="0">${en?"Skip":"Omitir"}</button>`;$("sheet").classList.add("on")}
+function billIssue(i,k){if(!window.MXL)return setTimeout(()=>billIssue(i,k),300);const st=(LY.staff||[]).filter(Boolean),days=+LY.days||30;
+ const c={c:MXL.make(D.slug||"x",i,k||0),r:k||0,s:i>=0?st[i]:"",g:lyT(LY.gift)||(lang==="en"?"10% off":"10% de descuento"),i:Date.now(),e:Date.now()+days*864e5};cpnSet(c);cpnView(c,true);render()}
+function lyBanner(){if(!LY)return "";const c=cpnGet(),en=lang==="en";if(!c||Date.now()>c.e||Date.now()-c.i<4*36e5)return "";
+ return `<button data-x="cpn" style="all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;margin:10px 0;padding:12px 14px;border-radius:14px;background:#fff6e5;border:2px dashed #d9a35f;color:#3a2700;font-weight:800">🎁 ${en?"You have a gift":"Tienes un regalo"}: ${esc(c.g)} — ${en?"tap and show your waiter":"tócalo y enséñaselo a tu mesero"}</button>`}
+function lyBill(){if(!LY)return "";const en=lang==="en";return `<button class="revb" style="width:100%;background:#1f7a46;color:#fff;border-color:#1f7a46" data-x="bill">🧾 ${en?"Ask for the bill":"Pedir la cuenta"} · 🎁 ${esc(lyT(LY.gift)||(en?"gift":"regalo"))} ${en?"for your next visit":"para tu próxima visita"}</button>`}
+if(!D.demo)fetch("special.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(j=>{SP=j&&j.on&&(j.es||j.en)?{es:j.es||j.en,en:j.en||j.es}:null;try{localStorage.setItem(KEY+"-sp",JSON.stringify(SP))}catch(_){}render()}).catch(()=>{});
+// live menu (edited from Rutas → ✏️ Editar menú) → menu.json
+if(!D.demo){try{const m=JSON.parse(localStorage.getItem(KEY+"-menu")||"null");if(Array.isArray(m)&&m.length)D.menu=m}catch(_){}
+ fetch("menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(m=>{if(Array.isArray(m)&&m.length){D.menu=m;try{localStorage.setItem(KEY+"-menu",JSON.stringify(m))}catch(_){}render()}}).catch(()=>{})}
+render();
+if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.__PREVIEW__){navigator.serviceWorker.register("../../sw.js").catch(()=>{})}
+
+window.MXG={slug:(location.pathname.match(/\/c\/([^/]+)/)||[])[1]||"app",name:D.name,lang:()=>lang,lib:(location.pathname.includes("/c/")?"../../lib/":"../lib/"),url:location.origin+location.pathname};
+(()=>{const s=document.createElement("script");s.src=MXG.lib+"games.js";s.defer=true;document.body.appendChild(s)})();
+(()=>{const s=document.createElement("script");s.src=MXG.lib+"loyalty.js";document.body.appendChild(s)})();
+$("gamesB").onclick=()=>{window.MXGames?MXGames.open():null};
+try{const jg=new URLSearchParams(location.search).get("jugar");if(jg){const go=()=>window.MXGames?MXGames.join(jg):setTimeout(go,200);go()}}catch(_){}
+</script>
+
+
+
+<!-- MX-REFRESH:start · refresh button (gets the newest version, stays offline-ready) -->
+<style>
+.mxr{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid currentColor;color:inherit;opacity:.9;-webkit-tap-highlight-color:transparent;vertical-align:middle}
+.mxr svg{width:16px;height:16px;display:block}
+.mxr.spin svg{animation:mxrs .8s linear infinite}@keyframes mxrs{to{transform:rotate(360deg)}}
+.mxr.off{color:#e0663f!important;border-color:#e0663f!important}
+.mxr.float{position:fixed;z-index:2147483600;top:calc(10px + env(safe-area-inset-top));right:10px;background:rgba(15,20,24,.62);color:#fff;border-color:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+</style>
+<script>
+(function(){
+ var CFG={"color": "#fff", "bg": "rgba(20,16,12,.45)"};
+ try{if(window.self!==window.top)return}catch(e){return}
+ var b=document.createElement("button");b.type="button";b.className="mxr";b.setAttribute("aria-label","Actualizar / Refresh");b.title="Actualizar / Refresh";
+ b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+ function place(){
+  var g=null;
+  if(CFG.mount)g=document.querySelector(CFG.mount);
+  if(!g&&!CFG.float){var en=[].slice.call(document.querySelectorAll("button,a,span")).filter(function(e){var t=(e.textContent||"").trim().replace(/^[^A-Za-z]+/,"");return (t==="EN")&&e.offsetParent&&e.getBoundingClientRect().top<160})[0];
+   if(en){g=en.parentElement;while(g&&g.parentElement&&!/ES/.test(g.textContent))g=g.parentElement}}
+  if(g&&g.parentElement){var h=g.getBoundingClientRect().height;if(h>=26&&h<=44){b.style.width=b.style.height=Math.round(h)+"px"}
+   var cs=getComputedStyle(g);b.style.color=CFG.color||cs.color;if(CFG.bg){b.style.background=CFG.bg;b.style.borderColor="transparent";b.style.webkitBackdropFilter=b.style.backdropFilter="blur(8px)"}b.style.marginRight=CFG.gap||"6px";if(CFG.css)b.style.cssText+=";"+CFG.css;g.parentElement.insertBefore(b,CFG.after?g.nextSibling:g)}
+  else{b.classList.add("float");document.body.appendChild(b)}
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(place,60)});else setTimeout(place,60);
+ b.onclick=async function(){
+  if(!navigator.onLine){b.classList.add("off");setTimeout(function(){b.classList.remove("off")},1800);return}
+  b.classList.add("spin");
+  try{
+   var dir=location.pathname.replace(/[^/]*$/,"");
+   if("serviceWorker" in navigator){var r=await navigator.serviceWorker.getRegistration();if(r)await r.update().catch(function(){})}
+   if(window.caches){var ks=await caches.keys();for(var i=0;i<ks.length;i++){var c=await caches.open(ks[i]);var rq=await c.keys();
+    await Promise.all(rq.filter(function(q){var u=new URL(q.url);return u.origin===location.origin&&u.pathname.indexOf(dir)===0}).map(function(q){return fetch(q.url,{cache:"reload"}).then(function(res){if(res.ok)return c.put(q,res)}).catch(function(){})}))}}
+   else{await fetch(location.href,{cache:"reload"}).catch(function(){})}
+  }catch(e){}
+  var u=new URL(location.href);u.searchParams.set("fresh",Date.now());location.replace(u.toString())
+ };
+ try{if("serviceWorker" in navigator&&navigator.serviceWorker.controller){navigator.serviceWorker.addEventListener("controllerchange",function(){if(window.__mxReloaded)return;window.__mxReloaded=1;location.reload()})}}catch(e){}
+ try{var u0=new URL(location.href);if(u0.searchParams.has("fresh")){u0.searchParams.delete("fresh");history.replaceState(null,"",u0.pathname+u0.search+u0.hash)}}catch(e){}
+})();
+</script>
+<!-- MX-REFRESH:end -->
+
+</body>
+</html>

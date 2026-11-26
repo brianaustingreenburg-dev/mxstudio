@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MX Studio ✝ Socios · Partner Kit</title>
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="MX Socios">
+<link rel="apple-touch-icon" href="../icon-192.png">
+<link rel="icon" href="../icon-192.png">
+<style>
+:root{--bg:#000;--s1:#121012;--s2:#1c1719;--line:rgba(232,196,140,.2);--gold:#e8c48c;--gold2:#d9a35f;--sun:#e0703a;--text:#f6ece0;--muted:#b9aaa0;--green:#25d366;--fs:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.4;padding-bottom:calc(40px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+/* TOP NAV */
+.top{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:calc(10px + env(safe-area-inset-top)) 14px 10px;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:10px}
+.brand{flex:1;font-weight:800;font-size:1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{display:block;font-size:.58em;font-weight:700;letter-spacing:.12em;color:var(--sun);margin-top:1px}
+.langBtn{all:unset;cursor:pointer;background:var(--s2);border:1px solid var(--line);border-radius:10px;padding:5px 11px;font-weight:800;font-size:.78em;color:var(--gold)}
+/* TABS */
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-bottom:1px solid var(--line);position:sticky;top:calc(54px + env(safe-area-inset-top));z-index:19;background:rgba(0,0,0,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.tab{all:unset;cursor:pointer;text-align:center;padding:9px 2px;font-weight:800;font-size:.7em;line-height:1.2;color:var(--muted);border-bottom:2px solid transparent;transition:color .15s}
+.tab.on{color:var(--gold);border-bottom-color:var(--gold2)}
+/* PAGES */
+.page{display:none;padding:14px}
+.page.on{display:block}
+/* ROUTE CARDS */
+.rcard{background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px}
+.rcard h2{font-size:1.1em;margin-bottom:2px}
+.rcard .sub{color:var(--muted);font-size:.78em;margin-bottom:8px}
+.rcard .desc{font-size:.82em;line-height:1.5;margin-bottom:10px}
+.rcard .stops{font-size:.78em;color:var(--muted);margin-bottom:10px}
+/* STOP CARDS */
+.sc{background:var(--s2);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;position:relative}
+.sc .sn{font-weight:800;font-size:.95em;padding-right:60px}
+.sc .sa{color:var(--muted);font-size:.75em;margin-top:3px}
+.sc .sp{color:var(--gold);font-size:.75em;margin-top:4px;font-weight:700}
+.sc .stag{display:inline-block;font-weight:800;font-size:.6em;letter-spacing:.05em;padding:2px 8px;border-radius:99px;color:#0b0b0b;margin-top:5px}
+.sc .gr{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:7px;padding:3px 7px;font-size:.68em;font-weight:800;line-height:1.3;text-align:right;white-space:nowrap}
+.sc .sbtn{all:unset;cursor:pointer;display:block;width:100%;text-align:center;margin-top:8px;padding:8px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-weight:800;font-size:.8em}
+/* ROUTE SELECTOR */
+.rsel{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.rsel button{all:unset;cursor:pointer;padding:7px 12px;border-radius:10px;font-weight:800;font-size:.78em;background:var(--s2);border:1px solid var(--line)}
+.rsel button.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;border-color:transparent}
+/* IFRAME WRAP */
+.ifrm{position:fixed;inset:0;z-index:30;background:#000;display:none}
+.ifrm iframe{border:0;width:100%;height:100%;display:block}
+.ifrm .closebtn{all:unset;cursor:pointer;position:absolute;top:calc(10px + env(safe-area-inset-top));left:12px;z-index:31;background:rgba(0,0,0,.8);color:var(--gold);font:800 13px system-ui;padding:8px 14px;border-radius:999px}
+/* FORM */
+.form-section{margin-bottom:16px}
+.form-section h3{font-size:.88em;font-weight:800;color:var(--gold);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:.8em;font-weight:700;color:var(--muted);margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--s1);color:var(--text);font-size:.95em;outline:none;-webkit-appearance:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold2)}
+.field textarea{resize:vertical;min-height:70px}
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.pkg{all:unset;cursor:pointer;border:2px solid var(--line);border-radius:14px;padding:12px 10px;text-align:center;background:var(--s1)}
+.pkg.on{border-color:var(--gold2);background:rgba(217,163,95,.12)}
+.pkg .pkname{font-weight:800;font-size:.9em}
+.pkg .pkprice{color:var(--gold);font-weight:800;font-size:.85em;margin-top:3px}
+.pkg .pkdesc{color:var(--muted);font-size:.7em;margin-top:3px;line-height:1.3}
+.submitBtn{all:unset;cursor:pointer;display:block;width:100%;text-align:center;padding:16px;border-radius:16px;background:linear-gradient(135deg,#25d366,#128c4e);color:#fff;font-weight:800;font-size:1em;margin-top:8px}
+.submitBtn:disabled{opacity:.4;cursor:not-allowed}
+/* PITCH */
+.pitch-step{background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.pitch-step .pnum{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-size:.9em;flex:none}
+.pitch-step .prow{display:flex;gap:12px;align-items:flex-start}
+.pitch-step h3{font-size:1em;margin-bottom:4px}
+.pitch-step p{font-size:.82em;line-height:1.5;color:var(--muted)}
+.pitch-step .say{background:rgba(255,255,255,.04);border-left:3px solid var(--gold2);border-radius:0 10px 10px 0;padding:8px 12px;margin-top:8px;font-size:.82em;line-height:1.5;font-style:italic}
+.say .es-txt{display:block}
+.say .en-txt{display:block;opacity:.65;margin-top:4px}
+/* WORK */
+.work-open{all:unset;cursor:pointer;display:block;width:100%;text-align:center;padding:16px;border-radius:16px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;font-weight:800;font-size:1em;margin-bottom:12px}
+/* TOAST */
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--s2);border:1px solid var(--gold2);padding:12px 16px;border-radius:14px;font-weight:700;font-size:.82em;transition:.25s;z-index:99;pointer-events:none;max-width:calc(100% - 32px);text-align:center;white-space:nowrap}
+.toast.on{transform:translate(-50%,0);opacity:1}
+/* HERO */
+.hero{background:linear-gradient(135deg,rgba(217,163,95,.15),rgba(37,211,102,.08));border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;text-align:center}
+.hero h1{font-size:1.3em;margin-bottom:4px}
+.hero p{color:var(--muted);font-size:.82em;line-height:1.5}
+/* CONFIRM */
+.confirm{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.4);border-radius:16px;padding:16px;text-align:center;display:none;margin-top:10px}
+.confirm h3{color:var(--green);margin-bottom:6px}
+.confirm p{font-size:.82em;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="top">
+  <div class="bar">
+    <div class="brand">MX Studio ✝<small>PARTNER KIT · SOCIOS</small></div>
+    <button class="langBtn" id="langBtn">EN</button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabs">
+  <button class="tab on" data-tab="routes" id="t-routes">🗺️<br><span data-es="Rutas" data-en="Routes">Rutas</span></button>
+  <button class="tab" data-tab="prices" id="t-prices">💲<br><span data-es="Precios" data-en="Prices">Precios</span></button>
+  <button class="tab" data-tab="work" id="t-work">🌟<br><span data-es="Mi Trabajo" data-en="My Work">Mi Trabajo</span></button>
+  <button class="tab" data-tab="pitch" id="t-pitch">🎤<br><span data-es="Guion" data-en="Script">Guion</span></button>
+  <button class="tab" data-tab="order" id="t-order">📋<br><span data-es="Venta" data-en="Order">Venta</span></button>
+</div>
+
+<!-- ROUTES PAGE -->
+<div class="page on" id="page-routes">
+  <div class="rsel" id="routeSel"></div>
+  <div id="routeContent"></div>
+</div>
+
+<!-- PRICES PAGE -->
+<div class="page" id="page-prices">
+  <div class="hero">
+    <h1>💲 <span data-es="Precios" data-en="Prices">Precios</span></h1>
+    <p data-es="Muéstrale los precios al dueño desde tu teléfono, o mándale el link." data-en="Show the owner prices from your phone, or send them the link.">Muéstrale los precios al dueño desde tu teléfono, o mándale el link.</p>
+  </div>
+  <button class="work-open" id="openPricesBtn">📱 <span data-es="Abrir página de precios" data-en="Open prices page">Abrir página de precios</span></button>
+  <button class="work-open" style="background:linear-gradient(135deg,var(--green),#128c4e);margin-top:0" id="sendPricesBtn">💬 <span data-es="Enviar link de precios por WhatsApp" data-en="Send prices link on WhatsApp">Enviar link de precios por WhatsApp</span></button>
+  <div style="margin-top:12px;background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:14px">
+    <div style="font-weight:800;margin-bottom:8px;font-size:.88em" data-es="Resumen de precios" data-en="Price summary">Resumen de precios</div>
+    <div style="font-size:.82em;color:var(--muted);line-height:1.8">
+      <div>🍽️ <strong style="color:var(--text)" data-es="Restaurante: $18,000" data-en="Restaurant: $18,000">Restaurante: $18,000</strong> <span data-es="· primer año gratis" data-en="· first year free">· primer año gratis</span></div>
+      <div>🏨 <strong style="color:var(--text)" data-es="Hotel + Restaurante: $28,000" data-en="Hotel + Restaurant: $28,000">Hotel + Restaurante: $28,000</strong> <span data-es="· planes de pago" data-en="· payment plans">· planes de pago</span></div>
+      <div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--line)" data-es="Todo incluido: app, QR, fotos, WiFi, órdenes, reservas, cambios ilimitados." data-en="Everything included: app, QR, photos, WiFi, orders, reservations, unlimited changes.">Todo incluido: app, QR, fotos, WiFi, órdenes, reservas, cambios ilimitados.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MY WORK PAGE -->
+<div class="page" id="page-work">
+  <div class="hero">
+    <h1>🌟 <span data-es="Mi Trabajo" data-en="My Work">Mi Trabajo</span></h1>
+    <p data-es="Muéstrale ejemplos de apps reales al dueño." data-en="Show the owner real app examples.">Muéstrale ejemplos de apps reales al dueño.</p>
+  </div>
+  <button class="work-open" id="openWorkBtn">📱 <span data-es="Ver apps en vivo" data-en="See live apps">Ver apps en vivo</span></button>
+  <button class="work-open" style="background:linear-gradient(135deg,var(--green),#128c4e);margin-top:0" id="sendWorkBtn">💬 <span data-es="Enviar portafolio por WhatsApp" data-en="Send portfolio on WhatsApp">Enviar portafolio por WhatsApp</span></button>
+</div>
+
+<!-- PITCH PAGE -->
+<div class="page" id="page-pitch">
+  <div class="hero">
+    <h1>🎤 <span data-es="Guion de Ventas" data-en="Sales Script">Guion de Ventas</span></h1>
+    <p data-es="Aprende esto de memoria. Funciona." data-en="Learn this by heart. It works.">Aprende esto de memoria. Funciona.</p>
+  </div>
+
+  <div class="pitch-step">
+    <div class="prow"><div class="pnum">1</div><div>
+      <h3 data-es="Pide al dueño o gerente" data-en="Ask for the owner or manager">Pide al dueño o gerente</h3>
+      <p data-es="Si no está, deja tu tarjeta y regresa. No le vendas al mesero." data-en="If not there, leave a card and come back. Don't sell to the waiter.">Si no está, deja tu tarjeta y regresa. No le vendas al mesero.</p>
+    </div></div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="prow"><div class="pnum">2</div><div>
+      <h3 data-es="Presentación (10 segundos)" data-en="Introduction (10 seconds)">Presentación (10 segundos)</h3>
+      <div class="say">
+        <span class="es-txt">«Hola, soy [tu nombre] de MX Studio. Le hago apps de menú para restaurantes aquí en Acapulco — su menú en teléfono, en español e inglés, con sus precios, fotos y botón de WiFi. ¿Tiene un minuto?»</span>
+        <span class="en-txt">"Hi, I'm [your name] from MX Studio. I make menu apps for restaurants here in Acapulco — your menu on a phone, in Spanish and English, with your prices, photos, and a WiFi button. Do you have a minute?"</span>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="prow"><div class="pnum">3</div><div>
+      <h3 data-es="Muéstrale su demo" data-en="Show them their demo">Muéstrale su demo</h3>
+      <p data-es="Abre su app demo desde las Rutas y ponle el teléfono en la mano." data-en="Open their demo app from Routes and put the phone in their hand.">Abre su app demo desde las Rutas y ponle el teléfono en la mano.</p>
+      <div class="say">
+        <span class="es-txt">«Ya le hice una muestra con su menú. Mire, así se ve en teléfono.»</span>
+        <span class="en-txt">"I already made you a sample with your menu. Here's how it looks on a phone."</span>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="prow"><div class="pnum">4</div><div>
+      <h3 data-es="Muéstrale los precios" data-en="Show them the prices">Muéstrale los precios</h3>
+      <p data-es="Abre la página de precios o mándale el link." data-en="Open the prices page or send them the link.">Abre la página de precios o mándale el link.</p>
+      <div class="say">
+        <span class="es-txt">«Son $18,000 pesos, una sola vez, todo incluido y el primer año gratis. Acepta efectivo, sin comisiones.»</span>
+        <span class="en-txt">"It's $18,000 pesos, one time, everything included and the first year free. Cash, no fees."</span>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="prow"><div class="pnum">5</div><div>
+      <h3 data-es="Si dice sí → llena la orden" data-en="If they say yes → fill the order">Si dice sí → llena la orden</h3>
+      <p data-es="Ve a la pestaña Venta, llena todo y envíame los datos. Yo activo la app." data-en="Go to the Order tab, fill everything in and send me the details. I activate the app.">Ve a la pestaña Venta, llena todo y envíame los datos. Yo activo la app.</p>
+    </div></div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="prow"><div class="pnum">6</div><div>
+      <h3 data-es="Si dice «lo pienso»" data-en="If they say 'I'll think about it'">Si dice «lo pienso»</h3>
+      <div class="say">
+        <span class="es-txt">«Le dejo el link para que lo vea en su teléfono. ¿Cuándo puedo regresar para saber qué decidió?»</span>
+        <span class="en-txt">"I'll leave you the link to look at on your phone. When can I come back to know what you decided?"</span>
+      </div>
+      <p style="margin-top:6px" data-es="Envíale el link de su demo por WhatsApp desde las Rutas." data-en="Send them their demo link on WhatsApp from Routes.">Envíale el link de su demo por WhatsApp desde las Rutas.</p>
+    </div></div>
+  </div>
+
+  <div style="background:rgba(224,160,58,.08);border:1px solid rgba(224,160,58,.3);border-radius:14px;padding:12px 14px;margin-top:6px;font-size:.82em;line-height:1.5">
+    <div style="font-weight:800;margin-bottom:4px">⚠️ <span data-es="Reglas de oro" data-en="Golden rules">Reglas de oro</span></div>
+    <div data-es="• Solo habla con el dueño o gerente<br>• No hagas descuentos sin hablar conmigo primero<br>• No prometas cosas que no están en el paquete<br>• Siempre deja que yo active la app" data-en="• Only talk to the owner or manager<br>• No discounts without talking to me first<br>• Don't promise things not in the package<br>• Always let me activate the app">• Solo habla con el dueño o gerente<br>• No hagas descuentos sin hablar conmigo primero<br>• No prometas cosas que no están en el paquete<br>• Siempre deja que yo active la app</div>
+  </div>
+</div>
+
+<!-- ORDER PAGE -->
+<div class="page" id="page-order">
+  <div class="hero">
+    <h1>📋 <span data-es="Nueva Venta" data-en="New Sale">Nueva Venta</span></h1>
+    <p data-es="Llena todo con el dueño. Se manda directo a Brian por WhatsApp." data-en="Fill this out with the owner. It goes straight to Brian on WhatsApp.">Llena todo con el dueño. Se manda directo a Brian por WhatsApp.</p>
+  </div>
+
+  <div class="form-section">
+    <h3 data-es="📌 Negocio" data-en="📌 Business">📌 Negocio</h3>
+    <div class="field">
+      <label data-es="Nombre del negocio *" data-en="Business name *">Nombre del negocio *</label>
+      <input type="text" id="f-biz" placeholder="Ej: Restaurante El Mar" autocomplete="off">
+    </div>
+    <div class="field">
+      <label data-es="Dirección / zona" data-en="Address / area">Dirección / zona</label>
+      <input type="text" id="f-addr" placeholder="Ej: Costa Azul, Costera" autocomplete="off">
+    </div>
+    <div class="field">
+      <label data-es="WhatsApp del negocio (10 dígitos)" data-en="Business WhatsApp (10 digits)">WhatsApp del negocio (10 dígitos)</label>
+      <input type="tel" id="f-wa" placeholder="7441234567" inputmode="numeric">
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h3 data-es="📦 Paquete" data-en="📦 Package">📦 Paquete</h3>
+    <div class="pkg-grid">
+      <button class="pkg on" data-pkg="r" id="pkg-r">
+        <div class="pkname">🍽️ Restaurante</div>
+        <div class="pkprice">$18,000</div>
+        <div class="pkdesc" data-es="menú, WiFi, QR, órdenes" data-en="menu, WiFi, QR, orders">menú, WiFi, QR, órdenes</div>
+      </button>
+      <button class="pkg" data-pkg="h" id="pkg-h">
+        <div class="pkname">🏨 Hotel+Rest.</div>
+        <div class="pkprice">$28,000</div>
+        <div class="pkdesc" data-es="hotel + restaurante + guía" data-en="hotel + restaurant + guide">hotel + restaurante + guía</div>
+      </button>
+    </div>
+    <div class="field" style="margin-top:8px">
+      <label data-es="Forma de pago" data-en="Payment method">Forma de pago</label>
+      <select id="f-pay">
+        <option value="efectivo" data-es="Efectivo (recomendado)" data-en="Cash (recommended)">Efectivo (recomendado)</option>
+        <option value="transferencia" data-es="Transferencia / depósito" data-en="Bank transfer">Transferencia / depósito</option>
+        <option value="plan" data-es="Plan de pago (Hotel+Rest.)" data-en="Payment plan (Hotel+Rest.)">Plan de pago (Hotel+Rest.)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h3 data-es="📶 WiFi (opcional pero muy útil)" data-en="📶 WiFi (optional but very useful)">📶 WiFi (opcional pero muy útil)</h3>
+    <div class="field">
+      <label data-es="Nombre de la red WiFi" data-en="WiFi network name">Nombre de la red WiFi</label>
+      <input type="text" id="f-wn" placeholder="Ej: RestauranteElMar_WiFi" autocomplete="off">
+    </div>
+    <div class="field">
+      <label data-es="Contraseña WiFi" data-en="WiFi password">Contraseña WiFi</label>
+      <input type="text" id="f-wp" placeholder="Ej: elmar2024" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h3 data-es="🙋 Tu info" data-en="🙋 Your info">🙋 Tu info</h3>
+    <div class="field">
+      <label data-es="Tu nombre" data-en="Your name">Tu nombre</label>
+      <input type="text" id="f-pname" placeholder="Ej: Carlos" autocomplete="off">
+    </div>
+    <div class="field">
+      <label data-es="Notas extra (opcional)" data-en="Extra notes (optional)">Notas extra (opcional)</label>
+      <textarea id="f-notes" placeholder="Ej: El dueño se llama Roberto, paga mañana, quiere que el menú esté en inglés también"></textarea>
+    </div>
+  </div>
+
+  <button class="submitBtn" id="submitBtn">💬 <span data-es="Enviar a Brian por WhatsApp" data-en="Send to Brian on WhatsApp">Enviar a Brian por WhatsApp</span></button>
+  <div class="confirm" id="confirm">
+    <h3>✅ <span data-es="¡Enviado a Brian!" data-en="Sent to Brian!">¡Enviado a Brian!</span></h3>
+    <p data-es="Brian activa la app en minutos. Dile al dueño que esté pendiente de un mensaje con su link." data-en="Brian activates the app in minutes. Tell the owner to watch for a message with their link.">Brian activa la app en minutos. Dile al dueño que esté pendiente de un mensaje con su link.</p>
+  </div>
+</div>
+
+<!-- FULLSCREEN IFRAME -->
+<div class="ifrm" id="ifrmWrap">
+  <iframe id="ifrmFrame" src="" title=""></iframe>
+  <button class="closebtn" id="ifrmClose">← <span id="ifrmBackLabel">Volver</span></button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const BRIAN_WA = "527441930502";
+const G = "https://go.myjefetech.app/acapulco/";
+const $=id=>document.getElementById(id);
+let lang = "es";
+
+// ── LANGUAGE ──
+function setLang(l){
+  lang = l;
+  $("langBtn").textContent = l==="es"?"EN":"ES";
+  document.querySelectorAll("[data-es]").forEach(el=>{
+    if(el.tagName==="INPUT"||el.tagName==="TEXTAREA") return;
+    el.innerHTML = l==="es" ? el.dataset.es : (el.dataset.en||el.dataset.es);
+  });
+  document.querySelectorAll("[data-es][placeholder]").forEach(el=>{});
+  // Update pitch say blocks
+  document.querySelectorAll(".es-txt").forEach(e=>e.style.display=l==="en"?"none":"");
+  document.querySelectorAll(".en-txt").forEach(e=>e.style.display=l==="es"?"none":"");
+  // Update select options
+  document.querySelectorAll("select option[data-es]").forEach(o=>{
+    o.textContent = l==="es"?(o.dataset.es||o.textContent):(o.dataset.en||o.dataset.es);
+  });
+  renderRoutes();
+}
+$("langBtn").onclick = ()=>setLang(lang==="es"?"en":"es");
+
+// ── TABS ──
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("on"));
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
+    btn.classList.add("on");
+    $("page-"+btn.dataset.tab).classList.add("on");
+    scrollTo({top:0});
+  };
+});
+
+// ── TOAST ──
+function toast(t){const el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("on"),2500)}
+
+// ── FULLSCREEN IFRAME ──
+function openIframe(url, backLabel){
+  $("ifrmFrame").src = url;
+  $("ifrmBackLabel").textContent = backLabel;
+  $("ifrmWrap").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+$("ifrmClose").onclick = ()=>{
+  $("ifrmWrap").style.display = "none";
+  $("ifrmFrame").src = "";
+  document.body.style.overflow = "";
+};
+
+// ── PRICES ──
+$("openPricesBtn").onclick = ()=>openIframe(G+"precios/?embed=1", lang==="es"?"← Volver":"← Back");
+$("sendPricesBtn").onclick = ()=>{
+  const url = G+"precios/";
+  const msg = lang==="es"
+    ? `¡Hola! Soy socio de MX Studio ✝\n\nAquí están los precios de la app de menú para su negocio:\n👉 ${url}\n\nDesde $18,000, todo incluido y primer año gratis. En efectivo y sin comisiones.\n\n¿Le hago una muestra gratis?`
+    : `Hi! I'm a partner of MX Studio ✝\n\nHere are the prices for the menu app for your business:\n👉 ${url}\n\nStarting at $18,000 pesos, everything included and first year free. Cash, no fees.\n\nWould you like a free sample?`;
+  window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
+};
+
+// ── MY WORK ──
+$("openWorkBtn").onclick = ()=>openIframe(G+"../trabajo/?t="+Date.now(), lang==="es"?"← Volver":"← Back");
+$("sendWorkBtn").onclick = ()=>{
+  const url = "https://go.myjefetech.app/mxstudio/";
+  const msg = lang==="es"
+    ? `¡Hola! Soy socio de MX Studio ✝\n\nAquí puede ver apps reales que hemos hecho para restaurantes y hoteles en Acapulco:\n👉 ${url}\n\nCon gusto le hago una muestra gratis de su negocio.`
+    : `Hi! I'm a partner of MX Studio ✝\n\nHere you can see real apps we've made for restaurants and hotels in Acapulco:\n👉 ${url}\n\nI'd be happy to make a free sample for your business.`;
+  window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
+};
+
+// ── ROUTES DATA ──
+const DATA={"types":{"R":{"es":"Restaurante","c":"#d98b5f","en":"Restaurant"},"C":{"es":"Café","c":"#c9a26b","en":"Café"}},"routes":[{"num":1,"title":"Costa Azul","title_en":"Costa Azul","span":"Costera y calles de Costa Azul","span_en":"Costera & Costa Azul streets","desc":"⭐ #1 para vender: la más llena de lugares listos y se camina.","desc_en":"⭐ #1 to sell: the most ready places and walkable.","stops":[{"id":"ChIJ0fF9CPlZyoURJyk51nAWt4A","t":"C","n":"Tertulia Restaurante & Café","a":"Horacio Nelson 59, Costa Azul","demo":"tertulia-restaurante-cafe"},{"id":"ChIJPySSHWlZyoURUGNwAKAONqw","t":"C","n":"Kayroma Café","a":"Horacio Nelson 191, Costa Azul","demo":"kayroma-cafe"},{"id":"ChIJmSVCG89ZyoURikZnnAikfRM","t":"C","n":"Verde Pistache Co.","a":"Horacio Nelson 3228, Costa Azul","demo":"verde-pistache-co"},{"id":"ChIJRX7ycVBbyoURDi_Blj5OGOA","t":"C","n":"Artesano","a":"Capitán James Cook 17, Costa Azul","demo":"artesano-costa-azul"},{"id":"ChIJH_u-585ZyoURjMKtJvmIe_8","t":"C","n":"Restaurante Nuevo Gusto","a":"Teniente Mateo F. Maury 19, Costa Azul","demo":"restaurante-nuevo-gusto"},{"id":"ChIJ9c56Ac9ZyoURwS7KF94rwI4","t":"R","n":"Taquería Tres Chiles","a":"Horacio Nelson 390, Costa Azul","demo":"taqueria-tres-chiles"},{"id":"ChIJAQAwmc5ZyoURqwEgHJFTc-4","t":"C","n":"Yoyas","a":"Av. Costera Miguel Alemán 3007, Costa Azul","demo":"yoyas-acapulco"},{"id":"ChIJfUVWz85ZyoURu09WKKOxl-w","t":"R","n":"Jule do Brasil","a":"Av. Costera Miguel Alemán 1, Costa Azul","demo":"jule-do-brasil"},{"id":"ChIJN4eHws5ZyoURiLCvauxBzNg","t":"R","n":"Pesca'o","a":"Mateo F. Maury 1, Costa Azul","demo":"pescao-costa-azul"},{"id":"ChIJLY68ZABZyoURtq13hqVawYg","t":"R","n":"Wahoo Costera","a":"Av. Costera Miguel Alemán 44, Costa Azul","demo":"wahoo-costera"},{"id":"ChIJa6UA3NFZyoUROqg79f5mQtI","t":"R","n":"Negro Santo","a":"Costa Azul","demo":"negro-santo-costa-azul"},{"id":"ChIJp7sPBtBZyoUR7-hel7s5ZoM","t":"R","n":"La Ribaicita","a":"Parque Sur 270, Costa Azul","demo":"la-ribaicita"},{"id":"ChIJHfG4WtBZyoURa7IwnJPj1fc","t":"R","n":"Sushi Point","a":"Horacio Nelson 12, Costa Azul","demo":"sushi-point-costa-azul"},{"id":"ChIJi31Fs1RZyoURjl8LPuXVnBo","t":"R","n":"Salads & Wings Terraza","a":"Plaza Pabellón Costera","demo":"salads-and-wings-costa-azul"},{"id":"ChIJo_fUHjdZyoURuc-2gxZS6H8","t":"R","n":"Tóxica Snack & Bar","a":"Av. Costera Miguel Alemán 34, Costa Azul","demo":"toxica-snack-bar"},{"id":"ChIJg8a6TgBZyoURPUJBd_N1tb4","t":"R","n":"Ojo de Bife Parrilla Argentina","a":"Av. Costera Miguel Alemán 81, Club Deportivo","demo":"ojo-de-bife-parrilla-argentina"},{"id":"ChIJ_dw3FyZYyoURkRE94ipNKhA","t":"R","n":"Taquitos Acapulco","a":"Av. Costera Miguel Alemán 138, La Condesa","demo":"taquitos-acapulco-condesa"}]},{"num":2,"title":"Magallanes → Condesa","title_en":"Magallanes → Condesa","span":"Costera centro","span_en":"Central Costera","desc":"⭐ #2: zona turística con mucho movimiento, todo cerca.","desc_en":"⭐ #2: busy tourist strip, all close together.","stops":[{"id":"ChIJpYUE1btZyoURSK0c385aQg0","t":"C","n":"Crepas & Bobas","a":"Av. Costera 1632, Magallanes","demo":"crepas-y-bobas"},{"id":"ChIJf9DR0x9YyoURH3_5OT89rSQ","t":"R","n":"Shari Maki","a":"Galerías Acapulco, Magallanes","demo":"shari-maki-galerias"},{"id":"ChIJDQ78KjFZyoURMoW_SlZ1iM8","t":"R","n":"La Cita","a":"Av. Costera, Magallanes","demo":"la-cita-acapulco"},{"id":"ChIJ8VbNd1FZyoURsmni53mza9g","t":"R","n":"La Norteña Acapulco","a":"Av. Costera 8, Magallanes","demo":"la-nortena-acapulco"},{"id":"ChIJw2-CkeT3yoURoCgfetIG5e8","t":"R","n":"El Zorrito","a":"Av. Costera 212, Magallanes","demo":"el-zorrito"},{"id":"ChIJ_W-mNfVXyoUR7YLlnZT4c50","t":"C","n":"Sharon's Magallanes","a":"Martín Alonso Pinzón 28, Magallanes","demo":"sharons-magallanes"},{"id":"ChIJiS9mjyBYyoURJE84Ai3L-R0","t":"R","n":"La Barra 520","a":"Av. Costera 186, Magallanes","demo":"la-barra-520"},{"id":"ChIJqwr-b_tZyoUR8leSlqd5_9Q","t":"R","n":"Prego Cucina Italiana","a":"Av. Costera 3, Magallanes","demo":"prego-cucina-italiana"},{"id":"ChIJR3lBBF1ZyoURi_qGmLqW5RI","t":"R","n":"Aiko Comida Japonesa","a":"Av. Costera 120, Condesa","demo":"aiko-comida-japonesa"}]},{"num":3,"title":"Caleta → Centro → Hornos","title_en":"Caleta → Downtown → Hornos","span":"Caleta · Zócalo · Hornos","span_en":"Caleta · Zócalo · Hornos","desc":"#3: dueños que atienden en persona; estaciona y camina.","desc_en":"#3: owners on site; park and walk.","stops":[{"id":"ChIJd2oEyvX3yoURH1eMQh2v-2U","t":"R","n":"Mi Piaci","a":"Plaza Álvarez 6, Centro","demo":"mi-piaci"},{"id":"ChIJe_coruT3yoURaK1Jlg2pi-E","t":"R","n":"La Casa de los Abuelos","a":"Plaza Álvarez 6, Centro","demo":"casa-de-los-abuelos"},{"id":"ChIJ95i4yKtZyoURU5t8JDSAP8s","t":"R","n":"The Only Pizzas Gourmet","a":"Av. Capitán Malaspina, Hornos","demo":"the-only-pizzas-gourmet"},{"id":"ChIJJ2BrQHtZyoUR1BZmGLmlg3A","t":"R","n":"Malaespina Burgers & Wings","a":"Hornos","demo":"malaespina-burgers-wings"},{"id":"ChIJg2bQAQz4yoURaTXdYfMznSc","t":"R","n":"El Amigo Miguel","a":"Av Costera, Hornos","demo":"el-amigo-miguel"},{"id":"ChIJC8Qb3OX3yoURvlqeODRJPnQ","t":"R","n":"El Nono","a":"Av. Costera 179, Hornos","demo":"el-nono"}]},{"num":4,"title":"Diamante → Barra Vieja","title_en":"Diamante → Barra Vieja","span":"Puerto Marqués · Bulevar · Barra Vieja","span_en":"Puerto Marqués · Blvd. · Barra Vieja","desc":"#4: buenos restaurantes pero lejos; necesitas coche.","desc_en":"#4: good restaurants but far apart; you need a car.","stops":[{"id":"ChIJEUo7xh5ZyoURVV4ZOQuSJuU","t":"R","n":"Península Restaurantes","a":"Blvd. Cabo Marqués, Punta Diamante","demo":"peninsula-restaurantes"},{"id":"ChIJ5w1uJ3FZyoURf-CFcpbDXFk","t":"R","n":"Don Camarón","a":"Blvrd Cabo Marqués 1007, Punta Diamante","demo":"don-camaron"},{"id":"ChIJn0eZZnhcyoURtvIxoQ2OFR8","t":"R","n":"Las Gaoneras La Isla","a":"Blvd. de las Naciones 1813","demo":"las-gaoneras-la-isla"},{"id":"ChIJiXL73f1ByoURoV7dE3m8bK4","t":"R","n":"Cira La Morena 1","a":"Barra Vieja","demo":"cira-la-morena"},{"id":"ChIJLQbnBXRbyoURsWDisf9UJ_w","t":"R","n":"Mariscos La Mazatleca","a":"Diamante","demo":"mariscos-la-mazatleca-diamante"},{"id":"ChIJ-zh0E2FZyoURv5sOZ8AFqFE","t":"R","n":"La Trainera - La Joya","a":"Blvd. de las Naciones 37","demo":"la-trainera-la-joya"}]},{"num":5,"title":"Icacos → Las Brisas","title_en":"Icacos → Las Brisas","span":"Zona Dorada y Escénica","span_en":"Golden Zone & Scenic road","desc":"#5: los más finos. Mejor de 4 a 6 pm.","desc_en":"#5: the most upscale. Best 4–6 pm.","stops":[{"id":"ChIJCX6gBvVZyoUR_LHFnvlBN9M","t":"R","n":"Amalfi Acapulco","a":"Carretera Escénica 1007","demo":"amalfi-acapulco"},{"id":"ChIJ9SRUerBZyoURBmt-RyAYM1o","t":"R","n":"Muna Acapulco","a":"Carretera Escénica 1007","demo":"muna-acapulco"},{"id":"ChIJ1x9FhbJZyoURjRG54EV1QOA","t":"R","n":"Tony's Bistro Acapulco","a":"Carretera Escénica s/n","demo":"tonys-bistro-acapulco"},{"id":"ChIJmcyi8adZyoURJ9d5LEqt99Q","t":"R","n":"Zibu Acapulco","a":"Carretera Escénica s/n","demo":"zibu-acapulco"}]}]};
+
+const GR={"ChIJ0fF9CPlZyoURJyk51nAWt4A":{s:"4.6",r:"182"},"ChIJPySSHWlZyoURUGNwAKAONqw":{s:"4.5",r:"432"},"ChIJmSVCG89ZyoURikZnnAikfRM":{s:"4.4",r:null},"ChIJRX7ycVBbyoURDi_Blj5OGOA":{s:"4.5",r:"315"},"ChIJH_u-585ZyoURjMKtJvmIe_8":{s:"4.5",r:"367"},"ChIJ9c56Ac9ZyoURwS7KF94rwI4":{s:"4.3",r:null},"ChIJAQAwmc5ZyoURqwEgHJFTc-4":{s:"4.3",r:"438"},"ChIJfUVWz85ZyoURu09WKKOxl-w":{s:"4.4",r:"2.3k"},"ChIJN4eHws5ZyoURiLCvauxBzNg":{s:"4.4",r:null},"ChIJLY68ZABZyoURtq13hqVawYg":{s:"4.3",r:"169"},"ChIJa6UA3NFZyoUROqg79f5mQtI":{s:"4.3",r:"364"},"ChIJp7sPBtBZyoUR7-hel7s5ZoM":{s:"4.4",r:"238"},"ChIJHfG4WtBZyoURa7IwnJPj1fc":{s:"4.6",r:"264"},"ChIJi31Fs1RZyoURjl8LPuXVnBo":{s:"4.7",r:"2.1k"},"ChIJo_fUHjdZyoURuc-2gxZS6H8":{s:"4.3",r:null},"ChIJg8a6TgBZyoURPUJBd_N1tb4":{s:"4.7",r:"251"},"ChIJ_dw3FyZYyoURkRE94ipNKhA":{s:"3.9",r:"4.5k"}};
+
+let activeRoute = 1;
+
+function renderRoutes(){
+  // Route selector
+  const sel = $("routeSel");
+  sel.innerHTML = DATA.routes.map(r=>`
+    <button class="${r.num===activeRoute?"on":""}" onclick="setRoute(${r.num})">${lang==="en"?r.title_en:r.title}</button>
+  `).join("");
+
+  const route = DATA.routes.find(r=>r.num===activeRoute);
+  if(!route) return;
+  const ty = DATA.types[route.stops[0]?.t]||DATA.types.R;
+
+  const content = $("routeContent");
+  content.innerHTML = `
+    <div class="rcard">
+      <h2>${lang==="en"?(route.title_en||route.title):route.title}</h2>
+      <div class="sub">${lang==="en"?(route.span_en||route.span):route.span}</div>
+      <div class="desc">${lang==="en"?(route.desc_en||route.desc):route.desc}</div>
+    </div>
+    ${route.stops.map((s,i)=>{
+      const t = DATA.types[s.t]||DATA.types.R;
+      const gr = GR[s.id];
+      const demoUrl = G+"c/"+s.demo+"/";
+      const sendMsg = lang==="es"
+        ? `¡Hola! Soy socio de MX Studio ✝\n\nLe hice una muestra de su app de menú — con su menú en español e inglés, fotos, WiFi y más:\n👉 ${demoUrl}\n\n¿Le hago una gratis para ${s.n}?`
+        : `Hi! I'm a partner of MX Studio ✝\n\nI made a sample menu app for you — with your menu in Spanish and English, photos, WiFi and more:\n👉 ${demoUrl}\n\nWould you like a free sample for ${s.n}?`;
+      return `<div class="sc">
+        ${gr?`<div class="gr"><span style="color:#ffd700">★</span> ${gr.s}${gr.r?` <span style="font-weight:400;opacity:.7">· ${gr.r}</span>`:""}</div>`:""}
+        <div class="sn">${s.n}</div>
+        <div class="sa">${s.a}</div>
+        <span class="stag" style="background:${t.c}">${lang==="en"?(t.en||t.es):t.es}</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
+          <button class="sbtn" onclick="openIframe('${demoUrl}','${lang==="es"?"← Rutas":"← Routes"}')">${lang==="es"?"📱 Ver app":"📱 See app"}</button>
+          <button class="sbtn" style="background:linear-gradient(135deg,var(--green),#128c4e)" onclick="window.open('https://wa.me/?text='+encodeURIComponent(${JSON.stringify(sendMsg)}),'_blank')">${lang==="es"?"💬 Enviar":"💬 Send"}</button>
+        </div>
+      </div>`;
+    }).join("")}
+  `;
+}
+
+function setRoute(n){ activeRoute=n; renderRoutes(); scrollTo({top:0}); }
+
+// ── PACKAGE SELECTOR ──
+let selectedPkg = "r";
+document.querySelectorAll(".pkg").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".pkg").forEach(b=>b.classList.remove("on"));
+    btn.classList.add("on");
+    selectedPkg = btn.dataset.pkg;
+  };
+});
+
+// ── ORDER SUBMIT ──
+$("submitBtn").onclick=()=>{
+  const biz = $("f-biz").value.trim();
+  if(!biz){ toast(lang==="es"?"Falta el nombre del negocio":"Missing business name"); return; }
+  const pname = $("f-pname").value.trim();
+  const wa = $("f-wa").value.trim();
+  const addr = $("f-addr").value.trim();
+  const wn = $("f-wn").value.trim();
+  const wp = $("f-wp").value.trim();
+  const pay = $("f-pay").value;
+  const notes = $("f-notes").value.trim();
+  const pkgName = selectedPkg==="r"?"Restaurante $18,000":"Hotel + Restaurante $28,000";
+
+  const msg = lang==="es"
+    ? `🤝 *Nueva venta — MX Studio ✝*\n\n*Negocio:* ${biz}${addr?"\n*Dirección:* "+addr:""}${wa?"\n*WhatsApp:* "+wa:""}\n*Paquete:* ${pkgName}\n*Pago:* ${pay}${wn?"\n*WiFi:* "+wn+(wp?" / "+wp:""):""}\n*Socio:* ${pname||"(sin nombre)"}\n\n${notes?"*Notas:* "+notes+"\n\n":""}👉 Activar app y mandarle link al dueño.`
+    : `🤝 *New sale — MX Studio ✝*\n\n*Business:* ${biz}${addr?"\n*Address:* "+addr:""}${wa?"\n*WhatsApp:* "+wa:""}\n*Package:* ${pkgName}\n*Payment:* ${pay}${wn?"\n*WiFi:* "+wn+(wp?" / "+wp:""):""}\n*Partner:* ${pname||"(no name)"}\n\n${notes?"*Notes:* "+notes+"\n\n":""}👉 Please activate the app and send the owner their link.`;
+
+  window.open("https://wa.me/"+BRIAN_WA+"?text="+encodeURIComponent(msg),"_blank");
+  $("confirm").style.display = "block";
+  $("confirm").scrollIntoView({behavior:"smooth",block:"center"});
+};
+
+// ── INIT ──
+renderRoutes();
+// English pitch blocks hidden by default
+document.querySelectorAll(".en-txt").forEach(e=>e.style.display="none");
+</script>
+</body>
+</html>

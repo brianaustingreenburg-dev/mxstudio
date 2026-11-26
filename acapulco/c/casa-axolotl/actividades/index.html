@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Actividades · AcáFree</title>
+<meta name="theme-color" content="#1a1a2e">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --yellow:#f5e94a;--pink:#e8407a;--navy:#1a1a2e;--navylt:#252545;
+  --wave:#5bc8dc;--text:#f5f0ea;--muted:#9898b8;--border:rgba(245,233,74,.2);
+}
+html{background:var(--navy)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--navy);overflow-x:hidden}
+.page{max-width:600px;margin:0 auto;min-height:100vh;background:var(--navy);box-shadow:0 0 80px rgba(0,0,0,.6)}
+
+/* header */
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--navylt);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.back{background:none;border:none;color:var(--yellow);font-size:1.3rem;cursor:pointer;padding:0 4px;line-height:1;-webkit-tap-highlight-color:transparent;text-decoration:none}
+.topbar-logo{width:40px;height:40px;object-fit:contain;border-radius:8px;background:var(--yellow);flex-shrink:0}
+.topbar h1{font-size:1rem;font-weight:800;color:var(--text);flex:1;line-height:1.1}
+.topbar h1 span{display:block;font-size:.65rem;font-weight:400;color:var(--wave);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:3px 9px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif}
+.lang-btn.on{color:var(--yellow);border-color:var(--yellow)}
+
+/* intro */
+.intro{padding:14px 16px 4px;font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:10px;padding:12px 16px 32px}
+.card{background:var(--navylt);border-radius:14px;overflow:hidden;display:flex;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.card-accent{width:5px;flex-shrink:0}
+.card-body{flex:1;padding:14px 14px 12px}
+.card-top{display:flex;align-items:flex-start;gap:10px}
+.card-num{font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.06em;width:22px;flex-shrink:0;padding-top:3px}
+.card-icon{font-size:1.5rem;flex-shrink:0}
+.card-info{flex:1}
+.card-name{font-size:1rem;font-weight:700;line-height:1.25;color:var(--text)}
+.card-pr{font-size:.68rem;color:var(--yellow);letter-spacing:.05em;margin-top:2px}
+.card-desc{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:8px}
+.card-wa{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(232,64,122,.12);border:1px solid rgba(232,64,122,.35);color:#f07aa8;font-size:.75rem;font-weight:600;padding:7px 14px;border-radius:50px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.card-wa:active{opacity:.7}
+
+/* section header */
+.section-hd{padding:16px 16px 4px;display:flex;align-items:center;gap:8px}
+.section-hd span{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.section-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* credit */
+.credit{text-align:center;padding:0 0 28px;opacity:.35}
+.credit a{color:var(--muted);font-size:.65rem;text-decoration:none;letter-spacing:.05em}
+.credit strong{color:var(--yellow)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topbar">
+  <a class="back" href="../">‹</a>
+  <img class="topbar-logo" src="../img/acafree-logo.png" alt="AcáFree">
+  <h1>AcáFree<span id="hSub">Turismo de Aventura</span></h1>
+  <button class="lang-btn on" id="esBtn" onclick="setLang('es')">ES</button>
+  <span style="color:#333;font-size:.7rem;padding:0 2px">|</span>
+  <button class="lang-btn" id="enBtn" onclick="setLang('en')">EN</button>
+</div>
+
+<p class="intro" id="intro">Experiencias y aventuras en Pie de la Cuesta y Acapulco.</p>
+
+<div class="cards" id="cards"></div>
+
+<div class="credit">
+  <a href="https://myjefetech.app" target="_blank">✦ App by <strong>MX Studio</strong> · myjefetech.app</a>
+</div>
+
+</div>
+
+<script>
+const WA = '527474999032';
+
+const SECTIONS = [
+  {
+    id: 'hotel',
+    label: { es: 'En Casa Axolotl', en: 'At Casa Axolotl' },
+    items: [
+      {
+        ic: '🏊', col: '#2563a8',
+        n: { es: 'Alberca', en: 'Swimming Pool' },
+        d: { es: 'Nuestra alberca privada con vista al jardín. Perfecta para relajarte entre excursiones o disfrutar de una tarde tranquila en Pie de la Cuesta.', en: 'Our private pool overlooking the garden. Perfect for relaxing between adventures or enjoying a quiet afternoon in Pie de la Cuesta.' }
+      },
+      {
+        ic: '🛶', col: '#16495e',
+        n: { es: 'Renta de Kayak', en: 'Kayak Rental' },
+        pr: { es: '$150 por persona · 1 hora en la laguna', en: '$150 per person · 1 hr on the lagoon' },
+        d: { es: 'Una hora de renta en la laguna de Pie de la Cuesta. Ingresando por Palapa Xperiences (firma de responsiva requerida).', en: 'One hour rental on the Pie de la Cuesta lagoon. Enter through Palapa Xperiences (liability waiver required).' },
+        msg: { es: '¡Hola! ¿Puedo rentar un kayak hoy en Casa Axolotl? ¿A qué hora puedo salir?', en: 'Hi! Can I rent a kayak today at Casa Axolotl? What time can I go out?' }
+      },
+      {
+        ic: '🔥', col: '#e8607a',
+        n: { es: 'Fogata Familiar · AcáFree', en: 'Family Bonfire · AcáFree' },
+        pr: { es: '$600 por carga de leña · ~1 hora', en: '$600 per load of wood · ~1 hour' },
+        d: { es: 'Nosotros te armamos la fogata, no debes preocuparte por nada. Incluimos 1 carga de leña, bombones y varillas para asar. Te entregamos la fogata prendida al atardecer en Pie de la Cuesta.', en: 'We set up the bonfire — you just show up. Includes 1 load of firewood, marshmallows and roasting sticks. We hand it over lit at sunset in Pie de la Cuesta.' },
+        msg: { es: '¡Hola! Quiero reservar una fogata familiar en Casa Axolotl. ¿Tienen disponibilidad esta noche?', en: 'Hi! I want to book a family bonfire at Casa Axolotl. Do you have availability tonight?' }
+      },
+      {
+        ic: '💆', col: '#6b3fa0',
+        n: { es: 'Masaje Relajante', en: 'Relaxing Massage' },
+        pr: { es: '$800 por persona · 60 minutos', en: '$800 per person · 60 minutes' },
+        d: { es: 'Disfruta de 60 minutos de masaje relajante en Casa Axolotl con aromaterapia y música ambiental. A cargo de personal capacitado. Reserva con anticipación por WhatsApp.', en: 'Enjoy 60 minutes of relaxing massage at Casa Axolotl with aromatherapy and ambient music. With trained staff. Book in advance via WhatsApp.' },
+        msg: { es: '¡Hola! Me gustaría reservar un masaje en Casa Axolotl. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'d like to book a massage at Casa Axolotl. What days do you have availability?' }
+      },
+      {
+        ic: '🏖️', col: '#c9922a',
+        n: { es: 'Day Pass · Casa Axolotl', en: 'Day Pass · Casa Axolotl' },
+        pr: { es: '$350 por persona · Incluye 1 hora de kayak', en: '$350 per person · Includes 1 hour of kayak' },
+        d: { es: 'Acceso a las instalaciones. El vale es canjeable al 100% en alimentos y bebidas, e incluye 1 hora de kayak en la laguna.', en: 'Full access to the property. The pass is 100% redeemable on food and drinks, and includes 1 hour of kayak on the lagoon.' },
+        msg: { es: '¡Hola! Me interesa el Day Pass de Casa Axolotl. ¿Qué incluye exactamente?', en: 'Hi! I\'m interested in the Casa Axolotl Day Pass. What exactly does it include?' }
+      },
+      {
+        ic: '🌅', col: '#c9922a',
+        n: { es: 'Mejor atardecer de México', en: 'Best Sunset in Mexico' },
+        d: { es: 'Pie de la Cuesta es el único lugar donde el sol cae directo al mar entre el Pacífico y la laguna de Coyuca. Sal a la playa frente al hotel alrededor de las 6 pm.', en: 'Pie de la Cuesta is the only place the sun drops straight into the ocean between the Pacific and Coyuca Lagoon. Head to the beach in front of the hotel around 6 pm.' }
+      },
+      {
+        ic: '🎬', col: '#1a7a5e',
+        n: { es: 'Cine en la playa', en: 'Beach Cinema' },
+        d: { es: 'Noches de cine bajo las estrellas frente al Pacífico. Una experiencia única en Pie de la Cuesta. Consulta fechas y disponibilidad.', en: 'Movie nights under the stars facing the Pacific. A unique experience in Pie de la Cuesta. Ask about dates and availability.' },
+        msg: { es: '¡Hola! ¿Cuándo es la próxima noche de cine en Casa Axolotl?', en: 'Hi! When is the next beach movie night at Casa Axolotl?' }
+      }
+    ]
+  },
+  {
+    id: 'naturaleza',
+    label: { es: 'Naturaleza y Ecoturismo · AcáFree', en: 'Nature & Ecotourism · AcáFree' },
+    items: [
+      {
+        ic: '🐢', col: '#2d7a4f',
+        n: { es: 'Liberación de Tortugas', en: 'Turtle Release' },
+        pr: { es: '$600 con transporte · $500 sin transporte (por persona)', en: '$600 with transport · $500 without (per person)' },
+        d: { es: 'Comienza con un desayuno completo en Casa Axolotl a las 9 a.m. A las 11–12 realizamos un recorrido en lancha por la laguna y el río de Coyuca hasta la Barra de Coyuca para la liberación de tortugas marinas. Disponible en temporada (jul–dic).', en: 'Start with a full breakfast at Casa Axolotl at 9 a.m. At 11–12 we take a boat tour through Coyuca Lagoon and river to Barra de Coyuca for the sea turtle release. Available in season (Jul–Dec).' },
+        msg: { es: '¡Hola! Me interesa participar en la liberación de tortugas. ¿Cuándo es la próxima salida?', en: 'Hi! I\'m interested in the turtle release. When is the next one?' }
+      },
+      {
+        ic: '🚣', col: '#16495e',
+        n: { es: 'Kayak Tour por la Laguna · Guiado', en: 'Guided Kayak Tour · Lagoon' },
+        pr: { es: '$450 por persona · Incluye desayuno completo', en: '$450 per person · Includes full breakfast' },
+        d: { es: 'Explora la laguna de Coyuca en una travesía guiada. Incluye desayuno completo en Casa Axolotl, kayak y chaleco salvavidas. Ideal para disfrutar de la naturaleza y comenzar el día al aire libre.', en: 'Explore Coyuca Lagoon on a guided tour. Includes full breakfast at Casa Axolotl, kayak and life jacket. Perfect for nature lovers and an active morning.' },
+        msg: { es: '¡Hola! Me interesa el kayak tour guiado por la laguna de Coyuca. ¿A qué hora salen?', en: 'Hi! I\'m interested in the guided kayak tour of Coyuca Lagoon. What time do you depart?' }
+      },
+      {
+        ic: '🏝️', col: '#2563a8',
+        n: { es: 'Tour Isla Montosa', en: 'Isla Montosa Tour' },
+        pr: { es: '$400 por persona · Incluye desayuno', en: '$400 per person · Includes breakfast' },
+        d: { es: 'Recorre el entorno de Isla Montosa y la laguna; conoce la zona de cocodrilos, la Isla de los Pájaros y la flora y fauna local. Incluye desayuno completo en Casa Axolotl. En la zona hay restaurante y posibilidad de rentar banana o motos acuáticas por separado.', en: 'Explore Isla Montosa and the lagoon; visit the crocodile area, Bird Island and local wildlife. Includes full breakfast at Casa Axolotl. Restaurant and banana boat/jet ski rentals available on the island.' },
+        msg: { es: '¡Hola! Quiero información sobre el Tour Isla Montosa. ¿Cuántos lugares tienen disponibles?', en: 'Hi! I want information about the Isla Montosa Tour. How many spots do you have available?' }
+      },
+      {
+        ic: '🏄', col: '#e8407a',
+        n: { es: 'Paquete Isla Park + Desayuno', en: 'Isla Park Package + Breakfast' },
+        pr: { es: '$400 por persona', en: '$400 per person' },
+        d: { es: 'Visita a Isla Park que comienza con un desayuno en Casa Axolotl: café o té, pan o galletas, jugo de naranja o agua natural y fruta con yogur. Consulta detalles del recorrido y servicios de Isla Park al reservar.', en: 'A visit to Isla Park starting with breakfast at Casa Axolotl: coffee or tea, bread or cookies, orange juice or water and fruit with yogurt. Ask about Isla Park\'s services when booking.' },
+        msg: { es: '¡Hola! Me interesa el paquete Isla Park + Desayuno. ¿Cómo lo reservo?', en: 'Hi! I\'m interested in the Isla Park + Breakfast package. How do I book it?' }
+      }
+    ]
+  },
+  {
+    id: 'yate',
+    label: { es: 'Paseos en Yate · Isla La Roqueta', en: 'Yacht Tours · Isla La Roqueta' },
+    items: [
+      {
+        ic: '⛵', col: '#1a4a8e',
+        n: { es: 'Tour Tradicional en Yate Dinka', en: 'Traditional Yacht Tour · Dinka' },
+        pr: { es: '$300 por boleto · Niños hasta 1.10 m gratis', en: '$300 per ticket · Kids under 1.10 m free' },
+        d: { es: 'Conoce la emblemática Isla La Roqueta a bordo del Yate Dinka, disfrutando de un paseo por la bahía de Acapulco. Niños de hasta 1.10 m de estatura viajan gratis; arriba de esa medida pagan boleto.', en: 'Visit the iconic Isla La Roqueta aboard the Dinka yacht, cruising the bay of Acapulco. Children up to 1.10 m travel free; taller children pay the full fare.' },
+        msg: { es: '¡Hola! Me interesa el Tour en Yate Dinka a Isla La Roqueta. ¿Cuándo tienen salidas disponibles?', en: 'Hi! I\'m interested in the Dinka Yacht Tour to Isla La Roqueta. When do you have departures?' }
+      },
+      {
+        ic: '🤿', col: '#0d7a8e',
+        n: { es: 'Tour en Yate + Snorkel · Dinka', en: 'Yacht Tour + Snorkel · Dinka' },
+        pr: { es: '$550 por boleto · Niños hasta 1.10 m gratis', en: '$550 per ticket · Kids under 1.10 m free' },
+        d: { es: 'Combina el paseo en yate hacia Isla La Roqueta con una experiencia de snorkel para descubrir el entorno marino. Equipo incluido. Niños de hasta 1.10 m viajan gratis.', en: 'Combine the yacht trip to Isla La Roqueta with a snorkel experience to discover the marine environment. Equipment included. Children up to 1.10 m travel free.' },
+        msg: { es: '¡Hola! Quiero el tour en Yate Dinka con snorkel a Isla La Roqueta. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want the Dinka Yacht Tour with snorkel to Isla La Roqueta. When do you have availability?' }
+      }
+    ]
+  },
+  {
+    id: 'kayakmar',
+    label: { es: 'Kayak por el Mar · AcáFree', en: 'Sea Kayak · AcáFree' },
+    items: [
+      {
+        ic: '🚣', col: '#0d6e8e',
+        n: { es: 'Kayak de Caleta a Isla La Roqueta', en: 'Kayak Caleta to Isla La Roqueta' },
+        d: { es: 'Rema desde Playa Caleta hasta Isla La Roqueta en una travesía por el mar. Incluye guía, kayak, chaleco salvavidas y tomas aéreas con dron.', en: 'Paddle from Playa Caleta to Isla La Roqueta across open water. Includes guide, kayak, life jacket and aerial drone footage.' },
+        msg: { es: '¡Hola! Me interesa el kayak de Caleta a Isla La Roqueta. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'m interested in the kayak from Caleta to Isla La Roqueta. What days do you have availability?' }
+      },
+      {
+        ic: '⛰️', col: '#3a5a8e',
+        n: { es: 'Kayak y Ascenso al Morro de Acapulco', en: 'Kayak & Morro de Acapulco Climb' },
+        d: { es: 'Parte de la zona de La Diana, navega en kayak por la bahía y sube al Morro de Acapulco. Incluye guía, kayak, chaleco salvavidas y tomas aéreas con dron.', en: 'Start near La Diana, kayak across the bay and climb Morro de Acapulco. Includes guide, kayak, life jacket and aerial drone footage.' },
+        msg: { es: '¡Hola! Me interesa el kayak con ascenso al Morro de Acapulco. ¿Cuándo tienen salidas?', en: 'Hi! I\'m interested in the kayak and Morro de Acapulco climb. When do you have departures?' }
+      },
+      {
+        ic: '🏖️', col: '#1a5e6e',
+        n: { es: 'Kayak de Icacos a Playa Secreta', en: 'Kayak Icacos to Hidden Beach' },
+        d: { es: 'Recorre en kayak la costa desde Playa Icacos hasta una playa escondida junto a la base de la Marina. Incluye guía, kayak, chaleco salvavidas y tomas aéreas con dron.', en: 'Kayak along the coast from Playa Icacos to a hidden beach next to the Marina base. Includes guide, kayak, life jacket and aerial drone footage.' },
+        msg: { es: '¡Hola! Me interesa el kayak de Icacos a la playa secreta. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'m interested in the kayak from Icacos to the hidden beach. What days do you have availability?' }
+      }
+    ]
+  },
+  {
+    id: 'senderismo',
+    label: { es: 'Senderismo · AcáFree', en: 'Hiking · AcáFree' },
+    items: [
+      {
+        ic: '🌿', col: '#2d7a4f',
+        n: { es: 'Senderismo a la Cascada El Salto', en: 'Hiking to El Salto Waterfall' },
+        d: { es: 'Aventura por senderos y vegetación hasta la Cascada El Salto, un paraje asociado con las filmaciones de la película Rambo. Ruta y detalles operativos disponibles por WhatsApp.', en: 'Adventure through trails and vegetation to El Salto Waterfall, a spot associated with the filming of the movie Rambo. Route and details available via WhatsApp.' },
+        msg: { es: '¡Hola! Me interesa el senderismo a la Cascada El Salto. ¿Organizan salidas guiadas?', en: 'Hi! I\'m interested in hiking to El Salto Waterfall. Do you organize guided outings?' }
+      },
+      {
+        ic: '🏝️', col: '#1a5e3a',
+        n: { es: 'Senderismo · Playas Secretas de La Roqueta', en: 'Hiking · Hidden Beaches of La Roqueta' },
+        d: { es: 'Explora los caminos naturales de Isla La Roqueta y descubre sus playas escondidas y paisajes costeros. Ruta y detalles operativos disponibles por WhatsApp.', en: 'Explore the natural trails of Isla La Roqueta and discover its hidden beaches and coastal scenery. Route and details available via WhatsApp.' },
+        msg: { es: '¡Hola! Me interesa el senderismo a las playas secretas de La Roqueta. ¿Cuándo tienen salidas?', en: 'Hi! I\'m interested in hiking to the hidden beaches of La Roqueta. When do you have departures?' }
+      }
+    ]
+  },
+  {
+    id: 'especiales',
+    label: { es: 'Celebraciones y Experiencias · AcáFree', en: 'Celebrations & Experiences · AcáFree' },
+    items: [
+      {
+        ic: '🧺', col: '#b85a3c',
+        n: { es: 'Picnic Especial', en: 'Special Picnic' },
+        pr: { es: '$1,400 para 2 personas · $90 por persona adicional', en: '$1,400 for 2 people · $90 each additional person' },
+        d: { es: 'Celebra un cumpleaños, aniversario o fecha especial con un montaje decorado frente al mar: centros de mesa, tapetes, letrero de celebración, camino de mesa, vajilla y cubiertos; tippie con cojines, luces y bocina Bluetooth. Extras opcionales: vino $700, cena $470/persona, pastel $450, dron $500, entre otros.', en: 'Celebrate a birthday, anniversary or special date with a decorated setup by the sea: centerpieces, rugs, celebration sign, table runner, dinnerware; tippie with cushions, lights and Bluetooth speaker. Optional extras: wine $700, dinner $470/person, cake $450, drone $500, and more.' },
+        msg: { es: '¡Hola! Me interesa el Picnic Especial en Casa Axolotl. ¿Qué incluye y cómo lo reservo?', en: 'Hi! I\'m interested in the Special Picnic at Casa Axolotl. What\'s included and how do I book it?' }
+      },
+      {
+        ic: '🍽️', col: '#8a3a2e',
+        n: { es: 'Cena Especial', en: 'Special Dinner' },
+        pr: { es: '$1,400 para 2 personas · $90 por persona adicional', en: '$1,400 for 2 people · $90 each additional person' },
+        d: { es: 'Una celebración íntima junto al mar con mesa y espacio decorados: centros de mesa, tapetes, letrero de celebración, textiles, vajilla; tippie, cojines, luces y bocina Bluetooth. Cena disponible como adicional ($470 p/persona): corte de carne, costillas BBQ, pechuga cordon bleu o lasaña.', en: 'An intimate celebration by the sea with a decorated table and space: centerpieces, rugs, celebration sign, textiles, dinnerware; tippie, cushions, lights and Bluetooth speaker. Dinner as an add-on ($470/person): steak, BBQ ribs, chicken cordon bleu or lasagna.' },
+        msg: { es: '¡Hola! Me interesa organizar una Cena Especial en Casa Axolotl. ¿Cómo la reservo?', en: 'Hi! I\'m interested in organizing a Special Dinner at Casa Axolotl. How do I book it?' }
+      },
+      {
+        ic: '💍', col: '#e8407a',
+        n: { es: 'Paquete Cásate Conmigo', en: '"Marry Me" Proposal Package' },
+        pr: { es: '$8,900 para 2 personas', en: '$8,900 for 2 people' },
+        d: { es: 'Propuesta de matrimonio frente al mar con todo preparado: letras "Cásate conmigo", pirotecnia, portarretrato, tippie, mesa decorada, camino de pétalos, ramo de rosas, juego de mesa, bocina, pizarrón personalizado, dedicatoria, toma con dron, botella de vino o dos bebidas, cena para dos y postre. Extras: violinista $1,150, fotografía profesional $1,150.', en: 'Marriage proposal by the sea with everything set up: "Marry Me" letters, fireworks, picture frame, tippie, decorated table, petal path, rose bouquet, board game, speaker, personalized chalkboard, dedication, drone footage, bottle of wine or two drinks, dinner for two and dessert. Extras: violinist $1,150, professional photography $1,150.' },
+        msg: { es: '¡Hola! Quiero organizar una propuesta de matrimonio en Casa Axolotl con el paquete Cásate Conmigo. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want to plan a "Marry Me" marriage proposal at Casa Axolotl. When do you have availability?' }
+      },
+      {
+        ic: '🎂', col: '#c9922a',
+        n: { es: 'Cumpleaños y Celebraciones', en: 'Birthdays & Celebrations' },
+        d: { es: 'Haz de tu cumpleaños algo inolvidable en Pie de la Cuesta. Decoración temática, pastel, música y experiencias personalizadas para el festejado y sus invitados. Consulta paquetes disponibles.', en: 'Make your birthday unforgettable in Pie de la Cuesta. Themed decorations, cake, music and personalized experiences for the birthday person and guests. Ask about available packages.' },
+        msg: { es: '¡Hola! Quiero organizar una celebración de cumpleaños en Casa Axolotl. ¿Qué opciones tienen disponibles?', en: 'Hi! I want to organize a birthday celebration at Casa Axolotl. What options do you have available?' }
+      },
+      {
+        ic: '📸', col: '#6b3fa0',
+        n: { es: 'Sesión de Fotografía + Dron', en: 'Photo Session + Drone' },
+        d: { es: 'Sesión fotográfica en las playas y lagunas de Pie de la Cuesta con tomas aéreas en dron. Perfecta para parejas, familias o contenido para redes sociales. Consulta precios y disponibilidad.', en: 'Photo session on the beaches and lagoons of Pie de la Cuesta with aerial drone shots. Perfect for couples, families or social media content. Ask about pricing and availability.' },
+        msg: { es: '¡Hola! Me interesa una sesión de fotos con dron en Pie de la Cuesta. ¿Cuánto cuesta y qué incluye?', en: 'Hi! I\'m interested in a photo session with drone in Pie de la Cuesta. How much does it cost and what\'s included?' }
+      },
+      {
+        ic: '🎻', col: '#8a4a6e',
+        n: { es: 'Serenata con Violinista', en: 'Violin Serenade' },
+        pr: { es: '$1,150', en: '$1,150' },
+        d: { es: 'Sorprende a tu pareja con una serenata en vivo al atardecer frente al Pacífico. Música clásica, romántica o lo que prefieras. Se puede agregar a cualquier paquete de celebración.', en: 'Surprise your partner with a live serenade at sunset facing the Pacific. Classical, romantic or whatever you prefer. Can be added to any celebration package.' },
+        msg: { es: '¡Hola! Quiero contratar una serenata con violinista en Casa Axolotl. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want to book a violin serenade at Casa Axolotl. When do you have availability?' }
+      }
+    ]
+  },
+  {
+    id: 'escapadas',
+    label: { es: 'Escapaditas · Casa Axolotl', en: 'Mini Escapes · Casa Axolotl' },
+    items: [
+      {
+        ic: '☀️', col: '#c97a2a',
+        n: { es: 'Escapadita de Día', en: 'Day Escape' },
+        pr: { es: '$1,300 por pareja · $200 p. adicional', en: '$1,300 per couple · $200 each additional' },
+        d: { es: '7 horas de habitación con aire acondicionado, vale de $700 en alimentos y bebidas, 1 hora de kayak y uso de alberca, enramadas y hamacas. De lun–jue, temporada baja y sujeto a disponibilidad. Entrada desde las 9 a.m., salida máxima 8 p.m.', en: '7 hours in an air-conditioned room, $700 food & drink credit, 1 hour of kayak and access to the pool, palapas and hammocks. Mon–Thu, low season, subject to availability. Check-in from 9 a.m., check-out by 8 p.m.' },
+        msg: { es: '¡Hola! Me interesa la Escapadita de Día en Casa Axolotl. ¿Tienen disponibilidad esta semana?', en: 'Hi! I\'m interested in the Day Escape at Casa Axolotl. Do you have availability this week?' }
+      },
+      {
+        ic: '🌙', col: '#1a4a7e',
+        n: { es: 'Escapada Completa · 1 noche', en: 'Full Escape · 1 night' },
+        pr: { es: '$1,600 por pareja · $200 p. adicional', en: '$1,600 per couple · $200 each additional' },
+        d: { es: '1 noche en habitación con aire acondicionado, vale de $800 en alimentos y bebidas, 1 hora de kayak y uso de alberca, hamacas y enramadas. De lun–jue, temporada baja y sujeto a disponibilidad. Check-in 3 p.m.; check-out 12 p.m.', en: '1 night in an air-conditioned room, $800 food & drink credit, 1 hour of kayak and access to the pool, hammocks and palapas. Mon–Thu, low season, subject to availability. Check-in 3 p.m.; check-out 12 p.m.' },
+        msg: { es: '¡Hola! Me interesa la Escapada Completa de 1 noche en Casa Axolotl. ¿Tienen disponibilidad?', en: 'Hi! I\'m interested in the Full Escape (1 night) at Casa Axolotl. Do you have availability?' }
+      },
+      {
+        ic: '👑', col: '#7a3a8e',
+        n: { es: 'Escapada Premium · Suite King', en: 'Premium Escape · King Suite' },
+        pr: { es: '$1,995 por pareja', en: '$1,995 per couple' },
+        d: { es: '1 noche en suite con cama king size, botella de vino de bienvenida, vale de $800 en alimentos y bebidas, 1 hora de kayak y acceso a todas las instalaciones. De lun–jue, temporada baja y sujeto a disponibilidad.', en: '1 night in a king suite, welcome bottle of wine, $800 food & drink credit, 1 hour of kayak and access to all facilities. Mon–Thu, low season, subject to availability.' },
+        msg: { es: '¡Hola! Me interesa la Escapada Premium (suite king) en Casa Axolotl. ¿Tienen disponibilidad?', en: 'Hi! I\'m interested in the Premium Escape (king suite) at Casa Axolotl. Do you have availability?' }
+      }
+    ]
+  }
+];
+
+let lang = (navigator.language||'es').startsWith('en') ? 'en' : 'es';
+let cardCounter = 0;
+
+function waLink(msg){ return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`; }
+
+function render(){
+  const es = lang==='es';
+  document.getElementById('hSub').textContent = es ? 'Turismo de Aventura' : 'Adventure Tourism';
+  document.getElementById('intro').textContent = es
+    ? 'Experiencias y aventuras en Pie de la Cuesta y Acapulco.'
+    : 'Experiences and adventures in Pie de la Cuesta and Acapulco.';
+  document.getElementById('esBtn').className = 'lang-btn'+(lang==='es'?' on':'');
+  document.getElementById('enBtn').className = 'lang-btn'+(lang==='en'?' on':'');
+  document.documentElement.lang = lang;
+
+  cardCounter = 0;
+  let html = '';
+  SECTIONS.forEach(sec => {
+    html += `<div class="section-hd"><span>${es ? sec.label.es : sec.label.en}</span></div>`;
+    sec.items.forEach(a => {
+      cardCounter++;
+      const num = String(cardCounter).padStart(2,'0');
+      const waBtn = a.msg
+        ? `<a class="card-wa" href="${waLink(es?a.msg.es:a.msg.en)}" target="_blank">💬 ${es?'Reservar por WhatsApp':'Book via WhatsApp'} ›</a>`
+        : '';
+      html += `
+        <div class="card">
+          <div class="card-accent" style="background:${a.col}"></div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-num">${num}</span>
+              <span class="card-icon">${a.ic}</span>
+              <div class="card-info">
+                <div class="card-name">${es?a.n.es:a.n.en}</div>
+                ${a.pr ? `<div class="card-pr">${es?a.pr.es:a.pr.en}</div>` : ''}
+              </div>
+            </div>
+            <p class="card-desc">${es?a.d.es:a.d.en}</p>
+            ${waBtn}
+          </div>
+        </div>`;
+    });
+  });
+
+  document.getElementById('cards').innerHTML = html;
+}
+
+function setLang(l){ lang=l; render(); }
+render();
+</script>
+</body>
+</html>

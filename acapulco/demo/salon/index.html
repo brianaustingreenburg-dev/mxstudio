@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Salón de belleza</title><meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#111"><meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--c:#b0457a;--bg:#0f0c0b;--s1:#1a1513;--s2:#241d1a;--line:rgba(255,255,255,.1);--t:#f7efe6;--m:#b9aba0;--g:#25d366}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);font-size:16px;line-height:1.4;padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit;color:inherit}a{color:inherit;text-decoration:none}
+.pill{position:fixed;top:calc(10px + env(safe-area-inset-top));left:10px;z-index:9;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:6px 12px;font-size:.72em;font-weight:800;letter-spacing:.06em}
+.lang{position:fixed;top:calc(10px + env(safe-area-inset-top));right:10px;z-index:9;display:flex;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);border-radius:99px;overflow:hidden}
+.lang button{border:0;background:none;padding:6px 10px;font-size:.75em;font-weight:800;cursor:pointer}.lang .on{background:var(--c)}
+.hero{position:relative;height:310px;background:#222 center/cover no-repeat}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 30%,var(--bg) 100%)}
+.head{position:relative;margin:-92px 16px 0;z-index:2;display:flex;gap:14px;align-items:flex-end}
+.logo{flex:0 0 76px;height:76px;border-radius:20px;background:var(--c);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.7em;border:3px solid var(--bg);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.head h1{font-size:1.55em;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.tag{margin:10px 16px 0;color:var(--m)}.area{margin:4px 16px 0;font-size:.88em;color:var(--m)}
+.chip{display:inline-block;margin:10px 0 0 16px;background:var(--s2);border:1px solid var(--line);border-radius:99px;padding:4px 10px;font-size:.78em;font-weight:700}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px}
+.quick a,.quick button{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px 4px;text-align:center;font-weight:700;font-size:.85em;cursor:pointer}
+.quick b{display:block;font-size:1.4em;margin-bottom:2px}
+.promo{margin:0 16px 16px;padding:14px;border-radius:16px;background:linear-gradient(135deg,var(--c),#00000055);font-weight:700}
+.gal{display:flex;gap:8px;overflow-x:auto;padding:0 16px 6px;scroll-snap-type:x mandatory}.gal img{flex:0 0 72%;height:170px;object-fit:cover;border-radius:14px;scroll-snap-align:start}
+h2{margin:22px 16px 10px;font-size:1.15em}
+.cat{margin:0 16px 8px;font-size:.78em;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--m)}
+.it{display:flex;gap:12px;align-items:center;margin:0 16px 8px;background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px}
+.it .tx{flex:1;min-width:0}.it b{display:block}.it small{color:var(--m)}
+.it .pr{font-weight:800;white-space:nowrap}.it .add{border:0;background:var(--c);border-radius:10px;padding:8px 11px;font-weight:800;cursor:pointer}
+.it .add.on{background:var(--g);color:#053019}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 16px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.card .ph{height:110px;display:flex;align-items:center;justify-content:center;font-size:2.4em;background:linear-gradient(135deg,var(--c),#2a221f)}
+.card .bd{padding:10px}.card b{display:block;font-size:.95em}.card small{color:var(--m);display:block}.card .pr{font-weight:800;margin-top:4px}
+.card button{width:100%;margin-top:8px;border:0;border-radius:10px;padding:8px;background:var(--c);font-weight:800;cursor:pointer}
+form.bk{margin:0 16px;background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:10px}
+form.bk label{font-size:.8em;font-weight:700;color:var(--m)}
+form.bk input,form.bk select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--s2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;background:var(--g);color:#053019;font-weight:900;font-size:1em;cursor:pointer;text-align:center}
+.info{margin:0 16px;background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:8px;font-size:.92em}
+.inst{margin:22px 16px 0;padding:14px;border-radius:16px;border:1px dashed rgba(255,255,255,.25);font-size:.9em;color:var(--m)}
+.mx{margin:26px 16px 0;padding:18px;border-radius:18px;background:linear-gradient(135deg,#2a1d12,#140f0c);border:1px solid rgba(232,196,140,.35);text-align:center}
+.mx b{color:#e8c48c;letter-spacing:.14em;font-size:.8em}.mx p{margin:8px 0 12px;font-size:.95em}
+.mx a{display:inline-block;background:linear-gradient(135deg,#e8c48c,#d9a35f);color:#1a0f0a;font-weight:900;border-radius:99px;padding:12px 20px}
+.foot{margin:18px 16px 0;text-align:center;font-size:.75em;color:var(--m)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:8;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(15,12,11,.95);border-top:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+</style></head><body>
+<div class="pill" id="pill">DEMO · MX STUDIO ✝</div>
+<div class="lang"><button data-l="es" class="on">ES</button><button data-l="en">EN</button></div>
+<div class="hero" style="background-image:url('../img/ind/salon.jpg')"></div>
+<div class="head"><div class="logo" id="logo"></div><h1 id="nm"></h1></div>
+<p class="tag" id="tg"></p><p class="area" id="ar"></p><span class="chip">✂️ <span id="lb"></span></span>
+<div class="quick"><a id="qWa" target="_blank"><b>💬</b><span data-t="wa"></span></a><a id="qMap" target="_blank"><b>📍</b><span data-t="map"></span></a><button id="qShare"><b>📤</b><span data-t="share"></span></button></div>
+<div class="promo" id="promo"></div>
+<div class="gal" id="gal"></div>
+<div id="main"></div>
+<h2 data-t="infoT"></h2>
+<div class="info"><div>🕘 <span data-t="hours"></span></div><div>📍 <span id="ar2"></span></div><div>💳 <span data-t="pay"></span></div></div>
+<div class="inst" data-t="inst"></div>
+<div class="mx"><b>MX STUDIO ✝</b><p data-t="mxP"></p><a id="mxA" target="_blank" data-t="mxA"></a></div>
+<p class="foot" data-t="foot"></p>
+<div class="bar"><a class="btn" id="bigBtn" target="_blank"></a></div>
+<script>
+const C={"kind": "services", "emoji": "✂️", "label": {"es": "Salón de belleza", "en": "Beauty salon"}, "tag": {"es": "Cabello, uñas y maquillaje con cita", "en": "Hair, nails and makeup by appointment"}, "cta": {"es": "Agendar cita", "en": "Book appointment"}, "photos": [], "items": [["Cabello", "Hair", [["Corte dama", "Women's cut", "Con lavado y secado", "With wash and blow-dry", 250], ["Corte caballero", "Men's cut", "Con lavado", "With wash", 150], ["Tinte", "Color", "Desde, según largo", "From, by length", 650]]], ["Uñas y maquillaje", "Nails & makeup", [["Manicure gelish", "Gel manicure", "Color a elegir", "Choose your color", 250], ["Pedicure spa", "Spa pedicure", "Con exfoliación", "With scrub", 350], ["Maquillaje social", "Event makeup", "Incluye pestañas", "Lashes included", 700]]]], "sample": "Studio Bella"},BR="527441930502";
+const q=new URLSearchParams(location.search);
+const NAME=(q.get("n")||C.sample).slice(0,60),AREA=(q.get("a")||"México").slice(0,80);
+let L=(()=>{try{return localStorage.getItem("mxd-lang")||"es"}catch(_){return"es"}})();
+const T={es:{wa:"WhatsApp",map:"Cómo llegar",share:"Compartir",hours:"Lunes a domingo · 9:00 a 21:00",pay:"Efectivo, tarjeta y transferencia",infoT:"Información",
+inst:"📲 <b>Instálala como app:</b> en iPhone toca Compartir → «Agregar a inicio». En Android toca ⋮ → «Instalar app». Sin App Store.",
+mxP:"Así se vería la app de su negocio: su menú o servicios, reservas por WhatsApp, fotos, ubicación y código QR para sus mesas o recepción.",mxA:"✨ Quiero mi app",
+foot:"Demo creada por MX Studio ✝ · Precios y fotos de ejemplo",promo:"⭐ Promoción de hoy: 10% de descuento mostrando esta app",
+add:"Agregar",added:"✓",total:"Total",date:"Fecha",date2:"Salida",people:"Personas",time:"Hora",service:"Servicio",send:"Enviar por WhatsApp",per:"/ persona",night:"/ noche",incl:"Incluido",keep:"Apartar",name:"Su nombre"},
+en:{wa:"WhatsApp",map:"Directions",share:"Share",hours:"Monday to Sunday · 9 am – 9 pm",pay:"Cash, card and bank transfer",infoT:"Information",
+inst:"📲 <b>Install it as an app:</b> on iPhone tap Share → “Add to Home Screen”. On Android tap ⋮ → “Install app”. No App Store.",
+mxP:"This is how your business app would look: your menu or services, WhatsApp bookings, photos, location and a QR code for your tables or front desk.",mxA:"✨ I want my app",
+foot:"Demo by MX Studio ✝ · Sample prices and photos",promo:"⭐ Today's deal: 10% off when you show this app",
+add:"Add",added:"✓",total:"Total",date:"Date",date2:"Check-out",people:"People",time:"Time",service:"Service",send:"Send on WhatsApp",per:"/ person",night:"/ night",incl:"Included",keep:"Reserve",name:"Your name"}};
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money=n=>"$"+Number(n).toLocaleString("es-MX");
+const wa=t=>"https://wa.me/"+BR+"?text="+encodeURIComponent(t);
+const cart={};
+function initials(n){const w=n.replace(/[^\p{L}\p{N} ]/gu,"").split(/\s+/).filter(x=>x&&!/^(el|la|los|las|de|del|y|the|hotel|restaurante|cafe|café)$/i.test(x));return((w[0]||n)[0]+((w[1]||"")[0]||"")).toUpperCase()}
+function render(){const u=T[L];document.documentElement.lang=L;
+ document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(u[k]!=null)e.innerHTML=u[k]});
+ document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
+ $("logo").textContent=initials(NAME);$("nm").textContent=NAME;document.title=NAME;
+ $("tg").textContent=C.tag[L];$("ar").textContent="📍 "+AREA;$("ar2").textContent=AREA;$("lb").textContent=C.label[L];$("promo").textContent=u.promo;
+ $("qWa").href=wa((L==="es"?"Hola "+NAME+" 👋 Quisiera información.":"Hi "+NAME+" 👋 I'd like some information.")+" [Demo MX Studio]");
+ $("qMap").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(NAME+" "+AREA);
+ $("mxA").href=wa(L==="es"?"Hola Brian 👋 Vi el demo de "+NAME+" y quiero mi app.":"Hi Brian 👋 I saw the "+NAME+" demo and I want my app.");
+ $("gal").style.display=C.photos.length?"flex":"none";$("gal").innerHTML=C.photos.map(p=>`<img src="${p}" alt="" loading="lazy">`).join("");
+ const k=C.kind;let h="";
+ if(k==="menu"||k==="passes"){C.items.forEach((g,gi)=>{h+=`<h2>${esc(g[L==="es"?0:1])}</h2>`;g[2].forEach((it,ii)=>{const id=gi+"-"+ii,on=cart[id];h+=`<div class="it"><div class="tx"><b>${esc(it[L==="es"?0:1])}</b><small>${esc(it[L==="es"?2:3])}</small></div><div class="pr">${money(it[4])}</div><button class="add ${on?"on":""}" data-add="${id}">${on?u.added+" "+on:u.add}</button></div>`})});
+  if(k==="passes")h+=bookForm(["date","people"]);}
+ if(k==="rooms"||k==="tours"||k==="services"){C.items.forEach((g,gi)=>{h+=`<h2>${esc(g[L==="es"?0:1])}</h2>`;g[2].forEach(it=>{const suf=k==="rooms"?u.night:k==="tours"?u.per:"";h+=`<div class="it"><div class="tx"><b>${esc(it[L==="es"?0:1])}</b><small>${esc(it[L==="es"?2:3])}</small></div><div class="pr">${it[4]?money(it[4])+" <small>"+suf+"</small>":"✓ "+u.incl}</div></div>`})});
+  h+=bookForm(k==="rooms"?["date","date2","people"]:k==="tours"?["service","date","people"]:["service","date","time"]);}
+ if(k==="catalog"){C.items.forEach(g=>{h+=`<h2>${esc(g[L==="es"?0:1])}</h2><div class="grid">`+g[2].map((it,ii)=>`<div class="card"><div class="ph">${C.emoji}</div><div class="bd"><b>${esc(it[L==="es"?0:1])}</b><small>${esc(it[L==="es"?2:3])}</small><div class="pr">${money(it[4])}</div><button data-keep="${ii}">${u.keep}</button></div></div>`).join("")+`</div>`})}
+ $("main").innerHTML=h;bigBtn();}
+function bookForm(fields){const u=T[L];const opts=C.items[0][2].filter(x=>x[4]).map(x=>`<option>${esc(x[L==="es"?0:1])}</option>`).join("");
+ const f={date:`<div><label>${u.date}</label><input type="date" id="fDate"></div>`,date2:`<div><label>${u.date2}</label><input type="date" id="fDate2"></div>`,people:`<div><label>${u.people}</label><input type="number" min="1" value="2" id="fPeople"></div>`,time:`<div><label>${u.time}</label><input type="time" value="11:00" id="fTime"></div>`,service:`<div><label>${u.service}</label><select id="fSvc">${opts}</select></div>`};
+ const parts=fields.map(x=>f[x]);let rows="";for(let i=0;i<parts.length;i+=2)rows+=parts[i+1]?`<div class="two">${parts[i]}${parts[i+1]}</div>`:parts[i];
+ return `<h2>${C.cta[L]}</h2><form class="bk" onsubmit="return false"><div><label>${u.name}</label><input id="fName" placeholder="${u.name}"></div>${rows}<a class="btn" id="fSend" target="_blank">💬 ${u.send}</a></form>`}
+function bookMsg(){const u=T[L],v=id=>($(id)||{}).value||"";const L2=L==="es";
+ let m=(L2?"Hola "+NAME+" 👋 Quiero reservar:":"Hi "+NAME+" 👋 I'd like to book:")+"\n";
+ if(v("fSvc"))m+="• "+v("fSvc")+"\n";if(v("fDate"))m+="• "+u.date+": "+v("fDate")+"\n";if(v("fDate2"))m+="• "+u.date2+": "+v("fDate2")+"\n";
+ if(v("fPeople"))m+="• "+u.people+": "+v("fPeople")+"\n";if(v("fTime"))m+="• "+u.time+": "+v("fTime")+"\n";if(v("fName"))m+="• "+u.name+": "+v("fName")+"\n";
+ const c=cartMsg();if(c)m+=c;return m+"\n[Demo MX Studio]"}
+function cartMsg(){const u=T[L];let tot=0,lines=[];C.items.forEach((g,gi)=>g[2].forEach((it,ii)=>{const n=cart[gi+"-"+ii];if(n){tot+=n*it[4];lines.push("• "+n+" × "+it[L==="es"?0:1]+" — "+money(n*it[4]))}}));return lines.length?lines.join("\n")+"\n"+u.total+": "+money(tot)+"\n":""}
+function bigBtn(){const u=T[L],b=$("bigBtn"),c=cartMsg();
+ if(C.kind==="menu"){b.textContent="💬 "+C.cta[L]+(c?" · "+c.split("\n").filter(Boolean).pop().replace(u.total+": ",""):"");b.href=wa((L==="es"?"Hola "+NAME+" 👋 Quiero pedir:\n":"Hi "+NAME+" 👋 I'd like to order:\n")+(c||"")+"\n[Demo MX Studio]")}
+ else{b.textContent="💬 "+C.cta[L];b.href=wa(bookMsg())}
+ const s=$("fSend");if(s)s.href=wa(bookMsg());}
+document.addEventListener("click",e=>{const a=e.target.closest("[data-add]");if(a){const id=a.dataset.add;cart[id]=(cart[id]||0)+1;render();return}
+ const k=e.target.closest("[data-keep]");if(k){const it=C.items[0][2][+k.dataset.keep];window.open(wa((L==="es"?"Hola "+NAME+" 👋 Me interesa apartar: ":"Hi "+NAME+" 👋 I'd like to reserve: ")+it[L==="es"?0:1]+" ("+money(it[4])+")\n[Demo MX Studio]"),"_blank");return}
+ const l=e.target.closest(".lang button");if(l){L=l.dataset.l;try{localStorage.setItem("mxd-lang",L)}catch(_){}render();return}
+ if(e.target.closest("#qShare")){const url=location.href;if(navigator.share)navigator.share({title:NAME,url}).catch(()=>{});else{try{navigator.clipboard.writeText(url)}catch(_){}}}});
+document.addEventListener("input",()=>bigBtn());
+render();
+</script></body></html>

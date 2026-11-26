@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MX Studio · Demos ✝️</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#000;--s1:#121012;--s2:#1c1719;--line:rgba(232,196,140,.2);--gold:#e8c48c;--gold2:#d9a35f;--sun:#e0703a;--text:#f6ece0;--muted:#b9aaa0;--green:#25d366}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.35;min-height:100vh;padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+/* TOP BAR */
+.top{position:sticky;top:0;z-index:5;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;border-bottom:1px solid var(--line)}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-weight:800;font-size:1em}
+.brand small{display:block;font-size:.58em;font-weight:700;letter-spacing:.14em;color:var(--sun)}
+
+/* LANG TOGGLE */
+.lang{display:flex;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:3px;position:relative;height:40px;align-items:center}
+.lang button{all:unset;cursor:pointer;font-weight:800;font-size:.75em;padding:0 11px;height:32px;display:grid;place-items:center;border-radius:999px;color:var(--muted);position:relative;z-index:1}
+.lang button[aria-pressed=true]{color:#1a0f0a}
+.lang .knob{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));transition:transform .25s}
+.lang.en .knob{transform:translateX(100%)}
+
+/* CONTENT */
+.wrap{padding:16px 16px 0}
+.hero{margin-bottom:20px;text-align:center;padding:28px 16px 20px}
+.hero h1{font-size:1.6em;font-weight:900;line-height:1.1}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted);font-size:.82em;margin-top:8px;line-height:1.5}
+
+/* DEMO CARDS */
+.card{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:0;margin-bottom:14px;overflow:hidden}
+.card-head{padding:18px 18px 14px;display:flex;gap:14px;align-items:flex-start}
+.card-icon{font-size:2.4em;flex:none;line-height:1}
+.card-text{flex:1;min-width:0}
+.card-label{font-size:.6em;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);margin-bottom:4px}
+.card-title{font-size:1.25em;font-weight:800;line-height:1.1}
+.card-title span{color:var(--gold)}
+.card-desc{font-size:.8em;color:var(--muted);margin-top:5px;line-height:1.5}
+.card-features{padding:0 18px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.feat{font-size:.68em;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--s2);border:1px solid var(--line);color:var(--muted)}
+.card-btn{display:block;margin:0 18px 18px;padding:16px;text-align:center;border-radius:14px;font-weight:800;font-size:.9em;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0f0a;box-shadow:0 6px 20px rgba(217,163,95,.2)}
+.card-btn.green{background:linear-gradient(135deg,#25d366,#1aad4e);color:#05301a;box-shadow:0 6px 20px rgba(37,211,102,.2)}
+.card-btn.blue{background:linear-gradient(135deg,#2a7aad,#1a4a6b);color:#e8f4fb;box-shadow:0 6px 20px rgba(42,122,173,.2)}
+
+/* DIVIDER */
+.orn{display:flex;align-items:center;gap:10px;margin:8px 0 20px;color:#3a2a20}
+.orn i{flex:1;height:1px;background:var(--line)}
+.orn b{font-size:12px;color:var(--gold)}
+
+/* FOOTER */
+.foot{text-align:center;color:#6d625c;font-size:.62em;padding:20px 16px 10px;line-height:1.7}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--s2);border:1px solid var(--gold2);padding:12px 16px;border-radius:14px;font-weight:700;font-size:.8em;transition:.25s;z-index:30;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="toprow">
+    <div class="brand"><small>MX STUDIO ✝</small><span id="brand-title">Demos</span></div>
+    <div class="lang" id="lang">
+      <span class="knob"></span>
+      <button data-l="es" aria-pressed="true">ES</button>
+      <button data-l="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <h1 id="hero-title">Elige <span id="hero-span">tu demo</span></h1>
+    <p id="hero-sub">Muestra la app según el negocio que estás visitando.</p>
+  </div>
+
+  <!-- RESTAURANTE -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">🍽️</div>
+      <div class="card-text">
+        <div class="card-label" id="cat1">Categoría 1</div>
+        <div class="card-title" id="title1">Restaurante</div>
+        <div class="card-desc" id="desc1">App de menú digital con pedidos, reservas, promociones y más.</div>
+      </div>
+    </div>
+    <div class="card-features" id="feat1"></div>
+    <a class="card-btn" href="../demo/?id=el-rincon-del-mar" id="btn1">Ver demo →</a>
+  </div>
+
+  <div class="orn"><i></i><b>✦</b><i></i></div>
+
+  <!-- HOTEL -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">🏨</div>
+      <div class="card-text">
+        <div class="card-label" id="cat2">Categoría 2</div>
+        <div class="card-title" id="title2">Hotel</div>
+        <div class="card-desc" id="desc2">App para huéspedes con programa diario, restaurantes, actividades y más.</div>
+      </div>
+    </div>
+    <div class="card-features" id="feat2"></div>
+    <a class="card-btn blue" href="../../hotel-demo/" id="btn2">Ver demo →</a>
+  </div>
+
+  <div class="orn"><i></i><b>✦</b><i></i></div>
+
+  <!-- RESORT -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">🌴</div>
+      <div class="card-text">
+        <div class="card-label" id="cat3">Categoría 3</div>
+        <div class="card-title" id="title3">Resort</div>
+        <div class="card-desc" id="desc3">App todo incluido con shows nocturnos, spa, excursiones y concierge.</div>
+      </div>
+    </div>
+    <div class="card-features" id="feat3"></div>
+    <a class="card-btn green" href="../../ritz-acapulco/" id="btn3">Ver demo →</a>
+  </div>
+
+  <div class="foot" id="foot">MX Studio ✝ · myjefetech.app<br>Acapulco · 2026</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let lang=store.get('mx-demos-lang')||((navigator.language||'es').startsWith('en')?'en':'es');
+
+const T={
+  es:{
+    heroTitle:'Elige tu', heroSpan:'demo',
+    heroSub:'Muestra la app según el negocio que estás visitando.',
+    cat1:'🍽️ Restaurantes', title1:'Restaurante',
+    desc1:'Menú digital interactivo con secciones, fotos, promociones del día y QR de mesa.',
+    feat1:['Menú digital','Promo del día','QR de mesa','ES · EN','Funciona offline'],
+    btn1:'Ver demo — Restaurante →',
+    cat2:'🏨 Hoteles', title2:'Hotel',
+    desc2:'App para huéspedes con programa diario, restaurantes del hotel, albercas y actividades.',
+    feat2:['Programa diario','Restaurantes','Albercas · Playa','Excursiones','ES · EN'],
+    btn2:'Ver demo — Hotel →',
+    cat3:'🌴 Resorts', title3:'Resort todo incluido',
+    desc3:'App completa para resorts con shows nocturnos, spa, concierge por WhatsApp y más.',
+    feat3:['Shows nocturnos','Spa · Bienestar','Concierge','Todo incluido','ES · EN'],
+    btn3:'Ver demo — Resort →',
+    foot:'MX Studio ✝ · myjefetech.app · Acapulco 2026'
+  },
+  en:{
+    heroTitle:'Pick a', heroSpan:'demo',
+    heroSub:'Show the app that matches the business you\'re visiting.',
+    cat1:'🍽️ Restaurants', title1:'Restaurant',
+    desc1:'Interactive digital menu with sections, photos, daily promos and table QR code.',
+    feat1:['Digital menu','Daily special','Table QR','ES · EN','Works offline'],
+    btn1:'View demo — Restaurant →',
+    cat2:'🏨 Hotels', title2:'Hotel',
+    desc2:'Guest app with daily activity schedule, hotel restaurants, pools and excursions.',
+    feat2:['Daily schedule','Restaurants','Pools · Beach','Excursions','ES · EN'],
+    btn2:'View demo — Hotel →',
+    cat3:'🌴 Resorts', title3:'All-inclusive resort',
+    desc3:'Full resort app with nightly shows, spa, WhatsApp concierge and all-inclusive schedule.',
+    feat3:['Nightly shows','Spa · Wellness','Concierge','All-inclusive','ES · EN'],
+    btn3:'View demo — Resort →',
+    foot:'MX Studio ✝ · myjefetech.app · Acapulco 2026'
+  }
+};
+
+function render(){
+  const t=T[lang];
+  document.documentElement.lang=lang;
+  document.getElementById('lang').className='lang'+(lang==='en'?' en':'');
+  document.getElementById('lang').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false'));
+
+  document.getElementById('hero-title').childNodes[0].textContent=t.heroTitle+' ';
+  document.getElementById('hero-span').textContent=t.heroSpan;
+  document.getElementById('hero-sub').textContent=t.heroSub;
+
+  for(let i=1;i<=3;i++){
+    document.getElementById('cat'+i).textContent=t['cat'+i];
+    document.getElementById('title'+i).textContent=t['title'+i];
+    document.getElementById('desc'+i).textContent=t['desc'+i];
+    document.getElementById('feat'+i).innerHTML=t['feat'+i].map(f=>`<span class="feat">${f}</span>`).join('');
+    document.getElementById('btn'+i).textContent=t['btn'+i];
+  }
+  document.getElementById('foot').textContent=t.foot;
+}
+
+document.getElementById('lang').addEventListener('click',e=>{
+  const b=e.target.closest('[data-l]');
+  if(!b)return;
+  lang=b.dataset.l;
+  store.set('mx-demos-lang',lang);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

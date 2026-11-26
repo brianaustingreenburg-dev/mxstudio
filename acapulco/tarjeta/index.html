@@ -1,0 +1,135 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Imprimir QR · MX Studio ✝</title>
+<link rel="icon" href="../icon-192.png">
+<style>
+@font-face{font-family:M;font-weight:500;src:url(../lib/fonts/m500.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(../lib/fonts/m700.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(../lib/fonts/m800.woff2)}
+@page{size:8.5in 11in;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:M,sans-serif;background:#2a2320;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+:root{--c:#b5642f}
+.bar{position:sticky;top:0;z-index:5;background:#120d0b;color:#f6ece0;padding:12px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.bar b{font-size:15px}.bar small{display:block;opacity:.7;font-size:12px}
+.bar button,.bar a{all:unset;cursor:pointer;background:#d9a35f;color:#1a0f0a;font-weight:800;font-size:14px;padding:11px 16px;border-radius:12px}
+.bar a{background:transparent;color:#f6ece0;border:1.5px solid #6a5a50}
+.help{color:#cdbfb2;font-size:13px;padding:10px 14px;line-height:1.45}
+.pages{display:flex;flex-direction:column;align-items:center;gap:16px;padding:14px 0 40px}
+.page{width:8.5in;height:11in;background:#fff;position:relative;overflow:hidden;transform-origin:top center}
+.cut{position:absolute;background:#000}
+body.m5 .page{width:5in;height:7in}body.m5 .side{left:-.125in;top:-.125in}body.m5 .cut{display:none}
+.side{position:absolute;left:1.625in;top:1.875in;width:5.25in;height:7.25in;overflow:hidden}
+/* front */
+.f{background:#fbf7f1}
+.f .ph{position:absolute;left:0;top:0;width:100%;height:3.05in;background:#333 center/cover}
+.f .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72))}
+.f .nm{position:absolute;left:.42in;right:.42in;top:1.95in;color:#fff;z-index:2}
+.f .nm h1{font-weight:800;font-size:27pt;line-height:1.02;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.f .nm p{font-weight:500;font-size:9pt;margin-top:4pt}
+.f .band{position:absolute;left:0;right:0;top:3.05in;height:.09in;background:var(--c)}
+.f .qrw{position:absolute;left:50%;top:3.42in;transform:translateX(-50%);width:2.2in;height:2.2in;padding:.13in;background:#fff;border:3pt solid var(--c);border-radius:.16in}
+.f .qrw svg{width:100%;height:100%;display:block}
+.f .sc{position:absolute;left:.3in;right:.3in;top:5.78in;text-align:center}
+.f .sc b{display:block;font-weight:800;font-size:15pt;color:var(--c);letter-spacing:.5pt}
+.f .sc span{display:block;font-weight:700;font-size:9pt;color:#3a302b;margin-top:3pt}
+.f .sc i{display:block;font-style:normal;font-weight:500;font-size:8pt;color:#7a6d66;margin-top:1pt}
+.f .ft{position:absolute;left:0;right:0;bottom:.33in;text-align:center;font-weight:700;font-size:6.5pt;color:#9a8c84;letter-spacing:.6pt}
+/* back */
+.b{background:var(--c);color:#fff}
+.b::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 8%,rgba(255,255,255,.16),transparent 45%),linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.25))}
+.b .in{position:absolute;left:.42in;right:.42in;top:.42in;bottom:.42in;display:flex;flex-direction:column}
+.b .cr{font-size:11pt;opacity:.9}
+.b h2{font-weight:800;font-size:21pt;line-height:1.05;margin-top:3pt}
+.b .tg{font-weight:500;font-size:8.5pt;opacity:.9;margin-top:3pt}
+.b hr{border:0;border-top:1pt solid rgba(255,255,255,.45);margin:9pt 0}
+.b .st{flex:1;font-size:11pt}
+.b h3{font-weight:800;font-size:8pt;letter-spacing:1.2pt;text-transform:uppercase;opacity:.85;margin:0 0 3pt}
+.b .hl{display:flex;gap:9pt;align-items:baseline;padding:4.5pt 0;border-bottom:.6pt solid rgba(255,255,255,.25)}
+.b .hl b{font-weight:800}.b .hl i{font-style:normal;opacity:.82;font-size:.88em;display:block}.b .hl span{font-weight:800;opacity:.6;min-width:1.2em}
+.b .wf{margin-top:9pt;background:rgba(255,255,255,.14);border-radius:8pt;padding:7pt 9pt;font-size:8.5pt;line-height:1.45}
+.b .inf{font-size:8pt;font-weight:500;line-height:1.45}.b .inf b{font-weight:800}
+.b .ft{margin-top:8pt;font-weight:700;font-size:7pt;letter-spacing:.5pt;opacity:.85;text-align:center}
+/* sticker */
+.stk{position:absolute;width:9cm;height:9cm;border-radius:.25in;background:#fff;border:2.5pt solid var(--c);overflow:hidden;text-align:center}
+.stk .tp{background:var(--c);color:#fff;padding:.12in .1in .1in}.stk .tp b{display:block;font-weight:800;font-size:15pt;line-height:1.05}.stk .tp small{font-weight:700;font-size:7.5pt;letter-spacing:.5pt;opacity:.9}
+.stk .q{width:2.05in;height:2.05in;margin:.12in auto 0}.stk .q svg{width:100%;height:100%;display:block}
+.stk .by{position:absolute;left:0;right:0;bottom:.09in;font-weight:800;font-size:6.5pt;letter-spacing:.6pt;color:#9a8c84}.stk .sc{font-weight:800;font-size:10pt;color:var(--c);margin-top:.05in}.stk .sc i{display:block;font-style:normal;font-weight:500;font-size:7pt;color:#7a6d66}
+.fmt{display:flex;gap:6px;padding:8px 14px 0}.fmt button{all:unset;cursor:pointer;font-weight:800;font-size:13px;padding:9px 12px;border-radius:999px;background:#3a302b;color:#f6ece0}.fmt button.on{background:#d9a35f;color:#1a0f0a}
+.err{color:#fff;padding:30px;text-align:center}
+@media print{.bar,.help{display:none}.pages{padding:0;gap:0;display:block}.page{transform:none!important;margin:0!important;page-break-after:always;break-after:page}html,body{background:#fff}}
+</style><style id="pgsz"></style>
+</head><body>
+<div class="bar"><div><b id="tt">Imprimir QR</b><small id="ts">MX Studio ✝</small></div><div style="display:flex;gap:8px"><a href="../rutas/">← MX Dashboard</a><button id="pr">📄 PDF · Imprimir / Enviar</button></div></div>
+<div class="fmt"><button data-f="m">🍽️ Tarjeta de mesa · Table</button><button data-f="st">🏷️ Stickers 4 · Puerta, caja · Door, counter</button><button data-f="rv">⭐ Reseñas · Reviews</button></div>
+<p class="help" id="help">Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir (AirPrint), mandarlo por WhatsApp a la imprenta o guardarlo. Tarjeta <b>5×7</b> en papel <b>premium mate</b>, doble cara, a <b>100%</b> — sin recortar. · Tap <b>📄 PDF</b> → <b>Share</b> and send it to the print shop: 5×7 premium matte, double-sided, 100%.</p>
+<div class="pages" id="pages"></div>
+<script src="../lib/qrcode.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const q=new URLSearchParams(location.search),F=["st","rv"].includes(q.get("f"))?q.get("f"):"m",slug=(q.get("s")||"").replace(/[^a-z0-9-]/g,""),A=q.get("a")||"";
+function cfg(){try{const j=JSON.parse(decodeURIComponent(escape(atob(A.replace(/-/g,"+").replace(/_/g,"/")))));return j}catch(_){return {}}}
+function qrSvg(t){const qr=qrcode(0,"M");qr.addData(t);qr.make();const n=qr.getModuleCount();let d="";
+ for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(qr.isDark(r,c))d+=`M${c},${r}h1v1h-1z`;
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges"><path d="${d}" fill="#141414"/></svg>`}
+function marks(){const L=1.625,T=1.875,W=5.25,H=7.25,B=.125,out=[];
+ const xs=[L+B,L+W-B],ys=[T+B,T+H-B];
+ xs.forEach(x=>{out.push(`<div class="cut" style="left:${x}in;top:${T-.4}in;width:.5pt;height:.32in"></div>`,`<div class="cut" style="left:${x}in;top:${T+H+.08}in;width:.5pt;height:.32in"></div>`)});
+ ys.forEach(y=>{out.push(`<div class="cut" style="top:${y}in;left:${L-.4}in;height:.5pt;width:.32in"></div>`,`<div class="cut" style="top:${y}in;left:${L+W+.08}in;height:.5pt;width:.32in"></div>`)});
+ return out.join("")}
+function fit(){const M=document.body.classList.contains("m5"),PW=M?480:816,PH=M?672:1056,w=Math.min(innerWidth-16,PW)/PW;document.querySelectorAll(".page").forEach(p=>{p.style.transform=`scale(${w})`;p.style.marginBottom=`${(w-1)*PH}px`})}
+async function go(){
+ if(!slug){$("pages").innerHTML='<p class="err">Falta el restaurante · Missing place</p>';return}
+ let d;try{d=await (await fetch("../c/"+slug+"/card.json")).json()}catch(_){$("pages").innerHTML='<p class="err">No se pudo cargar · Could not load</p>';return}
+ const c=cfg(),url="https://go.myjefetech.app/acapulco/c/"+slug+"/"+(A?"?a="+A:"");
+ document.body.classList.toggle("m5",F==="m");$("pgsz").textContent=F==="m"?"@page{size:5in 7in;margin:0}":"";document.documentElement.style.setProperty("--c",d.color);$("tt").textContent="Tarjeta de mesa · "+d.name;$("ts").textContent=A?"Con su WhatsApp y WiFi ✓":"Sin activar · not activated";
+ document.title="Tarjeta "+d.name;
+ const cover="../c/"+slug+"/"+d.cover,top=(d.top||[]).map((n,i)=>`<div class="hl"><span>${i+1}</span><div><b>${esc(n.es)}</b><i>${esc(n.en)}</i></div></div>`).join("");
+ const wifi="";
+ const tel=c.w?("+"+c.w).replace(/^\+52(\d{3})(\d{3})(\d{4})$/,"+52 $1 $2 $3"):d.phone;
+ document.querySelectorAll(".fmt button").forEach(b=>{b.classList.toggle("on",b.dataset.f===F);b.onclick=()=>{q.set("f",b.dataset.f);location.search=q.toString()}});
+ if(F!=="m")$("help").innerHTML='Toca <b>📄 PDF</b> → <b>Compartir</b> para imprimir, mandarlo a la imprenta por WhatsApp o guardarlo. Imprime a <b>100%</b>, una cara, 4 stickers de <b>9×9 cm</b>: imprenta en <b>vinil blanco mate laminado</b>, hoja carta, <b>corte a contorno</b> (plotter). · Print shop: 9×9 cm, white matte laminated vinyl, letter sheet, contour cut.';
+ if(F==="rv"){let pid="";try{const t=await (await fetch("../c/"+slug+"/")).text();pid=(t.match(/query_place_id=([A-Za-z0-9_-]+)/)||[])[1]||""}catch(_){}
+  if(!pid){$("pages").innerHTML='<p class="err">Este lugar no tiene ficha de Google · No Google listing</p>';return}
+  const ru="https://search.google.com/local/writereview?placeid="+pid,pos=[[.46,1.71],[4.5,1.71],[.46,5.75],[4.5,5.75]];
+  $("pages").innerHTML=`<div class="page">${pos.map(p=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>⭐⭐⭐⭐⭐ ¿TE GUSTÓ? · ENJOYED IT?</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(ru)}</div><div class="sc">Déjanos tu reseña<i>Leave us a Google review</i></div><div class="by">by MX STUDIO ✝</div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Vinil blanco mate laminado · 9×9 cm · corte a contorno · White matte laminated vinyl · 9×9 cm · contour cut · MX STUDIO ✝</div></div>`;
+  $("tt").textContent="Reseñas · "+d.name;fit();return}
+ if(F==="st"){const lines=[["MENÚ · MENU","Escanea · Scan","Menú, WiFi y más · Menu, WiFi & more"],["VE EL MENÚ","SEE THE MENU","Antes de entrar · Before you come in"],["MENÚ · MENU","Escanea · Scan","Para llevar · Carry-out"],["MENÚ · MENU","Escanea · Scan","Español · English"]];
+  const pos=[[.46,1.71],[4.5,1.71],[.46,5.75],[4.5,5.75]];
+  $("pages").innerHTML=`<div class="page">${pos.map((p,i)=>`<div class="stk" style="left:${p[0]}in;top:${p[1]}in"><div class="tp"><small>${lines[i][0]}</small><b style="font-size:${d.name.length>26?10:d.name.length>18?12.5:15}pt">${esc(d.name)}</b></div><div class="q">${qrSvg(url)}</div><div class="sc">${lines[i][1]}<i>${lines[i][2]}</i></div><div class="by">by MX STUDIO ✝</div></div>`).join("")}<div style="position:absolute;left:0;right:0;bottom:.5in;text-align:center;font:700 7pt M,sans-serif;color:#9a8c84">Vinil blanco mate laminado · 9×9 cm · corte a contorno · White matte laminated vinyl · 9×9 cm · contour cut · MX STUDIO ✝</div></div>`;
+  $("tt").textContent="Stickers · "+d.name;fit();return}
+ $("pages").innerHTML=`<div class="page">${marks()}<div class="side f"><div class="ph" style="background-image:url('${cover}')"></div><div class="nm"><h1>${esc(d.name)}</h1><p>${esc(d.tagline.es)} · ${esc(d.tagline.en)}</p></div><div class="band"></div><div class="qrw">${qrSvg(url)}</div>
+  <div class="sc"><b>ESCANEA · SCAN</b><span>Menú · WiFi · Reservar · Para llevar</span><i>Menu · WiFi · Reserve · Carry-out</i></div><div class="ft">Diseñado por MX Studio ✝ · Designed by MX Studio</div></div></div>
+  <div class="page">${marks()}<div class="side b"><div class="in"><div class="cr">✝</div><h2>${esc(d.name)}</h2><div class="tg">${esc(d.tagline.es)}</div><hr>
+  <div class="st"><h3>Lo más pedido · Most popular</h3>${top}${wifi}</div><hr>
+  <div class="inf"><b>Dirección · Address:</b> ${esc(d.address)}${tel?`<br><b>Tel:</b> ${esc(tel)}`:""}<br><b>Horario:</b> ${esc(d.hours.es)}<br><b>Hours:</b> ${esc(d.hours.en)}</div>
+  <div class="ft">Escanea el código al frente · Scan the code on the front</div></div></div></div>`;
+ fit()}
+
+const ld=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
+let PDFB=null,PDFN="";
+async function makePdf(){const b=$("pr");b.textContent="⏳ Haciendo PDF… · Making PDF…";b.style.pointerEvents="none";
+ try{if(!window.html2canvas)await ld("../lib/html2canvas.min.js");if(!window.jspdf)await ld("../lib/jspdf.umd.min.js");await document.fonts.ready;
+  const pages=[...document.querySelectorAll(".page")],{jsPDF}=window.jspdf,M5=F==="m",PW=M5?5:8.5,PH=M5?7:11,doc=new jsPDF({unit:"in",format:[PW,PH],orientation:"portrait"});
+  for(let i=0;i<pages.length;i++){const pg=pages[i],tf=pg.style.transform,mb=pg.style.marginBottom;pg.style.transform="none";pg.style.marginBottom="0";
+   const cv=await html2canvas(pg,{scale:M5?3.6:2.4,useCORS:true,backgroundColor:"#ffffff",logging:false});pg.style.transform=tf;pg.style.marginBottom=mb;
+   if(i)doc.addPage([PW,PH],"portrait");doc.addImage(cv.toDataURL("image/jpeg",.94),"JPEG",0,0,PW,PH)}
+  const kind=F==="st"?"stickers":F==="rv"?"resenas":"tarjetas-mesa";PDFN=`${slug}-${kind}.pdf`;PDFB=doc.output("blob");showPdf()}
+ catch(e){alert("No se pudo hacer el PDF · Couldn't make the PDF");}
+ b.textContent="📄 PDF · Imprimir / Enviar";b.style.pointerEvents=""}
+function showPdf(){const url=URL.createObjectURL(PDFB),f=new File([PDFB],PDFN,{type:"application/pdf"}),can=navigator.canShare&&navigator.canShare({files:[f]});
+ let m=$("pdfBox");if(!m){m=document.createElement("div");m.id="pdfBox";m.style.cssText="position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center";document.body.appendChild(m);m.onclick=e=>{if(e.target===m)m.remove()}}
+ const B="display:block;box-sizing:border-box;width:100%;text-align:center;padding:15px;border-radius:14px;font:800 16px M,system-ui;margin-top:8px;text-decoration:none;border:0;cursor:pointer";
+ m.innerHTML=`<div style="background:#faf6f0;color:#1d1715;width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));font-family:M,system-ui">
+  <b style="font-size:18px">✅ PDF listo · PDF ready</b><p style="margin:4px 0 8px;opacity:.75;font-size:14px">${PDFN}</p>
+  ${can?`<button id="pdfShare" style="${B};background:#25d366;color:#05301a">📤 Compartir: imprimir, WhatsApp a la imprenta, guardar · Share</button>`:""}
+  <a href="${url}" download="${PDFN}" style="${B};background:#d9a35f;color:#1a0f0a">⬇️ Descargar PDF · Download</a>
+  <a href="${url}" target="_blank" style="${B};background:#eee;color:#1d1715">👀 Abrir PDF · Open</a>
+  <p style="font-size:12.5px;opacity:.7;margin:10px 0 0">${F==="m"?"Imprenta: 5×7 in, papel premium mate, doble cara, 100% tamaño real. Página 1 = frente, página 2 = reverso. · Print shop: 5×7 in premium matte card, double-sided, 100% actual size. Page 1 = front, page 2 = back.":"Imprenta: vinil blanco mate <b>laminado</b> (resiste sol y agua), hoja carta, 100% tamaño real, <b>corte a contorno</b> en el borde de color — 4 stickers de 9×9 cm. · Print shop: white matte laminated vinyl, letter sheet, 100%, contour-cut on the colored border — four 9×9 cm stickers."}</p>
+  <button id="pdfX" style="${B};background:transparent;color:#1d1715">Cerrar · Close</button></div>`;
+ const sh=$("pdfShare");if(sh)sh.onclick=()=>navigator.share({files:[f],title:PDFN}).catch(()=>{});$("pdfX").onclick=()=>m.remove()}
+addEventListener("resize",fit);$("pr").onclick=makePdf;go();
+</script>
+</body></html>
