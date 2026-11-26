@@ -255,6 +255,11 @@ function renderMenu(){if(!MENU.length)return;
  document.querySelectorAll("[data-mc]").forEach(b=>b.onclick=()=>{mcat=+b.dataset.mc;renderMenu()})}
 fetch(MB+"menu.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(m=>{MENU=m;renderMenu()}).catch(()=>{});
 const _r=render;render=function(){_r();renderMenu()};
+// Load editable schedule from activities.json (entries 2-7 of H.day; entries 0-1 are fixed)
+fetch(MB+"activities.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(acts=>{
+ acts.forEach((a,i)=>{if(i<6)H.day[2+i]=[a.time,{es:a.es,en:a.en},{es:a.noteEs||"",en:a.noteEn||""}]});
+ render();
+}).catch(()=>{});
 render();setInterval(render,60000);
 </script>
 

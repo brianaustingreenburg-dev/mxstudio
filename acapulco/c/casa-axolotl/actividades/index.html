@@ -99,22 +99,22 @@ const SECTIONS = [
       {
         ic: '🔥', col: '#e8607a',
         n: { es: 'Fogata Familiar · AcáFree', en: 'Family Bonfire · AcáFree' },
-        pr: { es: '$600 · Incluye leña, bombones y varillas para asar', en: '$600 · Includes wood, marshmallows & roasting sticks' },
+        pr: { es: '$600 por carga de leña · ~1 hora', en: '$600 per load of wood · ~1 hour' },
         d: { es: 'Nosotros te armamos la fogata, no debes preocuparte por nada. Incluimos 1 carga de leña, bombones y varillas para asar. Te entregamos la fogata prendida al atardecer en Pie de la Cuesta.', en: 'We set up the bonfire — you just show up. Includes 1 load of firewood, marshmallows and roasting sticks. We hand it over lit at sunset in Pie de la Cuesta.' },
         msg: { es: '¡Hola! Quiero reservar una fogata familiar en Casa Axolotl. ¿Tienen disponibilidad esta noche?', en: 'Hi! I want to book a family bonfire at Casa Axolotl. Do you have availability tonight?' }
       },
       {
         ic: '💆', col: '#6b3fa0',
         n: { es: 'Masaje Relajante', en: 'Relaxing Massage' },
-        pr: { es: '$800 · De 8 a.m. a 5 p.m.', en: '$800 · 8 a.m. to 5 p.m.' },
-        d: { es: 'Disfruta de un buen masaje relajante en Casa Axolotl. A cargo de especialistas locales. Reserva con anticipación por WhatsApp.', en: 'Enjoy a relaxing massage at Casa Axolotl with local specialists. Book in advance via WhatsApp.' },
+        pr: { es: '$800 por persona · 60 minutos', en: '$800 per person · 60 minutes' },
+        d: { es: 'Disfruta de 60 minutos de masaje relajante en Casa Axolotl con aromaterapia y música ambiental. A cargo de personal capacitado. Reserva con anticipación por WhatsApp.', en: 'Enjoy 60 minutes of relaxing massage at Casa Axolotl with aromatherapy and ambient music. With trained staff. Book in advance via WhatsApp.' },
         msg: { es: '¡Hola! Me gustaría reservar un masaje en Casa Axolotl. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'d like to book a massage at Casa Axolotl. What days do you have availability?' }
       },
       {
         ic: '🏖️', col: '#c9922a',
         n: { es: 'Day Pass · Casa Axolotl', en: 'Day Pass · Casa Axolotl' },
-        pr: { es: '$350 por persona · Incluye 1 hora de kayak gratis', en: '$350 per person · Includes 1 free hour of kayak' },
-        d: { es: 'Puedes usarlo en consumo en restaurante o en cualquiera de nuestras actividades. ¡Te regalamos una hora de kayak!', en: 'Use it toward restaurant consumption or any of our activities. We throw in one free hour of kayak!' },
+        pr: { es: '$350 por persona · Incluye 1 hora de kayak', en: '$350 per person · Includes 1 hour of kayak' },
+        d: { es: 'Acceso a las instalaciones. El vale es canjeable al 100% en alimentos y bebidas, e incluye 1 hora de kayak en la laguna.', en: 'Full access to the property. The pass is 100% redeemable on food and drinks, and includes 1 hour of kayak on the lagoon.' },
         msg: { es: '¡Hola! Me interesa el Day Pass de Casa Axolotl. ¿Qué incluye exactamente?', en: 'Hi! I\'m interested in the Casa Axolotl Day Pass. What exactly does it include?' }
       },
       {
@@ -131,90 +131,171 @@ const SECTIONS = [
     ]
   },
   {
-    id: 'tours',
-    label: { es: 'Tours y Recorridos · AcáFree', en: 'Tours & Excursions · AcáFree' },
+    id: 'naturaleza',
+    label: { es: 'Naturaleza y Ecoturismo · AcáFree', en: 'Nature & Ecotourism · AcáFree' },
     items: [
       {
-        ic: '🚣', col: '#16495e',
-        n: { es: 'Tour en Kayak · Recorrido Guiado', en: 'Guided Kayak Tour' },
-        pr: { es: '$450 por persona · Incluye 1 desayuno completo', en: '$450 per person · Includes full breakfast' },
-        d: { es: 'Recorrido guiado por los manglares y canales de la laguna de Coyuca. Ve de cerca garzas, pelícanos, fragatas y más de 200 especies de aves. Salida desde el hotel.', en: 'Guided tour through the mangroves and channels of Coyuca Lagoon. See herons, pelicans, frigatebirds and over 200 bird species up close. Departure from the hotel.' },
-        msg: { es: '¡Hola! Me interesa el tour en kayak por la laguna de Coyuca. ¿A qué hora salen?', en: 'Hi! I\'m interested in the guided kayak tour of Coyuca Lagoon. What time do you depart?' }
+        ic: '🐢', col: '#2d7a4f',
+        n: { es: 'Liberación de Tortugas', en: 'Turtle Release' },
+        pr: { es: '$600 con transporte · $500 sin transporte (por persona)', en: '$600 with transport · $500 without (per person)' },
+        d: { es: 'Comienza con un desayuno completo en Casa Axolotl a las 9 a.m. A las 11–12 realizamos un recorrido en lancha por la laguna y el río de Coyuca hasta la Barra de Coyuca para la liberación de tortugas marinas. Disponible en temporada (jul–dic).', en: 'Start with a full breakfast at Casa Axolotl at 9 a.m. At 11–12 we take a boat tour through Coyuca Lagoon and river to Barra de Coyuca for the sea turtle release. Available in season (Jul–Dec).' },
+        msg: { es: '¡Hola! Me interesa participar en la liberación de tortugas. ¿Cuándo es la próxima salida?', en: 'Hi! I\'m interested in the turtle release. When is the next one?' }
       },
       {
-        ic: '🏝', col: '#2563a8',
-        n: { es: 'Tour Isla Pie de la Cuesta', en: 'Pie de la Cuesta Island Tour' },
-        pr: { es: '$400 con desayuno · $200 solo recorrido (por persona)', en: '$400 with breakfast · $200 tour only (per person)' },
-        d: { es: 'Viaje a la isla montosa de Pie de la Cuesta con playa de agua dulce. Renta banana o moto acuática, visita el cocodrilario y come platillos a la leña. Embarcando a las 12 del día desde Casa Axolotl.', en: 'Trip to the freshwater island of Pie de la Cuesta. Rent a banana boat or jet ski, visit the crocodile sanctuary and eat wood-fired meals. Boarding at noon from Casa Axolotl.' },
-        msg: { es: '¡Hola! Quiero información sobre el Tour Isla Pie de la Cuesta. ¿Cuántos lugares tienen disponibles?', en: 'Hi! I want information about the Pie de la Cuesta Island Tour. How many spots do you have available?' }
+        ic: '🚣', col: '#16495e',
+        n: { es: 'Kayak Tour por la Laguna · Guiado', en: 'Guided Kayak Tour · Lagoon' },
+        pr: { es: '$450 por persona · Incluye desayuno completo', en: '$450 per person · Includes full breakfast' },
+        d: { es: 'Explora la laguna de Coyuca en una travesía guiada. Incluye desayuno completo en Casa Axolotl, kayak y chaleco salvavidas. Ideal para disfrutar de la naturaleza y comenzar el día al aire libre.', en: 'Explore Coyuca Lagoon on a guided tour. Includes full breakfast at Casa Axolotl, kayak and life jacket. Perfect for nature lovers and an active morning.' },
+        msg: { es: '¡Hola! Me interesa el kayak tour guiado por la laguna de Coyuca. ¿A qué hora salen?', en: 'Hi! I\'m interested in the guided kayak tour of Coyuca Lagoon. What time do you depart?' }
+      },
+      {
+        ic: '🏝️', col: '#2563a8',
+        n: { es: 'Tour Isla Montosa', en: 'Isla Montosa Tour' },
+        pr: { es: '$400 por persona · Incluye desayuno', en: '$400 per person · Includes breakfast' },
+        d: { es: 'Recorre el entorno de Isla Montosa y la laguna; conoce la zona de cocodrilos, la Isla de los Pájaros y la flora y fauna local. Incluye desayuno completo en Casa Axolotl. En la zona hay restaurante y posibilidad de rentar banana o motos acuáticas por separado.', en: 'Explore Isla Montosa and the lagoon; visit the crocodile area, Bird Island and local wildlife. Includes full breakfast at Casa Axolotl. Restaurant and banana boat/jet ski rentals available on the island.' },
+        msg: { es: '¡Hola! Quiero información sobre el Tour Isla Montosa. ¿Cuántos lugares tienen disponibles?', en: 'Hi! I want information about the Isla Montosa Tour. How many spots do you have available?' }
       },
       {
         ic: '🏄', col: '#e8407a',
         n: { es: 'Paquete Isla Park + Desayuno', en: 'Isla Park Package + Breakfast' },
         pr: { es: '$400 por persona', en: '$400 per person' },
-        d: { es: 'Reserva con nosotros en Aca-Free. Incluye entrada a Isla Park y desayuno completo en Casa Axolotl.', en: 'Book with us through Aca-Free. Includes Isla Park entry and full breakfast at Casa Axolotl.' },
+        d: { es: 'Visita a Isla Park que comienza con un desayuno en Casa Axolotl: café o té, pan o galletas, jugo de naranja o agua natural y fruta con yogur. Consulta detalles del recorrido y servicios de Isla Park al reservar.', en: 'A visit to Isla Park starting with breakfast at Casa Axolotl: coffee or tea, bread or cookies, orange juice or water and fruit with yogurt. Ask about Isla Park\'s services when booking.' },
         msg: { es: '¡Hola! Me interesa el paquete Isla Park + Desayuno. ¿Cómo lo reservo?', en: 'Hi! I\'m interested in the Isla Park + Breakfast package. How do I book it?' }
-      },
-      {
-        ic: '🐢', col: '#2d7a4f',
-        n: { es: 'Liberación de Tortugas', en: 'Turtle Release' },
-        pr: { es: '$600 con transporte · $500 sin transporte (por persona)', en: '$600 with transport · $500 without transport (per person)' },
-        d: { es: 'Llega a las 9 a.m. para desayuno en Casa Axolotl. A las 11–12 nos dirigimos a la Barra de Coyuca para un recorrido en lancha y la liberación de tortugas. Disponible en temporada (jul–dic).', en: 'Arrive at 9 a.m. for breakfast at Casa Axolotl. At 11–12 we head to Barra de Coyuca for a boat ride and turtle release. Available in season (Jul–Dec).' },
-        msg: { es: '¡Hola! Me interesa participar en la liberación de tortugas. ¿Cuándo es la próxima salida?', en: 'Hi! I\'m interested in the turtle release. When is the next one?' }
-      },
+      }
+    ]
+  },
+  {
+    id: 'yate',
+    label: { es: 'Paseos en Yate · Isla La Roqueta', en: 'Yacht Tours · Isla La Roqueta' },
+    items: [
       {
         ic: '⛵', col: '#1a4a8e',
-        n: { es: 'Paseo en lancha', en: 'Boat Ride' },
-        d: { es: 'Recorre la laguna de Coyuca o la bahía de Acapulco en lancha. Pesca, snorkel o simplemente disfruta del agua. Rutas y precios según destino.', en: 'Cruise Coyuca Lagoon or Acapulco Bay by boat. Fishing, snorkel or just enjoy the water. Routes and prices vary by destination.' },
-        msg: { es: '¡Hola! ¿Qué opciones de paseo en lancha tienen disponibles desde Casa Axolotl?', en: 'Hi! What boat ride options do you have available from Casa Axolotl?' }
-      },
-      {
-        ic: '🌿', col: '#2d7a4f',
-        n: { es: 'Senderismo · El Veladero', en: 'Hiking · El Veladero' },
-        d: { es: 'Caminata guiada por el Parque Nacional El Veladero. Bosque tropical, vistas al Pacífico, iguanas silvestres y vegetación nativa. A 15 min en taxi del hotel.', en: 'Guided hike through El Veladero National Park. Tropical forest, Pacific views, wild iguanas and native vegetation. 15 min by taxi from the hotel.' },
-        msg: { es: '¡Hola! Me interesa hacer senderismo en El Veladero. ¿Organizan salidas guiadas desde Casa Axolotl?', en: 'Hi! I\'m interested in hiking El Veladero. Do you organize guided outings from Casa Axolotl?' }
+        n: { es: 'Tour Tradicional en Yate Dinka', en: 'Traditional Yacht Tour · Dinka' },
+        pr: { es: '$300 por boleto · Niños hasta 1.10 m gratis', en: '$300 per ticket · Kids under 1.10 m free' },
+        d: { es: 'Conoce la emblemática Isla La Roqueta a bordo del Yate Dinka, disfrutando de un paseo por la bahía de Acapulco. Niños de hasta 1.10 m de estatura viajan gratis; arriba de esa medida pagan boleto.', en: 'Visit the iconic Isla La Roqueta aboard the Dinka yacht, cruising the bay of Acapulco. Children up to 1.10 m travel free; taller children pay the full fare.' },
+        msg: { es: '¡Hola! Me interesa el Tour en Yate Dinka a Isla La Roqueta. ¿Cuándo tienen salidas disponibles?', en: 'Hi! I\'m interested in the Dinka Yacht Tour to Isla La Roqueta. When do you have departures?' }
       },
       {
         ic: '🤿', col: '#0d7a8e',
-        n: { es: 'Snorkel', en: 'Snorkeling' },
-        d: { es: 'Exploración submarina en las aguas cristalinas de las islas de Acapulco. Equipo incluido. Se combina con el tour a las islas o como salida independiente.', en: 'Underwater exploration in the crystal-clear waters around Acapulco\'s islands. Equipment included. Combined with the island tour or as a standalone outing.' },
-        msg: { es: '¡Hola! Quiero hacer snorkel. ¿Qué opciones tienen disponibles desde Casa Axolotl?', en: 'Hi! I want to go snorkeling. What options do you have available from Casa Axolotl?' }
+        n: { es: 'Tour en Yate + Snorkel · Dinka', en: 'Yacht Tour + Snorkel · Dinka' },
+        pr: { es: '$550 por boleto · Niños hasta 1.10 m gratis', en: '$550 per ticket · Kids under 1.10 m free' },
+        d: { es: 'Combina el paseo en yate hacia Isla La Roqueta con una experiencia de snorkel para descubrir el entorno marino. Equipo incluido. Niños de hasta 1.10 m viajan gratis.', en: 'Combine the yacht trip to Isla La Roqueta with a snorkel experience to discover the marine environment. Equipment included. Children up to 1.10 m travel free.' },
+        msg: { es: '¡Hola! Quiero el tour en Yate Dinka con snorkel a Isla La Roqueta. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want the Dinka Yacht Tour with snorkel to Isla La Roqueta. When do you have availability?' }
+      }
+    ]
+  },
+  {
+    id: 'kayakmar',
+    label: { es: 'Kayak por el Mar · AcáFree', en: 'Sea Kayak · AcáFree' },
+    items: [
+      {
+        ic: '🚣', col: '#0d6e8e',
+        n: { es: 'Kayak de Caleta a Isla La Roqueta', en: 'Kayak Caleta to Isla La Roqueta' },
+        d: { es: 'Rema desde Playa Caleta hasta Isla La Roqueta en una travesía por el mar. Incluye guía, kayak, chaleco salvavidas y tomas aéreas con dron.', en: 'Paddle from Playa Caleta to Isla La Roqueta across open water. Includes guide, kayak, life jacket and aerial drone footage.' },
+        msg: { es: '¡Hola! Me interesa el kayak de Caleta a Isla La Roqueta. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'m interested in the kayak from Caleta to Isla La Roqueta. What days do you have availability?' }
+      },
+      {
+        ic: '⛰️', col: '#3a5a8e',
+        n: { es: 'Kayak y Ascenso al Morro de Acapulco', en: 'Kayak & Morro de Acapulco Climb' },
+        d: { es: 'Parte de la zona de La Diana, navega en kayak por la bahía y sube al Morro de Acapulco. Incluye guía, kayak, chaleco salvavidas y tomas aéreas con dron.', en: 'Start near La Diana, kayak across the bay and climb Morro de Acapulco. Includes guide, kayak, life jacket and aerial drone footage.' },
+        msg: { es: '¡Hola! Me interesa el kayak con ascenso al Morro de Acapulco. ¿Cuándo tienen salidas?', en: 'Hi! I\'m interested in the kayak and Morro de Acapulco climb. When do you have departures?' }
+      },
+      {
+        ic: '🏖️', col: '#1a5e6e',
+        n: { es: 'Kayak de Icacos a Playa Secreta', en: 'Kayak Icacos to Hidden Beach' },
+        d: { es: 'Recorre en kayak la costa desde Playa Icacos hasta una playa escondida junto a la base de la Marina. Incluye guía, kayak, chaleco salvavidas y tomas aéreas con dron.', en: 'Kayak along the coast from Playa Icacos to a hidden beach next to the Marina base. Includes guide, kayak, life jacket and aerial drone footage.' },
+        msg: { es: '¡Hola! Me interesa el kayak de Icacos a la playa secreta. ¿Qué días tienen disponibilidad?', en: 'Hi! I\'m interested in the kayak from Icacos to the hidden beach. What days do you have availability?' }
+      }
+    ]
+  },
+  {
+    id: 'senderismo',
+    label: { es: 'Senderismo · AcáFree', en: 'Hiking · AcáFree' },
+    items: [
+      {
+        ic: '🌿', col: '#2d7a4f',
+        n: { es: 'Senderismo a la Cascada El Salto', en: 'Hiking to El Salto Waterfall' },
+        d: { es: 'Aventura por senderos y vegetación hasta la Cascada El Salto, un paraje asociado con las filmaciones de la película Rambo. Ruta y detalles operativos disponibles por WhatsApp.', en: 'Adventure through trails and vegetation to El Salto Waterfall, a spot associated with the filming of the movie Rambo. Route and details available via WhatsApp.' },
+        msg: { es: '¡Hola! Me interesa el senderismo a la Cascada El Salto. ¿Organizan salidas guiadas?', en: 'Hi! I\'m interested in hiking to El Salto Waterfall. Do you organize guided outings?' }
+      },
+      {
+        ic: '🏝️', col: '#1a5e3a',
+        n: { es: 'Senderismo · Playas Secretas de La Roqueta', en: 'Hiking · Hidden Beaches of La Roqueta' },
+        d: { es: 'Explora los caminos naturales de Isla La Roqueta y descubre sus playas escondidas y paisajes costeros. Ruta y detalles operativos disponibles por WhatsApp.', en: 'Explore the natural trails of Isla La Roqueta and discover its hidden beaches and coastal scenery. Route and details available via WhatsApp.' },
+        msg: { es: '¡Hola! Me interesa el senderismo a las playas secretas de La Roqueta. ¿Cuándo tienen salidas?', en: 'Hi! I\'m interested in hiking to the hidden beaches of La Roqueta. When do you have departures?' }
       }
     ]
   },
   {
     id: 'especiales',
-    label: { es: 'Experiencias Especiales · AcáFree', en: 'Special Experiences · AcáFree' },
+    label: { es: 'Celebraciones y Experiencias · AcáFree', en: 'Celebrations & Experiences · AcáFree' },
     items: [
       {
         ic: '🧺', col: '#b85a3c',
-        n: { es: 'Picnic en la playa', en: 'Beach Picnic' },
-        d: { es: 'Picnic privado frente al Pacífico con canasta preparada, decoración y atención personalizada. Ideal para parejas, cumpleaños o celebraciones especiales. Reserva con anticipación.', en: 'Private picnic facing the Pacific with prepared basket, decorations and personalized service. Perfect for couples, birthdays or special celebrations. Book in advance.' },
-        msg: { es: '¡Hola! Me interesa organizar un picnic en la playa en Casa Axolotl. ¿Qué incluye y cuánto cuesta?', en: 'Hi! I\'m interested in organizing a beach picnic at Casa Axolotl. What\'s included and how much does it cost?' }
+        n: { es: 'Picnic Especial', en: 'Special Picnic' },
+        pr: { es: '$1,400 para 2 personas · $90 por persona adicional', en: '$1,400 for 2 people · $90 each additional person' },
+        d: { es: 'Celebra un cumpleaños, aniversario o fecha especial con un montaje decorado frente al mar: centros de mesa, tapetes, letrero de celebración, camino de mesa, vajilla y cubiertos; tippie con cojines, luces y bocina Bluetooth. Extras opcionales: vino $700, cena $470/persona, pastel $450, dron $500, entre otros.', en: 'Celebrate a birthday, anniversary or special date with a decorated setup by the sea: centerpieces, rugs, celebration sign, table runner, dinnerware; tippie with cushions, lights and Bluetooth speaker. Optional extras: wine $700, dinner $470/person, cake $450, drone $500, and more.' },
+        msg: { es: '¡Hola! Me interesa el Picnic Especial en Casa Axolotl. ¿Qué incluye y cómo lo reservo?', en: 'Hi! I\'m interested in the Special Picnic at Casa Axolotl. What\'s included and how do I book it?' }
+      },
+      {
+        ic: '🍽️', col: '#8a3a2e',
+        n: { es: 'Cena Especial', en: 'Special Dinner' },
+        pr: { es: '$1,400 para 2 personas · $90 por persona adicional', en: '$1,400 for 2 people · $90 each additional person' },
+        d: { es: 'Una celebración íntima junto al mar con mesa y espacio decorados: centros de mesa, tapetes, letrero de celebración, textiles, vajilla; tippie, cojines, luces y bocina Bluetooth. Cena disponible como adicional ($470 p/persona): corte de carne, costillas BBQ, pechuga cordon bleu o lasaña.', en: 'An intimate celebration by the sea with a decorated table and space: centerpieces, rugs, celebration sign, textiles, dinnerware; tippie, cushions, lights and Bluetooth speaker. Dinner as an add-on ($470/person): steak, BBQ ribs, chicken cordon bleu or lasagna.' },
+        msg: { es: '¡Hola! Me interesa organizar una Cena Especial en Casa Axolotl. ¿Cómo la reservo?', en: 'Hi! I\'m interested in organizing a Special Dinner at Casa Axolotl. How do I book it?' }
       },
       {
         ic: '💍', col: '#e8407a',
-        n: { es: 'Cásate Conmigo · Propuestas', en: '"Marry Me" · Proposals' },
-        d: { es: 'Organiza tu propuesta de matrimonio durante el atardecer más famoso de México. Decoración, champagne, fotografía y la magia de Pie de la Cuesta. Un momento que no olvidarán.', en: 'Plan your marriage proposal during Mexico\'s most famous sunset. Decoration, champagne, photography and the magic of Pie de la Cuesta. A moment they\'ll never forget.' },
-        msg: { es: '¡Hola! Quiero organizar una propuesta de matrimonio en Casa Axolotl. ¿Me pueden ayudar a planearla?', en: 'Hi! I want to plan a marriage proposal at Casa Axolotl. Can you help me plan it?' }
+        n: { es: 'Paquete Cásate Conmigo', en: '"Marry Me" Proposal Package' },
+        pr: { es: '$8,900 para 2 personas', en: '$8,900 for 2 people' },
+        d: { es: 'Propuesta de matrimonio frente al mar con todo preparado: letras "Cásate conmigo", pirotecnia, portarretrato, tippie, mesa decorada, camino de pétalos, ramo de rosas, juego de mesa, bocina, pizarrón personalizado, dedicatoria, toma con dron, botella de vino o dos bebidas, cena para dos y postre. Extras: violinista $1,150, fotografía profesional $1,150.', en: 'Marriage proposal by the sea with everything set up: "Marry Me" letters, fireworks, picture frame, tippie, decorated table, petal path, rose bouquet, board game, speaker, personalized chalkboard, dedication, drone footage, bottle of wine or two drinks, dinner for two and dessert. Extras: violinist $1,150, professional photography $1,150.' },
+        msg: { es: '¡Hola! Quiero organizar una propuesta de matrimonio en Casa Axolotl con el paquete Cásate Conmigo. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want to plan a "Marry Me" marriage proposal at Casa Axolotl. When do you have availability?' }
       },
       {
         ic: '🎂', col: '#c9922a',
         n: { es: 'Cumpleaños y Celebraciones', en: 'Birthdays & Celebrations' },
-        d: { es: 'Haz de tu cumpleaños algo inolvidable en Pie de la Cuesta. Decoración temática, pastel, música y experiencias personalizadas para el festejado y sus invitados.', en: 'Make your birthday unforgettable in Pie de la Cuesta. Themed decorations, cake, music and personalized experiences for the birthday person and guests.' },
+        d: { es: 'Haz de tu cumpleaños algo inolvidable en Pie de la Cuesta. Decoración temática, pastel, música y experiencias personalizadas para el festejado y sus invitados. Consulta paquetes disponibles.', en: 'Make your birthday unforgettable in Pie de la Cuesta. Themed decorations, cake, music and personalized experiences for the birthday person and guests. Ask about available packages.' },
         msg: { es: '¡Hola! Quiero organizar una celebración de cumpleaños en Casa Axolotl. ¿Qué opciones tienen disponibles?', en: 'Hi! I want to organize a birthday celebration at Casa Axolotl. What options do you have available?' }
       },
       {
         ic: '📸', col: '#6b3fa0',
         n: { es: 'Sesión de Fotografía + Dron', en: 'Photo Session + Drone' },
-        d: { es: 'Sesión fotográfica profesional en las playas y lagunas de Pie de la Cuesta, con tomas aéreas en dron. Perfecta para parejas, familias o contenido para redes sociales.', en: 'Professional photo session on the beaches and lagoons of Pie de la Cuesta, with aerial drone shots. Perfect for couples, families or social media content.' },
+        d: { es: 'Sesión fotográfica en las playas y lagunas de Pie de la Cuesta con tomas aéreas en dron. Perfecta para parejas, familias o contenido para redes sociales. Consulta precios y disponibilidad.', en: 'Photo session on the beaches and lagoons of Pie de la Cuesta with aerial drone shots. Perfect for couples, families or social media content. Ask about pricing and availability.' },
         msg: { es: '¡Hola! Me interesa una sesión de fotos con dron en Pie de la Cuesta. ¿Cuánto cuesta y qué incluye?', en: 'Hi! I\'m interested in a photo session with drone in Pie de la Cuesta. How much does it cost and what\'s included?' }
       },
       {
         ic: '🎻', col: '#8a4a6e',
         n: { es: 'Serenata con Violinista', en: 'Violin Serenade' },
-        d: { es: 'Sorprende a tu pareja con una serenata en vivo al atardecer frente al Pacífico. Música clásica, romántica o lo que prefieras. Una experiencia única en Pie de la Cuesta.', en: 'Surprise your partner with a live serenade at sunset facing the Pacific. Classical, romantic or whatever you prefer. A one-of-a-kind experience in Pie de la Cuesta.' },
+        pr: { es: '$1,150', en: '$1,150' },
+        d: { es: 'Sorprende a tu pareja con una serenata en vivo al atardecer frente al Pacífico. Música clásica, romántica o lo que prefieras. Se puede agregar a cualquier paquete de celebración.', en: 'Surprise your partner with a live serenade at sunset facing the Pacific. Classical, romantic or whatever you prefer. Can be added to any celebration package.' },
         msg: { es: '¡Hola! Quiero contratar una serenata con violinista en Casa Axolotl. ¿Cuándo tienen disponibilidad?', en: 'Hi! I want to book a violin serenade at Casa Axolotl. When do you have availability?' }
+      }
+    ]
+  },
+  {
+    id: 'escapadas',
+    label: { es: 'Escapaditas · Casa Axolotl', en: 'Mini Escapes · Casa Axolotl' },
+    items: [
+      {
+        ic: '☀️', col: '#c97a2a',
+        n: { es: 'Escapadita de Día', en: 'Day Escape' },
+        pr: { es: '$1,300 por pareja · $200 p. adicional', en: '$1,300 per couple · $200 each additional' },
+        d: { es: '7 horas de habitación con aire acondicionado, vale de $700 en alimentos y bebidas, 1 hora de kayak y uso de alberca, enramadas y hamacas. De lun–jue, temporada baja y sujeto a disponibilidad. Entrada desde las 9 a.m., salida máxima 8 p.m.', en: '7 hours in an air-conditioned room, $700 food & drink credit, 1 hour of kayak and access to the pool, palapas and hammocks. Mon–Thu, low season, subject to availability. Check-in from 9 a.m., check-out by 8 p.m.' },
+        msg: { es: '¡Hola! Me interesa la Escapadita de Día en Casa Axolotl. ¿Tienen disponibilidad esta semana?', en: 'Hi! I\'m interested in the Day Escape at Casa Axolotl. Do you have availability this week?' }
+      },
+      {
+        ic: '🌙', col: '#1a4a7e',
+        n: { es: 'Escapada Completa · 1 noche', en: 'Full Escape · 1 night' },
+        pr: { es: '$1,600 por pareja · $200 p. adicional', en: '$1,600 per couple · $200 each additional' },
+        d: { es: '1 noche en habitación con aire acondicionado, vale de $800 en alimentos y bebidas, 1 hora de kayak y uso de alberca, hamacas y enramadas. De lun–jue, temporada baja y sujeto a disponibilidad. Check-in 3 p.m.; check-out 12 p.m.', en: '1 night in an air-conditioned room, $800 food & drink credit, 1 hour of kayak and access to the pool, hammocks and palapas. Mon–Thu, low season, subject to availability. Check-in 3 p.m.; check-out 12 p.m.' },
+        msg: { es: '¡Hola! Me interesa la Escapada Completa de 1 noche en Casa Axolotl. ¿Tienen disponibilidad?', en: 'Hi! I\'m interested in the Full Escape (1 night) at Casa Axolotl. Do you have availability?' }
+      },
+      {
+        ic: '👑', col: '#7a3a8e',
+        n: { es: 'Escapada Premium · Suite King', en: 'Premium Escape · King Suite' },
+        pr: { es: '$1,995 por pareja', en: '$1,995 per couple' },
+        d: { es: '1 noche en suite con cama king size, botella de vino de bienvenida, vale de $800 en alimentos y bebidas, 1 hora de kayak y acceso a todas las instalaciones. De lun–jue, temporada baja y sujeto a disponibilidad.', en: '1 night in a king suite, welcome bottle of wine, $800 food & drink credit, 1 hour of kayak and access to all facilities. Mon–Thu, low season, subject to availability.' },
+        msg: { es: '¡Hola! Me interesa la Escapada Premium (suite king) en Casa Axolotl. ¿Tienen disponibilidad?', en: 'Hi! I\'m interested in the Premium Escape (king suite) at Casa Axolotl. Do you have availability?' }
       }
     ]
   }

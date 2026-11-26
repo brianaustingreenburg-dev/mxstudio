@@ -51,6 +51,7 @@ function render(){const u=T[lang],app="https://go.myjefetech.app/acapulco/c/"+sl
   <a class="b g" target="_blank" href="${wa(u.revAsk+rv)}">${u.revMsg}</a><p class="tip">${u.revTip}</p>${revTopBox()}${revIdeas()}</div>`:""}
  <div class="card"><h2>${u.print}</h2><div class="grid"><a class="b l" href="${tj}&f=m">${u.mesa}</a><a class="b l" href="${tj}&f=st">${u.stk}</a><a class="b l" href="${tj}&f=rv" style="grid-column:span 2">${u.rvs}</a></div></div>
  <div class="card"><h2>${lang==="es"?"✏️ Edita tu menú":"✏️ Edit your menu"}</h2><p>${lang==="es"?"Cambia precios, agrega platillos, toma foto de tu menú o cambia el especial de hoy. Al terminar, toca Publicar.":"Change prices, add dishes, snap a photo of your menu or change today's special. When you're done, tap Publish."}</p><button class="b" id="edOpen">${lang==="es"?"✏️ Abrir editor":"✏️ Open editor"}</button></div>
+ ${slug==="casa-axolotl"?actEdCard(lang):""}
  <div class="card"><h2>${u.chg}</h2><p>${u.chgP}</p><a class="b" target="_blank" href="${wa(u.specMsg+(D.name||slug)+": ",BR)}">${u.spec}</a><a class="b" target="_blank" href="${wa(u.menuMsg+(D.name||slug)+" (foto adjunta):",BR)}">${u.menu}</a><a class="b l" target="_blank" href="${wa(u.helpMsg+(D.name||slug)+". ",BR)}">${u.help}</a></div>
  ${lyCard()}
  ${starCard()}
@@ -294,6 +295,49 @@ async function publish(){const es=lang==="es";const clean=EM.map(c=>({cat:c.cat,
  const link="https://go.myjefetech.app/acapulco/rutas/#chg="+code,msg=(es?"🧑‍🍳 Cambios de *":"🧑‍🍳 Changes for *")+(D.name||slug)+(es?"* — toca para publicar:\n":"* — tap to publish:\n")+link;
  open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");try{localStorage.removeItem("mx-dueno-draft-"+slug)}catch(_){}
  $("w").innerHTML=`<div class="card" style="text-align:center"><div style="font-size:42px">✅</div><h2>${es?"Cambios enviados":"Changes sent"}</h2><p>${es?"Toca Enviar en WhatsApp. Tu app se actualiza en unos minutos.":"Tap Send in WhatsApp. Your app updates in a few minutes."}</p><button class="b l" id="bk">← ${es?"Volver":"Back"}</button></div>`;$("bk").onclick=render}
+// ---------- 🏨 Hotel Activity & Schedule Editor (Casa Axolotl only) ----------
+let ACT_DATA=null; // loaded from activities.json
+async function loadAct(){
+ try{const r=await fetch("../c/"+slug+"/activities.json?t="+Date.now(),{cache:"no-store"});ACT_DATA=r.ok?await r.json():null}catch(_){ACT_DATA=null}
+ return ACT_DATA}
+function actEdCard(l){
+ const es=l==="es";
+ return `<div class="card" id="actCard"><h2>${es?"🗓️ Horario del hotel":"🗓️ Hotel schedule"}</h2>
+  <p>${es?"Edita el horario diario del hotel. Los cambios se envían a MX Studio y quedan en la app en minutos.":"Edit the hotel's daily schedule. Changes are sent to MX Studio and go live in minutes."}</p>
+  <button class="b l" id="actOpen">${es?"✏️ Editar horario":"✏️ Edit schedule"}</button></div>`}
+function actDrawEd(){const es=lang==="es",acts=ACT_DATA||[];
+ $("w").innerHTML=`<div class="card ed"><h2>🗓️ ${es?"Horario del hotel":"Hotel schedule"}</h2>
+  <p class="sm">${es?"Edita cada entrada. Los horarios fijos (amanecer, kayaks) no cambian.":"Edit each entry. Fixed times (sunrise, kayaks) don't change."}</p>
+  ${acts.map((a,i)=>`<div style="border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;background:#fffdf9">
+   <div style="display:grid;grid-template-columns:72px 1fr;gap:8px;align-items:center;margin-bottom:8px">
+    <input data-ai="${i}" data-af="time" value="${esc(a.time)}" placeholder="HH:MM" style="font:800 16px ui-monospace,monospace;text-align:center;padding:9px;border-radius:10px;border:1.5px solid var(--line)">
+    <div style="display:flex;gap:6px;align-items:center"><span style="font-size:18px">📌</span><b style="opacity:.6;font-size:13px">${es?"Hora":"Time"}</b></div>
+   </div>
+   <input data-ai="${i}" data-af="es" value="${esc(a.es)}" placeholder="${es?"Nombre en español":"Spanish name"}" style="margin-bottom:6px">
+   <input data-ai="${i}" data-af="en" value="${esc(a.en)}" placeholder="English name" style="margin-bottom:6px">
+   <input data-ai="${i}" data-af="noteEs" value="${esc(a.noteEs||"")}" placeholder="${es?"Nota en español (opcional)":"Spanish note (optional)"}" style="font-size:13px;margin-bottom:6px">
+   <input data-ai="${i}" data-af="noteEn" value="${esc(a.noteEn||"")}" placeholder="English note (optional)" style="font-size:13px">
+  </div>`).join("")}
+  <div class="card"><button class="b g" id="actPub">📤 ${es?"Publicar cambios":"Publish changes"}</button>
+   <p class="tip">${es?"Se manda a MX Studio por WhatsApp y queda en la app en minutos.":"Sent to MX Studio via WhatsApp and live in minutes."}</p>
+   <button class="b l" id="actBk">← ${es?"Volver":"Back"}</button></div>`;
+ $("w").oninput=e=>{const el=e.target,i=el.dataset.ai,f=el.dataset.af;if(i===undefined||!f)return;ACT_DATA[+i][f]=el.value};
+ $("actBk").onclick=render;
+ $("actPub").onclick=async()=>{const es=lang==="es",nm=D.name||slug;
+  const lines=ACT_DATA.map(a=>`${a.time} · ${a.es} / ${a.en}${a.noteEs?" ("+a.noteEs+")/("+(a.noteEn||a.noteEs)+")":""}`).join("\n");
+  const json=JSON.stringify(ACT_DATA,null,2);
+  const msg=(es?"🗓️ Horario del hotel · *":"🗓️ Hotel schedule · *")+nm+(es?"* — actualizar activities.json:\n\n":"* — update activities.json:\n\n")+json;
+  open("https://api.whatsapp.com/send?phone="+BR+"&text="+encodeURIComponent(msg),"_blank");
+  $("w").innerHTML=`<div class="card" style="text-align:center"><div style="font-size:42px">✅</div><h2>${es?"Horario enviado":"Schedule sent"}</h2><p>${es?"Toca Enviar en WhatsApp. Tu app se actualiza en unos minutos.":"Tap Send in WhatsApp. Your app updates in a few minutes."}</p><button class="b l" id="actBk2">← ${es?"Volver":"Back"}</button></div>`;
+  $("actBk2").onclick=render}}
+document.addEventListener("click",async e=>{
+ if(e.target.id==="actOpen"){const es=lang==="es";
+  if(!ACT_DATA){$("w").innerHTML=`<div class="card"><p>${es?"Cargando…":"Loading…"}</p><button class="b l" id="actBkLoad">← ${es?"Volver":"Back"}</button></div>`;
+   const bkl=$("actBkLoad");if(bkl)bkl.onclick=render;
+   await loadAct()}
+  if(!ACT_DATA){$("w").innerHTML=`<div class="card"><p>${es?"No se pudo cargar el horario. Verifica tu conexión.":"Could not load the schedule. Check your connection."}</p><button class="b l" id="actBkErr">← ${es?"Volver":"Back"}</button></div>`;
+   const bke=$("actBkErr");if(bke)bke.onclick=render;return}
+  actDrawEd()}});
 load();
 featToggleSetup();
 if("serviceWorker" in navigator&&location.protocol==="https:"){navigator.serviceWorker.register("../sw.js").catch(()=>{})}
